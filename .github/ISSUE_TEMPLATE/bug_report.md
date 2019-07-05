@@ -1,7 +1,7 @@
 ---
 name: 'Bug Report'
 title: 'Bug Report'
-labels: 'fixed bugs'
+labels: 'bugs'
 about: Report a reproducible bug or regression in Explorer UI.
 
 ---
