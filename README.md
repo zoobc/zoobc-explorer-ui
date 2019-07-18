@@ -42,6 +42,9 @@ Next, setup dependencies and globally installed for [Node](https://nodejs.org/en
   $ npm -v
   # check npm version
 
+  $ git submodule update --init --recursive --remote
+  # update submodule (language files)
+
   $ npm install
   # install node_modules packages
 
