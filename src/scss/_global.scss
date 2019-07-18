@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  font-family: $font-family-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+}
+
+code {
+  font-family: $font-family-code;
+}
+
+.breaker {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.clipboard-copy {
+  @include transition(all 0.5s);
+  color: #777;
+  &:hover {
+    cursor: pointer;
+    color: #007bff;
+  }
+}
+
+.navbar-home {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.card {
+  background: #fff;
+  -webkit-box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 3px 3px 3px 3px;
+  border: none;
+}
+
+.min-height-body {
+  min-height: calc(100vh - 380px);
+}

@@ -1,0 +1,124 @@
+#home {
+  table {
+    td,
+    th {
+      font-size: 12px;
+    }
+  }
+}
+
+.banner-home {
+  top: 15px;
+  position: relative;
+  color: white;
+  bottom: 300px;
+}
+
+.top-left-text {
+  position: absolute;
+  top: 50px;
+  left: 60px;
+  font-size: 70px;
+  font-family: sans-serif;
+}
+
+.text-content {
+  position: absolute;
+  top: 190px;
+  left: 60px;
+  font-size: 23px;
+  right: 500px;
+}
+
+.search {
+  position: absolute;
+  top: 250px;
+  left: 60px;
+  right: 500px;
+}
+
+@media only screen and (min-width: 1024px) and (max-height: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1.5) {
+  .banner-home {
+    .top-left-text {
+      top: 80px;
+      left: 15px;
+      font-size: 50px;
+    }
+    .text-content {
+      top: 144px;
+      left: 18px;
+      font-size: 25px;
+      right: 300px;
+    }
+    .search {
+      top: 189px;
+      left: 17px;
+      right: 500px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .banner-home {
+    .top-left-text {
+      top: 49px;
+      left: 15px;
+      font-size: 42px;
+    }
+    .text-content {
+      top: 111px;
+      left: 18px;
+      font-size: 22px;
+      right: 270px;
+    }
+    .search {
+      top: 164px;
+      left: 17px;
+      right: 500px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .banner-home {
+    .top-left-text {
+      top: 52px;
+      left: 15px;
+      font-size: 35px;
+    }
+    .text-content {
+      top: 102px;
+      left: 18px;
+      font-size: 18px;
+      right: 180px;
+    }
+    .search {
+      position: absolute;
+      top: 119px;
+      left: 17px;
+      right: 300px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .banner-home {
+    .top-left-text {
+      top: 20px;
+      left: 15px;
+      font-size: 21px;
+    }
+    .text-content {
+      top: 45px;
+      left: 18px;
+      font-size: 9px;
+      right: 115px;
+    }
+    .search {
+      position: absolute;
+      top: 32px;
+      left: 17px;
+      right: 157px;
+    }
+  }
+}
