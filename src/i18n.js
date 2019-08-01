@@ -3,6 +3,7 @@ import i18n from 'i18next'
 import config from './config'
 import en from './language/locales/en.json'
 import id from './language/locales/id.json'
+import ar from './language/locales/ar.json'
 
 const isDevelop = process.env.NODE_ENV === 'development'
 
@@ -14,6 +15,9 @@ i18n.init({
     },
     id: {
       translations: id,
+    },
+    ar: {
+      translations: ar,
     },
   },
   lng: config.app.defaultLang,
