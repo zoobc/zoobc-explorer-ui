@@ -7,6 +7,10 @@ const languages = [
     label: 'Indonesia',
     value: 'id',
   },
+  {
+    label: 'Arabic',
+    value: 'ar',
+  }
 ]
 
 export default languages
