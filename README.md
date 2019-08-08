@@ -1,4 +1,4 @@
-![](/src/assets/images/banner-readme.jpg)
+![](/src/assets/images/ZooBC-explorer-ui.png)
 
 <h1 align="center">
   <a href="https://github.com/BlockchainZoo/spinechain-explorer-prototype">
