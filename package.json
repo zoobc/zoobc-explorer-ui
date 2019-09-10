@@ -24,7 +24,7 @@
     "graphql-tag": "^2.10.1",
     "i18next": "^17.0.4",
     "leaflet": "^1.5.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "moment": "^2.24.0",
     "qrcode.react": "^0.9.3",
     "query-string": "^6.7.0",
