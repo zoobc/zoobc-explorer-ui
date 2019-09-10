@@ -9,6 +9,7 @@ const CopyToClipboard = ({ text = '', keyID }) => {
   const [tooltipMessage, setTooltipMessage] = useState('Click to copy')
   return (
     <>
+      {text}
       <Clipboard text={text}>
         <i
           className="fa fa-copy ml-2 clipboard-copy"

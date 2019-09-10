@@ -1,0 +1,25 @@
+.header {
+  background: $black !important;
+  .ant-menu-dark {
+    background: $black;
+    .ant-menu-item-selected {
+      background: $blue;
+      border-radius: 5px;
+    }
+  }
+  .header-content {
+    display: flex;
+    align-items: center;
+    .logo {
+      width: 250px;
+      height: 100%;
+      float: left;
+      img {
+        width: 100%
+      }
+    }
+    .navbar-right {
+      flex: 1
+    }
+  }
+}
