@@ -10,7 +10,7 @@ const languages = [
   {
     label: 'Arabic',
     value: 'ar',
-  }
+  },
 ]
 
 export default languages
