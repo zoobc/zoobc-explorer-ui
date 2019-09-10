@@ -12,20 +12,16 @@ const columns = [
     dataIndex: 'hash',
     key: 'hash',
     render(record) {
-      return (
-        <Link to={`/v1/blocks/${record}`}>{record}</Link>
-      )
-    }
+      return <Link to={`/v1/blocks/${record}`}>{record}</Link>
+    },
   },
   {
     title: 'Height',
     dataIndex: 'height',
     key: 'height',
     render(record) {
-      return (
-        <Link to={`/v1/blocks/${record}`}>{record}</Link>
-      )
-    }
+      return <Link to={`/v1/blocks/${record}`}>{record}</Link>
+    },
   },
   {
     title: 'Timestamp',
@@ -37,10 +33,8 @@ const columns = [
     dataIndex: 'blocksmith',
     key: 'blocksmith',
     render(record) {
-      return (
-        <Link to="/v1">{record}</Link>
-      )
-    }
+      return <Link to="/v1">{record}</Link>
+    },
   },
   {
     title: 'Fees',
@@ -62,7 +56,7 @@ const data = [
     timestamp: '23/9/2019',
     blocksmith: 'sadhsajhdkjas87587587sadas',
     fees: ' $3000',
-    rewards: '20 points'
+    rewards: '20 points',
   },
   {
     key: 2,
@@ -71,7 +65,7 @@ const data = [
     timestamp: '23/9/2019',
     blocksmith: 'sadhsajhdkjas87587587sadas',
     fees: ' $3000',
-    rewards: '20 points'
+    rewards: '20 points',
   },
   {
     key: 3,
@@ -80,7 +74,7 @@ const data = [
     timestamp: '23/9/2019',
     blocksmith: 'sadhsajhdkjas87587587sadas',
     fees: ' $3000',
-    rewards: '20 points'
+    rewards: '20 points',
   },
   {
     key: 4,
@@ -89,7 +83,7 @@ const data = [
     timestamp: '23/9/2019',
     blocksmith: 'sadhsajhdkjas87587587sadas',
     fees: ' $3000',
-    rewards: '20 points'
+    rewards: '20 points',
   },
   {
     key: 5,
@@ -98,7 +92,7 @@ const data = [
     timestamp: '23/9/2019',
     blocksmith: 'sadhsajhdkjas87587587sadas',
     fees: ' $3000',
-    rewards: '20 points'
+    rewards: '20 points',
   },
   {
     key: 6,
@@ -107,7 +101,7 @@ const data = [
     timestamp: '23/9/2019',
     blocksmith: 'sadhsajhdkjas87587587sadas',
     fees: ' $3000',
-    rewards: '20 points'
+    rewards: '20 points',
   },
   {
     key: 7,
@@ -116,7 +110,7 @@ const data = [
     timestamp: '23/9/2019',
     blocksmith: 'sadhsajhdkjas87587587sadas',
     fees: ' $3000',
-    rewards: '20 points'
+    rewards: '20 points',
   },
   {
     key: 8,
@@ -125,7 +119,7 @@ const data = [
     timestamp: '23/9/2019',
     blocksmith: 'sadhsajhdkjas87587587sadas',
     fees: ' $3000',
-    rewards: '20 points'
+    rewards: '20 points',
   },
   {
     key: 9,
@@ -134,7 +128,7 @@ const data = [
     timestamp: '23/9/2019',
     blocksmith: 'sadhsajhdkjas87587587sadas',
     fees: ' $3000',
-    rewards: '20 points'
+    rewards: '20 points',
   },
   {
     key: 10,
@@ -143,7 +137,7 @@ const data = [
     timestamp: '23/9/2019',
     blocksmith: 'sadhsajhdkjas87587587sadas',
     fees: ' $3000',
-    rewards: '20 points'
+    rewards: '20 points',
   },
   {
     key: 11,
@@ -152,7 +146,7 @@ const data = [
     timestamp: '23/9/2019',
     blocksmith: 'sadhsajhdkjas87587587sadas',
     fees: ' $3000',
-    rewards: '20 points'
+    rewards: '20 points',
   },
   {
     key: 12,
@@ -161,7 +155,7 @@ const data = [
     timestamp: '23/9/2019',
     blocksmith: 'sadhsajhdkjas87587587sadas',
     fees: ' $3000',
-    rewards: '20 points'
+    rewards: '20 points',
   },
   {
     key: 13,
@@ -170,7 +164,7 @@ const data = [
     timestamp: '23/9/2019',
     blocksmith: 'sadhsajhdkjas87587587sadas',
     fees: ' $3000',
-    rewards: '20 points'
+    rewards: '20 points',
   },
   {
     key: 14,
@@ -179,7 +173,7 @@ const data = [
     timestamp: '23/9/2019',
     blocksmith: 'sadhsajhdkjas87587587sadas',
     fees: ' $3000',
-    rewards: '20 points'
+    rewards: '20 points',
   },
   {
     key: 15,
@@ -188,7 +182,7 @@ const data = [
     timestamp: '23/9/2019',
     blocksmith: 'sadhsajhdkjas87587587sadas',
     fees: ' $3000',
-    rewards: '20 points'
+    rewards: '20 points',
   },
 ]
 
@@ -205,16 +199,12 @@ const Blocks = () => {
                 </Col>
               </Row>
               <Table columns={columns} dataSource={data} pagination={false} size="small" />
-              <Pagination
-                className="pagination-center"
-                current={5}
-                total={100}
-              />
+              <Pagination className="pagination-center" current={5} total={100} />
             </Card>
           </Col>
         </Row>
       </Container>
-    </DefaultLayout >
+    </DefaultLayout>
   )
 }
 

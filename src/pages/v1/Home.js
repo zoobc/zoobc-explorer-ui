@@ -1,11 +1,11 @@
 import React from 'react'
-import { Row, Col, Card, Typography, Button, Table } from 'antd';
+import { Row, Col, Card, Typography, Button, Table } from 'antd'
 import { Link } from 'react-router-dom'
 // import { useQuery } from '@apollo/react-hooks'
 // import gql from 'graphql-tag'
 
-import DefaultLayout from '../../components/DefaultLayout';
-import Container from '../../components/Container';
+import DefaultLayout from '../../components/DefaultLayout'
+import Container from '../../components/Container'
 
 const { Title } = Typography
 
@@ -68,10 +68,8 @@ const columns = [
     dataIndex: 'height',
     key: 'height',
     render(record) {
-      return (
-        <Link to="/">{record}</Link>
-      )
-    }
+      return <Link to="/">{record}</Link>
+    },
   },
   {
     title: 'Transactions',
@@ -83,10 +81,8 @@ const columns = [
     dataIndex: 'blocksmith',
     key: 'blocksmith',
     render(record) {
-      return (
-        <Link to="/">{record}</Link>
-      )
-    }
+      return <Link to="/">{record}</Link>
+    },
   },
 ]
 
@@ -129,20 +125,16 @@ const columnsTrx = [
     dataIndex: 'transactionsId',
     key: 'transactionsId',
     render(record) {
-      return (
-        <Link to="/">{record}</Link>
-      )
-    }
+      return <Link to="/">{record}</Link>
+    },
   },
   {
     title: 'Blocksmith',
     dataIndex: 'blocksmith',
     key: 'blocksmith',
     render(record) {
-      return (
-        <Link to="/">{record}</Link>
-      )
-    }
+      return <Link to="/">{record}</Link>
+    },
   },
   {
     title: 'Type',
@@ -164,7 +156,9 @@ const Home = () => {
                   <Title level={4}>Blocks</Title>
                 </Col>
                 <Col span={3}>
-                  <Button size="small" type="primary">View all</Button>
+                  <Button size="small" type="primary">
+                    View all
+                  </Button>
                 </Col>
               </Row>
               {/* <Table columns={columns} dataSource={!!data && data.blocks} pagination={false} size="small" loading={loading} /> */}
@@ -178,7 +172,9 @@ const Home = () => {
                   <Title level={4}>Transactions</Title>
                 </Col>
                 <Col span={3}>
-                  <Button size="small" type="primary">View all</Button>
+                  <Button size="small" type="primary">
+                    View all
+                  </Button>
                 </Col>
               </Row>
               {/* <Table columns={columnsTrx} dataSource={!!data && data.transactions} pagination={false} size="small" loading={loading} /> */}
@@ -187,7 +183,7 @@ const Home = () => {
           </Col>
         </Row>
       </Container>
-    </DefaultLayout >
+    </DefaultLayout>
   )
 }
 

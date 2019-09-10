@@ -79,7 +79,11 @@ function App() {
               <Route exact path="/v1" render={props => <HomeV1 {...props} />} />
               <Route exact path="/v1/blocks" render={props => <BlocksV1 {...props} />} />
               <Route exact path="/v1/blocks/:id" render={props => <BlockV1 {...props} />} />
-              <Route exact path="/v1/transactions" render={props => <TransactionsV1 {...props} />} />
+              <Route
+                exact
+                path="/v1/transactions"
+                render={props => <TransactionsV1 {...props} />}
+              />
               <Route exact path="*" render={props => <NotFound {...props} />} />
             </Switch>
             {/* </div> */}

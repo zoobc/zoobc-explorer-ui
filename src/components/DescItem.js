@@ -7,7 +7,9 @@ const DescItem = ({ label, value }) => {
   return (
     <>
       <Col span={4}>
-        <label><strong>{label}</strong></label>
+        <label>
+          <strong>{label}</strong>
+        </label>
       </Col>
       <Col span={20}>
         <label>{!!value ? value : '-'}</label>
@@ -18,10 +20,7 @@ const DescItem = ({ label, value }) => {
 
 DescItem.propTypes = {
   label: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-  ]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 }
 
 export default DescItem

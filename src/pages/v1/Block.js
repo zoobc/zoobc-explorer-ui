@@ -14,10 +14,8 @@ const columnsTrx = [
     dataIndex: 'hash',
     key: 'hash',
     render(record) {
-      return (
-        <Link to="/">{record}</Link>
-      )
-    }
+      return <Link to="/">{record}</Link>
+    },
   },
   {
     title: 'Timestamp',
@@ -69,8 +67,6 @@ const columnsReward = [
   },
 ]
 
-
-
 const Block = () => {
   return (
     <DefaultLayout>
@@ -83,18 +79,41 @@ const Block = () => {
               </Col>
             </Row>
             <Card className="card-summary">
-              <DescItem label="Hash" value={<CopyToClipboard text="00000000000000000015933029dca9ac633e2b2324bd88f2eee77ab7269fbf02" />} />
+              <DescItem
+                label="Hash"
+                value={
+                  <CopyToClipboard text="00000000000000000015933029dca9ac633e2b2324bd88f2eee77ab7269fbf02" />
+                }
+              />
             </Card>
             <Card className="card-summary">
               <Title level={4}>Summary</Title>
-              <DescItem label="Previous Block Hash" value={<CopyToClipboard text="00000000000000000015933029dca9ac633e2b2324bd88f2eee77ab7269fbf02" />} />
+              <DescItem
+                label="Previous Block Hash"
+                value={
+                  <CopyToClipboard text="00000000000000000015933029dca9ac633e2b2324bd88f2eee77ab7269fbf02" />
+                }
+              />
               <DescItem label="Height" value="379" />
               <DescItem label="Timestamp" value="16-Jul-2019 03:31:19" />
-              <DescItem label="Block Seed" value={<CopyToClipboard text="00000000000000000015933029dca9ac633e2b2324bd88f2eee77ab7269fbf02" />} />
-              <DescItem label="Block Signature" value={<CopyToClipboard text="00000000000000000015933029dca9ac633e2b2324bd88f2eee77ab7269fbf02" />} />
+              <DescItem
+                label="Block Seed"
+                value={
+                  <CopyToClipboard text="00000000000000000015933029dca9ac633e2b2324bd88f2eee77ab7269fbf02" />
+                }
+              />
+              <DescItem
+                label="Block Signature"
+                value={
+                  <CopyToClipboard text="00000000000000000015933029dca9ac633e2b2324bd88f2eee77ab7269fbf02" />
+                }
+              />
               <DescItem label="Cumulative Difficulty" value="2464923742379" />
               <DescItem label="Smith Scale" value="7611456" />
-              <DescItem label="Blocksmith ID" value="BCZ15933029dca9ac633e2b2324bd88f2eee77ab7269fbf02" />
+              <DescItem
+                label="Blocksmith ID"
+                value="BCZ15933029dca9ac633e2b2324bd88f2eee77ab7269fbf02"
+              />
               <DescItem label="Total Amount" value="0" />
               <DescItem label="Total Fee" value="0" />
               <DescItem label="Total Coinbase" value="0" />
@@ -103,36 +122,31 @@ const Block = () => {
               <DescItem label="Payload Hash" />
             </Card>
             <Card className="card-summary">
-              <Title level={4}>Rewards / Coinbase <Badge className="badge-black" count={425} overflowCount={1000} /></Title>
+              <Title level={4}>
+                Rewards / Coinbase{' '}
+                <Badge className="badge-black" count={425} overflowCount={1000} />
+              </Title>
               <Table columns={columnsReward} dataSource={[]} pagination={false} size="small" />
-              <Pagination
-                className="pagination-center"
-                current={5}
-                total={100}
-              />
+              <Pagination className="pagination-center" current={5} total={100} />
             </Card>
             <Card className="card-summary">
-              <Title level={4}>Reciepts <Badge className="badge-black" count={425} overflowCount={1000} /></Title>
+              <Title level={4}>
+                Reciepts <Badge className="badge-black" count={425} overflowCount={1000} />
+              </Title>
               <Table columns={columnsTrx} dataSource={[]} pagination={false} size="small" />
-              <Pagination
-                className="pagination-center"
-                current={5}
-                total={100}
-              />
+              <Pagination className="pagination-center" current={5} total={100} />
             </Card>
             <Card>
-              <Title level={4}>Transactions <Badge className="badge-black" count={425} overflowCount={1000} /></Title>
+              <Title level={4}>
+                Transactions <Badge className="badge-black" count={425} overflowCount={1000} />
+              </Title>
               <Table columns={columnsTrx} dataSource={[]} pagination={false} size="small" />
-              <Pagination
-                className="pagination-center"
-                current={5}
-                total={100}
-              />
+              <Pagination className="pagination-center" current={5} total={100} />
             </Card>
           </Col>
         </Row>
       </Container>
-    </DefaultLayout >
+    </DefaultLayout>
   )
 }
 

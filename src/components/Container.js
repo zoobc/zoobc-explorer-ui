@@ -4,7 +4,13 @@ import classNames from 'classnames'
 
 const Container = ({ children, className, fluid }) => {
   return (
-    <div className={classNames({ [className]: !!className, 'container-fluid': !!fluid, container: !fluid })}>
+    <div
+      className={classNames({
+        [className]: !!className,
+        'container-fluid': !!fluid,
+        container: !fluid,
+      })}
+    >
       {children}
     </div>
   )
@@ -16,7 +22,7 @@ Container.propTypes = {
 }
 
 Container.defaultProps = {
-  fluid: false
+  fluid: false,
 }
 
 export default Container

@@ -7,9 +7,7 @@ const DefaultLayout = ({ children, withHero }) => {
   return (
     <>
       {withHero && <Hero />}
-      <Layout className="default-layout">
-        {children}
-      </Layout>
+      <Layout className="default-layout">{children}</Layout>
     </>
   )
 }
@@ -19,7 +17,7 @@ DefaultLayout.propTypes = {
 }
 
 DefaultLayout.defaultProps = {
-  withHero: false
+  withHero: false,
 }
 
 export default DefaultLayout

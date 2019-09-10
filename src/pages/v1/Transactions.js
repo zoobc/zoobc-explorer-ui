@@ -12,10 +12,8 @@ const columns = [
     dataIndex: 'hash',
     key: 'hash',
     render(record) {
-      return (
-        <Link to="/">{record}</Link>
-      )
-    }
+      return <Link to="/">{record}</Link>
+    },
   },
   {
     title: 'Timestamp',
@@ -67,16 +65,12 @@ const Transactions = () => {
                 </Col>
               </Row>
               <Table columns={columns} dataSource={[]} pagination={false} size="small" />
-              <Pagination
-                className="pagination-center"
-                current={5}
-                total={100}
-              />
+              <Pagination className="pagination-center" current={5} total={100} />
             </Card>
           </Col>
         </Row>
       </Container>
-    </DefaultLayout >
+    </DefaultLayout>
   )
 }
 
