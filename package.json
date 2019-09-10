@@ -53,10 +53,13 @@
     "@fortawesome/fontawesome-free": "^5.8.2",
     "babel-plugin-import": "^1.12.1",
     "customize-cra": "^0.6.0",
+    "aliasify": "^2.1.0",
     "husky": "^2.3.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "node-sass": "^4.12.0",
+    "preact": "^8.5.2",
+    "preact-compat": "^3.19.0",
     "prettier": "^1.17.1",
     "react-app-rewired": "^2.1.3"
   },
@@ -66,5 +69,13 @@
     "not ie <= 9",
     "not op_mini all"
   ],
-  "proxy": "http://localhost:6969"
+  "proxy": "http://localhost:6969",
+  "aliasify": {
+    "aliases": {
+      "react": "preact-compat",
+      "react-dom": "preact-compat",
+      "create-react-class": "preact-compat/lib/create-react-class",
+      "react-dom-factories": "preact-compat/lib/react-dom-factories"
+    }
+  }
 }
