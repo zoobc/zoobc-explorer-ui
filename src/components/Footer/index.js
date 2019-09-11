@@ -1,24 +1,25 @@
-import React, { useState } from 'react'
-import { Row, Col, Container, FormGroup, Input } from 'reactstrap'
+import React from 'react'
+import { Row, Col } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 
 import logo from '../../assets/images/zoobc.svg'
-import languages from '../../languages'
+// import languages from '../../languages'
 import SmallerDeviceFooter from './SmallerDeviceFooter'
+import Container from '../Container'
 
 export default function Footer() {
-  const { t, i18n } = useTranslation()
-  const [lang, setLang] = useState('en')
+  const { t } = useTranslation()
+  // const [lang, setLang] = useState('en')
 
-  const changeLanguage = e => {
-    setLang(e.target.value)
-    i18n.changeLanguage(e.target.value)
-  }
+  // const changeLanguage = e => {
+  //   setLang(e.target.value)
+  //   i18n.changeLanguage(e.target.value)
+  // }
 
   return (
     <div className="footer">
       <SmallerDeviceFooter className="d-md-none" />
-      <Container className="footer-body d-none d-md-block">
+      <Container className="footer-body d-none d-md-block" fluid>
         <Row className="footer-logo-row">
           <Col className="col-md-12">
             <div className="company-logo">
@@ -32,7 +33,7 @@ export default function Footer() {
           <Col className="col-md-3">
             <p className="footer-info-text">
               {t(
-                'Spinechain Explorer is application for visualizing and presenting the information and activity ZooBC.'
+                'A webview for searching and displaying data published, so that a user can easily find any info about blockchain'
               )}
             </p>
             <div className="footer-social-icons">
@@ -78,16 +79,16 @@ export default function Footer() {
             <h3 className="footer-subtitle text-white heading-border">{t('Product')}</h3>
             <ul className="footer-list-group mb-0">
               <a className="footer-list-group-item" href="https://blockchainzoo.com/">
-                {t('ZooBC Blockchain')}
+                {t('ZooBC Core')}
               </a>
               <a className="footer-list-group-item" href="https://blockchainzoo.com/">
-                {t('Explorer')}
+                {t('ZooBC Explorer')}
               </a>
               <a className="footer-list-group-item" href="https://blockchainzoo.com/">
-                {t('Wallet')}
+                {t('ZooBC Wallet')}
               </a>
               <a className="footer-list-group-item" href="https://blockchainzoo.com/">
-                {t('Others')}
+                {t('White Papper')}
               </a>
             </ul>
           </Col>
@@ -104,7 +105,7 @@ export default function Footer() {
                 {t('Research')}
               </a>
               <a className="footer-list-group-item" href="https://blockchainzoo.com/">
-                {t('Blog')}
+                {t('Roadmap')}
               </a>
             </ul>
           </Col>
@@ -125,7 +126,7 @@ export default function Footer() {
               </a>
             </ul>
           </Col>
-          <Col className="pr-0" md="4" lg="3">
+          {/* <Col className="pr-0" md="4" lg="3">
             <FormGroup className="d-flex align-items-center justify-content-right footer-nav py-1">
               <Input type="select" value={lang} onChange={changeLanguage}>
                 {languages.map((language, key) => (
@@ -135,7 +136,7 @@ export default function Footer() {
                 ))}
               </Input>
             </FormGroup>
-          </Col>
+          </Col> */}
         </Row>
       </Container>
     </div>

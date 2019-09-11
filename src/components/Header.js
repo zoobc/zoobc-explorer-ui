@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, Menu } from 'antd'
+import { Layout, Menu, Input } from 'antd'
 import { Link } from 'react-router-dom'
 
 import Container from './Container'
@@ -55,6 +55,9 @@ const Header = () => {
         </div>
         <div className="navbar-left">
           <Menu theme="dark" mode="horizontal">
+            <Menu.Item key="en">
+              <Input placeholder="Search for a transaction or block hash" style={{ width: 300 }} />
+            </Menu.Item>
             <Menu.SubMenu title={<span className="submenu-title-wrapper">English</span>}>
               <Menu.Item key="en">English</Menu.Item>
               <Menu.Item key="id">Indonesia</Menu.Item>
