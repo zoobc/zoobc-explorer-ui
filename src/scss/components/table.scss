@@ -1,0 +1,23 @@
+.ant-table-thead {
+  .ant-table-column-title {
+    font-weight: 700
+  }
+  tr > th {
+    border-bottom: 0 !important
+  }
+}
+
+.ant-table-tbody {
+  .ant-table-row {
+    &:nth-child(odd) {
+      background: $grey
+    }
+    td {
+      border-bottom: 0;
+    }
+  }
+}
+
+.ant-table-small {
+  border: 0 !important
+}

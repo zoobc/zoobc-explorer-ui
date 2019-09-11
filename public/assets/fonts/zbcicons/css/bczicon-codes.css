@@ -1,0 +1,12 @@
+
+.bcz-node:before { content: '\e800'; } /* '' */
+.bcz-transaction:before { content: '\e801'; } /* '' */
+.bcz-user:before { content: '\e802'; } /* '' */
+.bcz-calendar:before { content: '\e803'; } /* '' */
+.bcz-copy:before { content: '\e804'; } /* '' */
+.bcz-block:before { content: '\e805'; } /* '' */
+.bcz-github:before { content: '\e806'; } /* '' */
+.bcz-medium:before { content: '\e807'; } /* '' */
+.bcz-search:before { content: '\e808'; } /* '' */
+.bcz-telegram:before { content: '\e809'; } /* '' */
+.bcz-youtube:before { content: '\e80a'; } /* '' */

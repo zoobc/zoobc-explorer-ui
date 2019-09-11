@@ -1,0 +1,32 @@
+.header {
+  background: $black !important;
+  .ant-menu-dark {
+    background: $black;
+    .ant-menu-item-selected {
+      background-color: transparent !important;
+      border-radius: 5px;
+      font-weight: 600;
+    }
+  }
+  .header-content {
+    display: flex;
+    align-items: center;
+    .logo {
+      img {
+        width: 100%
+      }
+    }
+    .navbar-right {
+      flex: 1
+    }
+  }
+  .menu-with-icon {
+    color: $white;
+    a {
+      color: $white;
+      [class^="bcz-"] {
+        margin-right: 5px
+      }
+    }
+  }
+}

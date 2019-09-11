@@ -1,16 +1,16 @@
 .footer {
   margin: 0;
-  padding: 40px 0;
-  color: #fff;
-  background-color: #0b3d65;
+  padding: 40px 50px;
+  color: $white;
+  background-color: $black;
   width: 100%;
   line-height: 1.67;
   position: relative;
   a {
-    color: #fff;
+    color: $white;
     &:hover {
       text-decoration: none;
-      color: #fff;
+      color: $white;
     }
   }
 
@@ -37,7 +37,7 @@
   }
 
   .footer-social-icon {
-    color: #fff;
+    color: $white;
     font-size: 22px;
     margin-right: 15px;
     text-decoration: none;
@@ -49,7 +49,7 @@
   }
 
   .footer-subtitle {
-    color: #fff;
+    color: $white;
     font-size: 14px;
     font-weight: 600;
     line-height: 1.4;
@@ -57,7 +57,7 @@
   }
 
   .text-white {
-    color: #fff;
+    color: $white;
   }
 
   .heading-border {
