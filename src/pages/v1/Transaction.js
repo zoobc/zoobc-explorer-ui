@@ -45,10 +45,7 @@ const Transaction = () => {
                   <CopyToClipboard text="0000000000000000001dsad5933029dca9ac633e2b2324bd88f2eee77ab7269fbf02" />
                 }
               />
-              <DescItem
-                label="Locked Funds"
-                value="20"
-              />
+              <DescItem label="Locked Funds" value="20" />
             </Card>
           </Col>
         </Row>

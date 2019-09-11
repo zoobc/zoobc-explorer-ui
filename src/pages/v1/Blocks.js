@@ -3,7 +3,6 @@ import { Row, Col, Card, Typography, Table, Pagination } from 'antd'
 import { Link } from 'react-router-dom'
 import DefaultLayout from '../../components/DefaultLayout'
 import Container from '../../components/Container'
-
 const { Title } = Typography
 
 const columns = [
@@ -195,7 +194,9 @@ const Blocks = () => {
             <Card>
               <Row>
                 <Col span={24}>
-                  <Title level={4}>Recent Blocks</Title>
+                  <Title level={4}>
+                    <i className="bcz-calendar"></i>Recent Blocks
+                  </Title>
                 </Col>
               </Row>
               <Table columns={columns} dataSource={data} pagination={false} size="small" />

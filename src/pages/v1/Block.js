@@ -79,23 +79,17 @@ const Block = () => {
               </Col>
             </Row>
             <Card className="card-summary">
-              <DescItem
-                label="Hash"
-                value={
-                  <CopyToClipboard text="00000000000000000015933029dca9ac633e2b2324bd88f2eee77ab7269fbf02" />
-                }
-              />
+              <DescItem label="Height" value={<CopyToClipboard text="23456" />} />
             </Card>
             <Card className="card-summary">
               <Title level={4}>Summary</Title>
+              <DescItem label="Timestamp" value="16-Jul-2019 03:31:19" />
               <DescItem
-                label="Previous Block Hash"
+                label="Previous Block ID"
                 value={
                   <CopyToClipboard text="00000000000000000015933029dca9ac633e2b2324bd88f2eee77ab7269fbf02" />
                 }
               />
-              <DescItem label="Height" value="379" />
-              <DescItem label="Timestamp" value="16-Jul-2019 03:31:19" />
               <DescItem
                 label="Block Seed"
                 value={
@@ -111,13 +105,17 @@ const Block = () => {
               <DescItem label="Cumulative Difficulty" value="2464923742379" />
               <DescItem label="Smith Scale" value="7611456" />
               <DescItem
-                label="Blocksmith ID"
+                label="Blocksmith Address"
                 value="BCZ15933029dca9ac633e2b2324bd88f2eee77ab7269fbf02"
               />
               <DescItem label="Total Amount" value="0" />
               <DescItem label="Total Fee" value="0" />
-              <DescItem label="Total Coinbase" value="0" />
+              <DescItem label="Total Rewards" value="0" />
               <DescItem label="Version" value="1" />
+              <DescItem label="Total Receipts" value="1" />
+              <DescItem label="Receipt Value" value="1" />
+              <DescItem label="Blocksmith ID" value="1" />
+              <DescItem label="PoP Change" value="1" />
               <DescItem label="Payload Length" value="0" />
               <DescItem label="Payload Hash" />
             </Card>

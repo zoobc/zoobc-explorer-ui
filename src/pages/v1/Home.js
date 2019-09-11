@@ -72,9 +72,9 @@ const columns = [
     },
   },
   {
-    title: 'Transactions',
-    dataIndex: 'transactions',
-    key: 'transactions',
+    title: 'Timestamp',
+    dataIndex: 'timestamp',
+    key: 'timestamp',
   },
   {
     title: 'Blocksmith',
@@ -129,17 +129,14 @@ const columnsTrx = [
     },
   },
   {
-    title: 'Blocksmith',
-    dataIndex: 'blocksmith',
-    key: 'blocksmith',
-    render(record) {
-      return <Link to="/">{record}</Link>
-    },
+    title: 'Timestamp',
+    dataIndex: 'timestamp',
+    key: 'timestamp',
   },
   {
-    title: 'Type',
-    dataIndex: 'type',
-    key: 'type',
+    title: 'Fees',
+    dataIndex: 'fees',
+    key: 'fees',
   },
 ]
 
@@ -156,7 +153,7 @@ const Home = () => {
                   <Title level={4}>Blocks</Title>
                 </Col>
                 <Col span={3}>
-                  <Button size="small" type="primary">
+                  <Button shape="round" size="small" type="primary">
                     View all
                   </Button>
                 </Col>
@@ -172,7 +169,7 @@ const Home = () => {
                   <Title level={4}>Transactions</Title>
                 </Col>
                 <Col span={3}>
-                  <Button size="small" type="primary">
+                  <Button shape="round" size="small" type="primary">
                     View all
                   </Button>
                 </Col>

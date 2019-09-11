@@ -1,9 +1,10 @@
 .hero {
   position: relative;
-  background: $black;
   width: 100%;
   height: 400px;
-  background-image: url(https://www.transparenttextures.com/patterns/shattered.png);
+  // background-image: url(https://www.transparenttextures.com/patterns/shattered.png);
+  background-image: url(/assets/images/banner.png);
+  background-size: contain;
 
   &-content {
     height: 100%;

@@ -18,19 +18,36 @@ const Header = () => {
             // defaultSelectedKeys={['2']}
           >
             <Menu.Item key="1">
-              <Link to="/v1/blocks">Blocks</Link>
+              <div className="menu-with-icon">
+                <Link to="/v1/blocks">
+                  <i className="bcz-block"></i>
+                  Blocks
+                </Link>
+              </div>
             </Menu.Item>
             <Menu.Item key="2">
-              <Link to="/v1/transactions">Transactions</Link>
+              <div className="menu-with-icon">
+                <Link to="/v1/transactions">
+                  <i className="bcz-transaction"></i>
+                  Transactions
+                </Link>
+              </div>
             </Menu.Item>
             <Menu.Item key="3">
-              <Link to="/v1/accounts">Accounts</Link>
+              <div className="menu-with-icon">
+                <Link to="/v1/accounts">
+                  <i className="bcz-user"></i>
+                  Accounts
+                </Link>
+              </div>
             </Menu.Item>
             <Menu.Item key="4">
-              <Link to="/v1/nodes">Nodes</Link>
-            </Menu.Item>
-            <Menu.Item key="5">
-              <Link to="/v1/statistics">Statistics</Link>
+              <div className="menu-with-icon">
+                <Link to="/v1/nodes">
+                  <i className="bcz-node"></i>
+                  Nodes
+                </Link>
+              </div>
             </Menu.Item>
           </Menu>
         </div>

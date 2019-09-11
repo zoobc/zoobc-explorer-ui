@@ -8,37 +8,12 @@ const { Title } = Typography
 
 const columns = [
   {
-    title: 'Transaction ID',
-    dataIndex: 'hash',
-    key: 'hash',
+    title: 'Address',
+    dataIndex: 'address',
+    key: 'address',
     render(record) {
       return <Link to="/">{record}</Link>
     },
-  },
-  {
-    title: 'Timestamp',
-    dataIndex: 'timestamp',
-    key: 'timestamp',
-  },
-  {
-    title: 'Type',
-    dataIndex: 'type',
-    key: 'type',
-  },
-  {
-    title: 'Sender',
-    dataIndex: 'sender',
-    key: 'sender',
-  },
-  {
-    title: 'Recipient',
-    dataIndex: 'recipient',
-    key: 'recipient',
-  },
-  {
-    title: 'Confirmation',
-    dataIndex: 'confirmation',
-    key: 'confirmation',
   },
   {
     title: 'Fees',
@@ -46,13 +21,18 @@ const columns = [
     key: 'fees',
   },
   {
-    title: 'Rewards',
-    dataIndex: 'rewards',
-    key: 'rewards',
+    title: 'Known Since',
+    dataIndex: 'known',
+    key: 'known',
+  },
+  {
+    title: 'Last Active',
+    dataIndex: 'lastActive',
+    key: 'lastActive',
   },
 ]
 
-const Transactions = () => {
+const Accounts = () => {
   return (
     <DefaultLayout>
       <Container fluid>
@@ -62,7 +42,7 @@ const Transactions = () => {
               <Row>
                 <Col span={24}>
                   <Title level={4}>
-                    <i className="bcz-calendar"></i>Recent Transactions
+                    <i className="bcz-user"></i>Accounts
                   </Title>
                 </Col>
               </Row>
@@ -76,4 +56,4 @@ const Transactions = () => {
   )
 }
 
-export default Transactions
+export default Accounts

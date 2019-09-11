@@ -27,6 +27,10 @@ import BlocksV1 from './pages/v1/Blocks'
 import BlockV1 from './pages/v1/Block'
 import TransactionsV1 from './pages/v1/Transactions'
 import TransactionV1 from './pages/v1/Transaction'
+import AccountsV1 from './pages/v1/Accounts'
+import AccountV1 from './pages/v1/Account'
+import NodesV1 from './pages/v1/Nodes'
+import NodeV1 from './pages/v1/Node'
 
 import {
   MapPeer,
@@ -90,6 +94,10 @@ function App() {
                 path="/v1/transactions/:id"
                 render={props => <TransactionV1 {...props} />}
               />
+              <Route exact path="/v1/accounts" render={props => <AccountsV1 {...props} />} />
+              <Route exact path="/v1/accounts/:id" render={props => <AccountV1 {...props} />} />
+              <Route exact path="/v1/nodes" render={props => <NodesV1 {...props} />} />
+              <Route exact path="/v1/nodes/:id" render={props => <NodeV1 {...props} />} />
               <Route exact path="*" render={props => <NotFound {...props} />} />
             </Switch>
             {/* </div> */}
