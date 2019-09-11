@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Row, Col, Container, FormGroup, Input } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 
-import logo from '../../assets/images/bcz-logo.png'
+import logo from '../../assets/images/zoobc.svg'
 import languages from '../../languages'
 import SmallerDeviceFooter from './SmallerDeviceFooter'
 

@@ -4,18 +4,20 @@ import { Link } from 'react-router-dom'
 
 import Container from './Container'
 
+import zoobcLogo from '../assets/images/zoobc.svg'
+
 const Header = () => {
   return (
     <Layout.Header className="header">
       <Container className="header-content" fluid>
-        <div className="logo">
-          <img src="https://zoobc.org/Themes/default/images/logo.png" alt="zoobc-logo" />
-        </div>
+        <Link className="logo" to="/v1">
+          <img src={zoobcLogo} alt="zoobc-logo" />
+        </Link>
         <div className="navbar-right">
           <Menu
             theme="dark"
             mode="horizontal"
-            // defaultSelectedKeys={['2']}
+          // defaultSelectedKeys={['2']}
           >
             <Menu.Item key="1">
               <div className="menu-with-icon">
