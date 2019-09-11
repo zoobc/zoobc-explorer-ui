@@ -67,6 +67,49 @@ const columnsReward = [
   },
 ]
 
+const columnsReceipt = [
+  {
+    title: 'Sender Public Key',
+    dataIndex: 'account',
+    key: 'account',
+  },
+  {
+    title: 'Reciever Public Key',
+    dataIndex: 'coins',
+    key: 'coins',
+  },
+  {
+    title: 'Block Height',
+    dataIndex: 'account',
+    key: 'account',
+  },
+  {
+    title: 'Block ID',
+    dataIndex: 'coins',
+    key: 'coins',
+  },
+  {
+    title: 'Data Type',
+    dataIndex: 'account',
+    key: 'account',
+  },
+  {
+    title: 'Data Hash',
+    dataIndex: 'coins',
+    key: 'coins',
+  },
+  {
+    title: 'Receipt Merkle Root',
+    dataIndex: 'account',
+    key: 'account',
+  },
+  {
+    title: 'Reciever Signature',
+    dataIndex: 'coins',
+    key: 'coins',
+  },
+]
+
 const Block = () => {
   return (
     <DefaultLayout>
@@ -131,7 +174,7 @@ const Block = () => {
               <Title level={4}>
                 Reciepts <Badge className="badge-black" count={425} overflowCount={1000} />
               </Title>
-              <Table columns={columnsTrx} dataSource={[]} pagination={false} size="small" />
+              <Table columns={columnsReceipt} dataSource={[]} pagination={false} size="small" />
               <Pagination className="pagination-center" current={5} total={100} />
             </Card>
             <Card>

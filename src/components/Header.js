@@ -17,7 +17,7 @@ const Header = () => {
           <Menu
             theme="dark"
             mode="horizontal"
-          // defaultSelectedKeys={['2']}
+            // defaultSelectedKeys={['2']}
           >
             <Menu.Item key="1">
               <div className="menu-with-icon">

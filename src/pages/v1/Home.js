@@ -165,13 +165,8 @@ const Home = () => {
           <Col span={12}>
             <Card>
               <Row>
-                <Col span={21}>
+                <Col>
                   <Title level={4}>Transactions</Title>
-                </Col>
-                <Col span={3}>
-                  <Button shape="round" size="small" type="primary">
-                    View all
-                  </Button>
                 </Col>
               </Row>
               {/* <Table columns={columnsTrx} dataSource={!!data && data.transactions} pagination={false} size="small" loading={loading} /> */}
