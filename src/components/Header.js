@@ -22,7 +22,7 @@ const Header = () => {
             <Menu.Item key="1">
               <div className="menu-with-icon">
                 <Link to="/v1/blocks">
-                  <i className="bcz-block"></i>
+                  <i className="bcz-block" />
                   Blocks
                 </Link>
               </div>
@@ -30,7 +30,7 @@ const Header = () => {
             <Menu.Item key="2">
               <div className="menu-with-icon">
                 <Link to="/v1/transactions">
-                  <i className="bcz-transaction"></i>
+                  <i className="bcz-transaction" />
                   Transactions
                 </Link>
               </div>
@@ -38,7 +38,7 @@ const Header = () => {
             <Menu.Item key="3">
               <div className="menu-with-icon">
                 <Link to="/v1/accounts">
-                  <i className="bcz-user"></i>
+                  <i className="bcz-user" />
                   Accounts
                 </Link>
               </div>
@@ -46,7 +46,7 @@ const Header = () => {
             <Menu.Item key="4">
               <div className="menu-with-icon">
                 <Link to="/v1/nodes">
-                  <i className="bcz-node"></i>
+                  <i className="bcz-node" />
                   Nodes
                 </Link>
               </div>

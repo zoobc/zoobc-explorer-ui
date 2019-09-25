@@ -42,7 +42,7 @@ const Nodes = () => {
               <Row>
                 <Col span={24}>
                   <Title level={4}>
-                    <i className="bcz-user"></i>Accounts
+                    <i className="bcz-user" />Accounts
                   </Title>
                 </Col>
               </Row>
