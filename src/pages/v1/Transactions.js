@@ -62,7 +62,8 @@ const Transactions = () => {
               <Row>
                 <Col span={24}>
                   <Title level={4}>
-                    <i className="bcz-calendar" />Recent Transactions
+                    <i className="bcz-calendar" />
+                    Recent Transactions
                   </Title>
                 </Col>
               </Row>

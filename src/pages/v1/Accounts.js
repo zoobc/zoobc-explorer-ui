@@ -42,7 +42,8 @@ const Accounts = () => {
               <Row>
                 <Col span={24}>
                   <Title level={4}>
-                    <i className="bcz-user" />Accounts
+                    <i className="bcz-user" />
+                    Accounts
                   </Title>
                 </Col>
               </Row>

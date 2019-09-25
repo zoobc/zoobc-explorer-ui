@@ -195,7 +195,8 @@ const Blocks = () => {
               <Row>
                 <Col span={24}>
                   <Title level={4}>
-                    <i className="bcz-calendar" />Recent Blocks
+                    <i className="bcz-calendar" />
+                    Recent Blocks
                   </Title>
                 </Col>
               </Row>
