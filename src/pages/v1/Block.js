@@ -1,12 +1,43 @@
 import React from 'react'
 import { Row, Col, Card, Typography, Table, Pagination, Badge } from 'antd'
 import { Link } from 'react-router-dom'
+import gql from 'graphql-tag'
+import { useQuery } from '@apollo/react-hooks'
+import moment from 'moment'
+
 import DefaultLayout from '../../components/DefaultLayout'
 import Container from '../../components/Container'
 import DescItem from '../../components/DescItem'
 import CopyToClipboard from '../../components/CopyToClipboard'
+import NotFound from '../../components/Errors/NotFound'
+import LoaderPage from '../../components/Loader/LoaderPage'
 
 const { Title } = Typography
+
+const GET_BLOCK_DATA = gql`
+  query getBlock($BlockID: String!) {
+    block(BlockID: $BlockID) {
+      Height
+      Timestamp
+      PreviousBlockID
+      BlockSeed
+      BlockSignature
+      CumulativeDifficulty
+      SmithScale
+      BlocksmithAddress
+      TotalAmount
+      TotalFee
+      TotalRewards
+      Version
+      TotalReceipts
+      ReceiptValue
+      BlocksmithID
+      PopChange
+      PayloadLength
+      PayloadHash
+    }
+  }
+`
 
 const columnsTrx = [
   {
@@ -110,83 +141,79 @@ const columnsReceipt = [
   },
 ]
 
-const Block = () => {
+const Block = ({ match }) => {
+  const { params } = match
+  const { loading, data, error } = useQuery(GET_BLOCK_DATA, {
+    variables: {
+      BlockID: params.id,
+    },
+  })
+
   return (
     <DefaultLayout>
-      <Container fluid>
-        <Row gutter={8}>
-          <Col span={24}>
-            <Row>
-              <Col span={24}>
-                <Title level={4}>Block #123456</Title>
-              </Col>
-            </Row>
-            <Card className="card-summary">
-              <DescItem label="Height" value={<CopyToClipboard text="23456" />} />
-            </Card>
-            <Card className="card-summary">
-              <Title level={4}>Summary</Title>
-              <DescItem label="Timestamp" value="16-Jul-2019 03:31:19" />
-              <DescItem
-                label="Previous Block ID"
-                value={
-                  <CopyToClipboard text="00000000000000000015933029dca9ac633e2b2324bd88f2eee77ab7269fbf02" />
-                }
-              />
-              <DescItem
-                label="Block Seed"
-                value={
-                  <CopyToClipboard text="00000000000000000015933029dca9ac633e2b2324bd88f2eee77ab7269fbf02" />
-                }
-              />
-              <DescItem
-                label="Block Signature"
-                value={
-                  <CopyToClipboard text="00000000000000000015933029dca9ac633e2b2324bd88f2eee77ab7269fbf02" />
-                }
-              />
-              <DescItem label="Cumulative Difficulty" value="2464923742379" />
-              <DescItem label="Smith Scale" value="7611456" />
-              <DescItem
-                label="Blocksmith Address"
-                value="BCZ15933029dca9ac633e2b2324bd88f2eee77ab7269fbf02"
-              />
-              <DescItem label="Total Amount" value="0" />
-              <DescItem label="Total Fee" value="0" />
-              <DescItem label="Total Rewards" value="0" />
-              <DescItem label="Version" value="1" />
-              <DescItem label="Total Receipts" value="1" />
-              <DescItem label="Receipt Value" value="1" />
-              <DescItem label="Blocksmith ID" value="1" />
-              <DescItem label="PoP Change" value="1" />
-              <DescItem label="Payload Length" value="0" />
-              <DescItem label="Payload Hash" />
-            </Card>
-            <Card className="card-summary">
-              <Title level={4}>
-                Rewards / Coinbase{' '}
-                <Badge className="badge-black" count={425} overflowCount={1000} />
-              </Title>
-              <Table columns={columnsReward} dataSource={[]} pagination={false} size="small" />
-              <Pagination className="pagination-center" current={5} total={100} />
-            </Card>
-            <Card className="card-summary">
-              <Title level={4}>
-                Reciepts <Badge className="badge-black" count={425} overflowCount={1000} />
-              </Title>
-              <Table columns={columnsReceipt} dataSource={[]} pagination={false} size="small" />
-              <Pagination className="pagination-center" current={5} total={100} />
-            </Card>
-            <Card>
-              <Title level={4}>
-                Transactions <Badge className="badge-black" count={425} overflowCount={1000} />
-              </Title>
-              <Table columns={columnsTrx} dataSource={[]} pagination={false} size="small" />
-              <Pagination className="pagination-center" current={5} total={100} />
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+      {!!error && <NotFound />}
+      {!!loading && <LoaderPage />}
+      {!error && !loading && (
+        <Container fluid>
+          <Row gutter={8}>
+            <Col span={24}>
+              <Row>
+                <Col span={24}>
+                  <Title level={4}>Block #{data.block.Height}</Title>
+                </Col>
+              </Row>
+              <Card className="card-summary">
+                <DescItem label="Height" value={data.block.Height} />
+              </Card>
+              <Card className="card-summary">
+                <Title level={4}>Summary</Title>
+                <DescItem label="Timestamp" value={moment(data.block.Timestamp).format('lll')} />
+                <DescItem
+                  label="Previous Block ID"
+                  value={<CopyToClipboard text={data.block.PreviousBlockID} keyID="preBlockID" />}
+                />
+                <DescItem label="Block Seed" value={data.block.BlockSeed} />
+                <DescItem label="Block Signature" value={data.block.BlockSignature} />
+                <DescItem label="Cumulative Difficulty" value={data.block.CumulativeDifficulty} />
+                <DescItem label="Smith Scale" value={data.block.SmithScale} />
+                <DescItem label="Blocksmith Address" value={data.block.BlocksmithAddress} />
+                <DescItem label="Total Amount" value={data.block.TotalAmount} />
+                <DescItem label="Total Fee" value={data.block.TotalFee} />
+                <DescItem label="Total Rewards" value={data.block.TotalRewards} />
+                <DescItem label="Version" value={data.block.Version} />
+                <DescItem label="Total Receipts" value={data.block.TotalReceipts} />
+                <DescItem label="Receipt Value" value={data.block.ReceiptValue} />
+                <DescItem label="Blocksmith ID" value={data.block.BlocksmithID} />
+                <DescItem label="PoP Change" value={data.block.PopChange} />
+                <DescItem label="Payload Length" value={data.block.PayloadLength} />
+                <DescItem label="Payload Hash" value={data.block.PayloadHash} />
+              </Card>
+              <Card className="card-summary">
+                <Title level={4}>
+                  Rewards / Coinbase{' '}
+                  <Badge className="badge-black" count={425} overflowCount={1000} />
+                </Title>
+                <Table columns={columnsReward} dataSource={[]} pagination={false} size="small" />
+                <Pagination className="pagination-center" current={5} total={100} />
+              </Card>
+              <Card className="card-summary">
+                <Title level={4}>
+                  Reciepts <Badge className="badge-black" count={425} overflowCount={1000} />
+                </Title>
+                <Table columns={columnsReceipt} dataSource={[]} pagination={false} size="small" />
+                <Pagination className="pagination-center" current={5} total={100} />
+              </Card>
+              <Card>
+                <Title level={4}>
+                  Transactions <Badge className="badge-black" count={425} overflowCount={1000} />
+                </Title>
+                <Table columns={columnsTrx} dataSource={[]} pagination={false} size="small" />
+                <Pagination className="pagination-center" current={5} total={100} />
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      )}
     </DefaultLayout>
   )
 }

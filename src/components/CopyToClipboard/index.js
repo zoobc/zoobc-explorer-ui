@@ -3,13 +3,13 @@ import Clipboard from 'react-copy-to-clipboard'
 import { Tooltip } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 
-const CopyToClipboard = ({ text = '', keyID }) => {
+const CopyToClipboard = ({ text = '', keyID, showText = true }) => {
   const { t } = useTranslation()
   const [copyTooltip, setCopyTooltip] = useState(false)
   const [tooltipMessage, setTooltipMessage] = useState('Click to copy')
   return (
     <>
-      {text}
+      {!!showText && text}
       <Clipboard text={text}>
         <i
           className="bcz-copy clipboard-copy"

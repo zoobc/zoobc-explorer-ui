@@ -61,9 +61,10 @@ export default function BlockLatest() {
                                     <div className="text-secondary font-weight-bold">
                                       {t('Height')}
                                     </div>
-                                    <Link className="breaker" to={`/blocks/${item.ID}`}>{`${
-                                      item.Height
-                                    }`}</Link>
+                                    <Link
+                                      className="breaker"
+                                      to={`/blocks/${item.ID}`}
+                                    >{`${item.Height}`}</Link>
                                   </td>
                                 </tr>
                                 <tr>
