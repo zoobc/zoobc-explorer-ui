@@ -79,16 +79,6 @@ const Transaction = ({ match }) => {
                 <DescItem label="Confirmations" value={data.transaction.Confirmations} />
                 <DescItem label="Fee" value={data.transaction.Fee} />
               </Card>
-              {/* <Card className="card-summary">
-                <Title level={4}>Transaction Type</Title>
-                <DescItem
-                  label="Node address"
-                  value={
-                    <CopyToClipboard text="0000000000000000001dsad5933029dca9ac633e2b2324bd88f2eee77ab7269fbf02" />
-                  }
-                />
-                <DescItem label="Locked Funds" value="20" />
-              </Card> */}
             </Col>
           </Row>
         </Container>
