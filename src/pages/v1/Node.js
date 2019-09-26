@@ -13,7 +13,7 @@ const columns = [
     dataIndex: 'hash',
     key: 'hash',
     render(record) {
-      return <Link to={`/v1/blocks/${record}`}>{record}</Link>
+      return <Link to={`/blocks/${record}`}>{record}</Link>
     },
   },
   {
@@ -21,7 +21,7 @@ const columns = [
     dataIndex: 'height',
     key: 'height',
     render(record) {
-      return <Link to={`/v1/blocks/${record}`}>{record}</Link>
+      return <Link to={`/blocks/${record}`}>{record}</Link>
     },
   },
   {
@@ -34,7 +34,7 @@ const columns = [
     dataIndex: 'blocksmith',
     key: 'blocksmith',
     render(record) {
-      return <Link to="/v1">{record}</Link>
+      return <Link to="">{record}</Link>
     },
   },
   {

@@ -1,147 +1,107 @@
 import React from 'react'
 import { Row, Col, Card, Typography, Button, Table } from 'antd'
 import { Link } from 'react-router-dom'
-// import { useQuery } from '@apollo/react-hooks'
-// import gql from 'graphql-tag'
+import { useQuery } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
+import moment from 'moment'
 
 import DefaultLayout from '../../components/DefaultLayout'
 import Container from '../../components/Container'
+import { shortenHash } from '../../utils/shorten'
 
 const { Title } = Typography
 
-// const GET_HOME_DATE = gql`
-//   query {
-//     block {
-//       Blocks {
-//         ID
-//         Height
-//         BlocksmithAddress
-//         Transactions {
-//           ID
-//         }
-//       }
-//     }
-//     transactions {
-//       ID
-//       Blocksmith
-//       Type
-//     }
-//   }
-// `;
-
-// const dataBlock = [
-//   {
-//     key: "1",
-//     height: 1,
-//     transactions: 23,
-//     blocksmith: 'asdsadiqwndqnwdmmdnsandlasndkanslk'
-//   },
-//   {
-//     key: "2",
-//     height: 2,
-//     transactions: 23,
-//     blocksmith: 'asdsadiqwndqnwdmmdnsandlasndkanslk'
-//   },
-//   {
-//     key: "3",
-//     height: 3,
-//     transactions: 23,
-//     blocksmith: 'asdsadiqwndqnwdmmdnsandlasndkanslk'
-//   },
-//   {
-//     key: "4",
-//     height: 4,
-//     transactions: 23,
-//     blocksmith: 'asdsadiqwndqnwdmmdnsandlasndkanslk'
-//   },
-//   {
-//     key: "5",
-//     height: 5,
-//     transactions: 23,
-//     blocksmith: 'asdsadiqwndqnwdmmdnsandlasndkanslk'
-//   },
-// ];
+const GET_HOME_DATA = gql`
+  query {
+    blocks(page: 1, limit: 5, order: "-Timestamp") {
+      Blocks {
+        BlockID
+        Height
+        Timestamp
+        BlocksmithID
+      }
+    }
+    transactions(page: 1, limit: 5, order: "-Timestamp") {
+      Transactions {
+        TransactionID
+        Timestamp
+        Fee
+      }
+    }
+  }
+`
 
 const columns = [
   {
     title: 'Height',
-    dataIndex: 'height',
-    key: 'height',
-    render(record) {
-      return <Link to="/">{record}</Link>
+    dataIndex: 'Height',
+    key: 'Height',
+    render(text, record) {
+      return <Link to={`/blocks/${record.BlockID}`}>{text}</Link>
     },
   },
   {
     title: 'Timestamp',
-    dataIndex: 'timestamp',
-    key: 'timestamp',
+    dataIndex: 'Timestamp',
+    key: 'Timestamp',
+    render(record) {
+      return moment(record).format('lll')
+    },
   },
   {
     title: 'Blocksmith',
-    dataIndex: 'blocksmith',
-    key: 'blocksmith',
+    dataIndex: 'BlocksmithID',
+    key: 'BlocksmithID',
     render(record) {
-      return <Link to="/">{record}</Link>
+      return shortenHash(record, 30)
     },
   },
 ]
-
-// const dataTrx = [
-//   {
-//     key: "1",
-//     transactionsId: 23,
-//     blocksmith: 'asdsadiqwndqnwdmmdnsandlasndkanslk',
-//     type: 'Ordinary Payment',
-//   },
-//   {
-//     key: "2",
-//     transactionsId: 23,
-//     blocksmith: 'asdsadiqwndqnwdmmdnsandlasndkanslk',
-//     type: 'Ordinary Payment',
-//   },
-//   {
-//     key: "3",
-//     transactionsId: 23,
-//     blocksmith: 'asdsadiqwndqnwdmmdnsandlasndkanslk',
-//     type: 'Ordinary Payment',
-//   },
-//   {
-//     key: "4",
-//     transactionsId: 23,
-//     blocksmith: 'asdsadiqwndqnwdmmdnsandlasndkanslk',
-//     type: 'Ordinary Payment',
-//   },
-//   {
-//     key: "5",
-//     transactionsId: 23,
-//     blocksmith: 'asdsadiqwndqnwdmmdnsandlasndkanslk',
-//     type: 'Ordinary Payment',
-//   },
-// ];
 
 const columnsTrx = [
   {
     title: 'Transactions Id',
-    dataIndex: 'transactionsId',
-    key: 'transactionsId',
+    dataIndex: 'TransactionID',
+    key: 'TransactionID',
     render(record) {
-      return <Link to="/">{record}</Link>
+      return <Link to={`/transactions/${record}`}>{record}</Link>
     },
   },
   {
     title: 'Timestamp',
-    dataIndex: 'timestamp',
-    key: 'timestamp',
+    dataIndex: 'Timestamp',
+    key: 'Timestamp',
+    render(record) {
+      return moment(record).format('lll')
+    },
   },
   {
-    title: 'Fees',
-    dataIndex: 'fees',
-    key: 'fees',
+    title: 'Fee',
+    dataIndex: 'Fee',
+    key: 'Fee',
   },
 ]
 
-const Home = () => {
-  // const { loading, error, data } = useQuery(GET_HOME_DATE);
+const Home = ({ history }) => {
+  const { loading, data } = useQuery(GET_HOME_DATA)
+  let blockData = []
+  let trxData = []
+
+  if (!!data) {
+    blockData = data.blocks.Blocks.map((block, key) => {
+      return {
+        key,
+        ...block,
+      }
+    })
+
+    trxData = data.transactions.Transactions.map((transaction, key) => {
+      return {
+        key,
+        ...transaction,
+      }
+    })
+  }
   return (
     <DefaultLayout withHero>
       <Container fluid>
@@ -153,13 +113,23 @@ const Home = () => {
                   <Title level={4}>Blocks</Title>
                 </Col>
                 <Col span={3}>
-                  <Button shape="round" size="small" type="primary">
+                  <Button
+                    shape="round"
+                    size="small"
+                    type="primary"
+                    onClick={() => history.push('/blocks')}
+                  >
                     View all
                   </Button>
                 </Col>
               </Row>
-              {/* <Table columns={columns} dataSource={!!data && data.blocks} pagination={false} size="small" loading={loading} /> */}
-              <Table columns={columns} dataSource={[]} pagination={false} size="small" />
+              <Table
+                columns={columns}
+                dataSource={blockData}
+                pagination={false}
+                size="small"
+                loading={loading}
+              />
             </Card>
           </Col>
           <Col span={12}>
@@ -169,8 +139,13 @@ const Home = () => {
                   <Title level={4}>Transactions</Title>
                 </Col>
               </Row>
-              {/* <Table columns={columnsTrx} dataSource={!!data && data.transactions} pagination={false} size="small" loading={loading} /> */}
-              <Table columns={columnsTrx} dataSource={[]} pagination={false} size="small" />
+              <Table
+                columns={columnsTrx}
+                dataSource={trxData}
+                pagination={false}
+                size="small"
+                loading={loading}
+              />
             </Card>
           </Col>
         </Row>

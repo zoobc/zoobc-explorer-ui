@@ -1,191 +1,112 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Row, Col, Card, Typography, Table, Pagination } from 'antd'
 import { Link } from 'react-router-dom'
+import gql from 'graphql-tag'
+import { useQuery } from '@apollo/react-hooks'
+import moment from 'moment'
+
 import DefaultLayout from '../../components/DefaultLayout'
 import Container from '../../components/Container'
+import { shortenHash } from '../../utils/shorten'
+import CopyToClipboard from '../../components/CopyToClipboard'
+
 const { Title } = Typography
+
+const GET_BLOCKS_DATA = gql`
+  query getBlocks($page: Int) {
+    blocks(page: $page, limit: 15, order: "-Timestamp") {
+      Blocks {
+        BlockID
+        Height
+        Timestamp
+        BlocksmithID
+        TotalFee
+        TotalRewards
+      }
+      Paginate {
+        Page
+        Count
+        Total
+      }
+    }
+  }
+`
 
 const columns = [
   {
-    title: 'Hash',
-    dataIndex: 'hash',
-    key: 'hash',
-    render(record) {
-      return <Link to={`/v1/blocks/${record}`}>{record}</Link>
+    title: 'Block ID',
+    dataIndex: 'BlockID',
+    key: 'BlockID',
+    render(text, record) {
+      return (
+        <>
+          <Link to={`/blocks/${text}`}>{text}</Link>
+          <CopyToClipboard text={text} keyID={`Block-${record.key}`} showText={false} />
+        </>
+      )
     },
   },
   {
     title: 'Height',
-    dataIndex: 'height',
-    key: 'height',
-    render(record) {
-      return <Link to={`/v1/blocks/${record}`}>{record}</Link>
+    dataIndex: 'Height',
+    key: 'Height',
+    render(text, record) {
+      return <Link to={`/blocks/${record.BlockID}`}>{text}</Link>
     },
   },
   {
     title: 'Timestamp',
-    dataIndex: 'timestamp',
-    key: 'timestamp',
-  },
-  {
-    title: 'Blocksmith',
-    dataIndex: 'blocksmith',
-    key: 'blocksmith',
+    dataIndex: 'Timestamp',
+    key: 'Timestamp',
     render(record) {
-      return <Link to="/v1">{record}</Link>
+      return moment(record).format('lll')
     },
   },
   {
-    title: 'Fees',
-    dataIndex: 'fees',
-    key: 'fees',
+    title: 'Blocksmith',
+    dataIndex: 'BlocksmithID',
+    key: 'BlocksmithID',
+    render(record) {
+      return shortenHash(record, 30)
+    },
+  },
+  {
+    title: 'Fee',
+    dataIndex: 'TotalFee',
+    key: 'TotalFee',
   },
   {
     title: 'Rewards',
-    dataIndex: 'rewards',
-    key: 'rewards',
-  },
-]
-
-const data = [
-  {
-    key: 1,
-    hash: 'sadsajdsa8sjadjas',
-    height: 23,
-    timestamp: '23/9/2019',
-    blocksmith: 'sadhsajhdkjas87587587sadas',
-    fees: ' $3000',
-    rewards: '20 points',
-  },
-  {
-    key: 2,
-    hash: 'sadsajdsa8sjadjas',
-    height: 23,
-    timestamp: '23/9/2019',
-    blocksmith: 'sadhsajhdkjas87587587sadas',
-    fees: ' $3000',
-    rewards: '20 points',
-  },
-  {
-    key: 3,
-    hash: 'sadsajdsa8sjadjas',
-    height: 23,
-    timestamp: '23/9/2019',
-    blocksmith: 'sadhsajhdkjas87587587sadas',
-    fees: ' $3000',
-    rewards: '20 points',
-  },
-  {
-    key: 4,
-    hash: 'sadsajdsa8sjadjas',
-    height: 23,
-    timestamp: '23/9/2019',
-    blocksmith: 'sadhsajhdkjas87587587sadas',
-    fees: ' $3000',
-    rewards: '20 points',
-  },
-  {
-    key: 5,
-    hash: 'sadsajdsa8sjadjas',
-    height: 23,
-    timestamp: '23/9/2019',
-    blocksmith: 'sadhsajhdkjas87587587sadas',
-    fees: ' $3000',
-    rewards: '20 points',
-  },
-  {
-    key: 6,
-    hash: 'sadsajdsa8sjadjas',
-    height: 23,
-    timestamp: '23/9/2019',
-    blocksmith: 'sadhsajhdkjas87587587sadas',
-    fees: ' $3000',
-    rewards: '20 points',
-  },
-  {
-    key: 7,
-    hash: 'sadsajdsa8sjadjas',
-    height: 23,
-    timestamp: '23/9/2019',
-    blocksmith: 'sadhsajhdkjas87587587sadas',
-    fees: ' $3000',
-    rewards: '20 points',
-  },
-  {
-    key: 8,
-    hash: 'sadsajdsa8sjadjas',
-    height: 23,
-    timestamp: '23/9/2019',
-    blocksmith: 'sadhsajhdkjas87587587sadas',
-    fees: ' $3000',
-    rewards: '20 points',
-  },
-  {
-    key: 9,
-    hash: 'sadsajdsa8sjadjas',
-    height: 23,
-    timestamp: '23/9/2019',
-    blocksmith: 'sadhsajhdkjas87587587sadas',
-    fees: ' $3000',
-    rewards: '20 points',
-  },
-  {
-    key: 10,
-    hash: 'sadsajdsa8sjadjas',
-    height: 23,
-    timestamp: '23/9/2019',
-    blocksmith: 'sadhsajhdkjas87587587sadas',
-    fees: ' $3000',
-    rewards: '20 points',
-  },
-  {
-    key: 11,
-    hash: 'sadsajdsa8sjadjas',
-    height: 23,
-    timestamp: '23/9/2019',
-    blocksmith: 'sadhsajhdkjas87587587sadas',
-    fees: ' $3000',
-    rewards: '20 points',
-  },
-  {
-    key: 12,
-    hash: 'sadsajdsa8sjadjas',
-    height: 23,
-    timestamp: '23/9/2019',
-    blocksmith: 'sadhsajhdkjas87587587sadas',
-    fees: ' $3000',
-    rewards: '20 points',
-  },
-  {
-    key: 13,
-    hash: 'sadsajdsa8sjadjas',
-    height: 23,
-    timestamp: '23/9/2019',
-    blocksmith: 'sadhsajhdkjas87587587sadas',
-    fees: ' $3000',
-    rewards: '20 points',
-  },
-  {
-    key: 14,
-    hash: 'sadsajdsa8sjadjas',
-    height: 23,
-    timestamp: '23/9/2019',
-    blocksmith: 'sadhsajhdkjas87587587sadas',
-    fees: ' $3000',
-    rewards: '20 points',
-  },
-  {
-    key: 15,
-    hash: 'sadsajdsa8sjadjas',
-    height: 23,
-    timestamp: '23/9/2019',
-    blocksmith: 'sadhsajhdkjas87587587sadas',
-    fees: ' $3000',
-    rewards: '20 points',
+    dataIndex: 'TotalRewards',
+    key: 'TotalRewards',
   },
 ]
 
 const Blocks = () => {
+  const [currentPage, setCurrentPage] = useState(1)
+  const [blocks, setBlocks] = useState([])
+  const [paginate, setPaginate] = useState({})
+
+  const { loading, data } = useQuery(GET_BLOCKS_DATA, {
+    variables: {
+      page: currentPage,
+    },
+  })
+
+  useEffect(() => {
+    if (!!data) {
+      const blockData = data.blocks.Blocks.map((block, key) => {
+        return {
+          key,
+          ...block,
+        }
+      })
+
+      setBlocks(blockData)
+      setPaginate(data.blocks.Paginate)
+    }
+  }, [data])
+
   return (
     <DefaultLayout>
       <Container fluid>
@@ -200,8 +121,22 @@ const Blocks = () => {
                   </Title>
                 </Col>
               </Row>
-              <Table columns={columns} dataSource={data} pagination={false} size="small" />
-              <Pagination className="pagination-center" current={5} total={100} />
+              <Table
+                columns={columns}
+                dataSource={blocks}
+                pagination={false}
+                size="small"
+                loading={loading}
+              />
+              {!!data && (
+                <Pagination
+                  className="pagination-center"
+                  current={paginate.Page}
+                  total={paginate.Total}
+                  pageSize={15}
+                  onChange={page => setCurrentPage(page)}
+                />
+              )}
             </Card>
           </Col>
         </Row>

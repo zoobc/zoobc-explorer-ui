@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <Layout.Header className="header">
       <Container className="header-content" fluid>
-        <Link className="logo" to="/v1">
+        <Link className="logo" to="/">
           <img src={zoobcLogo} alt="zoobc-logo" />
         </Link>
         <div className="navbar-right">
@@ -21,7 +21,7 @@ const Header = () => {
           >
             <Menu.Item key="1">
               <div className="menu-with-icon">
-                <Link to="/v1/blocks">
+                <Link to="/blocks">
                   <i className="bcz-block" />
                   Blocks
                 </Link>
@@ -29,7 +29,7 @@ const Header = () => {
             </Menu.Item>
             <Menu.Item key="2">
               <div className="menu-with-icon">
-                <Link to="/v1/transactions">
+                <Link to="/transactions">
                   <i className="bcz-transaction" />
                   Transactions
                 </Link>
@@ -37,7 +37,7 @@ const Header = () => {
             </Menu.Item>
             <Menu.Item key="3">
               <div className="menu-with-icon">
-                <Link to="/v1/accounts">
+                <Link to="/accounts">
                   <i className="bcz-user" />
                   Accounts
                 </Link>
@@ -45,7 +45,7 @@ const Header = () => {
             </Menu.Item>
             <Menu.Item key="4">
               <div className="menu-with-icon">
-                <Link to="/v1/nodes">
+                <Link to="/nodes">
                   <i className="bcz-node" />
                   Nodes
                 </Link>
