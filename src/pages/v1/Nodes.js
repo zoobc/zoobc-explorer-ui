@@ -52,7 +52,7 @@ const columns = [
     render(text, record) {
       return (
         <>
-          <Link to={`/nodes/${text}`}>{shortenHash(text, 30)}</Link>
+          <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
           <CopyToClipboard text={text} keyID={`Node-${record.key}`} showText={false} />
         </>
       )
