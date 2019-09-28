@@ -1,15 +1,14 @@
 import React from 'react'
 import { Row, Col } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
-import { Switch } from 'antd';
+import { Switch } from 'antd'
 import Container from '../Container'
-
 
 export default function Footer() {
   const { t } = useTranslation()
 
   function handleChange(value) {
-    console.log(`selected ${value}`);
+    console.log(`selected ${value}`)
   }
   // const [lang, setLang] = useState('en')
 
@@ -91,9 +90,7 @@ export default function Footer() {
           <Switch className="btn-switch" />
           <p style={{ marginTop: '6px', paddingLeft: '7px', color: '#fff' }}>Enable night mode</p>
           <select style={{ marginLeft: '22px' }} defaultValue="english" onChange={handleChange}>
-            <option value="english">
-              English
-            </option>
+            <option value="english">English</option>
           </select>
           <div className="footer-social-icons">
             <a
