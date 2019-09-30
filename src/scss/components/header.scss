@@ -1,32 +1,63 @@
 .header {
+  width: 100%;
+  position: relative;
   background: $black !important;
+
   .ant-menu-dark {
     background: $black;
+
     .ant-menu-item-selected {
       background-color: transparent !important;
-      border-radius: 5px;
       font-weight: 600;
     }
   }
+
+  .ant-input {
+    padding-left: 42px !important;
+  }
+
+  .ant-input-lg {
+    width: 300px !important;
+  }
+
   .header-content {
     display: flex;
     align-items: center;
+    margin: 0 220px 0 220px;
     .logo {
       img {
-        width: 100%
+        width: 32px;
+        height: 36px;
       }
     }
+
     .navbar-right {
-      flex: 1
+      margin-left: 24px;
     }
   }
-  .menu-with-icon {
+
+  .header-logo-name {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 900;
+    margin-left: 16px;
     color: $white;
+    width: 82px;
+    height: 29px;
+    margin-top: 18px;
+    margin-bottom: 19px;
+  }
+
+  .header-search-input {
+    width: 350px;
+  }
+
+  .menu-with-icon {
+    color: $nepal;
+    font-size: 14px;
     a {
-      color: $white;
-      [class^="bcz-"] {
-        margin-right: 5px
-      }
+      color: $blue;
     }
   }
 }
