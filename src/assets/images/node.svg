@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="14.6" height="16" viewBox="0 0 14.6 16">
+  <g id="Group_131" data-name="Group 131" transform="translate(-711.7 -64)">
+    <g id="Ellipse_5" data-name="Ellipse 5" transform="translate(716 69)" fill="none" stroke="#000" stroke-width="1">
+      <circle cx="3" cy="3" r="3" stroke="none"/>
+      <circle cx="3" cy="3" r="2.5" fill="none"/>
+    </g>
+    <g id="Ellipse_6" data-name="Ellipse 6" transform="translate(723.3 67)" fill="none" stroke="#000" stroke-width="1">
+      <circle cx="1.5" cy="1.5" r="1.5" stroke="none"/>
+      <circle cx="1.5" cy="1.5" r="1" fill="none"/>
+    </g>
+    <g id="Ellipse_7" data-name="Ellipse 7" transform="translate(723.3 74)" fill="none" stroke="#000" stroke-width="1">
+      <circle cx="1.5" cy="1.5" r="1.5" stroke="none"/>
+      <circle cx="1.5" cy="1.5" r="1" fill="none"/>
+    </g>
+    <g id="Ellipse_8" data-name="Ellipse 8" transform="translate(711.7 74)" fill="none" stroke="#000" stroke-width="1">
+      <circle cx="1.5" cy="1.5" r="1.5" stroke="none"/>
+      <circle cx="1.5" cy="1.5" r="1" fill="none"/>
+    </g>
+    <g id="Ellipse_9" data-name="Ellipse 9" transform="translate(711.7 67)" fill="none" stroke="#000" stroke-width="1">
+      <circle cx="1.5" cy="1.5" r="1.5" stroke="none"/>
+      <circle cx="1.5" cy="1.5" r="1" fill="none"/>
+    </g>
+    <g id="Ellipse_10" data-name="Ellipse 10" transform="translate(717.5 77)" fill="none" stroke="#000" stroke-width="1">
+      <circle cx="1.5" cy="1.5" r="1.5" stroke="none"/>
+      <circle cx="1.5" cy="1.5" r="1" fill="none"/>
+    </g>
+    <g id="Ellipse_11" data-name="Ellipse 11" transform="translate(717.5 64)" fill="none" stroke="#000" stroke-width="1">
+      <circle cx="1.5" cy="1.5" r="1.5" stroke="none"/>
+      <circle cx="1.5" cy="1.5" r="1" fill="none"/>
+    </g>
+    <line id="Line_14" data-name="Line 14" y1="2.2" transform="translate(719 66.9)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Line_15" data-name="Line 15" y1="2.2" transform="translate(719 74.9)" fill="none" stroke="#000" stroke-width="1"/>
+    <path id="Path_35" data-name="Path 35" d="M5499.547,15149.391l-2.328,1.391Z" transform="translate(-4783 -15076)" fill="none" stroke="#000" stroke-width="1"/>
+    <path id="Path_36" data-name="Path 36" d="M5506.719,15150.781l-2.281-1.453Z" transform="translate(-4783 -15076)" fill="none" stroke="#000" stroke-width="1"/>
+    <path id="Path_37" data-name="Path 37" d="M5497.219,15145.1l2.5,1.634Z" transform="translate(-4783 -15076)" fill="none" stroke="#000" stroke-width="1"/>
+    <path id="Path_38" data-name="Path 38" d="M5504.25,15146.531l2.594-1.328Z" transform="translate(-4783 -15076)" fill="none" stroke="#000" stroke-width="1"/>
+  </g>
+</svg>

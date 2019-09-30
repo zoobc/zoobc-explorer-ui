@@ -4,6 +4,13 @@ import { useTranslation } from 'react-i18next'
 import { Switch } from 'antd'
 import Container from '../Container'
 
+import iconGitHub from './../../assets/images/github.svg';
+import iconMedium from './../../assets/images/medium.svg';
+import iconYoutube from './../../assets/images/youtube.svg';
+import iconTelegram from './../../assets/images/telegram.svg';
+import iconForum from './../../assets/images/forum.svg';
+import iconBlog from './../../assets/images/blog.svg';
+
 export default function Footer() {
   const { t } = useTranslation()
 
@@ -95,12 +102,30 @@ export default function Footer() {
           <div className="footer-social-icons">
             <a
               className="footer-social-icon"
+              href="https://github.com/zoobc"
+              rel="noopener noreferrer"
+              target="_blank"
+              title="GitHub"
+            >
+              <img src={iconGitHub} alt="social-icon" />
+            </a>
+            <a
+              className="footer-social-icon"
+              href="https://medium.com/@BlockchainZoo"
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Medium"
+            >
+              <img src={iconMedium} alt="social-icon" />
+            </a>
+            <a
+              className="footer-social-icon"
               href="https://t.me/ZooBlockchain"
               rel="noopener noreferrer"
               target="_blank"
-              title="Telegram"
+              title="Youtube"
             >
-              <i className="fab fa-telegram mx-2" />
+              <img src={iconYoutube} alt="social-icon" />
             </a>
             <a
               className="footer-social-icon"
@@ -109,43 +134,25 @@ export default function Footer() {
               target="_blank"
               title="Telegram"
             >
-              <i className="fab fa-telegram mx-2" />
+              <img src={iconTelegram} alt="social-icon" />
             </a>
             <a
               className="footer-social-icon"
               href="https://t.me/ZooBlockchain"
               rel="noopener noreferrer"
               target="_blank"
-              title="Telegram"
+              title="Forum"
             >
-              <i className="fab fa-telegram mx-2" />
+              <img src={iconForum} alt="social-icon" />
             </a>
             <a
               className="footer-social-icon"
               href="https://t.me/ZooBlockchain"
               rel="noopener noreferrer"
               target="_blank"
-              title="Telegram"
+              title="Blog"
             >
-              <i className="fab fa-telegram mx-2" />
-            </a>
-            <a
-              className="footer-social-icon"
-              href="https://t.me/ZooBlockchain"
-              rel="noopener noreferrer"
-              target="_blank"
-              title="Telegram"
-            >
-              <i className="fab fa-telegram mx-2" />
-            </a>
-            <a
-              className="footer-social-icon"
-              href="https://t.me/ZooBlockchain"
-              rel="noopener noreferrer"
-              target="_blank"
-              title="Telegram"
-            >
-              <i className="fab fa-telegram mx-2" />
+              <img src={iconBlog} alt="social-icon" />
             </a>
           </div>
         </Row>
