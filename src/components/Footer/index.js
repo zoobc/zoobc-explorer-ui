@@ -4,12 +4,12 @@ import { useTranslation } from 'react-i18next'
 import { Switch } from 'antd'
 import Container from '../Container'
 
-import iconGitHub from './../../assets/images/github.svg';
-import iconMedium from './../../assets/images/medium.svg';
-import iconYoutube from './../../assets/images/youtube.svg';
-import iconTelegram from './../../assets/images/telegram.svg';
-import iconForum from './../../assets/images/forum.svg';
-import iconBlog from './../../assets/images/blog.svg';
+import iconGitHub from './../../assets/images/github.svg'
+import iconMedium from './../../assets/images/medium.svg'
+import iconYoutube from './../../assets/images/youtube.svg'
+import iconTelegram from './../../assets/images/telegram.svg'
+import iconForum from './../../assets/images/forum.svg'
+import iconBlog from './../../assets/images/blog.svg'
 
 export default function Footer() {
   const { t } = useTranslation()
