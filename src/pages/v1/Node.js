@@ -2,6 +2,7 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 import { Row, Col, Card, Typography } from 'antd'
+import NumberFormat from 'react-number-format'
 
 import DefaultLayout from '../../components/DefaultLayout'
 import Container from '../../components/Container'
@@ -52,7 +53,7 @@ const Node = ({ match }) => {
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <Title level={4}>Public Key #{data.node.NodePublicKey}</Title>
+                  <Title level={4}>Public Key {data.node.NodePublicKey}</Title>
                 </Col>
               </Row>
               <Card className="card-summary">
@@ -66,12 +67,35 @@ const Node = ({ match }) => {
                   value={<CopyToClipboard text={data.node.OwnerAddress} keyID="nodePublicKey" />}
                 />
                 <DescItem label="Node Address" value={data.node.NodeAddress} />
-                <DescItem label="Locked Funds" value={data.node.LockedFunds} />
+                <DescItem
+                  label="Locked Funds"
+                  value={
+                    <NumberFormat
+                      value={data.node.LockedFunds || 0}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      suffix={' BCZ'}
+                    />
+                  }
+                />
                 <DescItem label="Registered Block Height" value={data.node.RegisteredBlockHeight} />
                 <DescItem label="Participation Score" value={data.node.ParticipationScore} />
-                <DescItem label="Registry Status" value={data.node.RegistryStatus === true ? 'Registered' : 'In Queue'} />
+                <DescItem
+                  label="Registry Status"
+                  value={data.node.RegistryStatus === true ? 'Registered' : 'In Queue'}
+                />
                 <DescItem label="Blocks Found" value={data.node.BlocksFunds} />
-                <DescItem label="Rewards Paid" value={data.node.RewardsPaid} />
+                <DescItem
+                  label="Rewards Paid"
+                  value={
+                    <NumberFormat
+                      value={data.node.RewardsPaid || 0}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      suffix={' BCZ'}
+                    />
+                  }
+                />
               </Card>
             </Col>
           </Row>

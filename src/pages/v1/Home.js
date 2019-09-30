@@ -1,19 +1,17 @@
 import React from 'react'
 import { Row, Col, Card, Typography, Button, Table } from 'antd'
-import { Link } from 'react-router-dom'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
-import moment from 'moment'
 
 import DefaultLayout from '../../components/DefaultLayout'
 import Container from '../../components/Container'
-import { shortenHash } from '../../utils/shorten'
+import { blockHomeColumns, trxHomeColumns } from '../../config/table-columns'
 
 const { Title } = Typography
 
 const GET_HOME_DATA = gql`
   query {
-    blocks(page: 1, limit: 5, order: "-Timestamp") {
+    blocks(page: 1, limit: 5, order: "-Height") {
       Blocks {
         BlockID
         Height
@@ -21,7 +19,7 @@ const GET_HOME_DATA = gql`
         BlocksmithID
       }
     }
-    transactions(page: 1, limit: 5, order: "-Timestamp") {
+    transactions(page: 1, limit: 5, order: "-Height") {
       Transactions {
         TransactionID
         Timestamp
@@ -30,57 +28,6 @@ const GET_HOME_DATA = gql`
     }
   }
 `
-
-const columns = [
-  {
-    title: 'Height',
-    dataIndex: 'Height',
-    key: 'Height',
-    render(text, record) {
-      return <Link to={`/blocks/${record.BlockID}`}>{text}</Link>
-    },
-  },
-  {
-    title: 'Timestamp',
-    dataIndex: 'Timestamp',
-    key: 'Timestamp',
-    render(record) {
-      return moment(record).format('lll')
-    },
-  },
-  {
-    title: 'Blocksmith',
-    dataIndex: 'BlocksmithID',
-    key: 'BlocksmithID',
-    render(record) {
-      return shortenHash(record, 30)
-    },
-  },
-]
-
-const columnsTrx = [
-  {
-    title: 'Transactions Id',
-    dataIndex: 'TransactionID',
-    key: 'TransactionID',
-    render(record) {
-      return <Link to={`/transactions/${record}`}>{record}</Link>
-    },
-  },
-  {
-    title: 'Timestamp',
-    dataIndex: 'Timestamp',
-    key: 'Timestamp',
-    render(record) {
-      return moment(record).format('lll')
-    },
-  },
-  {
-    title: 'Fee',
-    dataIndex: 'Fee',
-    key: 'Fee',
-  },
-]
 
 const Home = ({ history }) => {
   const { loading, data } = useQuery(GET_HOME_DATA)
@@ -124,7 +71,7 @@ const Home = ({ history }) => {
                 </Col>
               </Row>
               <Table
-                columns={columns}
+                columns={blockHomeColumns}
                 dataSource={blockData}
                 pagination={false}
                 size="small"
@@ -140,7 +87,7 @@ const Home = ({ history }) => {
                 </Col>
               </Row>
               <Table
-                columns={columnsTrx}
+                columns={trxHomeColumns}
                 dataSource={trxData}
                 pagination={false}
                 size="small"

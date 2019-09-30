@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Card, Typography, Table, Pagination } from 'antd'
-import { Link } from 'react-router-dom'
 import gql from 'graphql-tag'
-import moment from 'moment'
 import { useQuery } from '@apollo/react-hooks'
 
 import DefaultLayout from '../../components/DefaultLayout'
 import Container from '../../components/Container'
-import { shortenHash } from '../../utils/shorten'
-import CopyToClipboard from '../../components/CopyToClipboard'
+import { transactionColumns } from '../../config/table-columns'
 
 const { Title } = Typography
 
 const GET_TRXS_DATA = gql`
   query getTransactions($page: Int) {
-    transactions(page: $page, limit: 15, order: "-Timestamp") {
+    transactions(page: $page, limit: 15, order: "-Height") {
       Transactions {
         TransactionID
         Height
@@ -33,71 +30,6 @@ const GET_TRXS_DATA = gql`
     }
   }
 `
-
-const columns = [
-  {
-    title: 'Transaction ID',
-    dataIndex: 'TransactionID',
-    key: 'TransactionID',
-    render(text, record) {
-      return (
-        <>
-          <Link to={`/transactions/${text}`}>{text}</Link>
-          <CopyToClipboard text={text} keyID={`Trx-${record.key}`} showText={false} />
-        </>
-      )
-    },
-  },
-  {
-    title: 'Timestamp',
-    dataIndex: 'Timestamp',
-    key: 'Timestamp',
-    render(record) {
-      return moment(record).format('lll')
-    },
-  },
-  {
-    title: 'Type',
-    dataIndex: 'TransactionType',
-    key: 'TransactionType',
-  },
-  {
-    title: 'Sender',
-    dataIndex: 'Sender',
-    key: 'Sender',
-    render(text, record) {
-      return (
-        <>
-          <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
-          <CopyToClipboard text={text} keyID={`Sender-${record.key}`} showText={false} />
-        </>
-      )
-    },
-  },
-  {
-    title: 'Recipient',
-    dataIndex: 'Recipient',
-    key: 'Recipient',
-    render(text, record) {
-      return (
-        <>
-          <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
-          <CopyToClipboard text={text} keyID={`Recipient-${record.key}`} showText={false} />
-        </>
-      )
-    },
-  },
-  {
-    title: 'Confirmations',
-    dataIndex: 'Confirmations',
-    key: 'Confirmations',
-  },
-  {
-    title: 'Fees',
-    dataIndex: 'Fee',
-    key: 'Fee',
-  },
-]
 
 const Transactions = () => {
   const [currentPage, setCurrentPage] = useState(1)
@@ -139,7 +71,7 @@ const Transactions = () => {
                 </Col>
               </Row>
               <Table
-                columns={columns}
+                columns={transactionColumns}
                 dataSource={transactions}
                 pagination={false}
                 size="small"

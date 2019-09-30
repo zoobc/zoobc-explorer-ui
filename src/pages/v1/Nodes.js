@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Card, Typography, Table, Pagination } from 'antd'
-import { Link } from 'react-router-dom'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import DefaultLayout from '../../components/DefaultLayout'
 import Container from '../../components/Container'
-import { shortenHash } from '../../utils/shorten'
-import CopyToClipboard from '../../components/CopyToClipboard'
+import { nodeColumns } from '../../config/table-columns'
 
 const { Title } = Typography
 
@@ -30,67 +28,6 @@ const GET_NODES_DATA = gql`
     }
   }
 `
-
-const columns = [
-  {
-    title: 'Node Public Key',
-    dataIndex: 'NodePublicKey',
-    key: 'NodePublicKey',
-    render(text, record) {
-      return (
-        <>
-          <Link to={`/nodes/${text}`}>{shortenHash(text, 30)}</Link>
-          <CopyToClipboard text={text} keyID={`Node-${record.key}`} showText={false} />
-        </>
-      )
-    },
-  },
-  {
-    title: 'Owner Address',
-    dataIndex: 'OwnerAddress',
-    key: 'OwnerAddress',
-    render(text, record) {
-      return (
-        <>
-          <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
-          <CopyToClipboard text={text} keyID={`Node-${record.key}`} showText={false} />
-        </>
-      )
-    },
-  },
-  {
-    title: 'Node Address',
-    dataIndex: 'NodeAddress',
-    key: 'NodeAddress',
-    render(record) {
-      return !!record ? record : '-'
-    },
-  },
-  {
-    title: 'Locked Funds',
-    dataIndex: 'LockedFunds',
-    key: 'LockedFunds',
-    render(record) {
-      return !!record ? record : '-'
-    },
-  },
-  {
-    title: 'Registry Status',
-    dataIndex: 'RegistryStatus',
-    key: 'RegistryStatus',
-    render(record) {
-      return !!record.toString() ? (record.toString() === 'true' ? 'Registered' : 'In Queue') : '-'
-    },
-  },
-  {
-    title: 'Participation Score',
-    dataIndex: 'ParticipationScore',
-    key: 'ParticipationScore',
-    render(record) {
-      return !!record ? record : '-'
-    },
-  },
-]
 
 const Nodes = () => {
   const [currentPage, setCurrentPage] = useState(1)
@@ -132,7 +69,7 @@ const Nodes = () => {
                 </Col>
               </Row>
               <Table
-                columns={columns}
+                columns={nodeColumns}
                 dataSource={nodes}
                 pagination={false}
                 size="small"
