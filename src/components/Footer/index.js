@@ -120,7 +120,7 @@ export default function Footer() {
             </a>
             <a
               className="footer-social-icon"
-              href="https://t.me/ZooBlockchain"
+              href="http://youtube.com/c/BlockchainZoo"
               rel="noopener noreferrer"
               target="_blank"
               title="Youtube"
@@ -138,7 +138,7 @@ export default function Footer() {
             </a>
             <a
               className="footer-social-icon"
-              href="https://t.me/ZooBlockchain"
+              href="https://zoobc.org/"
               rel="noopener noreferrer"
               target="_blank"
               title="Forum"
@@ -147,7 +147,7 @@ export default function Footer() {
             </a>
             <a
               className="footer-social-icon"
-              href="https://t.me/ZooBlockchain"
+              href="https://blogchainzoo.com/"
               rel="noopener noreferrer"
               target="_blank"
               title="Blog"

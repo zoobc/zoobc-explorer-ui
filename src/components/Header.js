@@ -1,67 +1,58 @@
 import React from 'react'
-import { Layout, Menu, Input } from 'antd'
+import { Layout, Menu, Input, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 
 import Container from './Container'
+import zoobcLogo from '../assets/images/logo-zoobc.svg'
 
-import zoobcLogo from '../assets/images/zoobc.svg'
+const { Search } = Input
 
 const Header = () => {
   return (
     <Layout.Header className="header">
-      <Container className="header-content" fluid>
+      <Container className="header-content">
         <Link className="logo" to="/">
           <img src={zoobcLogo} alt="zoobc-logo" />
         </Link>
+        <div className="header-logo-name">ZooBC</div>
         <div className="navbar-right">
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            // defaultSelectedKeys={['2']}
-          >
+          <Menu theme="dark" mode="horizontal" style={{ paddingRight: '0px' }}>
             <Menu.Item key="1">
               <div className="menu-with-icon">
-                <Link to="/blocks">
-                  <i className="bcz-block" />
-                  Blocks
-                </Link>
+                <Link to="/">Home</Link>
               </div>
             </Menu.Item>
             <Menu.Item key="2">
               <div className="menu-with-icon">
-                <Link to="/transactions">
-                  <i className="bcz-transaction" />
-                  Transactions
-                </Link>
+                <Link to="/blocks">Blocks</Link>
               </div>
             </Menu.Item>
             <Menu.Item key="3">
               <div className="menu-with-icon">
-                <Link to="/accounts">
-                  <i className="bcz-user" />
-                  Accounts
-                </Link>
+                <Link to="/transactions">Transactions</Link>
               </div>
             </Menu.Item>
             <Menu.Item key="4">
               <div className="menu-with-icon">
-                <Link to="/nodes">
-                  <i className="bcz-node" />
-                  Nodes
-                </Link>
+                <Link to="/accounts">Accounts</Link>
+              </div>
+            </Menu.Item>
+            <Menu.Item key="5">
+              <div className="menu-with-icon">
+                <Link to="/nodes">Nodes</Link>
               </div>
             </Menu.Item>
           </Menu>
         </div>
         <div className="navbar-left">
-          <Menu theme="dark" mode="horizontal">
-            <Menu.Item key="en">
-              <Input placeholder="Search for a transaction or block hash" style={{ width: 300 }} />
-            </Menu.Item>
-            <Menu.SubMenu title={<span className="submenu-title-wrapper">English</span>}>
-              <Menu.Item key="en">English</Menu.Item>
-              <Menu.Item key="id">Indonesia</Menu.Item>
-            </Menu.SubMenu>
+          <Menu theme="dark" mode="horizontal" style={{ lineHeight: '40px' }}>
+            <Search
+              className="header-search-input"
+              prefix={<Icon type="search" style={{ fontSize: '22px', color: 'rgba(0,0,0,.45)' }} />}
+              placeholder="Transaction ID / Block Height"
+              enterButton="SEARCH"
+              size="large"
+            />
           </Menu>
         </div>
       </Container>
