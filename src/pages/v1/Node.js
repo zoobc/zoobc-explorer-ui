@@ -69,7 +69,10 @@ const Node = ({ match }) => {
                 <DescItem label="Locked Funds" value={data.node.LockedFunds} />
                 <DescItem label="Registered Block Height" value={data.node.RegisteredBlockHeight} />
                 <DescItem label="Participation Score" value={data.node.ParticipationScore} />
-                <DescItem label="Registry Status" value={data.node.RegistryStatus === true ? 'Registered' : 'In Queue'} />
+                <DescItem
+                  label="Registry Status"
+                  value={data.node.RegistryStatus === true ? 'Registered' : 'In Queue'}
+                />
                 <DescItem label="Blocks Found" value={data.node.BlocksFunds} />
                 <DescItem label="Rewards Paid" value={data.node.RewardsPaid} />
               </Card>

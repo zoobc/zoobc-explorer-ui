@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import Container from './Container'
 import zoobcLogo from '../assets/images/logo-zoobc.svg'
 
-const { Search } = Input;
+const { Search } = Input
 
 const Header = () => {
   return (
@@ -16,11 +16,7 @@ const Header = () => {
         </Link>
         <div className="header-logo-name">ZooBC</div>
         <div className="navbar-right">
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            style={{ paddingRight: '0px' }}
-          >
+          <Menu theme="dark" mode="horizontal" style={{ paddingRight: '0px' }}>
             <Menu.Item key="1">
               <div className="menu-with-icon">
                 <Link to="/">Home</Link>
