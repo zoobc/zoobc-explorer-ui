@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Card, Typography, Table, Pagination } from 'antd'
-import { Link } from 'react-router-dom'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import DefaultLayout from '../../components/DefaultLayout'
 import Container from '../../components/Container'
-import { shortenHash } from '../../utils/shorten'
-import CopyToClipboard from '../../components/CopyToClipboard'
+import { accountColumns } from '../../config/table-columns'
 
 const { Title } = Typography
 
@@ -29,52 +27,6 @@ const GET_ACCOUNTS_DATA = gql`
     }
   }
 `
-
-const columns = [
-  {
-    title: 'Address',
-    dataIndex: 'AccountAddress',
-    key: 'AccountAddress',
-    render(text, record) {
-      return (
-        <>
-          <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
-          <CopyToClipboard text={text} keyID={`Account-${record.key}`} showText={false} />
-        </>
-      )
-    },
-  },
-  {
-    title: 'Balance',
-    dataIndex: 'Balance',
-    key: 'Balance',
-  },
-  {
-    title: 'Last Active',
-    dataIndex: 'LastActive',
-    key: 'LastActive',
-    render(record) {
-      return !!record ? record : '-'
-    },
-  },
-  {
-    title: 'Rewards',
-    dataIndex: 'TotalRewards',
-    key: 'TotalRewards',
-    render(record) {
-      return !!record ? record : '-'
-    },
-  },
-  {
-    title: 'Fees',
-    dataIndex: 'TotalFeesPaid',
-    key: 'TotalFeesPaid',
-    render(record) {
-      return !!record ? record : '-'
-    },
-  },
-]
-
 const Accounts = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [accounts, setAccounts] = useState([])
@@ -115,7 +67,7 @@ const Accounts = () => {
                 </Col>
               </Row>
               <Table
-                columns={columns}
+                columns={accountColumns}
                 dataSource={accounts}
                 pagination={false}
                 size="small"
