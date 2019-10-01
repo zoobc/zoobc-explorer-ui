@@ -107,7 +107,7 @@ const Home = ({ history }) => {
                           <strong>Transaction ID</strong>
                         </Col>
                         <Col md="12">
-                          <Link to={`/blocks/${item.TransactionID}`}>{item.TransactionID}</Link>
+                          <Link to={`/transactions/${item.TransactionID}`}>{item.TransactionID}</Link>
                         </Col>
                       </Col>
                       <Col md="6">
