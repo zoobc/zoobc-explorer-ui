@@ -32,7 +32,7 @@ const GET_NODE_DATA = gql`
 
 const GET_BLOCK_BY_NODE = gql`
   query getBlocks($page: Int, $NodePublicKey: String!) {
-    blocks(page: $page, limit: 5, order: "NodePublicKey", NodePublicKey: $NodePublicKey) {
+    blocks(page: $page, limit: 5, order: "-Height", NodePublicKey: $NodePublicKey) {
       Blocks {
         BlockID
         Height
