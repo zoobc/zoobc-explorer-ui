@@ -11,6 +11,10 @@
     justify-content: center;
     margin: auto;
     text-align: center;
+
+    .ant-input {
+      padding-left: 50px !important;
+    }
   }
 
   &-subtitle {
