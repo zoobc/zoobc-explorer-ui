@@ -1,0 +1,9 @@
+.overview-list {
+  .ant-list-item {
+    border-bottom: none !important;
+    &:nth-child(odd) {
+      background: $grey
+    }
+  }
+  margin-bottom: 20px !important;
+}

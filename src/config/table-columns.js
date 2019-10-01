@@ -5,67 +5,6 @@ import NumberFormat from 'react-number-format'
 
 import { shortenHash } from '../utils/shorten'
 
-export const blockHomeColumns = [
-  {
-    title: 'Height',
-    dataIndex: 'Height',
-    key: 'Height',
-    render(text, record) {
-      return <Link to={`/blocks/${record.BlockID}`}>{text}</Link>
-    },
-  },
-  {
-    title: 'Timestamp',
-    dataIndex: 'Timestamp',
-    key: 'Timestamp',
-    render(text) {
-      return moment(text).format('lll')
-    },
-  },
-  {
-    title: 'Blocksmith',
-    dataIndex: 'BlocksmithID',
-    key: 'BlocksmithID',
-    render(text) {
-      return shortenHash(text, 30)
-    },
-  },
-]
-
-export const trxHomeColumns = [
-  {
-    title: 'Transactions Id',
-    dataIndex: 'TransactionID',
-    key: 'TransactionID',
-    render(text) {
-      return <Link to={`/transactions/${text}`}>{text}</Link>
-    },
-  },
-  {
-    title: 'Timestamp',
-    dataIndex: 'Timestamp',
-    key: 'Timestamp',
-    render(text) {
-      return moment(text).format('lll')
-    },
-  },
-  {
-    title: 'Fee',
-    dataIndex: 'Fee',
-    key: 'Fee',
-    render(text) {
-      return (
-        <NumberFormat
-          value={text || 0}
-          displayType={'text'}
-          thousandSeparator={true}
-          suffix={' BCZ'}
-        />
-      )
-    },
-  },
-]
-
 export const accountColumns = [
   {
     title: 'Address',

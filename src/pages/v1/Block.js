@@ -225,7 +225,12 @@ const Block = ({ match }) => {
                   Rewards / Coinbase{' '}
                   <Badge className="badge-black" count={425} overflowCount={1000} />
                 </Title>
-                <Table columns={transactionColumns} dataSource={[]} pagination={false} size="small" />
+                <Table
+                  columns={transactionColumns}
+                  dataSource={[]}
+                  pagination={false}
+                  size="small"
+                />
                 <Pagination className="pagination-center" current={5} total={100} />
               </Card>
               <Card>

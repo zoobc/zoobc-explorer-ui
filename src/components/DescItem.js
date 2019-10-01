@@ -12,7 +12,7 @@ const DescItem = ({ label, value }) => {
         </label>
       </Col>
       <Col span={19}>
-        <label>{(!!value || value === 0) ? value : '-'}</label>
+        <label>{!!value || value === 0 ? value : '-'}</label>
       </Col>
     </>
   )
