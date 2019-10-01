@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
-import { Row, Col, Card, Typography } from 'antd'
+import { Row, Col, Card, Typography, Badge, Table, Pagination } from 'antd'
 import NumberFormat from 'react-number-format'
 
 import DefaultLayout from '../../components/DefaultLayout'
@@ -10,6 +10,7 @@ import DescItem from '../../components/DescItem'
 import NotFound from '../../components/Errors/NotFound'
 import LoaderPage from '../../components/Loader/LoaderPage'
 import CopyToClipboard from '../../components/CopyToClipboard'
+import { blockColumns } from '../../config/table-columns'
 
 const { Title } = Typography
 
@@ -29,9 +30,32 @@ const GET_NODE_DATA = gql`
   }
 `
 
+const GET_BLOCK_BY_NODE = gql`
+  query getBlocks($page: Int, $NodePublicKey: String!) {
+    blocks(page: $page, limit: 5, order: "-Height", NodePublicKey: $NodePublicKey) {
+      Blocks {
+        BlockID
+        Height
+        Timestamp
+        BlocksmithID
+        TotalFee
+        TotalRewards
+      }
+      Paginate {
+        Page
+        Count
+        Total
+      }
+    }
+  }
+`
+
 const Node = ({ match }) => {
   const { params, url } = match
   const urlLastCharacter = url[url.length - 1]
+  const [blockCurrentPage, setBlockCurrentPage] = useState(1)
+  const [blocks, setBlocks] = useState([])
+  const [blockPaginate, setBlockPaginate] = useState({})
   let nodePublicKey = params.id
 
   if (urlLastCharacter === '/') {
@@ -43,6 +67,28 @@ const Node = ({ match }) => {
       NodePublicKey: nodePublicKey,
     },
   })
+
+  const blockNode = useQuery(GET_BLOCK_BY_NODE, {
+    variables: {
+      page: blockCurrentPage,
+      NodePublicKey: nodePublicKey,
+    },
+  })
+
+  useEffect(() => {
+    if (!!blockNode.data) {
+      const blockData = blockNode.data.blocks.Blocks.map((block, key) => {
+        return {
+          key,
+          ...block,
+        }
+      })
+
+      setBlocks(blockData)
+      setBlockPaginate(blockNode.data.blocks.Paginate)
+    }
+  }, [blockNode.data])
+
   return (
     <DefaultLayout>
       {!!error && <NotFound />}
@@ -96,6 +142,28 @@ const Node = ({ match }) => {
                     />
                   }
                 />
+              </Card>
+              <Card className="card-summary">
+                <Title level={4}>
+                  Blocks{' '}
+                  <Badge className="badge-black" count={blockPaginate.Total} overflowCount={1000} />
+                </Title>
+                <Table
+                  columns={blockColumns}
+                  dataSource={blocks}
+                  pagination={false}
+                  size="small"
+                  loading={loading}
+                />
+                {!!blocks && (
+                  <Pagination
+                    className="pagination-center"
+                    current={blockCurrentPage}
+                    total={blockPaginate.Total}
+                    pageSize={15}
+                    onChange={page => setBlockCurrentPage(page)}
+                  />
+                )}
               </Card>
             </Col>
           </Row>
