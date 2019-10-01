@@ -1,11 +1,16 @@
 import React from 'react'
-import { Row, Col, Card, Typography, Button, Table } from 'antd'
+import { Card, Typography, Button, List } from 'antd'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
+import { Link } from 'react-router-dom'
+import NumberFormat from 'react-number-format'
+import { Row, Col } from 'reactstrap'
 
 import DefaultLayout from '../../components/DefaultLayout'
 import Container from '../../components/Container'
-import { blockHomeColumns, trxHomeColumns } from '../../config/table-columns'
+import Hero from '../../components/Hero'
+import moment from 'moment'
+import { shortenHash } from '../../utils/shorten'
 
 const { Title } = Typography
 
@@ -50,49 +55,82 @@ const Home = ({ history }) => {
     })
   }
   return (
-    <DefaultLayout withHero>
-      <Container fluid>
-        <Row gutter={8}>
+    <DefaultLayout>
+      <Container>
+        <Hero />
+        <Row>
           <Col span={12}>
             <Card>
-              <Row>
-                <Col span={21}>
-                  <Title level={4}>Blocks</Title>
-                </Col>
-                <Col span={3}>
-                  <Button
-                    shape="round"
-                    size="small"
-                    type="primary"
-                    onClick={() => history.push('/blocks')}
-                  >
-                    View all
-                  </Button>
-                </Col>
-              </Row>
-              <Table
-                columns={blockHomeColumns}
-                dataSource={blockData}
-                pagination={false}
-                size="small"
+              <Title level={4}>Latest Blocks</Title>
+              <List
+                size="large"
                 loading={loading}
+                dataSource={blockData}
+                className="overview-list"
+                renderItem={item => (
+                  <List.Item>
+                    <Row style={{ width: '100%' }}>
+                      <Col span={10} md="5">
+                        <Col>
+                          <Link to={`/blocks/${item.BlockID}`}>{item.Height}</Link>
+                        </Col>
+                        <Col>{moment(item.Timestamp).format('lll')}</Col>
+                      </Col>
+                      <Col span={14} md="7">
+                        <Col>
+                          <strong>Blocksmith</strong>
+                        </Col>
+                        <Col>{shortenHash(item.BlocksmithID, 30)}</Col>
+                      </Col>
+                    </Row>
+                  </List.Item>
+                )}
               />
+              <Button type="primary" onClick={() => history.push('/blocks')} block>
+                VIEW ALL BLOCKS
+              </Button>
             </Card>
           </Col>
           <Col span={12}>
             <Card>
-              <Row>
-                <Col>
-                  <Title level={4}>Transactions</Title>
-                </Col>
-              </Row>
-              <Table
-                columns={trxHomeColumns}
-                dataSource={trxData}
-                pagination={false}
-                size="small"
+              <Title level={4}>Latest Transactions</Title>
+              <List
+                size="large"
                 loading={loading}
+                dataSource={trxData}
+                className="overview-list"
+                renderItem={item => (
+                  <List.Item>
+                    <Row style={{ width: '100%' }}>
+                      <Col md="6">
+                        <Col md="12">
+                          <strong>Transaction ID</strong>
+                        </Col>
+                        <Col md="12">
+                          <Link to={`/transactions/${item.TransactionID}`}>
+                            {item.TransactionID}
+                          </Link>
+                        </Col>
+                      </Col>
+                      <Col md="6">
+                        <Col md="12">
+                          <strong>Fee</strong>{' '}
+                          <NumberFormat
+                            value={item.Fee || 0}
+                            displayType={'text'}
+                            thousandSeparator={true}
+                            suffix={' BCZ'}
+                          />
+                        </Col>
+                        <Col md="12">{moment(item.Timestamp).format('lll')}</Col>
+                      </Col>
+                    </Row>
+                  </List.Item>
+                )}
               />
+              <Button type="primary" onClick={() => history.push('/transactions')} block>
+                VIEW ALL TRANSACTIONS
+              </Button>
             </Card>
           </Col>
         </Row>

@@ -55,6 +55,11 @@
   .menu-with-icon {
     color: $nepal;
     font-size: 14px;
+
+    a {
+      color: $grey;
+    }
+
     a:focus {
       color: $blue;
     }
