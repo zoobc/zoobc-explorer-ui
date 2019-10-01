@@ -51,7 +51,7 @@ const Home = ({ history }) => {
   }
   return (
     <DefaultLayout withHero>
-      <Container fluid>
+      <Container>
         <Row gutter={8}>
           <Col span={12}>
             <Card>

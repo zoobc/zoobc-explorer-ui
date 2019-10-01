@@ -6,13 +6,13 @@ import { Col } from 'antd'
 const DescItem = ({ label, value }) => {
   return (
     <>
-      <Col span={4}>
+      <Col span={5}>
         <label>
           <strong>{label}</strong>
         </label>
       </Col>
-      <Col span={20}>
-        <label>{!!value ? value : '-'}</label>
+      <Col span={19}>
+        <label>{(!!value || value === 0) ? value : '-'}</label>
       </Col>
     </>
   )

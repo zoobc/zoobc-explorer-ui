@@ -54,7 +54,7 @@ const Accounts = () => {
 
   return (
     <DefaultLayout>
-      <Container fluid>
+      <Container>
         <Row gutter={8}>
           <Col span={24}>
             <Card>

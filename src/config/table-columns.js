@@ -222,7 +222,7 @@ export const transactionColumns = [
     dataIndex: 'Sender',
     key: 'Sender',
     render(text) {
-      return <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
+      return <Link to={`/accounts/${text}`}>{shortenHash(text, 20)}</Link>
     },
   },
   {
@@ -230,7 +230,7 @@ export const transactionColumns = [
     dataIndex: 'Recipient',
     key: 'Recipient',
     render(text) {
-      return <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
+      return <Link to={`/accounts/${text}`}>{shortenHash(text, 20)}</Link>
     },
   },
   {

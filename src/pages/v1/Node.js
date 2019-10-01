@@ -48,7 +48,7 @@ const Node = ({ match }) => {
       {!!error && <NotFound />}
       {!!loading && <LoaderPage />}
       {!error && !loading && (
-        <Container fluid>
+        <Container>
           <Row gutter={8}>
             <Col span={24}>
               <Row>
