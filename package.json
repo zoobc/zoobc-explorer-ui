@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "ZooBC Explorer Website",
   "repository": "git@github.com:zoobc/zoobc-explorer-ui.git",
+  "homepage": "http://139.162.15.80/",
   "author": "ZooBC Explorer Team",
   "license": "Apache License 2.0",
   "private": true,
