@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Row, Col, Card, Typography, Table, Pagination, Badge } from 'antd'
-import { Link } from 'react-router-dom'
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 import moment from 'moment'
+import NumberFormat from 'react-number-format'
 
 import DefaultLayout from '../../components/DefaultLayout'
 import Container from '../../components/Container'
@@ -11,6 +11,7 @@ import DescItem from '../../components/DescItem'
 import CopyToClipboard from '../../components/CopyToClipboard'
 import NotFound from '../../components/Errors/NotFound'
 import LoaderPage from '../../components/Loader/LoaderPage'
+import { transactionColumns } from '../../config/table-columns'
 
 const { Title } = Typography
 
@@ -39,64 +40,28 @@ const GET_BLOCK_DATA = gql`
   }
 `
 
-const columnsTrx = [
-  {
-    title: 'Transaction ID',
-    dataIndex: 'hash',
-    key: 'hash',
-    render(record) {
-      return <Link to="/">{record}</Link>
-    },
-  },
-  {
-    title: 'Timestamp',
-    dataIndex: 'timestamp',
-    key: 'timestamp',
-  },
-  {
-    title: 'Type',
-    dataIndex: 'type',
-    key: 'type',
-  },
-  {
-    title: 'Sender',
-    dataIndex: 'sender',
-    key: 'sender',
-  },
-  {
-    title: 'Recipient',
-    dataIndex: 'recipient',
-    key: 'recipient',
-  },
-  {
-    title: 'Confirmation',
-    dataIndex: 'confirmation',
-    key: 'confirmation',
-  },
-  {
-    title: 'Fees',
-    dataIndex: 'fees',
-    key: 'fees',
-  },
-  {
-    title: 'Rewards',
-    dataIndex: 'rewards',
-    key: 'rewards',
-  },
-]
-
-const columnsReward = [
-  {
-    title: 'Account',
-    dataIndex: 'account',
-    key: 'account',
-  },
-  {
-    title: 'Coins',
-    dataIndex: 'coins',
-    key: 'coins',
-  },
-]
+const GET_TRX_BY_BLOCK = gql`
+  query getTrxByBlock($page: Int, $BlockID: String) {
+    transactions(page: $page, limit: 5, order: "-Height", BlockID: $BlockID) {
+      Transactions {
+        TransactionID
+        Height
+        Timestamp
+        TransactionType
+        Sender
+        Recipient
+        Confirmations
+        Fee
+        BlockID
+      }
+      Paginate {
+        Page
+        Count
+        Total
+      }
+    }
+  }
+`
 
 const columnsReceipt = [
   {
@@ -143,23 +108,48 @@ const columnsReceipt = [
 
 const Block = ({ match }) => {
   const { params } = match
+  const [trxCurrentPage, setTrxCurrentPage] = useState(1)
+  const [transactions, setTransactions] = useState([])
+  const [trxPaginate, setTrxPaginate] = useState({})
+
   const { loading, data, error } = useQuery(GET_BLOCK_DATA, {
     variables: {
       BlockID: params.id,
     },
   })
 
+  const trxByBlock = useQuery(GET_TRX_BY_BLOCK, {
+    variables: {
+      BlockID: params.id,
+      page: trxCurrentPage,
+    },
+  })
+
+  useEffect(() => {
+    if (!!trxByBlock.data) {
+      const trxData = trxByBlock.data.transactions.Transactions.map((trx, key) => {
+        return {
+          key,
+          ...trx,
+        }
+      })
+
+      setTransactions(trxData)
+      setTrxPaginate(trxByBlock.data.transactions.Paginate)
+    }
+  }, [trxByBlock.data])
+
   return (
     <DefaultLayout>
       {!!error && <NotFound />}
       {!!loading && <LoaderPage />}
       {!error && !loading && (
-        <Container fluid>
+        <Container>
           <Row gutter={8}>
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <Title level={4}>Block #{data.block.Height}</Title>
+                  <Title level={4}>Block {data.block.Height}</Title>
                 </Col>
               </Row>
               <Card className="card-summary">
@@ -178,8 +168,28 @@ const Block = ({ match }) => {
                 <DescItem label="Smith Scale" value={data.block.SmithScale} />
                 <DescItem label="Blocksmith Address" value={data.block.BlocksmithAddress} />
                 <DescItem label="Total Amount" value={data.block.TotalAmount} />
-                <DescItem label="Total Fee" value={data.block.TotalFee} />
-                <DescItem label="Total Rewards" value={data.block.TotalRewards} />
+                <DescItem
+                  label="Total Fee"
+                  value={
+                    <NumberFormat
+                      value={data.block.TotalFee}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      suffix={' BCZ'}
+                    />
+                  }
+                />
+                <DescItem
+                  label="Total Rewards"
+                  value={
+                    <NumberFormat
+                      value={data.block.TotalRewards}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      suffix={' BCZ'}
+                    />
+                  }
+                />
                 <DescItem label="Version" value={data.block.Version} />
                 <DescItem label="Total Receipts" value={data.block.TotalReceipts} />
                 <DescItem label="Receipt Value" value={data.block.ReceiptValue} />
@@ -190,24 +200,44 @@ const Block = ({ match }) => {
               </Card>
               <Card className="card-summary">
                 <Title level={4}>
-                  Rewards / Coinbase{' '}
-                  <Badge className="badge-black" count={425} overflowCount={1000} />
+                  Transactions{' '}
+                  <Badge className="badge-black" count={trxPaginate.Total} overflowCount={1000} />
                 </Title>
-                <Table columns={columnsReward} dataSource={[]} pagination={false} size="small" />
-                <Pagination className="pagination-center" current={5} total={100} />
+                <Table
+                  columns={transactionColumns}
+                  dataSource={transactions}
+                  pagination={false}
+                  size="small"
+                  loading={loading}
+                />
+                {!!data && (
+                  <Pagination
+                    className="pagination-center"
+                    current={trxPaginate.Page}
+                    total={trxPaginate.Total}
+                    pageSize={5}
+                    onChange={page => setTrxCurrentPage(page)}
+                  />
+                )}
               </Card>
               <Card className="card-summary">
                 <Title level={4}>
-                  Reciepts <Badge className="badge-black" count={425} overflowCount={1000} />
+                  Rewards / Coinbase{' '}
+                  <Badge className="badge-black" count={425} overflowCount={1000} />
                 </Title>
-                <Table columns={columnsReceipt} dataSource={[]} pagination={false} size="small" />
+                <Table
+                  columns={transactionColumns}
+                  dataSource={[]}
+                  pagination={false}
+                  size="small"
+                />
                 <Pagination className="pagination-center" current={5} total={100} />
               </Card>
               <Card>
                 <Title level={4}>
-                  Transactions <Badge className="badge-black" count={425} overflowCount={1000} />
+                  Reciepts <Badge className="badge-black" count={425} overflowCount={1000} />
                 </Title>
-                <Table columns={columnsTrx} dataSource={[]} pagination={false} size="small" />
+                <Table columns={columnsReceipt} dataSource={[]} pagination={false} size="small" />
                 <Pagination className="pagination-center" current={5} total={100} />
               </Card>
             </Col>

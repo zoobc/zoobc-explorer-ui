@@ -3,6 +3,7 @@ import { Row, Col, Card, Typography } from 'antd'
 import { useQuery } from '@apollo/react-hooks'
 import moment from 'moment'
 import gql from 'graphql-tag'
+import NumberFormat from 'react-number-format'
 
 import DefaultLayout from '../../components/DefaultLayout'
 import Container from '../../components/Container'
@@ -42,12 +43,12 @@ const Transaction = ({ match }) => {
       {!!error && <NotFound />}
       {!!loading && <LoaderPage />}
       {!error && !loading && (
-        <Container fluid>
+        <Container>
           <Row gutter={8}>
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <Title level={4}>Transaction #{data.transaction.TransactionID}</Title>
+                  <Title level={4}>Transaction {data.transaction.TransactionID}</Title>
                 </Col>
               </Row>
               <Card className="card-summary">
@@ -77,7 +78,17 @@ const Transaction = ({ match }) => {
                   value={<CopyToClipboard text={data.transaction.Recipient} keyID="recipient" />}
                 />
                 <DescItem label="Confirmations" value={data.transaction.Confirmations} />
-                <DescItem label="Fee" value={data.transaction.Fee} />
+                <DescItem
+                  label="Fee"
+                  value={
+                    <NumberFormat
+                      value={data.transaction.Fee || 0}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      suffix={' BCZ'}
+                    />
+                  }
+                />
               </Card>
             </Col>
           </Row>
