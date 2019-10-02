@@ -196,7 +196,7 @@ export const transactionColumns = [
 
 export const nodeColumns = [
   {
-    title: 'Node Public Key',
+    title: 'Public Key',
     dataIndex: 'NodePublicKey',
     key: 'NodePublicKey',
     render(text) {
@@ -235,7 +235,7 @@ export const nodeColumns = [
     },
   },
   {
-    title: 'Registry Status',
+    title: 'Status',
     dataIndex: 'RegistryStatus',
     key: 'RegistryStatus',
     render(text) {
@@ -243,9 +243,76 @@ export const nodeColumns = [
     },
   },
   {
-    title: 'Participation Score',
+    title: 'Score',
     dataIndex: 'ParticipationScore',
     key: 'ParticipationScore',
+    render(text) {
+      return !!text ? text : '-'
+    },
+  },
+]
+
+export const blockReceiptColumns = [
+  {
+    title: 'Sender',
+    dataIndex: 'SenderPublicKey',
+    key: 'SenderPublicKey',
+    render(text) {
+      return !!text ? <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link> : '-'
+    },
+  },
+  {
+    title: 'Receiver',
+    dataIndex: 'ReceiverPublicKey',
+    key: 'ReceiverPublicKey',
+    render(text) {
+      return !!text ? <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link> : '-'
+    },
+  },
+  {
+    title: 'Block',
+    dataIndex: 'Height',
+    key: 'Height',
+    render(text) {
+      return !!text ? text : '-'
+    },
+  },
+  {
+    title: 'Block ID',
+    dataIndex: 'BlockID',
+    key: 'BlockID',
+    render(text, record) {
+      return !!text ? text : '-'
+    },
+  },
+  {
+    title: 'Data Type',
+    dataIndex: 'DataType',
+    key: 'DataType',
+    render(text) {
+      return !!text ? text : '-'
+    },
+  },
+  {
+    title: 'Data Hash',
+    dataIndex: 'DataHash',
+    key: 'DataHash',
+    render(text) {
+      return !!text ? text : '-'
+    },
+  },
+  {
+    title: 'Merkle Root',
+    dataIndex: 'ReceiptMerkleRoot',
+    key: 'ReceiptMerkleRoot',
+    render(text) {
+      return !!text ? text : '-'
+    },
+  },
+  {
+    title: 'Receiver Signature',
+    dataIndex: 'ReceiverSignature',
+    key: 'ReceiverSignature',
     render(text) {
       return !!text ? text : '-'
     },
