@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, Menu, Input } from 'antd'
+import { Layout, Menu, Input, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 
 import Container from './Container'
@@ -47,9 +47,9 @@ const Header = () => {
         <div className="navbar-right">
           <Search
             className="header-search-input"
-            // prefix={<Icon type="search" style={{ fontSize: '22px', color: 'rgba(0,0,0,.45)' }} />}
+            prefix={<Icon type="search" style={{ fontSize: '22px', color: 'rgba(0,0,0,.45)' }} />}
             placeholder="Transaction ID / Block Height"
-            // enterButton="SEARCH"
+            enterButton="SEARCH"
             // size="large"
           />
         </div>
