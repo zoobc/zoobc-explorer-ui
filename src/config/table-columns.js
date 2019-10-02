@@ -16,8 +16,8 @@ export const accountColumns = [
   },
   {
     title: 'Balance',
-    dataIndex: 'Balance',
-    key: 'Balance',
+    dataIndex: 'BalanceConversion',
+    key: 'BalanceConversion',
     render(text) {
       return (
         <NumberFormat
@@ -39,8 +39,8 @@ export const accountColumns = [
   },
   {
     title: 'Rewards',
-    dataIndex: 'TotalRewards',
-    key: 'TotalRewards',
+    dataIndex: 'TotalRewardsConversion',
+    key: 'TotalRewardsConversion',
     render(text) {
       return (
         <NumberFormat
@@ -54,8 +54,8 @@ export const accountColumns = [
   },
   {
     title: 'Fees',
-    dataIndex: 'TotalFeesPaid',
-    key: 'TotalFeesPaid',
+    dataIndex: 'TotalFeesPaidConversion',
+    key: 'TotalFeesPaidConversion',
     render(text) {
       return (
         <NumberFormat
@@ -104,8 +104,8 @@ export const blockColumns = [
   },
   {
     title: 'Fee',
-    dataIndex: 'TotalFee',
-    key: 'TotalFee',
+    dataIndex: 'TotalFeeConversion',
+    key: 'TotalFeeConversion',
     render(text) {
       return (
         <NumberFormat
@@ -119,8 +119,8 @@ export const blockColumns = [
   },
   {
     title: 'Rewards',
-    dataIndex: 'TotalRewards',
-    key: 'TotalRewards',
+    dataIndex: 'TotalFeeConversion',
+    key: 'TotalFeeConversion',
     render(text) {
       return (
         <NumberFormat
@@ -196,7 +196,7 @@ export const transactionColumns = [
 
 export const nodeColumns = [
   {
-    title: 'Node Public Key',
+    title: 'Public Key',
     dataIndex: 'NodePublicKey',
     key: 'NodePublicKey',
     render(text) {
@@ -235,7 +235,7 @@ export const nodeColumns = [
     },
   },
   {
-    title: 'Registry Status',
+    title: 'Status',
     dataIndex: 'RegistryStatus',
     key: 'RegistryStatus',
     render(text) {
@@ -243,9 +243,76 @@ export const nodeColumns = [
     },
   },
   {
-    title: 'Participation Score',
+    title: 'Score',
     dataIndex: 'ParticipationScore',
     key: 'ParticipationScore',
+    render(text) {
+      return !!text ? text : '-'
+    },
+  },
+]
+
+export const blockReceiptColumns = [
+  {
+    title: 'Sender',
+    dataIndex: 'SenderPublicKey',
+    key: 'SenderPublicKey',
+    render(text) {
+      return !!text ? <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link> : '-'
+    },
+  },
+  {
+    title: 'Receiver',
+    dataIndex: 'ReceiverPublicKey',
+    key: 'ReceiverPublicKey',
+    render(text) {
+      return !!text ? <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link> : '-'
+    },
+  },
+  {
+    title: 'Block',
+    dataIndex: 'Height',
+    key: 'Height',
+    render(text) {
+      return !!text ? text : '-'
+    },
+  },
+  {
+    title: 'Block ID',
+    dataIndex: 'BlockID',
+    key: 'BlockID',
+    render(text, record) {
+      return !!text ? text : '-'
+    },
+  },
+  {
+    title: 'Data Type',
+    dataIndex: 'DataType',
+    key: 'DataType',
+    render(text) {
+      return !!text ? text : '-'
+    },
+  },
+  {
+    title: 'Data Hash',
+    dataIndex: 'DataHash',
+    key: 'DataHash',
+    render(text) {
+      return !!text ? text : '-'
+    },
+  },
+  {
+    title: 'Merkle Root',
+    dataIndex: 'ReceiptMerkleRoot',
+    key: 'ReceiptMerkleRoot',
+    render(text) {
+      return !!text ? text : '-'
+    },
+  },
+  {
+    title: 'Receiver Signature',
+    dataIndex: 'ReceiverSignature',
+    key: 'ReceiverSignature',
     render(text) {
       return !!text ? text : '-'
     },

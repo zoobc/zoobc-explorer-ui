@@ -18,12 +18,12 @@ const GET_ACCOUNT_DATA = gql`
   query getAccount($AccountAddress: String!) {
     account(AccountAddress: $AccountAddress) {
       AccountAddress
-      Balance
-      SpendableBalance
+      BalanceConversion
+      SpendableBalanceConversion
       FirstActive
       LastActive
-      TotalRewards
-      TotalFeesPaid
+      TotalRewardsConversion
+      TotalFeesPaidConversion
       NodePublicKey
     }
   }

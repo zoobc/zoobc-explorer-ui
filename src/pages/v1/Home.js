@@ -28,7 +28,7 @@ const GET_HOME_DATA = gql`
       Transactions {
         TransactionID
         Timestamp
-        Fee
+        FeeConversion
       }
     }
   }
