@@ -1,3 +1,0 @@
-[submodule "src/language"]
-	path = src/language
-	url = git@github.com:zoobc/zoobc-language-files.git
