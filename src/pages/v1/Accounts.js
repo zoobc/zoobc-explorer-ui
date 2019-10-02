@@ -14,7 +14,7 @@ const GET_ACCOUNTS_DATA = gql`
     accounts(page: $page, limit: 15, order: "AccountAddress") {
       Accounts {
         AccountAddress
-        Balance
+        BalanceConversion
         LastActive
         TotalRewardsConversion
         TotalFeesPaidConversion

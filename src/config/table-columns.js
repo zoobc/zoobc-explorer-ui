@@ -16,8 +16,8 @@ export const accountColumns = [
   },
   {
     title: 'Balance',
-    dataIndex: 'Balance',
-    key: 'Balance',
+    dataIndex: 'BalanceConversion',
+    key: 'BalanceConversion',
     render(text) {
       return (
         <NumberFormat
