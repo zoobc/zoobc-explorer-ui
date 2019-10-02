@@ -17,30 +17,20 @@ const Header = () => {
         <div className="header-logo-name">ZooBC</div>
         <div className="navbar-left">
           <Menu theme="dark" mode="horizontal" style={{ paddingRight: '0px' }}>
-            <Menu.Item key="1">
-              <Link to="/">
-                <div className="menu-with-icon">Home</div>
-              </Link>
+            <Menu.Item key="1" className="menu-with-icon">
+              <Link to="/">Home</Link>
             </Menu.Item>
-            <Menu.Item key="2">
-              <Link to="/blocks">
-                <div className="menu-with-icon">Blocks</div>
-              </Link>
+            <Menu.Item key="2" className="menu-with-icon">
+              <Link to="/blocks">Blocks</Link>
             </Menu.Item>
-            <Menu.Item key="3">
-              <Link to="/transactions">
-                <div className="menu-with-icon">Transactions</div>
-              </Link>
+            <Menu.Item key="3" className="menu-with-icon">
+              <Link to="/transactions">Transactions</Link>
             </Menu.Item>
-            <Menu.Item key="4">
-              <Link to="/accounts">
-                <div className="menu-with-icon">Accounts</div>
-              </Link>
+            <Menu.Item key="4" className="menu-with-icon">
+              <Link to="/accounts">Accounts</Link>
             </Menu.Item>
-            <Menu.Item key="5">
-              <Link to="/nodes">
-                <div className="menu-with-icon">Nodes</div>
-              </Link>
+            <Menu.Item key="5" className="menu-with-icon">
+              <Link to="/nodes">Nodes</Link>
             </Menu.Item>
           </Menu>
         </div>
