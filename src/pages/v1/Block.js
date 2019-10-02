@@ -26,9 +26,9 @@ const GET_BLOCK_DATA = gql`
       CumulativeDifficulty
       SmithScale
       BlocksmithAddress
-      TotalAmount
-      TotalFee
-      TotalRewards
+      TotalAmountConversion
+      TotalFeeConversion
+      TotalRewardsConversion
       Version
       TotalReceipts
       ReceiptValue

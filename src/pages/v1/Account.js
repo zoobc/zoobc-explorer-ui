@@ -22,8 +22,8 @@ const GET_ACCOUNT_DATA = gql`
       SpendableBalance
       FirstActive
       LastActive
-      TotalRewards
-      TotalFeesPaid
+      TotalRewardsConversion
+      TotalFeesPaidConversion
       NodePublicKey
     }
   }
