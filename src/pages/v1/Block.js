@@ -172,12 +172,12 @@ const Block = ({ match }) => {
                 <DescItem label="Cumulative Difficulty" value={data.block.CumulativeDifficulty} />
                 <DescItem label="Smith Scale" value={data.block.SmithScale} />
                 <DescItem label="Blocksmith Address" value={data.block.BlocksmithAddress} />
-                <DescItem label="Total Amount" value={data.block.TotalAmount} />
+                <DescItem label="Total Amount" value={data.block.TotalAmountConversion} />
                 <DescItem
                   label="Total Fee"
                   value={
                     <NumberFormat
-                      value={data.block.TotalFee}
+                      value={data.block.TotalFeeConversion}
                       displayType={'text'}
                       thousandSeparator={true}
                       suffix={' BCZ'}
@@ -188,7 +188,7 @@ const Block = ({ match }) => {
                   label="Total Rewards"
                   value={
                     <NumberFormat
-                      value={data.block.TotalRewards}
+                      value={data.block.TotalRewardsConversion}
                       displayType={'text'}
                       thousandSeparator={true}
                       suffix={' BCZ'}

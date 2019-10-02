@@ -20,12 +20,14 @@ export const accountColumns = [
     key: 'BalanceConversion',
     render(text) {
       return (
-        <NumberFormat
-          value={text || 0}
-          displayType={'text'}
-          thousandSeparator={true}
-          suffix={' BCZ'}
-        />
+        !!text && (
+          <NumberFormat
+            value={text}
+            displayType={'text'}
+            thousandSeparator={true}
+            suffix={' BCZ'}
+          />
+        )
       )
     },
   },
@@ -33,9 +35,6 @@ export const accountColumns = [
     title: 'Last Active',
     dataIndex: 'LastActive',
     key: 'LastActive',
-    render(text) {
-      return !!text ? text : '-'
-    },
   },
   {
     title: 'Rewards',
@@ -43,12 +42,14 @@ export const accountColumns = [
     key: 'TotalRewardsConversion',
     render(text) {
       return (
-        <NumberFormat
-          value={text || 0}
-          displayType={'text'}
-          thousandSeparator={true}
-          suffix={' BCZ'}
-        />
+        !!text && (
+          <NumberFormat
+            value={text}
+            displayType={'text'}
+            thousandSeparator={true}
+            suffix={' BCZ'}
+          />
+        )
       )
     },
   },
@@ -58,12 +59,14 @@ export const accountColumns = [
     key: 'TotalFeesPaidConversion',
     render(text) {
       return (
-        <NumberFormat
-          value={text || 0}
-          displayType={'text'}
-          thousandSeparator={true}
-          suffix={' BCZ'}
-        />
+        !!text && (
+          <NumberFormat
+            value={text}
+            displayType={'text'}
+            thousandSeparator={true}
+            suffix={' BCZ'}
+          />
+        )
       )
     },
   },
@@ -108,27 +111,31 @@ export const blockColumns = [
     key: 'TotalFeeConversion',
     render(text) {
       return (
-        <NumberFormat
-          value={text || 0}
-          displayType={'text'}
-          thousandSeparator={true}
-          suffix={' BCZ'}
-        />
+        !!text && (
+          <NumberFormat
+            value={text}
+            displayType={'text'}
+            thousandSeparator={true}
+            suffix={' BCZ'}
+          />
+        )
       )
     },
   },
   {
     title: 'Rewards',
-    dataIndex: 'TotalFeeConversion',
-    key: 'TotalFeeConversion',
+    dataIndex: 'TotalRewardsConversion',
+    key: 'TotalRewardsConversion',
     render(text) {
       return (
-        <NumberFormat
-          value={text || 0}
-          displayType={'text'}
-          thousandSeparator={true}
-          suffix={' BCZ'}
-        />
+        !!text && (
+          <NumberFormat
+            value={text}
+            displayType={'text'}
+            thousandSeparator={true}
+            suffix={' BCZ'}
+          />
+        )
       )
     },
   },
@@ -179,16 +186,18 @@ export const transactionColumns = [
   },
   {
     title: 'Fees',
-    dataIndex: 'Fee',
-    key: 'Fee',
+    dataIndex: 'FeeConversion',
+    key: 'FeeConversion',
     render(text) {
       return (
-        <NumberFormat
-          value={text || 0}
-          displayType={'text'}
-          thousandSeparator={true}
-          suffix={' BCZ'}
-        />
+        !!text && (
+          <NumberFormat
+            value={text}
+            displayType={'text'}
+            thousandSeparator={true}
+            suffix={' BCZ'}
+          />
+        )
       )
     },
   },
@@ -215,9 +224,6 @@ export const nodeColumns = [
     title: 'Node Address',
     dataIndex: 'NodeAddress',
     key: 'NodeAddress',
-    render(text) {
-      return !!text ? text : '-'
-    },
   },
   {
     title: 'Locked Funds',
@@ -225,12 +231,14 @@ export const nodeColumns = [
     key: 'LockedFunds',
     render(text) {
       return (
-        <NumberFormat
-          value={text || 0}
-          displayType={'text'}
-          thousandSeparator={true}
-          suffix={' BCZ'}
-        />
+        !!text && (
+          <NumberFormat
+            value={text}
+            displayType={'text'}
+            thousandSeparator={true}
+            suffix={' BCZ'}
+          />
+        )
       )
     },
   },
@@ -239,16 +247,13 @@ export const nodeColumns = [
     dataIndex: 'RegistryStatus',
     key: 'RegistryStatus',
     render(text) {
-      return !!text.toString() ? (text.toString() === 'true' ? 'Registered' : 'In Queue') : '-'
+      return !!text.toString() && (text.toString() === 'true' ? 'Registered' : 'In Queue')
     },
   },
   {
     title: 'Score',
     dataIndex: 'ParticipationScore',
     key: 'ParticipationScore',
-    render(text) {
-      return !!text ? text : '-'
-    },
   },
 ]
 
@@ -258,7 +263,7 @@ export const blockReceiptColumns = [
     dataIndex: 'SenderPublicKey',
     key: 'SenderPublicKey',
     render(text) {
-      return !!text ? <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link> : '-'
+      return !!text && <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
     },
   },
   {
@@ -266,55 +271,37 @@ export const blockReceiptColumns = [
     dataIndex: 'ReceiverPublicKey',
     key: 'ReceiverPublicKey',
     render(text) {
-      return !!text ? <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link> : '-'
+      return !!text && <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
     },
   },
   {
     title: 'Block',
     dataIndex: 'Height',
     key: 'Height',
-    render(text) {
-      return !!text ? text : '-'
-    },
   },
   {
     title: 'Block ID',
     dataIndex: 'BlockID',
     key: 'BlockID',
-    render(text, record) {
-      return !!text ? text : '-'
-    },
   },
   {
     title: 'Data Type',
     dataIndex: 'DataType',
     key: 'DataType',
-    render(text) {
-      return !!text ? text : '-'
-    },
   },
   {
     title: 'Data Hash',
     dataIndex: 'DataHash',
     key: 'DataHash',
-    render(text) {
-      return !!text ? text : '-'
-    },
   },
   {
     title: 'Merkle Root',
     dataIndex: 'ReceiptMerkleRoot',
     key: 'ReceiptMerkleRoot',
-    render(text) {
-      return !!text ? text : '-'
-    },
   },
   {
     title: 'Receiver Signature',
     dataIndex: 'ReceiverSignature',
     key: 'ReceiverSignature',
-    render(text) {
-      return !!text ? text : '-'
-    },
   },
 ]
