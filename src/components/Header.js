@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, Menu, Input, Icon } from 'antd'
+import { Layout, Menu, Input } from 'antd'
 import { Link } from 'react-router-dom'
 
 import Container from './Container'
@@ -15,45 +15,43 @@ const Header = () => {
           <img src={zoobcLogo} alt="zoobc-logo" />
         </Link>
         <div className="header-logo-name">ZooBC</div>
-        <div className="navbar-right">
+        <div className="navbar-left">
           <Menu theme="dark" mode="horizontal" style={{ paddingRight: '0px' }}>
             <Menu.Item key="1">
-              <div className="menu-with-icon">
-                <Link to="/">Home</Link>
-              </div>
+              <Link to="/">
+                <div className="menu-with-icon">Home</div>
+              </Link>
             </Menu.Item>
             <Menu.Item key="2">
-              <div className="menu-with-icon">
-                <Link to="/blocks">Blocks</Link>
-              </div>
+              <Link to="/blocks">
+                <div className="menu-with-icon">Blocks</div>
+              </Link>
             </Menu.Item>
             <Menu.Item key="3">
-              <div className="menu-with-icon">
-                <Link to="/transactions">Transactions</Link>
-              </div>
+              <Link to="/transactions">
+                <div className="menu-with-icon">Transactions</div>
+              </Link>
             </Menu.Item>
             <Menu.Item key="4">
-              <div className="menu-with-icon">
-                <Link to="/accounts">Accounts</Link>
-              </div>
+              <Link to="/accounts">
+                <div className="menu-with-icon">Accounts</div>
+              </Link>
             </Menu.Item>
             <Menu.Item key="5">
-              <div className="menu-with-icon">
-                <Link to="/nodes">Nodes</Link>
-              </div>
+              <Link to="/nodes">
+                <div className="menu-with-icon">Nodes</div>
+              </Link>
             </Menu.Item>
           </Menu>
         </div>
-        <div className="navbar-left">
-          <Menu theme="dark" mode="horizontal" style={{ lineHeight: '40px' }}>
-            <Search
-              className="header-search-input"
-              prefix={<Icon type="search" style={{ fontSize: '22px', color: 'rgba(0,0,0,.45)' }} />}
-              placeholder="Transaction ID / Block Height"
-              enterButton="SEARCH"
-              size="large"
-            />
-          </Menu>
+        <div className="navbar-right">
+          <Search
+            className="header-search-input"
+            // prefix={<Icon type="search" style={{ fontSize: '22px', color: 'rgba(0,0,0,.45)' }} />}
+            placeholder="Transaction ID / Block Height"
+            // enterButton="SEARCH"
+            // size="large"
+          />
         </div>
       </Container>
     </Layout.Header>
