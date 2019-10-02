@@ -5,6 +5,14 @@ import NumberFormat from 'react-number-format'
 
 import { shortenHash } from '../utils/shorten'
 
+const renderCurrenncy = text => {
+  return (
+    !!text && (
+      <NumberFormat value={text} displayType={'text'} thousandSeparator={true} suffix={' BCZ'} />
+    )
+  )
+}
+
 export const accountColumns = [
   {
     title: 'Address',
@@ -18,18 +26,7 @@ export const accountColumns = [
     title: 'Balance',
     dataIndex: 'BalanceConversion',
     key: 'BalanceConversion',
-    render(text) {
-      return (
-        !!text && (
-          <NumberFormat
-            value={text}
-            displayType={'text'}
-            thousandSeparator={true}
-            suffix={' BCZ'}
-          />
-        )
-      )
-    },
+    render: renderCurrenncy,
   },
   {
     title: 'Last Active',
@@ -40,35 +37,13 @@ export const accountColumns = [
     title: 'Rewards',
     dataIndex: 'TotalRewardsConversion',
     key: 'TotalRewardsConversion',
-    render(text) {
-      return (
-        !!text && (
-          <NumberFormat
-            value={text}
-            displayType={'text'}
-            thousandSeparator={true}
-            suffix={' BCZ'}
-          />
-        )
-      )
-    },
+    render: renderCurrenncy,
   },
   {
     title: 'Fees',
     dataIndex: 'TotalFeesPaidConversion',
     key: 'TotalFeesPaidConversion',
-    render(text) {
-      return (
-        !!text && (
-          <NumberFormat
-            value={text}
-            displayType={'text'}
-            thousandSeparator={true}
-            suffix={' BCZ'}
-          />
-        )
-      )
-    },
+    render: renderCurrenncy,
   },
 ]
 
@@ -109,35 +84,13 @@ export const blockColumns = [
     title: 'Fee',
     dataIndex: 'TotalFeeConversion',
     key: 'TotalFeeConversion',
-    render(text) {
-      return (
-        !!text && (
-          <NumberFormat
-            value={text}
-            displayType={'text'}
-            thousandSeparator={true}
-            suffix={' BCZ'}
-          />
-        )
-      )
-    },
+    render: renderCurrenncy,
   },
   {
     title: 'Rewards',
     dataIndex: 'TotalRewardsConversion',
     key: 'TotalRewardsConversion',
-    render(text) {
-      return (
-        !!text && (
-          <NumberFormat
-            value={text}
-            displayType={'text'}
-            thousandSeparator={true}
-            suffix={' BCZ'}
-          />
-        )
-      )
-    },
+    render: renderCurrenncy,
   },
 ]
 
@@ -188,18 +141,7 @@ export const transactionColumns = [
     title: 'Fees',
     dataIndex: 'FeeConversion',
     key: 'FeeConversion',
-    render(text) {
-      return (
-        !!text && (
-          <NumberFormat
-            value={text}
-            displayType={'text'}
-            thousandSeparator={true}
-            suffix={' BCZ'}
-          />
-        )
-      )
-    },
+    render: renderCurrenncy,
   },
 ]
 
@@ -229,18 +171,7 @@ export const nodeColumns = [
     title: 'Locked Funds',
     dataIndex: 'LockedFunds',
     key: 'LockedFunds',
-    render(text) {
-      return (
-        !!text && (
-          <NumberFormat
-            value={text}
-            displayType={'text'}
-            thousandSeparator={true}
-            suffix={' BCZ'}
-          />
-        )
-      )
-    },
+    render: renderCurrenncy,
   },
   {
     title: 'Status',
