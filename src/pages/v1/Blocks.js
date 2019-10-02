@@ -3,11 +3,12 @@ import { Row, Col, Card, Table, Pagination } from 'antd'
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 
-import { getSortString } from '../../utils'
+import { getSortString, isEmptyObject } from '../../utils'
 import DefaultLayout from '../../components/DefaultLayout'
 import Container from '../../components/Container'
 import { blockColumns } from '../../config/table-columns'
 
+const defaultSort = { columnKey: 'Height', order: 'descend' }
 const GET_BLOCKS_DATA = gql`
   query getBlocks($page: Int, $sorter: String) {
     blocks(page: $page, limit: 15, order: $sorter) {
@@ -32,12 +33,10 @@ const Blocks = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [blocks, setBlocks] = useState([])
   const [paginate, setPaginate] = useState({})
-  const [sorted, setSorted] = useState({ columnKey: 'Height', order: 'descend' })
+  const [sorted, setSorted] = useState(defaultSort)
 
   const onChangeTable = (pagination, filters, sorter) => {
-    if (sorter) {
-      setSorted(sorter)
-    }
+    setSorted(isEmptyObject(sorter) ? defaultSort : sorter)
   }
 
   const columns = blockColumns.map(item => {
