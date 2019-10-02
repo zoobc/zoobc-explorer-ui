@@ -20,7 +20,7 @@ const GET_TRXS_DATA = gql`
         Sender
         Recipient
         Confirmations
-        Fee
+        FeeConversion
       }
       Paginate {
         Page

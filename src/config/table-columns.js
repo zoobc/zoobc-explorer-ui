@@ -16,8 +16,8 @@ export const accountColumns = [
   },
   {
     title: 'Balance',
-    dataIndex: 'Balance',
-    key: 'Balance',
+    dataIndex: 'BalanceConversion',
+    key: 'BalanceConversion',
     render(text) {
       return (
         <NumberFormat
@@ -39,8 +39,8 @@ export const accountColumns = [
   },
   {
     title: 'Rewards',
-    dataIndex: 'TotalRewards',
-    key: 'TotalRewards',
+    dataIndex: 'TotalRewardsConversion',
+    key: 'TotalRewardsConversion',
     render(text) {
       return (
         <NumberFormat
@@ -54,8 +54,8 @@ export const accountColumns = [
   },
   {
     title: 'Fees',
-    dataIndex: 'TotalFeesPaid',
-    key: 'TotalFeesPaid',
+    dataIndex: 'TotalFeesPaidConversion',
+    key: 'TotalFeesPaidConversion',
     render(text) {
       return (
         <NumberFormat
@@ -104,8 +104,8 @@ export const blockColumns = [
   },
   {
     title: 'Fee',
-    dataIndex: 'TotalFee',
-    key: 'TotalFee',
+    dataIndex: 'TotalFeeConversion',
+    key: 'TotalFeeConversion',
     render(text) {
       return (
         <NumberFormat
@@ -119,8 +119,8 @@ export const blockColumns = [
   },
   {
     title: 'Rewards',
-    dataIndex: 'TotalRewards',
-    key: 'TotalRewards',
+    dataIndex: 'TotalFeeConversion',
+    key: 'TotalFeeConversion',
     render(text) {
       return (
         <NumberFormat

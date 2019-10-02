@@ -25,7 +25,7 @@ const GET_TRX_DATA = gql`
       Sender
       Recipient
       Confirmations
-      Fee
+      FeeConversion
     }
   }
 `
