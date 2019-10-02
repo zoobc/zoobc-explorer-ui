@@ -11,7 +11,7 @@ import DescItem from '../../components/DescItem'
 import CopyToClipboard from '../../components/CopyToClipboard'
 import NotFound from '../../components/Errors/NotFound'
 import LoaderPage from '../../components/Loader/LoaderPage'
-import { transactionColumns } from '../../config/table-columns'
+import { transactionColumns, blockReceiptColumns } from '../../config/table-columns'
 
 const { Title } = Typography
 
@@ -63,54 +63,38 @@ const GET_TRX_BY_BLOCK = gql`
   }
 `
 
-const columnsReceipt = [
-  {
-    title: 'Sender Public Key',
-    dataIndex: 'account',
-    key: 'account',
-  },
-  {
-    title: 'Reciever Public Key',
-    dataIndex: 'coins',
-    key: 'coins',
-  },
-  {
-    title: 'Block Height',
-    dataIndex: 'account',
-    key: 'account',
-  },
-  {
-    title: 'Block ID',
-    dataIndex: 'coins',
-    key: 'coins',
-  },
-  {
-    title: 'Data Type',
-    dataIndex: 'account',
-    key: 'account',
-  },
-  {
-    title: 'Data Hash',
-    dataIndex: 'coins',
-    key: 'coins',
-  },
-  {
-    title: 'Receipt Merkle Root',
-    dataIndex: 'account',
-    key: 'account',
-  },
-  {
-    title: 'Reciever Signature',
-    dataIndex: 'coins',
-    key: 'coins',
-  },
-]
+const GET_RECEIPT_BY_BLOCK = gql`
+  query getReceiptByBlock($page: Int, $BlockID: String) {
+    blockReceipts(page: $page, limit: 5, order: "-Height", BlockID: $BlockID) {
+      BlockReceipts {
+        BlockID
+        Height
+        SenderPublicKey
+        ReceiverPublicKey
+        DataType
+        DataHash
+        ReceiptMerkleRoot
+        ReceiverSignature
+        ReferenceBlockHash
+      }
+      Paginate {
+        Page
+        Count
+        Total
+      }
+    }
+  }
+`
 
 const Block = ({ match }) => {
   const { params } = match
   const [trxCurrentPage, setTrxCurrentPage] = useState(1)
   const [transactions, setTransactions] = useState([])
   const [trxPaginate, setTrxPaginate] = useState({})
+
+  const [receiptCurrentPage, setReceiptCurrentPage] = useState(1)
+  const [receipts, setReceipts] = useState([])
+  const [receiptPaginate, setReceiptPaginate] = useState({})
 
   const { loading, data, error } = useQuery(GET_BLOCK_DATA, {
     variables: {
@@ -122,6 +106,13 @@ const Block = ({ match }) => {
     variables: {
       BlockID: params.id,
       page: trxCurrentPage,
+    },
+  })
+
+  const receiptByBlock = useQuery(GET_RECEIPT_BY_BLOCK, {
+    variables: {
+      BlockID: params.id,
+      page: receiptCurrentPage,
     },
   })
 
@@ -138,6 +129,20 @@ const Block = ({ match }) => {
       setTrxPaginate(trxByBlock.data.transactions.Paginate)
     }
   }, [trxByBlock.data])
+
+  useEffect(() => {
+    if (!!receiptByBlock.data) {
+      const receiptData = receiptByBlock.data.blockReceipts.BlockReceipts.map((receipt, key) => {
+        return {
+          key,
+          ...receipt,
+        }
+      })
+
+      setReceipts(receiptData)
+      setReceiptPaginate(receiptByBlock.data.blockReceipts.Paginate)
+    }
+  }, [receiptByBlock.data])
 
   return (
     <DefaultLayout>
@@ -233,12 +238,31 @@ const Block = ({ match }) => {
                 />
                 <Pagination className="pagination-center" current={5} total={100} />
               </Card>
-              <Card>
+              <Card className="card-summary">
                 <Title level={4}>
-                  Reciepts <Badge className="badge-black" count={425} overflowCount={1000} />
+                  Receipts{' '}
+                  <Badge
+                    className="badge-black"
+                    count={receiptPaginate.Total}
+                    overflowCount={1000}
+                  />
                 </Title>
-                <Table columns={columnsReceipt} dataSource={[]} pagination={false} size="small" />
-                <Pagination className="pagination-center" current={5} total={100} />
+                <Table
+                  columns={blockReceiptColumns}
+                  dataSource={receipts}
+                  pagination={false}
+                  size="small"
+                  loading={loading}
+                />
+                {!!data && (
+                  <Pagination
+                    className="pagination-center"
+                    current={receiptPaginate.Page}
+                    total={receiptPaginate.Total}
+                    pageSize={5}
+                    onChange={page => setReceiptCurrentPage(page)}
+                  />
+                )}
               </Card>
             </Col>
           </Row>
