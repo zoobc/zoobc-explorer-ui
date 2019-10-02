@@ -10,7 +10,7 @@ import i18n from './i18n'
 
 import Footer from './components/Footer'
 import NotFound from './pages/Errors/NotFound'
-import TopBarProgress from './components/TopbarProgress'
+import Fallback from './components/Fallback'
 
 // version 1 components
 const HomeV1 = React.lazy(() => import('./pages/v1/Home'))
@@ -29,8 +29,8 @@ function App() {
     <Provider store={store}>
       <ApolloProvider client={client}>
         <I18nextProvider i18n={i18n}>
-          <Suspense fallback={<TopBarProgress />}>
-            <BrowserRouter>
+          <BrowserRouter>
+            <Suspense fallback={<Fallback />}>
               <Header />
               <Switch>
                 <Route exact path="/" render={props => <HomeV1 {...props} />} />
@@ -49,8 +49,8 @@ function App() {
                 <Route exact path="*" render={props => <NotFound {...props} />} />
               </Switch>
               <Footer />
-            </BrowserRouter>
-          </Suspense>
+            </Suspense>
+          </BrowserRouter>
         </I18nextProvider>
       </ApolloProvider>
     </Provider>
