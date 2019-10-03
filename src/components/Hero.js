@@ -33,6 +33,7 @@ const Hero = ({ history }) => {
       const { ID, FoundIn } = data.search
       if (FoundIn === 'Block') history.push(`/blocks/${ID}`)
       if (FoundIn === 'Transaction') history.push(`/transactions/${ID}`)
+      if (FoundIn === 'Account') history.push(`/accounts/${ID}`)
     }
   }, [keyword, data, loading, error, history])
 
@@ -49,7 +50,7 @@ const Hero = ({ history }) => {
                 prefix={
                   <Icon type="search" style={{ fontSize: '22px', color: 'rgba(0,0,0,.45)' }} />
                 }
-                placeholder="Search by Address / Transaction ID / Block Height"
+                placeholder="Search by Account Address / Transaction ID / Block ID"
                 enterButton="SEARCH"
                 onSearch={value => setKeyword(value)}
               />
