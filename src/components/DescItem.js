@@ -1,20 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Col } from 'antd'
+import { Col, Row } from 'antd'
 
 const DescItem = ({ label, value }) => {
   return (
-    <>
+    <Row>
       <Col span={5}>
         <label>
           <strong>{label}</strong>
         </label>
       </Col>
       <Col span={19}>
-        <label>{!!value || value === 0 ? value : '-'}</label>
+        <label>{(!!value || value === 0) && value}</label>
       </Col>
-    </>
+    </Row>
   )
 }
 
