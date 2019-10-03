@@ -33,11 +33,7 @@ function App() {
               <Route exact path="/blocks" render={props => <Blocks {...props} />} />
               <Route exact path="/blocks/:id" render={props => <Block {...props} />} />
               <Route exact path="/transactions" render={props => <Transactions {...props} />} />
-              <Route
-                exact
-                path="/transactions/:id"
-                render={props => <Transaction {...props} />}
-              />
+              <Route exact path="/transactions/:id" render={props => <Transaction {...props} />} />
               <Route exact path="/accounts" render={props => <Accounts {...props} />} />
               <Route exact path="/accounts/:id" render={props => <Account {...props} />} />
               <Route exact path="/nodes" render={props => <Nodes {...props} />} />
