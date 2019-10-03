@@ -1,14 +1,15 @@
 import React from 'react'
-import { Typography, Input, Row, Col, Card, Icon } from 'antd'
+import { Input, Row, Col, Card, Icon } from 'antd'
 
-const { Title } = Typography
 const { Search } = Input
 
 const Hero = () => {
   return (
     <Card className="hero">
       <div className="hero-content">
-        <Title>ZooBC Explorer</Title>
+        <h3>
+          <strong>ZooBC Explorer</strong>
+        </h3>
         <Row gutter={24} style={{ width: '100%' }}>
           <Col span={24}>
             <Search
