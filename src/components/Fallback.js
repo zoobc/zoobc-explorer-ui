@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import topbar from 'topbar'
 import Header from './Header'
-import LoaderPage from './Loader/LoaderPage'
+import LoaderPage from './LoaderPage'
 import DefaultLayout from './DefaultLayout'
 import Footer from './Footer'
 

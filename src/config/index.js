@@ -4,7 +4,6 @@ const config = {
     graphql: 'http://139.162.15.80:6969/zoobc/api/v1/graphql',
   },
   app: {
-    // choose default language: en, id
     defaultLang: 'en',
   },
 }
