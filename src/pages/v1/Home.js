@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Typography, Button, List } from 'antd'
+import { Card, Button, List } from 'antd'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import { Link } from 'react-router-dom'
@@ -11,8 +11,6 @@ import Container from '../../components/Container'
 import Hero from '../../components/Hero'
 import moment from 'moment'
 import { shortenHash } from '../../utils/shorten'
-
-const { Title } = Typography
 
 const GET_HOME_DATA = gql`
   query {
@@ -61,7 +59,10 @@ const Home = ({ history }) => {
         <Row>
           <Col span={12}>
             <Card>
-              <Title level={4}>Latest Blocks</Title>
+              <h5>
+                <i className="bcz-calendar" />
+                <strong>Latest Blocks</strong>
+              </h5>
               <List
                 size="large"
                 loading={loading}
@@ -93,7 +94,10 @@ const Home = ({ history }) => {
           </Col>
           <Col span={12}>
             <Card>
-              <Title level={4}>Latest Transactions</Title>
+              <h5>
+                <i className="bcz-calendar" />
+                <strong>Latest Transactions</strong>
+              </h5>
               <List
                 size="large"
                 loading={loading}

@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
-import { Typography, Input, Row, Col, Card, Icon } from 'antd'
+import { Input, Row, Col, Card, Icon } from 'antd'
 import LoaderPage from '../components/Loader/LoaderPage'
 
-const { Title } = Typography
 const { Search } = Input
 
 const GET_SEARCH_DATA = gql`
@@ -42,7 +41,9 @@ const Hero = ({ history }) => {
       {!!loading && <LoaderPage />}
       {!error && !loading && (
         <div className="hero-content">
-          <Title>ZooBC Explorer</Title>
+          <h3>
+            <strong>ZooBC Explorer</strong>
+          </h3>
           <Row gutter={24} style={{ width: '100%' }}>
             <Col span={24}>
               <Search
