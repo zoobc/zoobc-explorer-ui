@@ -15,45 +15,33 @@ const Header = () => {
           <img src={zoobcLogo} alt="zoobc-logo" />
         </Link>
         <div className="header-logo-name">ZooBC</div>
-        <div className="navbar-right">
+        <div className="navbar-left">
           <Menu theme="dark" mode="horizontal" style={{ paddingRight: '0px' }}>
-            <Menu.Item key="1">
-              <div className="menu-with-icon">
-                <Link to="/">Home</Link>
-              </div>
+            <Menu.Item key="1" className="menu-with-icon">
+              <Link to="/">Home</Link>
             </Menu.Item>
-            <Menu.Item key="2">
-              <div className="menu-with-icon">
-                <Link to="/blocks">Blocks</Link>
-              </div>
+            <Menu.Item key="2" className="menu-with-icon">
+              <Link to="/blocks">Blocks</Link>
             </Menu.Item>
-            <Menu.Item key="3">
-              <div className="menu-with-icon">
-                <Link to="/transactions">Transactions</Link>
-              </div>
+            <Menu.Item key="3" className="menu-with-icon">
+              <Link to="/transactions">Transactions</Link>
             </Menu.Item>
-            <Menu.Item key="4">
-              <div className="menu-with-icon">
-                <Link to="/accounts">Accounts</Link>
-              </div>
+            <Menu.Item key="4" className="menu-with-icon">
+              <Link to="/accounts">Accounts</Link>
             </Menu.Item>
-            <Menu.Item key="5">
-              <div className="menu-with-icon">
-                <Link to="/nodes">Nodes</Link>
-              </div>
+            <Menu.Item key="5" className="menu-with-icon">
+              <Link to="/nodes">Nodes</Link>
             </Menu.Item>
           </Menu>
         </div>
-        <div className="navbar-left">
-          <Menu theme="dark" mode="horizontal" style={{ lineHeight: '40px' }}>
-            <Search
-              className="header-search-input"
-              prefix={<Icon type="search" style={{ fontSize: '22px', color: 'rgba(0,0,0,.45)' }} />}
-              placeholder="Transaction ID / Block Height"
-              enterButton="SEARCH"
-              size="large"
-            />
-          </Menu>
+        <div className="navbar-right">
+          <Search
+            className="header-search-input"
+            prefix={<Icon type="search" style={{ fontSize: '22px', color: 'rgba(0,0,0,.45)' }} />}
+            placeholder="Transaction ID / Block Height"
+            enterButton="SEARCH"
+            // size="large"
+          />
         </div>
       </Container>
     </Layout.Header>

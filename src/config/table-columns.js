@@ -5,6 +5,14 @@ import NumberFormat from 'react-number-format'
 
 import { shortenHash } from '../utils/shorten'
 
+const renderCurrenncy = text => {
+  return (
+    !!text && (
+      <NumberFormat value={text} displayType={'text'} thousandSeparator={true} suffix={' BCZ'} />
+    )
+  )
+}
+
 export const accountColumns = [
   {
     title: 'Address',
@@ -18,54 +26,24 @@ export const accountColumns = [
     title: 'Balance',
     dataIndex: 'BalanceConversion',
     key: 'BalanceConversion',
-    render(text) {
-      return (
-        <NumberFormat
-          value={text || 0}
-          displayType={'text'}
-          thousandSeparator={true}
-          suffix={' BCZ'}
-        />
-      )
-    },
+    render: renderCurrenncy,
   },
   {
     title: 'Last Active',
     dataIndex: 'LastActive',
     key: 'LastActive',
-    render(text) {
-      return !!text ? text : '-'
-    },
   },
   {
     title: 'Rewards',
     dataIndex: 'TotalRewardsConversion',
     key: 'TotalRewardsConversion',
-    render(text) {
-      return (
-        <NumberFormat
-          value={text || 0}
-          displayType={'text'}
-          thousandSeparator={true}
-          suffix={' BCZ'}
-        />
-      )
-    },
+    render: renderCurrenncy,
   },
   {
     title: 'Fees',
     dataIndex: 'TotalFeesPaidConversion',
     key: 'TotalFeesPaidConversion',
-    render(text) {
-      return (
-        <NumberFormat
-          value={text || 0}
-          displayType={'text'}
-          thousandSeparator={true}
-          suffix={' BCZ'}
-        />
-      )
-    },
+    render: renderCurrenncy,
   },
 ]
 
@@ -106,31 +84,13 @@ export const blockColumns = [
     title: 'Fee',
     dataIndex: 'TotalFeeConversion',
     key: 'TotalFeeConversion',
-    render(text) {
-      return (
-        <NumberFormat
-          value={text || 0}
-          displayType={'text'}
-          thousandSeparator={true}
-          suffix={' BCZ'}
-        />
-      )
-    },
+    render: renderCurrenncy,
   },
   {
     title: 'Rewards',
-    dataIndex: 'TotalFeeConversion',
-    key: 'TotalFeeConversion',
-    render(text) {
-      return (
-        <NumberFormat
-          value={text || 0}
-          displayType={'text'}
-          thousandSeparator={true}
-          suffix={' BCZ'}
-        />
-      )
-    },
+    dataIndex: 'TotalRewardsConversion',
+    key: 'TotalRewardsConversion',
+    render: renderCurrenncy,
   },
 ]
 
@@ -179,18 +139,9 @@ export const transactionColumns = [
   },
   {
     title: 'Fees',
-    dataIndex: 'Fee',
-    key: 'Fee',
-    render(text) {
-      return (
-        <NumberFormat
-          value={text || 0}
-          displayType={'text'}
-          thousandSeparator={true}
-          suffix={' BCZ'}
-        />
-      )
-    },
+    dataIndex: 'FeeConversion',
+    key: 'FeeConversion',
+    render: renderCurrenncy,
   },
 ]
 
@@ -215,40 +166,25 @@ export const nodeColumns = [
     title: 'Node Address',
     dataIndex: 'NodeAddress',
     key: 'NodeAddress',
-    render(text) {
-      return !!text ? text : '-'
-    },
   },
   {
     title: 'Locked Funds',
     dataIndex: 'LockedFunds',
     key: 'LockedFunds',
-    render(text) {
-      return (
-        <NumberFormat
-          value={text || 0}
-          displayType={'text'}
-          thousandSeparator={true}
-          suffix={' BCZ'}
-        />
-      )
-    },
+    render: renderCurrenncy,
   },
   {
     title: 'Status',
     dataIndex: 'RegistryStatus',
     key: 'RegistryStatus',
     render(text) {
-      return !!text.toString() ? (text.toString() === 'true' ? 'Registered' : 'In Queue') : '-'
+      return !!text.toString() && (text.toString() === 'true' ? 'Registered' : 'In Queue')
     },
   },
   {
     title: 'Score',
     dataIndex: 'ParticipationScore',
     key: 'ParticipationScore',
-    render(text) {
-      return !!text ? text : '-'
-    },
   },
 ]
 
@@ -258,7 +194,7 @@ export const blockReceiptColumns = [
     dataIndex: 'SenderPublicKey',
     key: 'SenderPublicKey',
     render(text) {
-      return !!text ? <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link> : '-'
+      return !!text && <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
     },
   },
   {
@@ -266,55 +202,37 @@ export const blockReceiptColumns = [
     dataIndex: 'ReceiverPublicKey',
     key: 'ReceiverPublicKey',
     render(text) {
-      return !!text ? <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link> : '-'
+      return !!text && <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
     },
   },
   {
     title: 'Block',
     dataIndex: 'Height',
     key: 'Height',
-    render(text) {
-      return !!text ? text : '-'
-    },
   },
   {
     title: 'Block ID',
     dataIndex: 'BlockID',
     key: 'BlockID',
-    render(text, record) {
-      return !!text ? text : '-'
-    },
   },
   {
     title: 'Data Type',
     dataIndex: 'DataType',
     key: 'DataType',
-    render(text) {
-      return !!text ? text : '-'
-    },
   },
   {
     title: 'Data Hash',
     dataIndex: 'DataHash',
     key: 'DataHash',
-    render(text) {
-      return !!text ? text : '-'
-    },
   },
   {
     title: 'Merkle Root',
     dataIndex: 'ReceiptMerkleRoot',
     key: 'ReceiptMerkleRoot',
-    render(text) {
-      return !!text ? text : '-'
-    },
   },
   {
     title: 'Receiver Signature',
     dataIndex: 'ReceiverSignature',
     key: 'ReceiverSignature',
-    render(text) {
-      return !!text ? text : '-'
-    },
   },
 ]

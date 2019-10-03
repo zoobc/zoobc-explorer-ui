@@ -115,12 +115,14 @@ const Home = ({ history }) => {
                       <Col md="6">
                         <Col md="12">
                           <strong>Fee</strong>{' '}
-                          <NumberFormat
-                            value={item.Fee || 0}
-                            displayType={'text'}
-                            thousandSeparator={true}
-                            suffix={' BCZ'}
-                          />
+                          {!!item.FeeConversion && (
+                            <NumberFormat
+                              value={item.FeeConversion}
+                              displayType={'text'}
+                              thousandSeparator={true}
+                              suffix={' BCZ'}
+                            />
+                          )}
                         </Col>
                         <Col md="12">{moment(item.Timestamp).format('lll')}</Col>
                       </Col>
