@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Card, Typography, Table, Pagination } from 'antd'
+import { Row, Col, Card, Table, Pagination } from 'antd'
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 
+import { getSortString, isEmptyObject } from '../../utils'
 import DefaultLayout from '../../components/DefaultLayout'
 import Container from '../../components/Container'
 import { transactionColumns } from '../../config/table-columns'
 
-const { Title } = Typography
-
+const defaultSort = { columnKey: 'Timestamp', order: 'descend' }
 const GET_TRXS_DATA = gql`
-  query getTransactions($page: Int) {
-    transactions(page: $page, limit: 15, order: "-Height") {
+  query getTransactions($page: Int, $sorter: String) {
+    transactions(page: $page, limit: 15, order: $sorter) {
       Transactions {
         TransactionID
         Height
@@ -35,10 +35,24 @@ const Transactions = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [transactions, setTransactions] = useState([])
   const [paginate, setPaginate] = useState({})
+  const [sorted, setSorted] = useState(defaultSort)
+
+  const onChangeTable = (pagination, filters, sorter) => {
+    setSorted(isEmptyObject(sorter) ? defaultSort : sorter)
+  }
+
+  const columns = transactionColumns.map(item => {
+    item.sortDirections = ['ascend', 'descend']
+    item.sorter = (a, b) =>
+      a[item.dataIndex] ? a[item.dataIndex].length - b[item.dataIndex].length : null
+    item.sortOrder = sorted.columnKey === item.dataIndex && sorted.order
+    return item
+  })
 
   const { loading, data } = useQuery(GET_TRXS_DATA, {
     variables: {
       page: currentPage,
+      sorter: getSortString(sorted),
     },
   })
 
@@ -64,18 +78,19 @@ const Transactions = () => {
             <Card>
               <Row>
                 <Col span={24}>
-                  <Title level={4}>
+                  <h5>
                     <i className="bcz-calendar" />
-                    Recent Transactions
-                  </Title>
+                    <strong>Recent Transactions</strong>
+                  </h5>
                 </Col>
               </Row>
               <Table
-                columns={transactionColumns}
+                columns={columns}
                 dataSource={transactions}
                 pagination={false}
                 size="small"
                 loading={loading}
+                onChange={onChangeTable.bind(this)}
               />
               {!!data && (
                 <Pagination

@@ -41,7 +41,8 @@ const Blocks = () => {
 
   const columns = blockColumns.map(item => {
     item.sortDirections = ['descend', 'ascend']
-    item.sorter = (a, b) => a[item.dataIndex].length - b[item.dataIndex].length
+    item.sorter = (a, b) =>
+      a[item.dataIndex] ? a[item.dataIndex].length - b[item.dataIndex].length : null
     item.sortOrder = sorted.columnKey === item.dataIndex && sorted.order
     return item
   })
@@ -75,14 +76,13 @@ const Blocks = () => {
             <Card>
               <Row>
                 <Col span={24}>
-                  <h4>
+                  <h5>
                     <i className="bcz-calendar" />
-                    Recent Blocks
-                  </h4>
+                    <strong>Recent Blocks</strong>
+                  </h5>
                 </Col>
               </Row>
               <Table
-                // columns={blockColumns}
                 columns={columns}
                 dataSource={blocks}
                 pagination={false}
