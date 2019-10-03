@@ -25,7 +25,7 @@ const GET_TRX_DATA = gql`
       Sender
       Recipient
       Confirmations
-      Fee
+      FeeConversion
     }
   }
 `
@@ -82,7 +82,7 @@ const Transaction = ({ match }) => {
                   label="Fee"
                   value={
                     <NumberFormat
-                      value={data.transaction.Fee || 0}
+                      value={data.transaction.FeeConversion || 0}
                       displayType={'text'}
                       thousandSeparator={true}
                       suffix={' BCZ'}

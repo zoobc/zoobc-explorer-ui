@@ -17,8 +17,8 @@ const GET_BLOCKS_DATA = gql`
         Height
         Timestamp
         BlocksmithID
-        TotalFee
-        TotalRewards
+        TotalFeeConversion
+        TotalRewardsConversion
       }
       Paginate {
         Page

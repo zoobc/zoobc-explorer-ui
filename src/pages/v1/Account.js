@@ -18,12 +18,12 @@ const GET_ACCOUNT_DATA = gql`
   query getAccount($AccountAddress: String!) {
     account(AccountAddress: $AccountAddress) {
       AccountAddress
-      Balance
-      SpendableBalance
+      BalanceConversion
+      SpendableBalanceConversion
       FirstActive
       LastActive
-      TotalRewards
-      TotalFeesPaid
+      TotalRewardsConversion
+      TotalFeesPaidConversion
       NodePublicKey
     }
   }
@@ -158,7 +158,7 @@ const Account = ({ match }) => {
                   label="Balance"
                   value={
                     <NumberFormat
-                      value={data.account.Balance || 0}
+                      value={data.account.BalanceConversion || 0}
                       displayType={'text'}
                       thousandSeparator={true}
                       suffix={' BCZ'}
@@ -169,7 +169,7 @@ const Account = ({ match }) => {
                   label="Spendable Balance"
                   value={
                     <NumberFormat
-                      value={data.account.SpendableBalance || 0}
+                      value={data.account.SpendableBalanceConversion || 0}
                       displayType={'text'}
                       thousandSeparator={true}
                       suffix={' BCZ'}
@@ -182,7 +182,7 @@ const Account = ({ match }) => {
                   label="Total Rewards"
                   value={
                     <NumberFormat
-                      value={data.account.TotalRewards || 0}
+                      value={data.account.TotalRewardsConversion || 0}
                       displayType={'text'}
                       thousandSeparator={true}
                       suffix={' BCZ'}
@@ -193,7 +193,7 @@ const Account = ({ match }) => {
                   label="Total Fees Paid"
                   value={
                     <NumberFormat
-                      value={data.account.TotalFeesPaid || 0}
+                      value={data.account.TotalFeesPaidConversion || 0}
                       displayType={'text'}
                       thousandSeparator={true}
                       suffix={' BCZ'}
