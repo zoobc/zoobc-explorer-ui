@@ -8,7 +8,6 @@ import ar from './language/locales/ar.json'
 const isDevelop = process.env.NODE_ENV === 'development'
 
 i18n.init({
-  // we init with resources
   resources: {
     en: {
       translations: en,
@@ -23,11 +22,10 @@ i18n.init({
   lng: config.app.defaultLang,
   fallbackLng: config.app.defaultLang,
 
-  // have a common namespace used around the full app
   ns: ['translations'],
   defaultNS: 'translations',
 
-  keySeparator: false, // we use content as keys
+  keySeparator: false,
 
   debug: isDevelop,
 
