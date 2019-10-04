@@ -6,7 +6,6 @@ import { I18nextProvider } from 'react-i18next'
 import client from './utils/client'
 import i18n from './i18n'
 
-// import Footer from './components/Footer'
 import NotFound from './pages/Errors/NotFound'
 import Fallback from './components/Fallback'
 
