@@ -11,18 +11,12 @@ import iconTelegram from '../assets/images/telegram.svg'
 import iconForum from '../assets/images/forum.svg'
 import iconBlog from '../assets/images/blog.svg'
 
-export default function Footer() {
+const Footer = () => {
   const { t } = useTranslation()
 
   function handleChange(value) {
     console.log(`selected ${value}`)
   }
-  // const [lang, setLang] = useState('en')
-
-  // const changeLanguage = e => {
-  //   setLang(e.target.value)
-  //   i18n.changeLanguage(e.target.value)
-  // }
 
   return (
     <div className="footer">
@@ -160,3 +154,5 @@ export default function Footer() {
     </div>
   )
 }
+
+export default Footer

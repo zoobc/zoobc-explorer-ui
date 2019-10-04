@@ -6,7 +6,6 @@ import { I18nextProvider } from 'react-i18next'
 import client from './utils/client'
 import i18n from './i18n'
 
-import Footer from './components/Footer'
 import NotFound from './pages/Errors/NotFound'
 import Fallback from './components/Fallback'
 
@@ -20,6 +19,7 @@ const Account = React.lazy(() => import('./pages/Account'))
 const Nodes = React.lazy(() => import('./pages/Nodes'))
 const Node = React.lazy(() => import('./pages/Node'))
 const Header = React.lazy(() => import('./components/Header'))
+const Footer = React.lazy(() => import('./components/Footer'))
 
 function App() {
   return (

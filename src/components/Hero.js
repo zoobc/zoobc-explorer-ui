@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 import { Input, Row, Col, Card, Icon } from 'antd'
-import LoaderPage from '../components/Loader/LoaderPage'
+import LoaderPage from '../components/LoaderPage'
 
 const { Search } = Input
 
