@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Input, Row, Col, Card, Icon } from 'antd'
 import LoaderPage from '../components/LoaderPage'
-import useSearch from './useSearch'
+import useSearch from '../hooks/useSearch'
 
 const { Search } = Input
 
