@@ -113,8 +113,8 @@ export const transactionColumns = [
   },
   {
     title: 'Type',
-    dataIndex: 'TransactionType',
-    key: 'TransactionType',
+    dataIndex: 'TransactionTypeName',
+    key: 'TransactionTypeName',
   },
   {
     title: 'Sender',
