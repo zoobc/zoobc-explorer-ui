@@ -1,31 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
-import gql from 'graphql-tag'
-import { useQuery } from '@apollo/react-hooks'
 import { Input, Row, Col, Card, Icon } from 'antd'
 import LoaderPage from '../components/LoaderPage'
+import useSearch from './useSearch'
 
 const { Search } = Input
-
-const GET_SEARCH_DATA = gql`
-  query getSearchData($Id: String!) {
-    search(Id: $Id) {
-      ID
-      Height
-      Timestamp
-      FoundIn
-    }
-  }
-`
 
 const Hero = ({ history }) => {
   const [keyword, setKeyword] = useState('')
 
-  const { loading, data, error } = useQuery(GET_SEARCH_DATA, {
-    variables: {
-      Id: keyword,
-    },
-  })
+  const { loading, error, data } = useSearch(keyword)
 
   useEffect(() => {
     if (!!data && !error && !loading) {
