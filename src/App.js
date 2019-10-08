@@ -18,8 +18,6 @@ const Accounts = React.lazy(() => import('./pages/Accounts'))
 const Account = React.lazy(() => import('./pages/Account'))
 const Nodes = React.lazy(() => import('./pages/Nodes'))
 const Node = React.lazy(() => import('./pages/Node'))
-const Header = React.lazy(() => import('./components/Header'))
-const Footer = React.lazy(() => import('./components/Footer'))
 
 function App() {
   return (
@@ -27,7 +25,6 @@ function App() {
       <I18nextProvider i18n={i18n}>
         <BrowserRouter>
           <Suspense fallback={<Fallback />}>
-            <Header />
             <Switch>
               <Route exact path="/" render={props => <Home {...props} />} />
               <Route exact path="/blocks" render={props => <Blocks {...props} />} />
@@ -40,7 +37,6 @@ function App() {
               <Route exact path="/nodes/:id" render={props => <Node {...props} />} />
               <Route exact path="*" render={props => <NotFound {...props} />} />
             </Switch>
-            <Footer />
           </Suspense>
         </BrowserRouter>
       </I18nextProvider>

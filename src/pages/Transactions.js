@@ -16,7 +16,7 @@ const GET_TRXS_DATA = gql`
         TransactionID
         Height
         Timestamp
-        TransactionType
+        TransactionTypeName
         Sender
         Recipient
         Confirmations

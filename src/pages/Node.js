@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
-import { Row, Col, Card, Typography, Badge, Table, Pagination } from 'antd'
+import { Row, Col, Card, Badge, Table, Pagination } from 'antd'
 import NumberFormat from 'react-number-format'
 
 import DefaultLayout from '../components/DefaultLayout'
@@ -11,8 +11,6 @@ import NotFound from '../components/Errors/NotFound'
 import LoaderPage from '../components/LoaderPage'
 import CopyToClipboard from '../components/CopyToClipboard'
 import { blockColumns } from '../config/table-columns'
-
-const { Title } = Typography
 
 const GET_NODE_DATA = gql`
   query getNode($NodePublicKey: String!) {
@@ -99,11 +97,11 @@ const Node = ({ match }) => {
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <Title level={4}>Public Key {data.node.NodePublicKey}</Title>
+                  <h4>Public Key {data.node.NodePublicKey}</h4>
                 </Col>
               </Row>
               <Card className="card-summary">
-                <Title level={4}>Summary</Title>
+                <h4>Summary</h4>
                 <DescItem
                   label="Node Public Key"
                   value={<CopyToClipboard text={data.node.NodePublicKey} keyID="nodePublicKey" />}
@@ -144,10 +142,10 @@ const Node = ({ match }) => {
                 />
               </Card>
               <Card className="card-summary">
-                <Title level={4}>
+                <h4>
                   Blocks{' '}
                   <Badge className="badge-black" count={blockPaginate.Total} overflowCount={1000} />
-                </Title>
+                </h4>
                 <Table
                   columns={blockColumns}
                   dataSource={blocks}

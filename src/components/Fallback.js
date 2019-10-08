@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react'
 import topbar from 'topbar'
-import Header from './Header'
 import LoaderPage from './LoaderPage'
 import DefaultLayout from './DefaultLayout'
-import Footer from './Footer'
 
 const Fallback = () => {
   const defaultConfig = {
@@ -28,13 +26,9 @@ const Fallback = () => {
   if (!config) topbar.config(defaultConfig)
 
   return (
-    <>
-      <Header />
-      <DefaultLayout>
-        <LoaderPage />
-      </DefaultLayout>
-      <Footer />
-    </>
+    <DefaultLayout>
+      <LoaderPage />
+    </DefaultLayout>
   )
 }
 
