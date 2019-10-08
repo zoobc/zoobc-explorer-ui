@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Card, Typography, Table, Pagination, Badge } from 'antd'
+import { Row, Col, Card, Table, Pagination, Badge } from 'antd'
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 import NumberFormat from 'react-number-format'
@@ -11,8 +11,6 @@ import NotFound from '../components/Errors/NotFound'
 import LoaderPage from '../components/LoaderPage'
 import CopyToClipboard from '../components/CopyToClipboard'
 import { transactionColumns, nodeColumns } from '../config/table-columns'
-
-const { Title } = Typography
 
 const GET_ACCOUNT_DATA = gql`
   query getAccount($AccountAddress: String!) {
@@ -36,7 +34,7 @@ const GET_TRX_BY_ACCOUNT = gql`
         TransactionID
         Height
         Timestamp
-        TransactionType
+        TransactionTypeName
         Sender
         Recipient
         Confirmations
@@ -143,11 +141,11 @@ const Account = ({ match }) => {
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <Title level={4}>Account {data.account.AccountAddress}</Title>
+                  <h4>Account {data.account.AccountAddress}</h4>
                 </Col>
               </Row>
               <Card className="card-summary">
-                <Title level={4}>Summary</Title>
+                <h4>Summary</h4>
                 <DescItem
                   label="Account Address"
                   value={
@@ -203,10 +201,10 @@ const Account = ({ match }) => {
                 <DescItem label="Node Public Key" value={data.account.NodePublicKey} />
               </Card>
               <Card className="card-summary">
-                <Title level={4}>
+                <h4>
                   Transactions{' '}
                   <Badge className="badge-black" count={trxPaginate.Total} overflowCount={1000} />
-                </Title>
+                </h4>
                 <Table
                   columns={transactionColumns}
                   dataSource={transactions}
@@ -225,10 +223,10 @@ const Account = ({ match }) => {
                 )}
               </Card>
               <Card>
-                <Title level={4}>
+                <h4>
                   Nodes{' '}
                   <Badge className="badge-black" count={nodePaginate.Total} overflowCount={1000} />
-                </Title>
+                </h4>
                 <Table
                   columns={nodeColumns}
                   dataSource={nodes}

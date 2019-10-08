@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Card, Typography, Table, Pagination, Badge } from 'antd'
+import { Row, Col, Card, Table, Pagination, Badge } from 'antd'
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 import moment from 'moment'
@@ -12,8 +12,6 @@ import CopyToClipboard from '../components/CopyToClipboard'
 import NotFound from '../components/Errors/NotFound'
 import LoaderPage from '../components/LoaderPage'
 import { transactionColumns, blockReceiptColumns } from '../config/table-columns'
-
-const { Title } = Typography
 
 const GET_BLOCK_DATA = gql`
   query getBlock($BlockID: String!) {
@@ -47,7 +45,7 @@ const GET_TRX_BY_BLOCK = gql`
         TransactionID
         Height
         Timestamp
-        TransactionType
+        TransactionTypeName
         Sender
         Recipient
         Confirmations
@@ -154,14 +152,14 @@ const Block = ({ match }) => {
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <Title level={4}>Block {data.block.Height}</Title>
+                  <h4>Block {data.block.Height}</h4>
                 </Col>
               </Row>
               <Card className="card-summary">
                 <DescItem label="Height" value={data.block.Height} />
               </Card>
               <Card className="card-summary">
-                <Title level={4}>Summary</Title>
+                <h4>Summary</h4>
                 <DescItem label="Timestamp" value={moment(data.block.Timestamp).format('lll')} />
                 <DescItem
                   label="Previous Block ID"
@@ -204,10 +202,10 @@ const Block = ({ match }) => {
                 <DescItem label="Payload Hash" value={data.block.PayloadHash} />
               </Card>
               <Card className="card-summary">
-                <Title level={4}>
+                <h4>
                   Transactions{' '}
                   <Badge className="badge-black" count={trxPaginate.Total} overflowCount={1000} />
-                </Title>
+                </h4>
                 <Table
                   columns={transactionColumns}
                   dataSource={transactions}
@@ -226,10 +224,10 @@ const Block = ({ match }) => {
                 )}
               </Card>
               <Card className="card-summary">
-                <Title level={4}>
+                <h4>
                   Rewards / Coinbase{' '}
                   <Badge className="badge-black" count={425} overflowCount={1000} />
-                </Title>
+                </h4>
                 <Table
                   columns={transactionColumns}
                   dataSource={[]}
@@ -239,14 +237,14 @@ const Block = ({ match }) => {
                 <Pagination className="pagination-center" current={5} total={100} />
               </Card>
               <Card className="card-summary">
-                <Title level={4}>
+                <h4>
                   Receipts{' '}
                   <Badge
                     className="badge-black"
                     count={receiptPaginate.Total}
                     overflowCount={1000}
                   />
-                </Title>
+                </h4>
                 <Table
                   columns={blockReceiptColumns}
                   dataSource={receipts}
