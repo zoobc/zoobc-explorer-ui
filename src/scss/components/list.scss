@@ -1,6 +1,9 @@
 .overview-list {
   .ant-list-item {
     border-bottom: none !important;
+    a {
+      color: $blue;
+    }
     &:nth-child(odd) {
       background: $grey
     }
