@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Row, Col, Card, Table, Pagination } from 'antd'
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
+import { useTranslation } from 'react-i18next'
 
 import { getSortString, isEmptyObject } from '../utils'
 import DefaultLayout from '../components/DefaultLayout'
@@ -32,6 +33,7 @@ const GET_TRXS_DATA = gql`
 `
 
 const Transactions = () => {
+  const { t } = useTranslation()
   const [currentPage, setCurrentPage] = useState(1)
   const [transactions, setTransactions] = useState([])
   const [paginate, setPaginate] = useState({})
@@ -80,7 +82,7 @@ const Transactions = () => {
                 <Col span={24}>
                   <h5>
                     <i className="bcz-calendar" />
-                    <strong>Recent Transactions</strong>
+                    <strong>{t('Recent Transactions')}</strong>
                   </h5>
                 </Col>
               </Row>

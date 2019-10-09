@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
-import { Switch } from 'antd'
+import { Switch, Menu, Dropdown, Avatar } from 'antd'
 import Container from './Container'
 
 import iconGitHub from '../assets/images/github.svg'
@@ -10,12 +10,29 @@ import iconYoutube from '../assets/images/youtube.svg'
 import iconTelegram from '../assets/images/telegram.svg'
 import iconForum from '../assets/images/forum.svg'
 import iconBlog from '../assets/images/blog.svg'
+import languages from '../languages'
 
 const Footer = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
-  function handleChange(value) {
-    console.log(`selected ${value}`)
+  const selectedLang = () => {
+    const getLang = languages.filter(lang => lang.value === i18n.language)[0]
+    return getLang
+  }
+
+  const languageOptions = () => {
+    return (
+      <Menu>
+        {languages.map((lang, key) => (
+          <Menu.Item key={key} onClick={() => i18n.changeLanguage(lang.value)}>
+            <p className="my-0">
+              <Avatar shape="square" size={18} src={lang.flag} className="mr-1" />
+              {lang.label}
+            </p>
+          </Menu.Item>
+        ))}
+      </Menu>
+    )
   }
 
   return (
@@ -23,7 +40,7 @@ const Footer = () => {
       <Container className="footer-body">
         <Row>
           <Col className="col-md-3">
-            <h3 className="footer-subtitle text-white heading-border">{t('ZooBC')}</h3>
+            <h3 className="footer-subtitle text-white heading-border">ZooBC</h3>
             <hr style={{ backgroundColor: '#E7EAF3', height: 0 }} />
             <ul className="footer-list-group-item">
               <p>&#169; 2019 ZooBC.com</p>
@@ -36,16 +53,16 @@ const Footer = () => {
             <hr style={{ backgroundColor: '#E7EAF3', height: 0 }} />
             <ul className="footer-list-group mb-0">
               <a className="footer-list-group-item" href="https://blockchainzoo.com/">
-                {t('ZooBC Core')}
+                ZooBC Core
               </a>
               <a className="footer-list-group-item" href="https://blockchainzoo.com/">
-                {t('ZooBC Explorer')}
+                ZooBC Explorer
               </a>
               <a className="footer-list-group-item" href="https://blockchainzoo.com/">
-                {t('ZooBC Wallet')}
+                ZooBC Wallet
               </a>
               <a className="footer-list-group-item" href="https://blockchainzoo.com/">
-                {t('Whitepaper')}
+                Whitepaper
               </a>
             </ul>
           </Col>
@@ -63,7 +80,7 @@ const Footer = () => {
                 {t('Research')}
               </a>
               <a className="footer-list-group-item" href="https://blockchainzoo.com/">
-                {t('Roadmap')}
+                Roadmap
               </a>
             </ul>
           </Col>
@@ -87,12 +104,17 @@ const Footer = () => {
           </Col>
         </Row>
         <hr style={{ backgroundColor: '#013558', height: 0, paddingLeft: '4px' }} />
-        <Row className="footer-ext">
-          <Switch className="btn-switch" />
-          <p style={{ marginTop: '6px', paddingLeft: '7px', color: '#fff' }}>Enable night mode</p>
-          <select style={{ marginLeft: '22px' }} defaultValue="english" onChange={handleChange}>
-            <option value="english">English</option>
-          </select>
+        <Row className="footer-ext align-items-center">
+          <Switch className="btn-switch mt-0" />
+          <p className="my-0 ml-2" style={{ color: '#fff' }}>
+            {t('Enable night mode')}
+          </p>
+          <Dropdown overlay={languageOptions}>
+            <p className="my-0 ml-3" style={{ color: '#fff' }}>
+              <Avatar shape="square" size={18} src={selectedLang().flag} className="mr-1" />
+              {selectedLang().label}
+            </p>
+          </Dropdown>
           <div className="footer-social-icons">
             <a
               className="footer-social-icon"

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Input, Row, Col, Card, Icon } from 'antd'
+import { useTranslation } from 'react-i18next'
+
 import LoaderPage from '../components/LoaderPage'
 import useSearch from '../hooks/useSearch'
 
 const { Search } = Input
 
 const Hero = ({ history }) => {
+  const { t } = useTranslation()
   const [keyword, setKeyword] = useState('')
 
   const { loading, error, data } = useSearch(keyword)
@@ -35,15 +38,16 @@ const Hero = ({ history }) => {
                 prefix={
                   <Icon type="search" style={{ fontSize: '22px', color: 'rgba(0,0,0,.45)' }} />
                 }
-                placeholder="Search by Account Address / Transaction ID / Block ID"
-                enterButton="SEARCH"
+                placeholder={t('Search by Account Address / Transaction ID / Block ID')}
+                enterButton={t('Search')}
                 onSearch={value => setKeyword(value)}
               />
             </Col>
           </Row>
           <h6 className="hero-subtitle">
-            A webview for searching and displaying data published, so that a user can easily find
-            any info about blockchain
+            {t(
+              'A webview for searching and displaying data published, so that a user can easily find any info about blockchain'
+            )}
           </h6>
         </div>
       )}
