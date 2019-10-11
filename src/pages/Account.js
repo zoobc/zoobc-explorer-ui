@@ -3,6 +3,7 @@ import { Row, Col, Card, Table, Pagination, Badge } from 'antd'
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 import NumberFormat from 'react-number-format'
+import { useTranslation } from 'react-i18next'
 
 import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
@@ -72,6 +73,7 @@ const GET_NODE_BY_ACCOUNT = gql`
 
 const Account = ({ match }) => {
   const { params, url } = match
+  const { t } = useTranslation()
   const [trxCurrentPage, setTrxCurrentPage] = useState(1)
   const [transactions, setTransactions] = useState([])
   const [trxPaginate, setTrxPaginate] = useState({})
@@ -141,11 +143,13 @@ const Account = ({ match }) => {
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <h4>Account {data.account.AccountAddress}</h4>
+                  <h4>
+                    {t('Account')} {data.account.AccountAddress}
+                  </h4>
                 </Col>
               </Row>
               <Card className="card-summary">
-                <h4>Summary</h4>
+                <h4>{t('Summary')}</h4>
                 <DescItem
                   label="Account Address"
                   value={
@@ -202,7 +206,7 @@ const Account = ({ match }) => {
               </Card>
               <Card className="card-summary">
                 <h4>
-                  Transactions{' '}
+                  {t('Transactions')}
                   <Badge className="badge-black" count={trxPaginate.Total} overflowCount={1000} />
                 </h4>
                 <Table
@@ -224,7 +228,7 @@ const Account = ({ match }) => {
               </Card>
               <Card>
                 <h4>
-                  Nodes{' '}
+                  {t('Nodes')}
                   <Badge className="badge-black" count={nodePaginate.Total} overflowCount={1000} />
                 </h4>
                 <Table

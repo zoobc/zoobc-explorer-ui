@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Row, Col, Card, Table, Pagination } from 'antd'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
+import { useTranslation } from 'react-i18next'
 
 import { getSortString, isEmptyObject } from '../utils'
 import DefaultLayout from '../components/DefaultLayout'
@@ -30,6 +31,7 @@ const GET_NODES_DATA = gql`
 `
 
 const Nodes = () => {
+  const { t } = useTranslation()
   const [currentPage, setCurrentPage] = useState(1)
   const [nodes, setNodes] = useState([])
   const [paginate, setPaginate] = useState({})
@@ -78,7 +80,7 @@ const Nodes = () => {
                 <Col span={24}>
                   <h5>
                     <i className="bcz-node" />
-                    <strong>Nodes</strong>
+                    <strong>{t('Nodes')}</strong>
                   </h5>
                 </Col>
               </Row>

@@ -5,6 +5,7 @@ import gql from 'graphql-tag'
 import { Link } from 'react-router-dom'
 import NumberFormat from 'react-number-format'
 import { Row, Col } from 'reactstrap'
+import { useTranslation } from 'react-i18next'
 
 import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
@@ -33,6 +34,7 @@ const GET_HOME_DATA = gql`
 `
 
 const Home = ({ history }) => {
+  const { t } = useTranslation()
   const { loading, data } = useQuery(GET_HOME_DATA)
   let blockData = []
   let trxData = []
@@ -61,7 +63,7 @@ const Home = ({ history }) => {
             <Card>
               <h5>
                 <i className="bcz-calendar" />
-                <strong>Latest Blocks</strong>
+                <strong>{t('Latest Blocks')}</strong>
               </h5>
               <List
                 size="large"
@@ -79,7 +81,7 @@ const Home = ({ history }) => {
                       </Col>
                       <Col span={14} md="7">
                         <Col>
-                          <strong>Blocksmith</strong>
+                          <strong>{t('Blocksmith')}</strong>
                         </Col>
                         <Col>{shortenHash(item.BlocksmithID, 30)}</Col>
                       </Col>
@@ -88,7 +90,7 @@ const Home = ({ history }) => {
                 )}
               />
               <Button type="primary" onClick={() => history.push('/blocks')} block>
-                VIEW ALL BLOCKS
+                {t('VIEW ALL BLOCKS')}
               </Button>
             </Card>
           </Col>
@@ -96,7 +98,7 @@ const Home = ({ history }) => {
             <Card>
               <h5>
                 <i className="bcz-calendar" />
-                <strong>Latest Transactions</strong>
+                <strong>{t('Latest Transactions')}</strong>
               </h5>
               <List
                 size="large"
@@ -108,7 +110,7 @@ const Home = ({ history }) => {
                     <Row style={{ width: '100%' }}>
                       <Col md="6">
                         <Col md="12">
-                          <strong>Transaction ID</strong>
+                          <strong>{t('Transaction ID')}</strong>
                         </Col>
                         <Col md="12">
                           <Link to={`/transactions/${item.TransactionID}`}>
@@ -118,7 +120,7 @@ const Home = ({ history }) => {
                       </Col>
                       <Col md="6">
                         <Col md="12">
-                          <strong>Fee</strong>{' '}
+                          <strong>{t('Fee')}</strong>{' '}
                           {!!item.FeeConversion && (
                             <NumberFormat
                               value={item.FeeConversion}
@@ -135,7 +137,7 @@ const Home = ({ history }) => {
                 )}
               />
               <Button type="primary" onClick={() => history.push('/transactions')} block>
-                VIEW ALL TRANSACTIONS
+                {t('VIEW ALL TRANSACTIONS')}
               </Button>
             </Card>
           </Col>

@@ -4,6 +4,7 @@ import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 import moment from 'moment'
 import NumberFormat from 'react-number-format'
+import { useTranslation } from 'react-i18next'
 
 import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
@@ -86,6 +87,7 @@ const GET_RECEIPT_BY_BLOCK = gql`
 
 const Block = ({ match }) => {
   const { params } = match
+  const { t } = useTranslation()
   const [trxCurrentPage, setTrxCurrentPage] = useState(1)
   const [transactions, setTransactions] = useState([])
   const [trxPaginate, setTrxPaginate] = useState({})
@@ -152,14 +154,16 @@ const Block = ({ match }) => {
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <h4>Block {data.block.Height}</h4>
+                  <h4>
+                    {t('Block')} {data.block.Height}
+                  </h4>
                 </Col>
               </Row>
               <Card className="card-summary">
                 <DescItem label="Height" value={data.block.Height} />
               </Card>
               <Card className="card-summary">
-                <h4>Summary</h4>
+                <h4>{t('Summary')}</h4>
                 <DescItem label="Timestamp" value={moment(data.block.Timestamp).format('lll')} />
                 <DescItem
                   label="Previous Block ID"
@@ -203,7 +207,7 @@ const Block = ({ match }) => {
               </Card>
               <Card className="card-summary">
                 <h4>
-                  Transactions{' '}
+                  {t('Transactions')}
                   <Badge className="badge-black" count={trxPaginate.Total} overflowCount={1000} />
                 </h4>
                 <Table
@@ -238,7 +242,7 @@ const Block = ({ match }) => {
               </Card>
               <Card className="card-summary">
                 <h4>
-                  Receipts{' '}
+                  Receipts
                   <Badge
                     className="badge-black"
                     count={receiptPaginate.Total}
