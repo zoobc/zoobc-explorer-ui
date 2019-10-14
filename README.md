@@ -12,7 +12,7 @@
   <a href="https://opensource.org/licenses/Apache-2.0">
     <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="apache-license"></img>
   </a>
-  <a href="https://circleci.com/gh/zoobc/zoobc-core">
+  <a href="https://circleci.com/gh/zoobc/zoobc-explorer-ui">
     <img src="https://circleci.com/gh/zoobc/zoobc-explorer-ui.svg?style=svg&circle-token=5da5423ded17a414817e457800e90c76628284b0"></img>
   </a>
   <a href="https://github.com/zoobc/zoobc-explorer-ui/pulls">
