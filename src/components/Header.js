@@ -11,7 +11,7 @@ import zoobcLogo from '../assets/images/logo-zoobc.svg'
 
 const { Search } = Input
 
-const Header = ({ history }) => {
+const Header = ({ history, location }) => {
   const { t } = useTranslation()
   const [keyword, setKeyword] = useState('')
 
@@ -33,23 +33,25 @@ const Header = ({ history }) => {
         <Container className="header-content">
           <Link className="logo" to="/">
             <img src={zoobcLogo} alt="zoobc-logo" />
+            <div className="header-logo-name">ZooBC</div>
           </Link>
-          <div className="header-logo-name">ZooBC</div>
           <div className="navbar-left">
-            <Menu theme="dark" mode="horizontal" style={{ paddingRight: '0px' }}>
-              <Menu.Item key="1" className="menu-with-icon">
-                <Link to="/">{t('Home')}</Link>
-              </Menu.Item>
-              <Menu.Item key="2" className="menu-with-icon">
+            <Menu
+              theme="dark"
+              mode="horizontal"
+              style={{ paddingRight: '0px' }}
+              selectedKeys={[location.pathname]}
+            >
+              <Menu.Item key="/blocks" className="menu-with-icon">
                 <Link to="/blocks">{t('Blocks')}</Link>
               </Menu.Item>
-              <Menu.Item key="3" className="menu-with-icon">
+              <Menu.Item key="/transactions" className="menu-with-icon">
                 <Link to="/transactions">{t('Transactions')}</Link>
               </Menu.Item>
-              <Menu.Item key="4" className="menu-with-icon">
+              <Menu.Item key="/accounts" className="menu-with-icon">
                 <Link to="/accounts">{t('Accounts')}</Link>
               </Menu.Item>
-              <Menu.Item key="5" className="menu-with-icon">
+              <Menu.Item key="/nodes" className="menu-with-icon">
                 <Link to="/nodes">{t('Nodes')}</Link>
               </Menu.Item>
             </Menu>
@@ -65,7 +67,7 @@ const Header = ({ history }) => {
                 prefix={
                   <Icon type="search" style={{ fontSize: '22px', color: 'rgba(0,0,0,.45)' }} />
                 }
-                placeholder={t('Please Input Keyword')}
+                placeholder={t('Please input keyword')}
                 enterButton={t('Search')}
                 onSearch={value => setKeyword(value)}
               />
