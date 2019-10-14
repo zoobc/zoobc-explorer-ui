@@ -72,18 +72,18 @@ const Home = ({ history }) => {
                 className="overview-list"
                 renderItem={item => (
                   <List.Item>
-                    <Row style={{ width: '100%' }}>
+                    <Row style={{ width: '100%' }} className="mx-0">
                       <Col span={10} md="5">
-                        <Col>
+                        <div>
                           <Link to={`/blocks/${item.BlockID}`}>{item.Height}</Link>
-                        </Col>
-                        <Col>{moment(item.Timestamp).format('lll')}</Col>
+                        </div>
+                        <div>{moment(item.Timestamp).format('lll')}</div>
                       </Col>
                       <Col span={14} md="7">
-                        <Col>
+                        <div>
                           <strong>{t('Blocksmith')}</strong>
-                        </Col>
-                        <Col>{shortenHash(item.BlocksmithID, 30)}</Col>
+                        </div>
+                        <div>{shortenHash(item.BlocksmithID, 30)}</div>
                       </Col>
                     </Row>
                   </List.Item>
@@ -107,19 +107,19 @@ const Home = ({ history }) => {
                 className="overview-list"
                 renderItem={item => (
                   <List.Item>
-                    <Row style={{ width: '100%' }}>
+                    <Row style={{ width: '100%' }} className="mx-0">
                       <Col md="6">
-                        <Col md="12">
+                        <div>
                           <strong>{t('Transaction ID')}</strong>
-                        </Col>
-                        <Col md="12">
+                        </div>
+                        <div>
                           <Link to={`/transactions/${item.TransactionID}`}>
                             {item.TransactionID}
                           </Link>
-                        </Col>
+                        </div>
                       </Col>
                       <Col md="6">
-                        <Col md="12">
+                        <div>
                           <strong>{t('Fee')}</strong>{' '}
                           {!!item.FeeConversion && (
                             <NumberFormat
@@ -129,8 +129,8 @@ const Home = ({ history }) => {
                               suffix={' BCZ'}
                             />
                           )}
-                        </Col>
-                        <Col md="12">{moment(item.Timestamp).format('lll')}</Col>
+                        </div>
+                        <div>{moment(item.Timestamp).format('lll')}</div>
                       </Col>
                     </Row>
                   </List.Item>

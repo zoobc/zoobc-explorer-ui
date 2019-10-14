@@ -41,15 +41,15 @@ export const accountColumns = [
     key: 'LastActive',
   },
   {
-    title: <Title text="Rewards" />,
-    dataIndex: 'TotalRewardsConversion',
-    key: 'TotalRewardsConversion',
-    render: renderCurrenncy,
-  },
-  {
     title: <Title text="Fees" />,
     dataIndex: 'TotalFeesPaidConversion',
     key: 'TotalFeesPaidConversion',
+    render: renderCurrenncy,
+  },
+  {
+    title: <Title text="Rewards" />,
+    dataIndex: 'TotalRewardsConversion',
+    key: 'TotalRewardsConversion',
     render: renderCurrenncy,
   },
 ]

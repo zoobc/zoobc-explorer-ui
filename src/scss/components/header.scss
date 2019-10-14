@@ -9,6 +9,12 @@
     .ant-menu-item-selected {
       background-color: transparent !important;
       font-weight: 600;
+      a {
+        color: $blue !important;
+        &:hover {
+          color: $blue !important;
+        }
+      }
     }
   }
 
@@ -24,10 +30,16 @@
     display: flex;
     align-items: center;
     .logo {
+      display: flex;
+      align-items: center;
       img {
         width: 32px;
         height: 36px;
       }
+    }
+
+    .navbar-left {
+      flex: 1;
     }
 
     .navbar-right {
