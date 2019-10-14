@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  deploy:
+    docker:
+      - image: circleci/node:8.10
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "17:49:86:b6:a6:8b:f0:eb:7b:53:3a:3a:c1:40:5b:33"
+      - run:
+          name: Setup SSH Key Host
+          command: |
+            ssh-keyscan -H 139.162.15.80 >> ~/.ssh/known_hosts
+      - run:
+          name: Deploy
+          command: |
+            ssh root@139.162.15.80 "cd zoobc-explorer-ui/
+            chmod +x deploy.sh
+            ./deploy.sh"
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - deploy
