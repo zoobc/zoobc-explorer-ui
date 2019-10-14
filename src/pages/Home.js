@@ -120,7 +120,7 @@ const Home = ({ history }) => {
                       </Col>
                       <Col md="6">
                         <div>
-                          <strong>{t('Fee')}</strong>{' '}
+                          <strong>{t('Fees')}</strong>{' '}
                           {!!item.FeeConversion && (
                             <NumberFormat
                               value={item.FeeConversion}
