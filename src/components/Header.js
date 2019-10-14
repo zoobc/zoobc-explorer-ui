@@ -36,7 +36,12 @@ const Header = ({ history, location }) => {
             <div className="header-logo-name">ZooBC</div>
           </Link>
           <div className="navbar-left">
-            <Menu theme="dark" mode="horizontal" style={{ paddingRight: '0px' }} selectedKeys={[location.pathname]}>
+            <Menu
+              theme="dark"
+              mode="horizontal"
+              style={{ paddingRight: '0px' }}
+              selectedKeys={[location.pathname]}
+            >
               <Menu.Item key="/blocks" className="menu-with-icon">
                 <Link to="/blocks">{t('Blocks')}</Link>
               </Menu.Item>
