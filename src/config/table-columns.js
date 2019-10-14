@@ -4,6 +4,7 @@ import moment from 'moment'
 import NumberFormat from 'react-number-format'
 
 import { shortenHash } from '../utils/shorten'
+import { useTranslation } from 'react-i18next'
 
 const renderCurrenncy = text => {
   return (
@@ -13,9 +14,15 @@ const renderCurrenncy = text => {
   )
 }
 
+const Title = ({ text }) => {
+  const { t } = useTranslation()
+
+  return t(text)
+}
+
 export const accountColumns = [
   {
-    title: 'Address',
+    title: <Title text="Address" />,
     dataIndex: 'AccountAddress',
     key: 'AccountAddress',
     render(text) {
@@ -23,24 +30,24 @@ export const accountColumns = [
     },
   },
   {
-    title: 'Balance',
+    title: <Title text="Balance" />,
     dataIndex: 'BalanceConversion',
     key: 'BalanceConversion',
     render: renderCurrenncy,
   },
   {
-    title: 'Last Active',
+    title: <Title text="Last Active" />,
     dataIndex: 'LastActive',
     key: 'LastActive',
   },
   {
-    title: 'Rewards',
+    title: <Title text="Rewards" />,
     dataIndex: 'TotalRewardsConversion',
     key: 'TotalRewardsConversion',
     render: renderCurrenncy,
   },
   {
-    title: 'Fees',
+    title: <Title text="Fees" />,
     dataIndex: 'TotalFeesPaidConversion',
     key: 'TotalFeesPaidConversion',
     render: renderCurrenncy,
@@ -49,15 +56,15 @@ export const accountColumns = [
 
 export const blockColumns = [
   {
-    title: 'Block ID',
+    title: <Title text="Block ID" />,
     dataIndex: 'BlockID',
     key: 'BlockID',
     render(text) {
-      return <Link to={`/blocks/${text}`}>{text}</Link>
+      return <Link to={`/blocks/${text}`}> {text}</Link>
     },
   },
   {
-    title: 'Height',
+    title: <Title text="Height" />,
     dataIndex: 'Height',
     key: 'Height',
     render(text, record) {
@@ -65,7 +72,7 @@ export const blockColumns = [
     },
   },
   {
-    title: 'Timestamp',
+    title: <Title text="Timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
     render(text) {
@@ -73,7 +80,7 @@ export const blockColumns = [
     },
   },
   {
-    title: 'Blocksmith',
+    title: <Title text="Blocksmith" />,
     dataIndex: 'BlocksmithID',
     key: 'BlocksmithID',
     render(text) {
@@ -81,13 +88,13 @@ export const blockColumns = [
     },
   },
   {
-    title: 'Fee',
+    title: <Title text="Fee" />,
     dataIndex: 'TotalFeeConversion',
     key: 'TotalFeeConversion',
     render: renderCurrenncy,
   },
   {
-    title: 'Rewards',
+    title: <Title text="Rewards" />,
     dataIndex: 'TotalRewardsConversion',
     key: 'TotalRewardsConversion',
     render: renderCurrenncy,
@@ -96,7 +103,7 @@ export const blockColumns = [
 
 export const transactionColumns = [
   {
-    title: 'Transaction ID',
+    title: <Title text="Transaction ID" />,
     dataIndex: 'TransactionID',
     key: 'TransactionID',
     render(text) {
@@ -104,7 +111,7 @@ export const transactionColumns = [
     },
   },
   {
-    title: 'Timestamp',
+    title: <Title text="Timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
     render(text) {
@@ -112,12 +119,12 @@ export const transactionColumns = [
     },
   },
   {
-    title: 'Type',
+    title: <Title text="Type" />,
     dataIndex: 'TransactionTypeName',
     key: 'TransactionTypeName',
   },
   {
-    title: 'Sender',
+    title: <Title text="Sender" />,
     dataIndex: 'Sender',
     key: 'Sender',
     render(text) {
@@ -125,7 +132,7 @@ export const transactionColumns = [
     },
   },
   {
-    title: 'Recipient',
+    title: <Title text="Recipient" />,
     dataIndex: 'Recipient',
     key: 'Recipient',
     render(text) {
@@ -133,12 +140,12 @@ export const transactionColumns = [
     },
   },
   {
-    title: 'Confirmations',
+    title: <Title text="Confirmations" />,
     dataIndex: 'Confirmations',
     key: 'Confirmations',
   },
   {
-    title: 'Fees',
+    title: <Title text="Fees" />,
     dataIndex: 'FeeConversion',
     key: 'FeeConversion',
     render: renderCurrenncy,
@@ -147,7 +154,7 @@ export const transactionColumns = [
 
 export const nodeColumns = [
   {
-    title: 'Public Key',
+    title: <Title text="Public Key" />,
     dataIndex: 'NodePublicKey',
     key: 'NodePublicKey',
     render(text) {
@@ -155,7 +162,7 @@ export const nodeColumns = [
     },
   },
   {
-    title: 'Owner Address',
+    title: <Title text="Owner Address" />,
     dataIndex: 'OwnerAddress',
     key: 'OwnerAddress',
     render(text) {
@@ -163,18 +170,18 @@ export const nodeColumns = [
     },
   },
   {
-    title: 'Node Address',
+    title: <Title text="Node Address" />,
     dataIndex: 'NodeAddress',
     key: 'NodeAddress',
   },
   {
-    title: 'Locked Funds',
+    title: <Title text="Locked Funds" />,
     dataIndex: 'LockedFunds',
     key: 'LockedFunds',
     render: renderCurrenncy,
   },
   {
-    title: 'Status',
+    title: <Title text="Status" />,
     dataIndex: 'RegistryStatus',
     key: 'RegistryStatus',
     render(text) {
@@ -182,7 +189,7 @@ export const nodeColumns = [
     },
   },
   {
-    title: 'Score',
+    title: <Title text="Score" />,
     dataIndex: 'ParticipationScore',
     key: 'ParticipationScore',
   },
@@ -190,7 +197,7 @@ export const nodeColumns = [
 
 export const blockReceiptColumns = [
   {
-    title: 'Sender',
+    title: <Title text="Sender" />,
     dataIndex: 'SenderPublicKey',
     key: 'SenderPublicKey',
     render(text) {
@@ -198,7 +205,7 @@ export const blockReceiptColumns = [
     },
   },
   {
-    title: 'Receiver',
+    title: <Title text="Receiver" />,
     dataIndex: 'ReceiverPublicKey',
     key: 'ReceiverPublicKey',
     render(text) {
@@ -206,32 +213,32 @@ export const blockReceiptColumns = [
     },
   },
   {
-    title: 'Block',
+    title: <Title text="Block" />,
     dataIndex: 'Height',
     key: 'Height',
   },
   {
-    title: 'Block ID',
+    title: <Title text="Block ID" />,
     dataIndex: 'BlockID',
     key: 'BlockID',
   },
   {
-    title: 'Data Type',
+    title: <Title text="Data Type" />,
     dataIndex: 'DataType',
     key: 'DataType',
   },
   {
-    title: 'Data Hash',
+    title: <Title text="Data Hash" />,
     dataIndex: 'DataHash',
     key: 'DataHash',
   },
   {
-    title: 'Merkle Root',
+    title: <Title text="Merkle Root" />,
     dataIndex: 'ReceiptMerkleRoot',
     key: 'ReceiptMerkleRoot',
   },
   {
-    title: 'Receiver Signature',
+    title: <Title text="Receiver Signature" />,
     dataIndex: 'ReceiverSignature',
     key: 'ReceiverSignature',
   },

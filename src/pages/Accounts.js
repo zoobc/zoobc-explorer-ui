@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Card, Table, Pagination } from 'antd'
 import { useQuery } from '@apollo/react-hooks'
+import { useTranslation } from 'react-i18next'
 import gql from 'graphql-tag'
 
 import { getSortString, isEmptyObject } from '../utils'
@@ -28,6 +29,7 @@ const GET_ACCOUNTS_DATA = gql`
   }
 `
 const Accounts = () => {
+  const { t } = useTranslation()
   const [currentPage, setCurrentPage] = useState(1)
   const [accounts, setAccounts] = useState([])
   const [paginate, setPaginate] = useState({})
@@ -76,7 +78,7 @@ const Accounts = () => {
                 <Col span={24}>
                   <h5>
                     <i className="bcz-user" />
-                    <strong>Accounts</strong>
+                    <strong>{t('Accounts')}</strong>
                   </h5>
                 </Col>
               </Row>

@@ -3,6 +3,7 @@ import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 import { Row, Col, Card, Badge, Table, Pagination } from 'antd'
 import NumberFormat from 'react-number-format'
+import { useTranslation } from 'react-i18next'
 
 import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
@@ -50,6 +51,7 @@ const GET_BLOCK_BY_NODE = gql`
 
 const Node = ({ match }) => {
   const { params, url } = match
+  const { t } = useTranslation()
   const urlLastCharacter = url[url.length - 1]
   const [blockCurrentPage, setBlockCurrentPage] = useState(1)
   const [blocks, setBlocks] = useState([])
@@ -101,7 +103,7 @@ const Node = ({ match }) => {
                 </Col>
               </Row>
               <Card className="card-summary">
-                <h4>Summary</h4>
+                <h4>{t('Summary')}</h4>
                 <DescItem
                   label="Node Public Key"
                   value={<CopyToClipboard text={data.node.NodePublicKey} keyID="nodePublicKey" />}
@@ -143,7 +145,7 @@ const Node = ({ match }) => {
               </Card>
               <Card className="card-summary">
                 <h4>
-                  Blocks{' '}
+                  {t('Blocks')}
                   <Badge className="badge-black" count={blockPaginate.Total} overflowCount={1000} />
                 </h4>
                 <Table

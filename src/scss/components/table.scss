@@ -19,5 +19,8 @@
 }
 
 .ant-table-small {
-  border: 0 !important
+  border: 0 !important;
+  a {
+    color: $blue;
+  }
 }
