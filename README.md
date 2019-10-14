@@ -1,26 +1,21 @@
-![](/src/assets/images/ZooBC-explorer-ui.png)
-
 <h1 align="center">
   <a href="https://github.com/BlockchainZoo/spinechain-explorer-prototype">
-    Spinechain Explorer
+    ZooBC Explorer UI
   </a>
 </h1>
 
 <p align="center">
-  <strong>Frontend application for visualising and presenting the information and activity on the Spinechain Blockchain.</strong>
+  <strong>A webview for searching and displaying data published, so that a user can easily find any info about blockchain.</strong>
 </p>
 
 <p align="center">
-  <a href="https://github.com/BlockchainZoo/spinechain-explorer-prototype/blob/master/LICENSE">
-    <img src="https://img.shields.io/badge/license-UNLICENSED-red.svg" alt="" />
+  <a href="https://opensource.org/licenses/Apache-2.0">
+    <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="apache-license"></img>
   </a>
-  <a href="https://app.netlify.com/sites/spinechain-explorer/deploys">
-    <img src="https://api.netlify.com/api/v1/badges/90b1ef33-d77f-419e-ad73-97874f2c0b17/deploy-status" alt="Current Netlify deploy status." />
+  <a href="https://circleci.com/gh/zoobc/zoobc-core">
+    <img src="https://circleci.com/gh/zoobc/zoobc-explorer-ui.svg?style=svg&circle-token=5da5423ded17a414817e457800e90c76628284b0"></img>
   </a>
-  <a href="https://circleci.com/gh/BlockchainZoo/spinechain-explorer-prototype">
-    <img src="https://circleci.com/gh/facebook/react-native.svg?style=shield" alt="Current CircleCI build status." />
-  </a>
-  <a href="https://github.com/BlockchainZoo/spinechain-explorer-prototype/pulls">
+  <a href="https://github.com/zoobc/zoobc-explorer-ui/pulls">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome!" />
   </a>
 </p>
@@ -28,11 +23,11 @@
 ## 👉 Installation
 Fork and clone the Explorer repository then create your branch from ```develop``` on terminal.
 ```bash
-  $ git clone https://github.com/your-github-account/spinechain-explorer-prototype.git
+  $ git clone https://github.com/your-github-account/zoobc-explorer-ui.git
   # press Enter then your local clone will be created
 
-  $ cd spinechain-explorer-prototype
-  # access 'spinechain-explorer-prototype' directory
+  $ cd zoobc-explorer-ui
+  # access 'zoobc-explorer-ui' directory
 ```
 Next, setup dependencies and globally installed for [Node](https://nodejs.org/en/download/)
 ```bash
@@ -42,7 +37,7 @@ Next, setup dependencies and globally installed for [Node](https://nodejs.org/en
   $ npm -v
   # check npm version
 
-  $ git submodule update --init --recursive --remote
+  $ ./language.sh
   # update submodule (language files)
 
   $ npm install
@@ -59,8 +54,6 @@ Next, setup dependencies and globally installed for [Node](https://nodejs.org/en
   # create production build
 ```
 
-## Directory Structure 📁
-
 ## Ways to Contribute 👏
 ### Contributing code 🔥
 Code level contribute in Explorer generally come in the form of pull requests (PRs). The process of proposing
@@ -70,7 +63,7 @@ some changes to Explorer can be summarized as follows:
     - If your task is a _feature_ category, ```[EXP-<number_of_your_pull>][FEATURE] Title of your PRs```.
     - If your task is a _enhance_ category, ```[EXP-<number_of_your_pull>][ENHANCE] Title of your PRs```.
     - If your task is a _bugs_ category, ```[EXP-<number_of_your_pull>][BUGS] Title of your PRs```.
-- Push your PRs changes to remote origin on ```https://github.com/BlockchainZoo/spinechain-explorer-prototype```
+- Push your PRs changes to remote origin on ```https://github.com/zoobc/zoobc-explorer-ui```
 - Please tag ```Reviewers```, ```Assignees```, ```Labels```, and ```Projects```.
 - Add some descriptions about your PRs info with describe the feature/enhance/bugs clearly and concise
   description of what is and include code sample, screenshoot or videos id needed.
@@ -82,13 +75,13 @@ and clearly and politely communicate any suggestion.
 ### Test integration 🚀
 Work in progress...
 ### Handling issues 🐛
-We use Github issues to track bugs exclusively. You can report an issue by filling a [Bug Report](https://github.com/BlockchainZoo/spinechain-explorer-prototype/issues/new/choose).
+We use Github issues to track bugs exclusively. You can report an issue by filling a [Bug Report](https://github.com/zoobc/zoobc-explorer-ui/issues/new/choose).
 ### Browser support 🌐
 ![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) |
 --- | --- | --- | --- | --- | --- |
 75 Latest ✔ | 67 Latest ✔ | 12.1 Latest ✔ | 60 Latest ✔ | 18 Latest ✔ | 11 Latest ✔ |
 ### Contributors 💻
-Thank you to all the people who already [contributed](https://github.com/BlockchainZoo/spinechain-explorer-prototype/graphs/contributors) to Explorer Spinechain!
+Thank you to all the people who already [contributed](https://github.com/zoobc/zoobc-explorer-ui/graphs/contributors) to ZooBC Explorer UI!
 <table>
   <td align="center">
     <a href="https://github.com/gedenata">
