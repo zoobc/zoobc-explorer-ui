@@ -157,7 +157,7 @@ const Transaction = ({ match }) => {
                 />
                 <DescItem label="Confirmations" value={data.transaction.Confirmations} />
                 <DescItem
-                  label="Fee"
+                  label="Fees"
                   value={
                     <NumberFormat
                       value={data.transaction.FeeConversion || 0}
