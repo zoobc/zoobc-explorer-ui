@@ -88,7 +88,7 @@ export const blockColumns = [
     },
   },
   {
-    title: <Title text="Fee" />,
+    title: <Title text="Fees" />,
     dataIndex: 'TotalFeeConversion',
     key: 'TotalFeeConversion',
     render: renderCurrenncy,
