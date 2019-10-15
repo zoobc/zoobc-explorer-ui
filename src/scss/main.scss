@@ -1,16 +1,17 @@
-/* Third party */
-@import '~bootstrap/scss/bootstrap.scss';
-@import '~@fortawesome/fontawesome-free/css/all.css';
+/** Abstracts style **/
+@import './abstracts';
 
-/* Global override */
-@import './fonts';
-@import './variables.scss';
-@import './mixins/mixin';
-@import './global.scss';
+/** Components style **/
+@import './components';
 
-/* Custom scss here */
-@import './footer';
-@import './error';
-@import './header';
-// v1
-@import 'components/components.scss'
+/** Layout style **/
+@import './layout';
+
+/** Mixins style **/
+@import './mixins';
+
+/** Responsive style **/
+@import './responsive';
+
+/** Vendors style **/
+@import './vendors';

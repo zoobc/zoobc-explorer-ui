@@ -1,5 +1,4 @@
 @mixin mq-sm {
-  // @media (max-width: 599px) { @content; }
   @media (max-width: 576px) { @content; }
 }
 @mixin mq-md {

@@ -16,7 +16,6 @@ code {
 }
 
 .clipboard-copy {
-  @include transition(all 0.5s);
   color: #777;
   &:hover {
     cursor: pointer;
