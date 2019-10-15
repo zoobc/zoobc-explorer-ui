@@ -35,5 +35,15 @@
   --color-active-txt: var(--color-primary-light);
 
   /* Icon colors */
-  --color-primary-light-ic: var(--color-white);
+  --color-socmed-ic: var(--color-white);
+  --color-search-ic: var(--color-black);
+  --color-clipboard-ic: var(--color-secondary-light);
+  --color-clipboard-hover-ic: var(--color-primary-light);
+
+  /* Card colors */
+  --color-primary-card: var(--color-white);
+
+  /* Line colors */
+  --color-dark-line: var(--color-primary-dark);
+  --color-light-line: var(--color-secondary-light);
 }

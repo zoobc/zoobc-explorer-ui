@@ -31,7 +31,7 @@
   }
 
   .footer-social-icon {
-    color: var(--color-primary-light-ic);
+    color: var(--color-socmed-ic);
     font-size: 24px;
     margin-right: 30px;
     text-decoration: none;
@@ -46,7 +46,18 @@
     margin: 0 0 15px;
   }
 
-  .text-white {
+  .footer-horizontal-rule-dark {
+    height: 0;
+    background-color: var(--color-dark-line);
+    padding-left: 4px;
+  }
+
+  .footer-horizontal-rule-light {
+    height: 0px;
+    background-color: var(--color-light-line);
+  }
+
+  .footer-text-light {
     color: var(--color-primary-light-txt);
   }
 
@@ -64,7 +75,7 @@
     font-size: 12px;
     margin: 2px -10px;
     padding: 3px 10px;
-    color: var(--color-secondary-link-text);
+    color: var(--color-secondary-link-txt);
   }
 
   .footer-socialmedia {
