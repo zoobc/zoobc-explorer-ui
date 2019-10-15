@@ -1,0 +1,38 @@
+:root {
+  /* Basic colors */
+  --black:                        #000000;
+  --white:                        #ffffff;
+  --dark-blue-primary:            #013558;
+  --dark-blue-secondary:          #0B3D65;
+  --light-blue:                   #3498DB;
+  --dark-grey:                    #92ADBF;
+  --light-grey:                   #E7EAF3;
+
+  /* Main colors */
+  --color-black: var(--black);
+  --color-white: var(--white);
+
+  --color-primary-dark: var(--dark-blue-primary);
+  --color-primary-light: var(--light-blue);
+  --color-secondary-dark: var(--dark-blue-secondary);
+  --color-secondary-light: var(--dark-grey);
+
+  /* Background colors */
+  --color-primary-bg: var(--dark-blue-secondary);
+  --color-secondary-bg: var(--light-grey);
+
+  /* Button colors */
+  --color-primary-btn: var(--dark-blue-secondary);
+  --color-secondary-btn: var(--dark-grey);
+
+  /* Text colors */
+  --color-primary-dark-txt: var(--black);
+  --color-primary-light-txt: var(--white);
+  --color-primary-link-text: var(--light-blue);
+  --color-secondary-link-text: var(--dark-grey);
+  --color-passive-text: var(--dark-grey);
+  --color-active-text: var(--light-blue);
+
+  /* Icon colors */
+  --color-primary--light-ic: var(--white);
+}
