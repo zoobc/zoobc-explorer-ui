@@ -64,9 +64,7 @@ const Header = ({ history, location }) => {
             >
               <Search
                 className="header-search-input"
-                prefix={
-                  <Icon className="header-search-icon" type="search" />
-                }
+                prefix={<Icon className="header-search-icon" type="search" />}
                 placeholder={t('Please input keyword')}
                 enterButton={t('Search')}
                 onSearch={value => setKeyword(value)}

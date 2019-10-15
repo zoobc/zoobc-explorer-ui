@@ -106,9 +106,7 @@ const Footer = () => {
         <hr className="footer-horizontal-rule-dark" />
         <Row className="footer-ext align-items-center">
           <Switch className="btn-switch mt-0" />
-          <p className="my-0 ml-2 footer-text-light">
-            {t('Enable night mode')}
-          </p>
+          <p className="my-0 ml-2 footer-text-light">{t('Enable night mode')}</p>
           <Dropdown overlay={languageOptions}>
             <p className="my-0 ml-3 footer-text-light">
               <Avatar shape="square" size={18} src={selectedLang().flag} className="mr-1" />
