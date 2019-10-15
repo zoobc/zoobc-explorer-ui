@@ -16,23 +16,24 @@
   --color-primary-light: var(--light-blue);
   --color-secondary-dark: var(--dark-blue-secondary);
   --color-secondary-light: var(--dark-grey);
+  --color-secondary-solitude: var(--light-grey);
 
   /* Background colors */
-  --color-primary-bg: var(--dark-blue-secondary);
-  --color-secondary-bg: var(--light-grey);
+  --color-primary-bg: var(--color-secondary-dark);
+  --color-secondary-bg: var(--color-secondary-solitude);
 
   /* Button colors */
-  --color-primary-btn: var(--dark-blue-secondary);
-  --color-secondary-btn: var(--dark-grey);
+  --color-primary-btn: var(--color-secondary-dark);
+  --color-secondary-btn: var(--color-secondary-light);
 
   /* Text colors */
-  --color-primary-dark-txt: var(--black);
-  --color-primary-light-txt: var(--white);
-  --color-primary-link-text: var(--light-blue);
-  --color-secondary-link-text: var(--dark-grey);
-  --color-passive-text: var(--dark-grey);
-  --color-active-text: var(--light-blue);
+  --color-primary-dark-txt: var(--color-black);
+  --color-primary-light-txt: var(--color-white);
+  --color-primary-link-text: var(--color-primary-light);
+  --color-secondary-link-text: var(--color-secondary-light);
+  --color-passive-text: var(--color-secondary-light);
+  --color-active-text: var(--color-primary-light);
 
   /* Icon colors */
-  --color-primary-light-ic: var(--white);
+  --color-primary-light-ic: var(--color-white);
 }
