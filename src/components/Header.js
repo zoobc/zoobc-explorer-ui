@@ -37,9 +37,9 @@ const Header = ({ history, location }) => {
           </Link>
           <div className="navbar-left">
             <Menu
+              className="header-menu"
               theme="dark"
               mode="horizontal"
-              style={{ paddingRight: '0px' }}
               selectedKeys={[location.pathname]}
             >
               <Menu.Item key="/blocks" className="menu-with-icon">
@@ -64,9 +64,7 @@ const Header = ({ history, location }) => {
             >
               <Search
                 className="header-search-input"
-                prefix={
-                  <Icon type="search" style={{ fontSize: '22px', color: 'rgba(0,0,0,.45)' }} />
-                }
+                prefix={<Icon className="header-search-icon" type="search" />}
                 placeholder={t('Please input keyword')}
                 enterButton={t('Search')}
                 onSearch={value => setKeyword(value)}

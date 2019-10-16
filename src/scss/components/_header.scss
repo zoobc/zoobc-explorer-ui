@@ -1,18 +1,18 @@
 .header {
   width: 100%;
   position: relative;
-  background: $black !important;
+  background: var(--color-secondary-dark) !important;
 
   .ant-menu-dark {
-    background: $black;
+    background: var(--color-secondary-dark);
 
     .ant-menu-item-selected {
       background-color: transparent !important;
       font-weight: 600;
       a {
-        color: $blue !important;
+        color: var(--color-primary-light) !important;
         &:hover {
-          color: $blue !important;
+          color: var(--color-primary-light) !important;
         }
       }
     }
@@ -55,7 +55,7 @@
     font-size: 24px;
     font-weight: 900;
     margin-left: 16px;
-    color: $white;
+    color: var(--color-white);
     width: 82px;
     height: 29px;
     margin-top: 18px;
@@ -67,15 +67,15 @@
   }
 
   .menu-with-icon {
-    color: $nepal;
+    color: var(--color-secondary-light);
     font-size: 14px;
 
     a {
-      color: $grey;
+      color: var(--color-secondary-solitude) !important;
     }
 
     a:focus {
-      color: $blue;
+      color: var(--color-primary-light);
     }
   }
 }

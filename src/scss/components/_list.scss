@@ -2,10 +2,10 @@
   .ant-list-item {
     border-bottom: none !important;
     a {
-      color: $blue;
+      color: var(--color-primary-light);
     }
     &:nth-child(odd) {
-      background: $grey
+      background: var(--color-secondary-solitude);
     }
   }
   margin-bottom: 20px !important;

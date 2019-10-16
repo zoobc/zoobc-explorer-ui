@@ -1,0 +1,17 @@
+:root {
+  /* Basic fonts */
+  --font-primary: Montserrat;
+  --font-secondary: serif;
+
+  --text-base-size: 16px;
+  --text-scale-ratio: 1.5;
+
+  /* Type scale */
+  --text-xs: calc(16px / (var(--text-scale-ratio) * var(--text-scale-ratio)));
+  --text-sm: calc(16px / var(--text-scale-ratio));
+  --text-md: calc(16px * var(--text-scale-ratio));
+  --text-lg: calc(var(--text-md) * var(--text-scale-ratio));
+  --text-xl: calc(var(--text-lg) * var(--text-scale-ratio));
+  --text-xxl: calc(var(--text-xl) * var(--text-scale-ratio));
+  --text-xxxl: calc(var(--text-xxl) * var(--text-scale-ratio));
+}
