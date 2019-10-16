@@ -7,7 +7,7 @@
 
 .badge-black {
   .ant-badge-count {
-    background: $black1;
+    background: var(--color-primary-light);
     p {
       margin-bottom: 0 !important
     }

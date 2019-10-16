@@ -1,13 +1,13 @@
 body {
   margin: 0;
-  font-family: $font-family-base !important;
+  font-family: var(--font-primary) !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px;
 }
 
 code {
-  font-family: $font-family-code;
+  font-family: var(--font-secondary);
 }
 
 .breaker {
