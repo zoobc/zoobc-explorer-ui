@@ -40,8 +40,8 @@ const Footer = () => {
       <Container className="footer-body">
         <Row>
           <Col className="col-md-3">
-            <h3 className="footer-subtitle text-white heading-border">ZooBC</h3>
-            <hr style={{ backgroundColor: '#E7EAF3', height: 0 }} />
+            <h3 className="footer-subtitle footer-text-light heading-border">ZooBC</h3>
+            <hr className="footer-horizontal-rule-light" />
             <ul className="footer-list-group-item">
               <p>&#169; 2019 ZooBC.com</p>
               <p>All rights reserved.</p>
@@ -49,8 +49,8 @@ const Footer = () => {
             </ul>
           </Col>
           <Col className="col-md-3">
-            <h3 className="footer-subtitle text-white heading-border">{t('Product')}</h3>
-            <hr style={{ backgroundColor: '#E7EAF3', height: 0 }} />
+            <h3 className="footer-subtitle footer-text-light heading-border">{t('Product')}</h3>
+            <hr className="footer-horizontal-rule-light" />
             <ul className="footer-list-group mb-0">
               <a className="footer-list-group-item" href="https://blockchainzoo.com/">
                 ZooBC Core
@@ -67,8 +67,8 @@ const Footer = () => {
             </ul>
           </Col>
           <Col className="col-md-3">
-            <h3 className="footer-subtitle text-white heading-border">{t('Community')}</h3>
-            <hr style={{ backgroundColor: '#E7EAF3', height: 0 }} />
+            <h3 className="footer-subtitle footer-text-light heading-border">{t('Community')}</h3>
+            <hr className="footer-horizontal-rule-light" />
             <ul className="footer-list-group mb-0">
               <a className="footer-list-group-item" href="https://blockchainzoo.com/">
                 {t('Getting Started')}
@@ -85,8 +85,8 @@ const Footer = () => {
             </ul>
           </Col>
           <Col className="col-md-3">
-            <h3 className="footer-subtitle text-white heading-border">{t('Company')}</h3>
-            <hr style={{ backgroundColor: '#E7EAF3', height: 0 }} />
+            <h3 className="footer-subtitle footer-text-light heading-border">{t('Company')}</h3>
+            <hr className="footer-horizontal-rule-light" />
             <ul className="footer-list-group mb-0">
               <a className="footer-list-group-item" href="https://blockchainzoo.com/">
                 {t('About Us')}
@@ -103,14 +103,12 @@ const Footer = () => {
             </ul>
           </Col>
         </Row>
-        <hr style={{ backgroundColor: '#013558', height: 0, paddingLeft: '4px' }} />
+        <hr className="footer-horizontal-rule-dark" />
         <Row className="footer-ext align-items-center">
           <Switch className="btn-switch mt-0" />
-          <p className="my-0 ml-2" style={{ color: '#fff' }}>
-            {t('Enable night mode')}
-          </p>
+          <p className="my-0 ml-2 footer-text-light">{t('Enable night mode')}</p>
           <Dropdown overlay={languageOptions}>
-            <p className="my-0 ml-3" style={{ color: '#fff' }}>
+            <p className="my-0 ml-3 footer-text-light">
               <Avatar shape="square" size={18} src={selectedLang().flag} className="mr-1" />
               {selectedLang().label}
             </p>
