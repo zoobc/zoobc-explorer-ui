@@ -1,7 +1,13 @@
 const config = {
   endpoint: {
-    api: 'http://139.162.15.80:6969/zoobc/api/v1',
-    graphql: 'http://139.162.15.80:6969/zoobc/api/v1/graphql',
+    api:
+      process.env.REACT_APP_API === 'localhost'
+        ? 'http://localhost:6969/zoobc/api/v1'
+        : 'http://139.162.15.80:6969/zoobc/api/v1',
+    graphql:
+      process.env.REACT_APP_API === 'localhost'
+        ? 'http://localhost:6969/zoobc/api/v1/graphql'
+        : 'http://139.162.15.80:6969/zoobc/api/v1/graphql',
   },
   app: {
     defaultLang: 'en',
