@@ -195,51 +195,46 @@ export const nodeColumns = [
   },
 ]
 
-export const blockReceiptColumns = [
+export const publishedReceiptColumns = [
   {
     title: <Title text="Sender" />,
-    dataIndex: 'SenderPublicKey',
-    key: 'SenderPublicKey',
+    dataIndex: 'BatchReceipt.SenderPublicKey',
+    key: 'BatchReceipt.SenderPublicKey',
     render(text) {
       return !!text && <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
     },
   },
   {
     title: <Title text="Receiver" />,
-    dataIndex: 'ReceiverPublicKey',
-    key: 'ReceiverPublicKey',
+    dataIndex: 'BatchReceipt.ReceiverPublicKey',
+    key: 'BatchReceipt.ReceiverPublicKey',
     render(text) {
       return !!text && <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
     },
   },
   {
     title: <Title text="Block" />,
-    dataIndex: 'Height',
-    key: 'Height',
-  },
-  {
-    title: <Title text="Block ID" />,
-    dataIndex: 'BlockID',
-    key: 'BlockID',
+    dataIndex: 'BatchReceipt.Height',
+    key: 'BatchReceipt.Height',
   },
   {
     title: <Title text="Data Type" />,
-    dataIndex: 'DataType',
-    key: 'DataType',
+    dataIndex: 'BatchReceipt.DataType',
+    key: 'BatchReceipt.DataType',
   },
   {
     title: <Title text="Data Hash" />,
-    dataIndex: 'DataHash',
-    key: 'DataHash',
+    dataIndex: 'BatchReceipt.DataHash',
+    key: 'BatchReceipt.DataHash',
   },
   {
     title: <Title text="Merkle Root" />,
-    dataIndex: 'ReceiptMerkleRoot',
-    key: 'ReceiptMerkleRoot',
+    dataIndex: 'BatchReceipt.ReceiptMerkleRoot',
+    key: 'BatchReceipt.ReceiptMerkleRoot',
   },
   {
     title: <Title text="Receiver Signature" />,
-    dataIndex: 'ReceiverSignature',
-    key: 'ReceiverSignature',
+    dataIndex: 'BatchReceipt.ReceiverSignature',
+    key: 'BatchReceipt.ReceiverSignature',
   },
 ]

@@ -12,7 +12,7 @@ import DescItem from '../components/DescItem'
 import CopyToClipboard from '../components/CopyToClipboard'
 import NotFound from '../components/Errors/NotFound'
 import LoaderPage from '../components/LoaderPage'
-import { transactionColumns, blockReceiptColumns } from '../config/table-columns'
+import { transactionColumns, publishedReceiptColumns } from '../config/table-columns'
 
 const GET_BLOCK_DATA = gql`
   query getBlock($BlockID: String!) {
@@ -63,18 +63,23 @@ const GET_TRX_BY_BLOCK = gql`
 `
 
 const GET_RECEIPT_BY_BLOCK = gql`
-  query getReceiptByBlock($page: Int, $BlockID: String) {
-    blockReceipts(page: $page, limit: 5, order: "-Height", BlockID: $BlockID) {
-      BlockReceipts {
-        BlockID
-        Height
-        SenderPublicKey
-        ReceiverPublicKey
-        DataType
-        DataHash
-        ReceiptMerkleRoot
-        ReceiverSignature
-        ReferenceBlockHash
+  query getReceiptByBlock($page: Int, $BlockHeight: Int) {
+    publishedReceipts(page: $page, limit: 5, order: "-BlockHeight", BlockHeight: $BlockHeight) {
+      PublishedReceipts {
+        BatchReceipt {
+          Height
+          SenderPublicKey
+          ReceiverPublicKey
+          DataType
+          DataHash
+          ReceiptMerkleRoot
+          ReceiverSignature
+          ReferenceBlockHash
+        }
+        IntermediateHashes
+        BlockHeight
+        ReceiptIndex
+        PublishedIndex
       }
       Paginate {
         Page
@@ -98,6 +103,8 @@ const Block = ({ match }) => {
   const [receipts, setReceipts] = useState([])
   const [receiptPaginate, setReceiptPaginate] = useState({})
 
+  const [blockHeight, setBlockHeight] = useState(null)
+
   const { loading, data, error } = useQuery(GET_BLOCK_DATA, {
     variables: {
       BlockID: params.id,
@@ -113,7 +120,7 @@ const Block = ({ match }) => {
 
   const receiptByBlock = useQuery(GET_RECEIPT_BY_BLOCK, {
     variables: {
-      BlockID: params.id,
+      BlockHeight: blockHeight,
       page: receiptCurrentPage,
     },
   })
@@ -134,17 +141,25 @@ const Block = ({ match }) => {
 
   useEffect(() => {
     if (!!receiptByBlock.data) {
-      const receiptData = receiptByBlock.data.blockReceipts.BlockReceipts.map((receipt, key) => {
-        return {
-          key,
-          ...receipt,
+      const receiptData = receiptByBlock.data.publishedReceipts.PublishedReceipts.map(
+        (receipt, key) => {
+          return {
+            key,
+            ...receipt,
+          }
         }
-      })
+      )
 
       setReceipts(receiptData)
-      setReceiptPaginate(receiptByBlock.data.blockReceipts.Paginate)
+      setReceiptPaginate(receiptByBlock.data.publishedReceipts.Paginate)
     }
   }, [receiptByBlock.data])
+
+  useEffect(() => {
+    if (!!data) {
+      setBlockHeight(data.block.Height)
+    }
+  }, [data])
 
   return (
     <DefaultLayout>
@@ -234,7 +249,7 @@ const Block = ({ match }) => {
                       />
                     </h4>
                     <Table
-                      columns={blockReceiptColumns}
+                      columns={publishedReceiptColumns}
                       dataSource={receipts}
                       pagination={false}
                       size="small"
