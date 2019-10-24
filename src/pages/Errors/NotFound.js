@@ -32,17 +32,17 @@ const NotFound = ({ history, location }) => {
             <img src={notFound} alt="not found" className="mr-2" />
             <Row gutter={24} style={{ width: '100%' }} className="mt-3">
               <Col span={24}>
-                {!!state && !!state.keyword ? (
+                {!!state && !!state.search ? (
                   <>
                     <p className="h3 mt-5">Search results for {state.search}</p>
                     <p className="h6">Sorry, we couldn't find any results for this search</p>
                   </>
                 ) : (
-                  <>
-                    <p className="display-3 mb-0">404</p>
-                    <p className="h6">Page Not Found</p>
-                  </>
-                )}
+                    <>
+                      <p className="display-3 mb-0">404</p>
+                      <p className="h6">Page Not Found</p>
+                    </>
+                  )}
                 <Search
                   prefix={
                     <Icon
