@@ -16,9 +16,11 @@ const Hero = ({ history }) => {
   const { doSearch, loading } = useSearch(keyword, history)
 
   const onSearch = value => {
-    if (!!value) {
-      setKeyword(value)
-      doSearch()
+    const searchKeyword = value.trim();
+
+    if (!!searchKeyword) {
+      setKeyword(searchKeyword)
+      doSearch();
     }
   }
 
