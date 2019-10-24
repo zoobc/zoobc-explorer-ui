@@ -19,11 +19,11 @@ const Header = ({ history, location }) => {
   const { doSearch, loading } = useSearch(keyword, history)
 
   const onSearch = value => {
-    const searchKeyword = value.trim();
+    const searchKeyword = value.trim()
 
     if (!!searchKeyword) {
       setKeyword(searchKeyword)
-      doSearch();
+      doSearch()
     }
   }
 
