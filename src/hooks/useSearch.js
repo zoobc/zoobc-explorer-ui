@@ -1,7 +1,6 @@
 import gql from 'graphql-tag'
 import { useLazyQuery } from '@apollo/react-hooks'
 import { useEffect } from 'react'
-import { notification } from 'antd'
 
 const GET_SEARCH_DATA = gql`
   query getSearchData($Id: String!) {
@@ -13,12 +12,6 @@ const GET_SEARCH_DATA = gql`
     }
   }
 `
-const errorNotification = keyword => {
-  notification.error({
-    message: 'No Results Found',
-    description: `No results found for keyword "${keyword}"`,
-  })
-}
 
 const useSearch = (keyword, history) => {
   const [doSearch, { loading, data, error, called }] = useLazyQuery(GET_SEARCH_DATA, {
@@ -41,11 +34,17 @@ const useSearch = (keyword, history) => {
           history.push(`/accounts/${ID}`)
           break
         default:
-          errorNotification(keyword)
+          history.push({
+            pathname: '/not-found',
+            state: { keyword: keyword },
+          })
           break
       }
     } else if (!!error) {
-      errorNotification(keyword)
+      history.push({
+        pathname: '/not-found',
+        state: { keyword: keyword },
+      })
     }
   }, [keyword, data, loading, error, history])
 

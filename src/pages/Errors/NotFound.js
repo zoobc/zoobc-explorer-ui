@@ -1,10 +1,63 @@
-import React from 'react'
-import { Container } from 'reactstrap'
+import React, { useState } from 'react'
+import { Input, Row, Col, Icon, Spin } from 'antd'
 
-export default function NotFound() {
+import notFound from '../../assets/images/not-found.svg'
+import DefaultLayout from '../../components/DefaultLayout'
+import Container from '../../components/Container'
+import useSearch from '../../hooks/useSearch'
+import { useTranslation } from 'react-i18next'
+
+const { Search } = Input
+const Spinner = <Icon type="loading" style={{ fontSize: 24, color: 'white' }} spin />
+
+const NotFound = ({ history, location }) => {
+  const { t } = useTranslation()
+  const [keyword, setKeyword] = useState('')
+  const { doSearch, loading } = useSearch(keyword, history)
+  const { state } = location
+
+  const onSearch = value => {
+    const searchKeyword = value.trim()
+
+    if (!!searchKeyword) {
+      setKeyword(searchKeyword)
+      doSearch()
+    }
+  }
   return (
-    <Container className="error-section d-flex justify-content-center align-items-center">
-      <p className="display-3">404 Not Found</p>
-    </Container>
+    <DefaultLayout>
+      <Container className="flex">
+        <div className="error-content error-content-page">
+          <div className="d-flex text-center">
+            <img src={notFound} alt="not found" className="mr-2" />
+            <Row gutter={24} style={{ width: '100%' }} className="mt-3">
+              <Col span={24}>
+                {!!state && !!state.keyword ? (
+                  <>
+                    <p className="h1 mb-0 mt-5">No Results Found</p>
+                    <p className="h4">No results found for keyword "{state.keyword}"</p>
+                  </>
+                ) : (
+                  <>
+                    <p className="display-3 mb-0">404</p>
+                    <p className="h6">Page Not Found</p>
+                  </>
+                )}
+                <Search
+                  prefix={
+                    <Icon type="search" style={{ fontSize: '22px', color: 'rgba(0,0,0,.45)' }} />
+                  }
+                  placeholder={t('Search by Account Address / Transaction ID / Block ID')}
+                  enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
+                  onSearch={onSearch}
+                />
+              </Col>
+            </Row>
+          </div>
+        </div>
+      </Container>
+    </DefaultLayout>
   )
 }
+
+export default NotFound
