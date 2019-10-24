@@ -14,6 +14,33 @@ const renderCurrenncy = text => {
   )
 }
 
+const renderAmountCurrenncy = (text, record) => {
+  const path = window.location.pathname
+
+  if (path.search('accounts') === 1) {
+    const accountAddress = path.split('/')[2]
+    const isSender = record.Sender === accountAddress
+
+    return (
+      !!text && (
+        <NumberFormat
+          value={text}
+          displayType={'text'}
+          thousandSeparator={true}
+          suffix={' BCZ'}
+          style={{ color: isSender ? 'red' : 'green' }}
+        />
+      )
+    )
+  }
+
+  return (
+    !!text && (
+      <NumberFormat value={text} displayType={'text'} thousandSeparator={true} suffix={' BCZ'} />
+    )
+  )
+}
+
 const Title = ({ text }) => {
   const { t } = useTranslation()
 
@@ -138,6 +165,12 @@ export const transactionColumns = [
     render(text) {
       return <Link to={`/accounts/${text}`}>{shortenHash(text, 20)}</Link>
     },
+  },
+  {
+    title: <Title text="Amount" />,
+    dataIndex: 'SendMoney.AmountConversion',
+    key: 'SendMoney.AmountConversion',
+    render: renderAmountCurrenncy,
   },
   {
     title: <Title text="Confirmations" />,

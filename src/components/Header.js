@@ -12,7 +12,7 @@ const { Search } = Input
 
 const Spinner = <Icon type="loading" style={{ fontSize: 20, color: 'white' }} spin />
 
-const Header = ({ history, location }) => {
+const Header = ({ history, location, fluid }) => {
   const { t } = useTranslation()
   const [keyword, setKeyword] = useState('')
 
@@ -29,7 +29,7 @@ const Header = ({ history, location }) => {
 
   return (
     <Layout.Header className="header">
-      <Container className="header-content">
+      <Container className="header-content" fluid={fluid}>
         <Link className="logo" to="/">
           <img src={zoobcLogo} alt="zoobc-logo" />
           <div className="header-logo-name">ZooBC</div>
