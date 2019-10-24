@@ -16,9 +16,8 @@ const GET_SEARCH_DATA = gql`
 const errorNotification = keyword => {
   notification.error({
     message: 'No Results Found',
-    description:
-      `No results found for keyword "${keyword}"`,
-  });
+    description: `No results found for keyword "${keyword}"`,
+  })
 }
 
 const useSearch = (keyword, history) => {
@@ -32,21 +31,20 @@ const useSearch = (keyword, history) => {
     if (!!data && !error && !loading) {
       const { ID, FoundIn } = data.search
       switch (FoundIn) {
-        case "Block":
+        case 'Block':
           history.push(`/blocks/${ID}`)
-          break;
-        case "Transaction":
+          break
+        case 'Transaction':
           history.push(`/transactions/${ID}`)
-          break;
-        case "Account":
+          break
+        case 'Account':
           history.push(`/accounts/${ID}`)
-          break;
+          break
         default:
           errorNotification(keyword)
-          break;
+          break
       }
-    }
-    else if (!!error) {
+    } else if (!!error) {
       errorNotification(keyword)
     }
   }, [keyword, data, loading, error, history])

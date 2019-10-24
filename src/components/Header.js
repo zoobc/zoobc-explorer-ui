@@ -10,7 +10,7 @@ import zoobcLogo from '../assets/images/logo-zoobc.svg'
 
 const { Search } = Input
 
-const Spinner = <Icon type="loading" style={{ fontSize: 20, color: 'white' }} spin />;
+const Spinner = <Icon type="loading" style={{ fontSize: 20, color: 'white' }} spin />
 
 const Header = ({ history, location }) => {
   const { t } = useTranslation()
@@ -20,8 +20,8 @@ const Header = ({ history, location }) => {
 
   const onSearch = value => {
     if (!!value) {
-      setKeyword(value);
-      doSearch();
+      setKeyword(value)
+      doSearch()
     }
   }
 
