@@ -22,6 +22,9 @@ const GET_TRXS_DATA = gql`
         Recipient
         Confirmations
         FeeConversion
+        SendMoney {
+          AmountConversion
+        }
       }
       Paginate {
         Page
@@ -73,8 +76,8 @@ const Transactions = () => {
   }, [data])
 
   return (
-    <DefaultLayout>
-      <Container>
+    <DefaultLayout fluid>
+      <Container fluid>
         <Row gutter={8}>
           <Col span={24}>
             <Card>
