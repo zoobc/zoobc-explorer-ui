@@ -11,7 +11,7 @@ import zoobcLogo from '../assets/images/logo-zoobc.svg'
 
 const { Search } = Input
 
-const Header = ({ history, location }) => {
+const Header = ({ history, location, fluid }) => {
   const { t } = useTranslation()
   const [keyword, setKeyword] = useState('')
 
@@ -30,7 +30,7 @@ const Header = ({ history, location }) => {
     <Layout.Header className="header">
       {!!loading && <LoaderPage />}
       {!error && !loading && (
-        <Container className="header-content">
+        <Container className="header-content" fluid={fluid}>
           <Link className="logo" to="/">
             <img src={zoobcLogo} alt="zoobc-logo" />
             <div className="header-logo-name">ZooBC</div>
