@@ -35,8 +35,9 @@ const useSearch = (keyword, history) => {
           break
         default:
           history.push({
-            pathname: '/not-found',
-            state: { keyword: keyword },
+            pathname: '/search',
+            search: `?search=${keyword}`,
+            state: { search: keyword },
           })
           break
       }

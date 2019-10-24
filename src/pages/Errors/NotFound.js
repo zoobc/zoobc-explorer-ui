@@ -34,18 +34,18 @@ const NotFound = ({ history, location }) => {
               <Col span={24}>
                 {!!state && !!state.keyword ? (
                   <>
-                    <p className="h1 mb-0 mt-5">No Results Found</p>
-                    <p className="h4">No results found for keyword "{state.keyword}"</p>
+                    <p className="h3 mt-5">Search results for  {state.search}</p>
+                    <p className="h6">Sorry, we couldn't find any results for this search</p>
                   </>
                 ) : (
-                  <>
-                    <p className="display-3 mb-0">404</p>
-                    <p className="h6">Page Not Found</p>
-                  </>
-                )}
+                    <>
+                      <p className="display-3 mb-0">404</p>
+                      <p className="h6">Page Not Found</p>
+                    </>
+                  )}
                 <Search
                   prefix={
-                    <Icon type="search" style={{ fontSize: '22px', color: 'rgba(0,0,0,.45)' }} />
+                    <Icon type="search" className="mr-1" style={{ fontSize: '16px', color: 'rgba(0,0,0,.45)' }} />
                   }
                   placeholder={t('Search by Account Address / Transaction ID / Block ID')}
                   enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
