@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Card, Table, Pagination, Badge } from 'antd'
+import { Row, Col, Card, Table, Pagination, Badge, Collapse } from 'antd'
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 import moment from 'moment'
@@ -84,6 +84,8 @@ const GET_RECEIPT_BY_BLOCK = gql`
     }
   }
 `
+
+const { Panel } = Collapse
 
 const Block = ({ match }) => {
   const { params } = match
@@ -205,67 +207,79 @@ const Block = ({ match }) => {
                 <DescItem label="Payload Length" value={data.block.PayloadLength} />
                 <DescItem label="Payload Hash" value={data.block.PayloadHash} />
               </Card>
-              <Card className="card-summary">
-                <h4>
-                  {t('Transactions')}
-                  <Badge className="badge-black" count={trxPaginate.Total} overflowCount={1000} />
-                </h4>
-                <Table
-                  columns={transactionColumns}
-                  dataSource={transactions}
-                  pagination={false}
-                  size="small"
-                  loading={loading}
-                />
-                {!!data && (
-                  <Pagination
-                    className="pagination-center"
-                    current={trxPaginate.Page}
-                    total={trxPaginate.Total}
-                    pageSize={5}
-                    onChange={page => setTrxCurrentPage(page)}
-                  />
-                )}
-              </Card>
-              <Card className="card-summary">
-                <h4>
-                  Rewards / Coinbase{' '}
-                  <Badge className="badge-black" count={425} overflowCount={1000} />
-                </h4>
-                <Table
-                  columns={transactionColumns}
-                  dataSource={[]}
-                  pagination={false}
-                  size="small"
-                />
-                <Pagination className="pagination-center" current={5} total={100} />
-              </Card>
-              <Card className="card-summary">
-                <h4>
-                  Receipts
-                  <Badge
-                    className="badge-black"
-                    count={receiptPaginate.Total}
-                    overflowCount={1000}
-                  />
-                </h4>
-                <Table
-                  columns={blockReceiptColumns}
-                  dataSource={receipts}
-                  pagination={false}
-                  size="small"
-                  loading={loading}
-                />
-                {!!data && (
-                  <Pagination
-                    className="pagination-center"
-                    current={receiptPaginate.Page}
-                    total={receiptPaginate.Total}
-                    pageSize={5}
-                    onChange={page => setReceiptCurrentPage(page)}
-                  />
-                )}
-              </Card>
+              <Collapse defaultActiveKey={['3']}>
+                <Panel header="Rewards" key="1">
+                  <Card className="card-summary">
+                    <h4>
+                      Rewards / Coinbase{' '}
+                      <Badge className="badge-black" count={425} overflowCount={1000} />
+                    </h4>
+                    <Table
+                      columns={transactionColumns}
+                      dataSource={[]}
+                      pagination={false}
+                      size="small"
+                    />
+                    <Pagination className="pagination-center" current={5} total={100} />
+                  </Card>
+                </Panel>
+                <Panel header="Receipts" key="2">
+                  <Card className="card-summary">
+                    <h4>
+                      Receipts
+                      <Badge
+                        className="badge-black"
+                        count={receiptPaginate.Total}
+                        overflowCount={1000}
+                      />
+                    </h4>
+                    <Table
+                      columns={blockReceiptColumns}
+                      dataSource={receipts}
+                      pagination={false}
+                      size="small"
+                      loading={loading}
+                    />
+                    {!!data && (
+                      <Pagination
+                        className="pagination-center"
+                        current={receiptPaginate.Page}
+                        total={receiptPaginate.Total}
+                        pageSize={5}
+                        onChange={page => setReceiptCurrentPage(page)}
+                      />
+                    )}
+                  </Card>
+                </Panel>
+                <Panel header="Transactions" key="3">
+                  <Card className="card-summary">
+                    <h4>
+                      {t('Transactions')}
+                      <Badge
+                        className="badge-black"
+                        count={trxPaginate.Total}
+                        overflowCount={1000}
+                      />
+                    </h4>
+                    <Table
+                      columns={transactionColumns}
+                      dataSource={transactions}
+                      pagination={false}
+                      size="small"
+                      loading={loading}
+                    />
+                    {!!data && (
+                      <Pagination
+                        className="pagination-center"
+                        current={trxPaginate.Page}
+                        total={trxPaginate.Total}
+                        pageSize={5}
+                        onChange={page => setTrxCurrentPage(page)}
+                      />
+                    )}
+                  </Card>
+                </Panel>
+              </Collapse>
             </Col>
           </Row>
         </Container>
