@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Card, Table, Pagination, Badge } from 'antd'
+import { Row, Col, Card, Table, Pagination, Badge, Collapse } from 'antd'
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 import moment from 'moment'
@@ -12,7 +12,7 @@ import DescItem from '../components/DescItem'
 import CopyToClipboard from '../components/CopyToClipboard'
 import NotFound from '../components/Errors/NotFound'
 import LoaderPage from '../components/LoaderPage'
-import { transactionColumns, blockReceiptColumns } from '../config/table-columns'
+import { transactionColumns, publishedReceiptColumns } from '../config/table-columns'
 
 const GET_BLOCK_DATA = gql`
   query getBlock($BlockID: String!) {
@@ -63,18 +63,23 @@ const GET_TRX_BY_BLOCK = gql`
 `
 
 const GET_RECEIPT_BY_BLOCK = gql`
-  query getReceiptByBlock($page: Int, $BlockID: String) {
-    blockReceipts(page: $page, limit: 5, order: "-Height", BlockID: $BlockID) {
-      BlockReceipts {
-        BlockID
-        Height
-        SenderPublicKey
-        ReceiverPublicKey
-        DataType
-        DataHash
-        ReceiptMerkleRoot
-        ReceiverSignature
-        ReferenceBlockHash
+  query getReceiptByBlock($page: Int, $BlockHeight: Int) {
+    publishedReceipts(page: $page, limit: 5, order: "-BlockHeight", BlockHeight: $BlockHeight) {
+      PublishedReceipts {
+        BatchReceipt {
+          Height
+          SenderPublicKey
+          ReceiverPublicKey
+          DataType
+          DataHash
+          ReceiptMerkleRoot
+          ReceiverSignature
+          ReferenceBlockHash
+        }
+        IntermediateHashes
+        BlockHeight
+        ReceiptIndex
+        PublishedIndex
       }
       Paginate {
         Page
@@ -84,6 +89,8 @@ const GET_RECEIPT_BY_BLOCK = gql`
     }
   }
 `
+
+const { Panel } = Collapse
 
 const Block = ({ match }) => {
   const { params } = match
@@ -95,6 +102,8 @@ const Block = ({ match }) => {
   const [receiptCurrentPage, setReceiptCurrentPage] = useState(1)
   const [receipts, setReceipts] = useState([])
   const [receiptPaginate, setReceiptPaginate] = useState({})
+
+  const [blockHeight, setBlockHeight] = useState(null)
 
   const { loading, data, error } = useQuery(GET_BLOCK_DATA, {
     variables: {
@@ -111,7 +120,7 @@ const Block = ({ match }) => {
 
   const receiptByBlock = useQuery(GET_RECEIPT_BY_BLOCK, {
     variables: {
-      BlockID: params.id,
+      BlockHeight: blockHeight,
       page: receiptCurrentPage,
     },
   })
@@ -132,17 +141,25 @@ const Block = ({ match }) => {
 
   useEffect(() => {
     if (!!receiptByBlock.data) {
-      const receiptData = receiptByBlock.data.blockReceipts.BlockReceipts.map((receipt, key) => {
-        return {
-          key,
-          ...receipt,
+      const receiptData = receiptByBlock.data.publishedReceipts.PublishedReceipts.map(
+        (receipt, key) => {
+          return {
+            key,
+            ...receipt,
+          }
         }
-      })
+      )
 
       setReceipts(receiptData)
-      setReceiptPaginate(receiptByBlock.data.blockReceipts.Paginate)
+      setReceiptPaginate(receiptByBlock.data.publishedReceipts.Paginate)
     }
   }, [receiptByBlock.data])
+
+  useEffect(() => {
+    if (!!data) {
+      setBlockHeight(data.block.Height)
+    }
+  }, [data])
 
   return (
     <DefaultLayout>
@@ -205,67 +222,79 @@ const Block = ({ match }) => {
                 <DescItem label="Payload Length" value={data.block.PayloadLength} />
                 <DescItem label="Payload Hash" value={data.block.PayloadHash} />
               </Card>
-              <Card className="card-summary">
-                <h4>
-                  {t('Transactions')}
-                  <Badge className="badge-black" count={trxPaginate.Total} overflowCount={1000} />
-                </h4>
-                <Table
-                  columns={transactionColumns}
-                  dataSource={transactions}
-                  pagination={false}
-                  size="small"
-                  loading={loading}
-                />
-                {!!data && (
-                  <Pagination
-                    className="pagination-center"
-                    current={trxPaginate.Page}
-                    total={trxPaginate.Total}
-                    pageSize={5}
-                    onChange={page => setTrxCurrentPage(page)}
-                  />
-                )}
-              </Card>
-              <Card className="card-summary">
-                <h4>
-                  Rewards / Coinbase{' '}
-                  <Badge className="badge-black" count={425} overflowCount={1000} />
-                </h4>
-                <Table
-                  columns={transactionColumns}
-                  dataSource={[]}
-                  pagination={false}
-                  size="small"
-                />
-                <Pagination className="pagination-center" current={5} total={100} />
-              </Card>
-              <Card className="card-summary">
-                <h4>
-                  Receipts
-                  <Badge
-                    className="badge-black"
-                    count={receiptPaginate.Total}
-                    overflowCount={1000}
-                  />
-                </h4>
-                <Table
-                  columns={blockReceiptColumns}
-                  dataSource={receipts}
-                  pagination={false}
-                  size="small"
-                  loading={loading}
-                />
-                {!!data && (
-                  <Pagination
-                    className="pagination-center"
-                    current={receiptPaginate.Page}
-                    total={receiptPaginate.Total}
-                    pageSize={5}
-                    onChange={page => setReceiptCurrentPage(page)}
-                  />
-                )}
-              </Card>
+              <Collapse defaultActiveKey={['3']}>
+                <Panel header="Rewards" key="1">
+                  <Card className="card-summary">
+                    <h4>
+                      Rewards / Coinbase{' '}
+                      <Badge className="badge-black" count={425} overflowCount={1000} />
+                    </h4>
+                    <Table
+                      columns={transactionColumns}
+                      dataSource={[]}
+                      pagination={false}
+                      size="small"
+                    />
+                    <Pagination className="pagination-center" current={5} total={100} />
+                  </Card>
+                </Panel>
+                <Panel header="Receipts" key="2">
+                  <Card className="card-summary">
+                    <h4>
+                      Receipts
+                      <Badge
+                        className="badge-black"
+                        count={receiptPaginate.Total}
+                        overflowCount={1000}
+                      />
+                    </h4>
+                    <Table
+                      columns={publishedReceiptColumns}
+                      dataSource={receipts}
+                      pagination={false}
+                      size="small"
+                      loading={loading}
+                    />
+                    {!!data && (
+                      <Pagination
+                        className="pagination-center"
+                        current={receiptPaginate.Page}
+                        total={receiptPaginate.Total}
+                        pageSize={5}
+                        onChange={page => setReceiptCurrentPage(page)}
+                      />
+                    )}
+                  </Card>
+                </Panel>
+                <Panel header="Transactions" key="3">
+                  <Card className="card-summary">
+                    <h4>
+                      {t('Transactions')}
+                      <Badge
+                        className="badge-black"
+                        count={trxPaginate.Total}
+                        overflowCount={1000}
+                      />
+                    </h4>
+                    <Table
+                      columns={transactionColumns}
+                      dataSource={transactions}
+                      pagination={false}
+                      size="small"
+                      loading={loading}
+                    />
+                    {!!data && (
+                      <Pagination
+                        className="pagination-center"
+                        current={trxPaginate.Page}
+                        total={trxPaginate.Total}
+                        pageSize={5}
+                        onChange={page => setTrxCurrentPage(page)}
+                      />
+                    )}
+                  </Card>
+                </Panel>
+              </Collapse>
             </Col>
           </Row>
         </Container>
