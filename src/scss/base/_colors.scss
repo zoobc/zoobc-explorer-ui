@@ -25,10 +25,12 @@
   /* Button colors */
   --color-primary-btn: var(--color-secondary-dark);
   --color-secondary-btn: var(--color-secondary-light);
+  --color-border-btn: var(--color-primary-light);
 
   /* Text colors */
   --color-primary-dark-txt: var(--color-black);
   --color-primary-light-txt: var(--color-white);
+  --color-secondary-grey-txt: var(--color-secondary-light);
   --color-primary-link-txt: var(--color-primary-light);
   --color-secondary-link-txt: var(--color-secondary-light);
   --color-passive-txt: var(--color-secondary-light);
@@ -36,7 +38,7 @@
 
   /* Icon colors */
   --color-socmed-ic: var(--color-white);
-  --color-search-ic: var(--color-black);
+  --color-search-ic: var(--color-secondary-light);
   --color-clipboard-ic: var(--color-secondary-light);
   --color-clipboard-hover-ic: var(--color-primary-light);
 
