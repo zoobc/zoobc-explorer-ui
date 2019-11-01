@@ -9,8 +9,12 @@ const DefaultLayout = ({ children, withHero, fluid }) => {
   return (
     <>
       <Header fluid={fluid} />
+      <Layout className="home-content">
+        <Hero />
+        {/* <Layout className="default-layout">{children}</Layout> */}
+      </Layout>
+      <Footer fluid={fluid} />
       {/* {withHero && <Hero />}
-      <Layout className="default-layout">{children}</Layout>
       <Footer fluid={fluid} /> */}
     </>
   )
