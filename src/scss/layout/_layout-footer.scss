@@ -1,7 +1,8 @@
 .footer {
   width: 100%;
-  position: relative;
-  background-color: var(--color-primary-bg);
+  bottom: 0;
+  position: absolute !important;
+  background-color: var(--color-primary-bg) !important;
 
   a {
     color: var(--color-primary-light-txt);

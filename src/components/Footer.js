@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
-import { Switch, Menu, Dropdown, Avatar } from 'antd'
+import { Switch, Menu, Dropdown, Avatar, Layout } from 'antd'
 import Container from './Container'
 
 import iconGitHub from '../assets/images/github.svg'
@@ -36,7 +36,7 @@ const Footer = () => {
   }
 
   return (
-    <div className="footer">
+    <Layout.Footer className="footer">
       <Container className="footer-body">
         <Row>
           <Col className="col-md-3">
@@ -171,7 +171,7 @@ const Footer = () => {
           </div>
         </Row>
       </Container>
-    </div>
+    </Layout.Footer>
   )
 }
 
