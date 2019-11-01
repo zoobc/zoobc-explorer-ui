@@ -7,10 +7,45 @@
 .home-content {
   display: block !important;
   width: 100%;
+  margin-top: 32px;
   margin-right: auto;
   margin-left: auto;
   padding-top: 64px;
   padding-right: auto;
   padding-left: auto;
+}
+
+.home-latest {
   margin-top: 32px;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+}
+
+.home-card {
+  border-radius: 4px !important;
+}
+
+.home-col-left {
+  padding-right: 16px;
+  padding-left: 0px;
+  width: 50%;
+  float: left;
+}
+
+
+.home-col-right {
+  padding-right: 0px;
+  padding-left: 16px;
+  width: 50%;
+  float: left;
+}
+
+.home-col-list {
+  width: 50%;
+  float: left;
+  padding-left: 30px;
 }
