@@ -75,7 +75,7 @@ const Blocks = () => {
       <Container>
         <Row className="blocks-row">
           <Col span={24}>
-            <Card className="blocks-card">
+            <Card className="blocks-card" bordered={false}>
               <Row>
                 <Col span={24}>
                   <h5>

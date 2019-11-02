@@ -129,7 +129,7 @@ const Transaction = ({ match }) => {
                   <h4>Transaction {data.transaction.TransactionID}</h4>
                 </Col>
               </Row>
-              <Card className="card-summary">
+              <Card className="card-summary" bordered={false}>
                 <h4>Summary</h4>
                 <DescItem
                   label="Transaction ID"

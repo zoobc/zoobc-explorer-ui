@@ -73,7 +73,7 @@ const Accounts = () => {
       <Container>
         <Row className="accounts-row">
           <Col span={24}>
-            <Card className="accounts-card">
+            <Card className="accounts-card" bordered={false}>
               <Row>
                 <Col span={24}>
                   <h5>

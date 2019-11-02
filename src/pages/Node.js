@@ -102,7 +102,7 @@ const Node = ({ match }) => {
                   <h4>Public Key {data.node.NodePublicKey}</h4>
                 </Col>
               </Row>
-              <Card className="card-summary">
+              <Card className="card-summary" bordered={false}>
                 <h4>{t('Summary')}</h4>
                 <DescItem
                   label="Node Public Key"
@@ -143,7 +143,7 @@ const Node = ({ match }) => {
                   }
                 />
               </Card>
-              <Card className="card-summary">
+              <Card className="card-summary" bordered={false}>
                 <h4>
                   {t('Blocks')}
                   <Badge className="badge-black" count={blockPaginate.Total} overflowCount={1000} />

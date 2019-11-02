@@ -80,7 +80,7 @@ const Transactions = () => {
       <Container>
         <Row className="transactions-row">
           <Col span={24}>
-            <Card className="transactions-card">
+            <Card className="transactions-card" bordered={false}>
               <Row>
                 <Col span={24}>
                   <h5>

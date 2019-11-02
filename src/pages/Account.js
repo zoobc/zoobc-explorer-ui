@@ -142,7 +142,7 @@ const Account = ({ match }) => {
       {!!loading && <LoaderPage />}
       {!error && !loading && (
         <Container>
-          <Row gutter={8}>
+          <Row className="account-row">
             <Col span={24}>
               <Row>
                 <Col span={24}>
@@ -151,8 +151,8 @@ const Account = ({ match }) => {
                   </h4>
                 </Col>
               </Row>
-              <Card className="card-summary">
-                <h4>{t('Summary')}</h4>
+              <Card className="account-card" bordered={false}>
+                <h4 style={{ fontWeight: '700' }}>{t('Summary')}</h4>
                 <DescItem
                   label="Account Address"
                   value={
@@ -207,12 +207,13 @@ const Account = ({ match }) => {
                 />
                 <DescItem label="Node Public Key" value={data.account.NodePublicKey} />
               </Card>
-              <Card className="card-summary">
+              <Card className="account-card" bordered={false}>
                 <h4>
                   {t('Transactions')}
                   <Badge className="badge-black" count={trxPaginate.Total} overflowCount={1000} />
                 </h4>
                 <Table
+                  className="transactions-table"
                   columns={transactionColumns}
                   dataSource={transactions}
                   pagination={false}
@@ -229,7 +230,7 @@ const Account = ({ match }) => {
                   />
                 )}
               </Card>
-              <Card>
+              <Card className="account-card" bordered={false}>
                 <h4>
                   {t('Nodes')}
                   <Badge className="badge-black" count={nodePaginate.Total} overflowCount={1000} />

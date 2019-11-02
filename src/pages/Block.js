@@ -176,10 +176,10 @@ const Block = ({ match }) => {
                   </h4>
                 </Col>
               </Row>
-              <Card className="card-summary">
+              <Card className="card-summary" bordered={false}>
                 <DescItem label="Height" value={data.block.Height} />
               </Card>
-              <Card className="card-summary">
+              <Card className="card-summary" bordered={false}>
                 <h4>{t('Summary')}</h4>
                 <DescItem label="Timestamp" value={moment(data.block.Timestamp).format('lll')} />
                 <DescItem
@@ -224,7 +224,7 @@ const Block = ({ match }) => {
               </Card>
               <Collapse defaultActiveKey={['3']}>
                 <Panel header="Rewards" key="1">
-                  <Card className="card-summary">
+                  <Card className="card-summary" bordered={false}>
                     <h4>
                       Rewards / Coinbase{' '}
                       <Badge className="badge-black" count={425} overflowCount={1000} />
@@ -239,7 +239,7 @@ const Block = ({ match }) => {
                   </Card>
                 </Panel>
                 <Panel header="Receipts" key="2">
-                  <Card className="card-summary">
+                  <Card className="card-summary" bordered={false}>
                     <h4>
                       Receipts
                       <Badge
@@ -267,7 +267,7 @@ const Block = ({ match }) => {
                   </Card>
                 </Panel>
                 <Panel header="Transactions" key="3">
-                  <Card className="card-summary">
+                  <Card className="card-summary" bordered={false}>
                     <h4>
                       {t('Transactions')}
                       <Badge
