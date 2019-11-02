@@ -95,26 +95,26 @@ const Node = ({ match }) => {
       {!!loading && <LoaderPage />}
       {!error && !loading && (
         <Container>
-          <Row gutter={8}>
+          <Row className="node-row">
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <h4>Public Key {data.node.NodePublicKey}</h4>
+                  <h4>{t('Public Key')} {data.node.NodePublicKey}</h4>
                 </Col>
               </Row>
-              <Card className="card-summary" bordered={false}>
-                <h4>{t('Summary')}</h4>
+              <Card className="node-card" bordered={false}>
+                <h4 className="node-card-title">{t('Summary')}</h4>
                 <DescItem
-                  label="Node Public Key"
+                  label={t('Node Public Key')}
                   value={<CopyToClipboard text={data.node.NodePublicKey} keyID="nodePublicKey" />}
                 />
                 <DescItem
-                  label="Owner Address"
+                  label={t('Owner Address')}
                   value={<CopyToClipboard text={data.node.OwnerAddress} keyID="nodePublicKey" />}
                 />
-                <DescItem label="Node Address" value={data.node.NodeAddress} />
+                <DescItem label={t('Node Address')} value={data.node.NodeAddress} />
                 <DescItem
-                  label="Locked Funds"
+                  label={t('Locked Funds')}
                   value={
                     <NumberFormat
                       value={data.node.LockedFunds || 0}
@@ -124,15 +124,15 @@ const Node = ({ match }) => {
                     />
                   }
                 />
-                <DescItem label="Registered Block Height" value={data.node.RegisteredBlockHeight} />
-                <DescItem label="Participation Score" value={data.node.ParticipationScore} />
+                <DescItem label={t('Registered Block Height')} value={data.node.RegisteredBlockHeight} />
+                <DescItem label={t('Participation Score')} value={data.node.ParticipationScore} />
                 <DescItem
-                  label="Registry Status"
+                  label={t('Registry Status')}
                   value={data.node.RegistryStatus === true ? 'Registered' : 'In Queue'}
                 />
-                <DescItem label="Blocks Found" value={data.node.BlocksFunds} />
+                <DescItem label={t('Blocks Found')} value={data.node.BlocksFunds} />
                 <DescItem
-                  label="Rewards Paid"
+                  label={t('Rewards Paid')}
                   value={
                     <NumberFormat
                       value={data.node.RewardsPaid || 0}
@@ -143,8 +143,8 @@ const Node = ({ match }) => {
                   }
                 />
               </Card>
-              <Card className="card-summary" bordered={false}>
-                <h4>
+              <Card className="node-card" bordered={false}>
+                <h4 className="node-card-title">
                   {t('Blocks')}
                   <Badge className="badge-black" count={blockPaginate.Total} overflowCount={1000} />
                 </h4>

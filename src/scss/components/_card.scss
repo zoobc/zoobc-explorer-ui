@@ -6,7 +6,9 @@
 }
 
 .badge-black {
+  padding-left: 24px !important;
   .ant-badge-count {
+    font-weight: 700;
     background: var(--color-primary-light);
     p {
       margin-bottom: 0 !important
