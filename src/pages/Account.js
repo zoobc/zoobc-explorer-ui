@@ -208,7 +208,7 @@ const Account = ({ match }) => {
                 <DescItem label={t('Node Public Key')} value={data.account.NodePublicKey} />
               </Card>
               <Card className="account-card" bordered={false}>
-                <h4>
+                <h4 className="account-card-title">
                   {t('Transactions')}
                   <Badge className="badge-black" count={trxPaginate.Total} overflowCount={1000} />
                 </h4>
@@ -231,7 +231,7 @@ const Account = ({ match }) => {
                 )}
               </Card>
               <Card className="account-card" bordered={false}>
-                <h4>
+                <h4 className="account-card-title">
                   {t('Nodes')}
                   <Badge className="badge-black" count={nodePaginate.Total} overflowCount={1000} />
                 </h4>
