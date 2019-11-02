@@ -128,7 +128,9 @@ const Transaction = ({ match }) => {
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <h4>{t('Transaction')} {data.transaction.TransactionID}</h4>
+                  <h4>
+                    {t('Transaction')} {data.transaction.TransactionID}
+                  </h4>
                 </Col>
               </Row>
               <Card className="transaction-card" bordered={false}>
