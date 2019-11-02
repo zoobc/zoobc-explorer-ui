@@ -99,7 +99,9 @@ const Node = ({ match }) => {
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <h4>{t('Public Key')} {data.node.NodePublicKey}</h4>
+                  <h4>
+                    {t('Public Key')} {data.node.NodePublicKey}
+                  </h4>
                 </Col>
               </Row>
               <Card className="node-card" bordered={false}>
@@ -124,7 +126,10 @@ const Node = ({ match }) => {
                     />
                   }
                 />
-                <DescItem label={t('Registered Block Height')} value={data.node.RegisteredBlockHeight} />
+                <DescItem
+                  label={t('Registered Block Height')}
+                  value={data.node.RegisteredBlockHeight}
+                />
                 <DescItem label={t('Participation Score')} value={data.node.ParticipationScore} />
                 <DescItem
                   label={t('Registry Status')}
