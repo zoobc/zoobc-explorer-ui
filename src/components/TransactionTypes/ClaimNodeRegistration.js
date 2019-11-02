@@ -5,8 +5,8 @@ import DescItem from '../DescItem'
 
 const ClaimNodeRegistration = ({ data }) => {
   return (
-    <Card className="card-summary">
-      <h4>Claim Node Registration</h4>
+    <Card className="transaction-card">
+      <h4 className="transaction-card-title">Claim Node Registration</h4>
       <DescItem label="Account Address" value={data.AccountAddress} />
       <DescItem label="Node Pulic Key" value={data.NodePublicKey} />
       <DescItem
