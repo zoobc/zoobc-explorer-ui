@@ -1,7 +1,10 @@
 .footer {
+  display: block !important;
   width: 100%;
-  bottom: 0;
-  position: absolute !important;
+  top: 0;
+  left: 0;
+  padding: 0 !important;
+  position: relative !important;
   background-color: var(--color-primary-bg) !important;
 
   a {
@@ -12,29 +15,54 @@
     }
   }
 
-  .footer-body {
-    width: 100%;
-    padding-top: 36px;
-    padding-bottom: 41px;
+  .footer-logo {
+    padding-top: 32px;
+    display: flex;
+    align-items: center;
+    img {
+      width: 32px;
+      height: 36px;
+    }
   }
 
-  .btn-switch {
-    margin-top: 6px;
+  .footer-row {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .footer-text-light {
+    color: var(--color-primary-light-txt);
+  }
+
+  .footer-language {
+    display: inline-block;
+    position: relative;
+    margin-left: 32px;
+    color: var(--color-primary-light-txt);
+  }
+
+  .ant-switch {
+    background-color: var(--color-switch-light-btn) !important;
+  }
+
+  .ant-switch-checked {
+    background-color: var(--color-switch-dark-btn) !important;
   }
 
   .footer-social-icons {
-    position: relative;
-    margin-left: auto;
+    float: right;
   }
 
   .footer-ext {
-    padding-left: 15px;
+    padding-top: 8px;
+    padding-bottom: 32px;
   }
 
   .footer-social-icon {
     color: var(--color-socmed-ic);
-    font-size: 24px;
-    margin-right: 30px;
+    padding-left: 30px;
     text-decoration: none;
     transition: all 0.4s ease-in-out;
   }
@@ -50,16 +78,11 @@
   .footer-horizontal-rule-dark {
     height: 0px;
     background-color: var(--color-dark-line);
-    padding-left: 4px;
   }
 
   .footer-horizontal-rule-light {
     height: 0px;
     background-color: var(--color-light-line);
-  }
-
-  .footer-text-light {
-    color: var(--color-primary-light-txt);
   }
 
   .heading-border {
@@ -92,10 +115,42 @@
     }
   }
 
-  .company-logo {
-    img {
-      max-width: 200px;
+  .footer-link-logo {
+    float: left;
+
+    .footer-link-text {
+      font-size: 24px;
+      font-weight: 800;
+      position: relative;
+      display: inline;
+      padding-left: 8px;
+      vertical-align: middle;
     }
+  }
+
+  .footer-company {
+    float: left;
+    width: 25%;
+    text-align: left;
+  }
+
+  .footer-company-info {
+    padding-left: 0;
+  }
+
+  .footer-company-text {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 27px;
+    color: var(--color-primary-light-txt);
+  }
+
+  .footer-col-info {
+    float: left;
+    width: 25%;
+    text-align: left;
+    padding-left: 32px;
   }
 
   .footer-collapse {
