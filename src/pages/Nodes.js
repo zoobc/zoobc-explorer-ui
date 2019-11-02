@@ -73,9 +73,9 @@ const Nodes = () => {
   return (
     <DefaultLayout>
       <Container>
-        <Row gutter={8}>
+        <Row className="nodes-row">
           <Col span={24}>
-            <Card>
+            <Card className="nodes-card">
               <Row>
                 <Col span={24}>
                   <h5>
