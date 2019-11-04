@@ -76,11 +76,11 @@ const Transactions = () => {
   }, [data])
 
   return (
-    <DefaultLayout fluid>
-      <Container fluid>
-        <Row gutter={8}>
+    <DefaultLayout>
+      <Container>
+        <Row className="transactions-row">
           <Col span={24}>
-            <Card>
+            <Card className="transactions-card" bordered={false}>
               <Row>
                 <Col span={24}>
                   <h5>
@@ -90,6 +90,7 @@ const Transactions = () => {
                 </Col>
               </Row>
               <Table
+                className="transactions-table"
                 columns={columns}
                 dataSource={transactions}
                 pagination={false}

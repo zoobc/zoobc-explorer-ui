@@ -6,8 +6,8 @@ import DescItem from '../DescItem'
 
 const SendMoney = ({ data }) => {
   return (
-    <Card className="card-summary">
-      <h4>Send Money</h4>
+    <Card className="transaction-card">
+      <h4 className="transaction-card-title">Send Money</h4>
       <DescItem
         label="Amount"
         value={

@@ -71,9 +71,9 @@ const Accounts = () => {
   return (
     <DefaultLayout>
       <Container>
-        <Row gutter={8}>
+        <Row className="accounts-row">
           <Col span={24}>
-            <Card>
+            <Card className="accounts-card" bordered={false}>
               <Row>
                 <Col span={24}>
                   <h5>

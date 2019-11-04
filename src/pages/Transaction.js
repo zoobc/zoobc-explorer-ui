@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/react-hooks'
 import moment from 'moment'
 import gql from 'graphql-tag'
 import NumberFormat from 'react-number-format'
+import { useTranslation } from 'react-i18next'
 
 import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
@@ -109,6 +110,7 @@ const TransactionType = ({ trx }) => {
 }
 
 const Transaction = ({ match }) => {
+  const { t } = useTranslation()
   const { params } = match
   const { loading, data, error } = useQuery(GET_TRX_DATA, {
     variables: {
@@ -122,42 +124,44 @@ const Transaction = ({ match }) => {
       {!!loading && <LoaderPage />}
       {!error && !loading && (
         <Container>
-          <Row gutter={8}>
+          <Row className="transaction-row">
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <h4>Transaction {data.transaction.TransactionID}</h4>
+                  <h4>
+                    {t('Transaction')} {data.transaction.TransactionID}
+                  </h4>
                 </Col>
               </Row>
-              <Card className="card-summary">
-                <h4>Summary</h4>
+              <Card className="transaction-card" bordered={false}>
+                <h4 className="transaction-card-title">{t('Summary')}</h4>
                 <DescItem
-                  label="Transaction ID"
+                  label={t('Transaction ID')}
                   value={
                     <CopyToClipboard text={data.transaction.TransactionID} keyID="TransactionID" />
                   }
                 />
                 <DescItem
-                  label="Timestamp"
+                  label={t('Timestamp')}
                   value={moment(data.transaction.Timestamp).format('lll')}
                 />
                 <DescItem label="Transaction Type" value={data.transaction.TransactionTypeName} />
                 <DescItem
-                  label="Block ID"
+                  label={t('Block ID')}
                   value={<CopyToClipboard text={data.transaction.BlockID} keyID="BlockID" />}
                 />
                 <DescItem label="Height" value={data.transaction.Height} />
                 <DescItem
-                  label="Sender"
+                  label={t('Sender')}
                   value={<CopyToClipboard text={data.transaction.Sender} keyID="sender" />}
                 />
                 <DescItem
-                  label="Recipient"
+                  label={t('Recipient')}
                   value={<CopyToClipboard text={data.transaction.Recipient} keyID="recipient" />}
                 />
-                <DescItem label="Confirmations" value={data.transaction.Confirmations} />
+                <DescItem label={t('Confirmations')} value={data.transaction.Confirmations} />
                 <DescItem
-                  label="Fees"
+                  label={t('Fees')}
                   value={
                     <NumberFormat
                       value={data.transaction.FeeConversion || 0}

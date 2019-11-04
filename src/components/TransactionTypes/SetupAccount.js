@@ -5,8 +5,8 @@ import DescItem from '../DescItem'
 
 const SetupAccount = ({ data }) => {
   return (
-    <Card className="card-summary">
-      <h4>Setup Account</h4>
+    <Card className="transaction-card">
+      <h4 className="transaction-card-title">Setup Account</h4>
       <DescItem label="Setter Address" value={data.NodeAddress} />
       <DescItem label="Recipient Address" value={data.AccountAddress} />
       <DescItem label="Property" value={data.Property} />

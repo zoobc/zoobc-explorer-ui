@@ -9,7 +9,7 @@ const DefaultLayout = ({ children, withHero, fluid }) => {
   return (
     <>
       <Header fluid={fluid} />
-      {withHero && <Hero />}
+      {withHero && <Hero className="home-content" />}
       <Layout className="default-layout">{children}</Layout>
       <Footer fluid={fluid} />
     </>

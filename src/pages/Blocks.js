@@ -73,9 +73,9 @@ const Blocks = () => {
   return (
     <DefaultLayout>
       <Container>
-        <Row gutter={8}>
+        <Row className="blocks-row">
           <Col span={24}>
-            <Card>
+            <Card className="blocks-card" bordered={false}>
               <Row>
                 <Col span={24}>
                   <h5>
