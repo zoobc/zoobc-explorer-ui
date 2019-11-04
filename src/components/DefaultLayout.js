@@ -5,13 +5,13 @@ import Hero from './Hero'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
-const DefaultLayout = ({ children, withHero }) => {
+const DefaultLayout = ({ children, withHero, fluid }) => {
   return (
     <>
-      <Header />
+      <Header fluid={fluid} />
       {withHero && <Hero />}
       <Layout className="default-layout">{children}</Layout>
-      <Footer />
+      <Footer fluid={fluid} />
     </>
   )
 }

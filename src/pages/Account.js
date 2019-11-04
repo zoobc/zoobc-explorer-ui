@@ -39,8 +39,11 @@ const GET_TRX_BY_ACCOUNT = gql`
         Sender
         Recipient
         Confirmations
-        Fee
+        FeeConversion
         BlockID
+        SendMoney {
+          AmountConversion
+        }
       }
       Paginate {
         Page
