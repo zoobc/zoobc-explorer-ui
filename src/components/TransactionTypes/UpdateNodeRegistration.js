@@ -6,8 +6,8 @@ import DescItem from '../DescItem'
 
 const UpdateNodeRegistration = ({ data }) => {
   return (
-    <Card className="card-summary">
-      <h4>Update Node Registration</h4>
+    <Card className="transaction-card">
+      <h4 className="transaction-card-title">Update Node Registration</h4>
       <DescItem label="Node Address" value={data.NodeAddress} />
       <DescItem label="Node Pulic Key" value={data.NodePublicKey} />
       <DescItem

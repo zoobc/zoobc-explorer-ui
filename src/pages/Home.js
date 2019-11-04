@@ -1,10 +1,10 @@
 import React from 'react'
-import { Card, Button, List } from 'antd'
+import { Card, Button, List, Row, Col } from 'antd'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import { Link } from 'react-router-dom'
 import NumberFormat from 'react-number-format'
-import { Row, Col } from 'reactstrap'
+// import { Row, Col } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 
 import DefaultLayout from '../components/DefaultLayout'
@@ -54,13 +54,14 @@ const Home = ({ history }) => {
       }
     })
   }
+
   return (
     <DefaultLayout>
       <Container>
         <Hero />
-        <Row>
-          <Col span={12}>
-            <Card>
+        <Row className="home-latest">
+          <Col className="home-col-left">
+            <Card className="home-card" bordered={false}>
               <h5>
                 <i className="bcz-calendar" />
                 <strong>{t('Latest Blocks')}</strong>
@@ -72,14 +73,14 @@ const Home = ({ history }) => {
                 className="overview-list"
                 renderItem={item => (
                   <List.Item>
-                    <Row style={{ width: '100%' }} className="mx-0">
-                      <Col span={10} md="5">
+                    <Row>
+                      <Col className="home-col-list">
                         <div>
                           <Link to={`/blocks/${item.BlockID}`}>{item.Height}</Link>
                         </div>
                         <div>{moment(item.Timestamp).format('lll')}</div>
                       </Col>
-                      <Col span={14} md="7">
+                      <Col className="home-col-list">
                         <div>
                           <strong>{t('Blocksmith')}</strong>
                         </div>
@@ -94,8 +95,8 @@ const Home = ({ history }) => {
               </Button>
             </Card>
           </Col>
-          <Col span={12}>
-            <Card>
+          <Col className="home-col-right">
+            <Card className="home-card" bordered={false}>
               <h5>
                 <i className="bcz-calendar" />
                 <strong>{t('Latest Transactions')}</strong>
@@ -107,8 +108,8 @@ const Home = ({ history }) => {
                 className="overview-list"
                 renderItem={item => (
                   <List.Item>
-                    <Row style={{ width: '100%' }} className="mx-0">
-                      <Col md="6">
+                    <Row>
+                      <Col className="home-col-list">
                         <div>
                           <strong>{t('Transaction ID')}</strong>
                         </div>
@@ -118,7 +119,7 @@ const Home = ({ history }) => {
                           </Link>
                         </div>
                       </Col>
-                      <Col md="6">
+                      <Col className="home-col-list">
                         <div>
                           <strong>{t('Fees')}</strong>{' '}
                           {!!item.FeeConversion && (

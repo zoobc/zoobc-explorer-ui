@@ -25,28 +25,26 @@ const Hero = ({ history }) => {
   }
 
   return (
-    <Card className="hero">
-      <div className="hero-content">
-        <h3>
-          <strong>ZooBC Explorer</strong>
-        </h3>
-        <Row gutter={24} style={{ width: '100%' }}>
-          <Col span={24}>
-            <Search
-              size="large"
-              prefix={<Icon type="search" style={{ fontSize: '22px', color: 'rgba(0,0,0,.45)' }} />}
-              placeholder={t('Search by Account Address / Transaction ID / Block ID')}
-              enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
-              onSearch={onSearch}
-            />
-          </Col>
-        </Row>
-        <h6 className="hero-subtitle">
-          {t(
-            'A webview for searching and displaying data published, so that a user can easily find any info about blockchain'
-          )}
-        </h6>
-      </div>
+    <Card className="hero-content" bordered={false}>
+      <h3>
+        <strong>ZooBC Explorer</strong>
+      </h3>
+      <Row>
+        <Col span={24}>
+          <Search
+            size="large"
+            prefix={<Icon type="search" style={{ fontSize: '18px', color: 'rgba(0,0,0,.45)' }} />}
+            placeholder={t('Search by Account Address / Transaction ID / Block ID')}
+            enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
+            onSearch={onSearch}
+          />
+        </Col>
+      </Row>
+      <h6 className="hero-subtitle">
+        {t(
+          'A webview for searching and displaying data published, so that a user can easily find any info about blockchain'
+        )}
+      </h6>
     </Card>
   )
 }
