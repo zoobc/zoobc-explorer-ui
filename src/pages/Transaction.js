@@ -5,6 +5,7 @@ import moment from 'moment'
 import gql from 'graphql-tag'
 import NumberFormat from 'react-number-format'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
@@ -148,16 +149,46 @@ const Transaction = ({ match }) => {
                 <DescItem label="Transaction Type" value={data.transaction.TransactionTypeName} />
                 <DescItem
                   label={t('Block ID')}
-                  value={<CopyToClipboard text={data.transaction.BlockID} keyID="BlockID" />}
+                  value={
+                    <CopyToClipboard
+                      text={data.transaction.BlockID}
+                      component={
+                        <Link to={`/blocks/${data.transaction.BlockID}`}>
+                          {data.transaction.BlockID}
+                        </Link>
+                      }
+                      keyID="BlockID"
+                    />
+                  }
                 />
                 <DescItem label="Height" value={data.transaction.Height} />
                 <DescItem
                   label={t('Sender')}
-                  value={<CopyToClipboard text={data.transaction.Sender} keyID="sender" />}
+                  value={
+                    <CopyToClipboard
+                      text={data.transaction.Sender}
+                      component={
+                        <Link to={`/accounts/${data.transaction.Sender}`}>
+                          {data.transaction.Sender}
+                        </Link>
+                      }
+                      keyID="sender"
+                    />
+                  }
                 />
                 <DescItem
                   label={t('Recipient')}
-                  value={<CopyToClipboard text={data.transaction.Recipient} keyID="recipient" />}
+                  value={
+                    <CopyToClipboard
+                      text={data.transaction.Recipient}
+                      component={
+                        <Link to={`/accounts/${data.transaction.Recipient}`}>
+                          {data.transaction.Recipient}
+                        </Link>
+                      }
+                      keyID="recipient"
+                    />
+                  }
                 />
                 <DescItem label={t('Confirmations')} value={data.transaction.Confirmations} />
                 <DescItem

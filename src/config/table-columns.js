@@ -110,8 +110,8 @@ export const blockColumns = [
     title: <Title text="Blocksmith" />,
     dataIndex: 'BlocksmithID',
     key: 'BlocksmithID',
-    render(text) {
-      return shortenHash(text, 30)
+    render(text, record) {
+      return <Link to={`/blocks/${record.BlockID}`}>{shortenHash(text, 30)}</Link>
     },
   },
   {
