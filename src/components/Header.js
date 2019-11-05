@@ -78,7 +78,9 @@ const Header = ({ history, location, fluid }) => {
                 onSearch={onSearch}
               />
             </Tooltip>
-            <Button type="primary" onClick={() => setIsOpen(true)}>{selectedTestnet.name}</Button>
+            <Button type="primary" onClick={() => setIsOpen(true)}>
+              {selectedTestnet.name}
+            </Button>
           </div>
         </Container>
       </Layout.Header>
@@ -101,7 +103,9 @@ const Header = ({ history, location, fluid }) => {
                 block
                 onClick={() => onSelectNetwork(item)}
               >
-                <Avatar size="large" className="mr-2" style={{ backgroundColor: item.color }}>{item.name}</Avatar>
+                <Avatar size="large" className="mr-2" style={{ backgroundColor: item.color }}>
+                  {item.name}
+                </Avatar>
                 <p className="mb-0">{item.name}</p>
               </Button>
             </List.Item>
