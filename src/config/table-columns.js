@@ -138,6 +138,14 @@ export const transactionColumns = [
     },
   },
   {
+    title: <Title text="Height" />,
+    dataIndex: 'Height',
+    key: 'Height',
+    render(text, record) {
+      return <Link to={`/blocks/${record.BlockID}`}>{text}</Link>
+    },
+  },
+  {
     title: <Title text="Timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
@@ -218,7 +226,10 @@ export const nodeColumns = [
     dataIndex: 'RegistryStatus',
     key: 'RegistryStatus',
     render(text) {
-      return !!text.toString() && (text.toString() === 'true' ? 'Registered' : 'In Queue')
+      return (
+        !!text.toString() &&
+        (text.toString() === '0' ? 'Registered' : text.toString() === '1' ? 'In Queue' : 'Stray')
+      )
     },
   },
   {
