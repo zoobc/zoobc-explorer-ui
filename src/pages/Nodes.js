@@ -1,34 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Card, Table, Pagination } from 'antd'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { Row, Col, Card, Table, Pagination, Tabs } from 'antd'
 import { useTranslation } from 'react-i18next'
 
-import { getSortString, isEmptyObject } from '../utils'
+import { isEmptyObject } from '../utils'
 import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
 import { nodeColumns } from '../config/table-columns'
+import useFetchNode from '../hooks/useFetchNode'
+
+const { TabPane } = Tabs
 
 const defaultSort = { columnKey: 'NodePublicKey', order: 'ascend' }
-const GET_NODES_DATA = gql`
-  query getNodes($page: Int, $sorter: String) {
-    nodes(page: $page, limit: 15, order: $sorter) {
-      Nodes {
-        NodePublicKey
-        OwnerAddress
-        NodeAddress
-        LockedFunds
-        RegistryStatus
-        ParticipationScore
-      }
-      Paginate {
-        Page
-        Count
-        Total
-      }
-    }
-  }
-`
 
 const Nodes = () => {
   const { t } = useTranslation()
@@ -36,10 +18,7 @@ const Nodes = () => {
   const [nodes, setNodes] = useState([])
   const [paginate, setPaginate] = useState({})
   const [sorted, setSorted] = useState(defaultSort)
-
-  const onChangeTable = (pagination, filters, sorter) => {
-    setSorted(isEmptyObject(sorter) ? defaultSort : sorter)
-  }
+  const [tabValue, setTabValue] = useState(3)
 
   const columns = nodeColumns.map(item => {
     item.sortDirections = ['ascend', 'descend']
@@ -49,12 +28,12 @@ const Nodes = () => {
     return item
   })
 
-  const { loading, data } = useQuery(GET_NODES_DATA, {
-    variables: {
-      page: currentPage,
-      sorter: getSortString(sorted),
-    },
-  })
+  const { doFetch, loading, data } = useFetchNode(currentPage, sorted, tabValue)
+
+  useEffect(() => {
+    doFetch()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     if (!!data) {
@@ -68,7 +47,38 @@ const Nodes = () => {
       setNodes(nodeData)
       setPaginate(data.nodes.Paginate)
     }
-  }, [data])
+  }, [data, tabValue])
+
+  const onChangeTab = value => {
+    setTabValue(value)
+    doFetch()
+  }
+
+  const onChangeTable = (pagination, filters, sorter) => {
+    setSorted(isEmptyObject(sorter) ? defaultSort : sorter)
+  }
+
+  const DisplayTable = () => (
+    <>
+      <Table
+        columns={columns}
+        dataSource={nodes}
+        pagination={false}
+        size="small"
+        loading={loading}
+        onChange={onChangeTable.bind(this)}
+      />
+      {!!data && (
+        <Pagination
+          className="pagination-center"
+          current={paginate.Page}
+          total={paginate.Total}
+          pageSize={15}
+          onChange={page => setCurrentPage(page)}
+        />
+      )}
+    </>
+  )
 
   return (
     <DefaultLayout>
@@ -84,23 +94,20 @@ const Nodes = () => {
                   </h5>
                 </Col>
               </Row>
-              <Table
-                columns={columns}
-                dataSource={nodes}
-                pagination={false}
-                size="small"
-                loading={loading}
-                onChange={onChangeTable.bind(this)}
-              />
-              {!!data && (
-                <Pagination
-                  className="pagination-center"
-                  current={paginate.Page}
-                  total={paginate.Total}
-                  pageSize={15}
-                  onChange={page => setCurrentPage(page)}
-                />
-              )}
+              <Tabs defaultActiveKey="3" onChange={onChangeTab}>
+                <TabPane tab="All" key="3">
+                  <DisplayTable />
+                </TabPane>
+                <TabPane tab="Registered" key="0">
+                  <DisplayTable />
+                </TabPane>
+                <TabPane tab="In Queue" key="1">
+                  <DisplayTable />
+                </TabPane>
+                <TabPane tab="Stray" key="2">
+                  <DisplayTable />
+                </TabPane>
+              </Tabs>
             </Card>
           </Col>
         </Row>
