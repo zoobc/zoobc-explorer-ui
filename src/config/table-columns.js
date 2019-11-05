@@ -5,6 +5,14 @@ import NumberFormat from 'react-number-format'
 
 import { shortenHash } from '../utils/shorten'
 import { useTranslation } from 'react-i18next'
+import { Badge } from 'antd'
+
+//mock badge indicator
+const randomBadgeColor = () => {
+  const color = ['green', 'blue', 'yellow', 'red', 'black']
+
+  return color[Math.floor(Math.random() * color.length)]
+}
 
 const renderCurrenncy = text => {
   return (
@@ -111,7 +119,12 @@ export const blockColumns = [
     dataIndex: 'BlocksmithID',
     key: 'BlocksmithID',
     render(text) {
-      return shortenHash(text, 30)
+      return (
+        <div>
+          <Badge color={randomBadgeColor()} />
+          {shortenHash(text, 30)}
+        </div>
+      )
     },
   },
   {
