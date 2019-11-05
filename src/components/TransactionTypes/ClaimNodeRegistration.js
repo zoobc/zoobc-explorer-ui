@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { Card } from 'antd'
 
 import DescItem from '../DescItem'
-import CopyToClipboard from '../CopyToClipboard'
 
 const ClaimNodeRegistration = ({ data }) => {
   return (
@@ -11,23 +10,11 @@ const ClaimNodeRegistration = ({ data }) => {
       <h4 className="transaction-card-title">Claim Node Registration</h4>
       <DescItem
         label="Account Address"
-        value={
-          <CopyToClipboard
-            text={data.AccountAddress}
-            component={<Link to={`/nodes/${data.AccountAddress}`}>{data.AccountAddress}</Link>}
-            keyID="accountAddress"
-          />
-        }
+        value={<Link to={`/nodes/${data.AccountAddress}`}>{data.AccountAddress}</Link>}
       />
       <DescItem
         label="Node Pulic Key"
-        value={
-          <CopyToClipboard
-            text={data.NodePublicKey}
-            component={<Link to={`/nodes/${data.NodePublicKey}`}>{data.NodePublicKey}</Link>}
-            keyID="nodePublickKey"
-          />
-        }
+        value={<Link to={`/nodes/${data.NodePublicKey}`}>{data.NodePublicKey}</Link>}
       />
       <DescItem
         label="POOW Message Bytes"

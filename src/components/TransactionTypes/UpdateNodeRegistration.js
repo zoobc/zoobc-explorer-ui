@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import NumberFormat from 'react-number-format'
 
 import DescItem from '../DescItem'
-import CopyToClipboard from '../CopyToClipboard'
 
 const UpdateNodeRegistration = ({ data }) => {
   return (
@@ -12,23 +11,11 @@ const UpdateNodeRegistration = ({ data }) => {
       <h4 className="transaction-card-title">Update Node Registration</h4>
       <DescItem
         label="Account Address"
-        value={
-          <CopyToClipboard
-            text={data.AccountAddress}
-            component={<Link to={`/nodes/${data.AccountAddress}`}>{data.AccountAddress}</Link>}
-            keyID="accountAddress"
-          />
-        }
+        value={<Link to={`/nodes/${data.AccountAddress}`}>{data.AccountAddress}</Link>}
       />
       <DescItem
         label="Node Pulic Key"
-        value={
-          <CopyToClipboard
-            text={data.NodePublicKey}
-            component={<Link to={`/nodes/${data.NodePublicKey}`}>{data.NodePublicKey}</Link>}
-            keyID="nodePublickKey"
-          />
-        }
+        value={<Link to={`/nodes/${data.NodePublicKey}`}>{data.NodePublicKey}</Link>}
       />
       <DescItem
         label="Locked Balance"

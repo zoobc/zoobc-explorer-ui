@@ -150,44 +150,26 @@ const Transaction = ({ match }) => {
                 <DescItem
                   label={t('Block ID')}
                   value={
-                    <CopyToClipboard
-                      text={data.transaction.BlockID}
-                      component={
-                        <Link to={`/blocks/${data.transaction.BlockID}`}>
-                          {data.transaction.BlockID}
-                        </Link>
-                      }
-                      keyID="BlockID"
-                    />
+                    <Link to={`/blocks/${data.transaction.BlockID}`}>
+                      {data.transaction.BlockID}
+                    </Link>
                   }
                 />
                 <DescItem label="Height" value={data.transaction.Height} />
                 <DescItem
                   label={t('Sender')}
                   value={
-                    <CopyToClipboard
-                      text={data.transaction.Sender}
-                      component={
-                        <Link to={`/accounts/${data.transaction.Sender}`}>
-                          {data.transaction.Sender}
-                        </Link>
-                      }
-                      keyID="sender"
-                    />
+                    <Link to={`/accounts/${data.transaction.Sender}`}>
+                      {data.transaction.Sender}
+                    </Link>
                   }
                 />
                 <DescItem
                   label={t('Recipient')}
                   value={
-                    <CopyToClipboard
-                      text={data.transaction.Recipient}
-                      component={
-                        <Link to={`/accounts/${data.transaction.Recipient}`}>
-                          {data.transaction.Recipient}
-                        </Link>
-                      }
-                      keyID="recipient"
-                    />
+                    <Link to={`/accounts/${data.transaction.Recipient}`}>
+                      {data.transaction.Recipient}
+                    </Link>
                   }
                 />
                 <DescItem label={t('Confirmations')} value={data.transaction.Confirmations} />

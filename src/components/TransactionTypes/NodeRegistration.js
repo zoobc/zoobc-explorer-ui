@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import NumberFormat from 'react-number-format'
 
 import DescItem from '../DescItem'
-import CopyToClipboard from '../CopyToClipboard'
 
 const NodeRegistration = ({ data }) => {
   return (
@@ -13,23 +12,11 @@ const NodeRegistration = ({ data }) => {
       <DescItem label="Node Address" value={data.NodeAddress} />
       <DescItem
         label="Account Address"
-        value={
-          <CopyToClipboard
-            text={data.AccountAddress}
-            component={<Link to={`/nodes/${data.AccountAddress}`}>{data.AccountAddress}</Link>}
-            keyID="accountAddress"
-          />
-        }
+        value={<Link to={`/nodes/${data.AccountAddress}`}>{data.AccountAddress}</Link>}
       />
       <DescItem
         label="Node Pulic Key"
-        value={
-          <CopyToClipboard
-            text={data.NodePublicKey}
-            component={<Link to={`/nodes/${data.NodePublicKey}`}>{data.NodePublicKey}</Link>}
-            keyID="nodePublickKey"
-          />
-        }
+        value={<Link to={`/nodes/${data.NodePublicKey}`}>{data.NodePublicKey}</Link>}
       />
       <DescItem
         label="Locked Balance"
