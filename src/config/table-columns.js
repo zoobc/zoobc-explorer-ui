@@ -9,7 +9,7 @@ import { Badge } from 'antd'
 
 //mock badge indicator
 const randomBadgeColor = () => {
-  const color = ['green', 'blue', 'yellow', 'red', 'black']
+  const color = ['green', 'blue', 'yellow', 'red', 'black', '#b5b7b9']
 
   return color[Math.floor(Math.random() * color.length)]
 }
