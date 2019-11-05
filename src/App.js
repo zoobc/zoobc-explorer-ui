@@ -8,7 +8,7 @@ import i18n from './i18n'
 
 import NotFound from './pages/Errors/NotFound'
 import Fallback from './components/Fallback'
-import TesnetContext, { TesnetState } from './context/TesnetContext'
+import TestnetContext, { TestnetState } from './context/TestnetContext'
 
 const Home = React.lazy(() => import('./pages/Home'))
 const Blocks = React.lazy(() => import('./pages/Blocks'))
@@ -21,7 +21,7 @@ const Nodes = React.lazy(() => import('./pages/Nodes'))
 const Node = React.lazy(() => import('./pages/Node'))
 
 function ApolloMultiProvider({ children }) {
-  const { selectedTestnet } = useContext(TesnetContext)
+  const { selectedTestnet } = useContext(TestnetContext)
   return (
     <ApolloProvider client={clients[selectedTestnet.value] || defaultClient}>
       {children}
@@ -30,9 +30,8 @@ function ApolloMultiProvider({ children }) {
 }
 
 function App() {
-
   return (
-    <TesnetState>
+    <TestnetState>
       <ApolloMultiProvider>
         <I18nextProvider i18n={i18n}>
           <BrowserRouter>
@@ -42,7 +41,11 @@ function App() {
                 <Route exact path="/blocks" render={props => <Blocks {...props} />} />
                 <Route exact path="/blocks/:id" render={props => <Block {...props} />} />
                 <Route exact path="/transactions" render={props => <Transactions {...props} />} />
-                <Route exact path="/transactions/:id" render={props => <Transaction {...props} />} />
+                <Route
+                  exact
+                  path="/transactions/:id"
+                  render={props => <Transaction {...props} />}
+                />
                 <Route exact path="/accounts" render={props => <Accounts {...props} />} />
                 <Route exact path="/accounts/:id" render={props => <Account {...props} />} />
                 <Route exact path="/nodes" render={props => <Nodes {...props} />} />
@@ -54,7 +57,7 @@ function App() {
           </BrowserRouter>
         </I18nextProvider>
       </ApolloMultiProvider>
-    </TesnetState>
+    </TestnetState>
   )
 }
 

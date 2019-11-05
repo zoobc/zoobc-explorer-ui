@@ -7,8 +7,8 @@ import { useTranslation } from 'react-i18next'
 import useSearch from '../hooks/useSearch'
 import Container from './Container'
 import zoobcLogo from '../assets/images/logo-zoobc.svg'
-import tesnet from '../config/tesnet'
-import TesnetContext from '../context/TesnetContext'
+import testnet from '../config/testnet'
+import TestnetContext from '../context/TestnetContext'
 
 const { Search } = Input
 
@@ -18,7 +18,7 @@ const Header = ({ history, location, fluid }) => {
   const { t } = useTranslation()
   const [keyword, setKeyword] = useState('')
   const [isOpen, setIsOpen] = useState(false)
-  const { selectedTestnet, onChangeSelectedTestnet } = useContext(TesnetContext)
+  const { selectedTestnet, onChangeSelectedTestnet } = useContext(TestnetContext)
   const { doSearch, loading } = useSearch(keyword, history)
 
   const onSearch = value => {
@@ -91,7 +91,7 @@ const Header = ({ history, location, fluid }) => {
       >
         <List
           itemLayout="horizontal"
-          dataSource={tesnet}
+          dataSource={testnet}
           renderItem={item => (
             <List.Item>
               <Button

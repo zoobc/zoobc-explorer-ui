@@ -1,12 +1,12 @@
 import React, { createContext, useReducer } from 'react';
 import store from '../utils/store';
-import tesnet from '../config/tesnet';
+import testnet from '../config/testnet';
 
 const SET_TESTNET = 'SET_TESTNET';
 
-const TesnetContext = createContext();
+const TestnetContext = createContext();
 
-const tesnetReducers = (state, action) => {
+const testnetReducers = (state, action) => {
   switch (action.type) {
     case SET_TESTNET:
       return {
@@ -18,12 +18,12 @@ const tesnetReducers = (state, action) => {
   }
 }
 
-export const TesnetState = ({ children }) => {
-  const tesnetDefaultValue = {
-    selectedTestnet: store.get('testnet') || tesnet[0],
+export const TestnetState = ({ children }) => {
+  const testnetDefaultValue = {
+    selectedTestnet: store.get('testnet') || testnet[0],
   };
 
-  const [state, dispatch] = useReducer(tesnetReducers, tesnetDefaultValue)
+  const [state, dispatch] = useReducer(testnetReducers, testnetDefaultValue)
 
   const onChangeSelectedTestnet = data => {
     store.set('testnet', data)
@@ -34,15 +34,15 @@ export const TesnetState = ({ children }) => {
   }
 
   return (
-    <TesnetContext.Provider
+    <TestnetContext.Provider
       value={{
         selectedTestnet: state.selectedTestnet,
         onChangeSelectedTestnet
       }}
     >
       {children}
-    </TesnetContext.Provider>
+    </TestnetContext.Provider>
   )
 }
 
-export default TesnetContext;
+export default TestnetContext;

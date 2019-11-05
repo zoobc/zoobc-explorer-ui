@@ -13,5 +13,5 @@ export {
   getSortOrder,
   isEmptyObject,
   isObject,
-  store
+  store,
 }
