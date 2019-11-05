@@ -138,6 +138,14 @@ export const transactionColumns = [
     },
   },
   {
+    title: <Title text="Height" />,
+    dataIndex: 'Height',
+    key: 'Height',
+    render(text, record) {
+      return <Link to={`/blocks/${record.BlockID}`}>{text}</Link>
+    },
+  },
+  {
     title: <Title text="Timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
