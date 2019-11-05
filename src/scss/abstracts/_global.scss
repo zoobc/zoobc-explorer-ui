@@ -39,3 +39,7 @@ code {
 .min-height-body {
   min-height: calc(100vh - 380px);
 }
+
+a:hover {
+  text-decoration: underline !important;
+}
