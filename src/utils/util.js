@@ -31,3 +31,11 @@ export function isEmptyObject(obj) {
   }
   return true
 }
+
+export function isObjectString(val) {
+  return val && {}.toString.call(val) === '[object String]';
+}
+
+export function isObject(val) {
+  return val && typeof val === 'object';
+}

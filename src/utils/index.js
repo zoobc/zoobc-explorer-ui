@@ -1,6 +1,7 @@
 import { apiGet, apiPost, apiPut } from './api'
 import { getUnique } from './validate'
-import { getSortString, getSortObject, getSortOrder, isEmptyObject } from './util'
+import store from './store'
+import { getSortString, getSortObject, getSortOrder, isEmptyObject, isObject } from './util'
 
 export {
   apiGet,
@@ -11,4 +12,6 @@ export {
   getSortObject,
   getSortOrder,
   isEmptyObject,
+  isObject,
+  store
 }

@@ -1,9 +1,17 @@
 import ApolloClient from 'apollo-boost'
 
-import config from '../config'
+import { tesnetClient } from '../config/tesnet'
 
-const client = new ApolloClient({
-  uri: config.endpoint.graphql,
-})
+const setupApolloCLient = uri => {
+  return new ApolloClient({
+    uri
+  })
+}
+const clients = tesnetClient.reduce((current, value, index) => {
+  current[`testnet${index + 1}`] = setupApolloCLient(value)
+  return current
+}, {});
 
-export default client
+export const defaultClient = setupApolloCLient(tesnetClient[0])
+
+export default clients
