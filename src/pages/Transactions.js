@@ -15,6 +15,7 @@ const GET_TRXS_DATA = gql`
     transactions(page: $page, limit: 15, order: $sorter) {
       Transactions {
         TransactionID
+        BlockID
         Height
         Timestamp
         TransactionTypeName
