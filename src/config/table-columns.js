@@ -5,6 +5,14 @@ import NumberFormat from 'react-number-format'
 
 import { shortenHash } from '../utils/shorten'
 import { useTranslation } from 'react-i18next'
+import { Badge } from 'antd'
+
+//mock badge indicator
+const randomBadgeColor = () => {
+  const color = ['green', 'blue', 'yellow', 'red', 'black', '#b5b7b9']
+
+  return color[Math.floor(Math.random() * color.length)]
+}
 
 const renderCurrenncy = text => {
   return (
@@ -111,7 +119,12 @@ export const blockColumns = [
     dataIndex: 'BlocksmithID',
     key: 'BlocksmithID',
     render(text, record) {
-      return <Link to={`/blocks/${record.BlockID}`}>{shortenHash(text, 30)}</Link>
+      return (
+        <div>
+          <Badge color={randomBadgeColor()} />
+          <Link to={`/blocks/${record.BlockID}`}>{shortenHash(text, 30)}</Link>
+        </div>
+      )
     },
   },
   {
@@ -135,6 +148,14 @@ export const transactionColumns = [
     key: 'TransactionID',
     render(text) {
       return <Link to={`/transactions/${text}`}>{text}</Link>
+    },
+  },
+  {
+    title: <Title text="Height" />,
+    dataIndex: 'Height',
+    key: 'Height',
+    render(text, record) {
+      return <Link to={`/blocks/${record.BlockID}`}>{text}</Link>
     },
   },
   {
@@ -218,7 +239,10 @@ export const nodeColumns = [
     dataIndex: 'RegistryStatus',
     key: 'RegistryStatus',
     render(text) {
-      return !!text.toString() && (text.toString() === 'true' ? 'Registered' : 'In Queue')
+      return (
+        !!text.toString() &&
+        (text.toString() === '0' ? 'Registered' : text.toString() === '1' ? 'In Queue' : 'Stray')
+      )
     },
   },
   {
