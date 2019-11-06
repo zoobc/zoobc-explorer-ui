@@ -229,7 +229,7 @@ const Block = ({ match }) => {
                 <DescItem label={t('Payload Hash')} value={data.block.PayloadHash} />
               </Card>
               <Collapse className="block-collapse" defaultActiveKey={['1']} bordered={false}>
-                <Panel className="block-card-title block-collapse" header="Rewards" key="1">
+                <Panel className="block-collapse" header="Rewards" key="1">
                   <h4 className="block-card-title-table">
                     {t('Coinbase')}
                     <Badge className="badge-black" count={425} overflowCount={1000} />
@@ -245,7 +245,7 @@ const Block = ({ match }) => {
                 </Panel>
               </Collapse>
               <Collapse className="block-collapse" defaultActiveKey={['2']} bordered={false}>
-                <Panel className="block-card-title block-collapse" header="Receipts" key="2">
+                <Panel className="block-collapse" header="Receipts" key="2">
                   <h4 className="block-card-title-table">
                     {t('Receipt')}
                     <Badge
@@ -273,7 +273,7 @@ const Block = ({ match }) => {
                 </Panel>
               </Collapse>
               <Collapse className="block-collapse" defaultActiveKey={['3']} bordered={false}>
-                <Panel className="block-card-title block-collapse" header="Transactions" key="3">
+                <Panel className="block-collapse" header="Transactions" key="3">
                   <h4 className="block-card-title-table">
                     {t('Transactions')}
                     <Badge
