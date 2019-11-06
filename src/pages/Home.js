@@ -80,9 +80,6 @@ const Home = ({ history }) => {
     })
   }
 
-  //console.log('block graph : ', blockGraphData)
-  //console.log('trx graph : ', trxGraphData)
-
   return (
     <DefaultLayout>
       <Container>
