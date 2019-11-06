@@ -17,7 +17,7 @@ const randomBadgeColor = () => {
 const renderCurrenncy = text => {
   return (
     !!text && (
-      <NumberFormat value={text} displayType={'text'} thousandSeparator={true} suffix={' BCZ'} />
+      <NumberFormat value={text} displayType={'text'} thousandSeparator={true} suffix={' ZBC'} />
     )
   )
 }
@@ -35,7 +35,7 @@ const renderAmountCurrenncy = (text, record) => {
           value={text}
           displayType={'text'}
           thousandSeparator={true}
-          suffix={' BCZ'}
+          suffix={' ZBC'}
           style={{ color: isSender ? 'red' : 'green' }}
         />
       )
@@ -44,7 +44,7 @@ const renderAmountCurrenncy = (text, record) => {
 
   return (
     !!text && (
-      <NumberFormat value={text} displayType={'text'} thousandSeparator={true} suffix={' BCZ'} />
+      <NumberFormat value={text} displayType={'text'} thousandSeparator={true} suffix={' ZBC'} />
     )
   )
 }

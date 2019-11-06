@@ -122,7 +122,7 @@ const Node = ({ match }) => {
                       value={data.node.LockedFunds || 0}
                       displayType={'text'}
                       thousandSeparator={true}
-                      suffix={' BCZ'}
+                      suffix={' ZBC'}
                     />
                   }
                 />
@@ -143,7 +143,7 @@ const Node = ({ match }) => {
                       value={data.node.RewardsPaid || 0}
                       displayType={'text'}
                       thousandSeparator={true}
-                      suffix={' BCZ'}
+                      suffix={' ZBC'}
                     />
                   }
                 />

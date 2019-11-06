@@ -17,7 +17,7 @@ const UpdateNodeRegistration = ({ data }) => {
             value={data.LockedBalanceConversion || 0}
             displayType={'text'}
             thousandSeparator={true}
-            suffix={' BCZ'}
+            suffix={' ZBC'}
           />
         }
       />

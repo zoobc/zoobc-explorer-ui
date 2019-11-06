@@ -167,7 +167,7 @@ const Transaction = ({ match }) => {
                       value={data.transaction.FeeConversion || 0}
                       displayType={'text'}
                       thousandSeparator={true}
-                      suffix={' BCZ'}
+                      suffix={' ZBC'}
                     />
                   }
                 />

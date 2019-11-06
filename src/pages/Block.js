@@ -205,7 +205,7 @@ const Block = ({ match }) => {
                       value={data.block.TotalFeeConversion}
                       displayType={'text'}
                       thousandSeparator={true}
-                      suffix={' BCZ'}
+                      suffix={' ZBC'}
                     />
                   }
                 />
@@ -216,7 +216,7 @@ const Block = ({ match }) => {
                       value={data.block.TotalRewardsConversion}
                       displayType={'text'}
                       thousandSeparator={true}
-                      suffix={' BCZ'}
+                      suffix={' ZBC'}
                     />
                   }
                 />
@@ -230,81 +230,75 @@ const Block = ({ match }) => {
               </Card>
               <Collapse className="block-collapse" defaultActiveKey={['1']} bordered={false}>
                 <Panel className="block-card-title block-collapse" header="Rewards" key="1">
-                  <Card className="block-card" bordered={false}>
-                    <h4 className="block-card-title">
-                      {t('Coinbase')}
-                      <Badge className="badge-black" count={425} overflowCount={1000} />
-                    </h4>
-                    <Table
-                      className="transactions-table"
-                      columns={transactionColumns}
-                      dataSource={[]}
-                      pagination={false}
-                      size="small"
-                    />
-                    <Pagination className="pagination-center" current={5} total={100} />
-                  </Card>
+                  <h4 className="block-card-title-table">
+                    {t('Coinbase')}
+                    <Badge className="badge-black" count={425} overflowCount={1000} />
+                  </h4>
+                  <Table
+                    className="transactions-table"
+                    columns={transactionColumns}
+                    dataSource={[]}
+                    pagination={false}
+                    size="small"
+                  />
+                  <Pagination className="pagination-center" current={5} total={100} />
                 </Panel>
               </Collapse>
               <Collapse className="block-collapse" defaultActiveKey={['2']} bordered={false}>
                 <Panel className="block-card-title block-collapse" header="Receipts" key="2">
-                  <Card className="block-card" bordered={false}>
-                    <h4 className="block-card-title">
-                      {t('Receipt')}
-                      <Badge
-                        className="badge-black"
-                        count={receiptPaginate.Total}
-                        overflowCount={1000}
-                      />
-                    </h4>
-                    <Table
-                      columns={publishedReceiptColumns}
-                      dataSource={receipts}
-                      pagination={false}
-                      size="small"
-                      loading={loading}
+                  <h4 className="block-card-title-table">
+                    {t('Receipt')}
+                    <Badge
+                      className="badge-black"
+                      count={receiptPaginate.Total}
+                      overflowCount={1000}
                     />
-                    {!!data && (
-                      <Pagination
-                        className="pagination-center"
-                        current={receiptPaginate.Page}
-                        total={receiptPaginate.Total}
-                        pageSize={5}
-                        onChange={page => setReceiptCurrentPage(page)}
-                      />
-                    )}
-                  </Card>
+                  </h4>
+                  <Table
+                    columns={publishedReceiptColumns}
+                    dataSource={receipts}
+                    pagination={false}
+                    size="small"
+                    loading={loading}
+                  />
+                  {!!data && (
+                    <Pagination
+                      className="pagination-center"
+                      current={receiptPaginate.Page}
+                      total={receiptPaginate.Total}
+                      pageSize={5}
+                      onChange={page => setReceiptCurrentPage(page)}
+                    />
+                  )}
                 </Panel>
               </Collapse>
               <Collapse className="block-collapse" defaultActiveKey={['3']} bordered={false}>
                 <Panel className="block-card-title block-collapse" header="Transactions" key="3">
-                  <Card className="block-card" bordered={false}>
-                    <h4 className="block-card-title">
-                      {t('Transactions')}
-                      <Badge
-                        className="badge-black"
-                        count={trxPaginate.Total}
-                        overflowCount={1000}
-                      />
-                    </h4>
-                    <Table
-                      className="transactions-table"
-                      columns={transactionColumns}
-                      dataSource={transactions}
-                      pagination={false}
-                      size="small"
-                      loading={loading}
+                  <h4 className="block-card-title-table">
+                    {t('Transactions')}
+                    <Badge
+                      className="badge-black"
+                      count={trxPaginate.Total}
+                      overflowCount={1000}
                     />
-                    {!!data && (
-                      <Pagination
-                        className="pagination-center"
-                        current={trxPaginate.Page}
-                        total={trxPaginate.Total}
-                        pageSize={5}
-                        onChange={page => setTrxCurrentPage(page)}
-                      />
-                    )}
-                  </Card>
+                  </h4>
+                  <Table
+                    className="transactions-table"
+                    columns={transactionColumns}
+                    dataSource={transactions}
+                    pagination={false}
+                    size="small"
+                    loading={loading}
+                  />
+                  {!!data && (
+                    <Pagination
+                      className="pagination-center"
+                      current={trxPaginate.Page}
+                      total={trxPaginate.Total}
+                      pageSize={5}
+                      onChange={page => setTrxCurrentPage(page)}
+                    />
+                  )}
                 </Panel>
               </Collapse>
             </Col>
