@@ -173,7 +173,7 @@ const Home = ({ history }) => {
             <Card className="home-card" bordered={false}>
               <h5>
                 <i className="bcz-calendar" />
-                <strong>{t('Latest 30 days Block Count')}</strong>
+                <strong>{t('Latest Block Count in 30 Days')}</strong>
               </h5>
               <LineChart
                 width={450}
@@ -199,7 +199,7 @@ const Home = ({ history }) => {
             <Card className="home-card" bordered={false}>
               <h5>
                 <i className="bcz-calendar" />
-                <strong>{t('Latest 30 days Transaction Amount')}</strong>
+                <strong>{t('Latest Transaction Amount in 30 Days')}</strong>
               </h5>
               <LineChart
                 width={450}
