@@ -128,7 +128,7 @@ const Transaction = ({ match }) => {
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <h4>
+                  <h4 className="transaction-title">
                     {t('Transaction')} {data.transaction.TransactionID}
                   </h4>
                 </Col>

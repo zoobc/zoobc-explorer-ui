@@ -146,7 +146,7 @@ const Account = ({ match }) => {
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <h4>
+                  <h4 className="account-title">
                     {t('Account')} {data.account.AccountAddress}
                   </h4>
                 </Col>
