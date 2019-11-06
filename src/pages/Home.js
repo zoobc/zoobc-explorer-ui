@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import NumberFormat from 'react-number-format'
 // import { Row, Col } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts'
 
 import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
@@ -30,6 +31,14 @@ const GET_HOME_DATA = gql`
         FeeConversion
       }
     }
+    blockGraph {
+      name
+      amt
+    }
+    transactionGraph {
+      name
+      amt
+    }
   }
 `
 
@@ -38,6 +47,8 @@ const Home = ({ history }) => {
   const { loading, data } = useQuery(GET_HOME_DATA)
   let blockData = []
   let trxData = []
+  let blockGraphData = []
+  let trxGraphData = []
 
   if (!!data) {
     blockData = data.blocks.Blocks.map((block, key) => {
@@ -51,6 +62,20 @@ const Home = ({ history }) => {
       return {
         key,
         ...transaction,
+      }
+    })
+
+    blockGraphData = data.blockGraph.map((bg, key) => {
+      return {
+        key,
+        ...bg,
+      }
+    })
+
+    trxGraphData = data.transactionGraph.map((tg, key) => {
+      return {
+        key,
+        ...tg,
       }
     })
   }
@@ -140,6 +165,60 @@ const Home = ({ history }) => {
               <Button type="primary" onClick={() => history.push('/transactions')} block>
                 {t('VIEW ALL TRANSACTIONS')}
               </Button>
+            </Card>
+          </Col>
+        </Row>
+        <Row className="home-latest">
+          <Col className="home-col-left">
+            <Card className="home-card" bordered={false}>
+              <h5>
+                <i className="bcz-calendar" />
+                <strong>{t('Latest Block Count in 30 Days')}</strong>
+              </h5>
+              <LineChart
+                width={450}
+                height={300}
+                data={blockGraphData}
+                margin={{
+                  top: 20,
+                  right: 0,
+                  left: 0,
+                  bottom: 0,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line type="monotone" dataKey="amt" stroke="#8884d8" activeDot={{ r: 8 }} />
+              </LineChart>
+            </Card>
+          </Col>
+          <Col className="home-col-right">
+            <Card className="home-card" bordered={false}>
+              <h5>
+                <i className="bcz-calendar" />
+                <strong>{t('Latest Transaction Amount in 30 Days')}</strong>
+              </h5>
+              <LineChart
+                width={450}
+                height={300}
+                data={trxGraphData}
+                margin={{
+                  top: 20,
+                  right: 0,
+                  left: 0,
+                  bottom: 0,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line type="monotone" dataKey="amt" stroke="#8884d8" activeDot={{ r: 8 }} />
+              </LineChart>
             </Card>
           </Col>
         </Row>
