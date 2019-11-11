@@ -58,6 +58,7 @@
   vertical-align: middle;
   border-bottom-left-radius: 4px;
   border-top-left-radius: 4px;
+  margin-right: 5px;
 }
 
 .header-menu {
@@ -102,7 +103,7 @@
   }
 
   .navbar-right {
-    width: 291px;
+    // width: 291px;
     display: flex;
     justify-content: space-around;
     margin-left: auto;

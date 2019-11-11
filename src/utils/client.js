@@ -1,10 +1,17 @@
 import ApolloClient from 'apollo-boost'
 
-import config from '../config'
+import { testnetClient } from '../config/testnet'
 
-const client = new ApolloClient({
-  uri: config.endpoint.graphql,
-  //uri: 'http://localhost:6969/zoobc/api/v1/graphql',
-})
+const setupApolloCLient = uri => {
+  return new ApolloClient({
+    uri,
+  })
+}
+const clients = testnetClient.reduce((current, value, index) => {
+  current[`testnet${index + 1}`] = setupApolloCLient(value)
+  return current
+}, {})
 
-export default client
+export const defaultClient = setupApolloCLient(testnetClient[0])
+
+export default clients
