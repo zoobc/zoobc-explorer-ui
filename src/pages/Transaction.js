@@ -5,6 +5,7 @@ import moment from 'moment'
 import gql from 'graphql-tag'
 import NumberFormat from 'react-number-format'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
@@ -148,16 +149,28 @@ const Transaction = ({ match }) => {
                 <DescItem label="Transaction Type" value={data.transaction.TransactionTypeName} />
                 <DescItem
                   label={t('Block ID')}
-                  value={<CopyToClipboard text={data.transaction.BlockID} keyID="BlockID" />}
+                  value={
+                    <Link to={`/blocks/${data.transaction.BlockID}`}>
+                      {data.transaction.BlockID}
+                    </Link>
+                  }
                 />
                 <DescItem label="Height" value={data.transaction.Height} />
                 <DescItem
                   label={t('Sender')}
-                  value={<CopyToClipboard text={data.transaction.Sender} keyID="sender" />}
+                  value={
+                    <Link to={`/accounts/${data.transaction.Sender}`}>
+                      {data.transaction.Sender}
+                    </Link>
+                  }
                 />
                 <DescItem
                   label={t('Recipient')}
-                  value={<CopyToClipboard text={data.transaction.Recipient} keyID="recipient" />}
+                  value={
+                    <Link to={`/accounts/${data.transaction.Recipient}`}>
+                      {data.transaction.Recipient}
+                    </Link>
+                  }
                 />
                 <DescItem label={t('Confirmations')} value={data.transaction.Confirmations} />
                 <DescItem

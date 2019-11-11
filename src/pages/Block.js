@@ -228,7 +228,7 @@ const Block = ({ match }) => {
                 <DescItem label={t('Payload Length')} value={data.block.PayloadLength} />
                 <DescItem label={t('Payload Hash')} value={data.block.PayloadHash} />
               </Card>
-              <Collapse className="block-collapse" defaultActiveKey={['1']} bordered={false}>
+              <Collapse className="block-collapse" bordered={false}>
                 <Panel className="block-card-title block-collapse" header="Rewards" key="1">
                   <Card className="block-card" bordered={false}>
                     <h4 className="block-card-title">
@@ -246,7 +246,7 @@ const Block = ({ match }) => {
                   </Card>
                 </Panel>
               </Collapse>
-              <Collapse className="block-collapse" defaultActiveKey={['2']} bordered={false}>
+              <Collapse className="block-collapse" bordered={false}>
                 <Panel className="block-card-title block-collapse" header="Receipts" key="2">
                   <Card className="block-card" bordered={false}>
                     <h4 className="block-card-title">

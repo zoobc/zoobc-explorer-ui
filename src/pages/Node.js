@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/react-hooks'
 import { Row, Col, Card, Badge, Table, Pagination } from 'antd'
 import NumberFormat from 'react-number-format'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
@@ -12,6 +13,7 @@ import NotFound from '../components/Errors/NotFound'
 import LoaderPage from '../components/LoaderPage'
 import CopyToClipboard from '../components/CopyToClipboard'
 import { blockColumns } from '../config/table-columns'
+import useSearch from '../hooks/useSearch'
 
 const GET_NODE_DATA = gql`
   query getNode($NodePublicKey: String!) {
@@ -49,13 +51,15 @@ const GET_BLOCK_BY_NODE = gql`
   }
 `
 
-const Node = ({ match }) => {
+const Node = ({ match, history }) => {
   const { params, url } = match
   const { t } = useTranslation()
   const urlLastCharacter = url[url.length - 1]
   const [blockCurrentPage, setBlockCurrentPage] = useState(1)
   const [blocks, setBlocks] = useState([])
   const [blockPaginate, setBlockPaginate] = useState({})
+  const [keyword, setKeyword] = useState('0')
+  const { doSearch } = useSearch(keyword, history)
   let nodePublicKey = params.id
 
   if (urlLastCharacter === '/') {
@@ -83,10 +87,11 @@ const Node = ({ match }) => {
           ...block,
         }
       })
-
       setBlocks(blockData)
       setBlockPaginate(blockNode.data.blocks.Paginate)
+      setKeyword(`${data.node.RegisteredBlockHeight}`)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockNode.data])
 
   return (
@@ -128,7 +133,7 @@ const Node = ({ match }) => {
                 />
                 <DescItem
                   label={t('Registered Block Height')}
-                  value={data.node.RegisteredBlockHeight}
+                  value={<Link onClick={doSearch}>{data.node.RegisteredBlockHeight}</Link>}
                 />
                 <DescItem label={t('Participation Score')} value={data.node.ParticipationScore} />
                 <DescItem
