@@ -35,7 +35,7 @@ const renderAmountCurrenncy = (text, record) => {
           value={text}
           displayType={'text'}
           thousandSeparator={true}
-          suffix={' BCZ'}
+          suffix={' ZBC'}
           style={{ color: isSender ? 'red' : 'green' }}
         />
       )

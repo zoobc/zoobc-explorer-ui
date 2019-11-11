@@ -152,7 +152,7 @@ const Home = ({ history }) => {
                               value={item.FeeConversion}
                               displayType={'text'}
                               thousandSeparator={true}
-                              suffix={' BCZ'}
+                              suffix={' ZBC'}
                             />
                           )}
                         </div>

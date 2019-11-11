@@ -15,7 +15,7 @@ const SendMoney = ({ data }) => {
             value={data.AmountConversion || 0}
             displayType={'text'}
             thousandSeparator={true}
-            suffix={' BCZ'}
+            suffix={' ZBC'}
           />
         }
       />
