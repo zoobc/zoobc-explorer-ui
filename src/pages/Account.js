@@ -166,7 +166,7 @@ const Account = ({ match }) => {
                       value={data.account.BalanceConversion || 0}
                       displayType={'text'}
                       thousandSeparator={true}
-                      suffix={' BCZ'}
+                      suffix={' ZBC'}
                     />
                   }
                 />
@@ -177,7 +177,7 @@ const Account = ({ match }) => {
                       value={data.account.SpendableBalanceConversion || 0}
                       displayType={'text'}
                       thousandSeparator={true}
-                      suffix={' BCZ'}
+                      suffix={' ZBC'}
                     />
                   }
                 />
@@ -190,7 +190,7 @@ const Account = ({ match }) => {
                       value={data.account.TotalRewardsConversion || 0}
                       displayType={'text'}
                       thousandSeparator={true}
-                      suffix={' BCZ'}
+                      suffix={' ZBC'}
                     />
                   }
                 />
@@ -201,7 +201,7 @@ const Account = ({ match }) => {
                       value={data.account.TotalFeesPaidConversion || 0}
                       displayType={'text'}
                       thousandSeparator={true}
-                      suffix={' BCZ'}
+                      suffix={' ZBC'}
                     />
                   }
                 />

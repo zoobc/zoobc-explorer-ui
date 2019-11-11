@@ -205,7 +205,7 @@ const Block = ({ match }) => {
                       value={data.block.TotalFeeConversion}
                       displayType={'text'}
                       thousandSeparator={true}
-                      suffix={' BCZ'}
+                      suffix={' ZBC'}
                     />
                   }
                 />
@@ -216,7 +216,7 @@ const Block = ({ match }) => {
                       value={data.block.TotalRewardsConversion}
                       displayType={'text'}
                       thousandSeparator={true}
-                      suffix={' BCZ'}
+                      suffix={' ZBC'}
                     />
                   }
                 />
