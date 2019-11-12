@@ -18,6 +18,7 @@ const GET_BLOCKS_DATA = gql`
         Height
         Timestamp
         BlocksmithID
+        BlocksmithAddress
         TotalFeeConversion
         TotalRewardsConversion
       }

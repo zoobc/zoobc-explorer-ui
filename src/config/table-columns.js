@@ -116,13 +116,13 @@ export const blockColumns = [
   },
   {
     title: <Title text="Blocksmith" />,
-    dataIndex: 'BlocksmithID',
-    key: 'BlocksmithID',
-    render(text, record) {
+    dataIndex: 'BlocksmithAddress',
+    key: 'BlocksmithAddress',
+    render(text) {
       return (
         <div>
           <Badge color={randomBadgeColor()} />
-          <Link to={`/blocks/${record.BlockID}`}>{shortenHash(text, 30)}</Link>
+          <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
         </div>
       )
     },
