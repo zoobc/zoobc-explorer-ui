@@ -82,12 +82,20 @@ const Header = ({ history, location, fluid }) => {
                 onSearch={onSearch}
               />
             </Tooltip>
-            <Button type="primary" className="mr-1" onClick={onLogin}>Login</Button>
-            <Button type="primary" onClick={onRegister}>Register</Button>
+            <Button type="primary" className="mr-1" onClick={onLogin}>
+              Login
+            </Button>
+            <Button type="primary" onClick={onRegister}>
+              Register
+            </Button>
           </div>
         </Container>
       </Layout.Header>
-      <ComingSoon visible={isOpenDialog} title={dialogTitle} onClose={() => setIsOpenDialog(false)} />
+      <ComingSoon
+        visible={isOpenDialog}
+        title={dialogTitle}
+        onClose={() => setIsOpenDialog(false)}
+      />
     </>
   )
 }

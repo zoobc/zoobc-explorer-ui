@@ -65,11 +65,11 @@ const Footer = () => {
               <ul className="footer-company-info">
                 <p className="footer-company-text">
                   &#169; 2019 ZooBC.net
-                <br />
+                  <br />
                   All rights reserved.
-                <br />
+                  <br />
                   v0.0.1-alpha.1
-              </p>
+                </p>
               </ul>
             </Col>
             <Col className="footer-col-info">
@@ -124,7 +124,11 @@ const Footer = () => {
                 <a className="footer-list-group-item" href="https://blockchainzoo.com">
                   {t('Privacy Policy')}
                 </a>
-                <a className="footer-list-group-item" href="#" onClick={() => setIsOpenDialog(true)}>
+                <a
+                  className="footer-list-group-item"
+                  href="#"
+                  onClick={() => setIsOpenDialog(true)}
+                >
                   {t('Feedback')}
                 </a>
               </ul>

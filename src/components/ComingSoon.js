@@ -12,7 +12,7 @@ const ComingSoon = ({ visible, title, onClose }) => {
       footer={[
         <Button type="primary" onClick={onClose}>
           Close
-        </Button>
+        </Button>,
       ]}
       centered
       width="auto"
