@@ -1,14 +1,13 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
-import { Layout, Menu, Input, Icon, Tooltip, Spin, Button, Drawer, List, Avatar } from 'antd'
+import { Layout, Menu, Input, Icon, Tooltip, Spin, Button } from 'antd'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import useSearch from '../hooks/useSearch'
 import Container from './Container'
 import zoobcLogo from '../assets/images/logo-zoobc.svg'
-import testnet from '../config/testnet'
-import TestnetContext from '../context/TestnetContext'
+import ComingSoon from './ComingSoon'
 
 const { Search } = Input
 
@@ -17,8 +16,8 @@ const Spinner = <Icon type="loading" style={{ fontSize: 20, color: 'white' }} sp
 const Header = ({ history, location, fluid }) => {
   const { t } = useTranslation()
   const [keyword, setKeyword] = useState('')
-  const [isOpen, setIsOpen] = useState(false)
-  const { selectedTestnet, onChangeSelectedTestnet } = useContext(TestnetContext)
+  const [isOpenDialog, setIsOpenDialog] = useState(false)
+  const [dialogTitle, setDialogTitle] = useState('Login')
   const { doSearch, loading } = useSearch(keyword, history)
 
   const onSearch = value => {
@@ -30,9 +29,14 @@ const Header = ({ history, location, fluid }) => {
     }
   }
 
-  const onSelectNetwork = data => {
-    onChangeSelectedTestnet(data)
-    setIsOpen(false)
+  const onLogin = () => {
+    setDialogTitle('Login')
+    setIsOpenDialog(true)
+  }
+
+  const onRegister = () => {
+    setDialogTitle('Register')
+    setIsOpenDialog(true)
   }
 
   return (
@@ -78,40 +82,20 @@ const Header = ({ history, location, fluid }) => {
                 onSearch={onSearch}
               />
             </Tooltip>
-            <Button type="primary" onClick={() => setIsOpen(true)}>
-              {selectedTestnet.name}
+            <Button type="primary" className="mr-1" onClick={onLogin}>
+              Login
+            </Button>
+            <Button type="primary" onClick={onRegister}>
+              Register
             </Button>
           </div>
         </Container>
       </Layout.Header>
-      <Drawer
-        title="Select Network"
-        placement="right"
-        onClose={() => setIsOpen(false)}
-        visible={isOpen}
-        destroyOnClose={true}
-      >
-        <List
-          itemLayout="horizontal"
-          dataSource={testnet}
-          renderItem={item => (
-            <List.Item>
-              <Button
-                type="link"
-                size="large"
-                className="d-flex align-items-center p-0"
-                block
-                onClick={() => onSelectNetwork(item)}
-              >
-                <Avatar size="large" className="mr-2" style={{ backgroundColor: item.color }}>
-                  {item.name}
-                </Avatar>
-                <p className="mb-0">{item.name}</p>
-              </Button>
-            </List.Item>
-          )}
-        />
-      </Drawer>
+      <ComingSoon
+        visible={isOpenDialog}
+        title={dialogTitle}
+        onClose={() => setIsOpenDialog(false)}
+      />
     </>
   )
 }

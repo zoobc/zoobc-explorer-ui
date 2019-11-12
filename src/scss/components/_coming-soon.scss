@@ -1,0 +1,14 @@
+.coming-soon {
+  width: 50vw;
+  height: 100%;
+  text-align: center;
+  img {
+    width: 75%;
+  }
+}
+
+.coming-soon-modal {
+  .ant-modal-footer {
+    border-top: none !important;
+  }
+}
