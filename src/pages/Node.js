@@ -39,6 +39,7 @@ const GET_BLOCK_BY_NODE = gql`
         Height
         Timestamp
         BlocksmithID
+        BlocksmithAddress
         TotalFee
         TotalRewards
       }
