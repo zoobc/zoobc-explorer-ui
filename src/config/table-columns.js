@@ -295,3 +295,26 @@ export const publishedReceiptColumns = [
     key: 'BatchReceipt.ReceiverSignature',
   },
 ]
+
+export const skippedBlocksmithColumns = [
+  {
+    title: <Title text="Public Key" />,
+    dataIndex: 'BlocksmithPublicKey',
+    key: 'BlocksmithPublicKey',
+  },
+  {
+    title: <Title text="PoP Change" />,
+    dataIndex: 'POPChange',
+    key: 'POPChange',
+  },
+  {
+    title: <Title text="Height" />,
+    dataIndex: 'BlockHeight',
+    key: 'BlockHeight',
+  },
+  {
+    title: <Title text="Index" />,
+    dataIndex: 'BlocksmithIndex',
+    key: 'BlocksmithIndex',
+  },
+]
