@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next'
 
 const DescItem = ({ label, value }) => {
   const { t } = useTranslation()
-  console.log(typeof value)
   return (
     <Row>
       <Col md={{ span: 5 }} sm={{ span: 24 }}>
