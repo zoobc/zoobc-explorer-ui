@@ -45,7 +45,7 @@ const Header = ({ history, location, fluid }) => {
         <Container className="header-content" fluid={fluid}>
           <Link className="logo" to="/">
             <img src={zoobcLogo} alt="zoobc-logo" />
-            <div className="header-logo-name">ZooBC</div>
+            <div className="header-logo-name">ZooBC.net</div>
           </Link>
           <div className="navbar-left">
             <Menu

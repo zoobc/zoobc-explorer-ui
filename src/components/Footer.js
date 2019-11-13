@@ -56,7 +56,7 @@ const Footer = () => {
             <Col>
               <Link className="footer-link-logo" to="/">
                 <img src={zoobcLogo} alt="zoobc-logo" />
-                <div className="footer-link-text">ZooBC</div>
+                <div className="footer-link-text">ZooBC.net</div>
               </Link>
             </Col>
           </Row>
