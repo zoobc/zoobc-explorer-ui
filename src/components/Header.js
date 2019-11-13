@@ -44,7 +44,11 @@ const Header = ({ history, location, fluid }) => {
     <>
       <Layout.Header className="header">
         <Container className="header-content" fluid={fluid}>
-          <Button icon="menu" className="mr-1 d-block d-md-none " onClick={() => setIsOpenDraw(true)} />
+          <Button
+            icon="menu"
+            className="mr-1 d-block d-md-none "
+            onClick={() => setIsOpenDraw(true)}
+          />
           <Link className="logo" to="/">
             <img src={zoobcLogo} alt="zoobc-logo" />
             <div className="header-logo-name">ZooBC.net</div>
@@ -118,10 +122,7 @@ const Header = ({ history, location, fluid }) => {
             enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
             onSearch={onSearch}
           />
-          <Menu
-            className="header-menu"
-            selectedKeys={[location.pathname]}
-          >
+          <Menu className="header-menu" selectedKeys={[location.pathname]}>
             <Menu.Item key="/blocks" className="menu-with-icon">
               <Link to="/blocks">{t('Blocks')}</Link>
             </Menu.Item>
