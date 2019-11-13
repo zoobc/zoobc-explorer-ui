@@ -6,7 +6,16 @@ import { Link } from 'react-router-dom'
 import NumberFormat from 'react-number-format'
 // import { Row, Col } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from 'recharts'
 
 import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
@@ -85,7 +94,7 @@ const Home = ({ history }) => {
       <Container>
         <Hero />
         <Row className="home-latest">
-          <Col className="home-col-left" md={{ span: 12 }} sm={{ span: 24 }} >
+          <Col className="home-col-left" md={{ span: 12 }} sm={{ span: 24 }}>
             <Card className="home-card" bordered={false}>
               <h5>
                 <i className="bcz-calendar" />
@@ -142,9 +151,7 @@ const Home = ({ history }) => {
                         <div>
                           <strong>{t('Transaction ID')}</strong>
                         </div>
-                        <Link to={`/transactions/${item.TransactionID}`}>
-                          {item.TransactionID}
-                        </Link>
+                        <Link to={`/transactions/${item.TransactionID}`}>{item.TransactionID}</Link>
                       </Col>
                       <Col md={{ span: 12 }} sm={{ span: 24 }}>
                         <div>

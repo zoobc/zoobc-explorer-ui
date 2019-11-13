@@ -1,7 +1,19 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Switch, Menu, Dropdown, Avatar, Layout, Row, Col, List, Button, Drawer, Collapse } from 'antd'
+import {
+  Switch,
+  Menu,
+  Dropdown,
+  Avatar,
+  Layout,
+  Row,
+  Col,
+  List,
+  Button,
+  Drawer,
+  Collapse,
+} from 'antd'
 import { Link } from 'react-router-dom'
 import Container from './Container'
 import languages from '../languages'
@@ -47,7 +59,6 @@ const Footer = () => {
       </Menu>
     )
   }
-
 
   const FooterMobile = () => (
     <div className="footer-mobile d-block d-md-none">
@@ -98,11 +109,7 @@ const Footer = () => {
             <a className="footer-list-group-item" href="https://blockchainzoo.com">
               {t('Privacy Policy')}
             </a>
-            <a
-              className="footer-list-group-item"
-              href="#"
-              onClick={() => setIsOpenDialog(true)}
-            >
+            <a className="footer-list-group-item" href="#" onClick={() => setIsOpenDialog(true)}>
               {t('Feedback')}
             </a>
           </ul>
