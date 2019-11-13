@@ -47,7 +47,7 @@ const Header = ({ history, location, fluid }) => {
             <img src={zoobcLogo} alt="zoobc-logo" />
             <div className="header-logo-name">ZooBC.net</div>
           </Link>
-          <div className="navbar-left">
+          <div className="navbar-left d-none d-md-block">
             <Menu
               className="header-menu"
               theme="dark"
@@ -75,17 +75,17 @@ const Header = ({ history, location, fluid }) => {
               placement="topLeft"
             >
               <Search
-                className="header-search-input"
+                className="header-search-input d-none d-md-block"
                 prefix={<Icon className="header-search-icon" type="search" />}
                 placeholder={t('Please input keyword')}
                 enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
                 onSearch={onSearch}
               />
             </Tooltip>
-            <Button type="primary" className="mr-1" onClick={onLogin}>
+            <Button type="primary" className="mr-1 d-none d-md-block" onClick={onLogin}>
               Login
             </Button>
-            <Button type="primary" onClick={onRegister}>
+            <Button type="primary d-none d-md-block" onClick={onRegister}>
               Register
             </Button>
           </div>

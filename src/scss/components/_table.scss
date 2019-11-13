@@ -24,3 +24,7 @@
     color: var(--color-primary-light);
   }
 }
+
+.ant-table-wrapper {
+  overflow-x: auto;
+}

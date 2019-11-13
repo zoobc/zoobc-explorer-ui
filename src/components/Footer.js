@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Switch, Menu, Dropdown, Avatar, Layout, Row, Col, List, Button, Drawer } from 'antd'
+import { Switch, Menu, Dropdown, Avatar, Layout, Row, Col, List, Button, Drawer, Collapse } from 'antd'
 import { Link } from 'react-router-dom'
 import Container from './Container'
 import languages from '../languages'
@@ -48,20 +48,145 @@ const Footer = () => {
     )
   }
 
+
+  const FooterMobile = () => (
+    <div className="footer-mobile d-block d-md-none">
+      <Collapse expandIconPosition="right">
+        <Collapse.Panel header="Product" key="1">
+          <ul className="footer-list-group mb-0">
+            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+              {t('ZooBC Core')}
+            </a>
+            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+              {t('ZooBC Wallet')}
+            </a>
+            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+              {t('ZooBC Explorer')}
+            </a>
+            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+              {t('Whitepaper')}
+            </a>
+          </ul>
+        </Collapse.Panel>
+        <Collapse.Panel header="Comunity" key="2">
+          <ul className="footer-list-group mb-0">
+            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+              {t('Getting Started')}
+            </a>
+            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+              {t('Developer APIs')}
+            </a>
+            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+              {t('Research')}
+            </a>
+            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+              {t('Roadmap')}
+            </a>
+          </ul>
+        </Collapse.Panel>
+        <Collapse.Panel header="Company" key="3">
+          <ul className="footer-list-group mb-0">
+            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+              {t('About Us')}
+            </a>
+            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+              {t('Contact Us')}
+            </a>
+            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+              {t('Terms of Service')}
+            </a>
+            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+              {t('Privacy Policy')}
+            </a>
+            <a
+              className="footer-list-group-item"
+              href="#"
+              onClick={() => setIsOpenDialog(true)}
+            >
+              {t('Feedback')}
+            </a>
+          </ul>
+        </Collapse.Panel>
+      </Collapse>
+      <hr className="footer-horizontal-rule-dark" />
+      <div className="footer-social-icons">
+        <a
+          className="footer-social-icon"
+          href="https://github.com/zoobc"
+          rel="noopener norefferer"
+          title="GitHub"
+        >
+          <img src={iconGitHub} alt="social-icon" />
+        </a>
+        <a
+          className="footer-social-icon"
+          href="https://medium.com/@BlockchainZoo"
+          rel="noopener norefferer"
+          title="Medium"
+        >
+          <img src={iconMedium} alt="social-icon" />
+        </a>
+        <a
+          className="footer-social-icon"
+          href="https://youtube.com/c/BlockchainZoo"
+          rel="noopener norefferer"
+          title="Youtube"
+        >
+          <img src={iconYoutube} alt="social-icon" />
+        </a>
+        <a
+          className="footer-social-icon"
+          href="https://t.me/ZooBlockchain"
+          rel="noopener norefferer"
+          title="Telegram"
+        >
+          <img src={iconTelegram} alt="social-icon" />
+        </a>
+        <a
+          className="footer-social-icon"
+          href="https://zoobc.org"
+          rel="noopener norefferer"
+          title="Forum"
+        >
+          <img src={iconForum} alt="social-icon" />
+        </a>
+        <a
+          className="footer-social-icon"
+          href="https://blogchainzoo.com"
+          rel="noopener norefferer"
+          title="Blog"
+        >
+          <img src={iconBlog} alt="social-icon" />
+        </a>
+      </div>
+      <div className="py-2 text-center">
+        <Switch checkedChildren="☀" unCheckedChildren="☾" defaultChecked />
+        <Dropdown overlay={languageOptions}>
+          <p className="footer-language ">
+            <Avatar className="mr-1" shape="square" size={18} src={selectedLang().flag} />
+            {selectedLang().label}
+          </p>
+        </Dropdown>
+        <Button className="ml-3" type="primary" size="small" onClick={() => setIsOpen(true)}>
+          Network: {selectedTestnet.name}
+        </Button>
+      </div>
+    </div>
+  )
+
   return (
     <>
       <Layout.Footer className="footer">
         <Container>
-          <Row className="footer-logo">
-            <Col>
-              <Link className="footer-link-logo" to="/">
-                <img src={zoobcLogo} alt="zoobc-logo" />
-                <div className="footer-link-text">ZooBC.net</div>
-              </Link>
-            </Col>
-          </Row>
-          <Row className="footer-row">
+          <FooterMobile />
+          <Row className="footer-row d-none d-md-block">
             <Col className="footer-company">
+              <div className="footer-logo">
+                <Link className="footer-link-logo" to="/">
+                  <img src={zoobcLogo} alt="zoobc-logo" />
+                  <div className="footer-link-text">ZooBC.net</div>
+                </Link>
+              </div>
               <ul className="footer-company-info">
                 <p className="footer-company-text">
                   &#169; 2019 ZooBC.net
@@ -134,8 +259,8 @@ const Footer = () => {
               </ul>
             </Col>
           </Row>
-          <hr className="footer-horizontal-rule-dark" />
-          <Row className="footer-ext">
+          <hr className="footer-horizontal-rule-dark d-none d-md-block" />
+          <Row className="footer-ext d-none d-md-block">
             <Switch checkedChildren="☀" unCheckedChildren="☾" defaultChecked />
             <Dropdown overlay={languageOptions}>
               <p className="footer-language ">
