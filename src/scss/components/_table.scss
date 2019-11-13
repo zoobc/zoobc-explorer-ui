@@ -28,3 +28,10 @@
 .ant-table-wrapper {
   overflow-x: auto;
 }
+
+.blocksmith {
+  .ant-badge-status-dot {
+    height: 10px;
+    width: 10px;
+  }
+}

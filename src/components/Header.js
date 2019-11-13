@@ -34,8 +34,8 @@ const Header = ({ history, location, fluid }) => {
     setIsOpenDialog(true)
   }
 
-  const onRegister = () => {
-    setDialogTitle('Register')
+  const onFeedback = () => {
+    setDialogTitle('Feedback')
     setIsOpenDialog(true)
   }
 
@@ -83,10 +83,10 @@ const Header = ({ history, location, fluid }) => {
               />
             </Tooltip>
             <Button type="primary" className="mr-1 d-none d-md-block" onClick={onLogin}>
-              Login
+              Login / Register
             </Button>
-            <Button type="primary d-none d-md-block" onClick={onRegister}>
-              Register
+            <Button type="danger" onClick={onFeedback}>
+              Feedback
             </Button>
           </div>
         </Container>
