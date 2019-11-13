@@ -115,7 +115,7 @@ export const blockColumns = [
     },
   },
   {
-    title: <Title text="Blocksmith" />,
+    title: <Title text="Blocksmith Address" />,
     dataIndex: 'BlocksmithAddress',
     key: 'BlocksmithAddress',
     render(text) {

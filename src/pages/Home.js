@@ -21,7 +21,7 @@ const GET_HOME_DATA = gql`
         BlockID
         Height
         Timestamp
-        BlocksmithID
+        BlocksmithAddress
       }
     }
     transactions(page: 1, limit: 5, order: "-Height") {
@@ -107,9 +107,13 @@ const Home = ({ history }) => {
                       </Col>
                       <Col className="home-col-list">
                         <div>
-                          <strong>{t('Blocksmith')}</strong>
+                          <strong>{t('Blocksmith Address')}</strong>
                         </div>
-                        <div>{shortenHash(item.BlocksmithID, 30)}</div>
+                        <div>
+                          <Link to={`/accounts/${item.BlocksmithAddress}`}>
+                            {shortenHash(item.BlocksmithAddress, 30)}
+                          </Link>
+                        </div>
                       </Col>
                     </Row>
                   </List.Item>
