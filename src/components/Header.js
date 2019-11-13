@@ -103,24 +103,24 @@ const Header = ({ history, location, fluid }) => {
         onClose={() => setIsOpenDialog(false)}
       />
       <Drawer
-        placement="left"
+        placement="top"
         onClose={() => setIsOpenDraw(false)}
         visible={isOpenDrawer}
         destroyOnClose={true}
         className="drawer-mobile"
-        width="100%"
+        height="auto"
+        closable={false}
       >
         <div className="drawer-mobile-content">
           <Link className="logo" to="/">
             <img src={zoobcLogo} alt="zoobc-logo" />
             <div className="header-logo-name">ZooBC.net</div>
           </Link>
-          <Search
-            className="header-search-input"
-            prefix={<Icon className="header-search-icon" type="search" />}
-            placeholder={t('Please input keyword')}
-            enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
-            onSearch={onSearch}
+          <Button
+            icon="menu"
+            type="link"
+            className="drawer-mobile-collapse"
+            onClick={() => setIsOpenDraw(false)}
           />
           <Menu className="header-menu" selectedKeys={[location.pathname]}>
             <Menu.Item key="/blocks" className="menu-with-icon">
@@ -136,6 +136,13 @@ const Header = ({ history, location, fluid }) => {
               <Link to="/nodes">{t('Nodes')}</Link>
             </Menu.Item>
           </Menu>
+          <Search
+            className="header-search-input"
+            prefix={<Icon className="header-search-icon" type="search" />}
+            placeholder={t('Please input keyword')}
+            enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
+            onSearch={onSearch}
+          />
         </div>
       </Drawer>
     </>
