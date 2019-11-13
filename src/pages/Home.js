@@ -109,7 +109,11 @@ const Home = ({ history }) => {
                         <div>
                           <strong>{t('Blocksmith Address')}</strong>
                         </div>
-                        <div>{shortenHash(item.BlocksmithAddress, 30)}</div>
+                        <div>
+                          <Link to={`/accounts/${item.BlocksmithAddress}`}>
+                            {shortenHash(item.BlocksmithAddress, 30)}
+                          </Link>
+                        </div>
                       </Col>
                     </Row>
                   </List.Item>
