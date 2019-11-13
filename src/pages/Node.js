@@ -105,7 +105,7 @@ const Node = ({ match, history }) => {
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <h4>
+                  <h4 className="truncate">
                     {t('Public Key')} {data.node.NodePublicKey}
                   </h4>
                 </Col>
