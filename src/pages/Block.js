@@ -191,10 +191,7 @@ const Block = ({ match }) => {
                   label={t('Timestamp')}
                   value={moment(data.block.Timestamp).format('lll')}
                 />
-                <DescItem
-                  label={t('Previous Block ID')}
-                  value={data.block.PreviousBlockID}
-                />
+                <DescItem label={t('Previous Block ID')} value={data.block.PreviousBlockID} />
                 <DescItem label={t('Block Seed')} value={data.block.BlockSeed} />
                 <DescItem label={t('Block Signature')} value={data.block.BlockSignature} />
                 <DescItem
@@ -202,7 +199,14 @@ const Block = ({ match }) => {
                   value={data.block.CumulativeDifficulty}
                 />
                 <DescItem label={t('Smith Scale')} value={data.block.SmithScale} />
-                <DescItem label={t('Blocksmith Address')} value={<Link to={`/accounts/${data.block.BlocksmithAddress}`}>{data.block.BlocksmithAddress}</Link>} />
+                <DescItem
+                  label={t('Blocksmith Address')}
+                  value={
+                    <Link to={`/accounts/${data.block.BlocksmithAddress}`}>
+                      {data.block.BlocksmithAddress}
+                    </Link>
+                  }
+                />
                 <DescItem label={t('Total Amount')} value={data.block.TotalAmountConversion} />
                 <DescItem
                   label={t('Total Fee')}
@@ -229,7 +233,12 @@ const Block = ({ match }) => {
                 <DescItem label={t('Version')} value={data.block.Version} />
                 <DescItem label={t('Total Receipts')} value={data.block.TotalReceipts} />
                 <DescItem label={t('Receipt Value')} value={data.block.ReceiptValue} />
-                <DescItem label={t('Blocksmith ID')} value={<Link to={`/nodes/${data.block.BlocksmithID}`}>{data.block.BlocksmithID}</Link>} />
+                <DescItem
+                  label={t('Blocksmith ID')}
+                  value={
+                    <Link to={`/nodes/${data.block.BlocksmithID}`}>{data.block.BlocksmithID}</Link>
+                  }
+                />
                 <DescItem label={t('PoP Change')} value={data.block.PopChange} />
                 <DescItem label={t('Payload Length')} value={data.block.PayloadLength} />
                 <DescItem label={t('Payload Hash')} value={data.block.PayloadHash} />
