@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
-import { Layout, Menu, Input, Icon, Tooltip, Spin, Button } from 'antd'
+import { Layout, Menu, Input, Icon, Tooltip, Spin, Button, Drawer } from 'antd'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
@@ -17,6 +17,7 @@ const Header = ({ history, location, fluid }) => {
   const { t } = useTranslation()
   const [keyword, setKeyword] = useState('')
   const [isOpenDialog, setIsOpenDialog] = useState(false)
+  const [isOpenDrawer, setIsOpenDraw] = useState(false)
   const [dialogTitle, setDialogTitle] = useState('Login')
   const { doSearch, loading } = useSearch(keyword, history)
 
@@ -43,6 +44,7 @@ const Header = ({ history, location, fluid }) => {
     <>
       <Layout.Header className="header">
         <Container className="header-content" fluid={fluid}>
+          <Button icon="menu" className="mr-1 d-block d-md-none " onClick={() => setIsOpenDraw(true)} />
           <Link className="logo" to="/">
             <img src={zoobcLogo} alt="zoobc-logo" />
             <div className="header-logo-name">ZooBC.net</div>
@@ -96,6 +98,45 @@ const Header = ({ history, location, fluid }) => {
         title={dialogTitle}
         onClose={() => setIsOpenDialog(false)}
       />
+      <Drawer
+        placement="left"
+        onClose={() => setIsOpenDraw(false)}
+        visible={isOpenDrawer}
+        destroyOnClose={true}
+        className="drawer-mobile"
+        width="100%"
+      >
+        <div className="drawer-mobile-content">
+          <Link className="logo" to="/">
+            <img src={zoobcLogo} alt="zoobc-logo" />
+            <div className="header-logo-name">ZooBC.net</div>
+          </Link>
+          <Search
+            className="header-search-input"
+            prefix={<Icon className="header-search-icon" type="search" />}
+            placeholder={t('Please input keyword')}
+            enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
+            onSearch={onSearch}
+          />
+          <Menu
+            className="header-menu"
+            selectedKeys={[location.pathname]}
+          >
+            <Menu.Item key="/blocks" className="menu-with-icon">
+              <Link to="/blocks">{t('Blocks')}</Link>
+            </Menu.Item>
+            <Menu.Item key="/transactions" className="menu-with-icon">
+              <Link to="/transactions">{t('Transactions')}</Link>
+            </Menu.Item>
+            <Menu.Item key="/accounts" className="menu-with-icon">
+              <Link to="/accounts">{t('Accounts')}</Link>
+            </Menu.Item>
+            <Menu.Item key="/nodes" className="menu-with-icon">
+              <Link to="/nodes">{t('Nodes')}</Link>
+            </Menu.Item>
+          </Menu>
+        </div>
+      </Drawer>
     </>
   )
 }

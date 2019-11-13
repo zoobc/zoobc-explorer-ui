@@ -121,3 +121,38 @@
     color: var(--color-primary-light);
   }
 }
+
+.drawer-mobile {
+  .ant-drawer {
+    &-content {
+      background-color: var(--color-primary-bg) !important;
+      color: var(--white);
+    }
+    &-close {
+      color: var(--white);
+    }
+  }
+
+  &-content {
+    padding: 30px 0;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    img {
+      width: 10%;
+    }
+  }
+
+  .header-menu {
+    background-color: transparent !important;
+    border: none !important;
+    margin-top: 30px;
+  }
+
+  .ant-menu-item {
+    font-size: 20px !important;
+    text-align: center;
+  }
+}
