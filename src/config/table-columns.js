@@ -120,7 +120,7 @@ export const blockColumns = [
     key: 'BlocksmithAddress',
     render(text) {
       return (
-        <div>
+        <div className="blocksmith">
           <Badge color={randomBadgeColor()} />
           <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
         </div>

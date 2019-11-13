@@ -34,8 +34,8 @@ const Header = ({ history, location, fluid }) => {
     setIsOpenDialog(true)
   }
 
-  const onRegister = () => {
-    setDialogTitle('Register')
+  const onFeedback = () => {
+    setDialogTitle('Feedback')
     setIsOpenDialog(true)
   }
 
@@ -45,7 +45,7 @@ const Header = ({ history, location, fluid }) => {
         <Container className="header-content" fluid={fluid}>
           <Link className="logo" to="/">
             <img src={zoobcLogo} alt="zoobc-logo" />
-            <div className="header-logo-name">ZooBC.net</div>
+            <div className="header-logo-name">ZooBC</div>
           </Link>
           <div className="navbar-left">
             <Menu
@@ -83,10 +83,10 @@ const Header = ({ history, location, fluid }) => {
               />
             </Tooltip>
             <Button type="primary" className="mr-1" onClick={onLogin}>
-              Login
+              Login / Register
             </Button>
-            <Button type="primary" onClick={onRegister}>
-              Register
+            <Button type="danger" onClick={onFeedback}>
+              Feedback
             </Button>
           </div>
         </Container>
