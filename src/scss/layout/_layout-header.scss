@@ -130,6 +130,7 @@
     }
     &-close {
       color: var(--white);
+      top: 25px !important;
     }
   }
 
@@ -145,9 +146,6 @@
   }
 
   &-collapse {
-    position: absolute !important;
-    top: 15px;
-    right: 0;
     color: var(--white) !important;
   }
 

@@ -44,11 +44,6 @@ const Header = ({ history, location, fluid }) => {
     <>
       <Layout.Header className="header">
         <Container className="header-content" fluid={fluid}>
-          <Button
-            icon="menu"
-            className="mr-1 d-block d-md-none "
-            onClick={() => setIsOpenDraw(true)}
-          />
           <Link className="logo" to="/">
             <img src={zoobcLogo} alt="zoobc-logo" />
             <div className="header-logo-name">ZooBC.net</div>
@@ -94,6 +89,12 @@ const Header = ({ history, location, fluid }) => {
             <Button type="danger" onClick={onFeedback}>
               Feedback
             </Button>
+            <Button
+              icon="menu"
+              type="link"
+              className="drawer-mobile-collapse ml-1 d-block d-md-none"
+              onClick={() => setIsOpenDraw(true)}
+            />
           </div>
         </Container>
       </Layout.Header>
@@ -109,19 +110,13 @@ const Header = ({ history, location, fluid }) => {
         destroyOnClose={true}
         className="drawer-mobile"
         height="auto"
-        closable={false}
+      // closable={false}
       >
         <div className="drawer-mobile-content">
           <Link className="logo" to="/">
             <img src={zoobcLogo} alt="zoobc-logo" />
             <div className="header-logo-name">ZooBC.net</div>
           </Link>
-          <Button
-            icon="menu"
-            type="link"
-            className="drawer-mobile-collapse"
-            onClick={() => setIsOpenDraw(false)}
-          />
           <Menu className="header-menu" selectedKeys={[location.pathname]}>
             <Menu.Item key="/blocks" className="menu-with-icon">
               <Link to="/blocks">{t('Blocks')}</Link>
