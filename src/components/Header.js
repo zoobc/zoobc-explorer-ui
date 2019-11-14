@@ -110,7 +110,6 @@ const Header = ({ history, location, fluid }) => {
         destroyOnClose={true}
         className="drawer-mobile"
         height="auto"
-      // closable={false}
       >
         <div className="drawer-mobile-content">
           <Link className="logo" to="/">
