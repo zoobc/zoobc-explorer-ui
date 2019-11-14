@@ -115,6 +115,11 @@ const Footer = () => {
           </ul>
         </Collapse.Panel>
       </Collapse>
+      <div className="footer-mobile-copyright">
+        <h6>ZooBC.net</h6>
+        <p>&#169; 2019 ZooBC.net All rights reserved.</p>
+        <p>v0.0.1-alpha.1</p>
+      </div>
       <hr className="footer-horizontal-rule-dark" />
       <div className="footer-social-icons">
         <a
