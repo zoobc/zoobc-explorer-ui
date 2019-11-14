@@ -8,13 +8,13 @@ const DescItem = ({ label, value }) => {
   const { t } = useTranslation()
   return (
     <Row>
-      <Col span={5}>
+      <Col md={{ span: 5 }} sm={{ span: 24 }}>
         <label>
           <strong>{t(label)}</strong>
         </label>
       </Col>
-      <Col span={19}>
-        <label>{(!!value || value === 0) && value}</label>
+      <Col md={{ span: 19 }} sm={{ span: 24 }}>
+        <div className="truncate">{(!!value || value === 0) && value}</div>
       </Col>
     </Row>
   )

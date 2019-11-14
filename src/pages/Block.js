@@ -173,7 +173,7 @@ const Block = ({ match }) => {
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <h4>
+                  <h4 className="truncate">
                     {t('Block')} {data.block.Height}
                   </h4>
                 </Col>

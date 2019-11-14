@@ -43,3 +43,10 @@ code {
 a:hover {
   text-decoration: underline !important;
 }
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
