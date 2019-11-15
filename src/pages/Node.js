@@ -53,30 +53,24 @@ const GET_BLOCK_BY_NODE = gql`
 `
 
 const Node = ({ match, history }) => {
-  const { params, url } = match
+  const { params } = match
   const { t } = useTranslation()
-  const urlLastCharacter = url[url.length - 1]
   const [blockCurrentPage, setBlockCurrentPage] = useState(1)
   const [blocks, setBlocks] = useState([])
   const [blockPaginate, setBlockPaginate] = useState({})
   const [keyword, setKeyword] = useState('0')
   const { doSearch } = useSearch(keyword, history)
-  let nodePublicKey = params.id
-
-  if (urlLastCharacter === '/') {
-    nodePublicKey = `${url.split('/')[2]}/`
-  }
 
   const { loading, data, error } = useQuery(GET_NODE_DATA, {
     variables: {
-      NodePublicKey: nodePublicKey,
+      NodePublicKey: params.id,
     },
   })
 
   const blockNode = useQuery(GET_BLOCK_BY_NODE, {
     variables: {
       page: blockCurrentPage,
-      NodePublicKey: nodePublicKey,
+      NodePublicKey: params.id,
     },
   })
 
