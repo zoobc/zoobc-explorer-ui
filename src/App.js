@@ -49,7 +49,7 @@ function App() {
                 <Route exact path="/accounts" render={props => <Accounts {...props} />} />
                 <Route exact path="/accounts/:id" render={props => <Account {...props} />} />
                 <Route exact path="/nodes" render={props => <Nodes {...props} />} />
-                <Route exact path="/nodes/:id" render={props => <Node {...props} />} />
+                <Route exact path="/nodes/:id+" render={props => <Node {...props} />} />
                 <Route exact path="/search" render={props => <NotFound {...props} />} />
                 <Route exact path="*" render={props => <NotFound {...props} />} />
               </Switch>
