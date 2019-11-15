@@ -8,6 +8,7 @@ import useSearch from '../hooks/useSearch'
 import Container from './Container'
 import zoobcLogo from '../assets/images/logo-zoobc.svg'
 import ComingSoon from './ComingSoon'
+import FormFeedback from './FormFeedback'
 
 const { Search } = Input
 
@@ -18,6 +19,7 @@ const Header = ({ history, location, fluid }) => {
   const [keyword, setKeyword] = useState('')
   const [isOpenDialog, setIsOpenDialog] = useState(false)
   const [isOpenDrawer, setIsOpenDraw] = useState(false)
+  const [isOpenFeedBack, setIsOpenFeedBack] = useState(false)
   const [dialogTitle, setDialogTitle] = useState('Login')
   const { doSearch, loading } = useSearch(keyword, history)
 
@@ -36,8 +38,7 @@ const Header = ({ history, location, fluid }) => {
   }
 
   const onFeedback = () => {
-    setDialogTitle('Feedback')
-    setIsOpenDialog(true)
+    setIsOpenFeedBack(true)
   }
 
   return (
@@ -103,6 +104,7 @@ const Header = ({ history, location, fluid }) => {
         title={dialogTitle}
         onClose={() => setIsOpenDialog(false)}
       />
+      <FormFeedback visible={isOpenFeedBack} onClose={() => setIsOpenFeedBack(false)} />
       <Drawer
         placement="top"
         onClose={() => setIsOpenDraw(false)}
