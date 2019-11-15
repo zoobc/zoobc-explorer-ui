@@ -13,8 +13,8 @@ const FormFeedback = ({ visible, onClose, form }) => {
     validateFields((err, values) => {
       if (!err) {
         doorbell.submit(values).then(res => {
+          if (res.type === 'success') resetFields()
           setAlert(res)
-          resetFields()
           setIsSubmitting(false)
         })
       }

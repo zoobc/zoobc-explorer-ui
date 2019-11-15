@@ -27,7 +27,7 @@ import iconBlog from '../assets/images/blog.svg'
 import zoobcLogo from '../assets/images/logo-zoobc.svg'
 import TestnetContext from '../context/TestnetContext'
 import testnet from '../config/testnet'
-import ComingSoon from './ComingSoon'
+import FormFeedback from './FormFeedback'
 
 const Footer = () => {
   const { t, i18n } = useTranslation()
@@ -364,7 +364,7 @@ const Footer = () => {
           )}
         />
       </Drawer>
-      <ComingSoon visible={isOpenDialog} title="Feedback" onClose={() => setIsOpenDialog(false)} />
+      <FormFeedback visible={isOpenDialog} title="Feedback" onClose={() => setIsOpenDialog(false)} />
     </>
   )
 }

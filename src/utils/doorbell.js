@@ -32,7 +32,7 @@ const submit = payload => {
   return fetch(`${doorbellEnpoint}/${doorbellID}/submit?key=${doorbellKey}`, {
     method: 'POST',
     headers: headerOptions,
-    body: JSON.stringify({ library: 'javascript', ...payload }),
+    body: JSON.stringify({ library: 'javascript', ...payload, nps: payload.nps * 2 }),
   })
     .then(response => {
       if (response.status === 201) {
