@@ -364,7 +364,11 @@ const Footer = () => {
           )}
         />
       </Drawer>
-      <FormFeedback visible={isOpenDialog} title="Feedback" onClose={() => setIsOpenDialog(false)} />
+      <FormFeedback
+        visible={isOpenDialog}
+        title="Feedback"
+        onClose={() => setIsOpenDialog(false)}
+      />
     </>
   )
 }
