@@ -9,9 +9,9 @@ const FormFeedback = ({ visible, onClose, form }) => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    setIsSubmitting(true)
     validateFields((err, values) => {
       if (!err) {
+        setIsSubmitting(true)
         doorbell.submit(values).then(res => {
           if (res.type === 'success') resetFields()
           setAlert(res)

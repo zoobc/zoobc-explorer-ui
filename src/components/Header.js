@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Layout, Menu, Input, Icon, Tooltip, Spin, Button, Drawer } from 'antd'
@@ -37,7 +38,8 @@ const Header = ({ history, location, fluid }) => {
     setIsOpenDialog(true)
   }
 
-  const onFeedback = () => {
+  const onFeedback = e => {
+    e.preventDefault();
     setIsOpenFeedBack(true)
   }
 
@@ -47,7 +49,10 @@ const Header = ({ history, location, fluid }) => {
         <Container className="header-content" fluid={fluid}>
           <Link className="logo" to="/">
             <img src={zoobcLogo} alt="zoobc-logo" />
-            <div className="header-logo-name">ZooBC.net</div>
+            <div className="header-logo-name">
+              <div className="logo-text-name">ZooBC Explorer</div>
+              <div className="logo-text-version">Alpha - Version 0.1</div>
+            </div>
           </Link>
           <div className="navbar-left d-none d-md-block">
             <Menu
@@ -68,6 +73,9 @@ const Header = ({ history, location, fluid }) => {
               <Menu.Item key="/nodes" className="menu-with-icon">
                 <Link to="/nodes">{t('Nodes')}</Link>
               </Menu.Item>
+              <Menu.Item key="/feedback" className="menu-with-icon">
+                <a href="#" onClick={onFeedback}>{t('Feedback')}</a>
+              </Menu.Item>
             </Menu>
           </div>
           <div className="navbar-right">
@@ -85,9 +93,9 @@ const Header = ({ history, location, fluid }) => {
               />
             </Tooltip>
             <Button type="primary" className="mr-1 d-none d-md-block" onClick={onLogin}>
-              Login / Register
+              Login
             </Button>
-            <Button type="danger" onClick={onFeedback}>
+            <Button type="danger" className="d-block d-md-none" onClick={onFeedback}>
               Feedback
             </Button>
             <Button
@@ -116,7 +124,10 @@ const Header = ({ history, location, fluid }) => {
         <div className="drawer-mobile-content">
           <Link className="logo" to="/">
             <img src={zoobcLogo} alt="zoobc-logo" />
-            <div className="header-logo-name">ZooBC.net</div>
+            <div className="header-logo-name">
+              <div className="logo-text-name">ZooBC Explorer</div>
+              <div className="logo-text-version">Alpha - Version 0.1</div>
+            </div>
           </Link>
           <Menu className="header-menu" selectedKeys={[location.pathname]}>
             <Menu.Item key="/blocks" className="menu-with-icon">
@@ -130,6 +141,9 @@ const Header = ({ history, location, fluid }) => {
             </Menu.Item>
             <Menu.Item key="/nodes" className="menu-with-icon">
               <Link to="/nodes">{t('Nodes')}</Link>
+            </Menu.Item>
+            <Menu.Item key="/login" className="menu-with-icon">
+              <a href="#" onClick={onLogin}>{t('Login')}</a>
             </Menu.Item>
           </Menu>
           <Search

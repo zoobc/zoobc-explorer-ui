@@ -116,9 +116,9 @@ const Footer = () => {
         </Collapse.Panel>
       </Collapse>
       <div className="footer-mobile-copyright">
-        <h6>ZooBC.net</h6>
-        <p>&#169; 2019 ZooBC.net All rights reserved.</p>
-        <p>v0.0.1-alpha.1</p>
+        <h6>ZooBC Explorer</h6>
+        <p>&#169; 2019 ZooBC Explorer All rights reserved.</p>
+        <p>Alpha - Version 0.1</p>
       </div>
       <hr className="footer-horizontal-rule-dark" />
       <div className="footer-social-icons">
@@ -196,16 +196,15 @@ const Footer = () => {
               <div className="footer-logo">
                 <Link className="footer-link-logo" to="/">
                   <img src={zoobcLogo} alt="zoobc-logo" />
-                  <div className="footer-link-text">ZooBC.net</div>
+                  <div className="footer-link-text">ZooBC Explorer</div>
                 </Link>
               </div>
               <ul className="footer-company-info">
                 <p className="footer-company-text">
-                  &#169; 2019 ZooBC.net
-                  <br />
-                  All rights reserved.
-                  <br />
-                  v0.0.1-alpha.1
+                  &#169; 2019 ZooBC Explorer All rights reserved.
+                </p>
+                <p className="footer-company-text">
+                  Alpha - Version 0.1
                 </p>
               </ul>
             </Col>
