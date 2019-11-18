@@ -17,7 +17,7 @@ const randomBadgeColor = () => {
 const renderCurrenncy = text => {
   return (
     !!text && (
-      <NumberFormat value={text} displayType={'text'} thousandSeparator={true} suffix={' BCZ'} />
+      <NumberFormat value={text} displayType={'text'} thousandSeparator={true} suffix={' ZBC'} />
     )
   )
 }
@@ -44,7 +44,7 @@ const renderAmountCurrenncy = (text, record) => {
 
   return (
     !!text && (
-      <NumberFormat value={text} displayType={'text'} thousandSeparator={true} suffix={' BCZ'} />
+      <NumberFormat value={text} displayType={'text'} thousandSeparator={true} suffix={' ZBC'} />
     )
   )
 }
@@ -115,12 +115,12 @@ export const blockColumns = [
     },
   },
   {
-    title: <Title text="Blocksmith" />,
+    title: <Title text="Blocksmith Address" />,
     dataIndex: 'BlocksmithAddress',
     key: 'BlocksmithAddress',
     render(text) {
       return (
-        <div>
+        <div className="blocksmith">
           <Badge color={randomBadgeColor()} />
           <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
         </div>

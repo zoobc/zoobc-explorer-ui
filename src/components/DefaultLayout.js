@@ -1,18 +1,57 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Layout } from 'antd'
+import { withRouter } from 'react-router-dom'
+
 import Hero from './Hero'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
-const DefaultLayout = ({ children, withHero, fluid }) => {
+import { hinge } from 'react-animations'
+import Radium, { StyleRoot } from 'radium'
+
+const DefaultLayout = ({ history, children, withHero, fluid }) => {
+  const { fvck69 } = history.location
+
+  const styles = {
+    hingeHeader: {
+      animation: 'x 3s',
+      animationName: Radium.keyframes(hinge, 'hinge'),
+    },
+    hingeHero: {
+      animation: 'x 4s',
+      animationName: Radium.keyframes(hinge, 'hinge'),
+    },
+    hingeLayout: {
+      animation: 'x 5s',
+      animationName: Radium.keyframes(hinge, 'hinge'),
+    },
+    hingeFooter: {
+      animation: 'x 6s',
+      animationName: Radium.keyframes(hinge, 'hinge'),
+    },
+  }
+
   return (
-    <>
-      <Header fluid={fluid} />
-      {withHero && <Hero className="home-content" />}
-      <Layout className="default-layout">{children}</Layout>
-      <Footer fluid={fluid} />
-    </>
+    <StyleRoot>
+      <div style={fvck69 ? styles.hingeHeader : null}>
+        <Header fluid={fluid} />
+      </div>
+
+      {withHero && (
+        <div style={fvck69 ? styles.hingeHero : null}>
+          <Hero className="home-content" />
+        </div>
+      )}
+
+      <Layout className="default-layout">
+        <div style={fvck69 ? styles.hingeLayout : null}>{children}</div>
+      </Layout>
+
+      <div style={fvck69 ? styles.hingeFooter : null}>
+        <Footer fluid={fluid} />
+      </div>
+    </StyleRoot>
   )
 }
 
@@ -24,4 +63,4 @@ DefaultLayout.defaultProps = {
   withHero: false,
 }
 
-export default DefaultLayout
+export default withRouter(DefaultLayout)

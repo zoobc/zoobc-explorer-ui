@@ -1,6 +1,9 @@
 /** Abstracts style **/
 @import './abstracts';
 
+/** Mixins style **/
+@import './mixins';
+
 /** Base style **/
 @import './base';
 
@@ -9,9 +12,6 @@
 
 /** Layout style **/
 @import './layout';
-
-/** Mixins style **/
-@import './mixins';
 
 /** Responsive style **/
 @import './responsive';

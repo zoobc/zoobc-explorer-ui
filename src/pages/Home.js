@@ -6,7 +6,16 @@ import { Link } from 'react-router-dom'
 import NumberFormat from 'react-number-format'
 // import { Row, Col } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts'
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from 'recharts'
 
 import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
@@ -21,7 +30,7 @@ const GET_HOME_DATA = gql`
         BlockID
         Height
         Timestamp
-        BlocksmithID
+        BlocksmithAddress
       }
     }
     transactions(page: 1, limit: 5, order: "-Height") {
@@ -85,7 +94,7 @@ const Home = ({ history }) => {
       <Container>
         <Hero />
         <Row className="home-latest">
-          <Col className="home-col-left">
+          <Col className="home-col-left" md={{ span: 12 }} sm={{ span: 24 }}>
             <Card className="home-card" bordered={false}>
               <h5>
                 <i className="bcz-calendar" />
@@ -98,18 +107,22 @@ const Home = ({ history }) => {
                 className="overview-list"
                 renderItem={item => (
                   <List.Item>
-                    <Row>
-                      <Col className="home-col-list">
+                    <Row className="px-3 home-row-list">
+                      <Col md={{ span: 12 }} sm={{ span: 24 }}>
                         <div>
                           <Link to={`/blocks/${item.BlockID}`}>{item.Height}</Link>
                         </div>
                         <div>{moment(item.Timestamp).format('lll')}</div>
                       </Col>
-                      <Col className="home-col-list">
+                      <Col md={{ span: 12 }} sm={{ span: 24 }}>
                         <div>
-                          <strong>{t('Blocksmith')}</strong>
+                          <strong>{t('Blocksmith Address')}</strong>
                         </div>
-                        <div>{shortenHash(item.BlocksmithID, 30)}</div>
+                        <div>
+                          <Link to={`/accounts/${item.BlocksmithAddress}`}>
+                            {shortenHash(item.BlocksmithAddress, 30)}
+                          </Link>
+                        </div>
                       </Col>
                     </Row>
                   </List.Item>
@@ -120,7 +133,7 @@ const Home = ({ history }) => {
               </Button>
             </Card>
           </Col>
-          <Col className="home-col-right">
+          <Col className="home-col-right" md={{ span: 12 }} sm={{ span: 24 }}>
             <Card className="home-card" bordered={false}>
               <h5>
                 <i className="bcz-calendar" />
@@ -133,18 +146,14 @@ const Home = ({ history }) => {
                 className="overview-list"
                 renderItem={item => (
                   <List.Item>
-                    <Row>
-                      <Col className="home-col-list">
+                    <Row className="px-3 home-row-list">
+                      <Col md={{ span: 12 }} sm={{ span: 24 }}>
                         <div>
                           <strong>{t('Transaction ID')}</strong>
                         </div>
-                        <div>
-                          <Link to={`/transactions/${item.TransactionID}`}>
-                            {item.TransactionID}
-                          </Link>
-                        </div>
+                        <Link to={`/transactions/${item.TransactionID}`}>{item.TransactionID}</Link>
                       </Col>
-                      <Col className="home-col-list">
+                      <Col md={{ span: 12 }} sm={{ span: 24 }}>
                         <div>
                           <strong>{t('Fees')}</strong>{' '}
                           {!!item.FeeConversion && (
@@ -169,56 +178,64 @@ const Home = ({ history }) => {
           </Col>
         </Row>
         <Row className="home-latest">
-          <Col className="home-col-left">
+          <Col className="home-col-left" md={{ span: 12 }} sm={{ span: 24 }}>
             <Card className="home-card" bordered={false}>
               <h5>
                 <i className="bcz-calendar" />
                 <strong>{t('Latest Block Count in 30 Days')}</strong>
               </h5>
-              <LineChart
-                width={450}
-                height={300}
-                data={blockGraphData}
-                margin={{
-                  top: 20,
-                  right: 0,
-                  left: 0,
-                  bottom: 0,
-                }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="amt" stroke="#8884d8" activeDot={{ r: 8 }} />
-              </LineChart>
+              <div className="graph">
+                <div className="graph-container">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart
+                      data={blockGraphData}
+                      margin={{
+                        top: 20,
+                        right: 0,
+                        left: 0,
+                        bottom: 0,
+                      }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="name" />
+                      <YAxis />
+                      <Tooltip />
+                      <Legend />
+                      <Line type="monotone" dataKey="amt" stroke="#8884d8" activeDot={{ r: 8 }} />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
             </Card>
           </Col>
-          <Col className="home-col-right">
+          <Col className="home-col-right" md={{ span: 12 }} sm={{ span: 24 }}>
             <Card className="home-card" bordered={false}>
               <h5>
                 <i className="bcz-calendar" />
                 <strong>{t('Latest Transaction Amount in 30 Days')}</strong>
               </h5>
-              <LineChart
-                width={450}
-                height={300}
-                data={trxGraphData}
-                margin={{
-                  top: 20,
-                  right: 0,
-                  left: 0,
-                  bottom: 0,
-                }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="amt" stroke="#8884d8" activeDot={{ r: 8 }} />
-              </LineChart>
+              <div className="graph">
+                <div className="graph-container">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart
+                      data={trxGraphData}
+                      margin={{
+                        top: 20,
+                        right: 0,
+                        left: 0,
+                        bottom: 0,
+                      }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="name" />
+                      <YAxis />
+                      <Tooltip />
+                      <Legend />
+                      <Line type="monotone" dataKey="amt" stroke="#8884d8" activeDot={{ r: 8 }} />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
             </Card>
           </Col>
         </Row>

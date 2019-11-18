@@ -76,17 +76,17 @@ const testnetClientProd = [
 ]
 
 const testnetClientLocal = [
-  'http://192.168.20.248:7000/zoobc/api/v1/graphql',
-  'http://192.168.20.242:7000/zoobc/api/v1/graphql',
-  'http://192.168.21.248:7000/zoobc/api/v1/graphql',
-  'http://192.168.20.251:7000/zoobc/api/v1/graphql',
-  'http://192.168.20.254:7000/zoobc/api/v1/graphql',
-  'http://192.168.20.242:7000/zoobc/api/v1/graphql',
-  'http://192.168.20.250:7000/zoobc/api/v1/graphql',
-  'http://192.168.20.252:7000/zoobc/api/v1/graphql',
-  'http://192.168.20.249:7000/zoobc/api/v1/graphql',
-  'http://192.168.20.246:7000/zoobc/api/v1/graphql',
-  'http://192.168.20.247:7000/zoobc/api/v1/graphql',
+  'http://localhost:2480/zoobc/api/v1/graphql',
+  'http://localhost:2420/zoobc/api/v1/graphql',
+  'http://localhost:2481/zoobc/api/v1/graphql',
+  'http://localhost:2510/zoobc/api/v1/graphql',
+  'http://localhost:2540/zoobc/api/v1/graphql',
+  'http://localhost:2420/zoobc/api/v1/graphql',
+  'http://localhost:2500/zoobc/api/v1/graphql',
+  'http://localhost:2520/zoobc/api/v1/graphql',
+  'http://localhost:2490/zoobc/api/v1/graphql',
+  'http://localhost:2460/zoobc/api/v1/graphql',
+  'http://localhost:2470/zoobc/api/v1/graphql',
 ]
 
 export const testnetClient =

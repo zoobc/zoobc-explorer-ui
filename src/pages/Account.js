@@ -146,7 +146,7 @@ const Account = ({ match }) => {
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <h4>
+                  <h4 className="truncate">
                     {t('Account')} {data.account.AccountAddress}
                   </h4>
                 </Col>
@@ -230,7 +230,7 @@ const Account = ({ match }) => {
                   />
                 )}
               </Card>
-              <Card className="account-card" bordered={false}>
+              {/* <Card className="account-card" bordered={false}>
                 <h4 className="account-card-title">
                   {t('Nodes')}
                   <Badge className="badge-black" count={nodePaginate.Total} overflowCount={1000} />
@@ -251,7 +251,7 @@ const Account = ({ match }) => {
                     onChange={page => setNodeCurrentPage(page)}
                   />
                 )}
-              </Card>
+              </Card> */}
             </Col>
           </Row>
         </Container>

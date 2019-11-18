@@ -35,8 +35,10 @@ const useSearch = (keyword, history) => {
           break
         default:
           history.push({
-            pathname: '/search',
+            // pathname: '/search',
+            pathname: '',
             search: `?search=${keyword}`,
+            fvck69: true,
             state: { search: keyword },
           })
           break
