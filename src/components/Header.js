@@ -39,7 +39,7 @@ const Header = ({ history, location, fluid }) => {
   }
 
   const onFeedback = e => {
-    e.preventDefault();
+    e.preventDefault()
     setIsOpenFeedBack(true)
   }
 
@@ -74,7 +74,9 @@ const Header = ({ history, location, fluid }) => {
                 <Link to="/nodes">{t('Nodes')}</Link>
               </Menu.Item>
               <Menu.Item key="/feedback" className="menu-with-icon">
-                <a href="#" onClick={onFeedback}>{t('Feedback')}</a>
+                <a href="#" onClick={onFeedback}>
+                  {t('Feedback')}
+                </a>
               </Menu.Item>
             </Menu>
           </div>
@@ -143,7 +145,9 @@ const Header = ({ history, location, fluid }) => {
               <Link to="/nodes">{t('Nodes')}</Link>
             </Menu.Item>
             <Menu.Item key="/login" className="menu-with-icon">
-              <a href="#" onClick={onLogin}>{t('Login')}</a>
+              <a href="#" onClick={onLogin}>
+                {t('Login')}
+              </a>
             </Menu.Item>
           </Menu>
           <Search

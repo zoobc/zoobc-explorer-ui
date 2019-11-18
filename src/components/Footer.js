@@ -203,9 +203,7 @@ const Footer = () => {
                 <p className="footer-company-text">
                   &#169; 2019 ZooBC Explorer All rights reserved.
                 </p>
-                <p className="footer-company-text">
-                  Alpha - Version 0.1
-                </p>
+                <p className="footer-company-text">Alpha - Version 0.1</p>
               </ul>
             </Col>
             <Col className="footer-col-info">
