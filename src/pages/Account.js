@@ -44,6 +44,12 @@ const GET_TRX_BY_ACCOUNT = gql`
         SendMoney {
           AmountConversion
         }
+        NodeRegistration {
+          LockedBalanceConversion
+        }
+        UpdateNodeRegistration {
+          LockedBalanceConversion
+        }
       }
       Paginate {
         Page
@@ -83,9 +89,17 @@ const Account = ({ match }) => {
   useEffect(() => {
     if (!!trxByAccount.data) {
       const trxData = trxByAccount.data.transactions.Transactions.map((trx, key) => {
+        const { SendMoney, NodeRegistration, UpdateNodeRegistration } = trx
         return {
           key,
           ...trx,
+          Amount: SendMoney
+            ? SendMoney.AmountConversion
+            : NodeRegistration
+            ? NodeRegistration.LockedBalanceConversion
+            : UpdateNodeRegistration
+            ? UpdateNodeRegistration.LockedBalanceConversion
+            : '0',
         }
       })
 
