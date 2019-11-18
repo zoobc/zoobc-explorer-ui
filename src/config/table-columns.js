@@ -57,7 +57,7 @@ const Title = ({ text }) => {
 
 export const accountColumns = [
   {
-    title: <Title text="Address" />,
+    title: <Title text='Address' />,
     dataIndex: 'AccountAddress',
     key: 'AccountAddress',
     render(text) {
@@ -65,24 +65,24 @@ export const accountColumns = [
     },
   },
   {
-    title: <Title text="Balance" />,
+    title: <Title text='Balance' />,
     dataIndex: 'BalanceConversion',
     key: 'BalanceConversion',
     render: renderCurrenncy,
   },
   {
-    title: <Title text="Last Active" />,
+    title: <Title text='Last Active' />,
     dataIndex: 'LastActive',
     key: 'LastActive',
   },
   {
-    title: <Title text="Fees" />,
+    title: <Title text='Fees' />,
     dataIndex: 'TotalFeesPaidConversion',
     key: 'TotalFeesPaidConversion',
     render: renderCurrenncy,
   },
   {
-    title: <Title text="Rewards" />,
+    title: <Title text='Rewards' />,
     dataIndex: 'TotalRewardsConversion',
     key: 'TotalRewardsConversion',
     render: renderCurrenncy,
@@ -91,7 +91,7 @@ export const accountColumns = [
 
 export const blockColumns = [
   {
-    title: <Title text="Block ID" />,
+    title: <Title text='Block ID' />,
     dataIndex: 'BlockID',
     key: 'BlockID',
     render(text) {
@@ -99,7 +99,7 @@ export const blockColumns = [
     },
   },
   {
-    title: <Title text="Height" />,
+    title: <Title text='Height' />,
     dataIndex: 'Height',
     key: 'Height',
     render(text, record) {
@@ -107,7 +107,7 @@ export const blockColumns = [
     },
   },
   {
-    title: <Title text="Timestamp" />,
+    title: <Title text='Timestamp' />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
     render(text) {
@@ -115,12 +115,12 @@ export const blockColumns = [
     },
   },
   {
-    title: <Title text="Blocksmith Address" />,
+    title: <Title text='Blocksmith Address' />,
     dataIndex: 'BlocksmithAddress',
     key: 'BlocksmithAddress',
     render(text) {
       return (
-        <div className="blocksmith">
+        <div className='blocksmith'>
           <Badge color={randomBadgeColor()} />
           <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
         </div>
@@ -128,13 +128,13 @@ export const blockColumns = [
     },
   },
   {
-    title: <Title text="Fees" />,
+    title: <Title text='Fees' />,
     dataIndex: 'TotalFeeConversion',
     key: 'TotalFeeConversion',
     render: renderCurrenncy,
   },
   {
-    title: <Title text="Rewards" />,
+    title: <Title text='Rewards' />,
     dataIndex: 'TotalRewardsConversion',
     key: 'TotalRewardsConversion',
     render: renderCurrenncy,
@@ -143,7 +143,7 @@ export const blockColumns = [
 
 export const transactionColumns = [
   {
-    title: <Title text="Transaction ID" />,
+    title: <Title text='Transaction ID' />,
     dataIndex: 'TransactionID',
     key: 'TransactionID',
     render(text) {
@@ -151,7 +151,7 @@ export const transactionColumns = [
     },
   },
   {
-    title: <Title text="Height" />,
+    title: <Title text='Height' />,
     dataIndex: 'Height',
     key: 'Height',
     render(text, record) {
@@ -159,7 +159,7 @@ export const transactionColumns = [
     },
   },
   {
-    title: <Title text="Timestamp" />,
+    title: <Title text='Timestamp' />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
     render(text) {
@@ -167,12 +167,12 @@ export const transactionColumns = [
     },
   },
   {
-    title: <Title text="Type" />,
+    title: <Title text='Type' />,
     dataIndex: 'TransactionTypeName',
     key: 'TransactionTypeName',
   },
   {
-    title: <Title text="Sender" />,
+    title: <Title text='Sender' />,
     dataIndex: 'Sender',
     key: 'Sender',
     render(text) {
@@ -180,7 +180,7 @@ export const transactionColumns = [
     },
   },
   {
-    title: <Title text="Recipient" />,
+    title: <Title text='Recipient' />,
     dataIndex: 'Recipient',
     key: 'Recipient',
     render(text) {
@@ -188,18 +188,18 @@ export const transactionColumns = [
     },
   },
   {
-    title: <Title text="Amount" />,
-    dataIndex: 'SendMoney.AmountConversion',
-    key: 'SendMoney.AmountConversion',
+    title: <Title text='Amount' />,
+    dataIndex: 'Amount',
+    key: 'Amount',
     render: renderAmountCurrenncy,
   },
+  // {
+  //   title: <Title text='Confirmations' />,
+  //   dataIndex: 'Confirmations',
+  //   key: 'Confirmations',
+  // },
   {
-    title: <Title text="Confirmations" />,
-    dataIndex: 'Confirmations',
-    key: 'Confirmations',
-  },
-  {
-    title: <Title text="Fees" />,
+    title: <Title text='Fees' />,
     dataIndex: 'FeeConversion',
     key: 'FeeConversion',
     render: renderCurrenncy,
@@ -208,7 +208,7 @@ export const transactionColumns = [
 
 export const nodeColumns = [
   {
-    title: <Title text="Public Key" />,
+    title: <Title text='Public Key' />,
     dataIndex: 'NodePublicKey',
     key: 'NodePublicKey',
     render(text) {
@@ -216,7 +216,7 @@ export const nodeColumns = [
     },
   },
   {
-    title: <Title text="Owner Address" />,
+    title: <Title text='Owner Address' />,
     dataIndex: 'OwnerAddress',
     key: 'OwnerAddress',
     render(text) {
@@ -224,18 +224,18 @@ export const nodeColumns = [
     },
   },
   {
-    title: <Title text="Node Address" />,
+    title: <Title text='Node Address' />,
     dataIndex: 'NodeAddress',
     key: 'NodeAddress',
   },
   {
-    title: <Title text="Locked Funds" />,
+    title: <Title text='Locked Funds' />,
     dataIndex: 'LockedFunds',
     key: 'LockedFunds',
     render: renderCurrenncy,
   },
   {
-    title: <Title text="Status" />,
+    title: <Title text='Status' />,
     dataIndex: 'RegistryStatus',
     key: 'RegistryStatus',
     render(text) {
@@ -246,7 +246,7 @@ export const nodeColumns = [
     },
   },
   {
-    title: <Title text="Score" />,
+    title: <Title text='Score' />,
     dataIndex: 'ParticipationScore',
     key: 'ParticipationScore',
   },
@@ -254,7 +254,7 @@ export const nodeColumns = [
 
 export const publishedReceiptColumns = [
   {
-    title: <Title text="Sender" />,
+    title: <Title text='Sender' />,
     dataIndex: 'BatchReceipt.SenderPublicKey',
     key: 'BatchReceipt.SenderPublicKey',
     render(text) {
@@ -262,7 +262,7 @@ export const publishedReceiptColumns = [
     },
   },
   {
-    title: <Title text="Receiver" />,
+    title: <Title text='Receiver' />,
     dataIndex: 'BatchReceipt.ReceiverPublicKey',
     key: 'BatchReceipt.ReceiverPublicKey',
     render(text) {
@@ -270,27 +270,27 @@ export const publishedReceiptColumns = [
     },
   },
   {
-    title: <Title text="Block" />,
+    title: <Title text='Block' />,
     dataIndex: 'BatchReceipt.Height',
     key: 'BatchReceipt.Height',
   },
   {
-    title: <Title text="Data Type" />,
+    title: <Title text='Data Type' />,
     dataIndex: 'BatchReceipt.DataType',
     key: 'BatchReceipt.DataType',
   },
   {
-    title: <Title text="Data Hash" />,
+    title: <Title text='Data Hash' />,
     dataIndex: 'BatchReceipt.DataHash',
     key: 'BatchReceipt.DataHash',
   },
   {
-    title: <Title text="Merkle Root" />,
+    title: <Title text='Merkle Root' />,
     dataIndex: 'BatchReceipt.ReceiptMerkleRoot',
     key: 'BatchReceipt.ReceiptMerkleRoot',
   },
   {
-    title: <Title text="Receiver Signature" />,
+    title: <Title text='Receiver Signature' />,
     dataIndex: 'BatchReceipt.ReceiverSignature',
     key: 'BatchReceipt.ReceiverSignature',
   },

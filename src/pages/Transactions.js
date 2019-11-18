@@ -26,6 +26,12 @@ const GET_TRXS_DATA = gql`
         SendMoney {
           AmountConversion
         }
+        NodeRegistration {
+          LockedBalanceConversion
+        }
+        UpdateNodeRegistration {
+          LockedBalanceConversion
+        }
       }
       Paginate {
         Page
@@ -65,9 +71,17 @@ const Transactions = () => {
   useEffect(() => {
     if (!!data) {
       const trxData = data.transactions.Transactions.map((trx, key) => {
+        const { SendMoney, NodeRegistration, UpdateNodeRegistration } = trx
         return {
           key,
           ...trx,
+          Amount: SendMoney
+            ? SendMoney.AmountConversion
+            : NodeRegistration
+            ? NodeRegistration.LockedBalanceConversion
+            : UpdateNodeRegistration
+            ? UpdateNodeRegistration.LockedBalanceConversion
+            : '0',
         }
       })
 
@@ -79,29 +93,29 @@ const Transactions = () => {
   return (
     <DefaultLayout>
       <Container>
-        <Row className="transactions-row">
+        <Row className='transactions-row'>
           <Col span={24}>
-            <Card className="transactions-card" bordered={false}>
+            <Card className='transactions-card' bordered={false}>
               <Row>
                 <Col span={24}>
                   <h5>
-                    <i className="bcz-calendar" />
+                    <i className='bcz-calendar' />
                     <strong>{t('Recent Transactions')}</strong>
                   </h5>
                 </Col>
               </Row>
               <Table
-                className="transactions-table"
+                className='transactions-table'
                 columns={columns}
                 dataSource={transactions}
                 pagination={false}
-                size="small"
+                size='small'
                 loading={loading}
                 onChange={onChangeTable.bind(this)}
               />
               {!!data && (
                 <Pagination
-                  className="pagination-center"
+                  className='pagination-center'
                   current={paginate.Page}
                   total={paginate.Total}
                   pageSize={15}
