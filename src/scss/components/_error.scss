@@ -4,10 +4,20 @@
   img {
     width: 100%
   }
+  @include mq-sm {
+    width: 100%;
+    padding: 10px 0;
+  }
   &-page {
     width: 900px;
     img {
       width: 45%
+    }
+    @include mq-sm {
+      width: 100%;
+      img {
+        width: 100%
+      }
     }
   }
 }

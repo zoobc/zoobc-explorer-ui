@@ -28,9 +28,9 @@ const NotFound = ({ history, location }) => {
     <DefaultLayout>
       <Container className="flex">
         <div className="error-content error-content-page">
-          <div className="d-flex text-center">
+          <div className="d-flex flex-column flex-md-row text-center">
             <img src={notFound} alt="not found" className="mr-2" />
-            <Row gutter={24} style={{ width: '100%' }} className="mt-3">
+            <Row gutter={24} className="mt-3">
               <Col span={24}>
                 {!!state && !!state.search ? (
                   <>

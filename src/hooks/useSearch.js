@@ -21,6 +21,15 @@ const useSearch = (keyword, history) => {
   })
 
   useEffect(() => {
+    if (keyword === 'craig wright is satoshi nakamoto') {
+      history.push({
+        pathname: '/search',
+        search: `?search=${keyword}`,
+        fvck69: true,
+        state: { search: keyword },
+      })
+      return
+    }
     if (!!data && !error && !loading) {
       const { ID, FoundIn } = data.search
       switch (FoundIn) {
@@ -35,10 +44,8 @@ const useSearch = (keyword, history) => {
           break
         default:
           history.push({
-            // pathname: '/search',
-            pathname: '',
+            pathname: '/search',
             search: `?search=${keyword}`,
-            fvck69: true,
             state: { search: keyword },
           })
           break
