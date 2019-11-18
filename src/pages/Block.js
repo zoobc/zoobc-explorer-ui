@@ -39,6 +39,12 @@ const GET_BLOCK_DATA = gql`
       PopChange
       PayloadLength
       PayloadHash
+      SkippedBlocksmiths {
+        BlocksmithPublicKey
+        POPChange
+        BlockHeight
+        BlocksmithIndex
+      }
     }
   }
 `
@@ -164,6 +170,8 @@ const Block = ({ match }) => {
       setBlockHeight(data.block.Height)
     }
   }, [data])
+
+  console.log('data : ', data)
 
   return (
     <DefaultLayout>
