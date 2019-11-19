@@ -5,7 +5,6 @@ import { useQuery } from '@apollo/react-hooks'
 import { useTranslation } from 'react-i18next'
 
 import { getSortString, isEmptyObject } from '../utils'
-import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
 import { transactionColumns } from '../config/table-columns'
 
@@ -77,7 +76,7 @@ const Transactions = () => {
   }, [data])
 
   return (
-    <DefaultLayout>
+    <>
       <Container>
         <Row className="transactions-row">
           <Col span={24}>
@@ -112,7 +111,7 @@ const Transactions = () => {
           </Col>
         </Row>
       </Container>
-    </DefaultLayout>
+    </>
   )
 }
 

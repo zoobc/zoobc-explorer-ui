@@ -7,7 +7,6 @@ import NumberFormat from 'react-number-format'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
-import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
 import DescItem from '../components/DescItem'
 import CopyToClipboard from '../components/CopyToClipboard'
@@ -120,7 +119,7 @@ const Transaction = ({ match }) => {
   })
 
   return (
-    <DefaultLayout>
+    <>
       {!!error && <NotFound />}
       {!!loading && <LoaderPage />}
       {!error && !loading && (
@@ -190,7 +189,7 @@ const Transaction = ({ match }) => {
           </Row>
         </Container>
       )}
-    </DefaultLayout>
+    </>
   )
 }
 

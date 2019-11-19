@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react'
 import { Input, Row, Col, Icon, Spin } from 'antd'
 
 import notFound from '../../assets/images/not-found.svg'
-import DefaultLayout from '../../components/DefaultLayout'
 import Container from '../../components/Container'
 import useSearch from '../../hooks/useSearch'
 import { useTranslation } from 'react-i18next'
@@ -36,7 +35,7 @@ const NotFound = ({ history, location }) => {
     }
   }
   return (
-    <DefaultLayout>
+    <>
       <Container className="flex">
         <div className="error-content error-content-page">
           <div className="d-flex flex-column flex-md-row text-center">
@@ -71,7 +70,7 @@ const NotFound = ({ history, location }) => {
           </div>
         </div>
       </Container>
-    </DefaultLayout>
+    </>
   )
 }
 

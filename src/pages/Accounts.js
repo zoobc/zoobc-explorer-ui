@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next'
 import gql from 'graphql-tag'
 
 import { getSortString, isEmptyObject } from '../utils'
-import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
 import { accountColumns } from '../config/table-columns'
 
@@ -69,7 +68,7 @@ const Accounts = () => {
   }, [data])
 
   return (
-    <DefaultLayout>
+    <>
       <Container>
         <Row className="accounts-row">
           <Col span={24}>
@@ -103,7 +102,7 @@ const Accounts = () => {
           </Col>
         </Row>
       </Container>
-    </DefaultLayout>
+    </>
   )
 }
 

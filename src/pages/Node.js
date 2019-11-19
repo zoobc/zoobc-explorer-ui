@@ -6,7 +6,6 @@ import NumberFormat from 'react-number-format'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
-import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
 import DescItem from '../components/DescItem'
 import NotFound from '../components/Errors/NotFound'
@@ -90,7 +89,7 @@ const Node = ({ match, history }) => {
   }, [blockNode.data])
 
   return (
-    <DefaultLayout>
+    <>
       {!!error && <NotFound />}
       {!!loading && <LoaderPage />}
       {!error && !loading && (
@@ -174,7 +173,7 @@ const Node = ({ match, history }) => {
           </Row>
         </Container>
       )}
-    </DefaultLayout>
+    </>
   )
 }
 
