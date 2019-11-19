@@ -6,7 +6,6 @@ import NumberFormat from 'react-number-format'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
-import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
 import DescItem from '../components/DescItem'
 import NotFound from '../components/Errors/NotFound'

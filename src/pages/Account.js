@@ -5,13 +5,12 @@ import { useQuery } from '@apollo/react-hooks'
 import NumberFormat from 'react-number-format'
 import { useTranslation } from 'react-i18next'
 
-import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
 import DescItem from '../components/DescItem'
 import NotFound from '../components/Errors/NotFound'
 import LoaderPage from '../components/LoaderPage'
 import CopyToClipboard from '../components/CopyToClipboard'
-import { transactionColumns, nodeColumns } from '../config/table-columns'
+import { transactionColumns } from '../config/table-columns'
 
 const GET_ACCOUNT_DATA = gql`
   query getAccount($AccountAddress: String!) {

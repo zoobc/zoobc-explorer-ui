@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Input, Row, Col, Icon, Spin } from 'antd'
 
 import notFound from '../../assets/images/not-found.svg'
-import DefaultLayout from '../../components/DefaultLayout'
 import Container from '../../components/Container'
 import useSearch from '../../hooks/useSearch'
 import { useTranslation } from 'react-i18next'
@@ -38,11 +37,11 @@ const NotFound = ({ history, location }) => {
                     <p className="h6">Sorry, we couldn't find any results for this search</p>
                   </>
                 ) : (
-                  <>
-                    <p className="display-3 mb-0">404</p>
-                    <p className="h6">Page Not Found</p>
-                  </>
-                )}
+                    <>
+                      <p className="display-3 mb-0">404</p>
+                      <p className="h6">Page Not Found</p>
+                    </>
+                  )}
                 <Search
                   prefix={
                     <Icon

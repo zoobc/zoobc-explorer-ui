@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next'
 import gql from 'graphql-tag'
 
 import { getSortString, isEmptyObject } from '../utils'
-import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
 import { accountColumns } from '../config/table-columns'
 

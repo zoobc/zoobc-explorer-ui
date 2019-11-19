@@ -5,7 +5,6 @@ import { useQuery } from '@apollo/react-hooks'
 import { useTranslation } from 'react-i18next'
 
 import { getSortString, isEmptyObject } from '../utils'
-import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
 import { blockColumns } from '../config/table-columns'
 

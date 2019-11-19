@@ -3,7 +3,6 @@ import { Row, Col, Card, Table, Pagination, Tabs } from 'antd'
 import { useTranslation } from 'react-i18next'
 
 import { isEmptyObject } from '../utils'
-import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
 import { nodeColumns } from '../config/table-columns'
 import useFetchNode from '../hooks/useFetchNode'

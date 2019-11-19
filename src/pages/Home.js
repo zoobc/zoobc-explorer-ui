@@ -17,7 +17,6 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 
-import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
 import Hero from '../components/Hero'
 import moment from 'moment'
