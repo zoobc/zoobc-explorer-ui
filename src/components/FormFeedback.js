@@ -43,12 +43,25 @@ const FormFeedback = ({ visible, onClose, form }) => {
       <Form layout="vertical" onSubmit={handleSubmit}>
         <Form.Item label="Name">
           {getFieldDecorator('name', {
-            rules: [{ required: true, message: 'Please input your name!' }],
+            rules: [
+              {
+                required: true,
+                message: 'Please input your name!',
+                transform: value => value.trim(),
+              },
+            ],
           })(<Input placeholder="Input your name" />)}
         </Form.Item>
         <Form.Item label="Email">
           {getFieldDecorator('email', {
-            rules: [{ required: true, message: 'Please input your email!' }],
+            rules: [
+              {
+                required: true,
+                type: 'email',
+                message: 'Please input your email!',
+                transform: value => value.trim(),
+              },
+            ],
           })(<Input placeholder="Input your email address" />)}
         </Form.Item>
         <Form.Item label="Sentiment">
@@ -63,7 +76,13 @@ const FormFeedback = ({ visible, onClose, form }) => {
         <Form.Item label="Rate">{getFieldDecorator('nps')(<Rate />)}</Form.Item>
         <Form.Item label="Message">
           {getFieldDecorator('message', {
-            rules: [{ required: true, message: 'Please input your message!' }],
+            rules: [
+              {
+                required: true,
+                message: 'Please input your message!',
+                transform: value => value.trim(),
+              },
+            ],
           })(<Input.TextArea rows={4} placeholder="Input your feedback message" />)}
         </Form.Item>
         <Form.Item>
