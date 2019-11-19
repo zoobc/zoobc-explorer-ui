@@ -27,7 +27,7 @@ import iconBlog from '../assets/images/blog.svg'
 import zoobcLogo from '../assets/images/logo-zoobc.svg'
 import TestnetContext from '../context/TestnetContext'
 import testnet from '../config/testnet'
-import ComingSoon from './ComingSoon'
+import FormFeedback from './FormFeedback'
 
 const Footer = () => {
   const { t, i18n } = useTranslation()
@@ -116,9 +116,9 @@ const Footer = () => {
         </Collapse.Panel>
       </Collapse>
       <div className="footer-mobile-copyright">
-        <h6>ZooBC.net</h6>
-        <p>&#169; 2019 ZooBC.net All rights reserved.</p>
-        <p>v0.0.1-alpha.1</p>
+        <h6>ZooBC Explorer</h6>
+        <p>&#169; 2019 ZooBC Explorer All rights reserved.</p>
+        <p>Alpha - Version 0.1</p>
       </div>
       <hr className="footer-horizontal-rule-dark" />
       <div className="footer-social-icons">
@@ -196,16 +196,15 @@ const Footer = () => {
               <div className="footer-logo">
                 <Link className="footer-link-logo" to="/">
                   <img src={zoobcLogo} alt="zoobc-logo" />
-                  <div className="footer-link-text">ZooBC.net</div>
+                  <div className="footer-logo-name">
+                    <div className="logo-text-name">ZooBC Explorer</div>
+                    <div className="logo-text-version">Alpha - Version 0.1</div>
+                  </div>
                 </Link>
               </div>
               <ul className="footer-company-info">
                 <p className="footer-company-text">
-                  &#169; 2019 ZooBC.net
-                  <br />
-                  All rights reserved.
-                  <br />
-                  v0.0.1-alpha.1
+                  &#169; 2019 ZooBC Explorer All rights reserved.
                 </p>
               </ul>
             </Col>
@@ -364,7 +363,11 @@ const Footer = () => {
           )}
         />
       </Drawer>
-      <ComingSoon visible={isOpenDialog} title="Feedback" onClose={() => setIsOpenDialog(false)} />
+      <FormFeedback
+        visible={isOpenDialog}
+        title="Feedback"
+        onClose={() => setIsOpenDialog(false)}
+      />
     </>
   )
 }
