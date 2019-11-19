@@ -85,7 +85,7 @@ const testnetProd = [
 ]
 
 const testnetClientProd = [
-  process.env.REACT_APP_GRAPHQL_ENDPOINT,
+  process.env.REACT_APP_GRAPHQL_ENDPOINT || 'http://139.162.23.67:6969/zoobc/api/v1/graphql',
   'http://139.162.44.25:1680/zoobc/api/v1/graphql',
   'http://139.162.44.25:1010/zoobc/api/v1/graphql',
   'http://139.162.44.25:5858/zoobc/api/v1/graphql',
