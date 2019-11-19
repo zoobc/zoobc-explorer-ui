@@ -77,7 +77,7 @@ const Transactions = () => {
   }, [data])
 
   return (
-    <DefaultLayout>
+    <>
       <Container>
         <Row className="transactions-row">
           <Col span={24}>
@@ -112,7 +112,7 @@ const Transactions = () => {
           </Col>
         </Row>
       </Container>
-    </DefaultLayout>
+    </>
   )
 }
 

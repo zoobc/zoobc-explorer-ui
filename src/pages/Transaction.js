@@ -120,7 +120,7 @@ const Transaction = ({ match }) => {
   })
 
   return (
-    <DefaultLayout>
+    <>
       {!!error && <NotFound />}
       {!!loading && <LoaderPage />}
       {!error && !loading && (
@@ -190,7 +190,7 @@ const Transaction = ({ match }) => {
           </Row>
         </Container>
       )}
-    </DefaultLayout>
+    </>
   )
 }
 

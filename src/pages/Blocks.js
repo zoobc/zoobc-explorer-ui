@@ -72,7 +72,7 @@ const Blocks = () => {
   }, [data])
 
   return (
-    <DefaultLayout>
+    <>
       <Container>
         <Row className="blocks-row">
           <Col span={24}>
@@ -106,7 +106,7 @@ const Blocks = () => {
           </Col>
         </Row>
       </Container>
-    </DefaultLayout>
+    </>
   )
 }
 

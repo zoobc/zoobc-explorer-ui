@@ -25,7 +25,7 @@ const NotFound = ({ history, location }) => {
     }
   }
   return (
-    <DefaultLayout>
+    <>
       <Container className="flex">
         <div className="error-content error-content-page">
           <div className="d-flex text-center">
@@ -38,11 +38,11 @@ const NotFound = ({ history, location }) => {
                     <p className="h6">Sorry, we couldn't find any results for this search</p>
                   </>
                 ) : (
-                  <>
-                    <p className="display-3 mb-0">404</p>
-                    <p className="h6">Page Not Found</p>
-                  </>
-                )}
+                    <>
+                      <p className="display-3 mb-0">404</p>
+                      <p className="h6">Page Not Found</p>
+                    </>
+                  )}
                 <Search
                   prefix={
                     <Icon
@@ -60,7 +60,7 @@ const NotFound = ({ history, location }) => {
           </div>
         </div>
       </Container>
-    </DefaultLayout>
+    </>
   )
 }
 

@@ -90,7 +90,7 @@ const Home = ({ history }) => {
   }
 
   return (
-    <DefaultLayout>
+    <>
       <Container>
         <Hero />
         <Row className="home-latest">
@@ -240,7 +240,7 @@ const Home = ({ history }) => {
           </Col>
         </Row>
       </Container>
-    </DefaultLayout>
+    </>
   )
 }
 

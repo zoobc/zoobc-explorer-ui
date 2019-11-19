@@ -137,7 +137,7 @@ const Account = ({ match }) => {
   }, [nodeByAccount.data, trxByAccount.data])
 
   return (
-    <DefaultLayout>
+    <>
       {!!error && <NotFound />}
       {!!loading && <LoaderPage />}
       {!error && !loading && (
@@ -256,7 +256,7 @@ const Account = ({ match }) => {
           </Row>
         </Container>
       )}
-    </DefaultLayout>
+    </>
   )
 }
 

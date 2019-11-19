@@ -164,7 +164,7 @@ const Block = ({ match }) => {
   }, [data])
 
   return (
-    <DefaultLayout>
+    <>
       {!!error && <NotFound />}
       {!!loading && <LoaderPage />}
       {!error && !loading && (
@@ -326,7 +326,7 @@ const Block = ({ match }) => {
           </Row>
         </Container>
       )}
-    </DefaultLayout>
+    </>
   )
 }
 

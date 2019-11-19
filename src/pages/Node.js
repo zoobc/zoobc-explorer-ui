@@ -90,7 +90,7 @@ const Node = ({ match, history }) => {
   }, [blockNode.data])
 
   return (
-    <DefaultLayout>
+    <>
       {!!error && <NotFound />}
       {!!loading && <LoaderPage />}
       {!error && !loading && (
@@ -174,7 +174,7 @@ const Node = ({ match, history }) => {
           </Row>
         </Container>
       )}
-    </DefaultLayout>
+    </>
   )
 }
 

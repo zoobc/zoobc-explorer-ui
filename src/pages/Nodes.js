@@ -81,7 +81,7 @@ const Nodes = () => {
   )
 
   return (
-    <DefaultLayout>
+    <>
       <Container>
         <Row className="nodes-row">
           <Col span={24}>
@@ -112,7 +112,7 @@ const Nodes = () => {
           </Col>
         </Row>
       </Container>
-    </DefaultLayout>
+    </>
   )
 }
 

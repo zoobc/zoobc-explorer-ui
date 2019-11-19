@@ -69,7 +69,7 @@ const Accounts = () => {
   }, [data])
 
   return (
-    <DefaultLayout>
+    <>
       <Container>
         <Row className="accounts-row">
           <Col span={24}>
@@ -103,7 +103,7 @@ const Accounts = () => {
           </Col>
         </Row>
       </Container>
-    </DefaultLayout>
+    </>
   )
 }
 
