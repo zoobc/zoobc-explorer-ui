@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { Layout } from 'antd'
 import { withRouter } from 'react-router-dom'
@@ -9,9 +9,11 @@ import Footer from '../components/Footer'
 
 import { hinge } from 'react-animations'
 import Radium, { StyleRoot } from 'radium'
+import AnimationContext from '../context/AnimationContext'
 
 const DefaultLayout = ({ history, children, withHero, fluid }) => {
-  const { fvck69 } = history.location
+  // const { fvck69 } = history.location
+  const { animation } = useContext(AnimationContext)
 
   const styles = {
     hingeHeader: {
@@ -34,21 +36,21 @@ const DefaultLayout = ({ history, children, withHero, fluid }) => {
 
   return (
     <StyleRoot>
-      <div style={fvck69 ? styles.hingeHeader : null}>
+      <div style={animation ? styles.hingeHeader : null}>
         <Header fluid={fluid} />
       </div>
 
       {withHero && (
-        <div style={fvck69 ? styles.hingeHero : null}>
+        <div style={animation ? styles.hingeHero : null}>
           <Hero className="home-content" />
         </div>
       )}
 
       <Layout className="default-layout">
-        <div style={fvck69 ? styles.hingeLayout : null}>{children}</div>
+        <div style={animation ? styles.hingeLayout : null}>{children}</div>
       </Layout>
 
-      <div style={fvck69 ? styles.hingeFooter : null}>
+      <div style={animation ? styles.hingeFooter : null}>
         <Footer fluid={fluid} />
       </div>
     </StyleRoot>

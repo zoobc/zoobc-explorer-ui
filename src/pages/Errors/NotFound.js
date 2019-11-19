@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Input, Row, Col, Icon, Spin } from 'antd'
 
 import notFound from '../../assets/images/not-found.svg'
@@ -6,12 +6,14 @@ import DefaultLayout from '../../components/DefaultLayout'
 import Container from '../../components/Container'
 import useSearch from '../../hooks/useSearch'
 import { useTranslation } from 'react-i18next'
+import AnimationContext from '../../context/AnimationContext'
 
 const { Search } = Input
 const Spinner = <Icon type="loading" style={{ fontSize: 24, color: 'white' }} spin />
 
 const NotFound = ({ history, location }) => {
   const { t } = useTranslation()
+  const { onChangeAnimation } = useContext(AnimationContext)
   const [keyword, setKeyword] = useState('')
   const { doSearch, loading } = useSearch(keyword, history)
   const { state } = location
@@ -20,6 +22,15 @@ const NotFound = ({ history, location }) => {
     const searchKeyword = value.trim()
 
     if (!!searchKeyword) {
+      if (searchKeyword === 'craig wright is satoshi nakamoto') {
+        history.push({
+          pathname: '/search',
+          search: `?search=${searchKeyword}`,
+          state: { search: searchKeyword },
+        })
+        onChangeAnimation()
+        return
+      }
       setKeyword(searchKeyword)
       doSearch()
     }
@@ -28,9 +39,9 @@ const NotFound = ({ history, location }) => {
     <DefaultLayout>
       <Container className="flex">
         <div className="error-content error-content-page">
-          <div className="d-flex text-center">
+          <div className="d-flex flex-column flex-md-row text-center">
             <img src={notFound} alt="not found" className="mr-2" />
-            <Row gutter={24} style={{ width: '100%' }} className="mt-3">
+            <Row gutter={24} className="mt-3">
               <Col span={24}>
                 {!!state && !!state.search ? (
                   <>
