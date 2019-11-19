@@ -19,7 +19,9 @@ class ErrorBoundary extends React.Component {
           <div className="error-content error-content-page flex-1">
             <div className="error-boundary">
               <p className="h2 mb-3">Oops something went wrong !!!</p>
-              <Button type="primary" onClick={() => window.location.reload()}>Refresh Page</Button>
+              <Button type="primary" onClick={() => window.location.reload()}>
+                Refresh Page
+              </Button>
             </div>
           </div>
         </Container>
