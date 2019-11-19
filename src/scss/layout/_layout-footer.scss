@@ -114,7 +114,7 @@
   }
 
   .footer-link-logo {
-    float: left;
+    display: flex;
 
     .footer-link-text {
       font-size: 24px;
@@ -141,7 +141,7 @@
     font-weight: 500;
     letter-spacing: 0;
     line-height: 27px;
-    color: var(--color-primary-light-txt);
+    color: var(--color-secondary-link-txt);
     margin-bottom: 0;
   }
 
@@ -170,6 +170,12 @@
     p {
       font-size: 1rem;
     }
+  }
+  .footer-logo-name {
+    display: flex;
+    flex-direction: column;
+    margin-left: 8px;
+    color: var(--color-white);
   }
 }
 

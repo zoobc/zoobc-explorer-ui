@@ -196,14 +196,16 @@ const Footer = () => {
               <div className="footer-logo">
                 <Link className="footer-link-logo" to="/">
                   <img src={zoobcLogo} alt="zoobc-logo" />
-                  <div className="footer-link-text">ZooBC Explorer</div>
+                  <div className="footer-logo-name">
+                    <div className="logo-text-name">ZooBC Explorer</div>
+                    <div className="logo-text-version">Alpha - Version 0.1</div>
+                  </div>
                 </Link>
               </div>
               <ul className="footer-company-info">
                 <p className="footer-company-text">
                   &#169; 2019 ZooBC Explorer All rights reserved.
                 </p>
-                <p className="footer-company-text">Alpha - Version 0.1</p>
               </ul>
             </Col>
             <Col className="footer-col-info">
