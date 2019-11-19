@@ -19,7 +19,6 @@ const useSearch = (keyword, history) => {
       Id: keyword,
     },
   })
-
   useEffect(() => {
     if (!!data && !error && !loading) {
       const { ID, FoundIn } = data.search
@@ -35,10 +34,8 @@ const useSearch = (keyword, history) => {
           break
         default:
           history.push({
-            // pathname: '/search',
-            pathname: '',
+            pathname: '/search',
             search: `?search=${keyword}`,
-            fvck69: true,
             state: { search: keyword },
           })
           break

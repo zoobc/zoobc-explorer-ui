@@ -67,14 +67,22 @@
 
 .header-logo-name {
   display: flex;
-  align-items: center;
-  font-size: 24px;
-  font-weight: 900;
+  flex-direction: column;
   margin-left: 8px;
   color: var(--color-white);
-  height: 29px;
-  margin-top: 18px;
-  margin-bottom: 19px;
+}
+
+.logo-text-name {
+  line-height: normal;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.logo-text-version {
+  line-height: normal;
+  font-size: 12px;
+  font-style: italic;
+
 }
 
 .header-content {
@@ -83,6 +91,7 @@
   display: flex;
   align-items: center;
   vertical-align: middle;
+  height: 100%;
   .logo {
     display: flex;
     align-items: center;

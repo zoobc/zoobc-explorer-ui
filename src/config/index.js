@@ -12,6 +12,9 @@ const config = {
   app: {
     defaultLang: 'en',
   },
+  doolbell: {
+    api_key: process.env.REACT_APP_DOORBELL_KEY,
+  },
 }
 
 export default config
