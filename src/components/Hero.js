@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Input, Row, Col, Card, Icon, Spin } from 'antd'
 import { useTranslation } from 'react-i18next'
 
 import useSearch from '../hooks/useSearch'
+import AnimationContext from '../context/AnimationContext'
 
 const { Search } = Input
 
@@ -11,6 +12,7 @@ const Spinner = <Icon type="loading" style={{ fontSize: 24, color: 'white' }} sp
 
 const Hero = ({ history }) => {
   const { t } = useTranslation()
+  const { onChangeAnimation } = useContext(AnimationContext)
   const [keyword, setKeyword] = useState('')
 
   const { doSearch, loading } = useSearch(keyword, history)
@@ -19,6 +21,15 @@ const Hero = ({ history }) => {
     const searchKeyword = value.trim()
 
     if (!!searchKeyword) {
+      if (searchKeyword === 'craig wright is satoshi nakamoto') {
+        history.push({
+          pathname: '/search',
+          search: `?search=${searchKeyword}`,
+          state: { search: searchKeyword },
+        })
+        onChangeAnimation()
+        return
+      }
       setKeyword(searchKeyword)
       doSearch()
     }

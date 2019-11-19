@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Layout, Menu, Input, Icon, Tooltip, Spin, Button, Drawer } from 'antd'
 import { Link } from 'react-router-dom'
@@ -8,6 +8,7 @@ import useSearch from '../hooks/useSearch'
 import Container from './Container'
 import zoobcLogo from '../assets/images/logo-zoobc.svg'
 import ComingSoon from './ComingSoon'
+import AnimationContext from '../context/AnimationContext'
 
 const { Search } = Input
 
@@ -16,6 +17,7 @@ const Spinner = <Icon type="loading" style={{ fontSize: 20, color: 'white' }} sp
 const Header = ({ history, location, fluid }) => {
   const { t } = useTranslation()
   const [keyword, setKeyword] = useState('')
+  const { onChangeAnimation } = useContext(AnimationContext)
   const [isOpenDialog, setIsOpenDialog] = useState(false)
   const [isOpenDrawer, setIsOpenDraw] = useState(false)
   const [dialogTitle, setDialogTitle] = useState('Login')
@@ -25,6 +27,15 @@ const Header = ({ history, location, fluid }) => {
     const searchKeyword = value.trim()
 
     if (!!searchKeyword) {
+      if (searchKeyword === 'craig wright is satoshi nakamoto') {
+        history.push({
+          pathname: '/search',
+          search: `?search=${searchKeyword}`,
+          state: { search: searchKeyword },
+        })
+        onChangeAnimation()
+        return
+      }
       setKeyword(searchKeyword)
       doSearch()
     }

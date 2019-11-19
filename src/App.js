@@ -9,6 +9,7 @@ import i18n from './i18n'
 import NotFound from './pages/Errors/NotFound'
 import Fallback from './components/Fallback'
 import TestnetContext, { TestnetState } from './context/TestnetContext'
+import { AnimationState } from './context/AnimationContext'
 
 const Home = React.lazy(() => import('./pages/Home'))
 const Blocks = React.lazy(() => import('./pages/Blocks'))
@@ -35,25 +36,27 @@ function App() {
       <ApolloMultiProvider>
         <I18nextProvider i18n={i18n}>
           <BrowserRouter>
-            <Suspense fallback={<Fallback />}>
-              <Switch>
-                <Route exact path="/" render={props => <Home {...props} />} />
-                <Route exact path="/blocks" render={props => <Blocks {...props} />} />
-                <Route exact path="/blocks/:id" render={props => <Block {...props} />} />
-                <Route exact path="/transactions" render={props => <Transactions {...props} />} />
-                <Route
-                  exact
-                  path="/transactions/:id"
-                  render={props => <Transaction {...props} />}
-                />
-                <Route exact path="/accounts" render={props => <Accounts {...props} />} />
-                <Route exact path="/accounts/:id" render={props => <Account {...props} />} />
-                <Route exact path="/nodes" render={props => <Nodes {...props} />} />
-                <Route exact path="/nodes/:id+" render={props => <Node {...props} />} />
-                <Route exact path="/search" render={props => <NotFound {...props} />} />
-                <Route exact path="*" render={props => <NotFound {...props} />} />
-              </Switch>
-            </Suspense>
+            <AnimationState>
+              <Suspense fallback={<Fallback />}>
+                <Switch>
+                  <Route exact path="/" render={props => <Home {...props} />} />
+                  <Route exact path="/blocks" render={props => <Blocks {...props} />} />
+                  <Route exact path="/blocks/:id" render={props => <Block {...props} />} />
+                  <Route exact path="/transactions" render={props => <Transactions {...props} />} />
+                  <Route
+                    exact
+                    path="/transactions/:id"
+                    render={props => <Transaction {...props} />}
+                  />
+                  <Route exact path="/accounts" render={props => <Accounts {...props} />} />
+                  <Route exact path="/accounts/:id" render={props => <Account {...props} />} />
+                  <Route exact path="/nodes" render={props => <Nodes {...props} />} />
+                  <Route exact path="/nodes/:id+" render={props => <Node {...props} />} />
+                  <Route exact path="/search" render={props => <NotFound {...props} />} />
+                  <Route exact path="*" render={props => <NotFound {...props} />} />
+                </Switch>
+              </Suspense>
+            </AnimationState>
           </BrowserRouter>
         </I18nextProvider>
       </ApolloMultiProvider>
