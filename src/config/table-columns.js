@@ -74,6 +74,9 @@ export const accountColumns = [
     title: <Title text='Last Active' />,
     dataIndex: 'LastActive',
     key: 'LastActive',
+    render(text) {
+      return moment(text).format('lll')
+    },
   },
   {
     title: <Title text='Fees' />,

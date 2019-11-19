@@ -4,6 +4,7 @@ import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 import NumberFormat from 'react-number-format'
 import { useTranslation } from 'react-i18next'
+import moment from 'moment'
 
 import DefaultLayout from '../components/DefaultLayout'
 import Container from '../components/Container'
@@ -142,7 +143,7 @@ const Account = ({ match }) => {
                     />
                   }
                 />
-                <DescItem
+                {/* <DescItem
                   label={t('Spendable Balance')}
                   value={
                     <NumberFormat
@@ -152,9 +153,15 @@ const Account = ({ match }) => {
                       suffix={' ZBC'}
                     />
                   }
+                /> */}
+                <DescItem
+                  label={t('First Active')}
+                  value={moment(data.account.FirstActive).format('lll')}
                 />
-                <DescItem label={t('First Active')} value={data.account.FirstActive} />
-                <DescItem label={t('Last Active')} value={data.account.LastActive} />
+                <DescItem
+                  label={t('Last Active')}
+                  value={moment(data.account.LastActive).format('lll')}
+                />
                 <DescItem
                   label={t('Total Rewards')}
                   value={
@@ -177,7 +184,7 @@ const Account = ({ match }) => {
                     />
                   }
                 />
-                <DescItem label={t('Node Public Key')} value={data.account.NodePublicKey} />
+                {/* <DescItem label={t('Node Public Key')} value={data.account.NodePublicKey} /> */}
               </Card>
               <Card className='account-card' bordered={false}>
                 <h4 className='account-card-title'>
