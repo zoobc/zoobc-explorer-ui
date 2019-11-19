@@ -97,9 +97,6 @@ const Header = ({ history, location, fluid }) => {
             <Button type="primary" className="mr-1 d-none d-md-block" onClick={onLogin}>
               Login
             </Button>
-            <Button type="danger" className="d-block d-md-none" onClick={onFeedback}>
-              Feedback
-            </Button>
             <Button
               icon="menu"
               type="link"
@@ -143,6 +140,11 @@ const Header = ({ history, location, fluid }) => {
             </Menu.Item>
             <Menu.Item key="/nodes" className="menu-with-icon">
               <Link to="/nodes">{t('Nodes')}</Link>
+            </Menu.Item>
+            <Menu.Item key="/feedback" className="menu-with-icon">
+              <a href="#" onClick={onFeedback}>
+                {t('Feedback')}
+              </a>
             </Menu.Item>
             <Menu.Item key="/login" className="menu-with-icon">
               <a href="#" onClick={onLogin}>
