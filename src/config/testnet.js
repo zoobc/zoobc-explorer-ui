@@ -58,21 +58,38 @@ const testnetLocal = [
 
 const testnetProd = [
   {
-    name: 'Default Network',
+    name: 'Main Network',
     color: '#f56a00',
     value: 'testnet1',
   },
   {
-    name: 'Testnet 96',
+    name: 'Testnet 1680',
     color: '#7265e6',
     value: 'testnet2',
+  },
+  {
+    name: 'Testnet 1010',
+    color: '#ffbf00',
+    value: 'testnet3',
+  },
+  {
+    name: 'Testnet 5858',
+    color: '#00a2ae',
+    value: 'testnet4',
+  },
+  {
+    name: 'Testnet 9090',
+    color: '#dc3545',
+    value: 'testnet5',
   },
 ]
 
 const testnetClientProd = [
-  // 'http://localhost:6969/zoobc/api/v1/graphql',
-  'http://139.162.15.80:6969/zoobc/api/v1/graphql',
-  'http://139.162.15.80:9696/zoobc/api/v1/graphql',
+  process.env.REACT_APP_GRAPHQL_ENDPOINT || 'http://139.162.23.67:6969/zoobc/api/v1/graphql',
+  'http://139.162.44.25:1680/zoobc/api/v1/graphql',
+  'http://139.162.44.25:1010/zoobc/api/v1/graphql',
+  'http://139.162.44.25:5858/zoobc/api/v1/graphql',
+  'http://139.162.44.25:9090/zoobc/api/v1/graphql',
 ]
 
 const testnetClientLocal = [
