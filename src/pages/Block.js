@@ -13,7 +13,11 @@ import DescItem from '../components/DescItem'
 import CopyToClipboard from '../components/CopyToClipboard'
 import NotFound from '../components/Errors/NotFound'
 import LoaderPage from '../components/LoaderPage'
-import { transactionColumns, publishedReceiptColumns } from '../config/table-columns'
+import {
+  transactionColumns,
+  publishedReceiptColumns,
+  skippedBlocksmithColumns,
+} from '../config/table-columns'
 
 const GET_BLOCK_DATA = gql`
   query getBlock($BlockID: String!) {
@@ -37,6 +41,12 @@ const GET_BLOCK_DATA = gql`
       PopChange
       PayloadLength
       PayloadHash
+      SkippedBlocksmiths {
+        BlocksmithPublicKey
+        POPChange
+        BlockHeight
+        BlocksmithIndex
+      }
     }
   }
 `
@@ -163,6 +173,8 @@ const Block = ({ match }) => {
     }
   }, [data])
 
+  console.log('data : ', data)
+
   return (
     <DefaultLayout>
       {!!error && <NotFound />}
@@ -244,7 +256,21 @@ const Block = ({ match }) => {
                 <DescItem label={t('Payload Hash')} value={data.block.PayloadHash} />
               </Card>
               <Collapse className="block-collapse" bordered={false}>
-                <Panel className="block-card-title block-collapse" header="Rewards" key="1">
+                <Panel className="block-card-title block-collapse" header="PoP Changes" key="1">
+                  <Card className="block-card" bordered={false}>
+                    <h4 className="block-card-title">{t('PoP Changes')}</h4>
+                    <Table
+                      className="transactions-table"
+                      columns={skippedBlocksmithColumns}
+                      dataSource={data.block.SkippedBlocksmiths}
+                      pagination={false}
+                      size="small"
+                    />
+                  </Card>
+                </Panel>
+              </Collapse>
+              <Collapse className="block-collapse" bordered={false}>
+                <Panel className="block-card-title block-collapse" header="Rewards" key="2">
                   <Card className="block-card" bordered={false}>
                     <h4 className="block-card-title">
                       {t('Coinbase')}
@@ -262,7 +288,7 @@ const Block = ({ match }) => {
                 </Panel>
               </Collapse>
               <Collapse className="block-collapse" bordered={false}>
-                <Panel className="block-card-title block-collapse" header="Receipts" key="2">
+                <Panel className="block-card-title block-collapse" header="Receipts" key="3">
                   <Card className="block-card" bordered={false}>
                     <h4 className="block-card-title">
                       {t('Receipt')}
@@ -291,8 +317,8 @@ const Block = ({ match }) => {
                   </Card>
                 </Panel>
               </Collapse>
-              <Collapse className="block-collapse" defaultActiveKey={['3']} bordered={false}>
-                <Panel className="block-card-title block-collapse" header="Transactions" key="3">
+              <Collapse className="block-collapse" defaultActiveKey={['4']} bordered={false}>
+                <Panel className="block-card-title block-collapse" header="Transactions" key="4">
                   <Card className="block-card" bordered={false}>
                     <h4 className="block-card-title">
                       {t('Transactions')}
