@@ -65,27 +65,27 @@ const testnetProd = [
   {
     name: 'Testnet 1680',
     color: '#7265e6',
-    value: 'testnet1',
+    value: 'testnet2',
   },
   {
     name: 'Testnet 1010',
     color: '#ffbf00',
-    value: 'testnet2',
+    value: 'testnet3',
   },
   {
     name: 'Testnet 5858',
     color: '#00a2ae',
-    value: 'testnet3',
+    value: 'testnet4',
   },
   {
     name: 'Testnet 9090',
     color: '#dc3545',
-    value: 'testnet4',
+    value: 'testnet5',
   },
 ]
 
 const testnetClientProd = [
-  process.env.REACT_APP_GRAPQL_ENDPOINT,
+  process.env.REACT_APP_GRAPHQL_ENDPOINT,
   'http://139.162.44.25:1680/zoobc/api/v1/graphql',
   'http://139.162.44.25:1010/zoobc/api/v1/graphql',
   'http://139.162.44.25:5858/zoobc/api/v1/graphql',
