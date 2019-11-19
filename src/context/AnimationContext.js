@@ -18,7 +18,7 @@ const animationReducers = (state, action) => {
 
 export const AnimationState = ({ children }) => {
   const animationDefaultValue = {
-    animation: false
+    animation: false,
   }
 
   const [state, dispatch] = useReducer(animationReducers, animationDefaultValue)
@@ -34,7 +34,7 @@ export const AnimationState = ({ children }) => {
         type: SET_ANIMATION,
         payload: false,
       })
-    }, 6000);
+    }, 6000)
   }
 
   return (
