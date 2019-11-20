@@ -124,28 +124,28 @@ const Transaction = ({ match }) => {
       {!!loading && <LoaderPage />}
       {!error && !loading && (
         <Container>
-          <Row className='transaction-row'>
+          <Row className="transaction-row">
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <h4 className='truncate'>
+                  <h4 className="truncate">
                     {t('Transaction')} {data.transaction.TransactionID}
                   </h4>
                 </Col>
               </Row>
-              <Card className='transaction-card' bordered={false}>
-                <h4 className='transaction-card-title'>{t('Summary')}</h4>
+              <Card className="transaction-card" bordered={false}>
+                <h4 className="transaction-card-title">{t('Summary')}</h4>
                 <DescItem
                   label={t('Transaction ID')}
                   value={
-                    <CopyToClipboard text={data.transaction.TransactionID} keyID='TransactionID' />
+                    <CopyToClipboard text={data.transaction.TransactionID} keyID="TransactionID" />
                   }
                 />
                 <DescItem
                   label={t('Timestamp')}
                   value={moment(data.transaction.Timestamp).format('lll')}
                 />
-                <DescItem label='Transaction Type' value={data.transaction.TransactionTypeName} />
+                <DescItem label="Transaction Type" value={data.transaction.TransactionTypeName} />
                 <DescItem
                   label={t('Block ID')}
                   value={
@@ -154,7 +154,7 @@ const Transaction = ({ match }) => {
                     </Link>
                   }
                 />
-                <DescItem label='Height' value={data.transaction.Height} />
+                <DescItem label="Height" value={data.transaction.Height} />
                 <DescItem
                   label={t('Sender')}
                   value={
