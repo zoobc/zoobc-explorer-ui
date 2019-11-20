@@ -81,7 +81,7 @@ const Footer = () => {
               className="footer-list-group-item"
               target="_blank"
               rel="noopener noreferrer"
-              href="http://zoobc.one/#/login"
+              href="http://zoobc.one"
             >
               {t('ZooBC Wallet')}
             </a>
@@ -249,7 +249,7 @@ const Footer = () => {
                   className="footer-list-group-item"
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="http://zoobc.one/#/login"
+                  href="http://zoobc.one"
                 >
                   {t('ZooBC Wallet')}
                 </a>
