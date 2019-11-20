@@ -42,6 +42,7 @@ const Footer = () => {
   const onSelectNetwork = data => {
     onChangeSelectedTestnet(data)
     setIsOpen(false)
+    window.location.reload()
   }
 
   const selectedLang = () => {
