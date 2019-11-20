@@ -4,6 +4,7 @@ import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 import NumberFormat from 'react-number-format'
 import { useTranslation } from 'react-i18next'
+import moment from 'moment'
 
 import Container from '../components/Container'
 import DescItem from '../components/DescItem'
@@ -43,26 +44,12 @@ const GET_TRX_BY_ACCOUNT = gql`
         SendMoney {
           AmountConversion
         }
-      }
-      Paginate {
-        Page
-        Count
-        Total
-      }
-    }
-  }
-`
-
-const GET_NODE_BY_ACCOUNT = gql`
-  query getNodes($page: Int, $AccountAddress: String!) {
-    nodes(page: $page, limit: 5, order: "NodePublicKey", AccountAddress: $AccountAddress) {
-      Nodes {
-        NodePublicKey
-        OwnerAddress
-        NodeAddress
-        LockedFunds
-        RegistryStatus
-        ParticipationScore
+        NodeRegistration {
+          LockedBalanceConversion
+        }
+        UpdateNodeRegistration {
+          LockedBalanceConversion
+        }
       }
       Paginate {
         Page
@@ -79,9 +66,6 @@ const Account = ({ match }) => {
   const [trxCurrentPage, setTrxCurrentPage] = useState(1)
   const [transactions, setTransactions] = useState([])
   const [trxPaginate, setTrxPaginate] = useState({})
-  const [nodeCurrentPage, setNodeCurrentPage] = useState(1)
-  const [nodes, setNodes] = useState([])
-  const [nodePaginate, setNodePaginate] = useState({})
   const urlLastCharacter = url[url.length - 1]
   let accountAddress = params.id
 
@@ -102,38 +86,27 @@ const Account = ({ match }) => {
     },
   })
 
-  const nodeByAccount = useQuery(GET_NODE_BY_ACCOUNT, {
-    variables: {
-      AccountAddress: params.id,
-      page: nodeCurrentPage,
-    },
-  })
-
   useEffect(() => {
     if (!!trxByAccount.data) {
       const trxData = trxByAccount.data.transactions.Transactions.map((trx, key) => {
+        const { SendMoney, NodeRegistration, UpdateNodeRegistration } = trx
         return {
           key,
           ...trx,
+          Amount: SendMoney
+            ? SendMoney.AmountConversion
+            : NodeRegistration
+            ? NodeRegistration.LockedBalanceConversion
+            : UpdateNodeRegistration
+            ? UpdateNodeRegistration.LockedBalanceConversion
+            : '0',
         }
       })
 
       setTransactions(trxData)
       setTrxPaginate(trxByAccount.data.transactions.Paginate)
     }
-
-    if (!!nodeByAccount.data) {
-      const nodeData = nodeByAccount.data.nodes.Nodes.map((node, key) => {
-        return {
-          key,
-          ...node,
-        }
-      })
-
-      setNodes(nodeData)
-      setNodePaginate(nodeByAccount.data.nodes.Paginate)
-    }
-  }, [nodeByAccount.data, trxByAccount.data])
+  }, [trxByAccount.data])
 
   return (
     <>
@@ -141,21 +114,21 @@ const Account = ({ match }) => {
       {!!loading && <LoaderPage />}
       {!error && !loading && (
         <Container>
-          <Row className="account-row">
+          <Row className='account-row'>
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <h4 className="truncate">
+                  <h4 className='truncate'>
                     {t('Account')} {data.account.AccountAddress}
                   </h4>
                 </Col>
               </Row>
-              <Card className="account-card" bordered={false}>
-                <h4 className="account-card-title">{t('Summary')}</h4>
+              <Card className='account-card' bordered={false}>
+                <h4 className='account-card-title'>{t('Summary')}</h4>
                 <DescItem
                   label={t('Account Address')}
                   value={
-                    <CopyToClipboard text={data.account.AccountAddress} keyID="accountAddress" />
+                    <CopyToClipboard text={data.account.AccountAddress} keyID='accountAddress' />
                   }
                 />
                 <DescItem
@@ -169,7 +142,7 @@ const Account = ({ match }) => {
                     />
                   }
                 />
-                <DescItem
+                {/* <DescItem
                   label={t('Spendable Balance')}
                   value={
                     <NumberFormat
@@ -179,9 +152,15 @@ const Account = ({ match }) => {
                       suffix={' ZBC'}
                     />
                   }
+                /> */}
+                <DescItem
+                  label={t('First Active')}
+                  value={moment(data.account.FirstActive).format('lll')}
                 />
-                <DescItem label={t('First Active')} value={data.account.FirstActive} />
-                <DescItem label={t('Last Active')} value={data.account.LastActive} />
+                <DescItem
+                  label={t('Last Active')}
+                  value={moment(data.account.LastActive).format('lll')}
+                />
                 <DescItem
                   label={t('Total Rewards')}
                   value={
@@ -204,24 +183,24 @@ const Account = ({ match }) => {
                     />
                   }
                 />
-                <DescItem label={t('Node Public Key')} value={data.account.NodePublicKey} />
+                {/* <DescItem label={t('Node Public Key')} value={data.account.NodePublicKey} /> */}
               </Card>
-              <Card className="account-card" bordered={false}>
-                <h4 className="account-card-title">
+              <Card className='account-card' bordered={false}>
+                <h4 className='account-card-title'>
                   {t('Transactions')}
-                  <Badge className="badge-black" count={trxPaginate.Total} overflowCount={1000} />
+                  <Badge className='badge-black' count={trxPaginate.Total} overflowCount={1000} />
                 </h4>
                 <Table
-                  className="transactions-table"
+                  className='transactions-table'
                   columns={transactionColumns}
                   dataSource={transactions}
                   pagination={false}
-                  size="small"
+                  size='small'
                   loading={loading}
                 />
                 {!!transactions && (
                   <Pagination
-                    className="pagination-center"
+                    className='pagination-center'
                     current={trxPaginate.Page}
                     total={trxPaginate.Total}
                     pageSize={5}
@@ -229,28 +208,6 @@ const Account = ({ match }) => {
                   />
                 )}
               </Card>
-              {/* <Card className="account-card" bordered={false}>
-                <h4 className="account-card-title">
-                  {t('Nodes')}
-                  <Badge className="badge-black" count={nodePaginate.Total} overflowCount={1000} />
-                </h4>
-                <Table
-                  columns={nodeColumns}
-                  dataSource={nodes}
-                  pagination={false}
-                  size="small"
-                  loading={loading}
-                />
-                {!!nodes && (
-                  <Pagination
-                    className="pagination-center"
-                    current={nodePaginate.Page}
-                    total={nodePaginate.Total}
-                    pageSize={5}
-                    onChange={page => setNodeCurrentPage(page)}
-                  />
-                )}
-              </Card> */}
             </Col>
           </Row>
         </Container>

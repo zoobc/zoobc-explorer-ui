@@ -15,6 +15,7 @@ const GET_ACCOUNTS_DATA = gql`
       Accounts {
         AccountAddress
         BalanceConversion
+        FirstActive
         LastActive
         TotalRewardsConversion
         TotalFeesPaidConversion
@@ -70,13 +71,13 @@ const Accounts = () => {
   return (
     <>
       <Container>
-        <Row className="accounts-row">
+        <Row className='accounts-row'>
           <Col span={24}>
-            <Card className="accounts-card" bordered={false}>
+            <Card className='accounts-card' bordered={false}>
               <Row>
                 <Col span={24}>
                   <h5>
-                    <i className="bcz-user" />
+                    <i className='bcz-user' />
                     <strong>{t('Accounts')}</strong>
                   </h5>
                 </Col>
@@ -85,13 +86,13 @@ const Accounts = () => {
                 columns={columns}
                 dataSource={accounts}
                 pagination={false}
-                size="small"
+                size='small'
                 loading={loading}
                 onChange={onChangeTable.bind(this)}
               />
               {!!data && (
                 <Pagination
-                  className="pagination-center"
+                  className='pagination-center'
                   current={paginate.Page}
                   total={paginate.Total}
                   pageSize={15}
