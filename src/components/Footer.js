@@ -74,9 +74,9 @@ const Footer = () => {
       <Collapse expandIconPosition="right">
         <Collapse.Panel header="Product" key="1">
           <ul className="footer-list-group mb-0">
-            <a className="footer-list-group-item" onClick={onComingSoon}>
+            {/* <a className="footer-list-group-item" onClick={onComingSoon}>
               {t('ZooBC Core')}
-            </a>
+            </a> */}
             <a
               className="footer-list-group-item"
               target="_blank"
@@ -87,7 +87,6 @@ const Footer = () => {
             </a>
             <a
               className="footer-list-group-item"
-              target="_blank"
               rel="noopener noreferrer"
               href="http://zoobc.net"
             >
@@ -247,9 +246,9 @@ const Footer = () => {
               <h3 className="footer-subtitle heading-border">{t('Product')}</h3>
               <hr className="footer-horizontal-rule-light" />
               <ul className="footer-list-group mb-0">
-                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
+                {/* <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
                   {t('ZooBC Core')}
-                </a>
+                </a> */}
                 <a
                   className="footer-list-group-item"
                   target="_blank"
@@ -260,7 +259,6 @@ const Footer = () => {
                 </a>
                 <a
                   className="footer-list-group-item"
-                  target="_blank"
                   rel="noopener noreferrer"
                   href="http://zoobc.net"
                 >
