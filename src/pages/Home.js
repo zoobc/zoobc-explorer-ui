@@ -200,7 +200,13 @@ const Home = ({ history }) => {
                       <YAxis />
                       <Tooltip />
                       <Legend />
-                      <Line type="monotone" dataKey="amt" stroke="#8884d8" activeDot={{ r: 8 }} />
+                      <Line
+                        type="monotone"
+                        dataKey="amt"
+                        stroke="#8884d8"
+                        activeDot={{ r: 8 }}
+                        name="Block Count"
+                      />
                     </LineChart>
                   </ResponsiveContainer>
                 </div>
@@ -230,7 +236,13 @@ const Home = ({ history }) => {
                       <YAxis />
                       <Tooltip />
                       <Legend />
-                      <Line type="monotone" dataKey="amt" stroke="#8884d8" activeDot={{ r: 8 }} />
+                      <Line
+                        type="monotone"
+                        dataKey="amt"
+                        stroke="#8884d8"
+                        activeDot={{ r: 8 }}
+                        name="Transaction Amount"
+                      />
                     </LineChart>
                   </ResponsiveContainer>
                 </div>
