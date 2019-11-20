@@ -172,7 +172,7 @@ const Footer = () => {
         </a>
       </div>
       <div className="py-2 text-center">
-        <Switch checkedChildren="☀" unCheckedChildren="☾" defaultChecked />
+        <Switch checkedChildren="☀" unCheckedChildren="☾" defaultChecked className="d-none" />
         <Dropdown overlay={languageOptions}>
           <p className="footer-language ">
             <Avatar className="mr-1" shape="square" size={18} src={selectedLang().flag} />
@@ -272,7 +272,7 @@ const Footer = () => {
           </Row>
           <hr className="footer-horizontal-rule-dark d-none d-md-block" />
           <Row className="footer-ext d-none d-md-block">
-            <Switch checkedChildren="☀" unCheckedChildren="☾" defaultChecked />
+            <Switch checkedChildren="☀" unCheckedChildren="☾" defaultChecked className="d-none" />
             <Dropdown overlay={languageOptions}>
               <p className="footer-language ">
                 <Avatar className="mr-1" shape="square" size={18} src={selectedLang().flag} />
