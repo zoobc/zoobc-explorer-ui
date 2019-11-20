@@ -85,11 +85,7 @@ const Footer = () => {
             >
               {t('ZooBC Wallet')}
             </a>
-            <a
-              className="footer-list-group-item"
-              rel="noopener noreferrer"
-              href="http://zoobc.net"
-            >
+            <a className="footer-list-group-item" rel="noopener noreferrer" href="http://zoobc.net">
               {t('ZooBC Explorer')}
             </a>
             <a
