@@ -18,6 +18,7 @@ const useSearch = (keyword, history) => {
     variables: {
       Id: keyword,
     },
+    fetchPolicy: 'network-only',
   })
   useEffect(() => {
     if (!!data && !error && !loading) {
