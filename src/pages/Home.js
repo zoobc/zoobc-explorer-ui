@@ -107,13 +107,13 @@ const Home = ({ history }) => {
                 renderItem={item => (
                   <List.Item>
                     <Row className="px-3 home-row-list">
-                      <Col md={{ span: 12 }} sm={{ span: 24 }}>
+                      <Col xl={{ span: 12 }} lg={{ span: 10 }} sm={{ span: 24 }}>
                         <div>
                           <Link to={`/blocks/${item.BlockID}`}>{item.Height}</Link>
                         </div>
                         <div>{moment(item.Timestamp).format('lll')}</div>
                       </Col>
-                      <Col md={{ span: 12 }} sm={{ span: 24 }}>
+                      <Col xl={{ span: 12 }} lg={{ span: 14 }} sm={{ span: 24 }}>
                         <div>
                           <strong>{t('Blocksmith Address')}</strong>
                         </div>
@@ -146,13 +146,13 @@ const Home = ({ history }) => {
                 renderItem={item => (
                   <List.Item>
                     <Row className="px-3 home-row-list">
-                      <Col md={{ span: 12 }} sm={{ span: 24 }}>
+                      <Col xl={{ span: 12 }} lg={{ span: 14 }} sm={{ span: 24 }}>
                         <div>
                           <strong>{t('Transaction ID')}</strong>
                         </div>
                         <Link to={`/transactions/${item.TransactionID}`}>{item.TransactionID}</Link>
                       </Col>
-                      <Col md={{ span: 12 }} sm={{ span: 24 }}>
+                      <Col xl={{ span: 12 }} lg={{ span: 10 }} sm={{ span: 24 }}>
                         <div>
                           <strong>{t('Fees')}</strong>{' '}
                           {!!item.FeeConversion && (
@@ -200,13 +200,7 @@ const Home = ({ history }) => {
                       <YAxis />
                       <Tooltip />
                       <Legend />
-                      <Line
-                        type="monotone"
-                        dataKey="amt"
-                        stroke="#8884d8"
-                        activeDot={{ r: 8 }}
-                        name="Block Count"
-                      />
+                      <Line type="monotone" dataKey="amt" stroke="#8884d8" activeDot={{ r: 8 }} />
                     </LineChart>
                   </ResponsiveContainer>
                 </div>
@@ -236,13 +230,7 @@ const Home = ({ history }) => {
                       <YAxis />
                       <Tooltip />
                       <Legend />
-                      <Line
-                        type="monotone"
-                        dataKey="amt"
-                        stroke="#8884d8"
-                        activeDot={{ r: 8 }}
-                        name="Transaction Amount"
-                      />
+                      <Line type="monotone" dataKey="amt" stroke="#8884d8" activeDot={{ r: 8 }} />
                     </LineChart>
                   </ResponsiveContainer>
                 </div>

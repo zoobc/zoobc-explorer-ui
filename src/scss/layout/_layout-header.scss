@@ -70,6 +70,24 @@
   flex-direction: column;
   margin-left: 8px;
   color: var(--color-white);
+
+  @include mq-lg {
+    .logo-text-name {
+      display: none;
+    }
+    .logo-text-version {
+      display: none;
+    }
+}
+
+  @include mq-xl {
+      .logo-text-name {
+        display: block;
+      }
+      .logo-text-version {
+        display: block;
+      }
+  }
 }
 
 .logo-text-name {
