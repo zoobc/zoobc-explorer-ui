@@ -114,21 +114,21 @@ const Account = ({ match }) => {
       {!!loading && <LoaderPage />}
       {!error && !loading && (
         <Container>
-          <Row className='account-row'>
+          <Row className="account-row">
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <h4 className='truncate'>
+                  <h4 className="truncate">
                     {t('Account')} {data.account.AccountAddress}
                   </h4>
                 </Col>
               </Row>
-              <Card className='account-card' bordered={false}>
-                <h4 className='account-card-title'>{t('Summary')}</h4>
+              <Card className="account-card" bordered={false}>
+                <h4 className="account-card-title">{t('Summary')}</h4>
                 <DescItem
                   label={t('Account Address')}
                   value={
-                    <CopyToClipboard text={data.account.AccountAddress} keyID='accountAddress' />
+                    <CopyToClipboard text={data.account.AccountAddress} keyID="accountAddress" />
                   }
                 />
                 <DescItem
@@ -185,22 +185,22 @@ const Account = ({ match }) => {
                 />
                 {/* <DescItem label={t('Node Public Key')} value={data.account.NodePublicKey} /> */}
               </Card>
-              <Card className='account-card' bordered={false}>
-                <h4 className='account-card-title'>
+              <Card className="account-card" bordered={false}>
+                <h4 className="account-card-title">
                   {t('Transactions')}
-                  <Badge className='badge-black' count={trxPaginate.Total} overflowCount={1000} />
+                  <Badge className="badge-black" count={trxPaginate.Total} overflowCount={1000} />
                 </h4>
                 <Table
-                  className='transactions-table'
+                  className="transactions-table"
                   columns={transactionColumns}
                   dataSource={transactions}
                   pagination={false}
-                  size='small'
+                  size="small"
                   loading={loading}
                 />
                 {!!transactions && (
                   <Pagination
-                    className='pagination-center'
+                    className="pagination-center"
                     current={trxPaginate.Page}
                     total={trxPaginate.Total}
                     pageSize={5}
