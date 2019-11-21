@@ -213,7 +213,6 @@
     }
   }
   &-copyright {
-    text-align: center;
     h6 {
       color: var(--white);
     }
@@ -222,7 +221,13 @@
       margin-bottom: 0;
       font-size: 14px;
       color: var(--color-primary-light-txt);
-
+    }
+    .footer-logo {
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    .footer-company-text {
+      text-align: center;
     }
   }
 }

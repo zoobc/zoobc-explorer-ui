@@ -79,7 +79,7 @@ const Footer = () => {
             </a>
           </ul>
         </Collapse.Panel>
-        <Collapse.Panel header="Comunity" key="2">
+        <Collapse.Panel header="Community" key="2">
           <ul className="footer-list-group mb-0">
             <a className="footer-list-group-item" href="https://blockchainzoo.com">
               {t('Getting Started')}
@@ -116,9 +116,20 @@ const Footer = () => {
         </Collapse.Panel>
       </Collapse>
       <div className="footer-mobile-copyright">
-        <h6>ZooBC Explorer</h6>
-        <p>&#169; 2019 ZooBC Explorer All rights reserved.</p>
-        <p>Alpha - Version 0.1</p>
+        <div className="footer-logo">
+          <Link className="footer-link-logo" to="/">
+            <img src={zoobcLogo} alt="zoobc-logo" />
+            <div className="footer-logo-name">
+              <div className="logo-text-name">ZooBC Explorer</div>
+              <div className="logo-text-version">Alpha - Version 0.1</div>
+            </div>
+          </Link>
+        </div>
+        <ul className="footer-company-info">
+          <p className="footer-company-text">
+            &#169; 2019 ZooBC Explorer All rights reserved.
+                </p>
+        </ul>
       </div>
       <hr className="footer-horizontal-rule-dark" />
       <div className="footer-social-icons">

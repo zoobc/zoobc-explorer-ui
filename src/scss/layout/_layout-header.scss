@@ -160,11 +160,28 @@
       top: 25px !important;
     }
   }
-
+  .ant-btn-primary {
+    border-color: var(--color-border-btn) !important;
+  }
   .logo {
     display: flex;
     img {
       width: 10%;
+    }
+
+    @include mq-md {
+      img {
+        width: 6%;
+      }
+      .header-logo-name {
+        justify-content: center;
+        .logo-text-name {
+          font-size: 18px;
+        }
+        .logo-text-version {
+          font-size: 14px;
+        }
+      }
     }
   }
 
