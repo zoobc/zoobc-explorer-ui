@@ -226,7 +226,7 @@ const Footer = () => {
           </p>
         </Dropdown>
         <Button className="ml-3" type="primary" size="small" onClick={() => setIsOpen(true)}>
-          Network: {selectedTestnet.name}
+          {t('Network')}: {selectedTestnet.name}
         </Button>
       </div>
     </div>
@@ -341,7 +341,7 @@ const Footer = () => {
               </p>
             </Dropdown>
             <Button className="ml-3" type="primary" size="small" onClick={() => setIsOpen(true)}>
-              Network: {selectedTestnet.name}
+              {t('Network')}: {selectedTestnet.name}
             </Button>
             <div className="footer-social-icons">
               <a
@@ -408,7 +408,7 @@ const Footer = () => {
         onClose={() => setIsOpenCommingSoon(false)}
       />
       <Drawer
-        title="Select Network"
+        title={t('Select Network')}
         placement="right"
         onClose={() => setIsOpen(false)}
         visible={isOpen}

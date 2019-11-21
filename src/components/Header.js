@@ -107,7 +107,7 @@ const Header = ({ history, location, fluid }) => {
               />
             </Tooltip>
             <Button type="primary" className="mr-1 d-none d-lg-block" onClick={onLogin}>
-              Login
+              {t('Login')}
             </Button>
             <Button type="danger" className="d-block d-lg-none" onClick={onFeedback}>
               {t('Feedback')}
