@@ -92,29 +92,29 @@ const Transactions = () => {
   return (
     <>
       <Container>
-        <Row className='transactions-row'>
+        <Row className="transactions-row">
           <Col span={24}>
-            <Card className='transactions-card' bordered={false}>
+            <Card className="transactions-card" bordered={false}>
               <Row>
                 <Col span={24}>
                   <h5>
-                    <i className='bcz-calendar' />
+                    <i className="bcz-calendar" />
                     <strong>{t('Recent Transactions')}</strong>
                   </h5>
                 </Col>
               </Row>
               <Table
-                className='transactions-table'
+                className="transactions-table"
                 columns={columns}
                 dataSource={transactions}
                 pagination={false}
-                size='small'
+                size="small"
                 loading={loading}
                 onChange={onChangeTable.bind(this)}
               />
               {!!data && (
                 <Pagination
-                  className='pagination-center'
+                  className="pagination-center"
                   current={paginate.Page}
                   total={paginate.Total}
                   pageSize={15}

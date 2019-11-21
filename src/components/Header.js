@@ -93,6 +93,7 @@ const Header = ({ history, location, fluid }) => {
           </div>
           <div className="navbar-right">
             <Tooltip
+              getPopupContainer={triggerNode => triggerNode.parentNode}
               trigger={['focus']}
               title="Search by Account Address / Transaction ID / Block ID"
               placement="topLeft"

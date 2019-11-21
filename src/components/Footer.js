@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -28,16 +29,20 @@ import zoobcLogo from '../assets/images/logo-zoobc.svg'
 import TestnetContext from '../context/TestnetContext'
 import testnet from '../config/testnet'
 import FormFeedback from './FormFeedback'
+import ComingSoon from './ComingSoon'
 
 const Footer = () => {
   const { t, i18n } = useTranslation()
   const { selectedTestnet, onChangeSelectedTestnet } = useContext(TestnetContext)
   const [isOpen, setIsOpen] = useState(false)
-  const [isOpenDialog, setIsOpenDialog] = useState(false)
+  const [isOpenFeedback, setIsOpenFeedback] = useState(false)
+  const [isOpenComingSoon, setIsOpenCommingSoon] = useState(false)
+  const [dialogTitle, setDialogTitle] = useState()
 
   const onSelectNetwork = data => {
     onChangeSelectedTestnet(data)
     setIsOpen(false)
+    window.location.reload()
   }
 
   const selectedLang = () => {
@@ -60,56 +65,82 @@ const Footer = () => {
     )
   }
 
+  const onComingSoon = e => {
+    e.preventDefault()
+    setDialogTitle()
+    setIsOpenCommingSoon(true)
+  }
+
+  const onFeedback = e => {
+    e.preventDefault()
+    setIsOpenFeedback(true)
+  }
+
   const FooterMobile = () => (
     <div className="footer-mobile d-block d-md-none">
       <Collapse expandIconPosition="right">
         <Collapse.Panel header="Product" key="1">
           <ul className="footer-list-group mb-0">
-            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+            {/* <a className="footer-list-group-item" onClick={onComingSoon}>
               {t('ZooBC Core')}
-            </a>
-            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+            </a> */}
+            <a
+              className="footer-list-group-item"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="http://zoobc.one"
+            >
               {t('ZooBC Wallet')}
             </a>
-            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+            <a className="footer-list-group-item" rel="noopener noreferrer" href="http://zoobc.net">
               {t('ZooBC Explorer')}
             </a>
-            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+            <a
+              className="footer-list-group-item"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://zoobc.com/ZooBC%20Whitepaper%20Draft%20-%20V0.2.pdf"
+            >
               {t('Whitepaper')}
             </a>
           </ul>
         </Collapse.Panel>
         <Collapse.Panel header="Community" key="2">
           <ul className="footer-list-group mb-0">
-            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+            <a className="footer-list-group-item" onClick={onComingSoon}>
               {t('Getting Started')}
             </a>
-            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+            <a className="footer-list-group-item" onClick={onComingSoon}>
               {t('Developer APIs')}
             </a>
-            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+            <a className="footer-list-group-item" onClick={onComingSoon}>
               {t('Research')}
             </a>
-            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+            <a
+              className="footer-list-group-item"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://zoobc.com/#current_roadmap__item"
+            >
               {t('Roadmap')}
             </a>
           </ul>
         </Collapse.Panel>
         <Collapse.Panel header="Company" key="3">
           <ul className="footer-list-group mb-0">
-            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+            <a className="footer-list-group-item" onClick={onComingSoon}>
               {t('About Us')}
             </a>
-            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+            <a className="footer-list-group-item" onClick={onComingSoon}>
               {t('Contact Us')}
             </a>
-            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+            <a className="footer-list-group-item" onClick={onComingSoon}>
               {t('Terms of Service')}
             </a>
-            <a className="footer-list-group-item" href="https://blockchainzoo.com">
+            <a className="footer-list-group-item" onClick={onComingSoon}>
               {t('Privacy Policy')}
             </a>
-            <a className="footer-list-group-item" href="#" onClick={() => setIsOpenDialog(true)}>
+            <a className="footer-list-group-item" onClick={() => setIsOpenFeedback(true)}>
               {t('Feedback')}
             </a>
           </ul>
@@ -134,6 +165,7 @@ const Footer = () => {
         <a
           className="footer-social-icon"
           href="https://github.com/zoobc"
+          target="_blank"
           rel="noopener norefferer"
           title="GitHub"
         >
@@ -142,6 +174,7 @@ const Footer = () => {
         <a
           className="footer-social-icon"
           href="https://medium.com/@BlockchainZoo"
+          target="_blank"
           rel="noopener norefferer"
           title="Medium"
         >
@@ -150,6 +183,7 @@ const Footer = () => {
         <a
           className="footer-social-icon"
           href="https://youtube.com/c/BlockchainZoo"
+          target="_blank"
           rel="noopener norefferer"
           title="Youtube"
         >
@@ -158,6 +192,7 @@ const Footer = () => {
         <a
           className="footer-social-icon"
           href="https://t.me/ZooBlockchain"
+          target="_blank"
           rel="noopener norefferer"
           title="Telegram"
         >
@@ -166,6 +201,7 @@ const Footer = () => {
         <a
           className="footer-social-icon"
           href="https://zoobc.org"
+          target="_blank"
           rel="noopener norefferer"
           title="Forum"
         >
@@ -174,6 +210,7 @@ const Footer = () => {
         <a
           className="footer-social-icon"
           href="https://blogchainzoo.com"
+          target="_blank"
           rel="noopener norefferer"
           title="Blog"
         >
@@ -213,7 +250,7 @@ const Footer = () => {
               </div>
               <ul className="footer-company-info">
                 <p className="footer-company-text">
-                  &#169; 2019 ZooBC Explorer All rights reserved.
+                  &#169; 2019 ZooBC Explorer. All rights reserved.
                 </p>
               </ul>
             </Col>
@@ -221,16 +258,30 @@ const Footer = () => {
               <h3 className="footer-subtitle heading-border">{t('Product')}</h3>
               <hr className="footer-horizontal-rule-light" />
               <ul className="footer-list-group mb-0">
-                <a className="footer-list-group-item" href="https://blockchainzoo.com">
+                {/* <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
                   {t('ZooBC Core')}
-                </a>
-                <a className="footer-list-group-item" href="https://blockchainzoo.com">
+                </a> */}
+                <a
+                  className="footer-list-group-item"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="http://zoobc.one"
+                >
                   {t('ZooBC Wallet')}
                 </a>
-                <a className="footer-list-group-item" href="https://blockchainzoo.com">
+                <a
+                  className="footer-list-group-item"
+                  rel="noopener noreferrer"
+                  href="http://zoobc.net"
+                >
                   {t('ZooBC Explorer')}
                 </a>
-                <a className="footer-list-group-item" href="https://blockchainzoo.com">
+                <a
+                  className="footer-list-group-item"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://zoobc.com/ZooBC%20Whitepaper%20Draft%20-%20V0.2.pdf"
+                >
                   {t('Whitepaper')}
                 </a>
               </ul>
@@ -239,16 +290,21 @@ const Footer = () => {
               <h3 className="footer-subtitle heading-border">{t('Community')}</h3>
               <hr className="footer-horizontal-rule-light" />
               <ul className="footer-list-group mb-0">
-                <a className="footer-list-group-item" href="https://blockchainzoo.com">
+                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
                   {t('Getting Started')}
                 </a>
-                <a className="footer-list-group-item" href="https://blockchainzoo.com">
+                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
                   {t('Developer APIs')}
                 </a>
-                <a className="footer-list-group-item" href="https://blockchainzoo.com">
+                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
                   {t('Research')}
                 </a>
-                <a className="footer-list-group-item" href="https://blockchainzoo.com">
+                <a
+                  className="footer-list-group-item"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://zoobc.com/#current_roadmap__item"
+                >
                   {t('Roadmap')}
                 </a>
               </ul>
@@ -257,22 +313,22 @@ const Footer = () => {
               <h3 className="footer-subtitle heading-border">{t('Company')}</h3>
               <hr className="footer-horizontal-rule-light" />
               <ul className="footer-list-group mb-0">
-                <a className="footer-list-group-item" href="https://blockchainzoo.com">
+                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
                   {t('About Us')}
                 </a>
-                <a className="footer-list-group-item" href="https://blockchainzoo.com">
+                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
                   {t('Contact Us')}
                 </a>
-                <a className="footer-list-group-item" href="https://blockchainzoo.com">
+                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
                   {t('Terms of Service')}
                 </a>
-                <a className="footer-list-group-item" href="https://blockchainzoo.com">
+                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
                   {t('Privacy Policy')}
                 </a>
                 <a
                   className="footer-list-group-item"
                   href="#"
-                  onClick={() => setIsOpenDialog(true)}
+                  onClick={onFeedback}
                 >
                   {t('Feedback')}
                 </a>
@@ -295,6 +351,7 @@ const Footer = () => {
               <a
                 className="footer-social-icon"
                 href="https://github.com/zoobc"
+                target="_blank"
                 rel="noopener norefferer"
                 title="GitHub"
               >
@@ -303,6 +360,7 @@ const Footer = () => {
               <a
                 className="footer-social-icon"
                 href="https://medium.com/@BlockchainZoo"
+                target="_blank"
                 rel="noopener norefferer"
                 title="Medium"
               >
@@ -311,6 +369,7 @@ const Footer = () => {
               <a
                 className="footer-social-icon"
                 href="https://youtube.com/c/BlockchainZoo"
+                target="_blank"
                 rel="noopener norefferer"
                 title="Youtube"
               >
@@ -319,6 +378,7 @@ const Footer = () => {
               <a
                 className="footer-social-icon"
                 href="https://t.me/ZooBlockchain"
+                target="_blank"
                 rel="noopener norefferer"
                 title="Telegram"
               >
@@ -327,6 +387,7 @@ const Footer = () => {
               <a
                 className="footer-social-icon"
                 href="https://zoobc.org"
+                target="_blank"
                 rel="noopener norefferer"
                 title="Forum"
               >
@@ -335,6 +396,7 @@ const Footer = () => {
               <a
                 className="footer-social-icon"
                 href="https://blogchainzoo.com"
+                target="_blank"
                 rel="noopener norefferer"
                 title="Blog"
               >
@@ -344,6 +406,11 @@ const Footer = () => {
           </Row>
         </Container>
       </Layout.Footer>
+      <ComingSoon
+        visible={isOpenComingSoon}
+        title={dialogTitle}
+        onClose={() => setIsOpenCommingSoon(false)}
+      />
       <Drawer
         title="Select Network"
         placement="right"
@@ -373,9 +440,9 @@ const Footer = () => {
         />
       </Drawer>
       <FormFeedback
-        visible={isOpenDialog}
+        visible={isOpenFeedback}
         title="Feedback"
-        onClose={() => setIsOpenDialog(false)}
+        onClose={() => setIsOpenFeedback(false)}
       />
     </>
   )
