@@ -126,9 +126,7 @@ const Footer = () => {
           </Link>
         </div>
         <ul className="footer-company-info">
-          <p className="footer-company-text">
-            &#169; 2019 ZooBC Explorer All rights reserved.
-                </p>
+          <p className="footer-company-text">&#169; 2019 ZooBC Explorer All rights reserved.</p>
         </ul>
       </div>
       <hr className="footer-horizontal-rule-dark" />
