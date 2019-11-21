@@ -325,11 +325,7 @@ const Footer = () => {
                 <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
                   {t('Privacy Policy')}
                 </a>
-                <a
-                  className="footer-list-group-item"
-                  href="#"
-                  onClick={onFeedback}
-                >
+                <a className="footer-list-group-item" href="#" onClick={onFeedback}>
                   {t('Feedback')}
                 </a>
               </ul>
