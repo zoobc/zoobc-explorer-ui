@@ -65,7 +65,7 @@ const Header = ({ history, location, fluid }) => {
               <div className="logo-text-version">Alpha - Version 0.1</div>
             </div>
           </Link>
-          <div className="navbar-left d-none d-md-block">
+          <div className="navbar-left d-none d-lg-block">
             <Menu
               className="header-menu"
               theme="dark"
@@ -99,23 +99,23 @@ const Header = ({ history, location, fluid }) => {
               placement="topLeft"
             >
               <Search
-                className="header-search-input d-none d-md-block"
+                className="header-search-input d-none d-lg-block"
                 prefix={<Icon className="header-search-icon" type="search" />}
                 placeholder={t('Please input keyword')}
                 enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
                 onSearch={onSearch}
               />
             </Tooltip>
-            <Button type="primary" className="mr-1 d-none d-md-block" onClick={onLogin}>
+            <Button type="primary" className="mr-1 d-none d-lg-block" onClick={onLogin}>
               Login
             </Button>
-            <Button type="danger" className="d-block d-md-none" onClick={onFeedback}>
+            <Button type="danger" className="d-block d-lg-none" onClick={onFeedback}>
               {t('Feedback')}
             </Button>
             <Button
               icon="menu"
               type="link"
-              className="drawer-mobile-collapse ml-1 d-block d-md-none"
+              className="drawer-mobile-collapse ml-1 d-block d-lg-none"
               onClick={() => setIsOpenDraw(true)}
             />
           </div>

@@ -65,9 +65,15 @@ const Footer = () => {
     )
   }
 
-  const onComingSoon = () => {
+  const onComingSoon = e => {
+    e.preventDefault()
     setDialogTitle()
     setIsOpenCommingSoon(true)
+  }
+
+  const onFeedback = e => {
+    e.preventDefault()
+    setIsOpenFeedback(true)
   }
 
   const FooterMobile = () => (
@@ -99,7 +105,7 @@ const Footer = () => {
             </a>
           </ul>
         </Collapse.Panel>
-        <Collapse.Panel header="Comunity" key="2">
+        <Collapse.Panel header="Community" key="2">
           <ul className="footer-list-group mb-0">
             <a className="footer-list-group-item" onClick={onComingSoon}>
               {t('Getting Started')}
@@ -141,9 +147,18 @@ const Footer = () => {
         </Collapse.Panel>
       </Collapse>
       <div className="footer-mobile-copyright">
-        <h6>ZooBC Explorer</h6>
-        <p>&#169; 2019 ZooBC Explorer. All rights reserved.</p>
-        <p>Alpha - Version 0.1</p>
+        <div className="footer-logo">
+          <Link className="footer-link-logo" to="/">
+            <img src={zoobcLogo} alt="zoobc-logo" />
+            <div className="footer-logo-name">
+              <div className="logo-text-name">ZooBC Explorer</div>
+              <div className="logo-text-version">Alpha - Version 0.1</div>
+            </div>
+          </Link>
+        </div>
+        <ul className="footer-company-info">
+          <p className="footer-company-text">&#169; 2019 ZooBC Explorer All rights reserved.</p>
+        </ul>
       </div>
       <hr className="footer-horizontal-rule-dark" />
       <div className="footer-social-icons">
@@ -310,11 +325,7 @@ const Footer = () => {
                 <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
                   {t('Privacy Policy')}
                 </a>
-                <a
-                  className="footer-list-group-item"
-                  href="#"
-                  onClick={() => setIsOpenFeedback(true)}
-                >
+                <a className="footer-list-group-item" href="#" onClick={onFeedback}>
                   {t('Feedback')}
                 </a>
               </ul>
