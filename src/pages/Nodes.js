@@ -94,23 +94,23 @@ const Nodes = () => {
                 </Col>
               </Row>
               <Tabs defaultActiveKey="3" onChange={onChangeTab}>
-                <TabPane tab="All" key="3">
+                <TabPane tab={t('All')} key="3">
                   <DisplayTable />
                 </TabPane>
-                <TabPane tab="Registered" key="0">
+                <TabPane tab={t('Registered')} key="0">
                   <DisplayTable />
                 </TabPane>
-                <TabPane tab="In Queue" key="1">
+                <TabPane tab={t('In Queue')} key="1">
                   <DisplayTable />
                 </TabPane>
-                <TabPane tab="Stray" key="2">
+                <TabPane tab={t('Stray')} key="2">
                   <DisplayTable />
                 </TabPane>
               </Tabs>
             </Card>
           </Col>
         </Row>
-      </Container>
+      </Container >
     </>
   )
 }

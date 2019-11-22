@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, Form, Input, Button, Select, Rate, Alert } from 'antd'
 import doorbell from '../utils/doorbell'
+import { useTranslation } from 'react-i18next'
 
 const FormFeedback = ({ visible, onClose, form }) => {
   const { getFieldDecorator, validateFields, resetFields } = form
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [alert, setAlert] = useState(null)
+  const { t } = useTranslation()
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -29,7 +31,7 @@ const FormFeedback = ({ visible, onClose, form }) => {
 
   return (
     <Modal
-      title="Feedback"
+      title={t('Feedback')}
       visible={visible}
       onOk={onClose}
       onCancel={onClose}
@@ -41,7 +43,7 @@ const FormFeedback = ({ visible, onClose, form }) => {
     >
       {!!alert && <Alert message={alert.message} type={alert.type} />}
       <Form layout="vertical" onSubmit={handleSubmit}>
-        <Form.Item label="Name">
+        <Form.Item label={t('Name')}>
           {getFieldDecorator('name', {
             rules: [
               {
@@ -50,9 +52,9 @@ const FormFeedback = ({ visible, onClose, form }) => {
                 transform: value => value.trim(),
               },
             ],
-          })(<Input placeholder="Input your name" />)}
+          })(<Input placeholder={t('Input your name')} />)}
         </Form.Item>
-        <Form.Item label="Email">
+        <Form.Item label={t('Email')}>
           {getFieldDecorator('email', {
             rules: [
               {
@@ -62,19 +64,19 @@ const FormFeedback = ({ visible, onClose, form }) => {
                 transform: value => value.trim(),
               },
             ],
-          })(<Input placeholder="Input your email address" />)}
+          })(<Input placeholder={t('Input your email address')} />)}
         </Form.Item>
-        <Form.Item label="Sentiment">
+        <Form.Item label={t('Sentiment')}>
           {getFieldDecorator('sentiment')(
-            <Select placeholder="Please select a sentiment">
+            <Select placeholder={t('Please select a sentiment')} >
               <Select.Option value="positive">Positive</Select.Option>
               <Select.Option value="negative">Negative</Select.Option>
               <Select.Option value="neutral">Neutral</Select.Option>
             </Select>
           )}
         </Form.Item>
-        <Form.Item label="Rate">{getFieldDecorator('nps')(<Rate />)}</Form.Item>
-        <Form.Item label="Message">
+        <Form.Item label={t('Rate')}>{getFieldDecorator('nps')(<Rate />)}</Form.Item>
+        <Form.Item label={t('Message')}>
           {getFieldDecorator('message', {
             rules: [
               {
@@ -83,11 +85,11 @@ const FormFeedback = ({ visible, onClose, form }) => {
                 transform: value => value.trim(),
               },
             ],
-          })(<Input.TextArea rows={4} placeholder="Input your feedback message" />)}
+          })(<Input.TextArea rows={4} placeholder={t('Input your feedback message')} />)}
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" size="large" loading={isSubmitting} block>
-            Submit
+            {t('SUBMIT')}
           </Button>
         </Form.Item>
       </Form>

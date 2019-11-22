@@ -1,19 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card } from 'antd'
-
 import DescItem from '../DescItem'
+import { useTranslation } from 'react-i18next'
 
 const ClaimNodeRegistration = ({ data }) => {
+  const { t } = useTranslation()
   return (
     <Card className="transaction-card">
-      <h4 className="transaction-card-title">Claim Node Registration</h4>
+      <h4 className="transaction-card-title">{t('Claim Node Registration')}</h4>
       <DescItem
-        label="Account Address"
+        label={t('Account Address')}
         value={<Link to={`/nodes/${data.AccountAddress}`}>{data.AccountAddress}</Link>}
       />
       <DescItem
-        label="Node Pulic Key"
+        label={t('Node Public Key')}
         value={<Link to={`/nodes/${data.NodePublicKey}`}>{data.NodePublicKey}</Link>}
       />
       <DescItem

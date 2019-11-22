@@ -269,7 +269,7 @@ const Block = ({ match }) => {
                 </Panel>
               </Collapse>
               <Collapse className="block-collapse" bordered={false}>
-                <Panel className="block-card-title block-collapse" header="Rewards" key="2">
+                <Panel className="block-card-title block-collapse" header={t('Rewards')} key="2">
                   <Card className="block-card" bordered={false}>
                     <h4 className="block-card-title">
                       {t('Coinbase')}
@@ -287,10 +287,10 @@ const Block = ({ match }) => {
                 </Panel>
               </Collapse>
               <Collapse className="block-collapse" bordered={false}>
-                <Panel className="block-card-title block-collapse" header="Receipts" key="3">
+                <Panel className="block-card-title block-collapse" header={t('Receipts')} key="3">
                   <Card className="block-card" bordered={false}>
                     <h4 className="block-card-title">
-                      {t('Receipt')}
+                      {t('Receipts')}
                       <Badge
                         className="badge-black"
                         count={receiptPaginate.Total}
@@ -317,7 +317,7 @@ const Block = ({ match }) => {
                 </Panel>
               </Collapse>
               <Collapse className="block-collapse" defaultActiveKey={['4']} bordered={false}>
-                <Panel className="block-card-title block-collapse" header="Transactions" key="4">
+                <Panel className="block-card-title block-collapse" header={t('Transactions')} key="4">
                   <Card className="block-card" bordered={false}>
                     <h4 className="block-card-title">
                       {t('Transactions')}
