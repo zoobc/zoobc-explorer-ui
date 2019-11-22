@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  deploy:
+  deploy-develop:
     docker:
       - image: circleci/node:8.10
     steps:
@@ -10,11 +10,11 @@ jobs:
       - run:
           name: Setup SSH Key Host
           command: |
-            ssh-keyscan -H 139.162.15.80 >> ~/.ssh/known_hosts
+            ssh-keyscan -H ${SSH_HOST_DEVELOP} >> ~/.ssh/known_hosts
       - run:
           name: Deploy
           command: |
-            ssh root@139.162.15.80 "cd zoobc-explorer-ui/
+            ssh ${SSH_USER}@${SSH_HOST_DEVELOP} "cd zoobc-explorer-ui/
             chmod +x deploy.sh
             ./deploy.sh"
 
@@ -22,4 +22,7 @@ workflows:
   version: 2
   build:
     jobs:
-      - deploy
+      - deploy-develop:
+          filters:
+            brances:
+              only: develop
