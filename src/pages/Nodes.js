@@ -110,7 +110,7 @@ const Nodes = () => {
             </Card>
           </Col>
         </Row>
-      </Container >
+      </Container>
     </>
   )
 }

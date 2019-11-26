@@ -68,7 +68,7 @@ const FormFeedback = ({ visible, onClose, form }) => {
         </Form.Item>
         <Form.Item label={t('Sentiment')}>
           {getFieldDecorator('sentiment')(
-            <Select placeholder={t('Please select a sentiment')} >
+            <Select placeholder={t('Please select a sentiment')}>
               <Select.Option value="positive">Positive</Select.Option>
               <Select.Option value="negative">Negative</Select.Option>
               <Select.Option value="neutral">Neutral</Select.Option>

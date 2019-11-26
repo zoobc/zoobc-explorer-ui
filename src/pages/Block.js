@@ -317,7 +317,11 @@ const Block = ({ match }) => {
                 </Panel>
               </Collapse>
               <Collapse className="block-collapse" defaultActiveKey={['4']} bordered={false}>
-                <Panel className="block-card-title block-collapse" header={t('Transactions')} key="4">
+                <Panel
+                  className="block-card-title block-collapse"
+                  header={t('Transactions')}
+                  key="4"
+                >
                   <Card className="block-card" bordered={false}>
                     <h4 className="block-card-title">
                       {t('Transactions')}

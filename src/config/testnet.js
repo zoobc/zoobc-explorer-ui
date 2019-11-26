@@ -85,11 +85,11 @@ const testnetProd = [
 ]
 
 const testnetClientProd = [
-  process.env.REACT_APP_GRAPHQL_ENDPOINT || 'http://139.162.23.67:6969/zoobc/api/v1/graphql',
-  'http://139.162.44.25:1680/zoobc/api/v1/graphql',
-  'http://139.162.44.25:1010/zoobc/api/v1/graphql',
-  'http://139.162.44.25:5858/zoobc/api/v1/graphql',
-  'http://139.162.44.25:9090/zoobc/api/v1/graphql',
+  process.env.REACT_APP_GRAPHQL_ENDPOINT || 'https://alpha.zoobc.net/zoobc/api/v1/graphql',
+  'https://test1010.zoobc.net/zoobc/api/v1/graphql',
+  'https://test9090.zoobc.net/zoobc/api/v1/graphql',
+  'https://test5858.zoobc.net/zoobc/api/v1/graphql',
+  'https://test1680.zoobc.net/zoobc/api/v1/graphql',
 ]
 
 const testnetClientLocal = [
