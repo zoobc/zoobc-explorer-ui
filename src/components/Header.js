@@ -45,7 +45,7 @@ const Header = ({ history, location, fluid }) => {
   }
 
   const onLogin = () => {
-    setDialogTitle('Login')
+    setDialogTitle(t('Login'))
     setIsOpenDialog(true)
   }
 
@@ -95,7 +95,7 @@ const Header = ({ history, location, fluid }) => {
             <Tooltip
               getPopupContainer={triggerNode => triggerNode.parentNode}
               trigger={['focus']}
-              title="Search by Account Address / Transaction ID / Block ID"
+              title={t('Search by Account Address / Transaction ID / Block ID')}
               placement="topLeft"
             >
               <Search

@@ -205,7 +205,7 @@ const Home = ({ history }) => {
                         dataKey="amt"
                         stroke="#8884d8"
                         activeDot={{ r: 8 }}
-                        name="Block Count"
+                        name={t('Block Count')}
                       />
                     </LineChart>
                   </ResponsiveContainer>
@@ -241,7 +241,7 @@ const Home = ({ history }) => {
                         dataKey="amt"
                         stroke="#8884d8"
                         activeDot={{ r: 8 }}
-                        name="Transaction Amount"
+                        name={t('Transaction Amount')}
                       />
                     </LineChart>
                   </ResponsiveContainer>
