@@ -44,8 +44,10 @@ const NotFound = ({ history, location }) => {
               <Col span={24}>
                 {!!state && !!state.search ? (
                   <>
-                    <p className="h3 mt-5">Search results for {state.search}</p>
-                    <p className="h6">Sorry, we couldn't find any results for this search</p>
+                    <p className="h3 mt-5">
+                      {t('Search results for')} {state.search}
+                    </p>
+                    <p className="h6">{t("Sorry, we couldn't find any results for this search")}</p>
                   </>
                 ) : (
                   <>
