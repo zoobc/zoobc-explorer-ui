@@ -30,6 +30,7 @@ import TestnetContext from '../context/TestnetContext'
 import testnet from '../config/testnet'
 import FormFeedback from './FormFeedback'
 import ComingSoon from './ComingSoon'
+import { store } from '../utils'
 
 const Footer = () => {
   const { t, i18n } = useTranslation()
@@ -50,11 +51,16 @@ const Footer = () => {
     return getLang
   }
 
+  const onSelectLanguage = lang => {
+    const selectedLang = store.set('language', lang.value)
+    i18n.changeLanguage(selectedLang)
+  }
+
   const languageOptions = () => {
     return (
       <Menu>
         {languages.map((lang, key) => (
-          <Menu.Item key={key} onClick={() => i18n.changeLanguage(lang.value)}>
+          <Menu.Item key={key} onClick={() => onSelectLanguage(lang)}>
             <p className="my-0">
               <Avatar shape="square" size={18} src={lang.flag} className="mr-1" />
               {lang.label}

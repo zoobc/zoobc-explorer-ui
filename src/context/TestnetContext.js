@@ -20,7 +20,7 @@ const testnetReducers = (state, action) => {
 
 export const TestnetState = ({ children }) => {
   const testnetDefaultValue = {
-    selectedTestnet: store.get('testnet') || testnet[0],
+    selectedTestnet: store.use('testnet', testnet[0]),
   }
 
   const [state, dispatch] = useReducer(testnetReducers, testnetDefaultValue)

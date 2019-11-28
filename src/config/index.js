@@ -1,3 +1,5 @@
+import store from '../utils/store'
+
 const config = {
   endpoint: {
     api:
@@ -10,7 +12,7 @@ const config = {
         : 'http://139.162.15.80:6969/zoobc/api/v1/graphql',
   },
   app: {
-    defaultLang: 'en',
+    defaultLang: store.use('language', 'en'),
   },
   doolbell: {
     api_key: process.env.REACT_APP_DOORBELL_KEY,
