@@ -10,11 +10,11 @@ jobs:
       - run:
           name: Setup SSH Key Host
           command: |
-            ssh-keyscan -H $SSH_HOST_DEVELOP >> ~/.ssh/known_hosts
+            ssh-keyscan -H ${SSH_HOST_DEVELOP} >> ~/.ssh/known_hosts
       - run:
           name: Deploy
           command: |
-            ssh $SSH_USER@$SSH_HOST_DEVELOP "cd zoobc-explorer-ui/ && ls -ltr && ./deploy.sh"
+            ssh ${SSH_USER}@${SSH_HOST_DEVELOP} "cd zoobc-explorer-ui/ && ls -ltr && ./deploy.sh"
 
 workflows:
   version: 2
