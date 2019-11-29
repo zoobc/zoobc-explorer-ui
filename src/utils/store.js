@@ -1,4 +1,4 @@
-import { isObject, isObjectString } from './util'
+import { isObject } from './util'
 
 var store = {
   name: 'zoobc-explorer',
@@ -22,7 +22,11 @@ function use(key, value) {
 
 function get(key) {
   const result = localStorage.getItem(`${storeName}-${key}`)
-  return isObjectString(result) ? JSON.parse(result) : result
+  try {
+    return JSON.parse(result)
+  } catch (error) {
+    return result
+  }
 }
 
 function set(key, data) {
