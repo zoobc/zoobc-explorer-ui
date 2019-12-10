@@ -62,7 +62,7 @@ const Header = ({ history, location, fluid }) => {
             <img src={zoobcLogo} alt="zoobc-logo" />
             <div className="header-logo-name">
               <div className="logo-text-name">ZooBC Explorer</div>
-              <div className="logo-text-version">Alpha - Version 0.1</div>
+              <div className="logo-text-version">Alphaa - Version 0.1</div>
             </div>
           </Link>
           <div className="navbar-left d-none d-lg-block">
