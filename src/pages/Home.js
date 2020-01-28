@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Card, Button, List, Row, Col } from 'antd'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import { Link } from 'react-router-dom'
 import NumberFormat from 'react-number-format'
-// import { Row, Col } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import {
   LineChart,
@@ -16,6 +15,8 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts'
+import * as Chart from 'chart.js'
+import PubNubReact from 'pubnub';
 
 import Container from '../components/Container'
 import Hero from '../components/Hero'
@@ -51,44 +52,31 @@ const GET_HOME_DATA = gql`
 `
 
 let game
-const options = {
-  scales: {
-    yAxes: [
-      {
-        ticks: {
-          display: false,
-        },
-        gridLines: {
-          display: false,
-          color: 'rgba(0, 0, 0, 0)',
-          drawBorder: false,
-        },
-      },
-    ],
-    xAxes: [
-      {
-        ticks: {
-          display: true,
-        },
-        gridLines: {
-          display: false,
-          color: 'rgba(0, 0, 0, 0)',
-          drawBorder: false,
-        },
-      },
-    ],
-  },
-  tooltips: {
-    mode: 'label',
-  },
-  legend: {
-    display: false,
-  },
-}
+
+const cars = [
+  require('../assets/images/cars/car-1.png'),
+  require('../assets/images/cars/car-2.png'),
+  require('../assets/images/cars/car-3.png'),
+  require('../assets/images/cars/car-4.png'),
+  require('../assets/images/cars/car-5.png'),
+  require('../assets/images/cars/car-6.png'),
+  require('../assets/images/cars/car-7.png'),
+  require('../assets/images/cars/car-8.png'),
+  require('../assets/images/cars/car-9.png'),
+  require('../assets/images/cars/car-10.png'),
+]
 
 const Home = ({ history }) => {
   const { t } = useTranslation()
   const { loading, data } = useQuery(GET_HOME_DATA)
+  const gameRef = useRef(null)
+  const pubnub = new PubNubReact({
+    publishKey: 'pub-c-6a8fdbb2-1005-4a63-a926-8ce9419024a8',
+    subscribeKey: 'sub-c-d9168f16-4197-11ea-8a62-3662be881406',
+    subscribeRequestTimeout: 60000,
+    presenceTimeout: 120,
+  })
+
   let blockData = []
   let trxData = []
   let blockGraphData = []
@@ -125,28 +113,47 @@ const Home = ({ history }) => {
   }
 
   useEffect(() => {
-    creatChart()
+    createChart()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => {
+      game = null
+      gameRef.current.remove();
+      gameRef.current = null
+    }
   }, [])
 
-  const creatChart = () => {
-    const sun = new Image()
-    const cloud = new Image()
-    const canvas = document.getElementById('game')
-    sun.src = 'https://i.imgur.com/yDYW1I7.png'
-    cloud.src = 'https://i.imgur.com/DIbr9q1.png'
+  useEffect(() => {
+    pubnub.addListener({
+      status: function (statusEvent) {
+        if (statusEvent.category === "PNConnectedCategory") {
+        }
+      },
+      message: function (msg) {
+        onUpdateRace(msg.message)
+      }
+    })
+    pubnub.subscribe({
+      channels: ['GameRace']
+    });
 
-    window.Chart.pluginService.register({
-      afterUpdate: function(chart) {
-        chart.config.data.datasets[0]._meta[0].data[0]._model.pointStyle = sun
-        chart.config.data.datasets[0]._meta[0].data[1]._model.pointStyle = sun
-        chart.config.data.datasets[0]._meta[0].data[2]._model.pointStyle = sun
-        chart.config.data.datasets[0]._meta[0].data[3]._model.pointStyle = sun
-        chart.config.data.datasets[0]._meta[0].data[4]._model.pointStyle = sun
-        chart.config.data.datasets[0]._meta[0].data[5]._model.pointStyle = sun
-        chart.config.data.datasets[0]._meta[0].data[6]._model.pointStyle = sun
-        chart.config.data.datasets[0]._meta[0].data[7]._model.pointStyle = sun
-        chart.config.data.datasets[0]._meta[0].data[8]._model.pointStyle = sun
-        chart.config.data.datasets[0]._meta[0].data[9]._model.pointStyle = sun
+    return () => {
+      pubnub.unsubscribe({
+        channels: ['GameRace']
+      });
+    };
+  }, [pubnub])
+
+  const createChart = () => {
+    const canvas = gameRef.current.getContext("2d");
+    Chart.pluginService.register({
+      afterUpdate: (chart) => {
+        const data = chart.config.data.datasets[0]._meta[chart.id].data;
+        data.map((d, key) => {
+          const car = new Image()
+          car.src = cars[key]
+          d._model.pointStyle = car
+          return null
+        })
       },
     })
     var data = {
@@ -158,47 +165,55 @@ const Home = ({ history }) => {
           borderColor: 'rgba(0, 0, 0, 0)',
           pointBackgroundColor: '#fff',
           pointRadius: 5,
-          data: [
-            randomNumber(),
-            randomNumber(),
-            randomNumber(),
-            randomNumber(),
-            randomNumber(),
-            randomNumber(),
-            randomNumber(),
-            randomNumber(),
-            randomNumber(),
-            randomNumber(),
-            randomNumber(),
-            randomNumber(),
-          ],
+          data: [null, null, null, null, null, null, null, null, null, null],
         },
       ],
     }
 
-    game = window.Chart.Line(canvas, {
+    game = new Chart(canvas, {
+      type: "line",
       data: data,
-      options,
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                display: false,
+              },
+              gridLines: {
+                display: false,
+                color: 'rgba(0, 0, 0, 0)',
+                drawBorder: false,
+              },
+            },
+          ],
+          xAxes: [
+            {
+              ticks: {
+                display: true,
+              },
+              gridLines: {
+                display: false,
+                color: 'rgba(0, 0, 0, 0)',
+                drawBorder: false,
+              },
+            },
+          ],
+        },
+        tooltips: {
+          mode: 'label',
+        },
+        legend: {
+          display: false,
+        },
+      },
     })
   }
 
-  const randomNumber = () => Math.floor(Math.random() * 500) + 1
-
-  const onClickButton = () => {
-    game.data.datasets[0].data = [
-      randomNumber(),
-      randomNumber(),
-      randomNumber(),
-      randomNumber(),
-      randomNumber(),
-      randomNumber(),
-      randomNumber(),
-      randomNumber(),
-      randomNumber(),
-      randomNumber(),
-      randomNumber(),
-      randomNumber(),
-    ]
+  const onUpdateRace = (values) => {
+    const labels = values.label.map(label => shortenHash(label, 15))
+    game.data.labels = labels
+    game.data.datasets[0].data = values.data
     game.update()
   }
 
@@ -364,9 +379,22 @@ const Home = ({ history }) => {
             </Card>
           </Col>
         </Row>
-        <Button onClick={onClickButton}>Refresh</Button>
-        <Card className="home-card" bordered={false} style={{ marginBottom: 20 }}>
-          <canvas id="game" height="100"></canvas>
+        <Card
+          className="home-card"
+          bordered={false}
+          style={{
+            marginBottom: 20,
+            // backgroundImage: 'url(https://media.giphy.com/media/gd09Y2Ptu7gsiPVUrv/giphy.gif)',
+            // backgroundPosition: 'center',
+            // backgroundRepeat: 'no-repeat',
+            // backgroundSize: 'cover',
+          }}
+        >
+          <canvas
+            id="game"
+            height="150"
+            ref={gameRef}
+          />
         </Card>
       </Container>
     </>
