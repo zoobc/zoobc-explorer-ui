@@ -16,7 +16,7 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 import * as Chart from 'chart.js'
-import PubNubReact from 'pubnub';
+import PubNubReact from 'pubnub'
 
 import Container from '../components/Container'
 import Hero from '../components/Hero'
@@ -117,37 +117,37 @@ const Home = ({ history }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     return () => {
       game = null
-      gameRef.current.remove();
+      gameRef.current.remove()
       gameRef.current = null
     }
   }, [])
 
   useEffect(() => {
     pubnub.addListener({
-      status: function (statusEvent) {
-        if (statusEvent.category === "PNConnectedCategory") {
+      status: function(statusEvent) {
+        if (statusEvent.category === 'PNConnectedCategory') {
         }
       },
-      message: function (msg) {
+      message: function(msg) {
         onUpdateRace(msg.message)
-      }
+      },
     })
     pubnub.subscribe({
-      channels: ['GameRace']
-    });
+      channels: ['GameRace'],
+    })
 
     return () => {
       pubnub.unsubscribe({
-        channels: ['GameRace']
-      });
-    };
+        channels: ['GameRace'],
+      })
+    }
   }, [pubnub])
 
   const createChart = () => {
-    const canvas = gameRef.current.getContext("2d");
+    const canvas = gameRef.current.getContext('2d')
     Chart.pluginService.register({
-      afterUpdate: (chart) => {
-        const data = chart.config.data.datasets[0]._meta[chart.id].data;
+      afterUpdate: chart => {
+        const data = chart.config.data.datasets[0]._meta[chart.id].data
         data.map((d, key) => {
           const car = new Image()
           car.src = cars[key]
@@ -171,7 +171,7 @@ const Home = ({ history }) => {
     }
 
     game = new Chart(canvas, {
-      type: "line",
+      type: 'line',
       data: data,
       options: {
         scales: {
@@ -210,7 +210,7 @@ const Home = ({ history }) => {
     })
   }
 
-  const onUpdateRace = (values) => {
+  const onUpdateRace = values => {
     const labels = values.label.map(label => shortenHash(label, 15))
     game.data.labels = labels
     game.data.datasets[0].data = values.data
@@ -390,11 +390,7 @@ const Home = ({ history }) => {
             // backgroundSize: 'cover',
           }}
         >
-          <canvas
-            id="game"
-            height="150"
-            ref={gameRef}
-          />
+          <canvas id="game" height="150" ref={gameRef} />
         </Card>
       </Container>
     </>
