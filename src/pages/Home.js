@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Card, Button, List, Row, Col } from 'antd'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
@@ -50,6 +50,42 @@ const GET_HOME_DATA = gql`
   }
 `
 
+let game
+const options = {
+  scales: {
+    yAxes: [
+      {
+        ticks: {
+          display: false,
+        },
+        gridLines: {
+          display: false,
+          color: 'rgba(0, 0, 0, 0)',
+          drawBorder: false,
+        },
+      },
+    ],
+    xAxes: [
+      {
+        ticks: {
+          display: true,
+        },
+        gridLines: {
+          display: false,
+          color: 'rgba(0, 0, 0, 0)',
+          drawBorder: false,
+        },
+      },
+    ],
+  },
+  tooltips: {
+    mode: 'label',
+  },
+  legend: {
+    display: false,
+  },
+}
+
 const Home = ({ history }) => {
   const { t } = useTranslation()
   const { loading, data } = useQuery(GET_HOME_DATA)
@@ -86,6 +122,84 @@ const Home = ({ history }) => {
         ...tg,
       }
     })
+  }
+
+  useEffect(() => {
+    creatChart()
+  }, [])
+
+  const creatChart = () => {
+    const sun = new Image()
+    const cloud = new Image()
+    const canvas = document.getElementById('game')
+    sun.src = 'https://i.imgur.com/yDYW1I7.png'
+    cloud.src = 'https://i.imgur.com/DIbr9q1.png'
+
+    window.Chart.pluginService.register({
+      afterUpdate: function(chart) {
+        chart.config.data.datasets[0]._meta[0].data[0]._model.pointStyle = sun
+        chart.config.data.datasets[0]._meta[0].data[1]._model.pointStyle = sun
+        chart.config.data.datasets[0]._meta[0].data[2]._model.pointStyle = sun
+        chart.config.data.datasets[0]._meta[0].data[3]._model.pointStyle = sun
+        chart.config.data.datasets[0]._meta[0].data[4]._model.pointStyle = sun
+        chart.config.data.datasets[0]._meta[0].data[5]._model.pointStyle = sun
+        chart.config.data.datasets[0]._meta[0].data[6]._model.pointStyle = sun
+        chart.config.data.datasets[0]._meta[0].data[7]._model.pointStyle = sun
+        chart.config.data.datasets[0]._meta[0].data[8]._model.pointStyle = sun
+        chart.config.data.datasets[0]._meta[0].data[9]._model.pointStyle = sun
+      },
+    })
+    var data = {
+      labels: ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th'],
+      datasets: [
+        {
+          label: 'ZBC',
+          fill: false,
+          borderColor: 'rgba(0, 0, 0, 0)',
+          pointBackgroundColor: '#fff',
+          pointRadius: 5,
+          data: [
+            randomNumber(),
+            randomNumber(),
+            randomNumber(),
+            randomNumber(),
+            randomNumber(),
+            randomNumber(),
+            randomNumber(),
+            randomNumber(),
+            randomNumber(),
+            randomNumber(),
+            randomNumber(),
+            randomNumber(),
+          ],
+        },
+      ],
+    }
+
+    game = window.Chart.Line(canvas, {
+      data: data,
+      options,
+    })
+  }
+
+  const randomNumber = () => Math.floor(Math.random() * 500) + 1
+
+  const onClickButton = () => {
+    game.data.datasets[0].data = [
+      randomNumber(),
+      randomNumber(),
+      randomNumber(),
+      randomNumber(),
+      randomNumber(),
+      randomNumber(),
+      randomNumber(),
+      randomNumber(),
+      randomNumber(),
+      randomNumber(),
+      randomNumber(),
+      randomNumber(),
+    ]
+    game.update()
   }
 
   return (
@@ -250,6 +364,10 @@ const Home = ({ history }) => {
             </Card>
           </Col>
         </Row>
+        <Button onClick={onClickButton}>Refresh</Button>
+        <Card className="home-card" bordered={false} style={{ marginBottom: 20 }}>
+          <canvas id="game" height="100"></canvas>
+        </Card>
       </Container>
     </>
   )
