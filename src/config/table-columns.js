@@ -16,9 +16,7 @@ const randomBadgeColor = () => {
 
 const renderCurrenncy = text => {
   return (
-    !!text && (
-      <NumberFormat value={text} displayType={'text'} thousandSeparator={true} suffix={' ZBC'} />
-    )
+    <NumberFormat value={text || 0} displayType={'text'} thousandSeparator={true} suffix={' ZBC'} />
   )
 }
 
