@@ -1,6 +1,6 @@
 <h1 align="center">
-  <a href="https://github.com/BlockchainZoo/spinechain-explorer-prototype">
-    ZooBC Explorer UI
+  <a href="https://github.com/zoobc/zoobc-explorer-ui">
+    <img src="src/assets/images/zoobc-explorer-ui.gif"></img>
   </a>
 </h1>
 
