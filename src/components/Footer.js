@@ -175,7 +175,7 @@ const Footer = () => {
           rel="noopener norefferer"
           title="GitHub"
         >
-          <img src={iconGitHub} alt="social-icon" />
+          <img src={iconGitHub} alt="github-icon" />
         </a>
         <a
           className="footer-social-icon"
@@ -184,7 +184,7 @@ const Footer = () => {
           rel="noopener norefferer"
           title="Medium"
         >
-          <img src={iconMedium} alt="social-icon" />
+          <img src={iconMedium} alt="medium-icon" />
         </a>
         <a
           className="footer-social-icon"
@@ -193,7 +193,7 @@ const Footer = () => {
           rel="noopener norefferer"
           title="Youtube"
         >
-          <img src={iconYoutube} alt="social-icon" />
+          <img src={iconYoutube} alt="youtube-icon" />
         </a>
         <a
           className="footer-social-icon"
@@ -202,7 +202,7 @@ const Footer = () => {
           rel="noopener norefferer"
           title="Telegram"
         >
-          <img src={iconTelegram} alt="social-icon" />
+          <img src={iconTelegram} alt="telegram-icon" />
         </a>
         <a
           className="footer-social-icon"
@@ -211,7 +211,7 @@ const Footer = () => {
           rel="noopener norefferer"
           title="Forum"
         >
-          <img src={iconForum} alt="social-icon" />
+          <img src={iconForum} alt="forum-icon" />
         </a>
         <a
           className="footer-social-icon"
@@ -220,7 +220,7 @@ const Footer = () => {
           rel="noopener norefferer"
           title="Blog"
         >
-          <img src={iconBlog} alt="social-icon" />
+          <img src={iconBlog} alt="blog-icon" />
         </a>
       </div>
       <div className="py-2 text-center">
@@ -357,7 +357,7 @@ const Footer = () => {
                 rel="noopener norefferer"
                 title="GitHub"
               >
-                <img src={iconGitHub} alt="social-icon" />
+                <img src={iconGitHub} alt="github-icon" />
               </a>
               <a
                 className="footer-social-icon"
@@ -366,7 +366,7 @@ const Footer = () => {
                 rel="noopener norefferer"
                 title="Medium"
               >
-                <img src={iconMedium} alt="social-icon" />
+                <img src={iconMedium} alt="medium-icon" />
               </a>
               <a
                 className="footer-social-icon"
@@ -375,7 +375,7 @@ const Footer = () => {
                 rel="noopener norefferer"
                 title="Youtube"
               >
-                <img src={iconYoutube} alt="social-icon" />
+                <img src={iconYoutube} alt="youtube-icon" />
               </a>
               <a
                 className="footer-social-icon"
@@ -384,7 +384,7 @@ const Footer = () => {
                 rel="noopener norefferer"
                 title="Telegram"
               >
-                <img src={iconTelegram} alt="social-icon" />
+                <img src={iconTelegram} alt="telegram-icon" />
               </a>
               <a
                 className="footer-social-icon"
@@ -393,7 +393,7 @@ const Footer = () => {
                 rel="noopener norefferer"
                 title="Forum"
               >
-                <img src={iconForum} alt="social-icon" />
+                <img src={iconForum} alt="forum-icon" />
               </a>
               <a
                 className="footer-social-icon"
@@ -402,7 +402,7 @@ const Footer = () => {
                 rel="noopener norefferer"
                 title="Blog"
               >
-                <img src={iconBlog} alt="social-icon" />
+                <img src={iconBlog} alt="blog-icon" />
               </a>
             </div>
           </Row>
