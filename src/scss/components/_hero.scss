@@ -9,6 +9,10 @@
     justify-content: center;
     text-align: center;
 
+    label.label-search {
+      display: block;
+    }
+
     .ant-input {
       padding-left: 40px !important;
     }
