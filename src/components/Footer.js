@@ -62,7 +62,7 @@ const Footer = () => {
         {languages.map((lang, key) => (
           <Menu.Item key={key} onClick={() => onSelectLanguage(lang)}>
             <p className="my-0">
-              <Avatar shape="square" size={18} src={lang.flag} className="mr-1" />
+              <Avatar shape="square" size={18} src={lang.flag} alt={lang.alt} className="mr-1" />
               {lang.label}
             </p>
           </Menu.Item>
@@ -175,7 +175,7 @@ const Footer = () => {
           rel="noopener norefferer"
           title="GitHub"
         >
-          <img src={iconGitHub} alt="social-icon" />
+          <img src={iconGitHub} alt="github-icon" />
         </a>
         <a
           className="footer-social-icon"
@@ -184,7 +184,7 @@ const Footer = () => {
           rel="noopener norefferer"
           title="Medium"
         >
-          <img src={iconMedium} alt="social-icon" />
+          <img src={iconMedium} alt="medium-icon" />
         </a>
         <a
           className="footer-social-icon"
@@ -193,7 +193,7 @@ const Footer = () => {
           rel="noopener norefferer"
           title="Youtube"
         >
-          <img src={iconYoutube} alt="social-icon" />
+          <img src={iconYoutube} alt="youtube-icon" />
         </a>
         <a
           className="footer-social-icon"
@@ -202,7 +202,7 @@ const Footer = () => {
           rel="noopener norefferer"
           title="Telegram"
         >
-          <img src={iconTelegram} alt="social-icon" />
+          <img src={iconTelegram} alt="telegram-icon" />
         </a>
         <a
           className="footer-social-icon"
@@ -211,7 +211,7 @@ const Footer = () => {
           rel="noopener norefferer"
           title="Forum"
         >
-          <img src={iconForum} alt="social-icon" />
+          <img src={iconForum} alt="forum-icon" />
         </a>
         <a
           className="footer-social-icon"
@@ -220,14 +220,20 @@ const Footer = () => {
           rel="noopener norefferer"
           title="Blog"
         >
-          <img src={iconBlog} alt="social-icon" />
+          <img src={iconBlog} alt="blog-icon" />
         </a>
       </div>
       <div className="py-2 text-center">
         <Switch checkedChildren="☀" unCheckedChildren="☾" defaultChecked className="d-none" />
         <Dropdown overlay={languageOptions}>
           <p className="footer-language ">
-            <Avatar className="mr-1" shape="square" size={18} src={selectedLang().flag} />
+            <Avatar
+              className="mr-1"
+              shape="square"
+              size={18}
+              src={selectedLang().flag}
+              alt="selected-lang"
+            />
             {selectedLang().label}
           </p>
         </Dropdown>
@@ -342,7 +348,13 @@ const Footer = () => {
             <Switch checkedChildren="☀" unCheckedChildren="☾" defaultChecked className="d-none" />
             <Dropdown overlay={languageOptions}>
               <p className="footer-language ">
-                <Avatar className="mr-1" shape="square" size={18} src={selectedLang().flag} />
+                <Avatar
+                  className="mr-1"
+                  shape="square"
+                  size={18}
+                  src={selectedLang().flag}
+                  alt="selected-lang"
+                />
                 {selectedLang().label}
               </p>
             </Dropdown>
@@ -357,7 +369,7 @@ const Footer = () => {
                 rel="noopener norefferer"
                 title="GitHub"
               >
-                <img src={iconGitHub} alt="social-icon" />
+                <img src={iconGitHub} alt="github-icon" />
               </a>
               <a
                 className="footer-social-icon"
@@ -366,7 +378,7 @@ const Footer = () => {
                 rel="noopener norefferer"
                 title="Medium"
               >
-                <img src={iconMedium} alt="social-icon" />
+                <img src={iconMedium} alt="medium-icon" />
               </a>
               <a
                 className="footer-social-icon"
@@ -375,7 +387,7 @@ const Footer = () => {
                 rel="noopener norefferer"
                 title="Youtube"
               >
-                <img src={iconYoutube} alt="social-icon" />
+                <img src={iconYoutube} alt="youtube-icon" />
               </a>
               <a
                 className="footer-social-icon"
@@ -384,7 +396,7 @@ const Footer = () => {
                 rel="noopener norefferer"
                 title="Telegram"
               >
-                <img src={iconTelegram} alt="social-icon" />
+                <img src={iconTelegram} alt="telegram-icon" />
               </a>
               <a
                 className="footer-social-icon"
@@ -393,7 +405,7 @@ const Footer = () => {
                 rel="noopener norefferer"
                 title="Forum"
               >
-                <img src={iconForum} alt="social-icon" />
+                <img src={iconForum} alt="forum-icon" />
               </a>
               <a
                 className="footer-social-icon"
@@ -402,7 +414,7 @@ const Footer = () => {
                 rel="noopener norefferer"
                 title="Blog"
               >
-                <img src={iconBlog} alt="social-icon" />
+                <img src={iconBlog} alt="blog-icon" />
               </a>
             </div>
           </Row>
@@ -432,7 +444,12 @@ const Footer = () => {
                 block
                 onClick={() => onSelectNetwork(item)}
               >
-                <Avatar size="large" className="mr-2" style={{ backgroundColor: item.color }}>
+                <Avatar
+                  size="large"
+                  className="mr-2"
+                  style={{ backgroundColor: item.color }}
+                  alt="item-name"
+                >
                   {item.name}
                 </Avatar>
                 <p className="mb-0">{item.name}</p>

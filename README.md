@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://github.com/zoobc/zoobc-explorer-ui">
-    <img src="src/assets/images/zoobc-explorer-ui.gif"></img>
+    <img src="src/assets/images/zoobc-explorer-ui.gif" alt="banner-repository"></img>
   </a>
 </h1>
 
@@ -13,7 +13,7 @@
     <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="apache-license"></img>
   </a>
   <a href="https://circleci.com/gh/zoobc/zoobc-explorer-ui">
-    <img src="https://circleci.com/gh/zoobc/zoobc-explorer-ui.svg?style=svg&circle-token=5da5423ded17a414817e457800e90c76628284b0"></img>
+    <img src="https://circleci.com/gh/zoobc/zoobc-explorer-ui.svg?style=svg&circle-token=5da5423ded17a414817e457800e90c76628284b0" alt="circleci-zoobc-explorer-ui"></img>
   </a>
   <a href="https://github.com/zoobc/zoobc-explorer-ui/pulls">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome!" />
@@ -85,43 +85,43 @@ Thank you to all the people who already [contributed](https://github.com/zoobc/z
 <table>
   <td align="center">
     <a href="https://github.com/gedenata">
-      <img src="https://avatars2.githubusercontent.com/u/1158185?s=460&v=4" width="25px;" alt="" />
+      <img src="https://avatars2.githubusercontent.com/u/1158185?s=460&v=4" width="25px;" alt="Nata" />
       <br /><sub><b>Nata</b></sub>
     </a>
   </td>
   <td align="center">
     <a href="https://github.com/eksant">
-      <img src="https://avatars1.githubusercontent.com/u/32409305?s=460&v=4" width="25px;" alt="" />
+      <img src="https://avatars1.githubusercontent.com/u/32409305?s=460&v=4" width="25px;" alt="Eko" />
       <br /><sub><b>Eko</b></sub>
     </a>
   </td>
   <td align="center">
     <a href="https://github.com/gedeyandi456">
-      <img src="https://avatars2.githubusercontent.com/u/43771081?s=460&v=4" width="25px;" alt="" />
+      <img src="https://avatars2.githubusercontent.com/u/43771081?s=460&v=4" width="25px;" alt="Yandi" />
       <br /><sub><b>Yandi</b></sub>
     </a>
   </td>
   <td align="center">
     <a href="https://github.com/gundwiguna">
-      <img src="https://avatars0.githubusercontent.com/u/43126599?s=460&v=4" width="25px;" alt="" />
+      <img src="https://avatars0.githubusercontent.com/u/43126599?s=460&v=4" width="25px;" alt="Anggun" />
       <br /><sub><b>Anggun</b></sub>
     </a>
   </td>
   <td align="center">
     <a href="https://github.com/zaenury">
-      <img src="https://avatars1.githubusercontent.com/u/42806183?s=460&v=4" width="25px;" alt="" />
+      <img src="https://avatars1.githubusercontent.com/u/42806183?s=460&v=4" width="25px;" alt="Adhiim" />
       <br /><sub><b>Adhiim</b></sub>
     </a>
   </td>
   <td align="center">
     <a href="https://github.com/iamnafri">
-      <img src="https://avatars2.githubusercontent.com/u/17779930?s=460&v=4" width="25px;" alt="" />
+      <img src="https://avatars2.githubusercontent.com/u/17779930?s=460&v=4" width="25px;" alt="Irfan" />
       <br /><sub><b>Irfan</b></sub>
     </a>
   </td>
   <td align="center">
     <a href="https://github.com/KevinH2810">
-      <img src="https://avatars2.githubusercontent.com/u/47102992?s=460&v=4" width="25px;" alt="" />
+      <img src="https://avatars2.githubusercontent.com/u/47102992?s=460&v=4" width="25px;" alt="Kevin" />
       <br /><sub><b>Kevin</b></sub>
     </a>
   </td>
