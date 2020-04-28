@@ -55,18 +55,20 @@ const NotFound = ({ history, location }) => {
                     <p className="h6">Page Not Found</p>
                   </>
                 )}
-                <Search
-                  prefix={
-                    <Icon
-                      type="search"
-                      className="mr-1"
-                      style={{ fontSize: '16px', color: 'rgba(0,0,0,.45)' }}
-                    />
-                  }
-                  placeholder={t('Search by Account Address / Transaction ID / Block ID')}
-                  enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
-                  onSearch={onSearch}
-                />
+                <label>
+                  <Search
+                    prefix={
+                      <Icon
+                        type="search"
+                        className="mr-1"
+                        style={{ fontSize: '16px', color: 'rgba(0,0,0,.45)' }}
+                      />
+                    }
+                    placeholder={t('Search by Account Address / Transaction ID / Block ID')}
+                    enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
+                    onSearch={onSearch}
+                  />
+                </label>
               </Col>
             </Row>
           </div>

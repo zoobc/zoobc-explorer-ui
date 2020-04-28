@@ -98,13 +98,15 @@ const Header = ({ history, location, fluid }) => {
               title={t('Search by Account Address / Transaction ID / Block ID')}
               placement="topLeft"
             >
-              <Search
-                className="header-search-input d-none d-lg-block"
-                prefix={<Icon className="header-search-icon" type="search" />}
-                placeholder={t('Please input keyword')}
-                enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
-                onSearch={onSearch}
-              />
+              <label>
+                <Search
+                  className="header-search-input d-none d-lg-block"
+                  prefix={<Icon className="header-search-icon" type="search" />}
+                  placeholder={t('Please input keyword')}
+                  enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
+                  onSearch={onSearch}
+                />
+              </label>
             </Tooltip>
             <Button type="primary" className="mr-1 d-none d-lg-block" onClick={onLogin}>
               {t('Login')}
