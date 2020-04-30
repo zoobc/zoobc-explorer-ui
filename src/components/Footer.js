@@ -86,13 +86,13 @@ const Footer = () => {
     <div className="footer-mobile d-block d-md-none">
       <Collapse expandIconPosition="right">
         <Collapse.Panel header="Product" key="1">
-          <ul className="footer-list-group mb-0">
+          <ul className="footer-list-group mb-0 list-unstyled">
             <li className="d-none">
               <a className="footer-list-group-item d-none" onClick={onComingSoon}>
                 {t('ZooBC Core')}
               </a>
             </li>
-            <li className="list-unstyled">
+            <li>
               <a
                 className="footer-list-group-item"
                 target="_blank"
@@ -102,7 +102,7 @@ const Footer = () => {
                 {t('ZooBC Wallet')}
               </a>
             </li>
-            <li className="list-unstyled">
+            <li>
               <a
                 className="footer-list-group-item"
                 rel="noopener noreferrer"
@@ -111,7 +111,7 @@ const Footer = () => {
                 {t('ZooBC Explorer')}
               </a>
             </li>
-            <li className="list-unstyled">
+            <li>
               <a
                 className="footer-list-group-item"
                 target="_blank"
@@ -124,23 +124,23 @@ const Footer = () => {
           </ul>
         </Collapse.Panel>
         <Collapse.Panel header="Community" key="2">
-          <ul className="footer-list-group mb-0">
-            <li className="list-unstyled">
+          <ul className="footer-list-group mb-0 list-unstyled">
+            <li>
               <a className="footer-list-group-item" onClick={onComingSoon}>
                 {t('Getting Started')}
               </a>
             </li>
-            <li className="list-unstyled">
+            <li>
               <a className="footer-list-group-item" onClick={onComingSoon}>
                 {t('Developer APIs')}
               </a>
             </li>
-            <li className="list-unstyled">
+            <li>
               <a className="footer-list-group-item" onClick={onComingSoon}>
                 {t('Research')}
               </a>
             </li>
-            <li className="list-unstyled">
+            <li>
               <a
                 className="footer-list-group-item"
                 target="_blank"
@@ -153,28 +153,28 @@ const Footer = () => {
           </ul>
         </Collapse.Panel>
         <Collapse.Panel header="Company" key="3">
-          <ul className="footer-list-group mb-0">
-            <li className="list-unstyled">
+          <ul className="footer-list-group mb-0 list-unstyled">
+            <li>
               <a className="footer-list-group-item" onClick={onComingSoon}>
                 {t('About Us')}
               </a>
             </li>
-            <li className="list-unstyled">
+            <li>
               <a className="footer-list-group-item" onClick={onComingSoon}>
                 {t('Contact Us')}
               </a>
             </li>
-            <li className="list-unstyled">
+            <li>
               <a className="footer-list-group-item" onClick={onComingSoon}>
                 {t('Terms of Service')}
               </a>
             </li>
-            <li className="list-unstyled">
+            <li>
               <a className="footer-list-group-item" onClick={onComingSoon}>
                 {t('Privacy Policy')}
               </a>
             </li>
-            <li className="list-unstyled">
+            <li>
               <a className="footer-list-group-item" onClick={() => setIsOpenFeedback(true)}>
                 {t('Feedback')}
               </a>
@@ -192,8 +192,8 @@ const Footer = () => {
             </div>
           </Link>
         </div>
-        <ul className="footer-company-info">
-          <li className="list-unstyled">
+        <ul className="footer-company-info list-unstyled">
+          <li>
             <p className="footer-company-text">&#169; 2019 ZooBC Explorer All rights reserved.</p>
           </li>
         </ul>
@@ -292,8 +292,8 @@ const Footer = () => {
                   </div>
                 </Link>
               </div>
-              <ul className="footer-company-info">
-                <li className="list-unstyled">
+              <ul className="footer-company-info list-unstyled">
+                <li>
                   <p className="footer-company-text">
                     &#169; 2019 ZooBC Explorer. All rights reserved.
                   </p>
@@ -303,13 +303,13 @@ const Footer = () => {
             <Col className="footer-col-info">
               <h3 className="footer-subtitle heading-border">{t('Product')}</h3>
               <hr className="footer-horizontal-rule-light" />
-              <ul className="footer-list-group mb-0">
+              <ul className="footer-list-group mb-0 list-unstyled">
                 <li className="d-none">
                   <a className="footer-list-group-item d-none" href="#" onClick={onComingSoon}>
                     {t('ZooBC Core')}
                   </a>
                 </li>
-                <li className="list-unstyled">
+                <li>
                   <a
                     className="footer-list-group-item"
                     target="_blank"
@@ -319,7 +319,7 @@ const Footer = () => {
                     {t('ZooBC Wallet')}
                   </a>
                 </li>
-                <li className="list-unstyled">
+                <li>
                   <a
                     className="footer-list-group-item"
                     rel="noopener noreferrer"
@@ -328,7 +328,7 @@ const Footer = () => {
                     {t('ZooBC Explorer')}
                   </a>
                 </li>
-                <li className="list-unstyled">
+                <li>
                   <a
                     className="footer-list-group-item"
                     target="_blank"
@@ -343,23 +343,23 @@ const Footer = () => {
             <Col className="footer-col-info">
               <h3 className="footer-subtitle heading-border">{t('Community')}</h3>
               <hr className="footer-horizontal-rule-light" />
-              <ul className="footer-list-group mb-0">
-                <li className="list-unstyled">
+              <ul className="footer-list-group mb-0 list-unstyled">
+                <li>
                   <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
                     {t('Getting Started')}
                   </a>
                 </li>
-                <li className="list-unstyled">
+                <li>
                   <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
                     {t('Developer APIs')}
                   </a>
                 </li>
-                <li className="list-unstyled">
+                <li>
                   <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
                     {t('Research')}
                   </a>
                 </li>
-                <li className="list-unstyled">
+                <li>
                   <a
                     className="footer-list-group-item"
                     target="_blank"
@@ -374,28 +374,28 @@ const Footer = () => {
             <Col className="footer-col-info">
               <h3 className="footer-subtitle heading-border">{t('Company')}</h3>
               <hr className="footer-horizontal-rule-light" />
-              <ul className="footer-list-group mb-0">
-                <li className="list-unstyled">
+              <ul className="footer-list-group mb-0 list-unstyled">
+                <li>
                   <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
                     {t('About Us')}
                   </a>
                 </li>
-                <li className="list-unstyled">
+                <li>
                   <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
                     {t('Contact Us')}
                   </a>
                 </li>
-                <li className="list-unstyled">
+                <li>
                   <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
                     {t('Terms of Service')}
                   </a>
                 </li>
-                <li className="list-unstyled">
+                <li>
                   <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
                     {t('Privacy Policy')}
                   </a>
                 </li>
-                <li className="list-unstyled">
+                <li>
                   <a className="footer-list-group-item" href="#" onClick={onFeedback}>
                     {t('Feedback')}
                   </a>
