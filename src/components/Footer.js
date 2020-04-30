@@ -88,7 +88,7 @@ const Footer = () => {
         <Collapse.Panel header="Product" key="1">
           <ul className="footer-list-group mb-0 list-unstyled">
             <li className="d-none">
-              <a className="footer-list-group-item d-none" onClick={onComingSoon}>
+              <a className="footer-list-group-item" onClick={onComingSoon}>
                 {t('ZooBC Core')}
               </a>
             </li>
@@ -305,7 +305,7 @@ const Footer = () => {
               <hr className="footer-horizontal-rule-light" />
               <ul className="footer-list-group mb-0 list-unstyled">
                 <li className="d-none">
-                  <a className="footer-list-group-item d-none" href="#" onClick={onComingSoon}>
+                  <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
                     {t('ZooBC Core')}
                   </a>
                 </li>
