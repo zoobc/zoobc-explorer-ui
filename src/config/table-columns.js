@@ -7,7 +7,7 @@ import { shortenHash } from '../utils/shorten'
 import { useTranslation } from 'react-i18next'
 import { Badge, Tooltip } from 'antd'
 
-const getBlocksmithIndicator = (skipped) => {
+const getBlocksmithIndicator = skipped => {
   if (skipped > 10) {
     return 'red'
   } else if (skipped >= 4 && skipped <= 10) {
