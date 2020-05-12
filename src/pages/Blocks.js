@@ -20,6 +20,9 @@ const GET_BLOCKS_DATA = gql`
         BlocksmithAddress
         TotalFeeConversion
         TotalRewardsConversion
+        SkippedBlocksmiths {
+          BlocksmithPublicKey
+        }
       }
       Paginate {
         Page
