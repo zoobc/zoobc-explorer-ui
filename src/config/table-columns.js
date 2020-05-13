@@ -5,13 +5,18 @@ import NumberFormat from 'react-number-format'
 
 import { shortenHash } from '../utils/shorten'
 import { useTranslation } from 'react-i18next'
-import { Badge } from 'antd'
+import { Badge, Tooltip } from 'antd'
 
-//mock badge indicator
-const randomBadgeColor = () => {
-  const color = ['green', 'blue', 'yellow', 'red', 'black', '#b5b7b9']
-
-  return color[Math.floor(Math.random() * color.length)]
+const getBlocksmithIndicator = skipped => {
+  if (skipped > 10) {
+    return 'red'
+  } else if (skipped >= 4 && skipped <= 10) {
+    return 'orange'
+  } else if (skipped >= 1 && skipped <= 3) {
+    return 'yellow'
+  } else {
+    return 'green'
+  }
 }
 
 const renderCurrenncy = text => {
@@ -119,10 +124,13 @@ export const blockColumns = [
     title: <Title text="Blocksmith Address" />,
     dataIndex: 'BlocksmithAddress',
     key: 'BlocksmithAddress',
-    render(text) {
+    render(text, record) {
+      const skipped = record.SkippedBlocksmiths.length || 0
       return (
         <div className="blocksmith">
-          <Badge color={randomBadgeColor()} />
+          <Tooltip title={`${skipped} skipped blocksmith`}>
+            <Badge color={getBlocksmithIndicator(skipped)} />
+          </Tooltip>
           <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
         </div>
       )
