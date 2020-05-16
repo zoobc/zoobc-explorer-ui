@@ -269,9 +269,9 @@ const Footer = () => {
             {selectedLang().label}
           </p>
         </Dropdown>
-        <Button className="ml-3" type="primary" size="small" onClick={() => setIsOpen(true)}>
+        {/* <Button className="ml-3" type="primary" size="small" onClick={() => setIsOpen(true)}>
           {t('Network')}: {selectedTestnet.name}
-        </Button>
+        </Button> */}
       </div>
     </div>
   )
@@ -418,9 +418,9 @@ const Footer = () => {
                 {selectedLang().label}
               </p>
             </Dropdown>
-            <Button className="ml-3" type="primary" size="small" onClick={() => setIsOpen(true)}>
+            {/* <Button className="ml-3" type="primary" size="small" onClick={() => setIsOpen(true)}>
               {t('Network')}: {selectedTestnet.name}
-            </Button>
+            </Button> */}
             <div className="footer-social-icons">
               <a
                 className="footer-social-icon"
