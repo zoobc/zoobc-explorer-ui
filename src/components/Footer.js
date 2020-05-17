@@ -62,7 +62,7 @@ const Footer = () => {
         {languages.map((lang, key) => (
           <Menu.Item key={key} onClick={() => onSelectLanguage(lang)}>
             <p className="my-0">
-              <Avatar shape="square" size={18} src={lang.flag} className="mr-1" />
+              <Avatar shape="square" size={18} src={lang.flag} alt={lang.alt} className="mr-1" />
               {lang.label}
             </p>
           </Menu.Item>
@@ -86,69 +86,99 @@ const Footer = () => {
     <div className="footer-mobile d-block d-md-none">
       <Collapse expandIconPosition="right">
         <Collapse.Panel header="Product" key="1">
-          <ul className="footer-list-group mb-0">
-            <a className="footer-list-group-item d-none" onClick={onComingSoon}>
-              {t('ZooBC Core')}
-            </a>
-            <a
-              className="footer-list-group-item"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="http://zoobc.one"
-            >
-              {t('ZooBC Wallet')}
-            </a>
-            <a className="footer-list-group-item" rel="noopener noreferrer" href="http://zoobc.net">
-              {t('ZooBC Explorer')}
-            </a>
-            <a
-              className="footer-list-group-item"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://zoobc.com/ZooBC%20Whitepaper%20Draft%20-%20V0.2.pdf"
-            >
-              {t('Whitepaper')}
-            </a>
+          <ul className="footer-list-group mb-0 list-unstyled">
+            <li className="d-none">
+              <a className="footer-list-group-item" onClick={onComingSoon}>
+                {t('ZooBC Core')}
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="http://zoobc.one"
+              >
+                {t('ZooBC Wallet')}
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-list-group-item"
+                rel="noopener noreferrer"
+                href="http://zoobc.net"
+              >
+                {t('ZooBC Explorer')}
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://zoobc.com/ZooBC%20Whitepaper%20Draft%20-%20V0.2.pdf"
+              >
+                {t('Whitepaper')}
+              </a>
+            </li>
           </ul>
         </Collapse.Panel>
         <Collapse.Panel header="Community" key="2">
-          <ul className="footer-list-group mb-0">
-            <a className="footer-list-group-item" onClick={onComingSoon}>
-              {t('Getting Started')}
-            </a>
-            <a className="footer-list-group-item" onClick={onComingSoon}>
-              {t('Developer APIs')}
-            </a>
-            <a className="footer-list-group-item" onClick={onComingSoon}>
-              {t('Research')}
-            </a>
-            <a
-              className="footer-list-group-item"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://zoobc.com/#current_roadmap__item"
-            >
-              {t('Roadmap')}
-            </a>
+          <ul className="footer-list-group mb-0 list-unstyled">
+            <li>
+              <a className="footer-list-group-item" onClick={onComingSoon}>
+                {t('Getting Started')}
+              </a>
+            </li>
+            <li>
+              <a className="footer-list-group-item" onClick={onComingSoon}>
+                {t('Developer APIs')}
+              </a>
+            </li>
+            <li>
+              <a className="footer-list-group-item" onClick={onComingSoon}>
+                {t('Research')}
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://zoobc.com/#current_roadmap__item"
+              >
+                {t('Roadmap')}
+              </a>
+            </li>
           </ul>
         </Collapse.Panel>
         <Collapse.Panel header="Company" key="3">
-          <ul className="footer-list-group mb-0">
-            <a className="footer-list-group-item" onClick={onComingSoon}>
-              {t('About Us')}
-            </a>
-            <a className="footer-list-group-item" onClick={onComingSoon}>
-              {t('Contact Us')}
-            </a>
-            <a className="footer-list-group-item" onClick={onComingSoon}>
-              {t('Terms of Service')}
-            </a>
-            <a className="footer-list-group-item" onClick={onComingSoon}>
-              {t('Privacy Policy')}
-            </a>
-            <a className="footer-list-group-item" onClick={() => setIsOpenFeedback(true)}>
-              {t('Feedback')}
-            </a>
+          <ul className="footer-list-group mb-0 list-unstyled">
+            <li>
+              <a className="footer-list-group-item" onClick={onComingSoon}>
+                {t('About Us')}
+              </a>
+            </li>
+            <li>
+              <a className="footer-list-group-item" onClick={onComingSoon}>
+                {t('Contact Us')}
+              </a>
+            </li>
+            <li>
+              <a className="footer-list-group-item" onClick={onComingSoon}>
+                {t('Terms of Service')}
+              </a>
+            </li>
+            <li>
+              <a className="footer-list-group-item" onClick={onComingSoon}>
+                {t('Privacy Policy')}
+              </a>
+            </li>
+            <li>
+              <a className="footer-list-group-item" onClick={() => setIsOpenFeedback(true)}>
+                {t('Feedback')}
+              </a>
+            </li>
           </ul>
         </Collapse.Panel>
       </Collapse>
@@ -162,8 +192,10 @@ const Footer = () => {
             </div>
           </Link>
         </div>
-        <ul className="footer-company-info">
-          <p className="footer-company-text">&#169; 2019 ZooBC Explorer All rights reserved.</p>
+        <ul className="footer-company-info list-unstyled">
+          <li>
+            <p className="footer-company-text">&#169; 2019 ZooBC Explorer All rights reserved.</p>
+          </li>
         </ul>
       </div>
       <hr className="footer-horizontal-rule-dark" />
@@ -175,7 +207,7 @@ const Footer = () => {
           rel="noopener norefferer"
           title="GitHub"
         >
-          <img src={iconGitHub} alt="social-icon" />
+          <img src={iconGitHub} alt="github-icon" />
         </a>
         <a
           className="footer-social-icon"
@@ -184,7 +216,7 @@ const Footer = () => {
           rel="noopener norefferer"
           title="Medium"
         >
-          <img src={iconMedium} alt="social-icon" />
+          <img src={iconMedium} alt="medium-icon" />
         </a>
         <a
           className="footer-social-icon"
@@ -193,7 +225,7 @@ const Footer = () => {
           rel="noopener norefferer"
           title="Youtube"
         >
-          <img src={iconYoutube} alt="social-icon" />
+          <img src={iconYoutube} alt="youtube-icon" />
         </a>
         <a
           className="footer-social-icon"
@@ -202,7 +234,7 @@ const Footer = () => {
           rel="noopener norefferer"
           title="Telegram"
         >
-          <img src={iconTelegram} alt="social-icon" />
+          <img src={iconTelegram} alt="telegram-icon" />
         </a>
         <a
           className="footer-social-icon"
@@ -211,7 +243,7 @@ const Footer = () => {
           rel="noopener norefferer"
           title="Forum"
         >
-          <img src={iconForum} alt="social-icon" />
+          <img src={iconForum} alt="forum-icon" />
         </a>
         <a
           className="footer-social-icon"
@@ -220,20 +252,26 @@ const Footer = () => {
           rel="noopener norefferer"
           title="Blog"
         >
-          <img src={iconBlog} alt="social-icon" />
+          <img src={iconBlog} alt="blog-icon" />
         </a>
       </div>
       <div className="py-2 text-center">
         <Switch checkedChildren="☀" unCheckedChildren="☾" defaultChecked className="d-none" />
         <Dropdown overlay={languageOptions}>
           <p className="footer-language ">
-            <Avatar className="mr-1" shape="square" size={18} src={selectedLang().flag} />
+            <Avatar
+              className="mr-1"
+              shape="square"
+              size={18}
+              src={selectedLang().flag}
+              alt="selected-lang"
+            />
             {selectedLang().label}
           </p>
         </Dropdown>
-        <Button className="ml-3" type="primary" size="small" onClick={() => setIsOpen(true)}>
+        {/* <Button className="ml-3" type="primary" size="small" onClick={() => setIsOpen(true)}>
           {t('Network')}: {selectedTestnet.name}
-        </Button>
+        </Button> */}
       </div>
     </div>
   )
@@ -254,86 +292,114 @@ const Footer = () => {
                   </div>
                 </Link>
               </div>
-              <ul className="footer-company-info">
-                <p className="footer-company-text">
-                  &#169; 2019 ZooBC Explorer. All rights reserved.
-                </p>
+              <ul className="footer-company-info list-unstyled">
+                <li>
+                  <p className="footer-company-text">
+                    &#169; 2019 ZooBC Explorer. All rights reserved.
+                  </p>
+                </li>
               </ul>
             </Col>
             <Col className="footer-col-info">
               <h3 className="footer-subtitle heading-border">{t('Product')}</h3>
               <hr className="footer-horizontal-rule-light" />
-              <ul className="footer-list-group mb-0">
-                <a className="footer-list-group-item d-none" href="#" onClick={onComingSoon}>
-                  {t('ZooBC Core')}
-                </a>
-                <a
-                  className="footer-list-group-item"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="http://zoobc.one"
-                >
-                  {t('ZooBC Wallet')}
-                </a>
-                <a
-                  className="footer-list-group-item"
-                  rel="noopener noreferrer"
-                  href="http://zoobc.net"
-                >
-                  {t('ZooBC Explorer')}
-                </a>
-                <a
-                  className="footer-list-group-item"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://zoobc.com/ZooBC%20Whitepaper%20Draft%20-%20V0.2.pdf"
-                >
-                  {t('Whitepaper')}
-                </a>
+              <ul className="footer-list-group mb-0 list-unstyled">
+                <li className="d-none">
+                  <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
+                    {t('ZooBC Core')}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="http://zoobc.one"
+                  >
+                    {t('ZooBC Wallet')}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    rel="noopener noreferrer"
+                    href="http://zoobc.net"
+                  >
+                    {t('ZooBC Explorer')}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://zoobc.com/ZooBC%20Whitepaper%20Draft%20-%20V0.2.pdf"
+                  >
+                    {t('Whitepaper')}
+                  </a>
+                </li>
               </ul>
             </Col>
             <Col className="footer-col-info">
               <h3 className="footer-subtitle heading-border">{t('Community')}</h3>
               <hr className="footer-horizontal-rule-light" />
-              <ul className="footer-list-group mb-0">
-                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
-                  {t('Getting Started')}
-                </a>
-                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
-                  {t('Developer APIs')}
-                </a>
-                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
-                  {t('Research')}
-                </a>
-                <a
-                  className="footer-list-group-item"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://zoobc.com/#current_roadmap__item"
-                >
-                  {t('Roadmap')}
-                </a>
+              <ul className="footer-list-group mb-0 list-unstyled">
+                <li>
+                  <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
+                    {t('Getting Started')}
+                  </a>
+                </li>
+                <li>
+                  <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
+                    {t('Developer APIs')}
+                  </a>
+                </li>
+                <li>
+                  <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
+                    {t('Research')}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://zoobc.com/#current_roadmap__item"
+                  >
+                    {t('Roadmap')}
+                  </a>
+                </li>
               </ul>
             </Col>
             <Col className="footer-col-info">
               <h3 className="footer-subtitle heading-border">{t('Company')}</h3>
               <hr className="footer-horizontal-rule-light" />
-              <ul className="footer-list-group mb-0">
-                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
-                  {t('About Us')}
-                </a>
-                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
-                  {t('Contact Us')}
-                </a>
-                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
-                  {t('Terms of Service')}
-                </a>
-                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
-                  {t('Privacy Policy')}
-                </a>
-                <a className="footer-list-group-item" href="#" onClick={onFeedback}>
-                  {t('Feedback')}
-                </a>
+              <ul className="footer-list-group mb-0 list-unstyled">
+                <li>
+                  <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
+                    {t('About Us')}
+                  </a>
+                </li>
+                <li>
+                  <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
+                    {t('Contact Us')}
+                  </a>
+                </li>
+                <li>
+                  <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
+                    {t('Terms of Service')}
+                  </a>
+                </li>
+                <li>
+                  <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
+                    {t('Privacy Policy')}
+                  </a>
+                </li>
+                <li>
+                  <a className="footer-list-group-item" href="#" onClick={onFeedback}>
+                    {t('Feedback')}
+                  </a>
+                </li>
               </ul>
             </Col>
           </Row>
@@ -342,13 +408,19 @@ const Footer = () => {
             <Switch checkedChildren="☀" unCheckedChildren="☾" defaultChecked className="d-none" />
             <Dropdown overlay={languageOptions}>
               <p className="footer-language ">
-                <Avatar className="mr-1" shape="square" size={18} src={selectedLang().flag} />
+                <Avatar
+                  className="mr-1"
+                  shape="square"
+                  size={18}
+                  src={selectedLang().flag}
+                  alt="selected-lang"
+                />
                 {selectedLang().label}
               </p>
             </Dropdown>
-            <Button className="ml-3" type="primary" size="small" onClick={() => setIsOpen(true)}>
+            {/* <Button className="ml-3" type="primary" size="small" onClick={() => setIsOpen(true)}>
               {t('Network')}: {selectedTestnet.name}
-            </Button>
+            </Button> */}
             <div className="footer-social-icons">
               <a
                 className="footer-social-icon"
@@ -357,7 +429,7 @@ const Footer = () => {
                 rel="noopener norefferer"
                 title="GitHub"
               >
-                <img src={iconGitHub} alt="social-icon" />
+                <img src={iconGitHub} alt="github-icon" />
               </a>
               <a
                 className="footer-social-icon"
@@ -366,7 +438,7 @@ const Footer = () => {
                 rel="noopener norefferer"
                 title="Medium"
               >
-                <img src={iconMedium} alt="social-icon" />
+                <img src={iconMedium} alt="medium-icon" />
               </a>
               <a
                 className="footer-social-icon"
@@ -375,7 +447,7 @@ const Footer = () => {
                 rel="noopener norefferer"
                 title="Youtube"
               >
-                <img src={iconYoutube} alt="social-icon" />
+                <img src={iconYoutube} alt="youtube-icon" />
               </a>
               <a
                 className="footer-social-icon"
@@ -384,7 +456,7 @@ const Footer = () => {
                 rel="noopener norefferer"
                 title="Telegram"
               >
-                <img src={iconTelegram} alt="social-icon" />
+                <img src={iconTelegram} alt="telegram-icon" />
               </a>
               <a
                 className="footer-social-icon"
@@ -393,7 +465,7 @@ const Footer = () => {
                 rel="noopener norefferer"
                 title="Forum"
               >
-                <img src={iconForum} alt="social-icon" />
+                <img src={iconForum} alt="forum-icon" />
               </a>
               <a
                 className="footer-social-icon"
@@ -402,7 +474,7 @@ const Footer = () => {
                 rel="noopener norefferer"
                 title="Blog"
               >
-                <img src={iconBlog} alt="social-icon" />
+                <img src={iconBlog} alt="blog-icon" />
               </a>
             </div>
           </Row>
@@ -432,7 +504,12 @@ const Footer = () => {
                 block
                 onClick={() => onSelectNetwork(item)}
               >
-                <Avatar size="large" className="mr-2" style={{ backgroundColor: item.color }}>
+                <Avatar
+                  size="large"
+                  className="mr-2"
+                  style={{ backgroundColor: item.color }}
+                  alt="item-name"
+                >
                   {item.name}
                 </Avatar>
                 <p className="mb-0">{item.name}</p>

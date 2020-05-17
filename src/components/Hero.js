@@ -42,13 +42,15 @@ const Hero = ({ history }) => {
       </h3>
       <Row>
         <Col span={24}>
-          <Search
-            size="large"
-            prefix={<Icon type="search" style={{ fontSize: '18px', color: 'rgba(0,0,0,.45)' }} />}
-            placeholder={t('Search by Account Address / Transaction ID / Block ID')}
-            enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
-            onSearch={onSearch}
-          />
+          <label className="label-search">
+            <Search
+              size="large"
+              prefix={<Icon type="search" style={{ fontSize: '18px', color: 'rgba(0,0,0,.45)' }} />}
+              placeholder={t('Search by Account Address / Transaction ID / Block ID')}
+              enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
+              onSearch={onSearch}
+            />
+          </label>
         </Col>
       </Row>
       <h6 className="hero-subtitle">
