@@ -108,9 +108,9 @@ const Header = ({ history, location, fluid }) => {
                 />
               </label>
             </Tooltip>
-            <Button type="primary" className="mr-1 d-none d-lg-block" onClick={onLogin}>
+            {/* <Button type="primary" className="mr-1 d-none d-lg-block" onClick={onLogin}>
               {t('Login')}
-            </Button>
+            </Button> */}
             <Button type="danger" className="d-block d-lg-none" onClick={onFeedback}>
               {t('Feedback')}
             </Button>
@@ -158,11 +158,11 @@ const Header = ({ history, location, fluid }) => {
             <Menu.Item key="/nodes" className="menu-with-icon">
               <Link to="/nodes">{t('Nodes')}</Link>
             </Menu.Item>
-            <Menu.Item key="/login" className="menu-with-icon">
+            {/* <Menu.Item key="/login" className="menu-with-icon">
               <a href="#" onClick={onLogin}>
                 {t('Login')}
               </a>
-            </Menu.Item>
+            </Menu.Item> */}
           </Menu>
           <Search
             className="header-search-input"
