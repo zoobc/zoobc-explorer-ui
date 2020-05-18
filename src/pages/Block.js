@@ -209,7 +209,7 @@ const Block = ({ match }) => {
                   label={t('Cumulative Difficulty')}
                   value={data.block.CumulativeDifficulty}
                 />
-                <DescItem label={t('Smith Scale')} value={data.block.SmithScale} />
+                {/* <DescItem label={t('Smith Scale')} value={data.block.SmithScale} /> */}
                 <DescItem
                   label={t('Blocksmith Address')}
                   value={
@@ -273,7 +273,7 @@ const Block = ({ match }) => {
                   <Card className="block-card" bordered={false}>
                     <h4 className="block-card-title">
                       {t('Coinbase')}
-                      <Badge className="badge-black" count={425} overflowCount={1000} />
+                      <Badge className="badge-black" count={0} overflowCount={1000} />
                     </h4>
                     <Table
                       className="transactions-table"

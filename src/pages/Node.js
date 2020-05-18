@@ -113,7 +113,7 @@ const Node = ({ match, history }) => {
                   label={t('Owner Address')}
                   value={<CopyToClipboard text={data.node.OwnerAddress} keyID="nodePublicKey" />}
                 />
-                <DescItem label={t('Node Address')} value={data.node.NodeAddress} />
+                {/* <DescItem label={t('Node Address')} value={data.node.NodeAddress} /> */}
                 <DescItem
                   label={t('Locked Funds')}
                   value={
@@ -137,14 +137,14 @@ const Node = ({ match, history }) => {
                 <DescItem label={t('Blocks Found')} value={data.node.BlocksFunds} />
                 <DescItem
                   label={t('Rewards Paid')}
-                  value={
-                    <NumberFormat
-                      value={data.node.RewardsPaid || 0}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      suffix={' ZBC'}
-                    />
-                  }
+                // value={
+                //   <NumberFormat
+                //     value={data.node.RewardsPaid || 0}
+                //     displayType={'text'}
+                //     thousandSeparator={true}
+                //     suffix={' ZBC'}
+                //   />
+                // }
                 />
               </Card>
               <Card className="node-card" bordered={false}>
