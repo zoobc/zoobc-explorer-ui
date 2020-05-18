@@ -34,7 +34,8 @@ import { store } from '../utils'
 
 const Footer = () => {
   const { t, i18n } = useTranslation()
-  const { selectedTestnet, onChangeSelectedTestnet } = useContext(TestnetContext)
+  // const { selectedTestnet, onChangeSelectedTestnet } = useContext(TestnetContext)
+  const { onChangeSelectedTestnet } = useContext(TestnetContext)
   const [isOpen, setIsOpen] = useState(false)
   const [isOpenFeedback, setIsOpenFeedback] = useState(false)
   const [isOpenComingSoon, setIsOpenCommingSoon] = useState(false)

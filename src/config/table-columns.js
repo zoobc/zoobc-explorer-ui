@@ -232,11 +232,11 @@ export const nodeColumns = [
       return <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
     },
   },
-  {
-    title: <Title text="Node Address" />,
-    dataIndex: 'NodeAddress',
-    key: 'NodeAddress',
-  },
+  // {
+  //   title: <Title text="Node Address" />,
+  //   dataIndex: 'NodeAddress',
+  //   key: 'NodeAddress',
+  // },
   {
     title: <Title text="Locked Funds" />,
     dataIndex: 'LockedFunds',
