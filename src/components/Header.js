@@ -23,7 +23,8 @@ const Header = ({ history, location, fluid }) => {
   const [isOpenDialog, setIsOpenDialog] = useState(false)
   const [isOpenDrawer, setIsOpenDraw] = useState(false)
   const [isOpenFeedBack, setIsOpenFeedBack] = useState(false)
-  const [dialogTitle, setDialogTitle] = useState('Login')
+  // const [dialogTitle, setDialogTitle] = useState('Login')
+  const [dialogTitle] = useState('Login')
   const { doSearch, loading } = useSearch(keyword, history)
 
   const onSearch = value => {
@@ -44,10 +45,10 @@ const Header = ({ history, location, fluid }) => {
     }
   }
 
-  const onLogin = () => {
-    setDialogTitle(t('Login'))
-    setIsOpenDialog(true)
-  }
+  // const onLogin = () => {
+  //   setDialogTitle(t('Login'))
+  //   setIsOpenDialog(true)
+  // }
 
   const onFeedback = e => {
     e.preventDefault()
