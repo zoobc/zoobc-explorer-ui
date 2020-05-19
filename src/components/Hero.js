@@ -46,7 +46,9 @@ const Hero = ({ history }) => {
             <Search
               size="large"
               prefix={<Icon type="search" style={{ fontSize: '18px', color: 'rgba(0,0,0,.45)' }} />}
-              placeholder={t('Search by Account Address / Transaction ID / Block ID')}
+              placeholder={t(
+                'Search by Account Address / Transaction ID / Block ID / Node Public Key'
+              )}
               enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
               onSearch={onSearch}
             />
