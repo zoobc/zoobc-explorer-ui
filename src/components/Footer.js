@@ -98,7 +98,7 @@ const Footer = () => {
                 className="footer-list-group-item"
                 target="_blank"
                 rel="noopener noreferrer"
-                href="http://zoobc.one"
+                href="https://zoobc.one"
               >
                 {t('ZooBC Wallet')}
               </a>
@@ -107,7 +107,7 @@ const Footer = () => {
               <a
                 className="footer-list-group-item"
                 rel="noopener noreferrer"
-                href="http://zoobc.net"
+                href="https://zoobc.net"
               >
                 {t('ZooBC Explorer')}
               </a>
@@ -315,7 +315,7 @@ const Footer = () => {
                     className="footer-list-group-item"
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="http://zoobc.one"
+                    href="https://zoobc.one"
                   >
                     {t('ZooBC Wallet')}
                   </a>
@@ -324,7 +324,7 @@ const Footer = () => {
                   <a
                     className="footer-list-group-item"
                     rel="noopener noreferrer"
-                    href="http://zoobc.net"
+                    href="https://zoobc.net"
                   >
                     {t('ZooBC Explorer')}
                   </a>
