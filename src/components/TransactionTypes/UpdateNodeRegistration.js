@@ -12,7 +12,7 @@ const UpdateNodeRegistration = ({ data }) => {
       <h4 className="transaction-card-title">{t('Update Node Registration')}</h4>
       <DescItem
         label={t('Account Address')}
-        value={<Link to={`/nodes/${data.AccountAddress}`}>{data.AccountAddress}</Link>}
+        value={<Link to={`/accounts/${data.AccountAddress}`}>{data.AccountAddress}</Link>}
       />
       <DescItem
         label={t('Node Public Key')}
