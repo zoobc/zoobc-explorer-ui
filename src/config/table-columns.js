@@ -138,7 +138,9 @@ export const blockColumns = [
     render(text, record) {
       const skipped = []
 
-      record.SkippedBlocksmiths.map(data => !objectUtils.isContainsNullValue(data) && skipped.push(data))
+      record.SkippedBlocksmiths.map(
+        data => !objectUtils.isContainsNullValue(data) && skipped.push(data)
+      )
 
       return (
         <div className="blocksmith">

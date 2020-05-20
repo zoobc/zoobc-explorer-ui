@@ -15,5 +15,5 @@ export {
   isEmptyObject,
   isObject,
   store,
-  objectUtils
+  objectUtils,
 }
