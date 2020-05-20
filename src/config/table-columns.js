@@ -85,7 +85,17 @@ export const accountColumns = [
     title: <Title text="Fees" />,
     dataIndex: 'TotalFeesPaidConversion',
     key: 'TotalFeesPaidConversion',
-    render: renderCurrenncy,
+    render(text) {
+      return (
+        <NumberFormat
+          value={text || 0}
+          displayType={'text'}
+          decimalScale={2}
+          thousandSeparator={true}
+          suffix={' ZBC'}
+        />
+      )
+    },
   },
   {
     title: <Title text="Rewards" />,
