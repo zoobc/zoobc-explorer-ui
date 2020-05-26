@@ -6,6 +6,7 @@ import NumberFormat from 'react-number-format'
 import { shortenHash } from '../utils/shorten'
 import { useTranslation } from 'react-i18next'
 import { Badge, Tooltip } from 'antd'
+import { objectUtils } from '../utils'
 
 const getBlocksmithIndicator = skipped => {
   if (skipped > 10) {
@@ -85,7 +86,17 @@ export const accountColumns = [
     title: <Title text="Fees" />,
     dataIndex: 'TotalFeesPaidConversion',
     key: 'TotalFeesPaidConversion',
-    render: renderCurrenncy,
+    render(text) {
+      return (
+        <NumberFormat
+          value={text || 0}
+          displayType={'text'}
+          decimalScale={2}
+          thousandSeparator={true}
+          suffix={' ZBC'}
+        />
+      )
+    },
   },
   {
     title: <Title text="Rewards" />,
@@ -125,11 +136,16 @@ export const blockColumns = [
     dataIndex: 'BlocksmithAddress',
     key: 'BlocksmithAddress',
     render(text, record) {
-      const skipped = record.SkippedBlocksmiths.length || 0
+      const skipped = []
+
+      record.SkippedBlocksmiths.map(
+        data => !objectUtils.isContainsNullValue(data) && skipped.push(data)
+      )
+
       return (
         <div className="blocksmith">
-          <Tooltip title={`${skipped} skipped blocksmith`}>
-            <Badge color={getBlocksmithIndicator(skipped)} />
+          <Tooltip title={`${skipped.length} skipped blocksmith`}>
+            <Badge color={getBlocksmithIndicator(skipped.length)} />
           </Tooltip>
           <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
         </div>

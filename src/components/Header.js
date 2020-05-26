@@ -96,7 +96,7 @@ const Header = ({ history, location, fluid }) => {
             <Tooltip
               getPopupContainer={triggerNode => triggerNode.parentNode}
               trigger={['focus']}
-              title={t('Search by Account Address / Transaction ID / Block ID')}
+              title={t('Search by Account Address / Transaction ID / Block ID / Node Public Key')}
               placement="topLeft"
             >
               <label>

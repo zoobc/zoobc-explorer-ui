@@ -111,7 +111,10 @@ const Node = ({ match, history }) => {
                 />
                 <DescItem
                   label={t('Owner Address')}
-                  value={<CopyToClipboard text={data.node.OwnerAddress} keyID="nodePublicKey" />}
+                  value={
+                    <Link to={`/accounts/${data.node.OwnerAddress}`}>{data.node.OwnerAddress}</Link>
+                  }
+                  // value={<CopyToClipboard text={data.node.OwnerAddress} keyID="nodePublicKey" />}
                 />
                 {/* <DescItem label={t('Node Address')} value={data.node.NodeAddress} /> */}
                 <DescItem
