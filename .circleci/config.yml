@@ -6,13 +6,13 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "eb:47:ac:d7:d7:d2:ff:5a:5a:26:24:54:b4:cf:6d:69"
+            - '37:8d:8b:24:af:82:09:06:2e:c4:30:d3:15:6b:ef:8d'
       - run:
           name: Setup SSH Key Host
           command: |
             ssh-keyscan -H ${SSH_HOST_DEVELOP} >> ~/.ssh/known_hosts
       - run:
-          name: Deploy
+          name: Deploy Develop
           command: |
             ssh ${SSH_USER}@${SSH_HOST_DEVELOP} "cd zoobc-explorer-ui/ && ./deploy.sh"
 
@@ -24,4 +24,3 @@ workflows:
           filters:
             branches:
               only: develop
-
