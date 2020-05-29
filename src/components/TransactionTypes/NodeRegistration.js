@@ -31,11 +31,11 @@ const NodeRegistration = ({ data }) => {
         }
       />
       <DescItem
-        label="POOW Message Bytes"
+        label={t('POOW Message Bytes')}
         value={data.ProofOfOwnership && data.ProofOfOwnership.MessageBytes}
       />
       <DescItem
-        label="POOW Signature"
+        label={t('POOW Signature')}
         value={data.ProofOfOwnership && data.ProofOfOwnership.Signature}
       />
     </Card>

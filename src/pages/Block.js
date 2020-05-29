@@ -273,7 +273,11 @@ const Block = ({ match }) => {
                 <DescItem label={t('Payload Hash')} value={data.block.PayloadHash} />
               </Card>
               <Collapse className="block-collapse" bordered={false}>
-                <Panel className="block-card-title block-collapse" header="PoP Changes" key="1">
+                <Panel
+                  className="block-card-title block-collapse"
+                  header={t('PoP Changes')}
+                  key="1"
+                >
                   <Card className="block-card" bordered={false}>
                     <h4 className="block-card-title">{t('PoP Changes')}</h4>
                     <Table
