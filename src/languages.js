@@ -10,7 +10,7 @@ const languages = [
     alt: 'flag-en',
   },
   {
-    label: 'Indonesia',
+    label: 'Indonesian',
     value: 'id',
     flag: flagID,
     alt: 'flag-id',

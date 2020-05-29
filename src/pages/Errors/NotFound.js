@@ -52,7 +52,7 @@ const NotFound = ({ history, location }) => {
                 ) : (
                   <>
                     <p className="display-3 mb-0">404</p>
-                    <p className="h6">Page Not Found</p>
+                    <p className="h6">{t('Page Not Found')}</p>
                   </>
                 )}
                 <label>
@@ -64,7 +64,9 @@ const NotFound = ({ history, location }) => {
                         style={{ fontSize: '16px', color: 'rgba(0,0,0,.45)' }}
                       />
                     }
-                    placeholder={t('Search by Account Address / Transaction ID / Block ID')}
+                    placeholder={t(
+                      'Search by Account Address / Transaction ID / Block ID / Node Public Key'
+                    )}
                     enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
                     onSearch={onSearch}
                   />
