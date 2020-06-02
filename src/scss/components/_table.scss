@@ -1,9 +1,9 @@
 .ant-table-thead {
   .ant-table-column-title {
-    font-weight: 700
+    font-weight: 700;
   }
   tr > th {
-    border-bottom: 0 !important
+    border-bottom: 0 !important;
   }
 }
 
@@ -21,7 +21,7 @@
 .ant-table-small {
   border: 0 !important;
   a {
-    color: var(--color-primary-light);
+    color: var(--color-primary-link-txt);
   }
 }
 
