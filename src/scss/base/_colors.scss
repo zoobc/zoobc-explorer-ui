@@ -1,12 +1,12 @@
 :root {
   /* Basic colors */
-  --black:                        #000000;
-  --white:                        #FFFFFF;
-  --dark-blue-primary:            #013558;
-  --dark-blue-secondary:          #0B3D65;
-  --light-blue:                   #3498DB;
-  --dark-grey:                    #92ADBF;
-  --light-grey:                   #E7EAF3;
+  --black: #000000;
+  --white: #ffffff;
+  --dark-blue-primary: #0031da;
+  --dark-blue-secondary: #0b3d65;
+  --light-blue: #3498db;
+  --dark-grey: #92adbf;
+  --light-grey: #e7eaf3;
 
   /* Main colors */
   --color-black: var(--black);
@@ -34,7 +34,7 @@
   --color-primary-dark-txt: var(--color-black);
   --color-primary-light-txt: var(--color-white);
   --color-secondary-grey-txt: var(--color-secondary-light);
-  --color-primary-link-txt: var(--color-primary-light);
+  --color-primary-link-txt: var(--dark-blue-primary);
   --color-secondary-link-txt: var(--color-secondary-light);
   --color-passive-txt: var(--color-secondary-light);
   --color-active-txt: var(--color-primary-light);

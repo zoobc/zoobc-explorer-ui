@@ -48,5 +48,7 @@ a:hover {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  a {
+    color: var(--color-primary-link-txt);
+  }
 }
-

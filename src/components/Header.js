@@ -86,7 +86,7 @@ const Header = ({ history, location, fluid }) => {
                 <Link to="/nodes">{t('Nodes')}</Link>
               </Menu.Item>
               <Menu.Item key="/feedback" className="menu-with-icon">
-                <Button type="danger" onClick={onFeedback}>
+                <Button type="primary" onClick={onFeedback}>
                   {t('Feedback')}
                 </Button>
               </Menu.Item>
