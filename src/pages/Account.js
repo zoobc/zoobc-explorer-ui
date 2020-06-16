@@ -23,7 +23,7 @@ const GET_ACCOUNT_DATA = gql`
       LastActive
       TotalRewardsConversion
       TotalFeesPaidConversion
-      NodePublicKey
+      # NodePublicKey
     }
   }
 `
@@ -38,9 +38,11 @@ const GET_TRX_BY_ACCOUNT = gql`
         TransactionTypeName
         Sender
         Recipient
-        Confirmations
+        # Confirmations
         FeeConversion
         BlockID
+        TransactionHash
+        MultisigChild
         SendMoney {
           AmountConversion
         }
@@ -197,6 +199,7 @@ const Account = ({ match }) => {
                   pagination={false}
                   size="small"
                   loading={loading}
+                  scroll={{ x: 1300 }}
                 />
                 {!!transactions && (
                   <Pagination

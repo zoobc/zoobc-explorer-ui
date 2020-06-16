@@ -20,6 +20,7 @@ import {
   SetupAccount,
   RemoveAccount,
   UpdateNodeRegistration,
+  MultiSignature,
 } from '../components/TransactionTypes'
 
 const GET_TRX_DATA = gql`
@@ -33,7 +34,7 @@ const GET_TRX_DATA = gql`
       Height
       Sender
       Recipient
-      Confirmations
+      # Confirmations
       FeeConversion
       SendMoney {
         Amount
@@ -42,7 +43,10 @@ const GET_TRX_DATA = gql`
       NodeRegistration {
         NodePublicKey
         AccountAddress
-        NodeAddress
+        NodeAddress {
+          Address
+          Port
+        }
         LockedBalance
         LockedBalanceConversion
         ProofOfOwnership {
@@ -52,7 +56,10 @@ const GET_TRX_DATA = gql`
       }
       UpdateNodeRegistration {
         NodePublicKey
-        NodeAddress
+        NodeAddress {
+          Address
+          Port
+        }
         LockedBalance
         LockedBalanceConversion
         ProofOfOwnership {
@@ -65,7 +72,6 @@ const GET_TRX_DATA = gql`
       }
       ClaimNodeRegistration {
         NodePublicKey
-        AccountAddress
         ProofOfOwnership {
           MessageBytes
           Signature
@@ -76,7 +82,6 @@ const GET_TRX_DATA = gql`
         RecipientAccountAddress
         Property
         Value
-        MuchTime
       }
       RemoveAccount {
         SetterAccountAddress
@@ -84,6 +89,26 @@ const GET_TRX_DATA = gql`
         Property
         Value
       }
+      MultiSignature {
+        MultiSignatureInfo {
+          MinimumSignatures
+          Nonce
+          Addresses
+          MultisigAddress
+          BlockHeight
+          Latest
+        }
+        UnsignedTransactionBytes
+        SignatureInfo {
+          TransactionHash
+          Signatures {
+            Address
+            Signature
+          }
+        }
+      }
+      TransactionHash
+      MultisigChild
     }
   }
 `
@@ -104,6 +129,8 @@ const TransactionType = ({ trx }) => {
       return <SetupAccount data={trx.SetupAccount} />
     case 259:
       return <RemoveAccount data={trx.RemoveAccount} />
+    case 5:
+      return <MultiSignature data={trx.MultiSignature} />
     default:
       return null
   }
@@ -183,6 +210,16 @@ const Transaction = ({ match }) => {
                     />
                   }
                 />
+                {data.transaction.MultisigChild && (
+                  <DescItem
+                    label={t('Transaction Hash')}
+                    value={
+                      <Link to={`/transactions/${data.transaction.TransactionHash}`}>
+                        {data.transaction.TransactionHash}
+                      </Link>
+                    }
+                  />
+                )}
               </Card>
               <TransactionType trx={data.transaction} />
             </Col>

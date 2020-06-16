@@ -197,6 +197,16 @@ export const transactionColumns = [
     key: 'TransactionTypeName',
   },
   {
+    title: <Title text="Multi Signature" />,
+    dataIndex: 'TransactionHash',
+    key: 'TransactionHash',
+    render(text, record) {
+      return (
+        record.MultisigChild && <Link to={`/transactions/${text}`}>{shortenHash(text, 20)}</Link>
+      )
+    },
+  },
+  {
     title: <Title text="Sender" />,
     dataIndex: 'Sender',
     key: 'Sender',

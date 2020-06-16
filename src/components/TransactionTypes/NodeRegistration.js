@@ -10,7 +10,7 @@ const NodeRegistration = ({ data }) => {
   return (
     <Card className="transaction-card">
       <h4 className="transaction-card-title">{t('Node Registration')}</h4>
-      <DescItem label={t('Node Address')} value={data.NodeAddress} />
+      <DescItem label={t('Node Address')} value={data.NodeAddress.Address} />
       <DescItem
         label={t('Account Address')}
         value={<Link to={`/accounts/${data.AccountAddress}`}>{data.AccountAddress}</Link>}

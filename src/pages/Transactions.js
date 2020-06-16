@@ -20,8 +20,10 @@ const GET_TRXS_DATA = gql`
         TransactionTypeName
         Sender
         Recipient
-        Confirmations
+        # Confirmations
         FeeConversion
+        TransactionHash
+        MultisigChild
         SendMoney {
           AmountConversion
         }
@@ -111,6 +113,7 @@ const Transactions = () => {
                 size="small"
                 loading={loading}
                 onChange={onChangeTable.bind(this)}
+                scroll={{ x: 1300 }}
               />
               {!!data && (
                 <Pagination
