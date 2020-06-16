@@ -136,11 +136,11 @@ const TransactionType = ({ trx }) => {
       return trx.Escrow == null ? (
         <SendMoney data={trx.SendMoney} />
       ) : (
-          <>
-            <SendMoney data={trx.SendMoney} />
-            <EscrowTransaction data={trx.Escrow} />
-          </>
-        )
+        <>
+          <SendMoney data={trx.SendMoney} />
+          <EscrowTransaction data={trx.Escrow} />
+        </>
+      )
     case 4:
       return (
         <>
