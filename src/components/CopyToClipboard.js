@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 const CopyToClipboard = ({ text = '', component, keyID, showText = true }) => {
   const { t } = useTranslation()
   const [copyTooltip, setCopyTooltip] = useState(false)
-  const [tooltipMessage, setTooltipMessage] = useState('Click to copy')
+  const [tooltipMessage, setTooltipMessage] = useState(t('Click to copy'))
   return (
     <>
       {!!showText && !component && text}
@@ -16,7 +16,7 @@ const CopyToClipboard = ({ text = '', component, keyID, showText = true }) => {
           className="bcz-copy clipboard-copy"
           id={`${keyID}`}
           onClick={() => {
-            setTooltipMessage('Copied to clipboard')
+            setTooltipMessage(t('Copied to clipboard'))
             setTimeout(() => {
               setTooltipMessage(t('Click to copy'))
             }, 500)

@@ -167,7 +167,7 @@ const Footer = () => {
             </li>
             <li>
               <a className="footer-list-group-item" onClick={onComingSoon}>
-                {t('Terms of Service')}
+                {t('Terms and Conditions')}
               </a>
             </li>
             <li>
@@ -388,7 +388,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
-                    {t('Terms of Service')}
+                    {t('Terms and Conditions')}
                   </a>
                 </li>
                 <li>
