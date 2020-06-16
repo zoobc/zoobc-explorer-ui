@@ -159,10 +159,10 @@ const Block = ({ match }) => {
           Amount: SendMoney
             ? SendMoney.AmountConversion
             : NodeRegistration
-              ? NodeRegistration.LockedBalanceConversion
-              : UpdateNodeRegistration
-                ? UpdateNodeRegistration.LockedBalanceConversion
-                : '0',
+            ? NodeRegistration.LockedBalanceConversion
+            : UpdateNodeRegistration
+            ? UpdateNodeRegistration.LockedBalanceConversion
+            : '0',
         }
       })
 
