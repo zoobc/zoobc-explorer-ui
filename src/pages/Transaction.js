@@ -20,6 +20,8 @@ import {
   SetupAccount,
   RemoveAccount,
   UpdateNodeRegistration,
+  EscrowApproval,
+  EscrowTransaction,
 } from '../components/TransactionTypes'
 
 const GET_TRX_DATA = gql`
@@ -33,7 +35,6 @@ const GET_TRX_DATA = gql`
       Height
       Sender
       Recipient
-      Confirmations
       FeeConversion
       SendMoney {
         Amount
@@ -42,7 +43,10 @@ const GET_TRX_DATA = gql`
       NodeRegistration {
         NodePublicKey
         AccountAddress
-        NodeAddress
+        NodeAddress {
+          Address
+          Port
+        }
         LockedBalance
         LockedBalanceConversion
         ProofOfOwnership {
@@ -52,7 +56,10 @@ const GET_TRX_DATA = gql`
       }
       UpdateNodeRegistration {
         NodePublicKey
-        NodeAddress
+        NodeAddress {
+          Address
+          Port
+        }
         LockedBalance
         LockedBalanceConversion
         ProofOfOwnership {
@@ -65,7 +72,6 @@ const GET_TRX_DATA = gql`
       }
       ClaimNodeRegistration {
         NodePublicKey
-        AccountAddress
         ProofOfOwnership {
           MessageBytes
           Signature
@@ -76,13 +82,28 @@ const GET_TRX_DATA = gql`
         RecipientAccountAddress
         Property
         Value
-        MuchTime
       }
       RemoveAccount {
         SetterAccountAddress
         RecipientAccountAddress
         Property
         Value
+      }
+      ApprovalEscrow {
+        TransactionID
+        Approval
+      }
+      Escrow {
+        SenderAddress
+        RecipientAddress
+        ApproverAddress
+        AmountConversion
+        CommissionConversion
+        Timeout
+        Status
+        BlockHeight
+        Latest
+        Instruction
       }
     }
   }
@@ -91,7 +112,21 @@ const GET_TRX_DATA = gql`
 const TransactionType = ({ trx }) => {
   switch (trx.TransactionType) {
     case 1:
-      return <SendMoney data={trx.SendMoney} />
+      return trx.Escrow == null ? (
+        <SendMoney data={trx.SendMoney} />
+      ) : (
+        <>
+          <SendMoney data={trx.SendMoney} />
+          <EscrowTransaction data={trx.Escrow} />
+        </>
+      )
+    case 4:
+      return (
+        <>
+          <EscrowApproval data={trx.ApprovalEscrow} />
+          <EscrowTransaction data={trx.Escrow} />
+        </>
+      )
     case 2:
       return <NodeRegistration data={trx.NodeRegistration} />
     case 258:
