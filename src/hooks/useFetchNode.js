@@ -8,7 +8,10 @@ const GET_NODES_DATA = gql`
       Nodes {
         NodePublicKey
         OwnerAddress
-        NodeAddress
+        NodeAddress {
+          Address
+          Port
+        }
         LockedFunds
         RegistryStatus
         ParticipationScore

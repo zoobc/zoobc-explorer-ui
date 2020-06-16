@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Card, Table, Pagination, Collapse, Badge } from 'antd'
 import gql from 'graphql-tag'
@@ -60,10 +61,11 @@ const GET_TRX_BY_BLOCK = gql`
         TransactionTypeName
         Sender
         Recipient
-        Confirmations
         Fee
         BlockID
         FeeConversion
+        TransactionHash
+        MultisigChild
         SendMoney {
           AmountConversion
         }
@@ -83,33 +85,33 @@ const GET_TRX_BY_BLOCK = gql`
   }
 `
 
-const GET_RECEIPT_BY_BLOCK = gql`
-  query getReceiptByBlock($page: Int, $BlockHeight: Int) {
-    publishedReceipts(page: $page, limit: 5, order: "-BlockHeight", BlockHeight: $BlockHeight) {
-      PublishedReceipts {
-        BatchReceipt {
-          Height
-          SenderPublicKey
-          ReceiverPublicKey
-          DataType
-          DataHash
-          ReceiptMerkleRoot
-          ReceiverSignature
-          ReferenceBlockHash
-        }
-        IntermediateHashes
-        BlockHeight
-        ReceiptIndex
-        PublishedIndex
-      }
-      Paginate {
-        Page
-        Count
-        Total
-      }
-    }
-  }
-`
+// const GET_RECEIPT_BY_BLOCK = gql`
+//   query getReceiptByBlock($page: Int, $BlockHeight: Int) {
+//     publishedReceipts(page: $page, limit: 5, order: "-BlockHeight", BlockHeight: $BlockHeight) {
+//       PublishedReceipts {
+//         BatchReceipt {
+//           Height
+//           SenderPublicKey
+//           ReceiverPublicKey
+//           DataType
+//           DataHash
+//           ReceiptMerkleRoot
+//           ReceiverSignature
+//           ReferenceBlockHash
+//         }
+//         IntermediateHashes
+//         BlockHeight
+//         ReceiptIndex
+//         PublishedIndex
+//       }
+//       Paginate {
+//         Page
+//         Count
+//         Total
+//       }
+//     }
+//   }
+// `
 
 const { Panel } = Collapse
 
@@ -120,7 +122,8 @@ const Block = ({ match }) => {
   const [transactions, setTransactions] = useState([])
   const [trxPaginate, setTrxPaginate] = useState({})
 
-  const [receiptCurrentPage, setReceiptCurrentPage] = useState(1)
+  const [receiptCurrntPage, setReceiptCurrentPage] = useState(1)
+  // const [receiptCurrentPage, setReceiptCurrentPage] = useState(1)
   const [receipts, setReceipts] = useState([])
   const [receiptPaginate, setReceiptPaginate] = useState({})
 
@@ -139,12 +142,12 @@ const Block = ({ match }) => {
     },
   })
 
-  const receiptByBlock = useQuery(GET_RECEIPT_BY_BLOCK, {
-    variables: {
-      BlockHeight: blockHeight,
-      page: receiptCurrentPage,
-    },
-  })
+  // const receiptByBlock = useQuery(GET_RECEIPT_BY_BLOCK, {
+  //   variables: {
+  //     BlockHeight: blockHeight,
+  //     page: receiptCurrentPage,
+  //   },
+  // })
 
   useEffect(() => {
     if (!!trxByBlock.data) {
@@ -168,21 +171,21 @@ const Block = ({ match }) => {
     }
   }, [trxByBlock.data])
 
-  useEffect(() => {
-    if (!!receiptByBlock.data) {
-      const receiptData = receiptByBlock.data.publishedReceipts.PublishedReceipts.map(
-        (receipt, key) => {
-          return {
-            key,
-            ...receipt,
-          }
-        }
-      )
+  // useEffect(() => {
+  //   if (!!receiptByBlock.data) {
+  //     const receiptData = receiptByBlock.data.publishedReceipts.PublishedReceipts.map(
+  //       (receipt, key) => {
+  //         return {
+  //           key,
+  //           ...receipt,
+  //         }
+  //       }
+  //     )
 
-      setReceipts(receiptData)
-      setReceiptPaginate(receiptByBlock.data.publishedReceipts.Paginate)
-    }
-  }, [receiptByBlock.data])
+  //     setReceipts(receiptData)
+  //     setReceiptPaginate(receiptByBlock.data.publishedReceipts.Paginate)
+  //   }
+  // }, [receiptByBlock.data])
 
   useEffect(() => {
     if (!!data) {
@@ -360,6 +363,7 @@ const Block = ({ match }) => {
                       pagination={false}
                       size="small"
                       loading={loading}
+                      scroll={{ x: 1300 }}
                     />
                     {!!data && (
                       <Pagination

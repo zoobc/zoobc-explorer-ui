@@ -19,7 +19,10 @@ const GET_NODE_DATA = gql`
     node(NodePublicKey: $NodePublicKey) {
       NodePublicKey
       OwnerAddress
-      NodeAddress
+      NodeAddress {
+        Address
+        Port
+      }
       LockedFunds
       RegisteredBlockHeight
       ParticipationScore

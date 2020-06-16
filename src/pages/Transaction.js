@@ -20,6 +20,7 @@ import {
   SetupAccount,
   RemoveAccount,
   UpdateNodeRegistration,
+  MultiSignature,
   EscrowApproval,
   EscrowTransaction,
 } from '../components/TransactionTypes'
@@ -89,6 +90,26 @@ const GET_TRX_DATA = gql`
         Property
         Value
       }
+      MultiSignature {
+        MultiSignatureInfo {
+          MinimumSignatures
+          Nonce
+          Addresses
+          MultisigAddress
+          BlockHeight
+          Latest
+        }
+        UnsignedTransactionBytes
+        SignatureInfo {
+          TransactionHash
+          Signatures {
+            Address
+            Signature
+          }
+        }
+      }
+      TransactionHash
+      MultisigChild
       ApprovalEscrow {
         TransactionID
         Approval
@@ -139,6 +160,8 @@ const TransactionType = ({ trx }) => {
       return <SetupAccount data={trx.SetupAccount} />
     case 259:
       return <RemoveAccount data={trx.RemoveAccount} />
+    case 5:
+      return <MultiSignature data={trx.MultiSignature} />
     default:
       return null
   }
@@ -218,6 +241,16 @@ const Transaction = ({ match }) => {
                     />
                   }
                 />
+                {data.transaction.MultisigChild && (
+                  <DescItem
+                    label={t('Transaction Hash')}
+                    value={
+                      <Link to={`/transactions/${data.transaction.TransactionHash}`}>
+                        {data.transaction.TransactionHash}
+                      </Link>
+                    }
+                  />
+                )}
               </Card>
               <TransactionType trx={data.transaction} />
             </Col>
