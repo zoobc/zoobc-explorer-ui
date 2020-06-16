@@ -53,7 +53,7 @@ function App() {
                       />
                       <Route
                         exact
-                        path="/transactions/:id"
+                        path="/transactions/:id+"
                         render={props => <Transaction {...props} />}
                       />
                       <Route exact path="/accounts" render={props => <Accounts {...props} />} />
