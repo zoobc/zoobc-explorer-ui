@@ -106,8 +106,6 @@ const testnetClientProd = [
   'http://139.162.44.25:9090/zoobc/api/v1/graphql',
   'https://test1680.zoobc.net/zoobc/api/v1/graphql',
   'https://test9090.zoobc.net/zoobc/api/v1/graphql',
-
-
 ]
 
 const testnetClientLocal = [
