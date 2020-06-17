@@ -12,21 +12,21 @@ const EscrowTransaction = ({ data }) => {
       <h4 className="transaction-card-title">{t('Escrow Transaction')}</h4>
 
       <DescItem
-        label={t('SenderAddress')}
+        label={t('Sender')}
         value={<Link to={`/accounts/${data.SenderAddress}`}>{data.SenderAddress}</Link>}
       />
       <DescItem
-        label={t('RecipientAddress')}
+        label={t('Recipient')}
         value={<Link to={`/accounts/${data.RecipientAddress}`}>{data.RecipientAddress}</Link>}
       />
       <DescItem
-        label={t('ApproverAddress')}
+        label={t('Approver')}
         value={<Link to={`/accounts/${data.ApproverAddress}`}>{data.ApproverAddress}</Link>}
       />
 
-      <DescItem label={t('ApproverAddress')} value={data.Timeout} />
+      <DescItem label={t('Timeout')} value={data.Timeout} />
       <DescItem
-        label={t('BlockHeight')}
+        label={t('Block Height')}
         value={<Link to={`/blocks/${data.BlockHeight}`}>{data.BlockHeight}</Link>}
       />
       <DescItem label={t('Instruction')} value={data.Instruction} />
