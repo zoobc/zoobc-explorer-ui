@@ -33,7 +33,7 @@ const MultiSignature = ({ data }) => {
             SignatureInfo.Signatures.map((data, key) => (
               <DescItem
                 key={key}
-                label={`Participants ${key + 1}`}
+                label={`Participant ${key + 1}`}
                 value={<Link to={`/accounts/${data.Address}`}>{data.Address}</Link>}
               />
             ))}
