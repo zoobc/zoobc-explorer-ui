@@ -3,6 +3,7 @@ import { Card } from 'antd'
 import { useTranslation } from 'react-i18next'
 
 import DescItem from '../DescItem'
+import { Link } from 'react-router-dom'
 
 const MultiSignature = ({ data }) => {
   const { t } = useTranslation()
@@ -27,10 +28,14 @@ const MultiSignature = ({ data }) => {
         <>
           <DescItem label="Transaction Hash" value={SignatureInfo.TransactionHash} />
           <br />
-          <h5>{t('Signatures')}</h5>
+          <h5>{t('Participants')}</h5>
           {SignatureInfo.Signatures &&
             SignatureInfo.Signatures.map((data, key) => (
-              <DescItem key={key} label={`Signature ${key + 1}`} value={data.Signature} />
+              <DescItem
+                key={key}
+                label={`Participant ${key + 1}`}
+                value={<Link to={`/accounts/${data.Address}`}>{data.Address}</Link>}
+              />
             ))}
         </>
       )}
