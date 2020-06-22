@@ -1,11 +1,12 @@
 import React from 'react'
 import { Card } from 'antd'
 import { useTranslation } from 'react-i18next'
+import NumberFormat from 'react-number-format'
 
 import DescItem from '../DescItem'
 import { Link } from 'react-router-dom'
 
-const EscrowTransaction = ({ data }) => {
+const EscrowTransaction = ({ data, blockID }) => {
   const { t } = useTranslation()
   return (
     <Card className="transaction-card">
@@ -24,10 +25,22 @@ const EscrowTransaction = ({ data }) => {
         value={<Link to={`/accounts/${data.ApproverAddress}`}>{data.ApproverAddress}</Link>}
       />
 
+      <DescItem
+        label={t('Commission Fee')}
+        value={
+          <NumberFormat
+            value={data.CommissionConversion || 0}
+            displayType={'text'}
+            thousandSeparator={true}
+            suffix={' ZBC'}
+          />
+        }
+      />
+
       <DescItem label={t('Timeout')} value={data.Timeout} />
       <DescItem
         label={t('Block Height')}
-        value={<Link to={`/blocks/${data.BlockHeight}`}>{data.BlockHeight}</Link>}
+        value={<Link to={`/blocks/${blockID}`}>{data.BlockHeight}</Link>}
       />
       <DescItem label={t('Instruction')} value={data.Instruction} />
     </Card>

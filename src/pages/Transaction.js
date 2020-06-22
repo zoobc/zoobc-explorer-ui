@@ -145,7 +145,7 @@ const TransactionType = ({ trx }) => {
       return (
         <>
           <EscrowApproval data={trx.ApprovalEscrow} />
-          <EscrowTransaction data={trx.Escrow} />
+          <EscrowTransaction data={trx.Escrow} blockID={trx.BlockID} />
         </>
       )
     case 2:
