@@ -174,6 +174,7 @@ export const transactionColumns = [
     render(text) {
       return <Link to={`/transactions/${text}`}>{text}</Link>
     },
+    width: 180
   },
   {
     title: <Title text="Height" />,
@@ -195,6 +196,7 @@ export const transactionColumns = [
     title: <Title text="Type" />,
     dataIndex: 'TransactionTypeName',
     key: 'TransactionTypeName',
+    width: 210
   },
   {
     title: <Title text="Multi Signature" />,
