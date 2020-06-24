@@ -212,7 +212,14 @@ const Transaction = ({ match }) => {
                     </Link>
                   }
                 />
-                <DescItem label="Height" value={data.transaction.Height} />
+                <DescItem
+                  label="Height"
+                  value={
+                    <Link to={`/blocks/${data.transaction.BlockID}`}>
+                      {data.transaction.Height}
+                    </Link>
+                  }
+                />
                 <DescItem
                   label={t('Sender')}
                   value={
