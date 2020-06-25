@@ -1,7 +1,6 @@
-import 'antd/dist/antd.css'
-import 'react-app-polyfill/ie11'
 import 'react-app-polyfill/ie9'
 import 'react-app-polyfill/stable'
+import 'antd/dist/antd.css'
 
 import React from 'react'
 import ReactDOM from 'react-dom'

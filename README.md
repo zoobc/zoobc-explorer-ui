@@ -79,16 +79,10 @@ We use Github issues to track bugs exclusively. You can report an issue by filli
 ### Browser support 🌐
 ![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) |
 --- | --- | --- | --- | --- | --- |
-75 Latest ✔ | 67 Latest ✔ | 12.1 Latest ✔ | 60 Latest ✔ | 18 Latest ✔ | 11 Latest ✔ |
+81 Latest ✔ | 76 Latest ✔ | ≤ 12 Latest ✔ | 68 Latest ✔ | 81 Latest ✔ | 11 Latest ✔ |
 ### Contributors 💻
 Thank you to all the people who already [contributed](https://github.com/zoobc/zoobc-explorer-ui/graphs/contributors) to ZooBC Explorer UI!
 <table>
-  <td align="center">
-    <a href="https://github.com/gedenata">
-      <img src="https://avatars2.githubusercontent.com/u/1158185?s=460&v=4" width="25px;" alt="Nata" />
-      <br /><sub><b>Nata</b></sub>
-    </a>
-  </td>
   <td align="center">
     <a href="https://github.com/eksant">
       <img src="https://avatars1.githubusercontent.com/u/32409305?s=460&v=4" width="25px;" alt="Eko" />
@@ -99,12 +93,6 @@ Thank you to all the people who already [contributed](https://github.com/zoobc/z
     <a href="https://github.com/gedeyandi456">
       <img src="https://avatars2.githubusercontent.com/u/43771081?s=460&v=4" width="25px;" alt="Yandi" />
       <br /><sub><b>Yandi</b></sub>
-    </a>
-  </td>
-  <td align="center">
-    <a href="https://github.com/gundwiguna">
-      <img src="https://avatars0.githubusercontent.com/u/43126599?s=460&v=4" width="25px;" alt="Anggun" />
-      <br /><sub><b>Anggun</b></sub>
     </a>
   </td>
   <td align="center">
@@ -123,6 +111,24 @@ Thank you to all the people who already [contributed](https://github.com/zoobc/z
     <a href="https://github.com/KevinH2810">
       <img src="https://avatars2.githubusercontent.com/u/47102992?s=460&v=4" width="25px;" alt="Kevin" />
       <br /><sub><b>Kevin</b></sub>
+    </a>
+  </td>
+  <td align="center">
+    <a href="https://github.com/suwidnyana">
+      <img src="https://avatars3.githubusercontent.com/u/37806678?s=400&u=e9ae0d1650411746100a6e31be8910bfe4107eca&v=4" width="25px;" alt="suwidnyana" />
+      <br /><sub><b>suwidnyana</b></sub>
+    </a>
+  </td>
+  <td align="center">
+    <a href="https://github.com/gundwiguna">
+      <img src="https://avatars0.githubusercontent.com/u/43126599?s=460&v=4" width="25px;" alt="Anggun" />
+      <br /><sub><b>Anggun</b></sub>
+    </a>
+  </td>
+  <td align="center">
+    <a href="https://github.com/gedenata">
+      <img src="https://avatars2.githubusercontent.com/u/1158185?s=460&v=4" width="25px;" alt="Nata" />
+      <br /><sub><b>Nata</b></sub>
     </a>
   </td>
 </table>
