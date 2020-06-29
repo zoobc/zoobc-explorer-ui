@@ -36,6 +36,7 @@ const GET_TRX_BY_ACCOUNT = gql`
         Height
         Timestamp
         TransactionTypeName
+        TransactionType
         Sender
         Recipient
         # Confirmations
@@ -51,6 +52,9 @@ const GET_TRX_BY_ACCOUNT = gql`
         }
         UpdateNodeRegistration {
           LockedBalanceConversion
+        }
+        Escrow {
+          SenderAddress
         }
       }
       Paginate {

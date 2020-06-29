@@ -59,6 +59,7 @@ const GET_TRX_BY_BLOCK = gql`
         Height
         Timestamp
         TransactionTypeName
+        TransactionType
         Sender
         Recipient
         Fee
@@ -74,6 +75,9 @@ const GET_TRX_BY_BLOCK = gql`
         }
         UpdateNodeRegistration {
           LockedBalanceConversion
+        }
+        Escrow {
+          SenderAddress
         }
       }
       Paginate {

@@ -18,6 +18,7 @@ const GET_TRXS_DATA = gql`
         Height
         Timestamp
         TransactionTypeName
+        TransactionType
         Sender
         Recipient
         # Confirmations
@@ -32,6 +33,9 @@ const GET_TRXS_DATA = gql`
         }
         UpdateNodeRegistration {
           LockedBalanceConversion
+        }
+        Escrow {
+          SenderAddress
         }
       }
       Paginate {
@@ -114,6 +118,12 @@ const Transactions = () => {
                 loading={loading}
                 onChange={onChangeTable.bind(this)}
                 scroll={{ x: 1300 }}
+                expandedRowRender={record =>
+                  record.MultisigChild && <p style={{ margin: 0 }}>Holla</p>
+                }
+                rowClassName={record =>
+                  record.MultisigChild ? '' : 'transactions-table-hide-expand'
+                }
               />
               {!!data && (
                 <Pagination
