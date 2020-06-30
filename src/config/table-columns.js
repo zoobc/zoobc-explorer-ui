@@ -226,6 +226,7 @@ export const transactionColumns = [
     title: <Title text="Sender" />,
     dataIndex: 'Sender',
     key: 'Sender',
+    width: 180,
     render(text) {
       return <Link to={`/accounts/${text}`}>{shortenHash(text, 20)}</Link>
     },
@@ -234,6 +235,7 @@ export const transactionColumns = [
     title: <Title text="Recipient" />,
     dataIndex: 'Recipient',
     key: 'Recipient',
+    width: 180,
     render(text) {
       return <Link to={`/accounts/${text}`}>{shortenHash(text, 20)}</Link>
     },
