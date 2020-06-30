@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import DescItem from '../DescItem'
 import { Link } from 'react-router-dom'
 
-const MultiSignature = ({ data }) => {
+const MultiSignature = ({ data, disableTrxHashLink }) => {
   const { t } = useTranslation()
   const { MultiSignatureInfo, SignatureInfo, UnsignedTransactionBytes } = data
   return (
@@ -26,7 +26,18 @@ const MultiSignature = ({ data }) => {
       )}
       {SignatureInfo && (
         <>
-          <DescItem label="Transaction Hash" value={SignatureInfo.TransactionHash} />
+          <DescItem
+            label={t('Transaction Hash')}
+            value={
+              !!disableTrxHashLink ? (
+                SignatureInfo.TransactionHash
+              ) : (
+                <Link to={`/transactions/${SignatureInfo.TransactionHash}`}>
+                  {SignatureInfo.TransactionHash}
+                </Link>
+              )
+            }
+          />
           <br />
           <h5>{t('Participants')}</h5>
           {SignatureInfo.Signatures &&

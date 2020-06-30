@@ -137,6 +137,10 @@ const GET_TRX_DATA = gql`
         Recipient
         FeeConversion
       }
+      EscrowTransaction {
+        TransactionID
+        BlockID
+      }
     }
   }
 `
@@ -147,10 +151,16 @@ const TransactionType = ({ trx }) => {
       return (
         <>
           <SendMoney data={trx.SendMoney} />
-          {trx.Escrow && <EscrowTransaction data={trx.Escrow} />}
+          {trx.Escrow && (
+            <EscrowTransaction
+              data={trx.Escrow}
+              blockID={!!trx.EscrowTransaction && trx.EscrowTransaction.BlockID}
+              TransactionID={!!trx.EscrowTransaction && trx.EscrowTransaction.TransactionID}
+            />
+          )}
           {trx.MultisigChild && (
             <>
-              <MultiSignature data={trx.MultiSignature} />
+              <MultiSignature data={trx.MultiSignature} disableTrxHashLink={true} />
               <MultisigTransaction data={trx.MultiSignatureTransactions} />
             </>
           )}
