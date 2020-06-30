@@ -23,6 +23,7 @@ import {
   MultiSignature,
   EscrowApproval,
   EscrowTransaction,
+  MultisigTransaction,
 } from '../components/TransactionTypes'
 
 const GET_TRX_DATA = gql`
@@ -126,6 +127,20 @@ const GET_TRX_DATA = gql`
         Latest
         Instruction
       }
+      MultiSignatureTransactions {
+        TransactionID
+        BlockID
+        Height
+        Timestamp
+        TransactionTypeName
+        Sender
+        Recipient
+        FeeConversion
+      }
+      EscrowTransaction {
+        TransactionID
+        BlockID
+      }
     }
   }
 `
@@ -143,7 +158,12 @@ const TransactionType = ({ trx }) => {
               TransactionID={!!trx.EscrowTransaction && trx.EscrowTransaction.TransactionID}
             />
           )}
-          {trx.MultisigChild && <MultiSignature data={trx.MultiSignature} />}
+          {trx.MultisigChild && (
+            <>
+              <MultiSignature data={trx.MultiSignature} />
+              <MultisigTransaction data={trx.MultiSignatureTransactions} />
+            </>
+          )}
         </>
       )
     case 4:
