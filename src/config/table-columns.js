@@ -5,7 +5,7 @@ import NumberFormat from 'react-number-format'
 
 import { shortenHash } from '../utils/shorten'
 import { useTranslation } from 'react-i18next'
-import { Badge, Tooltip } from 'antd'
+import { Badge, Tooltip, Tag } from 'antd'
 import { objectUtils } from '../utils'
 
 const getBlocksmithIndicator = skipped => {
@@ -24,6 +24,28 @@ const renderCurrenncy = text => {
   return (
     <NumberFormat value={text || 0} displayType={'text'} thousandSeparator={true} suffix={' ZBC'} />
   )
+}
+
+const renderTransactionType = (text, record) => {
+  if (record.TransactionType === 1) {
+    if (record.Escrow) {
+      return (
+        <>
+          {text} <Tag color="#113D64">Escrow</Tag>
+        </>
+      )
+    } else if (record.MultisigChild) {
+      return (
+        <>
+          {text} <Tag color="#113D64">Multisignature</Tag>
+        </>
+      )
+    } else {
+      return text
+    }
+  }
+
+  return text
 }
 
 const renderAmountCurrenncy = (text, record) => {
@@ -174,7 +196,7 @@ export const transactionColumns = [
     render(text) {
       return <Link to={`/transactions/${text}`}>{text}</Link>
     },
-    width: 180,
+    width: 200,
   },
   {
     title: <Title text="Height" />,
@@ -188,6 +210,7 @@ export const transactionColumns = [
     title: <Title text="Timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
+    width: 200,
     render(text) {
       return moment(text).format('lll')
     },
@@ -196,17 +219,8 @@ export const transactionColumns = [
     title: <Title text="Type" />,
     dataIndex: 'TransactionTypeName',
     key: 'TransactionTypeName',
-    width: 210,
-  },
-  {
-    title: <Title text="Multi Signature" />,
-    dataIndex: 'TransactionHash',
-    key: 'TransactionHash',
-    render(text, record) {
-      return (
-        record.MultisigChild && <Link to={`/transactions/${text}`}>{shortenHash(text, 20)}</Link>
-      )
-    },
+    width: 220,
+    render: renderTransactionType,
   },
   {
     title: <Title text="Sender" />,

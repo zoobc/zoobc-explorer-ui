@@ -59,6 +59,7 @@ const GET_TRX_BY_BLOCK = gql`
         Height
         Timestamp
         TransactionTypeName
+        TransactionType
         Sender
         Recipient
         Fee
@@ -74,6 +75,31 @@ const GET_TRX_BY_BLOCK = gql`
         }
         UpdateNodeRegistration {
           LockedBalanceConversion
+        }
+        Escrow {
+          SenderAddress
+        }
+        MultiSignatureTransactions {
+          TransactionID
+          BlockID
+          Height
+          Timestamp
+          TransactionTypeName
+          Sender
+          Recipient
+          FeeConversion
+        }
+        EscrowTransaction {
+          TransactionID
+          TransactionHash
+          Timestamp
+          TransactionType
+          TransactionTypeName
+          BlockID
+          Height
+          Sender
+          Recipient
+          FeeConversion
         }
       }
       Paginate {
@@ -163,6 +189,9 @@ const Block = ({ match }) => {
             : UpdateNodeRegistration
             ? UpdateNodeRegistration.LockedBalanceConversion
             : '0',
+          children:
+            (trx.MultisigChild && trx.MultiSignatureTransactions) ||
+            (trx.EscrowTransaction && [trx.EscrowTransaction]),
         }
       })
 
@@ -364,6 +393,7 @@ const Block = ({ match }) => {
                       size="small"
                       loading={loading}
                       scroll={{ x: 1300 }}
+                      rowKey="TransactionID"
                     />
                     {!!data && (
                       <Pagination
