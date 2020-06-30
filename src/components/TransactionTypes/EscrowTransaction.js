@@ -6,11 +6,18 @@ import NumberFormat from 'react-number-format'
 import DescItem from '../DescItem'
 import { Link } from 'react-router-dom'
 
-const EscrowTransaction = ({ data, blockID }) => {
+const EscrowTransaction = ({ data, blockID, TransactionID }) => {
   const { t } = useTranslation()
   return (
     <Card className="transaction-card">
       <h4 className="transaction-card-title">{t('Escrow Transaction')}</h4>
+
+      {!!TransactionID && (
+        <DescItem
+          label={t('Transaction ID')}
+          value={<Link to={`/transactions/${TransactionID}`}>{TransactionID}</Link>}
+        />
+      )}
 
       <DescItem
         label={t('Sender')}
@@ -24,7 +31,6 @@ const EscrowTransaction = ({ data, blockID }) => {
         label={t('Approver')}
         value={<Link to={`/accounts/${data.ApproverAddress}`}>{data.ApproverAddress}</Link>}
       />
-
       <DescItem
         label={t('Commission Fee')}
         value={
@@ -36,7 +42,6 @@ const EscrowTransaction = ({ data, blockID }) => {
           />
         }
       />
-
       <DescItem label={t('Timeout')} value={data.Timeout} />
       <DescItem
         label={t('Block Height')}

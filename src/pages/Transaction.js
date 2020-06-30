@@ -136,7 +136,13 @@ const TransactionType = ({ trx }) => {
       return (
         <>
           <SendMoney data={trx.SendMoney} />
-          {trx.Escrow && <EscrowTransaction data={trx.Escrow} />}
+          {trx.Escrow && (
+            <EscrowTransaction
+              data={trx.Escrow}
+              blockID={!!trx.EscrowTransaction && trx.EscrowTransaction.BlockID}
+              TransactionID={!!trx.EscrowTransaction && trx.EscrowTransaction.TransactionID}
+            />
+          )}
           {trx.MultisigChild && <MultiSignature data={trx.MultiSignature} />}
         </>
       )
