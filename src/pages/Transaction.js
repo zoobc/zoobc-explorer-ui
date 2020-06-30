@@ -160,7 +160,7 @@ const TransactionType = ({ trx }) => {
           )}
           {trx.MultisigChild && (
             <>
-              <MultiSignature data={trx.MultiSignature} />
+              <MultiSignature data={trx.MultiSignature} disableTrxHashLink={true} />
               <MultisigTransaction data={trx.MultiSignatureTransactions} />
             </>
           )}
