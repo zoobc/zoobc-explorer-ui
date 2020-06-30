@@ -133,12 +133,11 @@ const GET_TRX_DATA = gql`
 const TransactionType = ({ trx }) => {
   switch (trx.TransactionType) {
     case 1:
-      return trx.Escrow == null ? (
-        <SendMoney data={trx.SendMoney} />
-      ) : (
+      return (
         <>
           <SendMoney data={trx.SendMoney} />
-          <EscrowTransaction data={trx.Escrow} />
+          {trx.Escrow && <EscrowTransaction data={trx.Escrow} />}
+          {trx.MultisigChild && <MultiSignature data={trx.MultiSignature} />}
         </>
       )
     case 4:
@@ -251,11 +250,7 @@ const Transaction = ({ match }) => {
                 {data.transaction.MultisigChild && (
                   <DescItem
                     label={t('Transaction Hash')}
-                    value={
-                      <Link to={`/transactions/${data.transaction.TransactionHash}`}>
-                        {data.transaction.TransactionHash}
-                      </Link>
-                    }
+                    value={data.transaction.TransactionHash}
                   />
                 )}
               </Card>
