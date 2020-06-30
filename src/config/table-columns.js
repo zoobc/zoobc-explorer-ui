@@ -196,7 +196,7 @@ export const transactionColumns = [
     render(text) {
       return <Link to={`/transactions/${text}`}>{text}</Link>
     },
-    width: 180,
+    width: 200,
   },
   {
     title: <Title text="Height" />,
@@ -210,6 +210,7 @@ export const transactionColumns = [
     title: <Title text="Timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
+    width: 200,
     render(text) {
       return moment(text).format('lll')
     },
@@ -218,7 +219,7 @@ export const transactionColumns = [
     title: <Title text="Type" />,
     dataIndex: 'TransactionTypeName',
     key: 'TransactionTypeName',
-    width: 210,
+    width: 220,
     render: renderTransactionType,
   },
   {

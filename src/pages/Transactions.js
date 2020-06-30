@@ -37,6 +37,28 @@ const GET_TRXS_DATA = gql`
         Escrow {
           SenderAddress
         }
+        MultiSignatureTransactions {
+          TransactionID
+          BlockID
+          Height
+          Timestamp
+          TransactionTypeName
+          Sender
+          Recipient
+          FeeConversion
+        }
+        EscrowTransaction {
+          TransactionID
+          TransactionHash
+          Timestamp
+          TransactionType
+          TransactionTypeName
+          BlockID
+          Height
+          Sender
+          Recipient
+          FeeConversion
+        }
       }
       Paginate {
         Page
@@ -87,6 +109,9 @@ const Transactions = () => {
             : UpdateNodeRegistration
             ? UpdateNodeRegistration.LockedBalanceConversion
             : '0',
+          children:
+            (trx.MultisigChild && trx.MultiSignatureTransactions) ||
+            (trx.EscrowTransaction && [trx.EscrowTransaction]),
         }
       })
 
@@ -118,12 +143,7 @@ const Transactions = () => {
                 loading={loading}
                 onChange={onChangeTable.bind(this)}
                 scroll={{ x: 1300 }}
-                expandedRowRender={record =>
-                  record.MultisigChild && <p style={{ margin: 0 }}>Holla</p>
-                }
-                rowClassName={record =>
-                  record.MultisigChild ? '' : 'transactions-table-hide-expand'
-                }
+                rowKey="TransactionID"
               />
               {!!data && (
                 <Pagination
