@@ -1,0 +1,17 @@
+.transactions-row {
+  margin: 64px 0 32px 0;
+}
+
+.transactions-card {
+  border-radius: 4px !important;
+}
+
+.transactions-table {
+  .ant-table {
+    font-size: 12px !important;
+  }
+
+  &-hide-expand .ant-table-row-expand-icon-cell .ant-table-row-expand-icon {
+    display: none;
+  }
+}

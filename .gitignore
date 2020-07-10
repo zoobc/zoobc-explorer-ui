@@ -5,14 +5,22 @@
 /.pnp
 .pnp.js
 
+# package
+package-lock.json
+yarn.lock
+
 # testing
 /coverage
 
 # production
 /build
 
+# ide
+.idea
+
 # misc
 .DS_Store
+.env
 .env.local
 .env.development.local
 .env.test.local

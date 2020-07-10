@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  font-family: var(--font-primary) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+}
+
+code {
+  font-family: var(--font-secondary);
+}
+
+.breaker {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.clipboard-copy {
+  color: var(--color-clipboard-ic);
+  &:hover {
+    cursor: pointer;
+    color: var(--color-clipboard-hover-ic);
+  }
+}
+
+.navbar-home {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.card {
+  background: var(--color-primary-card);
+  -webkit-box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  border: none;
+}
+
+.min-height-body {
+  min-height: calc(100vh - 380px);
+}
+
+a:hover {
+  text-decoration: underline !important;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  a {
+    color: var(--color-primary-link-txt);
+  }
+}

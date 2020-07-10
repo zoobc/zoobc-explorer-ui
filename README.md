@@ -1,68 +1,134 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">
+  <a href="https://github.com/zoobc/zoobc-explorer-ui">
+    <img src="src/assets/images/zoobc-explorer-ui.gif" alt="banner-repository"></img>
+  </a>
+</h1>
 
-## Available Scripts
+<p align="center">
+  <strong>A webview for searching and displaying data published, so that a user can easily find any info about blockchain.</strong>
+</p>
 
-In the project directory, you can run:
+<p align="center">
+  <a href="https://opensource.org/licenses/Apache-2.0">
+    <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="apache-license"></img>
+  </a>
+  <a href="https://circleci.com/gh/zoobc/zoobc-explorer-ui">
+    <img src="https://circleci.com/gh/zoobc/zoobc-explorer-ui.svg?style=svg&circle-token=5da5423ded17a414817e457800e90c76628284b0" alt="circleci-zoobc-explorer-ui"></img>
+  </a>
+  <a href="https://github.com/zoobc/zoobc-explorer-ui/pulls">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome!" />
+  </a>
+</p>
 
-### `npm start`
+## 👉 Installation
+Fork and clone the Explorer repository then create your branch from ```develop``` on terminal.
+```bash
+  $ git clone https://github.com/your-github-account/zoobc-explorer-ui.git
+  # press Enter then your local clone will be created
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  $ cd zoobc-explorer-ui
+  # access 'zoobc-explorer-ui' directory
+```
+Next, setup dependencies and globally installed for [Node](https://nodejs.org/en/download/)
+```bash
+  $ node -v
+  # check Node version
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+  $ npm -v
+  # check npm version
 
-### `npm test`
+  $ ./language.sh
+  # update submodule (language files)
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  $ npm install
+  # install node_modules packages
 
-### `npm run build`
+  $ npm run start
+  # running localhost server
+  # Local: http://localhost:3000/
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  $ npm run test
+  # running testing code
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+  $ npm run build
+  # create production build
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Ways to Contribute 👏
+### Contributing code 🔥
+Code level contribute in Explorer generally come in the form of pull requests (PRs). The process of proposing
+some changes to Explorer can be summarized as follows:
+- Fork and clone this repository then create your branch from ```develop```.
+- Please use the default title below if you want to create a new PRs from updated ```develop``` branch :
+    - If your task is a _feature_ category, ```[EXP-<number_of_your_pull>][FEATURE] Title of your PRs```.
+    - If your task is a _enhance_ category, ```[EXP-<number_of_your_pull>][ENHANCE] Title of your PRs```.
+    - If your task is a _bugs_ category, ```[EXP-<number_of_your_pull>][BUGS] Title of your PRs```.
+- Push your PRs changes to remote origin on ```https://github.com/zoobc/zoobc-explorer-ui```
+- Please tag ```Reviewers```, ```Assignees```, ```Labels```, and ```Projects```.
+- Add some descriptions about your PRs info with describe the feature/enhance/bugs clearly and concise
+  description of what is and include code sample, screenshoot or videos id needed.
+If all goes well, your PRs will be merges. If it is not merge, administrator will do their best to explain
+in the reason why.
+### Reviewing PRs 👌
+So you have found a PR that you feel confident reviewing. Please make use of the ```GitHub Review``` feature,
+and clearly and politely communicate any suggestion.
+### Test integration 🚀
+Work in progress...
+### Handling issues 🐛
+We use Github issues to track bugs exclusively. You can report an issue by filling a [Bug Report](https://github.com/zoobc/zoobc-explorer-ui/issues/new/choose).
+### Browser support 🌐
+![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) |
+--- | --- | --- | --- | --- | --- |
+81 Latest ✔ | 76 Latest ✔ | ≤ 12 Latest ✔ | 68 Latest ✔ | 81 Latest ✔ | 11 Latest ✔ |
+### Contributors 💻
+Thank you to all the people who already [contributed](https://github.com/zoobc/zoobc-explorer-ui/graphs/contributors) to ZooBC Explorer UI!
+<table>
+  <td align="center">
+    <a href="https://github.com/eksant">
+      <img src="https://avatars1.githubusercontent.com/u/32409305?s=460&v=4" width="25px;" alt="Eko" />
+      <br /><sub><b>Eko</b></sub>
+    </a>
+  </td>
+  <td align="center">
+    <a href="https://github.com/gedeyandi456">
+      <img src="https://avatars2.githubusercontent.com/u/43771081?s=460&v=4" width="25px;" alt="Yandi" />
+      <br /><sub><b>Yandi</b></sub>
+    </a>
+  </td>
+  <td align="center">
+    <a href="https://github.com/zaenury">
+      <img src="https://avatars1.githubusercontent.com/u/42806183?s=460&v=4" width="25px;" alt="Adhiim" />
+      <br /><sub><b>Adhiim</b></sub>
+    </a>
+  </td>
+  <td align="center">
+    <a href="https://github.com/iamnafri">
+      <img src="https://avatars2.githubusercontent.com/u/17779930?s=460&v=4" width="25px;" alt="Irfan" />
+      <br /><sub><b>Irfan</b></sub>
+    </a>
+  </td>
+  <td align="center">
+    <a href="https://github.com/KevinH2810">
+      <img src="https://avatars2.githubusercontent.com/u/47102992?s=460&v=4" width="25px;" alt="Kevin" />
+      <br /><sub><b>Kevin</b></sub>
+    </a>
+  </td>
+  <td align="center">
+    <a href="https://github.com/suwidnyana">
+      <img src="https://avatars3.githubusercontent.com/u/37806678?s=400&u=e9ae0d1650411746100a6e31be8910bfe4107eca&v=4" width="25px;" alt="suwidnyana" />
+      <br /><sub><b>suwidnyana</b></sub>
+    </a>
+  </td>
+  <td align="center">
+    <a href="https://github.com/gundwiguna">
+      <img src="https://avatars0.githubusercontent.com/u/43126599?s=460&v=4" width="25px;" alt="Anggun" />
+      <br /><sub><b>Anggun</b></sub>
+    </a>
+  </td>
+  <td align="center">
+    <a href="https://github.com/gedenata">
+      <img src="https://avatars2.githubusercontent.com/u/1158185?s=460&v=4" width="25px;" alt="Nata" />
+      <br /><sub><b>Nata</b></sub>
+    </a>
+  </td>
+</table>

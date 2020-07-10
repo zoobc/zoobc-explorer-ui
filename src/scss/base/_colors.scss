@@ -1,0 +1,54 @@
+:root {
+  /* Basic colors */
+  --black: #000000;
+  --white: #ffffff;
+  --dark-blue-primary: #0031da;
+  --dark-blue-secondary: #0b3d65;
+  --light-blue: #3498db;
+  --dark-grey: #92adbf;
+  --light-grey: #e7eaf3;
+
+  /* Main colors */
+  --color-black: var(--black);
+  --color-white: var(--white);
+
+  --color-primary-dark: var(--dark-blue-primary);
+  --color-primary-light: var(--light-blue);
+  --color-secondary-dark: var(--dark-blue-secondary);
+  --color-secondary-light: var(--dark-grey);
+  --color-secondary-solitude: var(--light-grey);
+
+  /* Background colors */
+  --color-primary-bg: var(--color-secondary-dark);
+  --color-secondary-bg: var(--color-secondary-solitude);
+  --color-collapse-bg: var(--color-secondary-light);
+
+  /* Button colors */
+  --color-primary-btn: var(--color-secondary-dark);
+  --color-secondary-btn: var(--color-secondary-light);
+  --color-border-btn: var(--color-primary-light);
+  --color-switch-dark-btn: var(--color-primary-light);
+  --color-switch-light-btn: var(--color-secondary-light);
+
+  /* Text colors */
+  --color-primary-dark-txt: var(--color-black);
+  --color-primary-light-txt: var(--color-white);
+  --color-secondary-grey-txt: var(--color-secondary-light);
+  --color-primary-link-txt: var(--dark-blue-primary);
+  --color-secondary-link-txt: var(--color-secondary-light);
+  --color-passive-txt: var(--color-secondary-light);
+  --color-active-txt: var(--color-primary-light);
+
+  /* Icon colors */
+  --color-socmed-ic: var(--color-white);
+  --color-search-ic: var(--color-secondary-light);
+  --color-clipboard-ic: var(--color-secondary-light);
+  --color-clipboard-hover-ic: var(--color-primary-light);
+
+  /* Card colors */
+  --color-primary-card: var(--color-white);
+
+  /* Line colors */
+  --color-dark-line: var(--color-primary-dark);
+  --color-light-line: var(--color-secondary-light);
+}

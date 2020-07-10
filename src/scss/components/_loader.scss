@@ -1,0 +1,10 @@
+.loader-content {
+  width: 600px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+
+  @include mq-sm {
+    width: 100%;
+  }
+}

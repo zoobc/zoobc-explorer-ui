@@ -1,0 +1,45 @@
+version: 2
+jobs:
+  deploy-staging:
+    docker:
+      - image: circleci/node:8.10
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - '37:8d:8b:24:af:82:09:06:2e:c4:30:d3:15:6b:ef:8d'
+      - run:
+          name: Setup SSH Key Host
+          command: |
+            ssh-keyscan -H ${SSH_HOST} >> ~/.ssh/known_hosts
+      - run:
+          name: Deploy Staging
+          command: |
+            ssh ${SSH_USER}@${SSH_HOST} "cd zoobc-explorer-ui/ && ./deploy-staging.sh"
+  deploy-production:
+    docker:
+      - image: circleci/node:8.10
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - '37:8d:8b:24:af:82:09:06:2e:c4:30:d3:15:6b:ef:8d'
+      - run:
+          name: Setup SSH Key Host
+          command: |
+            ssh-keyscan -H ${SSH_HOST} >> ~/.ssh/known_hosts
+      - run:
+          name: Deploy Production
+          command: |
+            ssh ${SSH_USER}@${SSH_HOST} "cd zoobc-explorer-ui/ && ./deploy-production.sh"
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - deploy-staging:
+          filters:
+            branches:
+              only: develop
+      - deploy-production:
+          filters:
+            branches:
+              only: master

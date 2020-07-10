@@ -1,0 +1,12 @@
+.overview-list {
+  .ant-list-item {
+    border-bottom: none !important;
+    a {
+      color: var(--color-primary-link-txt);
+    }
+    &:nth-child(odd) {
+      background: var(--color-secondary-solitude);
+    }
+  }
+  margin-bottom: 20px !important;
+}

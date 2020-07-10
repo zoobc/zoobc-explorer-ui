@@ -1,0 +1,24 @@
+.hero {
+  position: relative;
+  width: 100%;
+
+  &-content {
+    max-width: 1132px;
+    margin: 64px 0 0 0 !important;
+    border-radius: 4px !important;
+    justify-content: center;
+    text-align: center;
+
+    label.label-search {
+      display: block;
+    }
+
+    .ant-input {
+      padding-left: 40px !important;
+    }
+  }
+
+  &-subtitle {
+    margin: 15px 0 0 0;
+  }
+}

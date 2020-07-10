@@ -1,0 +1,99 @@
+.default-layout {
+  min-height: calc(100vh - 360px) !important;
+  padding-top: 64px;
+  background: var(--color-secondary-solitude) !important;
+}
+
+.home-content {
+  display: block !important;
+  width: 100%;
+  margin-top: 32px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 64px;
+  padding-right: auto;
+  padding-left: auto;
+}
+
+.home-latest {
+  margin: 32px 0 32px 0 !important;
+}
+
+.home-card {
+  border-radius: 4px !important;
+}
+
+.home-col-left {
+  padding-right: 16px !important;
+  padding-left: 0px !important;
+
+  @media (min-width: 576px) {
+    padding-right: 0px !important;
+    padding-bottom: 16px !important;
+  }
+
+  @include mq-sm {
+    padding-right: 0px !important;
+    padding-bottom: 16px !important;
+  }
+
+  @include mq-md {
+    padding-right: 16px !important;
+    padding-left: 0px !important;
+  }
+}
+
+.home-col-right {
+  padding-right: 0px !important;
+  padding-left: 16px !important;
+
+  @media (min-width: 576px) {
+    padding-left: 0px !important;
+  }
+
+  @include mq-sm {
+    padding-left: 0px !important;
+  }
+
+  @include mq-md {
+    padding-right: 0px !important;
+    padding-left: 16px !important;
+  }
+}
+
+.home-row-list {
+  width: 100%;
+  @include mq-lg {
+    font-size: 13px !important;
+  }
+  @include mq-xl {
+    font-size: 14px !important;
+  }
+
+}
+
+.graph {
+  width: 450px;
+  height: 300px;
+
+  &-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  @include mq-md {
+    width: 280px;
+  }
+
+  @include mq-lg {
+    width: 385px;
+  }
+
+  @include mq-xl {
+    width: 450px;
+  }
+
+  @include mq-sm {
+    width: 300px;
+  }
+}
