@@ -21,6 +21,7 @@ import Container from '../components/Container'
 import Hero from '../components/Hero'
 import moment from 'moment'
 import { shortenHash } from '../utils/shorten'
+import Banner from '../components/Banner'
 
 const GET_HOME_DATA = gql`
   query {
@@ -90,6 +91,14 @@ const Home = ({ history }) => {
 
   return (
     <>
+      <div style={{ backgroundColor: 'white', paddingTop: 30 }}>
+        <Container>
+          <Row>
+            <Banner />
+          </Row>
+        </Container>
+      </div>
+
       <Container>
         <Hero />
         <Row className="home-latest">
