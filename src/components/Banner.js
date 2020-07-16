@@ -7,6 +7,7 @@ import { Col } from 'antd'
 import PlayStore from '../assets/images/googleplay.png'
 import AppStore from '../assets/images/appstore.png'
 import BannerImage from '../assets/images/banner.png'
+
 const Banner = () => {
   return (
     <>
@@ -34,14 +35,14 @@ const Banner = () => {
         <div className="banner-button">
           <a
             className="play-store"
-            href="#"
+            href="https://zoobc.app/"
             target="_blank"
             rel="noopener norefferer"
             title="PlayStore"
           >
             <img src={PlayStore} alt="playstore" />
           </a>
-          <a href="#" target="_blank" rel="noopener norefferer" title="AppStore">
+          <a href="https://zoobc.app/" target="_blank" rel="noopener norefferer" title="AppStore">
             <img src={AppStore} alt="appstore" />
           </a>
         </div>
