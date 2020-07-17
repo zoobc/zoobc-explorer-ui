@@ -19,9 +19,10 @@ import {
 
 import Container from '../components/Container'
 import Hero from '../components/Hero'
+import Banner from '../components/Banner'
+
 import moment from 'moment'
 import { shortenHash } from '../utils/shorten'
-import Banner from '../components/Banner'
 
 const GET_HOME_DATA = gql`
   query {

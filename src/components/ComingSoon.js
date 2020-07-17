@@ -3,7 +3,7 @@ import { Modal, Button } from 'antd'
 import comingsoon from '../assets/images/comingsoon.svg'
 import { useTranslation } from 'react-i18next'
 
-const ComingSoon = ({ visible, title, onClose }) => {
+const ComingSoon = ({ visible, title, onClose, content }) => {
   const { t } = useTranslation()
   return (
     <Modal
