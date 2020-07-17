@@ -35,14 +35,19 @@ const Banner = () => {
         <div className="banner-button">
           <a
             className="play-store"
-            href="https://zoobc.app/"
+            href="https://zoobc.app/zoobc-alpha.apk"
             target="_blank"
             rel="noopener norefferer"
             title="PlayStore"
           >
             <img src={PlayStore} alt="playstore" />
           </a>
-          <a href="https://zoobc.app/" target="_blank" rel="noopener norefferer" title="AppStore">
+          <a
+            href="https://testflight.apple.com/join/O1QFINJP"
+            target="_blank"
+            rel="noopener norefferer"
+            title="AppStore"
+          >
             <img src={AppStore} alt="appstore" />
           </a>
         </div>
