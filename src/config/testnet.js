@@ -93,6 +93,7 @@ const testnetClientProd = [
 ]
 
 const testnetClientLocal = [
+  'http://localhost:6969/zoobc/api/v1/graphql',
   'http://localhost:2480/zoobc/api/v1/graphql',
   'http://localhost:2420/zoobc/api/v1/graphql',
   'http://localhost:2481/zoobc/api/v1/graphql',
