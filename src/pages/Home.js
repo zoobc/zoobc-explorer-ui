@@ -1,10 +1,10 @@
 import React from 'react'
+import moment from 'moment'
 import { Card, Button, List, Row, Col } from 'antd'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import { Link } from 'react-router-dom'
 import NumberFormat from 'react-number-format'
-// import { Row, Col } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import {
   LineChart,
@@ -17,12 +17,8 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 
-import Container from '../components/Container'
-import Hero from '../components/Hero'
-import Banner from '../components/Banner'
-
-import moment from 'moment'
 import { shortenHash } from '../utils/shorten'
+import { Container, Hero, Banner, MapNodes } from '../components'
 
 const GET_HOME_DATA = gql`
   query {
@@ -186,6 +182,7 @@ const Home = ({ history }) => {
             </Card>
           </Col>
         </Row>
+
         <Row className="home-latest">
           <Col className="home-col-left" md={{ span: 12 }} sm={{ span: 24 }}>
             <Card className="home-card" bordered={false}>
@@ -260,6 +257,8 @@ const Home = ({ history }) => {
             </Card>
           </Col>
         </Row>
+
+        <MapNodes />
       </Container>
     </>
   )
