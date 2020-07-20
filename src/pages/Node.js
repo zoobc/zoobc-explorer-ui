@@ -134,7 +134,12 @@ const Node = ({ match, history }) => {
                 <DescItem
                   label={t('Registered Block Height')}
                   value={
-                    <Button type="link" onClick={doSearch} style={{ padding: '0px 0px 15px 0px' }}>
+                    <Button
+                      type="link"
+                      size="small"
+                      onClick={doSearch}
+                      style={{ padding: '0px 0px 15px 0px' }}
+                    >
                       {data.node.RegisteredBlockHeight}
                     </Button>
                   }
