@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
-import { Row, Col, Card, Badge, Table, Pagination } from 'antd'
+import { Row, Col, Card, Badge, Table, Pagination, Button } from 'antd'
 import NumberFormat from 'react-number-format'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -133,7 +133,16 @@ const Node = ({ match, history }) => {
                 />
                 <DescItem
                   label={t('Registered Block Height')}
-                  value={<Link onClick={doSearch}>{data.node.RegisteredBlockHeight}</Link>}
+                  value={
+                    <Button
+                      type="link"
+                      size="small"
+                      onClick={doSearch}
+                      style={{ padding: '0px 0px 15px 0px' }}
+                    >
+                      {data.node.RegisteredBlockHeight}
+                    </Button>
+                  }
                 />
                 <DescItem label={t('Participation Score')} value={data.node.ParticipationScore} />
                 <DescItem

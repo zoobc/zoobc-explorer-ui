@@ -41,6 +41,12 @@
     color: var(--color-primary-light-txt);
   }
 
+  .footer-copyright {
+    position: relative;
+    color: var(--color-primary-light-txt);
+    float: right;
+  }
+
   .ant-switch {
     background-color: var(--color-switch-light-btn) !important;
   }
@@ -50,7 +56,8 @@
   }
 
   .footer-social-icons {
-    float: right;
+    float: left;
+    padding-bottom: 15px;
   }
 
   .footer-ext {
@@ -60,7 +67,7 @@
 
   .footer-social-icon {
     color: var(--color-socmed-ic);
-    padding-left: 30px;
+    padding-right: 15px;
     text-decoration: none;
     transition: all 0.4s ease-in-out;
   }
@@ -126,30 +133,14 @@
     }
   }
 
-  .footer-company {
-    float: left;
-    width: 25%;
-    text-align: left;
-  }
-
-  .footer-company-info {
-    padding-left: 0;
-  }
-
-  .footer-company-text {
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0;
-    line-height: 27px;
-    color: var(--color-secondary-link-txt);
-    margin-bottom: 0;
-  }
-
   .footer-col-info {
     float: left;
     width: 25%;
     text-align: left;
-    padding-left: 32px;
+  }
+
+  .footer-image-logo {
+    padding-bottom: 13px;
   }
 
   .footer-collapse {
@@ -212,6 +203,13 @@
       padding-left: 0px;
     }
   }
+
+  .footer-image-logo {
+    padding-bottom: 13px;
+    justify-content: center;
+    display: flex;
+  }
+
   &-copyright {
     h6 {
       color: var(--white);
