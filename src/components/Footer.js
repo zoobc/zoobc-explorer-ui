@@ -94,7 +94,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.com/team/"
               >
-                {t('Team')}
+                {t('team')}
               </a>
             </li>
             <li>
@@ -114,7 +114,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.com/learn-more/"
               >
-                {t('Learn More')}
+                {t('learn more')}
               </a>
             </li>
             <li>
@@ -124,7 +124,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://blockchainzoo.com/press-media/"
               >
-                {t('Press & Media')}
+                {t('press & media')}
               </a>
             </li>
             <li>
@@ -134,7 +134,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.com/contact-us/"
               >
-                {t('Contact us')}
+                {t('contact us')}
               </a>
             </li>
             <li>
@@ -144,7 +144,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.com/WP-latest.pdf"
               >
-                {t('ZooBC White Paper')}
+                {t('zoobc white paper')}
               </a>
             </li>
             <li>
@@ -154,7 +154,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://docs.google.com/document/d/1RHbDHHH0JlAfU8bdgfawbnvlm-Ng_Tq-VA7P-n1p_80/edit#"
               >
-                {t('ZooBC White Paper Live')}
+                {t('zoobc white paper live')}
               </a>
             </li>
           </ul>
@@ -168,7 +168,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.com/"
               >
-                {t('ZooBC')}
+                ZooBC
               </a>
             </li>
             <li>
@@ -178,7 +178,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.com/zoobc-alpha/"
               >
-                {t('ZooBC Alpha')}
+                ZooBC Alpha
               </a>
             </li>
             <li>
@@ -187,7 +187,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.app/"
               >
-                {t('ZooBC Wallet Mobile')}
+                ZooBC Wallet Mobile
               </a>
             </li>
             <li>
@@ -197,7 +197,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.one/login"
               >
-                {t('ZooBC Wallet Web')}
+                ZooBC Wallet Web
               </a>
             </li>
             <li>
@@ -207,7 +207,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.net"
               >
-                {t('ZooBC Explorer')}
+                ZooBC Explorer
               </a>
             </li>
             <li>
@@ -217,7 +217,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.io/"
               >
-                {t('ZooBC Genesis Block')}
+                ZooBC Genesis Block
               </a>
             </li>
           </ul>
@@ -231,7 +231,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.org/"
               >
-                {t('Forum')}
+                {t('forum')}
               </a>
             </li>
             <li>
@@ -241,7 +241,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.how/"
               >
-                {t('Q & A')}
+                {t('q & a')}
               </a>
             </li>
             <li>
@@ -251,7 +251,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.com/support-us/"
               >
-                {t('Support Us')}
+                {t('support us')}
               </a>
             </li>
             <li>
@@ -261,7 +261,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://blockchainzoo.com/blockchain-events/"
               >
-                {t('Events')}
+                {t('events')}
               </a>
             </li>
             <li>
@@ -271,7 +271,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://blogchainzoo.com/join-community/"
               >
-                {t('Join Us')}
+                {t('join us')}
               </a>
             </li>
           </ul>
@@ -442,7 +442,7 @@ const Footer = () => {
           <FooterMobile />
           <Row className="footer-row d-none d-md-block">
             <Col className="footer-col-info">
-              <h3 className="footer-subtitle heading-border">{t('ABOUT ZOOBC')}</h3>
+              <h3 className="footer-subtitle heading-border">{t('about zoobc')}</h3>
               <ul className="footer-list-group mb-0 list-unstyled">
                 <li>
                   <a
@@ -461,7 +461,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.com/team/"
                   >
-                    {t('Team')}
+                    {t('team')}
                   </a>
                 </li>
                 <li>
@@ -481,7 +481,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.com/learn-more/"
                   >
-                    {t('Learn More')}
+                    {t('learn more')}
                   </a>
                 </li>
                 <li>
@@ -491,7 +491,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://blockchainzoo.com/press-media/"
                   >
-                    {t('Press & Media')}
+                    {t('press & media')}
                   </a>
                 </li>
                 <li>
@@ -501,7 +501,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.com/contact-us/"
                   >
-                    {t('Contact us')}
+                    {t('contact us')}
                   </a>
                 </li>
                 <li>
@@ -511,7 +511,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.com/WP-latest.pdf"
                   >
-                    {t('ZooBC White Paper')}
+                    {t('zoobc white paper')}
                   </a>
                 </li>
                 <li>
@@ -521,13 +521,13 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://docs.google.com/document/d/1RHbDHHH0JlAfU8bdgfawbnvlm-Ng_Tq-VA7P-n1p_80/edit#"
                   >
-                    {t('ZooBC White Paper Live')}
+                    {t('zoobc white paper live')}
                   </a>
                 </li>
               </ul>
             </Col>
             <Col className="footer-col-info">
-              <h3 className="footer-subtitle heading-border">{t('GET STARTED')}</h3>
+              <h3 className="footer-subtitle heading-border">{t('get started')}</h3>
               <ul className="footer-list-group mb-0 list-unstyled">
                 <li>
                   <a
@@ -536,7 +536,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.com/"
                   >
-                    {t('ZooBC')}
+                    ZooBC
                   </a>
                 </li>
                 <li>
@@ -546,7 +546,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.com/zoobc-alpha/"
                   >
-                    {t('ZooBC Alpha')}
+                    ZooBC Alpha
                   </a>
                 </li>
                 <li>
@@ -555,7 +555,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.app/"
                   >
-                    {t('ZooBC Wallet Mobile')}
+                    ZooBC Wallet Mobile
                   </a>
                 </li>
                 <li>
@@ -565,7 +565,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.one/login"
                   >
-                    {t('ZooBC Wallet Web')}
+                    ZooBC Wallet Web
                   </a>
                 </li>
                 <li>
@@ -575,7 +575,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.net"
                   >
-                    {t('ZooBC Explorer')}
+                    ZooBC Explorer
                   </a>
                 </li>
                 <li>
@@ -585,13 +585,13 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.io/"
                   >
-                    {t('ZooBC Genesis Block')}
+                    ZooBC Genesis Block
                   </a>
                 </li>
               </ul>
             </Col>
             <Col className="footer-col-info">
-              <h3 className="footer-subtitle heading-border">{t('COMMUNITY')}</h3>
+              <h3 className="footer-subtitle heading-border">{t('community')}</h3>
               <ul className="footer-list-group mb-0 list-unstyled">
                 <li>
                   <a
@@ -600,7 +600,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.org/"
                   >
-                    {t('Forum')}
+                    {t('forum')}
                   </a>
                 </li>
                 <li>
@@ -610,7 +610,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.how/"
                   >
-                    {t('Q & A')}
+                    {t('q & a')}
                   </a>
                 </li>
                 <li>
@@ -620,7 +620,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.com/support-us/"
                   >
-                    {t('Support Us')}
+                    {t('support us')}
                   </a>
                 </li>
                 <li>
@@ -630,7 +630,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://blockchainzoo.com/blockchain-events/"
                   >
-                    {t('Events')}
+                    {t('events')}
                   </a>
                 </li>
                 <li>
@@ -640,7 +640,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://blogchainzoo.com/join-community/"
                   >
-                    {t('Join Us')}
+                    {t('join us')}
                   </a>
                 </li>
               </ul>

@@ -542,5 +542,22 @@
   "Signature 4": "Signature 4",
   "Signature 5": "Signature 5",
   "Multisig Address": "Multisig Address",
-  "Unsigned Transaction Bytes": "Unsigned Transaction Bytes"
+  "Unsigned Transaction Bytes": "Unsigned Transaction Bytes",
+  "about zoobc": "ABOUT ZOOBC",
+  "get started": "GET STARTED",
+  "community": "COMMUNITY",
+  "team": "Team",
+  "learn more": "Learn More",
+  "press & media": "Press & Media",
+  "contact us": "Contact Us",
+  "zoobc white paper": "Zoobc White Paper",
+  "zoobc white paper live": "ZooBC White Paper Live",
+  "forum": "Forum",
+  "q & a": "Q & A",
+  "support us": "Support Us",
+  "events": "Events",
+  "join us": "Join Us",
+  "registered": "Registered",
+  "pending": "Pending",
+  "deleted": "Deleted"
 }
