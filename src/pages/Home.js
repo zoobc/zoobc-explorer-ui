@@ -45,6 +45,24 @@ const GET_HOME_DATA = gql`
       name
       amt
     }
+    maps {
+      NodeID
+      NodePublicKey
+      OwnerAddress
+      RegistryStatus
+      CountryCode
+      CountryName
+      RegionCode
+      RegionName
+      City
+      Latitude
+      Longitude
+      CountryFlagUrl
+      NodeAddress {
+        Address
+        Port
+      }
+    }
   }
 `
 
@@ -258,7 +276,9 @@ const Home = ({ history }) => {
           </Col>
         </Row>
 
-        <MapNodes />
+        {data && data.maps && data.maps.length > 0 && (
+          <MapNodes loading={loading} data={data && data.maps} />
+        )}
       </Container>
     </>
   )
