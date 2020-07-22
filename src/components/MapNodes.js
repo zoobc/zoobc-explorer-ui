@@ -47,13 +47,13 @@ export default function MapNodes({ loading, data }) {
           <div className="text-right">
             <ul className="map-legend">
               <li>
-                <div className="green" /> {t('Registered')}
+                <div className="green" /> {t('registered')}
               </li>
               <li>
-                <div className="yellow" /> {t('Pending')}
+                <div className="yellow" /> {t('pending')}
               </li>
               <li>
-                <div className="red" /> {t('Deleted')}
+                <div className="red" /> {t('deleted')}
               </li>
             </ul>
           </div>
