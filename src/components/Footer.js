@@ -36,11 +36,10 @@ import { store } from '../utils'
 const Footer = () => {
   const { t, i18n } = useTranslation()
   const { selectedTestnet, onChangeSelectedTestnet } = useContext(TestnetContext)
-  // const { onChangeSelectedTestnet } = useContext(TestnetContext)
   const [isOpen, setIsOpen] = useState(false)
   const [isOpenFeedback, setIsOpenFeedback] = useState(false)
   const [isOpenComingSoon, setIsOpenCommingSoon] = useState(false)
-  const [dialogTitle, setDialogTitle] = useState()
+  const [dialogTitle] = useState()
 
   const onSelectNetwork = data => {
     onChangeSelectedTestnet(data)
@@ -71,17 +70,6 @@ const Footer = () => {
         ))}
       </Menu>
     )
-  }
-
-  const onComingSoon = e => {
-    e.preventDefault()
-    setDialogTitle()
-    setIsOpenCommingSoon(true)
-  }
-
-  const onFeedback = e => {
-    e.preventDefault()
-    setIsOpenFeedback(true)
   }
 
   const FooterMobile = () => (
