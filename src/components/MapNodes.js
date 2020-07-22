@@ -1,7 +1,5 @@
 import React from 'react'
 import L from 'leaflet'
-import gql from 'graphql-tag'
-import { useQuery } from '@apollo/react-hooks'
 import { useTranslation } from 'react-i18next'
 import { Row, Col, Card, Spin } from 'antd'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
@@ -35,32 +33,8 @@ const redIcon = new L.Icon({
   shadowSize: [41, 41],
 })
 
-const GET_MAP_DATA = gql`
-  query {
-    maps {
-      NodeID
-      NodePublicKey
-      OwnerAddress
-      RegistryStatus
-      CountryCode
-      CountryName
-      RegionCode
-      RegionName
-      City
-      Latitude
-      Longitude
-      CountryFlagUrl
-      NodeAddress {
-        Address
-        Port
-      }
-    }
-  }
-`
-
-export default function MapNodes() {
+export default function MapNodes({ loading, data }) {
   const { t } = useTranslation()
-  const { loading, data } = useQuery(GET_MAP_DATA)
 
   return (
     <Card className="home-bottom" bordered={false}>
@@ -107,8 +81,7 @@ export default function MapNodes() {
                 <Spin spinning={true} style={{ zIndex: 99 }} />
               ) : (
                 data &&
-                data.maps &&
-                data.maps.map((item, i) => {
+                data.map((item, i) => {
                   const icon =
                     item.RegistryStatus === 0
                       ? greenIcon
