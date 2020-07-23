@@ -1,11 +1,10 @@
 import React from 'react'
 import moment from 'moment'
-import { Card, Button, List, Row, Col } from 'antd'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
-import { Link } from 'react-router-dom'
 import NumberFormat from 'react-number-format'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { Card, Button, List, Row, Col } from 'antd'
+import { useQuery, useSubscription, gql } from '@apollo/client'
 import {
   LineChart,
   Line,
@@ -66,13 +65,27 @@ const GET_HOME_DATA = gql`
   }
 `
 
+const GET_SUBSCRIPTION_BLOCKS = gql`
+  subscription blocks {
+    blocks {
+      BlockID
+      Height
+      Timestamp
+      BlocksmithAddress
+    }
+  }
+`
+
 const Home = ({ history }) => {
   const { t } = useTranslation()
   const { loading, data } = useQuery(GET_HOME_DATA)
+  const subscriptBlocks = useSubscription(GET_SUBSCRIPTION_BLOCKS)
   let blockData = []
   let trxData = []
   let blockGraphData = []
   let trxGraphData = []
+
+  console.log('==subscriptBlocks', subscriptBlocks)
 
   if (!!data) {
     blockData = data.blocks.Blocks.map((block, key) => {

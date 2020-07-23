@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Card, Table, Pagination, Badge } from 'antd'
-import gql from 'graphql-tag'
-import { useQuery } from '@apollo/react-hooks'
+import moment from 'moment'
 import NumberFormat from 'react-number-format'
 import { useTranslation } from 'react-i18next'
-import moment from 'moment'
+import { useQuery, gql } from '@apollo/client'
+import { Row, Col, Card, Table, Pagination, Badge } from 'antd'
 
 import Container from '../components/Container'
 import DescItem from '../components/DescItem'

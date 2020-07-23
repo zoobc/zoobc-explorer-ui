@@ -1,6 +1,5 @@
-import gql from 'graphql-tag'
-import { useLazyQuery } from '@apollo/react-hooks'
 import { getSortString } from '../utils'
+import { useLazyQuery, gql } from '@apollo/client'
 
 const GET_NODES_DATA = gql`
   query getNodes($page: Int, $sorter: String, $tabValue: Int) {

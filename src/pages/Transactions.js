@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Card, Table, Pagination } from 'antd'
-import gql from 'graphql-tag'
-import { useQuery } from '@apollo/react-hooks'
 import { useTranslation } from 'react-i18next'
+import { useQuery, gql } from '@apollo/client'
+import { Row, Col, Card, Table, Pagination } from 'antd'
 
 import { getSortString, isEmptyObject } from '../utils'
 import Container from '../components/Container'

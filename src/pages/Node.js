@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import gql from 'graphql-tag'
-import { useQuery } from '@apollo/react-hooks'
-import { Row, Col, Card, Badge, Table, Pagination, Button } from 'antd'
 import NumberFormat from 'react-number-format'
-import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { useQuery, gql } from '@apollo/client'
+import { Row, Col, Card, Badge, Table, Pagination, Button } from 'antd'
 
 import Container from '../components/Container'
 import DescItem from '../components/DescItem'
