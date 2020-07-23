@@ -42,7 +42,7 @@ const DefaultLayout = ({ history, children, withHero, fluid }) => {
 
       {withHero && (
         <div style={animation ? styles.hingeHero : null}>
-          <Hero className="home-content" />
+          <Hero />
         </div>
       )}
 
