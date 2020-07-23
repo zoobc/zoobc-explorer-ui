@@ -105,19 +105,19 @@ const Home = ({ history }) => {
   }
 
   if (subscriptBlocks && !subscriptBlocks.loading) {
+    const oldBlocks = blockData
     const { data } = subscriptBlocks
     const newBlocks = data.blocks.map(block => ({ key: block.Timestamp, ...block }))
-    const oldBlocks = blockData
     blockData = [...newBlocks, ...oldBlocks.slice(0, blockData.length - newBlocks.length)]
   }
 
   if (subscriptTransactions && !subscriptTransactions.loading) {
+    const oldTrxData = trxData
     const { data } = subscriptTransactions
     const newTrxData = data.transactions.map(transaction => ({
       key: transaction.Timestamp,
       ...transaction,
     }))
-    const oldTrxData = trxData
     blockData = [...newTrxData, ...oldTrxData.slice(0, trxData.length - newTrxData.length)]
   }
 
@@ -130,16 +130,15 @@ const Home = ({ history }) => {
           </Row>
         </Container>
       </div>
-
       <Container>
         <Hero />
-        <Row className="home-latest">
+        <Row className="home-card">
           <Col className="home-col-left" md={{ span: 12 }} sm={{ span: 24 }}>
-            <Card className="home-card" bordered={false}>
-              <h5>
+            <Card bordered={false}>
+              <div className="home-card-title">
                 <i className="bcz-calendar" />
                 <strong>{t('Latest Blocks')}</strong>
-              </h5>
+              </div>
               <TableAnim loading={loading} columns={latestBlockColumns} data={blockData} />
               <Button type="primary" onClick={() => history.push('/blocks')} block>
                 {t('VIEW ALL BLOCKS')}
@@ -147,11 +146,11 @@ const Home = ({ history }) => {
             </Card>
           </Col>
           <Col className="home-col-right" md={{ span: 12 }} sm={{ span: 24 }}>
-            <Card className="home-card" bordered={false}>
-              <h5>
+            <Card bordered={false}>
+              <div className="home-card-title">
                 <i className="bcz-calendar" />
                 <strong>{t('Latest Transactions')}</strong>
-              </h5>
+              </div>
               <TableAnim loading={loading} columns={latestTransactionColumns} data={trxData} />
               <Button type="primary" onClick={() => history.push('/transactions')} block>
                 {t('VIEW ALL TRANSACTIONS')}
@@ -160,13 +159,13 @@ const Home = ({ history }) => {
           </Col>
         </Row>
 
-        <Row className="home-latest">
+        <Row className="home-card">
           <Col className="home-col-left" md={{ span: 12 }} sm={{ span: 24 }}>
-            <Card className="home-card" bordered={false}>
-              <h5>
+            <Card bordered={false}>
+              <div className="home-card-title">
                 <i className="bcz-calendar" />
                 <strong>{t('Latest Block Count in 30 Days')}</strong>
-              </h5>
+              </div>
               <div className="graph">
                 <div className="graph-container">
                   <ResponsiveContainer width="100%" height="100%">
@@ -198,11 +197,11 @@ const Home = ({ history }) => {
             </Card>
           </Col>
           <Col className="home-col-right" md={{ span: 12 }} sm={{ span: 24 }}>
-            <Card className="home-card" bordered={false}>
-              <h5>
+            <Card bordered={false}>
+              <div className="home-card-title">
                 <i className="bcz-calendar" />
                 <strong>{t('Latest Transaction Amount in 30 Days')}</strong>
-              </h5>
+              </div>
               <div className="graph">
                 <div className="graph-container">
                   <ResponsiveContainer width="100%" height="100%">

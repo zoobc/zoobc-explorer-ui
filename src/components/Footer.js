@@ -114,7 +114,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.com/learn-more/"
               >
-                {t('learn more')}
+                {t('About Us')}
               </a>
             </li>
             <li>
@@ -442,7 +442,7 @@ const Footer = () => {
           <FooterMobile />
           <Row className="footer-row d-none d-md-block">
             <Col className="footer-col-info">
-              <h3 className="footer-subtitle heading-border">{t('about zoobc')}</h3>
+              <div className="footer-subtitle heading-border">{t('about zoobc')}</div>
               <ul className="footer-list-group mb-0 list-unstyled">
                 <li>
                   <a
@@ -481,7 +481,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.com/learn-more/"
                   >
-                    {t('learn more')}
+                    {t('About Us')}
                   </a>
                 </li>
                 <li>
@@ -527,7 +527,7 @@ const Footer = () => {
               </ul>
             </Col>
             <Col className="footer-col-info">
-              <h3 className="footer-subtitle heading-border">{t('get started')}</h3>
+              <div className="footer-subtitle heading-border">{t('get started')}</div>
               <ul className="footer-list-group mb-0 list-unstyled">
                 <li>
                   <a
@@ -591,7 +591,7 @@ const Footer = () => {
               </ul>
             </Col>
             <Col className="footer-col-info">
-              <h3 className="footer-subtitle heading-border">{t('community')}</h3>
+              <div className="footer-subtitle heading-border">{t('community')}</div>
               <ul className="footer-list-group mb-0 list-unstyled">
                 <li>
                   <a
