@@ -13,8 +13,9 @@ const setupApolloCLient = uri => {
         return definition.kind === 'OperationDefinition' && definition.operation === 'subscription'
       },
       new WebSocketLink({
+        // uri: 'ws://139.162.44.25:9090/zoobc/api/v1/graphql',
         uri: uri.replace('http', 'ws').replace('https', 'wss'),
-        options: { reconnect: true },
+        options: { reconnect: true, lazy: true, timeout: 20000 },
       }),
       new HttpLink({ uri })
     ),

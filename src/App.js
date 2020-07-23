@@ -4,12 +4,12 @@ import { I18nextProvider } from 'react-i18next'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import i18n from './i18n'
+import clients from './utils/client'
 import NotFound from './pages/Errors/NotFound'
 import Fallback from './components/Fallback'
 import DefaultLayout from './components/DefaultLayout'
 import ErrorBoundary from './components/ErrorBoundary'
 import { AnimationState } from './context/AnimationContext'
-import clients, { defaultClient } from './utils/client'
 import TestnetContext, { TestnetState } from './context/TestnetContext'
 
 const Home = React.lazy(() => import('./pages/Home'))
@@ -24,11 +24,7 @@ const Node = React.lazy(() => import('./pages/Node'))
 
 function ApolloMultiProvider({ children }) {
   const { selectedTestnet } = useContext(TestnetContext)
-  return (
-    <ApolloProvider client={clients[selectedTestnet.value] || defaultClient}>
-      {children}
-    </ApolloProvider>
-  )
+  return <ApolloProvider client={clients[selectedTestnet.value]}>{children}</ApolloProvider>
 }
 
 function App() {

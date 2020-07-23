@@ -372,3 +372,84 @@ export const skippedBlocksmithColumns = [
     key: 'BlocksmithIndex',
   },
 ]
+
+export const latestBlockColumns = [
+  {
+    title: <Title text="Height" />,
+    dataIndex: 'Height',
+    key: 'Height',
+    render(text, record) {
+      return (
+        <Link to={`/blocks/${record.BlockID}`}>
+          <small>{text}</small>
+        </Link>
+      )
+    },
+  },
+  {
+    title: <Title text="Timestamp" />,
+    dataIndex: 'Timestamp',
+    key: 'Timestamp',
+    render(text) {
+      return <small>{moment(text).format('lll')}</small>
+    },
+  },
+  {
+    title: <Title text="Blocksmith Address" />,
+    dataIndex: 'BlocksmithAddress',
+    key: 'BlocksmithAddress',
+    render(text, record) {
+      const skipped = []
+
+      if (Array.isArray(record.SkippedBlocksmiths))
+        record.SkippedBlocksmiths.map(
+          data => !objectUtils.isContainsNullValue(data) && skipped.push(data)
+        )
+
+      return (
+        <div className="blocksmith">
+          <small>
+            <Tooltip title={`${skipped.length} skipped blocksmith`}>
+              <Badge color={getBlocksmithIndicator(skipped.length)} />
+            </Tooltip>
+            <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
+          </small>
+        </div>
+      )
+    },
+  },
+]
+
+export const latestTransactionColumns = [
+  {
+    title: <Title text="Fees" />,
+    dataIndex: 'FeeConversion',
+    key: 'FeeConversion',
+    render(text) {
+      return <small>{renderCurrenncy(text)}</small>
+    },
+  },
+
+  {
+    title: <Title text="Timestamp" />,
+    dataIndex: 'Timestamp',
+    key: 'Timestamp',
+    width: 200,
+    render(text) {
+      return <small>{moment(text).format('lll')}</small>
+    },
+  },
+  {
+    title: <Title text="Transaction ID" />,
+    dataIndex: 'TransactionID',
+    key: 'TransactionID',
+    render(text) {
+      return (
+        <Link to={`/transactions/${text}`}>
+          <small>{text}</small>
+        </Link>
+      )
+    },
+    width: 200,
+  },
+]
