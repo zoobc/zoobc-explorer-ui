@@ -126,16 +126,15 @@ const Home = ({ history }) => {
           </Row>
         </Container>
       </div>
-
       <Container>
         <Hero />
-        <Row className="home-latest">
+        <Row className="home-card">
           <Col className="home-col-left" md={{ span: 12 }} sm={{ span: 24 }}>
-            <Card className="home-card" bordered={false}>
-              <h5>
+            <Card bordered={false}>
+              <div className="home-card-title">
                 <i className="bcz-calendar" />
                 <strong>{t('Latest Blocks')}</strong>
-              </h5>
+              </div>
               <List
                 size="large"
                 loading={loading}
@@ -170,11 +169,11 @@ const Home = ({ history }) => {
             </Card>
           </Col>
           <Col className="home-col-right" md={{ span: 12 }} sm={{ span: 24 }}>
-            <Card className="home-card" bordered={false}>
-              <h5>
+            <Card bordered={false}>
+              <div className="home-card-title">
                 <i className="bcz-calendar" />
                 <strong>{t('Latest Transactions')}</strong>
-              </h5>
+              </div>
               <List
                 size="large"
                 loading={loading}
@@ -214,13 +213,13 @@ const Home = ({ history }) => {
           </Col>
         </Row>
 
-        <Row className="home-latest">
+        <Row className="home-card">
           <Col className="home-col-left" md={{ span: 12 }} sm={{ span: 24 }}>
-            <Card className="home-card" bordered={false}>
-              <h5>
+            <Card bordered={false}>
+              <div className="home-card-title">
                 <i className="bcz-calendar" />
                 <strong>{t('Latest Block Count in 30 Days')}</strong>
-              </h5>
+              </div>
               <div className="graph">
                 <div className="graph-container">
                   <ResponsiveContainer width="100%" height="100%">
@@ -252,11 +251,11 @@ const Home = ({ history }) => {
             </Card>
           </Col>
           <Col className="home-col-right" md={{ span: 12 }} sm={{ span: 24 }}>
-            <Card className="home-card" bordered={false}>
-              <h5>
+            <Card bordered={false}>
+              <div className="home-card-title">
                 <i className="bcz-calendar" />
                 <strong>{t('Latest Transaction Amount in 30 Days')}</strong>
-              </h5>
+              </div>
               <div className="graph">
                 <div className="graph-container">
                   <ResponsiveContainer width="100%" height="100%">

@@ -37,11 +37,11 @@ export default function MapNodes({ loading, data }) {
   const { t } = useTranslation()
 
   return (
-    <Card className="home-bottom" bordered={false}>
-      <h5>
+    <Card className="home-node" bordered={false}>
+      <div className="home-node-title">
         <i className="bcz-calendar" />
         <strong>{t('Node Registration')}</strong>
-      </h5>
+      </div>
       <Row>
         <Col span={24}>
           <div className="text-right">

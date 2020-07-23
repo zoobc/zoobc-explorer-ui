@@ -1,10 +1,7 @@
 .hero {
-  position: relative;
-  width: 100%;
-
   &-content {
     max-width: 1132px;
-    margin: 64px 0 0 0 !important;
+    margin: 32px 0 0 0 !important;
     border-radius: 4px !important;
     justify-content: center;
     text-align: center;
@@ -18,7 +15,12 @@
     }
   }
 
+  &-title {
+    font-size: 2rem;
+    font-weight: bolder;
+  }
   &-subtitle {
     margin: 15px 0 0 0;
+    font-size: 1rem;
   }
 }
