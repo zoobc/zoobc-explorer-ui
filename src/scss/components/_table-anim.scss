@@ -1,0 +1,40 @@
+.table-anim {
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.table-anim .ant-table-thead > tr > th {
+  // background: #e5e5e5;
+  // padding: 10px 8px;
+  display: inline-block;
+}
+.table-anim .ant-table-tbody > tr {
+  background: #fff;
+}
+.table-anim .ant-table-tbody > tr > td {
+  // padding: 10px 8px;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.table-anim .ant-table-thead > tr,
+.table-anim .ant-table-tbody > tr {
+  display: block;
+}
+
+.table-anim .ant-table-thead > tr,
+.table-anim .ant-table-tbody > tr {
+  transition: none;
+}
+.table-anim .ant-table-thead > tr > th:nth-child(1),
+.table-anim .ant-table-tbody > tr > td:nth-child(1) {
+  width: 15%;
+}
+.table-anim .ant-table-thead > tr > th:nth-child(2),
+.table-anim .ant-table-tbody > tr > td:nth-child(2) {
+  width: 35%;
+}
+.table-anim .ant-table-thead > tr > th:nth-child(3),
+.table-anim .ant-table-tbody > tr > td:nth-child(3) {
+  width: 50%;
+}

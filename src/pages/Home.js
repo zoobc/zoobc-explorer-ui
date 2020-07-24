@@ -1,9 +1,6 @@
 import React from 'react'
-import moment from 'moment'
-import NumberFormat from 'react-number-format'
-import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Card, Button, List, Row, Col } from 'antd'
+import { Card, Button, Row, Col } from 'antd'
 import { useQuery, useSubscription, gql } from '@apollo/client'
 import {
   LineChart,
@@ -16,8 +13,8 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 
-import { shortenHash } from '../utils/shorten'
-import { Container, Hero, Banner, MapNodes } from '../components'
+import { Container, Hero, Banner, MapNodes, TableAnim } from '../components'
+import { latestBlockColumns, latestTransactionColumns } from '../config/table-columns'
 
 const GET_HOME_DATA = gql`
   query {
@@ -76,45 +73,52 @@ const GET_SUBSCRIPTION_BLOCKS = gql`
   }
 `
 
+const GET_SUBSCRIPTION_TRANSACTIONS = gql`
+  subscription transactions {
+    transactions {
+      TransactionID
+      Timestamp
+      FeeConversion
+    }
+  }
+`
+
 const Home = ({ history }) => {
   const { t } = useTranslation()
   const { loading, data } = useQuery(GET_HOME_DATA)
   const subscriptBlocks = useSubscription(GET_SUBSCRIPTION_BLOCKS)
+  const subscriptTransactions = useSubscription(GET_SUBSCRIPTION_TRANSACTIONS)
+
   let blockData = []
   let trxData = []
   let blockGraphData = []
   let trxGraphData = []
 
-  console.log('==subscriptBlocks', subscriptBlocks)
-
   if (!!data) {
-    blockData = data.blocks.Blocks.map((block, key) => {
-      return {
-        key,
-        ...block,
-      }
-    })
+    blockGraphData = data.blockGraph.map((bg, key) => ({ key, ...bg }))
+    trxGraphData = data.transactionGraph.map((tg, key) => ({ key, ...tg }))
+    blockData = data.blocks.Blocks.map(block => ({ key: block.Timestamp, ...block }))
+    trxData = data.transactions.Transactions.map(transaction => ({
+      key: transaction.Timestamp,
+      ...transaction,
+    }))
+  }
 
-    trxData = data.transactions.Transactions.map((transaction, key) => {
-      return {
-        key,
-        ...transaction,
-      }
-    })
+  if (subscriptBlocks && !subscriptBlocks.loading) {
+    const oldBlocks = blockData
+    const { data } = subscriptBlocks
+    const newBlocks = data.blocks.map(block => ({ key: block.Timestamp, ...block }))
+    blockData = [...newBlocks, ...oldBlocks.slice(0, blockData.length - newBlocks.length)]
+  }
 
-    blockGraphData = data.blockGraph.map((bg, key) => {
-      return {
-        key,
-        ...bg,
-      }
-    })
-
-    trxGraphData = data.transactionGraph.map((tg, key) => {
-      return {
-        key,
-        ...tg,
-      }
-    })
+  if (subscriptTransactions && !subscriptTransactions.loading) {
+    const oldTrxData = trxData
+    const { data } = subscriptTransactions
+    const newTrxData = data.transactions.map(transaction => ({
+      key: transaction.Timestamp,
+      ...transaction,
+    }))
+    blockData = [...newTrxData, ...oldTrxData.slice(0, trxData.length - newTrxData.length)]
   }
 
   return (
@@ -135,34 +139,7 @@ const Home = ({ history }) => {
                 <i className="bcz-calendar" />
                 <strong>{t('Latest Blocks')}</strong>
               </div>
-              <List
-                size="large"
-                loading={loading}
-                dataSource={blockData}
-                className="overview-list"
-                renderItem={item => (
-                  <List.Item>
-                    <Row className="px-3 home-row-list">
-                      <Col xl={{ span: 12 }} lg={{ span: 10 }} sm={{ span: 24 }}>
-                        <div>
-                          <Link to={`/blocks/${item.BlockID}`}>{item.Height}</Link>
-                        </div>
-                        <div>{moment(item.Timestamp).format('lll')}</div>
-                      </Col>
-                      <Col xl={{ span: 12 }} lg={{ span: 14 }} sm={{ span: 24 }}>
-                        <div>
-                          <strong>{t('Blocksmith Address')}</strong>
-                        </div>
-                        <div>
-                          <Link to={`/accounts/${item.BlocksmithAddress}`}>
-                            {shortenHash(item.BlocksmithAddress, 30)}
-                          </Link>
-                        </div>
-                      </Col>
-                    </Row>
-                  </List.Item>
-                )}
-              />
+              <TableAnim loading={loading} columns={latestBlockColumns} data={blockData} />
               <Button type="primary" onClick={() => history.push('/blocks')} block>
                 {t('VIEW ALL BLOCKS')}
               </Button>
@@ -174,38 +151,7 @@ const Home = ({ history }) => {
                 <i className="bcz-calendar" />
                 <strong>{t('Latest Transactions')}</strong>
               </div>
-              <List
-                size="large"
-                loading={loading}
-                dataSource={trxData}
-                className="overview-list"
-                renderItem={item => (
-                  <List.Item>
-                    <Row className="px-3 home-row-list">
-                      <Col xl={{ span: 12 }} lg={{ span: 14 }} sm={{ span: 24 }}>
-                        <div>
-                          <strong>{t('Transaction ID')}</strong>
-                        </div>
-                        <Link to={`/transactions/${item.TransactionID}`}>{item.TransactionID}</Link>
-                      </Col>
-                      <Col xl={{ span: 12 }} lg={{ span: 10 }} sm={{ span: 24 }}>
-                        <div>
-                          <strong>{t('Fees')}</strong>{' '}
-                          {!!item.FeeConversion && (
-                            <NumberFormat
-                              value={item.FeeConversion}
-                              displayType={'text'}
-                              thousandSeparator={true}
-                              suffix={' ZBC'}
-                            />
-                          )}
-                        </div>
-                        <div>{moment(item.Timestamp).format('lll')}</div>
-                      </Col>
-                    </Row>
-                  </List.Item>
-                )}
-              />
+              <TableAnim loading={loading} columns={latestTransactionColumns} data={trxData} />
               <Button type="primary" onClick={() => history.push('/transactions')} block>
                 {t('VIEW ALL TRANSACTIONS')}
               </Button>
