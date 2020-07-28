@@ -5,10 +5,7 @@ import React from 'react'
 import Radium, { StyleRoot } from 'radium'
 import { slideInDown, fadeIn, flipInY } from 'react-animations'
 import { Col, Typography } from 'antd'
-
-import PlayStore from '../assets/images/googleplay.png'
-import AppStore from '../assets/images/appstore.png'
-import BannerImage from '../assets/images/banner.png'
+import { isWebpSupported } from 'react-image-webp/dist/utils'
 
 const Banner = () => {
   const styles = {
@@ -57,7 +54,11 @@ const Banner = () => {
             rel="noopener norefferer"
             title="PlayStore"
           >
-            <img src={PlayStore} alt="playstore" />
+            {isWebpSupported() ? (
+              <img src={require('../assets/images/googleplay.webp')} alt="googleplaystore" />
+            ) : (
+              <img src={require('../assets/images/googleplay.png')} alt="googleplaystore" />
+            )}
           </a>
           <a
             href="https://testflight.apple.com/join/O1QFINJP"
@@ -65,7 +66,11 @@ const Banner = () => {
             rel="noopener norefferer"
             title="AppStore"
           >
-            <img src={AppStore} alt="appstore" />
+            {isWebpSupported() ? (
+              <img src={require('../assets/images/appstore.webp')} alt="appstore" />
+            ) : (
+              <img src={require('../assets/images/appstore.png')} alt="appstore" />
+            )}
           </a>
         </div>
       </Col>
@@ -76,7 +81,11 @@ const Banner = () => {
         style={{ textAlign: 'end' }}
         className="home-col-right banner-wallet"
       >
-        <img src={BannerImage} alt="wallet" style={styles.flipInY} />
+        {isWebpSupported() ? (
+          <img src={require('../assets/images/banner.webp')} alt="wallet" style={styles.flipInY} />
+        ) : (
+          <img src={require('../assets/images/banner.png')} alt="wallet" style={styles.flipInY} />
+        )}
       </Col>
     </StyleRoot>
   )
