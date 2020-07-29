@@ -78,7 +78,7 @@ const testnetProd = [
   //   value: 'testnet4',
   // },
   {
-    name: 'Testnet 9090',
+    name: 'Dev 9090',
     color: '#dc3545',
     value: 'testnet2',
   },
@@ -100,8 +100,8 @@ const testnetClientProd = [
   // 'https://test1010.zoobc.net/zoobc/api/v1/graphql',
   // 'https://test5858.zoobc.net/zoobc/api/v1/graphql',
   'https://test9090.zoobc.net/zoobc/api/v1/graphql',
-  'http://139.162.44.25:9168/zoobc/api/v1/graphql',
-  'http://139.162.44.25:9168/zoobc/api/v1/graphql',
+  'https://demo9168.zoobc.net/zoobc/api/v1/graphql',
+  'https://exp9181.zoobc.net/zoobc/api/v1/graphql',
 ]
 
 const testnetClientLocal = [
