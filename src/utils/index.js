@@ -3,6 +3,7 @@ import { getUnique } from './validate'
 import store from './store'
 import objectUtils from './object'
 import { getSortString, getSortObject, getSortOrder, isEmptyObject, isObject } from './util'
+import encryption from './encryption'
 
 export {
   apiGet,
@@ -16,4 +17,5 @@ export {
   isObject,
   store,
   objectUtils,
+  encryption
 }
