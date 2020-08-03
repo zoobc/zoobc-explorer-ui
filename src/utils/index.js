@@ -17,5 +17,5 @@ export {
   isObject,
   store,
   objectUtils,
-  encryption
+  encryption,
 }
