@@ -20,7 +20,7 @@ const GET_TRXS_DATA = gql`
         TransactionType
         Sender
         Recipient
-        # Confirmations
+        Status
         FeeConversion
         TransactionHash
         MultisigChild
@@ -45,6 +45,7 @@ const GET_TRXS_DATA = gql`
           Sender
           Recipient
           FeeConversion
+          Status
         }
         EscrowTransaction {
           TransactionID
@@ -57,6 +58,7 @@ const GET_TRXS_DATA = gql`
           Sender
           Recipient
           FeeConversion
+          Status
         }
       }
       Paginate {
@@ -109,8 +111,8 @@ const Transactions = () => {
             ? UpdateNodeRegistration.LockedBalanceConversion
             : '0',
           children:
-            (trx.MultisigChild && trx.MultiSignatureTransactions) ||
-            (trx.EscrowTransaction && [trx.EscrowTransaction]),
+            (trx.MultisigChild ? [...trx.MultiSignatureTransactions] : null) ||
+            (trx.EscrowTransaction ? [trx.EscrowTransaction] : null),
         }
       })
 
