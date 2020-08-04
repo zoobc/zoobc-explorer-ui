@@ -14,9 +14,9 @@ const createLink = uri => {
   const consumerSecret = process.env.REACT_APP_GRAPHQL_CLIENT_SECRET || 'client-secret-key'
   const signature = encryption.hmacEncrypt(`${consumerId}&${timestamp}`, consumerSecret)
   const headers = {
-    'X-timestamp': timestamp,
-    'X-cons-id': consumerId,
-    'X-signature': signature,
+    'x-timestamp': timestamp,
+    'x-cons-id': consumerId,
+    'x-signature': signature,
   }
   const httpLink = new HttpLink({ uri, headers })
 
