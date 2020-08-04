@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useContext } from 'react'
 import { withRouter } from 'react-router-dom'
-import { Layout, Menu, Input, Icon, Tooltip, Spin, Button, Drawer } from 'antd'
+import { Layout, Menu, Input, Icon, Tooltip, Spin, Button, Drawer, Dropdown } from 'antd'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
@@ -11,6 +11,8 @@ import zoobcLogo from '../assets/images/logo-zoobc.svg'
 import ComingSoon from './ComingSoon'
 import AnimationContext from '../context/AnimationContext'
 import FormFeedback from './FormFeedback'
+import testnet from '../config/testnet'
+import TestnetContext from '../context/TestnetContext'
 
 const { Search } = Input
 
@@ -20,6 +22,7 @@ const Header = ({ history, location, fluid }) => {
   const { t } = useTranslation()
   const [keyword, setKeyword] = useState('')
   const { onChangeAnimation } = useContext(AnimationContext)
+  const { selectedTestnet, onChangeSelectedTestnet } = useContext(TestnetContext)
   const [isOpenDialog, setIsOpenDialog] = useState(false)
   const [isOpenDrawer, setIsOpenDraw] = useState(false)
   const [isOpenFeedBack, setIsOpenFeedBack] = useState(false)
@@ -55,6 +58,21 @@ const Header = ({ history, location, fluid }) => {
     setIsOpenFeedBack(true)
   }
 
+  const onSelectNetwork = data => {
+    onChangeSelectedTestnet(data)
+    window.location.reload()
+  }
+
+  const TesnetMenuDropdown = (
+    <Menu>
+      {testnet.map((network, key) => (
+        <Menu.Item key={key} onClick={() => onSelectNetwork(network)}>
+          {network.name}
+        </Menu.Item>
+      ))}
+    </Menu>
+  )
+
   return (
     <>
       <Layout.Header className="header">
@@ -63,7 +81,12 @@ const Header = ({ history, location, fluid }) => {
             <img src={zoobcLogo} alt="zoobc-logo" />
             <div className="header-logo-name">
               <div className="logo-text-name">ZooBC Explorer</div>
-              <div className="logo-text-version">Alpha - Version 0.1</div>
+              {/* <div className="logo-text-version">Alpha - Version 0.1</div> */}
+              <Dropdown overlay={TesnetMenuDropdown}>
+                <span className="logo-text-version">
+                  {selectedTestnet.name} <Icon type="down" />
+                </span>
+              </Dropdown>
             </div>
           </Link>
           <div className="navbar-left d-none d-lg-block">
