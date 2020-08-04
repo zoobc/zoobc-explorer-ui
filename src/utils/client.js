@@ -2,11 +2,23 @@ import { WebSocketLink } from '@apollo/client/link/ws'
 import { onError } from '@apollo/client/link/error'
 import { getMainDefinition } from '@apollo/client/utilities'
 import { ApolloClient, ApolloLink, split, HttpLink, InMemoryCache } from '@apollo/client'
+import moment from 'moment'
+import encryption from './encryption'
 
 import { testnetClient } from '../config/testnet'
 
 const createLink = uri => {
-  const httpLink = new HttpLink({ uri })
+  /** adding security header */
+  const timestamp = moment.utc().unix() - moment.utc('1970-01-01 00:00:00').unix()
+  const consumerId = process.env.REACT_APP_GRAPHQL_CLIENT_ID || '1234567890'
+  const consumerSecret = process.env.REACT_APP_GRAPHQL_CLIENT_SECRET || 'client-secret-key'
+  const signature = encryption.hmacEncrypt(`${consumerId}&${timestamp}`, consumerSecret)
+  const headers = {
+    'X-timestamp': timestamp,
+    'X-cons-id': consumerId,
+    'X-signature': signature,
+  }
+  const httpLink = new HttpLink({ uri, headers })
 
   const wsLink = new WebSocketLink({
     uri: uri
