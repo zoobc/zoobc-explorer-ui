@@ -1,20 +1,8 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import {
-  Switch,
-  Menu,
-  Dropdown,
-  Avatar,
-  Layout,
-  Row,
-  Col,
-  List,
-  Button,
-  Drawer,
-  Collapse,
-} from 'antd'
+import { Switch, Menu, Dropdown, Avatar, Layout, Row, Col, Collapse } from 'antd'
 import Container from './Container'
 import languages from '../languages'
 
@@ -27,25 +15,15 @@ import iconLinkedin from '../assets/images/linkedin.svg'
 import iconTwitter from '../assets/images/twitter.svg'
 import zoobcLogoFooter from '../assets/images/logo-zoobc-footer.svg'
 import bczLogoFooter from '../assets/images/logo-bcz-footer.svg'
-import TestnetContext from '../context/TestnetContext'
-import testnet from '../config/testnet'
 import FormFeedback from './FormFeedback'
 import ComingSoon from './ComingSoon'
 import { store } from '../utils'
 
 const Footer = () => {
   const { t, i18n } = useTranslation()
-  const { selectedTestnet, onChangeSelectedTestnet } = useContext(TestnetContext)
-  const [isOpen, setIsOpen] = useState(false)
   const [isOpenFeedback, setIsOpenFeedback] = useState(false)
   const [isOpenComingSoon, setIsOpenCommingSoon] = useState(false)
   const [dialogTitle] = useState()
-
-  const onSelectNetwork = data => {
-    onChangeSelectedTestnet(data)
-    setIsOpen(false)
-    window.location.reload()
-  }
 
   const selectedLang = () => {
     const getLang = languages.filter(lang => lang.value === i18n.language)[0]
@@ -428,9 +406,6 @@ const Footer = () => {
             {selectedLang().label}
           </p>
         </Dropdown>
-        <Button className="ml-3" type="primary" size="small" onClick={() => setIsOpen(true)}>
-          {t('Network')}: {selectedTestnet.name}
-        </Button>
       </div>
     </div>
   )
@@ -803,9 +778,6 @@ const Footer = () => {
                 {selectedLang().label}
               </p>
             </Dropdown>
-            <Button className="ml-3" type="primary" size="small" onClick={() => setIsOpen(true)}>
-              {t('Network')}: {selectedTestnet.name}
-            </Button>
           </Row>
         </Container>
       </Layout.Footer>
@@ -814,39 +786,6 @@ const Footer = () => {
         title={dialogTitle}
         onClose={() => setIsOpenCommingSoon(false)}
       />
-      <Drawer
-        title={t('Select Network')}
-        placement="right"
-        onClose={() => setIsOpen(false)}
-        visible={isOpen}
-        destroyOnClose={true}
-      >
-        <List
-          itemLayout="horizontal"
-          dataSource={testnet}
-          renderItem={item => (
-            <List.Item>
-              <Button
-                type="link"
-                size="large"
-                className="d-flex align-items-center p-0"
-                block
-                onClick={() => onSelectNetwork(item)}
-              >
-                <Avatar
-                  size="large"
-                  className="mr-2"
-                  style={{ backgroundColor: item.color }}
-                  alt="item-name"
-                >
-                  {item.name}
-                </Avatar>
-                <p className="mb-0">{item.name}</p>
-              </Button>
-            </List.Item>
-          )}
-        />
-      </Drawer>
       <FormFeedback
         visible={isOpenFeedback}
         title="Feedback"
