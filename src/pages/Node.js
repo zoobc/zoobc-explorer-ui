@@ -19,13 +19,8 @@ const GET_NODE_DATA = gql`
       NodePublicKey
       OwnerAddress
       NodeAddressInfo {
-        NodeID
         Address
         Port
-        BlockHeight
-        BlockHash
-        Status
-        Signature
       }
       LockedFunds
       RegisteredBlockHeight

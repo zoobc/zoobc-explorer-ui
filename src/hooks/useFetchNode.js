@@ -3,16 +3,16 @@ import { useLazyQuery, gql } from '@apollo/client'
 
 const GET_NODES_DATA = gql`
   query getNodes($page: Int, $sorter: String, $tabValue: Int) {
-    nodes(page: $page, limit: 15, order: $sorter, RegistryStatus: $tabValue) {
+    nodes(page: $page, limit: 15, order: $sorter, RegistrationStatus: $tabValue) {
       Nodes {
         NodePublicKey
         OwnerAddress
-        NodeAddress {
+        NodeAddressInfo {
           Address
           Port
         }
         LockedFunds
-        RegistryStatus
+        RegistrationStatus
         ParticipationScore
       }
       Paginate {

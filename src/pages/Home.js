@@ -55,13 +55,8 @@ const GET_HOME_DATA = gql`
       Longitude
       CountryFlagUrl
       NodeAddressInfo {
-        NodeID
         Address
         Port
-        BlockHeight
-        BlockHash
-        Status
-        Signature
       }
     }
   }
