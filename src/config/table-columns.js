@@ -319,8 +319,8 @@ export const nodeColumns = [
   },
   {
     title: <Title text="Status" />,
-    dataIndex: 'RegistryStatus',
-    key: 'RegistryStatus',
+    dataIndex: 'RegistrationStatus',
+    key: 'RegistrationStatus',
     render(text) {
       return (
         !!text.toString() &&

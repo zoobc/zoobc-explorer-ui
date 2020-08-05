@@ -18,14 +18,19 @@ const GET_NODE_DATA = gql`
     node(NodePublicKey: $NodePublicKey) {
       NodePublicKey
       OwnerAddress
-      NodeAddress {
+      NodeAddressInfo {
+        NodeID
         Address
         Port
+        BlockHeight
+        BlockHash
+        Status
+        Signature
       }
       LockedFunds
       RegisteredBlockHeight
       ParticipationScore
-      RegistryStatus
+      RegistrationStatus
       BlocksFunds
       RewardsPaid
     }
@@ -146,11 +151,11 @@ const Node = ({ match, history }) => {
                 <DescItem label={t('Participation Score')} value={data.node.ParticipationScore} />
                 <DescItem
                   label={t('Registry Status')}
-                  // value={data.node.RegistryStatus === true ? 'Registered' : 'In Queue'}
+                  // value={data.node.RegistrationStatus === true ? 'Registered' : 'In Queue'}
                   value={
-                    data.node.RegistryStatus === 0
+                    data.node.RegistrationStatus === 0
                       ? 'Registered'
-                      : data.node.RegistryStatus === 1
+                      : data.node.RegistrationStatus === 1
                       ? 'In Queue'
                       : 'Stray'
                   }
