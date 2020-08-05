@@ -83,9 +83,9 @@ export default function MapNodes({ loading, data }) {
                 data &&
                 data.map((item, i) => {
                   const icon =
-                    item.RegistryStatus === 0
+                    item.RegistrationStatus === 0
                       ? greenIcon
-                      : item.RegistryStatus === 1
+                      : item.RegistrationStatus === 1
                       ? yellowIcon
                       : redIcon
 
@@ -97,10 +97,14 @@ export default function MapNodes({ loading, data }) {
                     >
                       <Popup>
                         <small>
-                          <strong>
-                            {item.NodeAddress.Address}:{item.NodeAddress.Port}
-                          </strong>
-                          <br />
+                          {item.NodeAddressInfo != null && (
+                            <>
+                              <strong>
+                                {item.NodeAddressInfo.Address}:{item.NodeAddressInfo.Port}
+                              </strong>
+                              <br />
+                            </>
+                          )}
                           Country: {item.CountryName}&nbsp;&nbsp;
                           <img src={item.CountryFlagUrl} alt="flag" style={{ height: '12px' }} />
                           <br />

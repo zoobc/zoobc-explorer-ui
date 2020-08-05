@@ -45,7 +45,7 @@ const GET_HOME_DATA = gql`
       NodeID
       NodePublicKey
       OwnerAddress
-      RegistryStatus
+      RegistrationStatus
       CountryCode
       CountryName
       RegionCode
@@ -54,7 +54,7 @@ const GET_HOME_DATA = gql`
       Latitude
       Longitude
       CountryFlagUrl
-      NodeAddress {
+      NodeAddressInfo {
         Address
         Port
       }
