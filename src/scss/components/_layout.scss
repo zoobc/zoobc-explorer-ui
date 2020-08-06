@@ -4,27 +4,24 @@
   background: var(--color-secondary-solitude) !important;
 }
 
-.home-content {
-  display: block !important;
-  width: 100%;
-  margin-top: 32px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-top: 64px;
-  padding-right: auto;
-  padding-left: auto;
-}
+.home {
+  &-card {
+    margin-top: 32px;
 
-.home-latest {
-  margin: 32px 0 32px 0 !important;
-}
+    &-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+  }
 
-.home-card {
-  border-radius: 4px !important;
-}
+  &-node {
+    margin: 32px 0 32px !important;
 
-.home-bottom {
-  margin-bottom: 64px !important;
+    &-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+  }
 }
 
 .home-col-left {
@@ -73,7 +70,6 @@
   @include mq-xl {
     font-size: 14px !important;
   }
-
 }
 
 .graph {

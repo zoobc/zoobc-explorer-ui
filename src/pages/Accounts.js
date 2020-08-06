@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Card, Table, Pagination } from 'antd'
-import { useQuery } from '@apollo/react-hooks'
 import { useTranslation } from 'react-i18next'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
+import { Row, Col, Card, Table, Pagination } from 'antd'
 
-import { getSortString, isEmptyObject } from '../utils'
 import Container from '../components/Container'
+import { getSortString, isEmptyObject } from '../utils'
 import { accountColumns } from '../config/table-columns'
 
 const defaultSort = { columnKey: 'AccountAddress', order: 'ascend' }

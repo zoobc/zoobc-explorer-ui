@@ -1,12 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Card, Table, Pagination, Collapse, Badge } from 'antd'
-import gql from 'graphql-tag'
-import { useQuery } from '@apollo/react-hooks'
 import moment from 'moment'
 import NumberFormat from 'react-number-format'
-import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { useQuery, gql } from '@apollo/client'
+import { Row, Col, Card, Table, Pagination, Collapse, Badge } from 'antd'
 
 import Container from '../components/Container'
 import DescItem from '../components/DescItem'
@@ -67,6 +66,7 @@ const GET_TRX_BY_BLOCK = gql`
         FeeConversion
         TransactionHash
         MultisigChild
+        Status
         SendMoney {
           AmountConversion
         }
@@ -88,6 +88,7 @@ const GET_TRX_BY_BLOCK = gql`
           Sender
           Recipient
           FeeConversion
+          Status
         }
         EscrowTransaction {
           TransactionID
@@ -100,6 +101,7 @@ const GET_TRX_BY_BLOCK = gql`
           Sender
           Recipient
           FeeConversion
+          Status
         }
       }
       Paginate {
@@ -190,8 +192,8 @@ const Block = ({ match }) => {
             ? UpdateNodeRegistration.LockedBalanceConversion
             : '0',
           children:
-            (trx.MultisigChild && trx.MultiSignatureTransactions) ||
-            (trx.EscrowTransaction && [trx.EscrowTransaction]),
+            (trx.MultisigChild ? [...trx.MultiSignatureTransactions] : null) ||
+            (trx.EscrowTransaction ? [trx.EscrowTransaction] : null),
         }
       })
 

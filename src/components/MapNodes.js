@@ -1,7 +1,5 @@
 import React from 'react'
 import L from 'leaflet'
-import gql from 'graphql-tag'
-import { useQuery } from '@apollo/react-hooks'
 import { useTranslation } from 'react-i18next'
 import { Row, Col, Card, Spin } from 'antd'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
@@ -35,51 +33,27 @@ const redIcon = new L.Icon({
   shadowSize: [41, 41],
 })
 
-const GET_MAP_DATA = gql`
-  query {
-    maps {
-      NodeID
-      NodePublicKey
-      OwnerAddress
-      RegistryStatus
-      CountryCode
-      CountryName
-      RegionCode
-      RegionName
-      City
-      Latitude
-      Longitude
-      CountryFlagUrl
-      NodeAddress {
-        Address
-        Port
-      }
-    }
-  }
-`
-
-export default function MapNodes() {
+export default function MapNodes({ loading, data }) {
   const { t } = useTranslation()
-  const { loading, data } = useQuery(GET_MAP_DATA)
 
   return (
-    <Card className="home-bottom" bordered={false}>
-      <h5>
+    <Card className="home-node" bordered={false}>
+      <div className="home-node-title">
         <i className="bcz-calendar" />
         <strong>{t('Node Registration')}</strong>
-      </h5>
+      </div>
       <Row>
         <Col span={24}>
           <div className="text-right">
             <ul className="map-legend">
               <li>
-                <div className="green" /> {t('Registered')}
+                <div className="green" /> {t('registered')}
               </li>
               <li>
-                <div className="yellow" /> {t('Pending')}
+                <div className="yellow" /> {t('pending')}
               </li>
               <li>
-                <div className="red" /> {t('Deleted')}
+                <div className="red" /> {t('deleted')}
               </li>
             </ul>
           </div>
@@ -107,12 +81,11 @@ export default function MapNodes() {
                 <Spin spinning={true} style={{ zIndex: 99 }} />
               ) : (
                 data &&
-                data.maps &&
-                data.maps.map((item, i) => {
+                data.map((item, i) => {
                   const icon =
-                    item.RegistryStatus === 0
+                    item.RegistrationStatus === 0
                       ? greenIcon
-                      : item.RegistryStatus === 1
+                      : item.RegistrationStatus === 1
                       ? yellowIcon
                       : redIcon
 
@@ -124,10 +97,14 @@ export default function MapNodes() {
                     >
                       <Popup>
                         <small>
-                          <strong>
-                            {item.NodeAddress.Address}:{item.NodeAddress.Port}
-                          </strong>
-                          <br />
+                          {item.NodeAddressInfo != null && (
+                            <>
+                              <strong>
+                                {item.NodeAddressInfo.Address}:{item.NodeAddressInfo.Port}
+                              </strong>
+                              <br />
+                            </>
+                          )}
                           Country: {item.CountryName}&nbsp;&nbsp;
                           <img src={item.CountryFlagUrl} alt="flag" style={{ height: '12px' }} />
                           <br />

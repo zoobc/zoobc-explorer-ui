@@ -1,11 +1,7 @@
 import React from 'react'
-import moment from 'moment'
-import { Card, Button, List, Row, Col } from 'antd'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
-import { Link } from 'react-router-dom'
-import NumberFormat from 'react-number-format'
 import { useTranslation } from 'react-i18next'
+import { Card, Button, Row, Col } from 'antd'
+import { useQuery, useSubscription, gql } from '@apollo/client'
 import {
   LineChart,
   Line,
@@ -17,8 +13,8 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 
-import { shortenHash } from '../utils/shorten'
-import { Container, Hero, Banner, MapNodes } from '../components'
+import { Container, Hero, Banner, MapNodes, TableAnim } from '../components'
+import { latestBlockColumns, latestTransactionColumns } from '../config/table-columns'
 
 const GET_HOME_DATA = gql`
   query {
@@ -45,45 +41,84 @@ const GET_HOME_DATA = gql`
       name
       amt
     }
+    maps {
+      NodeID
+      NodePublicKey
+      OwnerAddress
+      RegistrationStatus
+      CountryCode
+      CountryName
+      RegionCode
+      RegionName
+      City
+      Latitude
+      Longitude
+      CountryFlagUrl
+      NodeAddressInfo {
+        Address
+        Port
+      }
+    }
+  }
+`
+
+const GET_SUBSCRIPTION_BLOCKS = gql`
+  subscription blocks {
+    blocks {
+      BlockID
+      Height
+      Timestamp
+      BlocksmithAddress
+    }
+  }
+`
+
+const GET_SUBSCRIPTION_TRANSACTIONS = gql`
+  subscription transactions {
+    transactions {
+      TransactionID
+      Timestamp
+      FeeConversion
+    }
   }
 `
 
 const Home = ({ history }) => {
   const { t } = useTranslation()
   const { loading, data } = useQuery(GET_HOME_DATA)
+  const subscriptBlocks = useSubscription(GET_SUBSCRIPTION_BLOCKS)
+  const subscriptTransactions = useSubscription(GET_SUBSCRIPTION_TRANSACTIONS)
+
   let blockData = []
   let trxData = []
   let blockGraphData = []
   let trxGraphData = []
 
   if (!!data) {
-    blockData = data.blocks.Blocks.map((block, key) => {
-      return {
-        key,
-        ...block,
-      }
-    })
+    blockGraphData = data.blockGraph.map((bg, key) => ({ key, ...bg }))
+    trxGraphData = data.transactionGraph.map((tg, key) => ({ key, ...tg }))
+    blockData = data.blocks.Blocks.map(block => ({ key: block.Timestamp, ...block }))
+    trxData = data.transactions.Transactions.map(transaction => ({
+      key: transaction.Timestamp,
+      ...transaction,
+    }))
+  }
 
-    trxData = data.transactions.Transactions.map((transaction, key) => {
-      return {
-        key,
-        ...transaction,
-      }
-    })
+  if (subscriptBlocks && !subscriptBlocks.loading) {
+    const oldBlocks = blockData
+    const { data } = subscriptBlocks
+    const newBlocks = data.blocks.map(block => ({ key: block.Timestamp, ...block }))
+    blockData = [...newBlocks, ...oldBlocks.slice(0, blockData.length - newBlocks.length)]
+  }
 
-    blockGraphData = data.blockGraph.map((bg, key) => {
-      return {
-        key,
-        ...bg,
-      }
-    })
-
-    trxGraphData = data.transactionGraph.map((tg, key) => {
-      return {
-        key,
-        ...tg,
-      }
-    })
+  if (subscriptTransactions && !subscriptTransactions.loading) {
+    const oldTrxData = trxData
+    const { data } = subscriptTransactions
+    const newTrxData = data.transactions.map(transaction => ({
+      key: transaction.Timestamp,
+      ...transaction,
+    }))
+    blockData = [...newTrxData, ...oldTrxData.slice(0, trxData.length - newTrxData.length)]
   }
 
   return (
@@ -95,87 +130,28 @@ const Home = ({ history }) => {
           </Row>
         </Container>
       </div>
-
       <Container>
         <Hero />
-        <Row className="home-latest">
+        <Row className="home-card">
           <Col className="home-col-left" md={{ span: 12 }} sm={{ span: 24 }}>
-            <Card className="home-card" bordered={false}>
-              <h5>
+            <Card bordered={false}>
+              <div className="home-card-title">
                 <i className="bcz-calendar" />
                 <strong>{t('Latest Blocks')}</strong>
-              </h5>
-              <List
-                size="large"
-                loading={loading}
-                dataSource={blockData}
-                className="overview-list"
-                renderItem={item => (
-                  <List.Item>
-                    <Row className="px-3 home-row-list">
-                      <Col xl={{ span: 12 }} lg={{ span: 10 }} sm={{ span: 24 }}>
-                        <div>
-                          <Link to={`/blocks/${item.BlockID}`}>{item.Height}</Link>
-                        </div>
-                        <div>{moment(item.Timestamp).format('lll')}</div>
-                      </Col>
-                      <Col xl={{ span: 12 }} lg={{ span: 14 }} sm={{ span: 24 }}>
-                        <div>
-                          <strong>{t('Blocksmith Address')}</strong>
-                        </div>
-                        <div>
-                          <Link to={`/accounts/${item.BlocksmithAddress}`}>
-                            {shortenHash(item.BlocksmithAddress, 30)}
-                          </Link>
-                        </div>
-                      </Col>
-                    </Row>
-                  </List.Item>
-                )}
-              />
+              </div>
+              <TableAnim loading={loading} columns={latestBlockColumns} data={blockData} />
               <Button type="primary" onClick={() => history.push('/blocks')} block>
                 {t('VIEW ALL BLOCKS')}
               </Button>
             </Card>
           </Col>
           <Col className="home-col-right" md={{ span: 12 }} sm={{ span: 24 }}>
-            <Card className="home-card" bordered={false}>
-              <h5>
+            <Card bordered={false}>
+              <div className="home-card-title">
                 <i className="bcz-calendar" />
                 <strong>{t('Latest Transactions')}</strong>
-              </h5>
-              <List
-                size="large"
-                loading={loading}
-                dataSource={trxData}
-                className="overview-list"
-                renderItem={item => (
-                  <List.Item>
-                    <Row className="px-3 home-row-list">
-                      <Col xl={{ span: 12 }} lg={{ span: 14 }} sm={{ span: 24 }}>
-                        <div>
-                          <strong>{t('Transaction ID')}</strong>
-                        </div>
-                        <Link to={`/transactions/${item.TransactionID}`}>{item.TransactionID}</Link>
-                      </Col>
-                      <Col xl={{ span: 12 }} lg={{ span: 10 }} sm={{ span: 24 }}>
-                        <div>
-                          <strong>{t('Fees')}</strong>{' '}
-                          {!!item.FeeConversion && (
-                            <NumberFormat
-                              value={item.FeeConversion}
-                              displayType={'text'}
-                              thousandSeparator={true}
-                              suffix={' ZBC'}
-                            />
-                          )}
-                        </div>
-                        <div>{moment(item.Timestamp).format('lll')}</div>
-                      </Col>
-                    </Row>
-                  </List.Item>
-                )}
-              />
+              </div>
+              <TableAnim loading={loading} columns={latestTransactionColumns} data={trxData} />
               <Button type="primary" onClick={() => history.push('/transactions')} block>
                 {t('VIEW ALL TRANSACTIONS')}
               </Button>
@@ -183,13 +159,13 @@ const Home = ({ history }) => {
           </Col>
         </Row>
 
-        <Row className="home-latest">
+        <Row className="home-card">
           <Col className="home-col-left" md={{ span: 12 }} sm={{ span: 24 }}>
-            <Card className="home-card" bordered={false}>
-              <h5>
+            <Card bordered={false}>
+              <div className="home-card-title">
                 <i className="bcz-calendar" />
                 <strong>{t('Latest Block Count in 30 Days')}</strong>
-              </h5>
+              </div>
               <div className="graph">
                 <div className="graph-container">
                   <ResponsiveContainer width="100%" height="100%">
@@ -221,11 +197,11 @@ const Home = ({ history }) => {
             </Card>
           </Col>
           <Col className="home-col-right" md={{ span: 12 }} sm={{ span: 24 }}>
-            <Card className="home-card" bordered={false}>
-              <h5>
+            <Card bordered={false}>
+              <div className="home-card-title">
                 <i className="bcz-calendar" />
                 <strong>{t('Latest Transaction Amount in 30 Days')}</strong>
-              </h5>
+              </div>
               <div className="graph">
                 <div className="graph-container">
                   <ResponsiveContainer width="100%" height="100%">
@@ -258,7 +234,9 @@ const Home = ({ history }) => {
           </Col>
         </Row>
 
-        <MapNodes />
+        {data && data.maps && data.maps.length > 0 && (
+          <MapNodes loading={loading} data={data && data.maps} />
+        )}
       </Container>
     </>
   )

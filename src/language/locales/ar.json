@@ -542,5 +542,19 @@
   "Signature 4": "التوقيع ٤",
   "Signature 5": "التوقيع ٥",
   "Multisig Address": "عنوان متعدد التوقيع",
-  "Unsigned Transaction Bytes": "بايت المعاملات غير الموقعة"
+  "Unsigned Transaction Bytes": "بايت المعاملات غير الموقعة",
+  "team": "فريق",
+  "learn more": "أعرف أكثر",
+  "press & media": "الاعلام الصحافي",
+  "contact us": "اتصل بنا",
+  "zoobc white paper": "تقرير رسمي زو بي سي",
+  "zoobc white paper live": "تقرير رسمي زو بي سي مباشر",
+  "forum": "منتدى",
+  "q & a": "سؤال وجواب",
+  "support us": "ادعمنا",
+  "events": "حدث",
+  "join us": "انضم إلينا",
+  "registered": "مسجل",
+  "pending": "قيد الانتظار",
+  "deleted": "تم الحذف"
 }

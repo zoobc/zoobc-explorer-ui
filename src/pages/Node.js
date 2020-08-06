@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import gql from 'graphql-tag'
-import { useQuery } from '@apollo/react-hooks'
-import { Row, Col, Card, Badge, Table, Pagination, Button } from 'antd'
 import NumberFormat from 'react-number-format'
-import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { useQuery, gql } from '@apollo/client'
+import { Row, Col, Card, Badge, Table, Pagination, Button } from 'antd'
 
 import Container from '../components/Container'
 import DescItem from '../components/DescItem'
@@ -19,14 +18,14 @@ const GET_NODE_DATA = gql`
     node(NodePublicKey: $NodePublicKey) {
       NodePublicKey
       OwnerAddress
-      NodeAddress {
+      NodeAddressInfo {
         Address
         Port
       }
       LockedFunds
       RegisteredBlockHeight
       ParticipationScore
-      RegistryStatus
+      RegistrationStatus
       BlocksFunds
       RewardsPaid
     }
@@ -147,11 +146,11 @@ const Node = ({ match, history }) => {
                 <DescItem label={t('Participation Score')} value={data.node.ParticipationScore} />
                 <DescItem
                   label={t('Registry Status')}
-                  // value={data.node.RegistryStatus === true ? 'Registered' : 'In Queue'}
+                  // value={data.node.RegistrationStatus === true ? 'Registered' : 'In Queue'}
                   value={
-                    data.node.RegistryStatus === 0
+                    data.node.RegistrationStatus === 0
                       ? 'Registered'
-                      : data.node.RegistryStatus === 1
+                      : data.node.RegistrationStatus === 1
                       ? 'In Queue'
                       : 'Stray'
                   }

@@ -1,20 +1,8 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import {
-  Switch,
-  Menu,
-  Dropdown,
-  Avatar,
-  Layout,
-  Row,
-  Col,
-  List,
-  Button,
-  Drawer,
-  Collapse,
-} from 'antd'
+import { Switch, Menu, Dropdown, Avatar, Layout, Row, Col, Collapse } from 'antd'
 import Container from './Container'
 import languages from '../languages'
 
@@ -27,26 +15,15 @@ import iconLinkedin from '../assets/images/linkedin.svg'
 import iconTwitter from '../assets/images/twitter.svg'
 import zoobcLogoFooter from '../assets/images/logo-zoobc-footer.svg'
 import bczLogoFooter from '../assets/images/logo-bcz-footer.svg'
-import TestnetContext from '../context/TestnetContext'
-import testnet from '../config/testnet'
 import FormFeedback from './FormFeedback'
 import ComingSoon from './ComingSoon'
 import { store } from '../utils'
 
 const Footer = () => {
   const { t, i18n } = useTranslation()
-  const { selectedTestnet, onChangeSelectedTestnet } = useContext(TestnetContext)
-  // const { onChangeSelectedTestnet } = useContext(TestnetContext)
-  const [isOpen, setIsOpen] = useState(false)
   const [isOpenFeedback, setIsOpenFeedback] = useState(false)
   const [isOpenComingSoon, setIsOpenCommingSoon] = useState(false)
-  const [dialogTitle, setDialogTitle] = useState()
-
-  const onSelectNetwork = data => {
-    onChangeSelectedTestnet(data)
-    setIsOpen(false)
-    window.location.reload()
-  }
+  const [dialogTitle] = useState()
 
   const selectedLang = () => {
     const getLang = languages.filter(lang => lang.value === i18n.language)[0]
@@ -73,17 +50,6 @@ const Footer = () => {
     )
   }
 
-  const onComingSoon = e => {
-    e.preventDefault()
-    setDialogTitle()
-    setIsOpenCommingSoon(true)
-  }
-
-  const onFeedback = e => {
-    e.preventDefault()
-    setIsOpenFeedback(true)
-  }
-
   const FooterMobile = () => (
     <div className="footer-mobile d-block d-md-none">
       <Collapse expandIconPosition="right">
@@ -106,7 +72,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.com/team/"
               >
-                {t('Team')}
+                {t('team')}
               </a>
             </li>
             <li>
@@ -126,7 +92,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.com/learn-more/"
               >
-                {t('Learn More')}
+                {t('About Us')}
               </a>
             </li>
             <li>
@@ -136,7 +102,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://blockchainzoo.com/press-media/"
               >
-                {t('Press & Media')}
+                {t('press & media')}
               </a>
             </li>
             <li>
@@ -146,7 +112,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.com/contact-us/"
               >
-                {t('Contact us')}
+                {t('contact us')}
               </a>
             </li>
             <li>
@@ -156,7 +122,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.com/WP-latest.pdf"
               >
-                {t('ZooBC White Paper')}
+                {t('zoobc white paper')}
               </a>
             </li>
             <li>
@@ -166,7 +132,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://docs.google.com/document/d/1RHbDHHH0JlAfU8bdgfawbnvlm-Ng_Tq-VA7P-n1p_80/edit#"
               >
-                {t('ZooBC White Paper Live')}
+                {t('zoobc white paper live')}
               </a>
             </li>
           </ul>
@@ -180,7 +146,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.com/"
               >
-                {t('ZooBC')}
+                ZooBC
               </a>
             </li>
             <li>
@@ -190,7 +156,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.com/zoobc-alpha/"
               >
-                {t('ZooBC Alpha')}
+                ZooBC Alpha
               </a>
             </li>
             <li>
@@ -199,7 +165,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.app/"
               >
-                {t('ZooBC Wallet Mobile')}
+                ZooBC Wallet Mobile
               </a>
             </li>
             <li>
@@ -209,7 +175,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.one/login"
               >
-                {t('ZooBC Wallet Web')}
+                ZooBC Wallet Web
               </a>
             </li>
             <li>
@@ -219,7 +185,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.net"
               >
-                {t('ZooBC Explorer')}
+                ZooBC Explorer
               </a>
             </li>
             <li>
@@ -229,7 +195,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.io/"
               >
-                {t('ZooBC Genesis Block')}
+                ZooBC Genesis Block
               </a>
             </li>
           </ul>
@@ -243,7 +209,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.org/"
               >
-                {t('Forum')}
+                {t('forum')}
               </a>
             </li>
             <li>
@@ -253,7 +219,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.how/"
               >
-                {t('Q & A')}
+                {t('q & a')}
               </a>
             </li>
             <li>
@@ -263,7 +229,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.com/support-us/"
               >
-                {t('Support Us')}
+                {t('support us')}
               </a>
             </li>
             <li>
@@ -273,7 +239,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://blockchainzoo.com/blockchain-events/"
               >
-                {t('Events')}
+                {t('events')}
               </a>
             </li>
             <li>
@@ -283,7 +249,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://blogchainzoo.com/join-community/"
               >
-                {t('Join Us')}
+                {t('join us')}
               </a>
             </li>
           </ul>
@@ -440,9 +406,6 @@ const Footer = () => {
             {selectedLang().label}
           </p>
         </Dropdown>
-        <Button className="ml-3" type="primary" size="small" onClick={() => setIsOpen(true)}>
-          {t('Network')}: {selectedTestnet.name}
-        </Button>
       </div>
     </div>
   )
@@ -454,7 +417,7 @@ const Footer = () => {
           <FooterMobile />
           <Row className="footer-row d-none d-md-block">
             <Col className="footer-col-info">
-              <h3 className="footer-subtitle heading-border">{t('ABOUT ZOOBC')}</h3>
+              <div className="footer-subtitle heading-border">{t('about zoobc')}</div>
               <ul className="footer-list-group mb-0 list-unstyled">
                 <li>
                   <a
@@ -473,7 +436,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.com/team/"
                   >
-                    {t('Team')}
+                    {t('team')}
                   </a>
                 </li>
                 <li>
@@ -493,7 +456,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.com/learn-more/"
                   >
-                    {t('Learn More')}
+                    {t('About Us')}
                   </a>
                 </li>
                 <li>
@@ -503,7 +466,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://blockchainzoo.com/press-media/"
                   >
-                    {t('Press & Media')}
+                    {t('press & media')}
                   </a>
                 </li>
                 <li>
@@ -513,7 +476,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.com/contact-us/"
                   >
-                    {t('Contact us')}
+                    {t('contact us')}
                   </a>
                 </li>
                 <li>
@@ -523,7 +486,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.com/WP-latest.pdf"
                   >
-                    {t('ZooBC White Paper')}
+                    {t('zoobc white paper')}
                   </a>
                 </li>
                 <li>
@@ -533,13 +496,13 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://docs.google.com/document/d/1RHbDHHH0JlAfU8bdgfawbnvlm-Ng_Tq-VA7P-n1p_80/edit#"
                   >
-                    {t('ZooBC White Paper Live')}
+                    {t('zoobc white paper live')}
                   </a>
                 </li>
               </ul>
             </Col>
             <Col className="footer-col-info">
-              <h3 className="footer-subtitle heading-border">{t('GET STARTED')}</h3>
+              <div className="footer-subtitle heading-border">{t('get started')}</div>
               <ul className="footer-list-group mb-0 list-unstyled">
                 <li>
                   <a
@@ -548,7 +511,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.com/"
                   >
-                    {t('ZooBC')}
+                    ZooBC
                   </a>
                 </li>
                 <li>
@@ -558,7 +521,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.com/zoobc-alpha/"
                   >
-                    {t('ZooBC Alpha')}
+                    ZooBC Alpha
                   </a>
                 </li>
                 <li>
@@ -567,7 +530,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.app/"
                   >
-                    {t('ZooBC Wallet Mobile')}
+                    ZooBC Wallet Mobile
                   </a>
                 </li>
                 <li>
@@ -577,7 +540,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.one/login"
                   >
-                    {t('ZooBC Wallet Web')}
+                    ZooBC Wallet Web
                   </a>
                 </li>
                 <li>
@@ -587,7 +550,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.net"
                   >
-                    {t('ZooBC Explorer')}
+                    ZooBC Explorer
                   </a>
                 </li>
                 <li>
@@ -597,13 +560,13 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.io/"
                   >
-                    {t('ZooBC Genesis Block')}
+                    ZooBC Genesis Block
                   </a>
                 </li>
               </ul>
             </Col>
             <Col className="footer-col-info">
-              <h3 className="footer-subtitle heading-border">{t('COMMUNITY')}</h3>
+              <div className="footer-subtitle heading-border">{t('community')}</div>
               <ul className="footer-list-group mb-0 list-unstyled">
                 <li>
                   <a
@@ -612,7 +575,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.org/"
                   >
-                    {t('Forum')}
+                    {t('forum')}
                   </a>
                 </li>
                 <li>
@@ -622,7 +585,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.how/"
                   >
-                    {t('Q & A')}
+                    {t('q & a')}
                   </a>
                 </li>
                 <li>
@@ -632,7 +595,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.com/support-us/"
                   >
-                    {t('Support Us')}
+                    {t('support us')}
                   </a>
                 </li>
                 <li>
@@ -642,7 +605,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://blockchainzoo.com/blockchain-events/"
                   >
-                    {t('Events')}
+                    {t('events')}
                   </a>
                 </li>
                 <li>
@@ -652,7 +615,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://blogchainzoo.com/join-community/"
                   >
-                    {t('Join Us')}
+                    {t('join us')}
                   </a>
                 </li>
               </ul>
@@ -815,9 +778,6 @@ const Footer = () => {
                 {selectedLang().label}
               </p>
             </Dropdown>
-            <Button className="ml-3" type="primary" size="small" onClick={() => setIsOpen(true)}>
-              {t('Network')}: {selectedTestnet.name}
-            </Button>
           </Row>
         </Container>
       </Layout.Footer>
@@ -826,39 +786,6 @@ const Footer = () => {
         title={dialogTitle}
         onClose={() => setIsOpenCommingSoon(false)}
       />
-      <Drawer
-        title={t('Select Network')}
-        placement="right"
-        onClose={() => setIsOpen(false)}
-        visible={isOpen}
-        destroyOnClose={true}
-      >
-        <List
-          itemLayout="horizontal"
-          dataSource={testnet}
-          renderItem={item => (
-            <List.Item>
-              <Button
-                type="link"
-                size="large"
-                className="d-flex align-items-center p-0"
-                block
-                onClick={() => onSelectNetwork(item)}
-              >
-                <Avatar
-                  size="large"
-                  className="mr-2"
-                  style={{ backgroundColor: item.color }}
-                  alt="item-name"
-                >
-                  {item.name}
-                </Avatar>
-                <p className="mb-0">{item.name}</p>
-              </Button>
-            </List.Item>
-          )}
-        />
-      </Drawer>
       <FormFeedback
         visible={isOpenFeedback}
         title="Feedback"

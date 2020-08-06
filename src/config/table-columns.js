@@ -5,7 +5,7 @@ import NumberFormat from 'react-number-format'
 
 import { shortenHash } from '../utils/shorten'
 import { useTranslation } from 'react-i18next'
-import { Badge, Tooltip, Tag } from 'antd'
+import { Badge, Tooltip, Tag, Icon } from 'antd'
 import { objectUtils } from '../utils'
 
 const getBlocksmithIndicator = skipped => {
@@ -26,26 +26,55 @@ const renderCurrenncy = text => {
   )
 }
 
+const getStatusTrx = (text, status) => {
+  switch (status) {
+    case 'Rejected':
+      return (
+        <span style={{ color: 'red' }}>
+          <Icon type="close-circle" /> {text}
+        </span>
+      )
+    case 'Expired':
+      return (
+        <span style={{ color: 'red' }}>
+          <Icon type="close-circle" /> {text}
+        </span>
+      )
+    case 'Pending':
+      return (
+        <span style={{ color: 'orange' }}>
+          <Icon type="clock-circle" /> {text}
+        </span>
+      )
+    default:
+      return (
+        <span style={{ color: 'green' }}>
+          <Icon type="check-circle" /> {text}
+        </span>
+      )
+  }
+}
+
 const renderTransactionType = (text, record) => {
   if (record.TransactionType === 1) {
     if (record.Escrow) {
       return (
         <>
-          {text} <Tag color="#113D64">Escrow</Tag>
+          {getStatusTrx(text, record.Status)} <Tag color="#113D64">Escrow</Tag>
         </>
       )
     } else if (record.MultisigChild) {
       return (
         <>
-          {text} <Tag color="#113D64">Multisignature</Tag>
+          {getStatusTrx(text, record.Status)} <Tag color="#113D64">Multisignature</Tag>
         </>
       )
     } else {
-      return text
+      return getStatusTrx(text, record.Status)
     }
   }
 
-  return text
+  return getStatusTrx(text, record.Status)
 }
 
 const renderAmountCurrenncy = (text, record) => {
@@ -220,7 +249,7 @@ export const transactionColumns = [
     title: <Title text="Type" />,
     dataIndex: 'TransactionTypeName',
     key: 'TransactionTypeName',
-    width: 220,
+    width: 250,
     render: renderTransactionType,
   },
   {
@@ -290,8 +319,8 @@ export const nodeColumns = [
   },
   {
     title: <Title text="Status" />,
-    dataIndex: 'RegistryStatus',
-    key: 'RegistryStatus',
+    dataIndex: 'RegistrationStatus',
+    key: 'RegistrationStatus',
     render(text) {
       return (
         !!text.toString() &&
@@ -370,5 +399,86 @@ export const skippedBlocksmithColumns = [
     title: <Title text="Index" />,
     dataIndex: 'BlocksmithIndex',
     key: 'BlocksmithIndex',
+  },
+]
+
+export const latestBlockColumns = [
+  {
+    title: <Title text="Height" />,
+    dataIndex: 'Height',
+    key: 'Height',
+    render(text, record) {
+      return (
+        <Link to={`/blocks/${record.BlockID}`}>
+          <small>{text}</small>
+        </Link>
+      )
+    },
+  },
+  {
+    title: <Title text="Timestamp" />,
+    dataIndex: 'Timestamp',
+    key: 'Timestamp',
+    render(text) {
+      return <small>{moment(text).format('lll')}</small>
+    },
+  },
+  {
+    title: <Title text="Blocksmith Address" />,
+    dataIndex: 'BlocksmithAddress',
+    key: 'BlocksmithAddress',
+    render(text, record) {
+      const skipped = []
+
+      if (Array.isArray(record.SkippedBlocksmiths))
+        record.SkippedBlocksmiths.map(
+          data => !objectUtils.isContainsNullValue(data) && skipped.push(data)
+        )
+
+      return (
+        <div className="blocksmith">
+          <small>
+            <Tooltip title={`${skipped.length} skipped blocksmith`}>
+              <Badge color={getBlocksmithIndicator(skipped.length)} />
+            </Tooltip>
+            <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
+          </small>
+        </div>
+      )
+    },
+  },
+]
+
+export const latestTransactionColumns = [
+  {
+    title: <Title text="Fees" />,
+    dataIndex: 'FeeConversion',
+    key: 'FeeConversion',
+    render(text) {
+      return <small>{renderCurrenncy(text)}</small>
+    },
+  },
+
+  {
+    title: <Title text="Timestamp" />,
+    dataIndex: 'Timestamp',
+    key: 'Timestamp',
+    width: 200,
+    render(text) {
+      return <small>{moment(text).format('lll')}</small>
+    },
+  },
+  {
+    title: <Title text="Transaction ID" />,
+    dataIndex: 'TransactionID',
+    key: 'TransactionID',
+    render(text) {
+      return (
+        <Link to={`/transactions/${text}`}>
+          <small>{text}</small>
+        </Link>
+      )
+    },
+    width: 200,
   },
 ]
