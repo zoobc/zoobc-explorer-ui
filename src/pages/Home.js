@@ -107,18 +107,22 @@ const Home = ({ history }) => {
   if (subscriptBlocks && !subscriptBlocks.loading) {
     const oldBlocks = blockData
     const { data } = subscriptBlocks
-    const newBlocks = data.blocks.map(block => ({ key: block.Timestamp, ...block }))
-    blockData = [...newBlocks, ...oldBlocks.slice(0, blockData.length - newBlocks.length)]
+    if (data) {
+      const newBlocks = data.blocks.map(block => ({ key: block.Timestamp, ...block }))
+      blockData = [...newBlocks, ...oldBlocks.slice(0, blockData.length - newBlocks.length)]
+    }
   }
 
   if (subscriptTransactions && !subscriptTransactions.loading) {
     const oldTrxData = trxData
     const { data } = subscriptTransactions
-    const newTrxData = data.transactions.map(transaction => ({
-      key: transaction.Timestamp,
-      ...transaction,
-    }))
-    blockData = [...newTrxData, ...oldTrxData.slice(0, trxData.length - newTrxData.length)]
+    if (data) {
+      const newTrxData = data.transactions.map(transaction => ({
+        key: transaction.Timestamp,
+        ...transaction,
+      }))
+      blockData = [...newTrxData, ...oldTrxData.slice(0, trxData.length - newTrxData.length)]
+    }
   }
 
   return (
