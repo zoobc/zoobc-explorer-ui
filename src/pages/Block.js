@@ -224,8 +224,6 @@ const Block = ({ match }) => {
     }
   }, [data])
 
-  // console.log('data : ', data)
-
   return (
     <>
       {!!error && <NotFound />}

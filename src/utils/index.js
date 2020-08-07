@@ -4,6 +4,7 @@ import store from './store'
 import objectUtils from './object'
 import { getSortString, getSortObject, getSortOrder, isEmptyObject, isObject } from './util'
 import encryption from './encryption'
+import date from './date'
 
 export {
   apiGet,
@@ -18,4 +19,5 @@ export {
   store,
   objectUtils,
   encryption,
+  date,
 }

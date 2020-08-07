@@ -20,20 +20,25 @@ const GET_NODES_DATA = gql`
         Count
         Total
       }
+      LastRefresh @client
     }
   }
 `
 
 const useFetchNode = (page, sorted, tabValue) => {
-  const [doFetch, { loading, data, error, called }] = useLazyQuery(GET_NODES_DATA, {
-    variables: {
-      page: page,
-      sorter: getSortString(sorted),
-      tabValue: parseInt(tabValue),
-    },
-  })
+  const [doFetch, { loading, data, error, called, refetch, networkStatus }] = useLazyQuery(
+    GET_NODES_DATA,
+    {
+      variables: {
+        page: page,
+        sorter: getSortString(sorted),
+        tabValue: parseInt(tabValue),
+      },
+      notifyOnNetworkStatusChange: true,
+    }
+  )
 
-  return { loading, error, data, doFetch, called }
+  return { loading: loading || networkStatus === 4, error, data, doFetch, called, refetch }
 }
 
 export default useFetchNode

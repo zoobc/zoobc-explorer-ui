@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Card, Table, Pagination, Tabs } from 'antd'
+import { Row, Col, Card, Table, Pagination, Tabs, Button } from 'antd'
 import { useTranslation } from 'react-i18next'
 
 import { isEmptyObject } from '../utils'
 import Container from '../components/Container'
 import { nodeColumns } from '../config/table-columns'
 import useFetchNode from '../hooks/useFetchNode'
+import LastRefresh from '../components/LastRefresh'
 
 const { TabPane } = Tabs
 
@@ -27,7 +28,7 @@ const Nodes = () => {
     return item
   })
 
-  const { doFetch, loading, data } = useFetchNode(currentPage, sorted, tabValue)
+  const { doFetch, loading, data, refetch } = useFetchNode(currentPage, sorted, tabValue)
 
   useEffect(() => {
     doFetch()
@@ -86,11 +87,20 @@ const Nodes = () => {
           <Col span={24}>
             <Card className="nodes-card" bordered={false}>
               <Row>
-                <Col span={24}>
-                  <h5>
+                <Col span={23}>
+                  <h5 className="page-title">
                     <i className="bcz-node" />
                     <strong>{t('Nodes')}</strong>
                   </h5>
+                  {!!data && <LastRefresh value={data.nodes.LastRefresh} />}
+                </Col>
+                <Col>
+                  <Button
+                    shape="circle"
+                    icon="reload"
+                    onClick={() => refetch()}
+                    loading={loading}
+                  />
                 </Col>
               </Row>
               <Tabs defaultActiveKey="3" onChange={onChangeTab}>

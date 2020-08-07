@@ -323,6 +323,7 @@ export const nodeColumns = [
     key: 'RegistrationStatus',
     render(text) {
       return (
+        !!text &&
         !!text.toString() &&
         (text.toString() === '0' ? 'Registered' : text.toString() === '1' ? 'In Queue' : 'Stray')
       )

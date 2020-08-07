@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useQuery, gql } from '@apollo/client'
-import { Row, Col, Card, Table, Pagination } from 'antd'
+import { Row, Col, Card, Table, Pagination, Button } from 'antd'
 
 import { getSortString, isEmptyObject } from '../utils'
 import Container from '../components/Container'
 import { blockColumns } from '../config/table-columns'
+import LastRefresh from '../components/LastRefresh'
 
 const defaultSort = { columnKey: 'Height', order: 'descend' }
 const GET_BLOCKS_DATA = gql`
@@ -28,6 +29,7 @@ const GET_BLOCKS_DATA = gql`
         Count
         Total
       }
+      LastRefresh @client
     }
   }
 `
@@ -51,11 +53,12 @@ const Blocks = () => {
     return item
   })
 
-  const { loading, data } = useQuery(GET_BLOCKS_DATA, {
+  const { loading, data, refetch, networkStatus } = useQuery(GET_BLOCKS_DATA, {
     variables: {
       page: currentPage,
       sorter: getSortString(sorted),
     },
+    notifyOnNetworkStatusChange: true,
   })
 
   useEffect(() => {
@@ -79,11 +82,20 @@ const Blocks = () => {
           <Col span={24}>
             <Card className="blocks-card" bordered={false}>
               <Row>
-                <Col span={24}>
-                  <h5>
+                <Col span={23}>
+                  <h5 className="page-title">
                     <i className="bcz-calendar" />
                     <strong>{t('Recent Blocks')}</strong>
                   </h5>
+                  {!loading && <LastRefresh value={data.blocks.LastRefresh} />}
+                </Col>
+                <Col>
+                  <Button
+                    shape="circle"
+                    icon="reload"
+                    onClick={() => refetch()}
+                    loading={loading || networkStatus === 4}
+                  />
                 </Col>
               </Row>
               <Table
@@ -91,7 +103,7 @@ const Blocks = () => {
                 dataSource={blocks}
                 pagination={false}
                 size="small"
-                loading={loading}
+                loading={loading || networkStatus === 4}
                 onChange={onChangeTable.bind(this)}
               />
               {!!data && (
