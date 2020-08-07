@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useQuery, gql } from '@apollo/client'
-import { Row, Col, Card, Table, Pagination } from 'antd'
+import { Row, Col, Card, Table, Pagination, Button } from 'antd'
 
 import { getSortString, isEmptyObject } from '../utils'
 import Container from '../components/Container'
 import { transactionColumns } from '../config/table-columns'
+import LastRefresh from '../components/LastRefresh'
 
 const defaultSort = { columnKey: 'Timestamp', order: 'descend' }
 const GET_TRXS_DATA = gql`
@@ -66,6 +67,7 @@ const GET_TRXS_DATA = gql`
         Count
         Total
       }
+      LastRefresh @client
     }
   }
 `
@@ -89,11 +91,12 @@ const Transactions = () => {
     return item
   })
 
-  const { loading, data } = useQuery(GET_TRXS_DATA, {
+  const { loading, data, networkStatus, refetch } = useQuery(GET_TRXS_DATA, {
     variables: {
       page: currentPage,
       sorter: getSortString(sorted),
     },
+    notifyOnNetworkStatusChange: true,
   })
 
   useEffect(() => {
@@ -128,11 +131,20 @@ const Transactions = () => {
           <Col span={24}>
             <Card className="transactions-card" bordered={false}>
               <Row>
-                <Col span={24}>
-                  <h5>
+                <Col span={23}>
+                  <h5 className="page-title">
                     <i className="bcz-calendar" />
                     <strong>{t('Recent Transactions')}</strong>
                   </h5>
+                  {!loading && <LastRefresh value={data.transactions.LastRefresh} />}
+                </Col>
+                <Col>
+                  <Button
+                    shape="circle"
+                    icon="reload"
+                    onClick={() => refetch()}
+                    loading={loading || networkStatus === 4}
+                  />
                 </Col>
               </Row>
               <Table

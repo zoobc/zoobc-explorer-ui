@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useQuery, gql } from '@apollo/client'
-import { Row, Col, Card, Table, Pagination } from 'antd'
+import { Row, Col, Card, Table, Pagination, Button } from 'antd'
 
 import Container from '../components/Container'
 import { getSortString, isEmptyObject } from '../utils'
 import { accountColumns } from '../config/table-columns'
+import LastRefresh from '../components/LastRefresh'
 
 const defaultSort = { columnKey: 'AccountAddress', order: 'ascend' }
 const GET_ACCOUNTS_DATA = gql`
@@ -24,6 +25,7 @@ const GET_ACCOUNTS_DATA = gql`
         Count
         Total
       }
+      LastRefresh @client
     }
   }
 `
@@ -46,11 +48,12 @@ const Accounts = () => {
     return item
   })
 
-  const { loading, data } = useQuery(GET_ACCOUNTS_DATA, {
+  const { loading, data, networkStatus, refetch } = useQuery(GET_ACCOUNTS_DATA, {
     variables: {
       page: currentPage,
       sorter: getSortString(sorted),
     },
+    notifyOnNetworkStatusChange: true,
   })
 
   useEffect(() => {
@@ -74,11 +77,20 @@ const Accounts = () => {
           <Col span={24}>
             <Card className="accounts-card" bordered={false}>
               <Row>
-                <Col span={24}>
-                  <h5>
+                <Col span={23}>
+                  <h5 className="page-title">
                     <i className="bcz-user" />
                     <strong>{t('Accounts')}</strong>
                   </h5>
+                  {!loading && <LastRefresh value={data.accounts.LastRefresh} />}
+                </Col>
+                <Col>
+                  <Button
+                    shape="circle"
+                    icon="reload"
+                    onClick={() => refetch()}
+                    loading={loading || networkStatus === 4}
+                  />
                 </Col>
               </Row>
               <Table

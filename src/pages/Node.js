@@ -143,7 +143,7 @@ const Node = ({ match, history }) => {
                     </Button>
                   }
                 />
-                <DescItem label={t('Participation Score')} value={data.node.ParticipationScore} />
+                {/* <DescItem label={t('Participation Score')} value={data.node.ParticipationScore} /> */}
                 <DescItem
                   label={t('Registry Status')}
                   // value={data.node.RegistrationStatus === true ? 'Registered' : 'In Queue'}
@@ -155,18 +155,18 @@ const Node = ({ match, history }) => {
                       : 'Stray'
                   }
                 />
-                <DescItem label={t('Blocks Found')} value={data.node.BlocksFunds} />
-                <DescItem
+                {/* <DescItem label={t('Blocks Found')} value={data.node.BlocksFunds} /> */}
+                {/* <DescItem
                   label={t('Rewards Paid')}
-                  // value={
-                  //   <NumberFormat
-                  //     value={data.node.RewardsPaid || 0}
-                  //     displayType={'text'}
-                  //     thousandSeparator={true}
-                  //     suffix={' ZBC'}
-                  //   />
-                  // }
-                />
+                  value={
+                    <NumberFormat
+                      value={data.node.RewardsPaid || 0}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      suffix={' ZBC'}
+                    />
+                  }
+                /> */}
               </Card>
               <Card className="node-card" bordered={false}>
                 <h4 className="node-card-title">
