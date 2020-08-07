@@ -40,7 +40,7 @@ export default function MapNodes({ loading, data }) {
     <Card className="home-node" bordered={false}>
       <div className="home-node-title">
         <i className="bcz-calendar" />
-        <strong>{t('Node Registration')}</strong>
+        <strong>{t('node registration')}</strong>
       </div>
       <Row>
         <Col span={24}>

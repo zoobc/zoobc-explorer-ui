@@ -47,9 +47,9 @@ const Hero = ({ history }) => {
               size="large"
               prefix={<Icon type="search" style={{ fontSize: '18px', color: 'rgba(0,0,0,.45)' }} />}
               placeholder={t(
-                'Search by Account Address / Transaction ID / Block ID / Node Public Key'
+                'search by account address / transaction id / block id / node public key'
               )}
-              enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
+              enterButton={loading ? <Spin indicator={Spinner} /> : t('search')}
               onSearch={onSearch}
             />
           </label>
@@ -57,7 +57,7 @@ const Hero = ({ history }) => {
       </Row>
       <div className="hero-subtitle">
         {t(
-          'A webview for searching and displaying data published, so that a user can easily find any info about blockchain'
+          'a webview for searching and displaying data published, so that a user can easily find any info about blockchain'
         )}
       </div>
     </Card>
