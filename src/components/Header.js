@@ -77,10 +77,14 @@ const Header = ({ history, location, fluid }) => {
     <>
       <Layout.Header className="header">
         <Container className="header-content" fluid={fluid}>
-          <Link className="logo" to="/">
-            <img src={zoobcLogo} alt="zoobc-logo" />
+          <div className="logo">
+            <Link to="/">
+              <img src={zoobcLogo} alt="zoobc-logo" />
+            </Link>
             <div className="header-logo-name">
-              <div className="logo-text-name">ZooBC Explorer</div>
+              <Link className="logo-text-name" to="/">
+                ZooBC Explorer
+              </Link>
               {/* <div className="logo-text-version">Alpha - Version 0.1</div> */}
               <Dropdown overlay={TesnetMenuDropdown}>
                 <span className="logo-text-version">
@@ -88,7 +92,7 @@ const Header = ({ history, location, fluid }) => {
                 </span>
               </Dropdown>
             </div>
-          </Link>
+          </div>
           <div className="navbar-left d-none d-lg-block">
             <Menu
               className="header-menu"

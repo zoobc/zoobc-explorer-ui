@@ -87,7 +87,7 @@ const Blocks = () => {
                     <i className="bcz-calendar" />
                     <strong>{t('Recent Blocks')}</strong>
                   </h5>
-                  {!loading && <LastRefresh value={data.blocks.LastRefresh} />}
+                  {!!data && <LastRefresh value={data.blocks.LastRefresh} />}
                 </Col>
                 <Col>
                   <Button
