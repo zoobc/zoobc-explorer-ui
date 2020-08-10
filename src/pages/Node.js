@@ -101,26 +101,26 @@ const Node = ({ match, history }) => {
               <Row>
                 <Col span={24}>
                   <h4 className="truncate">
-                    {t('Public Key')} {data.node.NodePublicKey}
+                    {t('public key')} {data.node.NodePublicKey}
                   </h4>
                 </Col>
               </Row>
               <Card className="node-card" bordered={false}>
-                <h4 className="node-card-title">{t('Summary')}</h4>
+                <h4 className="node-card-title">{t('summary')}</h4>
                 <DescItem
-                  label={t('Node Public Key')}
+                  label={t('node public key')}
                   value={<CopyToClipboard text={data.node.NodePublicKey} keyID="nodePublicKey" />}
                 />
                 <DescItem
-                  label={t('Owner Address')}
+                  label={t('owner address')}
                   value={
                     <Link to={`/accounts/${data.node.OwnerAddress}`}>{data.node.OwnerAddress}</Link>
                   }
                   // value={<CopyToClipboard text={data.node.OwnerAddress} keyID="nodePublicKey" />}
                 />
-                {/* <DescItem label={t('Node Address')} value={data.node.NodeAddress} /> */}
+                {/* <DescItem label={t('node address')} value={data.node.NodeAddress} /> */}
                 <DescItem
-                  label={t('Locked Funds')}
+                  label={t('locked funds')}
                   value={
                     <NumberFormat
                       value={data.node.LockedFunds || 0}
@@ -131,7 +131,7 @@ const Node = ({ match, history }) => {
                   }
                 />
                 <DescItem
-                  label={t('Registered Block Height')}
+                  label={t('registered block height')}
                   value={
                     <Button
                       type="link"
@@ -143,9 +143,9 @@ const Node = ({ match, history }) => {
                     </Button>
                   }
                 />
-                {/* <DescItem label={t('Participation Score')} value={data.node.ParticipationScore} /> */}
+                {/* <DescItem label={t('participation score')} value={data.node.ParticipationScore} /> */}
                 <DescItem
-                  label={t('Registry Status')}
+                  label={t('registry status')}
                   // value={data.node.RegistrationStatus === true ? 'Registered' : 'In Queue'}
                   value={
                     data.node.RegistrationStatus === 0
@@ -155,9 +155,9 @@ const Node = ({ match, history }) => {
                       : 'Stray'
                   }
                 />
-                {/* <DescItem label={t('Blocks Found')} value={data.node.BlocksFunds} /> */}
+                {/* <DescItem label={t('blocks found')} value={data.node.BlocksFunds} /> */}
                 {/* <DescItem
-                  label={t('Rewards Paid')}
+                  label={t('rewards paid')}
                   value={
                     <NumberFormat
                       value={data.node.RewardsPaid || 0}
@@ -170,7 +170,7 @@ const Node = ({ match, history }) => {
               </Card>
               <Card className="node-card" bordered={false}>
                 <h4 className="node-card-title">
-                  {t('Blocks')}
+                  {t('blocks')}
                   <Badge className="badge-black" count={blockPaginate.Total} overflowCount={1000} />
                 </h4>
                 <Table

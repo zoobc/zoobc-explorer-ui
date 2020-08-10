@@ -211,25 +211,25 @@ const Transaction = ({ match }) => {
               <Row>
                 <Col span={24}>
                   <h4 className="truncate">
-                    {t('Transaction')} {data.transaction.TransactionID}
+                    {t('transaction')} {data.transaction.TransactionID}
                   </h4>
                 </Col>
               </Row>
               <Card className="transaction-card" bordered={false}>
-                <h4 className="transaction-card-title">{t('Summary')}</h4>
+                <h4 className="transaction-card-title">{t('summary')}</h4>
                 <DescItem
-                  label={t('Transaction ID')}
+                  label={t('transaction id')}
                   value={
                     <CopyToClipboard text={data.transaction.TransactionID} keyID="TransactionID" />
                   }
                 />
                 <DescItem
-                  label={t('Timestamp')}
+                  label={t('timestamp')}
                   value={moment(data.transaction.Timestamp).format('lll')}
                 />
                 <DescItem label="Transaction Type" value={data.transaction.TransactionTypeName} />
                 <DescItem
-                  label={t('Block ID')}
+                  label={t('block id')}
                   value={
                     <Link to={`/blocks/${data.transaction.BlockID}`}>
                       {data.transaction.BlockID}
@@ -237,7 +237,7 @@ const Transaction = ({ match }) => {
                   }
                 />
                 <DescItem
-                  label="Height"
+                  label={t('height')}
                   value={
                     <Link to={`/blocks/${data.transaction.BlockID}`}>
                       {data.transaction.Height}
@@ -245,7 +245,7 @@ const Transaction = ({ match }) => {
                   }
                 />
                 <DescItem
-                  label={t('Sender')}
+                  label={t('sender')}
                   value={
                     <Link to={`/accounts/${data.transaction.Sender}`}>
                       {data.transaction.Sender}
@@ -253,16 +253,16 @@ const Transaction = ({ match }) => {
                   }
                 />
                 <DescItem
-                  label={t('Recipient')}
+                  label={t('recipient')}
                   value={
                     <Link to={`/accounts/${data.transaction.Recipient}`}>
                       {data.transaction.Recipient}
                     </Link>
                   }
                 />
-                {/* <DescItem label={t('Confirmations')} value={data.transaction.Confirmations} /> */}
+                {/* <DescItem label={t('confirmations')} value={data.transaction.Confirmations} /> */}
                 <DescItem
-                  label={t('Fees')}
+                  label={t('fees')}
                   value={
                     <NumberFormat
                       value={data.transaction.FeeConversion || 0}
@@ -274,7 +274,7 @@ const Transaction = ({ match }) => {
                 />
                 {data.transaction.MultisigChild && (
                   <DescItem
-                    label={t('Transaction Hash')}
+                    label={t('transaction hash')}
                     value={data.transaction.TransactionHash}
                   />
                 )}

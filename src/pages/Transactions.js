@@ -134,7 +134,7 @@ const Transactions = () => {
                 <Col span={23}>
                   <h5 className="page-title">
                     <i className="bcz-calendar" />
-                    <strong>{t('Recent Transactions')}</strong>
+                    <strong>{t('recent transactions')}</strong>
                   </h5>
                   {!loading && <LastRefresh value={data.transactions.LastRefresh} />}
                 </Col>

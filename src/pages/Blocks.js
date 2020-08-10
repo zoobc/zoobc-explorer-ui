@@ -85,7 +85,7 @@ const Blocks = () => {
                 <Col span={23}>
                   <h5 className="page-title">
                     <i className="bcz-calendar" />
-                    <strong>{t('Recent Blocks')}</strong>
+                    <strong>{t('recent blocks')}</strong>
                   </h5>
                   {!loading && <LastRefresh value={data.blocks.LastRefresh} />}
                 </Col>
