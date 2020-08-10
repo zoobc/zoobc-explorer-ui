@@ -26,7 +26,7 @@ const Banner = () => {
   return (
     <StyleRoot>
       <Col className="home-col-left" md={{ span: 12 }} sm={{ span: 24 }}>
-        <h1 style={styles.slideInDown}>
+        <h1 style={styles.slideInDown} className="banner-text">
           <strong>New to ZooBC ?</strong>
           <strong>
             <p> Download the wallet to get started.</p>

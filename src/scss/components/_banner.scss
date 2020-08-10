@@ -1,9 +1,13 @@
-.banner-text {
-  font-size: 20px;
-}
+.banner {
+  &-text {
+    font-size: 20px;
+    color: var(--color-text-hero) !important;
+  }
 
-.banner-sub-text {
-  font-size: 15px;
+  &-sub-text {
+    font-size: 15px;
+    color: var(--color-text-hero) !important;
+  }
 }
 
 .play-store {
