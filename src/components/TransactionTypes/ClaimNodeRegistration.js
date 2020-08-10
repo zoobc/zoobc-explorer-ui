@@ -8,7 +8,7 @@ const ClaimNodeRegistration = ({ data }) => {
   const { t } = useTranslation()
   return (
     <Card className="transaction-card">
-      <h4 className="transaction-card-title">{t('claim node registration')}</h4>
+      <h4 className="transaction-card-title page-title">{t('claim node registration')}</h4>
       <DescItem
         label={t('account address')}
         value={<Link to={`/accounts/${data.AccountAddress}`}>{data.AccountAddress}</Link>}

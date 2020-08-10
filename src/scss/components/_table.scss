@@ -1,6 +1,11 @@
+.ant-collapse-header {
+  color: var(--color-text-card) !important;
+}
+
 .ant-table-thead {
   .ant-table-column-title {
     font-weight: 700;
+
   }
 
   tr>th {
@@ -11,6 +16,8 @@
 
 .ant-table-tbody {
   .ant-table-row {
+    color: var(--color-text-card) !important;
+
     &:nth-child(odd) {
       background: var(--color-secondary-solitude) !important;
 
@@ -42,7 +49,6 @@
   }
 }
 
-
-.table {
-  color: var(--color-primary-dark-txt) !important;
+.page-title {
+  color: var(--color-text-card) !important;
 }

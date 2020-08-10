@@ -234,7 +234,7 @@ const Block = ({ match }) => {
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <h4 className="truncate">
+                  <h4 className="truncate page-title">
                     {t('block')} {data.block.Height}
                   </h4>
                 </Col>
@@ -243,7 +243,7 @@ const Block = ({ match }) => {
                 <DescItem label={t('height')} value={data.block.Height} />
               </Card>
               <Card className="block-card" bordered={false}>
-                <h4 className="block-card-title">{t('summary')}</h4>
+                <h4 className="block-card-title page-title">{t('summary')}</h4>
                 <DescItem
                   label={t('block id')}
                   value={<CopyToClipboard text={data.block.BlockID} keyID="blockID" />}
@@ -311,7 +311,7 @@ const Block = ({ match }) => {
                   key="1"
                 >
                   <Card className="block-card" bordered={false}>
-                    <h4 className="block-card-title">{t('pop changes')}</h4>
+                    <h4 className="block-card-title page-title">{t('pop changes')}</h4>
                     <Table
                       className="transactions-table"
                       columns={skippedBlocksmithColumns}
@@ -325,7 +325,7 @@ const Block = ({ match }) => {
               <Collapse className="block-collapse" bordered={false}>
                 <Panel className="block-card-title block-collapse" header={t('rewards')} key="2">
                   <Card className="block-card" bordered={false}>
-                    <h4 className="block-card-title">
+                    <h4 className="block-card-title page-title">
                       {t('coinbase')}
                       <Badge className="badge-black" count={0} overflowCount={1000} />
                     </h4>
@@ -343,7 +343,7 @@ const Block = ({ match }) => {
               <Collapse className="block-collapse" bordered={false}>
                 <Panel className="block-card-title block-collapse" header={t('receipts')} key="3">
                   <Card className="block-card" bordered={false}>
-                    <h4 className="block-card-title">
+                    <h4 className="block-card-title page-title">
                       {t('receipts')}
                       <Badge
                         className="badge-black"
@@ -377,7 +377,7 @@ const Block = ({ match }) => {
                   key="4"
                 >
                   <Card className="block-card" bordered={false}>
-                    <h4 className="block-card-title">
+                    <h4 className="block-card-title page-title">
                       {t('transactions')}
                       <Badge
                         className="badge-black"
