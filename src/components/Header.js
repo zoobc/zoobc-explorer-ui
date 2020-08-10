@@ -101,20 +101,20 @@ const Header = ({ history, location, fluid }) => {
               selectedKeys={[location.pathname]}
             >
               <Menu.Item key="/blocks" className="menu-with-icon">
-                <Link to="/blocks">{t('Blocks')}</Link>
+                <Link to="/blocks">{t('blocks')}</Link>
               </Menu.Item>
               <Menu.Item key="/transactions" className="menu-with-icon">
-                <Link to="/transactions">{t('Transactions')}</Link>
+                <Link to="/transactions">{t('transactions')}</Link>
               </Menu.Item>
               <Menu.Item key="/accounts" className="menu-with-icon">
-                <Link to="/accounts">{t('Accounts')}</Link>
+                <Link to="/accounts">{t('accounts')}</Link>
               </Menu.Item>
               <Menu.Item key="/nodes" className="menu-with-icon">
-                <Link to="/nodes">{t('Nodes')}</Link>
+                <Link to="/nodes">{t('nodes')}</Link>
               </Menu.Item>
               <Menu.Item key="/feedback" className="menu-with-icon">
                 <Button type="danger" onClick={onFeedback}>
-                  {t('Feedback')}
+                  {t('feedback')}
                 </Button>
               </Menu.Item>
             </Menu>
@@ -123,24 +123,24 @@ const Header = ({ history, location, fluid }) => {
             <Tooltip
               getPopupContainer={triggerNode => triggerNode.parentNode}
               trigger={['focus']}
-              title={t('Search by Account Address / Transaction ID / Block ID / Node Public Key')}
+              title={t('search by account address / transaction id / block id / node public key')}
               placement="topLeft"
             >
               <label>
                 <Search
                   className="header-search-input d-none d-lg-block"
                   prefix={<Icon className="header-search-icon" type="search" />}
-                  placeholder={t('Please input keyword')}
-                  enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
+                  placeholder={t('please input keyword')}
+                  enterButton={loading ? <Spin indicator={Spinner} /> : t('search')}
                   onSearch={onSearch}
                 />
               </label>
             </Tooltip>
             {/* <Button type="primary" className="mr-1 d-none d-lg-block" onClick={onLogin}>
-              {t('Login')}
+              {t('login')}
             </Button> */}
             <Button type="danger" className="d-block d-lg-none" onClick={onFeedback}>
-              {t('Feedback')}
+              {t('feedback')}
             </Button>
             <Button
               icon="menu"
@@ -175,28 +175,28 @@ const Header = ({ history, location, fluid }) => {
           </Link>
           <Menu className="header-menu" selectedKeys={[location.pathname]}>
             <Menu.Item key="/blocks" className="menu-with-icon">
-              <Link to="/blocks">{t('Blocks')}</Link>
+              <Link to="/blocks">{t('blocks')}</Link>
             </Menu.Item>
             <Menu.Item key="/transactions" className="menu-with-icon">
-              <Link to="/transactions">{t('Transactions')}</Link>
+              <Link to="/transactions">{t('transactions')}</Link>
             </Menu.Item>
             <Menu.Item key="/accounts" className="menu-with-icon">
-              <Link to="/accounts">{t('Accounts')}</Link>
+              <Link to="/accounts">{t('accounts')}</Link>
             </Menu.Item>
             <Menu.Item key="/nodes" className="menu-with-icon">
-              <Link to="/nodes">{t('Nodes')}</Link>
+              <Link to="/nodes">{t('nodes')}</Link>
             </Menu.Item>
             {/* <Menu.Item key="/login" className="menu-with-icon">
               <a href="#" onClick={onLogin}>
-                {t('Login')}
+                {t('login')}
               </a>
             </Menu.Item> */}
           </Menu>
           <Search
             className="header-search-input"
             prefix={<Icon className="header-search-icon" type="search" />}
-            placeholder={t('Please input keyword')}
-            enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
+            placeholder={t('please input keyword')}
+            enterButton={loading ? <Spin indicator={Spinner} /> : t('search')}
             onSearch={onSearch}
           />
         </div>

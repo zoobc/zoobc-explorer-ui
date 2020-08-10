@@ -13,7 +13,7 @@ const ComingSoon = ({ visible, title, onClose, content }) => {
       onCancel={onClose}
       footer={[
         <Button type="primary" onClick={onClose}>
-          {t('Close')}
+          {t('close')}
         </Button>,
       ]}
       centered
@@ -22,7 +22,7 @@ const ComingSoon = ({ visible, title, onClose, content }) => {
     >
       <div className="coming-soon">
         <img src={comingsoon} alt="Coming Soon" />
-        <h1 className="py-3">{t('Coming Soon')}</h1>
+        <h1 className="py-3">{t('coming soon')}</h1>
       </div>
     </Modal>
   )

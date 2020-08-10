@@ -90,7 +90,7 @@ const Nodes = () => {
                 <Col span={23}>
                   <h5 className="page-title">
                     <i className="bcz-node" />
-                    <strong>{t('Nodes')}</strong>
+                    <strong>{t('nodes')}</strong>
                   </h5>
                   {!!data && <LastRefresh value={data.nodes.LastRefresh} />}
                 </Col>
@@ -104,16 +104,16 @@ const Nodes = () => {
                 </Col>
               </Row>
               <Tabs defaultActiveKey="3" onChange={onChangeTab}>
-                <TabPane tab={t('All')} key="3">
+                <TabPane tab={t('all')} key="3">
                   <DisplayTable />
                 </TabPane>
-                <TabPane tab={t('Registered')} key="0">
+                <TabPane tab={t('registered')} key="0">
                   <DisplayTable />
                 </TabPane>
-                <TabPane tab={t('In Queue')} key="1">
+                <TabPane tab={t('in queue')} key="1">
                   <DisplayTable />
                 </TabPane>
-                <TabPane tab={t('Stray')} key="2">
+                <TabPane tab={t('stray')} key="2">
                   <DisplayTable />
                 </TabPane>
               </Tabs>

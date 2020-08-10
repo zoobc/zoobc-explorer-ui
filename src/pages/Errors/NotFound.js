@@ -45,14 +45,14 @@ const NotFound = ({ history, location }) => {
                 {!!state && !!state.search ? (
                   <>
                     <p className="h3 mt-5">
-                      {t('Search results for')} {state.search}
+                      {t('search results for')} {state.search}
                     </p>
-                    <p className="h6">{t("Sorry, we couldn't find any results for this search")}</p>
+                    <p className="h6">{t("sorry, we couldn't find any results for this search")}</p>
                   </>
                 ) : (
                   <>
                     <p className="display-3 mb-0">404</p>
-                    <p className="h6">{t('Page Not Found')}</p>
+                    <p className="h6">{t('page not found')}</p>
                   </>
                 )}
                 <label>
@@ -65,9 +65,9 @@ const NotFound = ({ history, location }) => {
                       />
                     }
                     placeholder={t(
-                      'Search by Account Address / Transaction ID / Block ID / Node Public Key'
+                      'search by account address / transaction id / block id / node public key'
                     )}
-                    enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
+                    enterButton={loading ? <Spin indicator={Spinner} /> : t('search')}
                     onSearch={onSearch}
                   />
                 </label>

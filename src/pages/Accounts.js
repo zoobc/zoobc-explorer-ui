@@ -80,7 +80,7 @@ const Accounts = () => {
                 <Col span={23}>
                   <h5 className="page-title">
                     <i className="bcz-user" />
-                    <strong>{t('Accounts')}</strong>
+                    <strong>{t('accounts')}</strong>
                   </h5>
                   {!!data && <LastRefresh value={data.accounts.LastRefresh} />}
                 </Col>
