@@ -235,42 +235,42 @@ const Block = ({ match }) => {
               <Row>
                 <Col span={24}>
                   <h4 className="truncate">
-                    {t('Block')} {data.block.Height}
+                    {t('block')} {data.block.Height}
                   </h4>
                 </Col>
               </Row>
               <Card className="block-card" bordered={false}>
-                <DescItem label={t('Height')} value={data.block.Height} />
+                <DescItem label={t('height')} value={data.block.Height} />
               </Card>
               <Card className="block-card" bordered={false}>
-                <h4 className="block-card-title">{t('Summary')}</h4>
+                <h4 className="block-card-title">{t('summary')}</h4>
                 <DescItem
-                  label={t('Block ID')}
+                  label={t('block id')}
                   value={<CopyToClipboard text={data.block.BlockID} keyID="blockID" />}
                 />
                 <DescItem
-                  label={t('Timestamp')}
+                  label={t('timestamp')}
                   value={moment(data.block.Timestamp).format('lll')}
                 />
-                <DescItem label={t('Previous Block ID')} value={data.block.PreviousBlockID} />
-                <DescItem label={t('Block Seed')} value={data.block.BlockSeed} />
-                <DescItem label={t('Block Signature')} value={data.block.BlockSignature} />
+                <DescItem label={t('previous block id')} value={data.block.PreviousBlockID} />
+                <DescItem label={t('block seed')} value={data.block.BlockSeed} />
+                <DescItem label={t('block signature')} value={data.block.BlockSignature} />
                 <DescItem
-                  label={t('Cumulative Difficulty')}
+                  label={t('cumulative difficulty')}
                   value={data.block.CumulativeDifficulty}
                 />
-                {/* <DescItem label={t('Smith Scale')} value={data.block.SmithScale} /> */}
+                {/* <DescItem label={t('smith scale')} value={data.block.SmithScale} /> */}
                 <DescItem
-                  label={t('Blocksmith Address')}
+                  label={t('blocksmith address')}
                   value={
                     <Link to={`/accounts/${data.block.BlocksmithAddress}`}>
                       {data.block.BlocksmithAddress}
                     </Link>
                   }
                 />
-                <DescItem label={t('Total Amount')} value={data.block.TotalAmountConversion} />
+                <DescItem label={t('total amount')} value={data.block.TotalAmountConversion} />
                 <DescItem
-                  label={t('Total Fee')}
+                  label={t('total fee')}
                   value={
                     <NumberFormat
                       value={data.block.TotalFeeConversion}
@@ -281,7 +281,7 @@ const Block = ({ match }) => {
                   }
                 />
                 <DescItem
-                  label={t('Total Rewards')}
+                  label={t('total rewards')}
                   value={
                     <NumberFormat
                       value={data.block.TotalRewardsConversion}
@@ -291,27 +291,27 @@ const Block = ({ match }) => {
                     />
                   }
                 />
-                <DescItem label={t('Version')} value={data.block.Version} />
-                <DescItem label={t('Total Receipts')} value={data.block.TotalReceipts} />
-                <DescItem label={t('Receipt Value')} value={data.block.ReceiptValue} />
+                <DescItem label={t('version')} value={data.block.Version} />
+                <DescItem label={t('total receipts')} value={data.block.TotalReceipts} />
+                <DescItem label={t('receipt value')} value={data.block.ReceiptValue} />
                 <DescItem
-                  label={t('Blocksmith ID')}
+                  label={t('blocksmith id')}
                   value={
                     <Link to={`/nodes/${data.block.BlocksmithID}`}>{data.block.BlocksmithID}</Link>
                   }
                 />
-                <DescItem label={t('PoP Change')} value={data.block.PopChange} />
-                <DescItem label={t('Payload Length')} value={data.block.PayloadLength} />
-                <DescItem label={t('Payload Hash')} value={data.block.PayloadHash} />
+                <DescItem label={t('pop change')} value={data.block.PopChange} />
+                <DescItem label={t('payload length')} value={data.block.PayloadLength} />
+                <DescItem label={t('payload hash')} value={data.block.PayloadHash} />
               </Card>
               <Collapse className="block-collapse" bordered={false}>
                 <Panel
                   className="block-card-title block-collapse"
-                  header={t('PoP Changes')}
+                  header={t('pop changes')}
                   key="1"
                 >
                   <Card className="block-card" bordered={false}>
-                    <h4 className="block-card-title">{t('PoP Changes')}</h4>
+                    <h4 className="block-card-title">{t('pop changes')}</h4>
                     <Table
                       className="transactions-table"
                       columns={skippedBlocksmithColumns}
@@ -323,10 +323,10 @@ const Block = ({ match }) => {
                 </Panel>
               </Collapse>
               <Collapse className="block-collapse" bordered={false}>
-                <Panel className="block-card-title block-collapse" header={t('Rewards')} key="2">
+                <Panel className="block-card-title block-collapse" header={t('rewards')} key="2">
                   <Card className="block-card" bordered={false}>
                     <h4 className="block-card-title">
-                      {t('Coinbase')}
+                      {t('coinbase')}
                       <Badge className="badge-black" count={0} overflowCount={1000} />
                     </h4>
                     <Table
@@ -341,10 +341,10 @@ const Block = ({ match }) => {
                 </Panel>
               </Collapse>
               <Collapse className="block-collapse" bordered={false}>
-                <Panel className="block-card-title block-collapse" header={t('Receipts')} key="3">
+                <Panel className="block-card-title block-collapse" header={t('receipts')} key="3">
                   <Card className="block-card" bordered={false}>
                     <h4 className="block-card-title">
-                      {t('Receipts')}
+                      {t('receipts')}
                       <Badge
                         className="badge-black"
                         count={receiptPaginate.Total}
@@ -373,12 +373,12 @@ const Block = ({ match }) => {
               <Collapse className="block-collapse" defaultActiveKey={['4']} bordered={false}>
                 <Panel
                   className="block-card-title block-collapse"
-                  header={t('Transactions')}
+                  header={t('transactions')}
                   key="4"
                 >
                   <Card className="block-card" bordered={false}>
                     <h4 className="block-card-title">
-                      {t('Transactions')}
+                      {t('transactions')}
                       <Badge
                         className="badge-black"
                         count={trxPaginate.Total}

@@ -110,9 +110,15 @@ const Title = ({ text }) => {
   return t(text)
 }
 
+const DateFormat = ({ date }) => {
+  const { t } = useTranslation()
+
+  return !!date ? moment(date).format('lll') : t('unknown')
+}
+
 export const accountColumns = [
   {
-    title: <Title text="Address" />,
+    title: <Title text="address" />,
     dataIndex: 'AccountAddress',
     key: 'AccountAddress',
     render(text) {
@@ -120,21 +126,21 @@ export const accountColumns = [
     },
   },
   {
-    title: <Title text="Balance" />,
+    title: <Title text="balance" />,
     dataIndex: 'BalanceConversion',
     key: 'BalanceConversion',
     render: renderCurrenncy,
   },
   {
-    title: <Title text="Last Active" />,
+    title: <Title text="last active" />,
     dataIndex: 'LastActive',
     key: 'LastActive',
     render(text) {
-      return moment(text).format('lll')
+      return <DateFormat date={text} />
     },
   },
   {
-    title: <Title text="Fees" />,
+    title: <Title text="fees" />,
     dataIndex: 'TotalFeesPaidConversion',
     key: 'TotalFeesPaidConversion',
     render(text) {
@@ -150,7 +156,7 @@ export const accountColumns = [
     },
   },
   {
-    title: <Title text="Rewards" />,
+    title: <Title text="rewards" />,
     dataIndex: 'TotalRewardsConversion',
     key: 'TotalRewardsConversion',
     render: renderCurrenncy,
@@ -159,7 +165,7 @@ export const accountColumns = [
 
 export const blockColumns = [
   {
-    title: <Title text="Block ID" />,
+    title: <Title text="block id" />,
     dataIndex: 'BlockID',
     key: 'BlockID',
     render(text) {
@@ -167,7 +173,7 @@ export const blockColumns = [
     },
   },
   {
-    title: <Title text="Height" />,
+    title: <Title text="height" />,
     dataIndex: 'Height',
     key: 'Height',
     render(text, record) {
@@ -175,15 +181,15 @@ export const blockColumns = [
     },
   },
   {
-    title: <Title text="Timestamp" />,
+    title: <Title text="timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
     render(text) {
-      return moment(text).format('lll')
+      return <DateFormat date={text} />
     },
   },
   {
-    title: <Title text="Blocksmith Address" />,
+    title: <Title text="blocksmith address" />,
     dataIndex: 'BlocksmithAddress',
     key: 'BlocksmithAddress',
     render(text, record) {
@@ -205,13 +211,13 @@ export const blockColumns = [
     },
   },
   {
-    title: <Title text="Fees" />,
+    title: <Title text="fees" />,
     dataIndex: 'TotalFeeConversion',
     key: 'TotalFeeConversion',
     render: renderCurrenncy,
   },
   {
-    title: <Title text="Rewards" />,
+    title: <Title text="rewards" />,
     dataIndex: 'TotalRewardsConversion',
     key: 'TotalRewardsConversion',
     render: renderCurrenncy,
@@ -220,7 +226,7 @@ export const blockColumns = [
 
 export const transactionColumns = [
   {
-    title: <Title text="Transaction ID" />,
+    title: <Title text="transaction id" />,
     dataIndex: 'TransactionID',
     key: 'TransactionID',
     render(text) {
@@ -229,7 +235,7 @@ export const transactionColumns = [
     width: 200,
   },
   {
-    title: <Title text="Height" />,
+    title: <Title text="height" />,
     dataIndex: 'Height',
     key: 'Height',
     render(text, record) {
@@ -237,23 +243,23 @@ export const transactionColumns = [
     },
   },
   {
-    title: <Title text="Timestamp" />,
+    title: <Title text="timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
     width: 200,
     render(text) {
-      return moment(text).format('lll')
+      return <DateFormat date={text} />
     },
   },
   {
-    title: <Title text="Type" />,
+    title: <Title text="type" />,
     dataIndex: 'TransactionTypeName',
     key: 'TransactionTypeName',
     width: 250,
     render: renderTransactionType,
   },
   {
-    title: <Title text="Sender" />,
+    title: <Title text="sender" />,
     dataIndex: 'Sender',
     key: 'Sender',
     width: 180,
@@ -262,7 +268,7 @@ export const transactionColumns = [
     },
   },
   {
-    title: <Title text="Recipient" />,
+    title: <Title text="recipient" />,
     dataIndex: 'Recipient',
     key: 'Recipient',
     width: 180,
@@ -271,7 +277,7 @@ export const transactionColumns = [
     },
   },
   {
-    title: <Title text="Amount" />,
+    title: <Title text="amount" />,
     dataIndex: 'Amount',
     key: 'Amount',
     render: renderAmountCurrenncy,
@@ -282,7 +288,7 @@ export const transactionColumns = [
   //   key: 'Confirmations',
   // },
   {
-    title: <Title text="Fees" />,
+    title: <Title text="fees" />,
     dataIndex: 'FeeConversion',
     key: 'FeeConversion',
     render: renderCurrenncy,
@@ -291,7 +297,7 @@ export const transactionColumns = [
 
 export const nodeColumns = [
   {
-    title: <Title text="Public Key" />,
+    title: <Title text="public key" />,
     dataIndex: 'NodePublicKey',
     key: 'NodePublicKey',
     render(text) {
@@ -299,7 +305,7 @@ export const nodeColumns = [
     },
   },
   {
-    title: <Title text="Owner Address" />,
+    title: <Title text="owner address" />,
     dataIndex: 'OwnerAddress',
     key: 'OwnerAddress',
     render(text) {
@@ -312,13 +318,13 @@ export const nodeColumns = [
   //   key: 'NodeAddress',
   // },
   {
-    title: <Title text="Locked Funds" />,
+    title: <Title text="locked funds" />,
     dataIndex: 'LockedFunds',
     key: 'LockedFunds',
     render: renderCurrenncy,
   },
   {
-    title: <Title text="Status" />,
+    title: <Title text="status" />,
     dataIndex: 'RegistrationStatus',
     key: 'RegistrationStatus',
     render(text) {
@@ -330,7 +336,7 @@ export const nodeColumns = [
     },
   },
   {
-    title: <Title text="Score" />,
+    title: <Title text="score" />,
     dataIndex: 'ParticipationScore',
     key: 'ParticipationScore',
   },
@@ -338,7 +344,7 @@ export const nodeColumns = [
 
 export const publishedReceiptColumns = [
   {
-    title: <Title text="Sender" />,
+    title: <Title text="sender" />,
     dataIndex: 'BatchReceipt.SenderPublicKey',
     key: 'BatchReceipt.SenderPublicKey',
     render(text) {
@@ -346,7 +352,7 @@ export const publishedReceiptColumns = [
     },
   },
   {
-    title: <Title text="Receiver" />,
+    title: <Title text="receiver" />,
     dataIndex: 'BatchReceipt.ReceiverPublicKey',
     key: 'BatchReceipt.ReceiverPublicKey',
     render(text) {
@@ -354,27 +360,27 @@ export const publishedReceiptColumns = [
     },
   },
   {
-    title: <Title text="Block" />,
+    title: <Title text="block" />,
     dataIndex: 'BatchReceipt.Height',
     key: 'BatchReceipt.Height',
   },
   {
-    title: <Title text="Data Type" />,
+    title: <Title text="data type" />,
     dataIndex: 'BatchReceipt.DataType',
     key: 'BatchReceipt.DataType',
   },
   {
-    title: <Title text="Data Hash" />,
+    title: <Title text="data hash" />,
     dataIndex: 'BatchReceipt.DataHash',
     key: 'BatchReceipt.DataHash',
   },
   {
-    title: <Title text="Merkle Root" />,
+    title: <Title text="merkle root" />,
     dataIndex: 'BatchReceipt.ReceiptMerkleRoot',
     key: 'BatchReceipt.ReceiptMerkleRoot',
   },
   {
-    title: <Title text="Receiver Signature" />,
+    title: <Title text="receiver signature" />,
     dataIndex: 'BatchReceipt.ReceiverSignature',
     key: 'BatchReceipt.ReceiverSignature',
   },
@@ -382,22 +388,22 @@ export const publishedReceiptColumns = [
 
 export const skippedBlocksmithColumns = [
   {
-    title: <Title text="Public Key" />,
+    title: <Title text="public key" />,
     dataIndex: 'BlocksmithPublicKey',
     key: 'BlocksmithPublicKey',
   },
   {
-    title: <Title text="PoP Change" />,
+    title: <Title text="pop change" />,
     dataIndex: 'POPChange',
     key: 'POPChange',
   },
   {
-    title: <Title text="Height" />,
+    title: <Title text="height" />,
     dataIndex: 'BlockHeight',
     key: 'BlockHeight',
   },
   {
-    title: <Title text="Index" />,
+    title: <Title text="index" />,
     dataIndex: 'BlocksmithIndex',
     key: 'BlocksmithIndex',
   },
@@ -405,7 +411,7 @@ export const skippedBlocksmithColumns = [
 
 export const latestBlockColumns = [
   {
-    title: <Title text="Height" />,
+    title: <Title text="height" />,
     dataIndex: 'Height',
     key: 'Height',
     render(text, record) {
@@ -417,15 +423,19 @@ export const latestBlockColumns = [
     },
   },
   {
-    title: <Title text="Timestamp" />,
+    title: <Title text="timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
     render(text) {
-      return <small>{moment(text).format('lll')}</small>
+      return (
+        <small>
+          <DateFormat date={text} />
+        </small>
+      )
     },
   },
   {
-    title: <Title text="Blocksmith Address" />,
+    title: <Title text="blocksmith address" />,
     dataIndex: 'BlocksmithAddress',
     key: 'BlocksmithAddress',
     render(text, record) {
@@ -452,7 +462,7 @@ export const latestBlockColumns = [
 
 export const latestTransactionColumns = [
   {
-    title: <Title text="Fees" />,
+    title: <Title text="fees" />,
     dataIndex: 'FeeConversion',
     key: 'FeeConversion',
     render(text) {
@@ -461,16 +471,20 @@ export const latestTransactionColumns = [
   },
 
   {
-    title: <Title text="Timestamp" />,
+    title: <Title text="timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
     width: 200,
     render(text) {
-      return <small>{moment(text).format('lll')}</small>
+      return (
+        <small>
+          <DateFormat date={text} />
+        </small>
+      )
     },
   },
   {
-    title: <Title text="Transaction ID" />,
+    title: <Title text="transaction id" />,
     dataIndex: 'TransactionID',
     key: 'TransactionID',
     render(text) {

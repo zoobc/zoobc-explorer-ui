@@ -69,7 +69,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://www.blockchainzoo.com/"
               >
-                {t('Company')}
+                {t('company')}
               </a>
             </li>
             <li>
@@ -89,7 +89,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://blogchainzoo.com/"
               >
-                {t('Blog')}
+                {t('blog')}
               </a>
             </li>
             <li>
@@ -99,7 +99,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.com/learn-more/"
               >
-                {t('About Us')}
+                {t('about us')}
               </a>
             </li>
             <li>
@@ -395,7 +395,7 @@ const Footer = () => {
             <p className="footer-company-text">
               &#169;2020 All rights reserved | ZooBC Explorer |&nbsp;
               <a target="_blank" rel="noopener noreferrer" href="https://zoobc.com/privacy-policy/">
-                {t('Privacy Policy')}
+                {t('privacy policy')}
               </a>
             </p>
           </li>
@@ -445,7 +445,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://www.blockchainzoo.com/"
                   >
-                    {t('Company')}
+                    {t('company')}
                   </a>
                 </li>
                 <li>
@@ -465,7 +465,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://blogchainzoo.com/"
                   >
-                    {t('Blog')}
+                    {t('blog')}
                   </a>
                 </li>
                 <li>
@@ -475,7 +475,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.com/learn-more/"
                   >
-                    {t('About Us')}
+                    {t('about us')}
                   </a>
                 </li>
                 <li>
@@ -779,7 +779,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.com/privacy-policy/"
                   >
-                    {t('Privacy Policy')}
+                    {t('privacy policy')}
                   </a>
                 </p>
               </li>

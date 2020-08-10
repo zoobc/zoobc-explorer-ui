@@ -141,11 +141,11 @@ const Home = ({ history }) => {
             <Card bordered={false}>
               <div className="home-card-title">
                 <i className="bcz-calendar" />
-                <strong>{t('Latest Blocks')}</strong>
+                <strong>{t('latest blocks')}</strong>
               </div>
               <TableAnim loading={loading} columns={latestBlockColumns} data={blockData} />
               <Button type="primary" onClick={() => history.push('/blocks')} block>
-                {t('VIEW ALL BLOCKS')}
+                {t('view all blocks')}
               </Button>
             </Card>
           </Col>
@@ -153,11 +153,11 @@ const Home = ({ history }) => {
             <Card bordered={false}>
               <div className="home-card-title">
                 <i className="bcz-calendar" />
-                <strong>{t('Latest Transactions')}</strong>
+                <strong>{t('latest transactions')}</strong>
               </div>
               <TableAnim loading={loading} columns={latestTransactionColumns} data={trxData} />
               <Button type="primary" onClick={() => history.push('/transactions')} block>
-                {t('VIEW ALL TRANSACTIONS')}
+                {t('view all transactions')}
               </Button>
             </Card>
           </Col>
@@ -168,7 +168,7 @@ const Home = ({ history }) => {
             <Card bordered={false}>
               <div className="home-card-title">
                 <i className="bcz-calendar" />
-                <strong>{t('Latest Block Count in 30 Days')}</strong>
+                <strong>{t('latest block count in 30 days')}</strong>
               </div>
               <div className="graph">
                 <div className="graph-container">
@@ -192,7 +192,7 @@ const Home = ({ history }) => {
                         dataKey="amt"
                         stroke="#8884d8"
                         activeDot={{ r: 8 }}
-                        name={t('Block Count')}
+                        name={t('block count')}
                       />
                     </LineChart>
                   </ResponsiveContainer>
@@ -204,7 +204,7 @@ const Home = ({ history }) => {
             <Card bordered={false}>
               <div className="home-card-title">
                 <i className="bcz-calendar" />
-                <strong>{t('Latest Transaction Amount in 30 Days')}</strong>
+                <strong>{t('latest transaction amount in 30 days')}</strong>
               </div>
               <div className="graph">
                 <div className="graph-container">
@@ -228,7 +228,7 @@ const Home = ({ history }) => {
                         dataKey="amt"
                         stroke="#8884d8"
                         activeDot={{ r: 8 }}
-                        name={t('Transaction Amount')}
+                        name={t('transaction amount')}
                       />
                     </LineChart>
                   </ResponsiveContainer>
