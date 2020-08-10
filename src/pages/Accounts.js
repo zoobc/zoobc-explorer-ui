@@ -82,7 +82,7 @@ const Accounts = () => {
                     <i className="bcz-user" />
                     <strong>{t('accounts')}</strong>
                   </h5>
-                  {!loading && <LastRefresh value={data.accounts.LastRefresh} />}
+                  {!!data && <LastRefresh value={data.accounts.LastRefresh} />}
                 </Col>
                 <Col>
                   <Button

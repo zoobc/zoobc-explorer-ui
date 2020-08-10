@@ -136,7 +136,7 @@ const Transactions = () => {
                     <i className="bcz-calendar" />
                     <strong>{t('recent transactions')}</strong>
                   </h5>
-                  {!loading && <LastRefresh value={data.transactions.LastRefresh} />}
+                  {!!data && <LastRefresh value={data.transactions.LastRefresh} />}
                 </Col>
                 <Col>
                   <Button

@@ -110,6 +110,12 @@ const Title = ({ text }) => {
   return t(text)
 }
 
+const DateFormat = ({ date }) => {
+  const { t } = useTranslation()
+
+  return !!date ? moment(date).format('lll') : t('unknown')
+}
+
 export const accountColumns = [
   {
     title: <Title text="address" />,
@@ -130,7 +136,7 @@ export const accountColumns = [
     dataIndex: 'LastActive',
     key: 'LastActive',
     render(text) {
-      return moment(text).format('lll')
+      return <DateFormat date={text} />
     },
   },
   {
@@ -179,7 +185,7 @@ export const blockColumns = [
     dataIndex: 'Timestamp',
     key: 'Timestamp',
     render(text) {
-      return moment(text).format('lll')
+      return <DateFormat date={text} />
     },
   },
   {
@@ -242,7 +248,7 @@ export const transactionColumns = [
     key: 'Timestamp',
     width: 200,
     render(text) {
-      return moment(text).format('lll')
+      return <DateFormat date={text} />
     },
   },
   {
@@ -421,7 +427,11 @@ export const latestBlockColumns = [
     dataIndex: 'Timestamp',
     key: 'Timestamp',
     render(text) {
-      return <small>{moment(text).format('lll')}</small>
+      return (
+        <small>
+          <DateFormat date={text} />
+        </small>
+      )
     },
   },
   {
@@ -466,7 +476,11 @@ export const latestTransactionColumns = [
     key: 'Timestamp',
     width: 200,
     render(text) {
-      return <small>{moment(text).format('lll')}</small>
+      return (
+        <small>
+          <DateFormat date={text} />
+        </small>
+      )
     },
   },
   {
