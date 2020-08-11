@@ -7,7 +7,7 @@ const RemoveNodeRegistration = ({ data }) => {
   const { t } = useTranslation()
   return (
     <Card className="transaction-card">
-      <h4 className="transaction-card-title">{t('remove node registration')}</h4>
+      <h4 className="transaction-card-title page-title">{t('remove node registration')}</h4>
       <DescItem label={t('node public key')} value={data.NodePublicKey} />
     </Card>
   )

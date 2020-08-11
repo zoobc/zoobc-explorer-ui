@@ -150,13 +150,13 @@ const Account = ({ match }) => {
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <h4 className="truncate">
+                  <h4 className="truncate page-title">
                     {t('account')} {data.account.AccountAddress}
                   </h4>
                 </Col>
               </Row>
               <Card className="account-card" bordered={false}>
-                <h4 className="account-card-title">{t('summary')}</h4>
+                <h4 className="account-card-title page-title">{t('summary')}</h4>
                 <DescItem
                   label={t('account address')}
                   value={
@@ -218,7 +218,7 @@ const Account = ({ match }) => {
                 {/* <DescItem label={t('node public key')} value={data.account.NodePublicKey} /> */}
               </Card>
               <Card className="account-card" bordered={false}>
-                <h4 className="account-card-title">
+                <h4 className="account-card-title page-title">
                   {t('transactions')}
                   <Badge className="badge-black" count={trxPaginate.Total} overflowCount={1000} />
                 </h4>

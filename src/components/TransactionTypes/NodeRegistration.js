@@ -9,7 +9,7 @@ const NodeRegistration = ({ data }) => {
   const { t } = useTranslation()
   return (
     <Card className="transaction-card">
-      <h4 className="transaction-card-title">{t('node registration')}</h4>
+      <h4 className="transaction-card-title page-title">{t('node registration')}</h4>
       <DescItem label={t('node address')} value={data.NodeAddress.Address} />
       <DescItem
         label={t('account address')}

@@ -11,6 +11,7 @@ import DefaultLayout from './components/DefaultLayout'
 import ErrorBoundary from './components/ErrorBoundary'
 import { AnimationState } from './context/AnimationContext'
 import TestnetContext, { TestnetState } from './context/TestnetContext'
+import { ThemeState } from './context/ThemeContext'
 
 const Home = React.lazy(() => import('./pages/Home'))
 const Blocks = React.lazy(() => import('./pages/Blocks'))
@@ -29,43 +30,49 @@ function ApolloMultiProvider({ children }) {
 
 function App() {
   return (
-    <TestnetState>
-      <ApolloMultiProvider>
-        <I18nextProvider i18n={i18n}>
-          <BrowserRouter>
-            <AnimationState>
-              <DefaultLayout>
-                <ErrorBoundary>
-                  <Suspense fallback={<Fallback />}>
-                    <Switch>
-                      <Route exact path="/" render={props => <Home {...props} />} />
-                      <Route exact path="/blocks" render={props => <Blocks {...props} />} />
-                      <Route exact path="/blocks/:id" render={props => <Block {...props} />} />
-                      <Route
-                        exact
-                        path="/transactions"
-                        render={props => <Transactions {...props} />}
-                      />
-                      <Route
-                        exact
-                        path="/transactions/:id+"
-                        render={props => <Transaction {...props} />}
-                      />
-                      <Route exact path="/accounts" render={props => <Accounts {...props} />} />
-                      <Route exact path="/accounts/:id" render={props => <Account {...props} />} />
-                      <Route exact path="/nodes" render={props => <Nodes {...props} />} />
-                      <Route exact path="/nodes/:id+" render={props => <Node {...props} />} />
-                      <Route exact path="/search" render={props => <NotFound {...props} />} />
-                      <Route exact path="*" render={props => <NotFound {...props} />} />
-                    </Switch>
-                  </Suspense>
-                </ErrorBoundary>
-              </DefaultLayout>
-            </AnimationState>
-          </BrowserRouter>
-        </I18nextProvider>
-      </ApolloMultiProvider>
-    </TestnetState>
+    <ThemeState>
+      <TestnetState>
+        <ApolloMultiProvider>
+          <I18nextProvider i18n={i18n}>
+            <BrowserRouter>
+              <AnimationState>
+                <DefaultLayout>
+                  <ErrorBoundary>
+                    <Suspense fallback={<Fallback />}>
+                      <Switch>
+                        <Route exact path="/" render={props => <Home {...props} />} />
+                        <Route exact path="/blocks" render={props => <Blocks {...props} />} />
+                        <Route exact path="/blocks/:id" render={props => <Block {...props} />} />
+                        <Route
+                          exact
+                          path="/transactions"
+                          render={props => <Transactions {...props} />}
+                        />
+                        <Route
+                          exact
+                          path="/transactions/:id+"
+                          render={props => <Transaction {...props} />}
+                        />
+                        <Route exact path="/accounts" render={props => <Accounts {...props} />} />
+                        <Route
+                          exact
+                          path="/accounts/:id"
+                          render={props => <Account {...props} />}
+                        />
+                        <Route exact path="/nodes" render={props => <Nodes {...props} />} />
+                        <Route exact path="/nodes/:id+" render={props => <Node {...props} />} />
+                        <Route exact path="/search" render={props => <NotFound {...props} />} />
+                        <Route exact path="*" render={props => <NotFound {...props} />} />
+                      </Switch>
+                    </Suspense>
+                  </ErrorBoundary>
+                </DefaultLayout>
+              </AnimationState>
+            </BrowserRouter>
+          </I18nextProvider>
+        </ApolloMultiProvider>
+      </TestnetState>
+    </ThemeState>
   )
 }
 

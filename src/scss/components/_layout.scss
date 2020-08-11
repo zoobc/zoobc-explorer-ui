@@ -5,6 +5,12 @@
 }
 
 .home {
+
+  &-banner {
+    background-color: var(--color-banner) !important;
+    padding-top: 30px !important;
+  }
+
   &-card {
     margin-top: 32px;
 
@@ -64,9 +70,11 @@
 
 .home-row-list {
   width: 100%;
+
   @include mq-lg {
     font-size: 13px !important;
   }
+
   @include mq-xl {
     font-size: 14px !important;
   }

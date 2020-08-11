@@ -127,7 +127,7 @@ const Home = ({ history }) => {
 
   return (
     <>
-      <div style={{ backgroundColor: 'white', paddingTop: 30 }}>
+      <div className="home-banner">
         <Container>
           <Row>
             <Banner />

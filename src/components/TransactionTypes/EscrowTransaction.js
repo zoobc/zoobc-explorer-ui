@@ -10,7 +10,7 @@ const EscrowTransaction = ({ data, blockID, TransactionID }) => {
   const { t } = useTranslation()
   return (
     <Card className="transaction-card">
-      <h4 className="transaction-card-title">{t('escrow transaction')}</h4>
+      <h4 className="transaction-card-title page-title">{t('escrow transaction')}</h4>
 
       {!!TransactionID && (
         <DescItem

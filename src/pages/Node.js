@@ -100,13 +100,13 @@ const Node = ({ match, history }) => {
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <h4 className="truncate">
+                  <h4 className="truncate page-title">
                     {t('public key')} {data.node.NodePublicKey}
                   </h4>
                 </Col>
               </Row>
               <Card className="node-card" bordered={false}>
-                <h4 className="node-card-title">{t('summary')}</h4>
+                <h4 className="node-card-title page-title">{t('summary')}</h4>
                 <DescItem
                   label={t('node public key')}
                   value={<CopyToClipboard text={data.node.NodePublicKey} keyID="nodePublicKey" />}
@@ -169,7 +169,7 @@ const Node = ({ match, history }) => {
                 /> */}
               </Card>
               <Card className="node-card" bordered={false}>
-                <h4 className="node-card-title">
+                <h4 className="node-card-title page-title">
                   {t('blocks')}
                   <Badge className="badge-black" count={blockPaginate.Total} overflowCount={1000} />
                 </h4>

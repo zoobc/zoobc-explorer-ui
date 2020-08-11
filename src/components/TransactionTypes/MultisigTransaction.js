@@ -7,7 +7,7 @@ const MultisigTransaction = ({ data }) => {
   const { t } = useTranslation()
   return (
     <Card className="transaction-card">
-      <h4 className="transaction-card-title">{t('multisignature transaction')}</h4>
+      <h4 className="transaction-card-title page-title">{t('multisignature transaction')}</h4>
       <Table
         className="transactions-table"
         columns={transactionColumns}

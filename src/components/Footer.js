@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Switch, Menu, Dropdown, Avatar, Layout, Row, Col, Collapse } from 'antd'
 import Container from './Container'
@@ -18,6 +18,7 @@ import bczLogoFooter from '../assets/images/logo-bcz-footer.svg'
 import FormFeedback from './FormFeedback'
 import ComingSoon from './ComingSoon'
 import { store } from '../utils'
+import ThemeContext from '../context/ThemeContext'
 
 const Footer = () => {
   const { t, i18n } = useTranslation()
@@ -48,6 +49,12 @@ const Footer = () => {
         ))}
       </Menu>
     )
+  }
+
+  const { theme, onChangeSelectedTheme } = useContext(ThemeContext)
+
+  const onChangeTheme = data => {
+    onChangeSelectedTheme(data === true ? 'dark' : 'light')
   }
 
   const FooterMobile = () => (
@@ -393,7 +400,19 @@ const Footer = () => {
             </p>
           </li>
         </ul>
-        <Switch checkedChildren="☀" unCheckedChildren="☾" defaultChecked className="d-none" />
+        <Switch
+          checkedChildren="dark"
+          checked={theme === 'dark' ? true : false}
+          unCheckedChildren="light"
+          onClick={e => onChangeTheme(e)}
+          style={{ marginRight: 5 }}
+        />
+        {theme === 'dark' ? (
+          <a style={{ color: 'white', marginRight: 5 }}>Enable Light theme</a>
+        ) : (
+          <a style={{ color: 'white', marginRight: 5 }}>Enable Dark theme</a>
+        )}
+
         <Dropdown overlay={languageOptions}>
           <p className="footer-language ">
             <Avatar
@@ -765,7 +784,20 @@ const Footer = () => {
                 </p>
               </li>
             </ul>
-            <Switch checkedChildren="☀" unCheckedChildren="☾" defaultChecked className="d-none" />
+
+            <Switch
+              checkedChildren="dark"
+              checked={theme === 'dark' ? true : false}
+              unCheckedChildren="light"
+              onClick={e => onChangeTheme(e)}
+              style={{ marginRight: 5 }}
+            />
+            {theme === 'dark' ? (
+              <a style={{ color: 'white', marginRight: 5 }}>Enable Light theme</a>
+            ) : (
+              <a style={{ color: 'white', marginRight: 5 }}>Enable Dark theme</a>
+            )}
+
             <Dropdown overlay={languageOptions}>
               <p className="footer-language">
                 <Avatar

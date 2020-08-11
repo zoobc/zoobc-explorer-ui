@@ -22,7 +22,13 @@ const getBlocksmithIndicator = skipped => {
 
 const renderCurrenncy = text => {
   return (
-    <NumberFormat value={text || 0} displayType={'text'} thousandSeparator={true} suffix={' ZBC'} />
+    <NumberFormat
+      value={text || 0}
+      displayType={'text'}
+      thousandSeparator={true}
+      suffix={' ZBC'}
+      className="page-title"
+    />
   )
 }
 
@@ -99,7 +105,13 @@ const renderAmountCurrenncy = (text, record) => {
 
   return (
     !!text && (
-      <NumberFormat value={text} displayType={'text'} thousandSeparator={true} suffix={' ZBC'} />
+      <NumberFormat
+        value={text}
+        displayType={'text'}
+        thousandSeparator={true}
+        suffix={' ZBC'}
+        className="page-title"
+      />
     )
   )
 }
@@ -151,6 +163,7 @@ export const accountColumns = [
           decimalScale={2}
           thousandSeparator={true}
           suffix={' ZBC'}
+          className="page-title"
         />
       )
     },
@@ -185,7 +198,7 @@ export const blockColumns = [
     dataIndex: 'Timestamp',
     key: 'Timestamp',
     render(text) {
-      return <DateFormat date={text} />
+      return <DateFormat date={text} style={{ color: 'white' }} />
     },
   },
   {

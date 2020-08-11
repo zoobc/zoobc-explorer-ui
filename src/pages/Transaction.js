@@ -210,13 +210,13 @@ const Transaction = ({ match }) => {
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <h4 className="truncate">
+                  <h4 className="truncate page-title">
                     {t('transaction')} {data.transaction.TransactionID}
                   </h4>
                 </Col>
               </Row>
               <Card className="transaction-card" bordered={false}>
-                <h4 className="transaction-card-title">{t('summary')}</h4>
+                <h4 className="transaction-card-title page-title">{t('summary')}</h4>
                 <DescItem
                   label={t('transaction id')}
                   value={

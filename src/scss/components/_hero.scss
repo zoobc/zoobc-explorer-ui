@@ -8,19 +8,24 @@
 
     label.label-search {
       display: block;
+      color: var(--color-text-search) !important;
     }
 
     .ant-input {
       padding-left: 40px !important;
+      background: var(--color-hero);
     }
   }
 
   &-title {
     font-size: 2rem;
     font-weight: bolder;
+    color: var(--color-text-hero) !important;
   }
+
   &-subtitle {
     margin: 15px 0 0 0;
     font-size: 1rem;
+    color: var(--color-text-hero) !important;
   }
 }
