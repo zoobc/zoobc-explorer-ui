@@ -121,14 +121,8 @@ const Home = ({ history }) => {
 
   return (
     <>
-      <div className="home-banner">
-        <Container>
-          <Row>
-            <Banner />
-          </Row>
-        </Container>
-      </div>
       <Container>
+        <Banner />
         <Hero />
         <Row className="home-card">
           <Col className="home-col-left" md={{ span: 12 }} sm={{ span: 24 }}>
