@@ -104,7 +104,7 @@ const Nodes = () => {
                 </Col>
               </Row>
               <Tabs defaultActiveKey="3" onChange={onChangeTab} className="table">
-                <TabPane tab={t('all')} key={3}>
+                <TabPane tab={t('all')} key="3">
                   <DisplayTable />
                 </TabPane>
                 <TabPane tab={t('registered')} key="0">
