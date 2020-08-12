@@ -83,6 +83,14 @@ const GET_SUBSCRIPTION_TRANSACTIONS = gql`
   }
 `
 
+const checkLatLong = data => {
+  const containLatLong = data.filter(item => !!item.Latitude || !!item.Longitude)
+
+  if (containLatLong.length > 0) return true
+
+  return false
+}
+
 const Home = ({ history }) => {
   const { t } = useTranslation()
   const { loading, data } = useQuery(GET_HOME_DATA)
@@ -226,7 +234,7 @@ const Home = ({ history }) => {
           </Col>
         </Row>
 
-        {data && data.maps && data.maps.length > 0 && (
+        {data && data.maps && data.maps.length > 0 && checkLatLong(data.maps) && (
           <MapNodes loading={loading} data={data && data.maps} />
         )}
       </Container>
