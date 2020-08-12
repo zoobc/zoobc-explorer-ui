@@ -31,7 +31,7 @@ const FormFeedback = ({ visible, onClose, form }) => {
 
   return (
     <Modal
-      title={t('Feedback')}
+      title={t('feedback')}
       visible={visible}
       onOk={onClose}
       onCancel={onClose}
@@ -43,53 +43,53 @@ const FormFeedback = ({ visible, onClose, form }) => {
     >
       {!!alert && <Alert message={alert.message} type={alert.type} />}
       <Form layout="vertical" onSubmit={handleSubmit}>
-        <Form.Item label={t('Name')}>
+        <Form.Item label={t('name')}>
           {getFieldDecorator('name', {
             rules: [
               {
                 required: true,
-                message: 'Please input your name!',
+                message: t('please input your name!'),
                 transform: value => value.trim(),
               },
             ],
-          })(<Input placeholder={t('Input your name')} />)}
+          })(<Input placeholder={t('input your name')} />)}
         </Form.Item>
-        <Form.Item label={t('Email')}>
+        <Form.Item label={t('email')}>
           {getFieldDecorator('email', {
             rules: [
               {
                 required: true,
                 type: 'email',
-                message: 'Please input your email!',
+                message: t('please input your email!'),
                 transform: value => value.trim(),
               },
             ],
-          })(<Input placeholder={t('Input your email address')} />)}
+          })(<Input placeholder={t('input your email address')} />)}
         </Form.Item>
-        <Form.Item label={t('Sentiment')}>
+        <Form.Item label={t('sentiment')}>
           {getFieldDecorator('sentiment')(
-            <Select placeholder={t('Please select a sentiment')}>
-              <Select.Option value="positive">Positive</Select.Option>
-              <Select.Option value="negative">Negative</Select.Option>
-              <Select.Option value="neutral">Neutral</Select.Option>
+            <Select placeholder={t('please select a sentiment')}>
+              <Select.Option value="positive">{t('positive')}</Select.Option>
+              <Select.Option value="negative">{t('negative')}</Select.Option>
+              <Select.Option value="neutral">{t('neutral')}</Select.Option>
             </Select>
           )}
         </Form.Item>
-        <Form.Item label={t('Rate')}>{getFieldDecorator('nps')(<Rate />)}</Form.Item>
-        <Form.Item label={t('Message')}>
+        <Form.Item label={t('rate')}>{getFieldDecorator('nps')(<Rate />)}</Form.Item>
+        <Form.Item label={t('message')}>
           {getFieldDecorator('message', {
             rules: [
               {
                 required: true,
-                message: 'Please input your message!',
+                message: t('please input your message!'),
                 transform: value => value.trim(),
               },
             ],
-          })(<Input.TextArea rows={4} placeholder={t('Input your feedback message')} />)}
+          })(<Input.TextArea rows={4} placeholder={t('input your feedback message')} />)}
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" size="large" loading={isSubmitting} block>
-            {t('SUBMIT')}
+            {t('submit')}
           </Button>
         </Form.Item>
       </Form>

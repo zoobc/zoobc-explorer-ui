@@ -10,7 +10,7 @@ const MultiSignature = ({ data, disableTrxHashLink }) => {
   const { MultiSignatureInfo, SignatureInfo, UnsignedTransactionBytes } = data
   return (
     <Card className="transaction-card">
-      <h4 className="transaction-card-title">{t('Multi Signature Info')}</h4>
+      <h4 className="transaction-card-title page-title">{t('multisignature info')}</h4>
       {MultiSignatureInfo && (
         <>
           <DescItem label="Minimum Signature" value={MultiSignatureInfo.MinimumSignatures} />
@@ -27,7 +27,7 @@ const MultiSignature = ({ data, disableTrxHashLink }) => {
       {SignatureInfo && (
         <>
           <DescItem
-            label={t('Transaction Hash')}
+            label={t('transaction hash')}
             value={
               !!disableTrxHashLink ? (
                 SignatureInfo.TransactionHash
@@ -39,7 +39,7 @@ const MultiSignature = ({ data, disableTrxHashLink }) => {
             }
           />
           <br />
-          <h5>{t('Participants')}</h5>
+          <h5>{t('participants')}</h5>
           {SignatureInfo.Signatures &&
             SignatureInfo.Signatures.map((data, key) => (
               <DescItem

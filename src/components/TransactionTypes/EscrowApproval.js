@@ -9,10 +9,10 @@ const EscrowApproval = ({ data }) => {
   return (
     <>
       <Card className="transaction-card">
-        <h4 className="transaction-card-title">{t('Summary Approval Escrow')}</h4>
+        <h4 className="transaction-card-title page-title">{t('summary approval escrow')}</h4>
         <DescItem label="Status" value={data.Approval} />
         <DescItem
-          label={t('Transaction ID')}
+          label={t('transaction id')}
           value={<Link to={`/transactions/${data.TransactionID}`}>{data.TransactionID}</Link>}
         />
       </Card>

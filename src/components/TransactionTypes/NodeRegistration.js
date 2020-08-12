@@ -9,18 +9,18 @@ const NodeRegistration = ({ data }) => {
   const { t } = useTranslation()
   return (
     <Card className="transaction-card">
-      <h4 className="transaction-card-title">{t('Node Registration')}</h4>
-      <DescItem label={t('Node Address')} value={data.NodeAddress.Address} />
+      <h4 className="transaction-card-title page-title">{t('node registration')}</h4>
+      <DescItem label={t('node address')} value={data.NodeAddress.Address} />
       <DescItem
-        label={t('Account Address')}
+        label={t('account address')}
         value={<Link to={`/accounts/${data.AccountAddress}`}>{data.AccountAddress}</Link>}
       />
       <DescItem
-        label={t('Node Public Key')}
+        label={t('node public key')}
         value={<Link to={`/nodes/${data.NodePublicKey}`}>{data.NodePublicKey}</Link>}
       />
       <DescItem
-        label={t('Locked Balance')}
+        label={t('locked balance')}
         value={
           <NumberFormat
             value={data.LockedBalanceConversion || 0}
@@ -31,11 +31,11 @@ const NodeRegistration = ({ data }) => {
         }
       />
       <DescItem
-        label={t('POOW Message Bytes')}
+        label={t('poow message bytes')}
         value={data.ProofOfOwnership && data.ProofOfOwnership.MessageBytes}
       />
       <DescItem
-        label={t('POOW Signature')}
+        label={t('poow signature')}
         value={data.ProofOfOwnership && data.ProofOfOwnership.Signature}
       />
     </Card>

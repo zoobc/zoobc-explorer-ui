@@ -23,13 +23,14 @@
   .ant-menu-item-selected {
     a {
       color: var(--color-primary-light) !important;
+
       &:hover {
         color: var(--color-primary-light) !important;
       }
     }
   }
 
-  .ant-menu-dark.ant-menu-horizontal > .ant-menu-item {
+  .ant-menu-dark.ant-menu-horizontal>.ant-menu-item {
     top: 0 !important;
     font-weight: 600;
     font-style: normal;
@@ -38,12 +39,12 @@
   }
 
   .ant-input {
-    background-color: var(--color-secondary-bg);
+    background-color: var(--color-search-bg);
     padding-left: 36px !important;
     // font-size: 45px;
   }
 
-  .ant-btn > span {
+  .ant-btn>span {
     text-transform: uppercase;
   }
 
@@ -83,6 +84,7 @@
     .logo-text-name {
       display: none;
     }
+
     .logo-text-version {
       display: none;
     }
@@ -92,6 +94,7 @@
     .logo-text-name {
       display: block;
     }
+
     .logo-text-version {
       display: block;
     }
@@ -102,12 +105,21 @@
   line-height: normal;
   font-size: 14px;
   font-weight: 900;
+  color: var(--color-primary-light-txt);
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    color: var(--color-primary-light-txt);
+    text-decoration: none !important;
+  }
 }
 
 .logo-text-version {
   line-height: normal;
   font-size: 11px;
   font-style: italic;
+  cursor: pointer;
 
   .anticon {
     vertical-align: 0.3px;
@@ -121,9 +133,11 @@
   align-items: center;
   vertical-align: middle;
   height: 100%;
+
   .logo {
     display: flex;
     align-items: center;
+
     img {
       width: 32px;
       height: 36px;
@@ -152,7 +166,7 @@
   font-size: 14px;
 
   a {
-    color: var(--color-secondary-solitude) !important;
+    color: var(--color-secondary-solitude-txt) !important;
   }
 
   a:focus {
@@ -166,16 +180,20 @@
       background-color: var(--color-primary-bg) !important;
       color: var(--white);
     }
+
     &-close {
       color: var(--white);
       top: 25px !important;
     }
   }
+
   .ant-btn-primary {
     border-color: var(--color-border-btn) !important;
   }
+
   .logo {
     display: flex;
+
     img {
       width: 10%;
     }
@@ -184,11 +202,14 @@
       img {
         width: 6%;
       }
+
       .header-logo-name {
         justify-content: center;
+
         .logo-text-name {
           font-size: 18px;
         }
+
         .logo-text-version {
           font-size: 14px;
         }

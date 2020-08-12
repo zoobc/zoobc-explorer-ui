@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Switch, Menu, Dropdown, Avatar, Layout, Row, Col, Collapse } from 'antd'
 import Container from './Container'
@@ -18,6 +18,7 @@ import bczLogoFooter from '../assets/images/logo-bcz-footer.svg'
 import FormFeedback from './FormFeedback'
 import ComingSoon from './ComingSoon'
 import { store } from '../utils'
+import ThemeContext from '../context/ThemeContext'
 
 const Footer = () => {
   const { t, i18n } = useTranslation()
@@ -50,6 +51,12 @@ const Footer = () => {
     )
   }
 
+  const { theme, onChangeSelectedTheme } = useContext(ThemeContext)
+
+  const onChangeTheme = data => {
+    onChangeSelectedTheme(data === true ? 'dark' : 'light')
+  }
+
   const FooterMobile = () => (
     <div className="footer-mobile d-block d-md-none">
       <Collapse expandIconPosition="right">
@@ -62,7 +69,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://www.blockchainzoo.com/"
               >
-                {t('Company')}
+                {t('company')}
               </a>
             </li>
             <li>
@@ -82,7 +89,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://blogchainzoo.com/"
               >
-                {t('Blog')}
+                {t('blog')}
               </a>
             </li>
             <li>
@@ -92,7 +99,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.com/learn-more/"
               >
-                {t('About Us')}
+                {t('about us')}
               </a>
             </li>
             <li>
@@ -388,12 +395,24 @@ const Footer = () => {
             <p className="footer-company-text">
               &#169;2020 All rights reserved | ZooBC Explorer |&nbsp;
               <a target="_blank" rel="noopener noreferrer" href="https://zoobc.com/privacy-policy/">
-                {t('Privacy Policy')}
+                {t('privacy policy')}
               </a>
             </p>
           </li>
         </ul>
-        <Switch checkedChildren="☀" unCheckedChildren="☾" defaultChecked className="d-none" />
+        <Switch
+          checkedChildren="dark"
+          checked={theme === 'dark' ? true : false}
+          unCheckedChildren="light"
+          onClick={e => onChangeTheme(e)}
+          style={{ marginRight: 5 }}
+        />
+        {theme === 'dark' ? (
+          <a style={{ color: 'white', marginRight: 5 }}>Enable Light theme</a>
+        ) : (
+          <a style={{ color: 'white', marginRight: 5 }}>Enable Dark theme</a>
+        )}
+
         <Dropdown overlay={languageOptions}>
           <p className="footer-language ">
             <Avatar
@@ -426,7 +445,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://www.blockchainzoo.com/"
                   >
-                    {t('Company')}
+                    {t('company')}
                   </a>
                 </li>
                 <li>
@@ -446,7 +465,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://blogchainzoo.com/"
                   >
-                    {t('Blog')}
+                    {t('blog')}
                   </a>
                 </li>
                 <li>
@@ -456,7 +475,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.com/learn-more/"
                   >
-                    {t('About Us')}
+                    {t('about us')}
                   </a>
                 </li>
                 <li>
@@ -760,12 +779,25 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.com/privacy-policy/"
                   >
-                    {t('Privacy Policy')}
+                    {t('privacy policy')}
                   </a>
                 </p>
               </li>
             </ul>
-            <Switch checkedChildren="☀" unCheckedChildren="☾" defaultChecked className="d-none" />
+
+            <Switch
+              checkedChildren="dark"
+              checked={theme === 'dark' ? true : false}
+              unCheckedChildren="light"
+              onClick={e => onChangeTheme(e)}
+              style={{ marginRight: 5 }}
+            />
+            {theme === 'dark' ? (
+              <a style={{ color: 'white', marginRight: 5 }}>Enable Light theme</a>
+            ) : (
+              <a style={{ color: 'white', marginRight: 5 }}>Enable Dark theme</a>
+            )}
+
             <Dropdown overlay={languageOptions}>
               <p className="footer-language">
                 <Avatar

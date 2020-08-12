@@ -7,6 +7,16 @@ import encryption from './encryption'
 
 import { testnetClient } from '../config/testnet'
 
+const lastRefreshField = () => ({
+  fields: {
+    LastRefresh: {
+      read() {
+        return new Date()
+      },
+    },
+  },
+})
+
 const createLink = uri => {
   /** adding security header */
   const timestamp = moment.utc().unix() - moment.utc('1970-01-01 00:00:00').unix()
@@ -43,12 +53,19 @@ const onErrorHandler = onError(({ graphQLErrors, networkError }) => {
     graphQLErrors.forEach(({ message, locations, path }) =>
       console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`)
     )
-  if (networkError) console.log(`[Network error]: ${networkError}`)
+  if (networkError) console.log(`[Network error]: ${JSON.stringify(networkError)}`)
 })
 
 const setupApolloCLient = uri => {
   return new ApolloClient({
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      typePolicies: {
+        Accounts: lastRefreshField(),
+        Blocks: lastRefreshField(),
+        Transactions: lastRefreshField(),
+        Nodes: lastRefreshField(),
+      },
+    }),
     link: ApolloLink.from([onErrorHandler, createLink(uri)]),
   })
 }

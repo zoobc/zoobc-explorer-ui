@@ -10,29 +10,29 @@ const EscrowTransaction = ({ data, blockID, TransactionID }) => {
   const { t } = useTranslation()
   return (
     <Card className="transaction-card">
-      <h4 className="transaction-card-title">{t('Escrow Transaction')}</h4>
+      <h4 className="transaction-card-title page-title">{t('escrow transaction')}</h4>
 
       {!!TransactionID && (
         <DescItem
-          label={t('Transaction ID')}
+          label={t('transaction id')}
           value={<Link to={`/transactions/${TransactionID}`}>{TransactionID}</Link>}
         />
       )}
 
       <DescItem
-        label={t('Sender')}
+        label={t('sender')}
         value={<Link to={`/accounts/${data.SenderAddress}`}>{data.SenderAddress}</Link>}
       />
       <DescItem
-        label={t('Recipient')}
+        label={t('recipient')}
         value={<Link to={`/accounts/${data.RecipientAddress}`}>{data.RecipientAddress}</Link>}
       />
       <DescItem
-        label={t('Approver')}
+        label={t('approver')}
         value={<Link to={`/accounts/${data.ApproverAddress}`}>{data.ApproverAddress}</Link>}
       />
       <DescItem
-        label={t('Commission Fee')}
+        label={t('commission Fee')}
         value={
           <NumberFormat
             value={data.CommissionConversion || 0}
@@ -42,12 +42,12 @@ const EscrowTransaction = ({ data, blockID, TransactionID }) => {
           />
         }
       />
-      <DescItem label={t('Timeout')} value={data.Timeout} />
+      <DescItem label={t('timeout')} value={data.Timeout} />
       <DescItem
-        label={t('Block Height')}
+        label={t('block height')}
         value={<Link to={`/blocks/${blockID}`}>{data.BlockHeight}</Link>}
       />
-      <DescItem label={t('Instruction')} value={data.Instruction} />
+      <DescItem label={t('instruction')} value={data.Instruction} />
     </Card>
   )
 }

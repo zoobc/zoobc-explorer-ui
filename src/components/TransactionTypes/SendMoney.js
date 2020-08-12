@@ -9,7 +9,7 @@ const SendMoney = ({ data }) => {
   const { t } = useTranslation()
   return (
     <Card className="transaction-card">
-      <h4 className="transaction-card-title">{t('Send Money')}</h4>
+      <h4 className="transaction-card-title page-title">{t('send Money')}</h4>
       <DescItem
         label="Amount"
         value={

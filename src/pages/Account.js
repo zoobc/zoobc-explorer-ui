@@ -150,21 +150,21 @@ const Account = ({ match }) => {
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <h4 className="truncate">
-                    {t('Account')} {data.account.AccountAddress}
+                  <h4 className="truncate page-title">
+                    {t('account')} {data.account.AccountAddress}
                   </h4>
                 </Col>
               </Row>
               <Card className="account-card" bordered={false}>
-                <h4 className="account-card-title">{t('Summary')}</h4>
+                <h4 className="account-card-title page-title">{t('summary')}</h4>
                 <DescItem
-                  label={t('Account Address')}
+                  label={t('account address')}
                   value={
                     <CopyToClipboard text={data.account.AccountAddress} keyID="accountAddress" />
                   }
                 />
                 <DescItem
-                  label={t('Balance')}
+                  label={t('balance')}
                   value={
                     <NumberFormat
                       value={data.account.BalanceConversion || 0}
@@ -175,7 +175,7 @@ const Account = ({ match }) => {
                   }
                 />
                 {/* <DescItem
-                  label={t('Spendable Balance')}
+                  label={t('spendable balance')}
                   value={
                     <NumberFormat
                       value={data.account.SpendableBalanceConversion || 0}
@@ -186,15 +186,15 @@ const Account = ({ match }) => {
                   }
                 /> */}
                 <DescItem
-                  label={t('First Active')}
+                  label={t('first active')}
                   value={moment(data.account.FirstActive).format('lll')}
                 />
                 <DescItem
-                  label={t('Last Active')}
+                  label={t('last active')}
                   value={moment(data.account.LastActive).format('lll')}
                 />
                 <DescItem
-                  label={t('Total Rewards')}
+                  label={t('total rewards')}
                   value={
                     <NumberFormat
                       value={data.account.TotalRewardsConversion || 0}
@@ -205,7 +205,7 @@ const Account = ({ match }) => {
                   }
                 />
                 <DescItem
-                  label={t('Total Fees Paid')}
+                  label={t('total fees paid')}
                   value={
                     <NumberFormat
                       value={data.account.TotalFeesPaidConversion || 0}
@@ -215,11 +215,11 @@ const Account = ({ match }) => {
                     />
                   }
                 />
-                {/* <DescItem label={t('Node Public Key')} value={data.account.NodePublicKey} /> */}
+                {/* <DescItem label={t('node public key')} value={data.account.NodePublicKey} /> */}
               </Card>
               <Card className="account-card" bordered={false}>
-                <h4 className="account-card-title">
-                  {t('Transactions')}
+                <h4 className="account-card-title page-title">
+                  {t('transactions')}
                   <Badge className="badge-black" count={trxPaginate.Total} overflowCount={1000} />
                 </h4>
                 <Table

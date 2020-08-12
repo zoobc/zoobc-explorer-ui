@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Card, Table, Pagination, Tabs } from 'antd'
+import { Row, Col, Card, Table, Pagination, Tabs, Button } from 'antd'
 import { useTranslation } from 'react-i18next'
 
 import { isEmptyObject } from '../utils'
 import Container from '../components/Container'
 import { nodeColumns } from '../config/table-columns'
 import useFetchNode from '../hooks/useFetchNode'
+import LastRefresh from '../components/LastRefresh'
 
 const { TabPane } = Tabs
 
@@ -27,7 +28,7 @@ const Nodes = () => {
     return item
   })
 
-  const { doFetch, loading, data } = useFetchNode(currentPage, sorted, tabValue)
+  const { doFetch, loading, data, refetch } = useFetchNode(currentPage, sorted, tabValue)
 
   useEffect(() => {
     doFetch()
@@ -86,24 +87,33 @@ const Nodes = () => {
           <Col span={24}>
             <Card className="nodes-card" bordered={false}>
               <Row>
-                <Col span={24}>
-                  <h5>
+                <Col span={23}>
+                  <h5 className="page-title">
                     <i className="bcz-node" />
-                    <strong>{t('Nodes')}</strong>
+                    <strong>{t('nodes')}</strong>
                   </h5>
+                  {!!data && <LastRefresh value={data.nodes.LastRefresh} />}
+                </Col>
+                <Col>
+                  <Button
+                    shape="circle"
+                    icon="reload"
+                    onClick={() => refetch()}
+                    loading={loading}
+                  />
                 </Col>
               </Row>
-              <Tabs defaultActiveKey="3" onChange={onChangeTab}>
-                <TabPane tab={t('All')} key="3">
+              <Tabs defaultActiveKey="3" onChange={onChangeTab} className="table">
+                <TabPane tab={t('all')} key="3">
                   <DisplayTable />
                 </TabPane>
-                <TabPane tab={t('Registered')} key="0">
+                <TabPane tab={t('registered')} key="0">
                   <DisplayTable />
                 </TabPane>
-                <TabPane tab={t('In Queue')} key="1">
+                <TabPane tab={t('in queue')} key="1">
                   <DisplayTable />
                 </TabPane>
-                <TabPane tab={t('Stray')} key="2">
+                <TabPane tab={t('stray')} key="2">
                   <DisplayTable />
                 </TabPane>
               </Tabs>

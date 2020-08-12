@@ -1,28 +1,45 @@
-.banner-text {
-  font-size: 20px;
-}
-
-.banner-sub-text {
-  font-size: 15px;
-}
-
-.play-store {
-  margin-right: 5px;
-}
-
-
-.banner-button {
-  img {
-    max-width: 220px;
-    max-height: 70px;
-    width: auto;
-    height: auto;
+.banner {
+  display: flex;
+  max-width: 1132px;
+  justify-content: space-between;
+  &-left {
+    flex-basis: 50%;
+    box-sizing: border-box;
+    padding: 24px;
   }
-}
+  &-right {
+    flex-basis: 50%;
+    box-sizing: border-box;
+    padding: 24px;
+    text-align: right;
 
-.banner-wallet {
-  img {
-    width: 70%;
-    height: 70%;
+    img {
+      width: 70%;
+      height: auto;
+    }
+  }
+
+  &-title {
+    font-size: 2rem;
+    font-weight: bolder;
+    color: var(--color-text-hero) !important;
+  }
+  &-text {
+    font-size: 20px;
+    margin-top: 10px;
+    color: var(--color-text-hero) !important;
+  }
+  &-sub-text {
+    font-size: 15px;
+    margin-top: 10px;
+    color: var(--color-text-hero) !important;
+  }
+  &-button {
+    img {
+      max-width: 220px;
+      max-height: 70px;
+      width: auto;
+      height: auto;
+    }
   }
 }

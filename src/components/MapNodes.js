@@ -3,6 +3,8 @@ import L from 'leaflet'
 import { useTranslation } from 'react-i18next'
 import { Row, Col, Card, Spin } from 'antd'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
+import { Link } from 'react-router-dom'
+import { shortenHash } from '../utils/shorten'
 
 const greenIcon = new L.Icon({
   iconUrl:
@@ -40,7 +42,7 @@ export default function MapNodes({ loading, data }) {
     <Card className="home-node" bordered={false}>
       <div className="home-node-title">
         <i className="bcz-calendar" />
-        <strong>{t('Node Registration')}</strong>
+        <strong>{t('node registration')}</strong>
       </div>
       <Row>
         <Col span={24}>
@@ -99,9 +101,9 @@ export default function MapNodes({ loading, data }) {
                         <small>
                           {item.NodeAddressInfo != null && (
                             <>
-                              <strong>
-                                {item.NodeAddressInfo.Address}:{item.NodeAddressInfo.Port}
-                              </strong>
+                              <Link to={`/nodes/${item.NodePublicKey}`}>
+                                <strong>{shortenHash(item.NodePublicKey, 30)}</strong>
+                              </Link>
                               <br />
                             </>
                           )}

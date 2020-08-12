@@ -1,25 +1,38 @@
+.ant-collapse-header {
+  color: var(--color-text-card) !important;
+}
+
 .ant-table-thead {
   .ant-table-column-title {
     font-weight: 700;
+
   }
-  tr > th {
+
+  tr>th {
     border-bottom: 0 !important;
+    color: var(--color-primary-dark-txt) !important;
   }
 }
 
 .ant-table-tbody {
   .ant-table-row {
+    color: var(--color-text-card) !important;
+
     &:nth-child(odd) {
-      background: var(--color-secondary-solitude);
+      background: var(--color-secondary-solitude) !important;
+
     }
+
     td {
       border-bottom: 0;
+
     }
   }
 }
 
 .ant-table-small {
   border: 0 !important;
+
   a {
     color: var(--color-primary-link-txt);
   }
@@ -34,4 +47,8 @@
     height: 10px;
     width: 10px;
   }
+}
+
+.page-title {
+  color: var(--color-text-card) !important;
 }

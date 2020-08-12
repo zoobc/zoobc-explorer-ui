@@ -83,6 +83,14 @@ const GET_SUBSCRIPTION_TRANSACTIONS = gql`
   }
 `
 
+const checkLatLong = data => {
+  const containLatLong = data.filter(item => !!item.Latitude || !!item.Longitude)
+
+  if (containLatLong.length > 0) return true
+
+  return false
+}
+
 const Home = ({ history }) => {
   const { t } = useTranslation()
   const { loading, data } = useQuery(GET_HOME_DATA)
@@ -97,55 +105,43 @@ const Home = ({ history }) => {
   if (!!data) {
     blockGraphData = data.blockGraph.map((bg, key) => ({ key, ...bg }))
     trxGraphData = data.transactionGraph.map((tg, key) => ({ key, ...tg }))
-    blockData = data.blocks.Blocks.map(block => ({ key: block.Timestamp, ...block }))
-    trxData = data.transactions.Transactions.map(transaction => ({
-      key: transaction.Timestamp,
-      ...transaction,
-    }))
+    blockData = data.blocks.Blocks.map(block => ({ key: block.BlockID, ...block }))
+    trxData = data.transactions.Transactions.map(tx => ({ key: tx.TransactionID, ...tx }))
   }
 
-  if (subscriptBlocks && !subscriptBlocks.loading) {
+  if (subscriptBlocks && !subscriptBlocks.loading && !subscriptBlocks.error) {
     const oldBlocks = blockData
     const { data } = subscriptBlocks
     if (data) {
-      const newBlocks = data.blocks.map(block => ({ key: block.Timestamp, ...block }))
+      const newBlocks = data.blocks.map(block => ({ key: block.BlockID, ...block }))
       blockData = [...newBlocks, ...oldBlocks.slice(0, blockData.length - newBlocks.length)]
     }
   }
 
-  if (subscriptTransactions && !subscriptTransactions.loading) {
+  if (subscriptTransactions && !subscriptTransactions.loading && !subscriptTransactions.error) {
     const oldTrxData = trxData
     const { data } = subscriptTransactions
     if (data) {
-      const newTrxData = data.transactions.map(transaction => ({
-        key: transaction.Timestamp,
-        ...transaction,
-      }))
+      const newTrxData = data.transactions.map(tx => ({ key: tx.TransactionID, ...tx }))
       blockData = [...newTrxData, ...oldTrxData.slice(0, trxData.length - newTrxData.length)]
     }
   }
 
   return (
     <>
-      <div style={{ backgroundColor: 'white', paddingTop: 30 }}>
-        <Container>
-          <Row>
-            <Banner />
-          </Row>
-        </Container>
-      </div>
       <Container>
+        <Banner />
         <Hero />
         <Row className="home-card">
           <Col className="home-col-left" md={{ span: 12 }} sm={{ span: 24 }}>
             <Card bordered={false}>
               <div className="home-card-title">
                 <i className="bcz-calendar" />
-                <strong>{t('Latest Blocks')}</strong>
+                <strong>{t('latest blocks')}</strong>
               </div>
               <TableAnim loading={loading} columns={latestBlockColumns} data={blockData} />
               <Button type="primary" onClick={() => history.push('/blocks')} block>
-                {t('VIEW ALL BLOCKS')}
+                {t('view all blocks')}
               </Button>
             </Card>
           </Col>
@@ -153,11 +149,11 @@ const Home = ({ history }) => {
             <Card bordered={false}>
               <div className="home-card-title">
                 <i className="bcz-calendar" />
-                <strong>{t('Latest Transactions')}</strong>
+                <strong>{t('latest transactions')}</strong>
               </div>
               <TableAnim loading={loading} columns={latestTransactionColumns} data={trxData} />
               <Button type="primary" onClick={() => history.push('/transactions')} block>
-                {t('VIEW ALL TRANSACTIONS')}
+                {t('view all transactions')}
               </Button>
             </Card>
           </Col>
@@ -168,7 +164,7 @@ const Home = ({ history }) => {
             <Card bordered={false}>
               <div className="home-card-title">
                 <i className="bcz-calendar" />
-                <strong>{t('Latest Block Count in 30 Days')}</strong>
+                <strong>{t('latest block count in 30 days')}</strong>
               </div>
               <div className="graph">
                 <div className="graph-container">
@@ -192,7 +188,7 @@ const Home = ({ history }) => {
                         dataKey="amt"
                         stroke="#8884d8"
                         activeDot={{ r: 8 }}
-                        name={t('Block Count')}
+                        name={t('block count')}
                       />
                     </LineChart>
                   </ResponsiveContainer>
@@ -204,7 +200,7 @@ const Home = ({ history }) => {
             <Card bordered={false}>
               <div className="home-card-title">
                 <i className="bcz-calendar" />
-                <strong>{t('Latest Transaction Amount in 30 Days')}</strong>
+                <strong>{t('latest transaction amount in 30 days')}</strong>
               </div>
               <div className="graph">
                 <div className="graph-container">
@@ -228,7 +224,7 @@ const Home = ({ history }) => {
                         dataKey="amt"
                         stroke="#8884d8"
                         activeDot={{ r: 8 }}
-                        name={t('Transaction Amount')}
+                        name={t('transaction amount')}
                       />
                     </LineChart>
                   </ResponsiveContainer>
@@ -238,7 +234,7 @@ const Home = ({ history }) => {
           </Col>
         </Row>
 
-        {data && data.maps && data.maps.length > 0 && (
+        {data && data.maps && data.maps.length > 0 && checkLatLong(data.maps) && (
           <MapNodes loading={loading} data={data && data.maps} />
         )}
       </Container>
