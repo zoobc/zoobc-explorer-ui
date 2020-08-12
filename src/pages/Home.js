@@ -105,30 +105,24 @@ const Home = ({ history }) => {
   if (!!data) {
     blockGraphData = data.blockGraph.map((bg, key) => ({ key, ...bg }))
     trxGraphData = data.transactionGraph.map((tg, key) => ({ key, ...tg }))
-    blockData = data.blocks.Blocks.map(block => ({ key: block.Timestamp, ...block }))
-    trxData = data.transactions.Transactions.map(transaction => ({
-      key: transaction.Timestamp,
-      ...transaction,
-    }))
+    blockData = data.blocks.Blocks.map(block => ({ key: block.BlockID, ...block }))
+    trxData = data.transactions.Transactions.map(tx => ({ key: tx.TransactionID, ...tx }))
   }
 
-  if (subscriptBlocks && !subscriptBlocks.loading) {
+  if (subscriptBlocks && !subscriptBlocks.loading && !subscriptBlocks.error) {
     const oldBlocks = blockData
     const { data } = subscriptBlocks
     if (data) {
-      const newBlocks = data.blocks.map(block => ({ key: block.Timestamp, ...block }))
+      const newBlocks = data.blocks.map(block => ({ key: block.BlockID, ...block }))
       blockData = [...newBlocks, ...oldBlocks.slice(0, blockData.length - newBlocks.length)]
     }
   }
 
-  if (subscriptTransactions && !subscriptTransactions.loading) {
+  if (subscriptTransactions && !subscriptTransactions.loading && !subscriptTransactions.error) {
     const oldTrxData = trxData
     const { data } = subscriptTransactions
     if (data) {
-      const newTrxData = data.transactions.map(transaction => ({
-        key: transaction.Timestamp,
-        ...transaction,
-      }))
+      const newTrxData = data.transactions.map(tx => ({ key: tx.TransactionID, ...tx }))
       blockData = [...newTrxData, ...oldTrxData.slice(0, trxData.length - newTrxData.length)]
     }
   }

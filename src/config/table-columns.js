@@ -487,7 +487,6 @@ export const latestTransactionColumns = [
     title: <Title text="timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
-    width: 200,
     render(text) {
       return (
         <small>
@@ -507,6 +506,5 @@ export const latestTransactionColumns = [
         </Link>
       )
     },
-    width: 200,
   },
 ]

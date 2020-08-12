@@ -53,7 +53,7 @@ const onErrorHandler = onError(({ graphQLErrors, networkError }) => {
     graphQLErrors.forEach(({ message, locations, path }) =>
       console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`)
     )
-  if (networkError) console.log(`[Network error]: ${networkError}`)
+  if (networkError) console.log(`[Network error]: ${JSON.stringify(networkError)}`)
 })
 
 const setupApolloCLient = uri => {
