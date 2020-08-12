@@ -341,11 +341,7 @@ export const nodeColumns = [
     dataIndex: 'RegistrationStatus',
     key: 'RegistrationStatus',
     render(text) {
-      return (
-        !!text &&
-        !!text.toString() &&
-        (text.toString() === '0' ? 'Registered' : text.toString() === '1' ? 'In Queue' : 'Stray')
-      )
+      return text === 0 ? 'Registered' : text === 1 ? 'In Queue' : text === 2 ? 'Stray' : null
     },
   },
   {
