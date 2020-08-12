@@ -24,6 +24,7 @@ const GET_HOME_DATA = gql`
         Height
         Timestamp
         BlocksmithAddress
+        TotalFeeConversion
       }
     }
     transactions(page: 1, limit: 5, order: "-Height") {
@@ -31,6 +32,7 @@ const GET_HOME_DATA = gql`
         TransactionID
         Timestamp
         FeeConversion
+        Height
       }
     }
     blockGraph {
@@ -69,6 +71,7 @@ const GET_SUBSCRIPTION_BLOCKS = gql`
       Height
       Timestamp
       BlocksmithAddress
+      TotalFeeConversion
     }
   }
 `
@@ -79,6 +82,7 @@ const GET_SUBSCRIPTION_TRANSACTIONS = gql`
       TransactionID
       Timestamp
       FeeConversion
+      Height
     }
   }
 `
@@ -139,7 +143,12 @@ const Home = ({ history }) => {
                 <i className="bcz-calendar" />
                 <strong>{t('latest blocks')}</strong>
               </div>
-              <TableAnim loading={loading} columns={latestBlockColumns} data={blockData} />
+              <TableAnim
+                loading={loading}
+                columns={latestBlockColumns}
+                data={blockData}
+                className="table-anim-block"
+              />
               <Button type="primary" onClick={() => history.push('/blocks')} block>
                 {t('view all blocks')}
               </Button>
@@ -151,7 +160,12 @@ const Home = ({ history }) => {
                 <i className="bcz-calendar" />
                 <strong>{t('latest transactions')}</strong>
               </div>
-              <TableAnim loading={loading} columns={latestTransactionColumns} data={trxData} />
+              <TableAnim
+                loading={loading}
+                columns={latestTransactionColumns}
+                data={trxData}
+                className="table-anim-trx"
+              />
               <Button type="primary" onClick={() => history.push('/transactions')} block>
                 {t('view all transactions')}
               </Button>

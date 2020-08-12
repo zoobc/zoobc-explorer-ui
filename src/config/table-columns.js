@@ -7,6 +7,7 @@ import { shortenHash } from '../utils/shorten'
 import { useTranslation } from 'react-i18next'
 import { Badge, Tooltip, Tag, Icon } from 'antd'
 import { objectUtils } from '../utils'
+import Timestamp from '../components/Timestamp'
 
 const getBlocksmithIndicator = skipped => {
   if (skipped > 10) {
@@ -436,19 +437,35 @@ export const latestBlockColumns = [
     },
   },
   {
+    title: <Title text="fees" />,
+    dataIndex: 'TotalFeeConversion',
+    key: 'TotalFeeConversion',
+    render(text) {
+      return <small>{renderCurrenncy(text)}</small>
+    },
+  },
+  {
+    title: <Title text="trans" />,
+    // dataIndex: 'TotalFeeConversion',
+    // key: 'TotalFeeConversion',
+    render() {
+      return <small>26</small>
+    },
+  },
+  {
     title: <Title text="timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
     render(text) {
       return (
         <small>
-          <DateFormat date={text} />
+          <Timestamp value={text} />
         </small>
       )
     },
   },
   {
-    title: <Title text="blocksmith address" />,
+    title: <Title text="blocksmith" />,
     dataIndex: 'BlocksmithAddress',
     key: 'BlocksmithAddress',
     render(text, record) {
@@ -465,7 +482,7 @@ export const latestBlockColumns = [
             <Tooltip title={`${skipped.length} skipped blocksmith`}>
               <Badge color={getBlocksmithIndicator(skipped.length)} />
             </Tooltip>
-            <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
+            <Link to={`/accounts/${text}`}>{shortenHash(text, 15)}</Link>
           </small>
         </div>
       )
@@ -482,7 +499,6 @@ export const latestTransactionColumns = [
       return <small>{renderCurrenncy(text)}</small>
     },
   },
-
   {
     title: <Title text="timestamp" />,
     dataIndex: 'Timestamp',
@@ -490,7 +506,7 @@ export const latestTransactionColumns = [
     render(text) {
       return (
         <small>
-          <DateFormat date={text} />
+          <Timestamp value={text} />
         </small>
       )
     },
@@ -502,6 +518,18 @@ export const latestTransactionColumns = [
     render(text) {
       return (
         <Link to={`/transactions/${text}`}>
+          <small>{text}</small>
+        </Link>
+      )
+    },
+  },
+  {
+    title: <Title text="height" />,
+    dataIndex: 'Height',
+    key: 'Height',
+    render(text, record) {
+      return (
+        <Link to={`/blocks/${record.BlockID}`}>
           <small>{text}</small>
         </Link>
       )
