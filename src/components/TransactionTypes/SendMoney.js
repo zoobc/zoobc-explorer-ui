@@ -12,6 +12,7 @@ const SendMoney = ({ data }) => {
       <h4 className="transaction-card-title page-title">{t('send Money')}</h4>
       <DescItem
         label="Amount"
+        style={{ display: 'none' }}
         value={
           <NumberFormat
             value={data.AmountConversion || 0}

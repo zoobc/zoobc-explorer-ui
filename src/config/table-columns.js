@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next'
 import { Badge, Tooltip, Tag, Icon } from 'antd'
 import { objectUtils } from '../utils'
 import Timestamp from '../components/Timestamp'
+import { InfoCircleOutlined } from '@ant-design/icons'
 
 const getBlocksmithIndicator = skipped => {
   if (skipped > 10) {
@@ -134,6 +135,7 @@ export const accountColumns = [
     title: <Title text="address" />,
     dataIndex: 'AccountAddress',
     key: 'AccountAddress',
+
     render(text) {
       return <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
     },
@@ -179,7 +181,17 @@ export const accountColumns = [
 
 export const blockColumns = [
   {
-    title: <Title text="block id" />,
+    title: (
+      <div>
+        <Title text="block id" />{' '}
+        <Tooltip
+          placement="bottom"
+          title="An identifier which facilitates easy identification of blocks of the blockchain"
+        >
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'BlockID',
     key: 'BlockID',
     render(text) {
@@ -187,7 +199,17 @@ export const blockColumns = [
     },
   },
   {
-    title: <Title text="height" />,
+    title: (
+      <div>
+        <Title text="height" />{' '}
+        <Tooltip
+          placement="bottom"
+          title="The position of the block in the ZooBC blockchain. For example, Height 0, would be the very first block, which is also called the Genesis Block"
+        >
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'Height',
     key: 'Height',
     render(text, record) {
@@ -203,7 +225,14 @@ export const blockColumns = [
     },
   },
   {
-    title: <Title text="blocksmith address" />,
+    title: (
+      <div>
+        <Title text="blocksmith address" />{' '}
+        <Tooltip placement="bottom" title="Account that generated the block">
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'BlocksmithAddress',
     key: 'BlocksmithAddress',
     render(text, record) {
@@ -240,7 +269,17 @@ export const blockColumns = [
 
 export const transactionColumns = [
   {
-    title: <Title text="transaction id" />,
+    title: (
+      <div>
+        <Title text="transaction id" />{' '}
+        <Tooltip
+          placement="bottom"
+          title="An identifier which failitates easy identification of transactions on the ZooBC blockchain"
+        >
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'TransactionID',
     key: 'TransactionID',
     render(text) {
@@ -249,7 +288,14 @@ export const transactionColumns = [
     width: 200,
   },
   {
-    title: <Title text="height" />,
+    title: (
+      <div>
+        <Title text="height" />{' '}
+        <Tooltip placement="bottom" title="The block height in which the transaction is included">
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'Height',
     key: 'Height',
     render(text, record) {
@@ -311,7 +357,17 @@ export const transactionColumns = [
 
 export const nodeColumns = [
   {
-    title: <Title text="public key" />,
+    title: (
+      <div>
+        <Title text="public key" />{' '}
+        <Tooltip
+          placement="bottom"
+          title="A string of letters and numbers that are used to receive amount of ZooBC. Works similar to a traditional bank account number and can be shared publicly with others"
+        >
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'NodePublicKey',
     key: 'NodePublicKey',
     render(text) {
@@ -332,7 +388,14 @@ export const nodeColumns = [
   //   key: 'NodeAddress',
   // },
   {
-    title: <Title text="locked funds" />,
+    title: (
+      <div>
+        <Title text="locked funds" />{' '}
+        <Tooltip placement="bottom" title="Amount of ZooBC to be locked as security money for node">
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'LockedFunds',
     key: 'LockedFunds',
     render: renderCurrenncy,
@@ -342,11 +405,7 @@ export const nodeColumns = [
     dataIndex: 'RegistrationStatus',
     key: 'RegistrationStatus',
     render(text) {
-      return (
-        !!text &&
-        !!text.toString() &&
-        (text.toString() === '0' ? 'Registered' : text.toString() === '1' ? 'In Queue' : 'Stray')
-      )
+      return text === 0 ? 'Registered' : text === 1 ? 'In Queue' : text === 2 ? 'Stray' : null
     },
   },
   {
@@ -425,7 +484,18 @@ export const skippedBlocksmithColumns = [
 
 export const latestBlockColumns = [
   {
-    title: <Title text="height" />,
+    title: (
+      <div>
+        <Title text="height" />{' '}
+        <Tooltip
+          placement="bottom"
+          title="The position of the block in the ZooBC blockchain. For example, Height 0, would be the very first block, which is also called the Genesis Block"
+          style={{ display: 'inline-block' }}
+        >
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'Height',
     key: 'Height',
     render(text, record) {
@@ -512,7 +582,17 @@ export const latestTransactionColumns = [
     },
   },
   {
-    title: <Title text="transaction id" />,
+    title: (
+      <div>
+        <Title text="transaction id" />{' '}
+        <Tooltip
+          placement="bottom"
+          title="An identifier which facilitates easy identification of transactions on the ZooBC blockchain"
+        >
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'TransactionID',
     key: 'TransactionID',
     render(text) {

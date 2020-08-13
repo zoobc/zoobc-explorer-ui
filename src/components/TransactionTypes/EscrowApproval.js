@@ -10,9 +10,10 @@ const EscrowApproval = ({ data }) => {
     <>
       <Card className="transaction-card">
         <h4 className="transaction-card-title page-title">{t('summary approval escrow')}</h4>
-        <DescItem label="Status" value={data.Approval} />
+        <DescItem label="Status" style={{ display: 'none' }} value={data.Approval} />
         <DescItem
           label={t('transaction id')}
+          text="An identifier which failitates easy identification of transactions on the ZooBC blockchain"
           value={<Link to={`/transactions/${data.TransactionID}`}>{data.TransactionID}</Link>}
         />
       </Card>

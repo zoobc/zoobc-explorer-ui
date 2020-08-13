@@ -219,17 +219,24 @@ const Transaction = ({ match }) => {
                 <h4 className="transaction-card-title page-title">{t('summary')}</h4>
                 <DescItem
                   label={t('transaction id')}
+                  text="An identifier which failitates easy identification of transactions of the blockchain"
                   value={
                     <CopyToClipboard text={data.transaction.TransactionID} keyID="TransactionID" />
                   }
                 />
                 <DescItem
                   label={t('timestamp')}
+                  style={{ display: 'none' }}
                   value={moment(data.transaction.Timestamp).format('lll')}
                 />
-                <DescItem label="Transaction Type" value={data.transaction.TransactionTypeName} />
+                <DescItem
+                  label="Transaction Type"
+                  style={{ display: 'none' }}
+                  value={data.transaction.TransactionTypeName}
+                />
                 <DescItem
                   label={t('block id')}
+                  text="An identifier which facilitates easy identification of blocks on the ZooBC blockchain"
                   value={
                     <Link to={`/blocks/${data.transaction.BlockID}`}>
                       {data.transaction.BlockID}
@@ -238,6 +245,7 @@ const Transaction = ({ match }) => {
                 />
                 <DescItem
                   label={t('height')}
+                  text="The position of the block in the ZooBC blockchain. For example, Height 0, would be the very first block, which is also called the Genesis Block"
                   value={
                     <Link to={`/blocks/${data.transaction.BlockID}`}>
                       {data.transaction.Height}
@@ -246,6 +254,7 @@ const Transaction = ({ match }) => {
                 />
                 <DescItem
                   label={t('sender')}
+                  style={{ display: 'none' }}
                   value={
                     <Link to={`/accounts/${data.transaction.Sender}`}>
                       {data.transaction.Sender}
@@ -254,6 +263,7 @@ const Transaction = ({ match }) => {
                 />
                 <DescItem
                   label={t('recipient')}
+                  style={{ display: 'none' }}
                   value={
                     <Link to={`/accounts/${data.transaction.Recipient}`}>
                       {data.transaction.Recipient}
@@ -263,6 +273,7 @@ const Transaction = ({ match }) => {
                 {/* <DescItem label={t('confirmations')} value={data.transaction.Confirmations} /> */}
                 <DescItem
                   label={t('fees')}
+                  style={{ display: 'none' }}
                   value={
                     <NumberFormat
                       value={data.transaction.FeeConversion || 0}
@@ -275,6 +286,7 @@ const Transaction = ({ match }) => {
                 {data.transaction.MultisigChild && (
                   <DescItem
                     label={t('transaction hash')}
+                    style={{ display: 'none' }}
                     value={data.transaction.TransactionHash}
                   />
                 )}

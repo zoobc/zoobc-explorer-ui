@@ -16,6 +16,7 @@
     "lint": "prettier --config ./.prettierrc --write \"./src/**/*.js\""
   },
   "dependencies": {
+    "@ant-design/icons": "^4.2.2",
     "@apollo/client": "^3.0.2",
     "antd": "^3.23.5",
     "bootstrap": "^4.3.1",
@@ -37,7 +38,7 @@
     "react-leaflet": "^2.7.0",
     "react-number-format": "^4.2.0",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "^3.4.1",
+    "react-scripts": "^3.4.2",
     "reactstrap": "^8.0.0",
     "recharts": "^1.8.5",
     "subscriptions-transport-ws": "^0.9.17",

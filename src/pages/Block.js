@@ -240,37 +240,62 @@ const Block = ({ match }) => {
                 </Col>
               </Row>
               <Card className="block-card" bordered={false}>
-                <DescItem label={t('height')} value={data.block.Height} />
+                <DescItem
+                  label={t('height')}
+                  text="The position of the block in the ZooBC blockchain. For example, Height 0, would be the very first block, which is also called the Genesis Block"
+                  value={data.block.Height}
+                />
               </Card>
               <Card className="block-card" bordered={false}>
                 <h4 className="block-card-title page-title">{t('summary')}</h4>
                 <DescItem
                   label={t('block id')}
+                  text="An identifier which facilitates easy identification of blocks on the ZooBC blockchain"
                   value={<CopyToClipboard text={data.block.BlockID} keyID="blockID" />}
                 />
                 <DescItem
                   label={t('timestamp')}
+                  style={{ display: 'none' }}
                   value={moment(data.block.Timestamp).format('lll')}
                 />
-                <DescItem label={t('previous block id')} value={data.block.PreviousBlockID} />
-                <DescItem label={t('block seed')} value={data.block.BlockSeed} />
-                <DescItem label={t('block signature')} value={data.block.BlockSignature} />
+                <DescItem
+                  label={t('previous block id')}
+                  style={{ display: 'none' }}
+                  value={data.block.PreviousBlockID}
+                />
+                <DescItem
+                  label={t('block seed')}
+                  text="A seed for random number uniquely generated for the block"
+                  value={data.block.BlockSeed}
+                />
+                <DescItem
+                  label={t('block signature')}
+                  style={{ display: 'none' }}
+                  value={data.block.BlockSignature}
+                />
                 <DescItem
                   label={t('cumulative difficulty')}
+                  text="Difficulty of the blockchain up to this current block"
                   value={data.block.CumulativeDifficulty}
                 />
                 {/* <DescItem label={t('smith scale')} value={data.block.SmithScale} /> */}
                 <DescItem
                   label={t('blocksmith address')}
+                  text="Account that generated the block"
                   value={
                     <Link to={`/accounts/${data.block.BlocksmithAddress}`}>
                       {data.block.BlocksmithAddress}
                     </Link>
                   }
                 />
-                <DescItem label={t('total amount')} value={data.block.TotalAmountConversion} />
+                <DescItem
+                  label={t('total amount')}
+                  style={{ display: 'none' }}
+                  value={data.block.TotalAmountConversion}
+                />
                 <DescItem
                   label={t('total fee')}
+                  style={{ display: 'none' }}
                   value={
                     <NumberFormat
                       value={data.block.TotalFeeConversion}
@@ -282,6 +307,7 @@ const Block = ({ match }) => {
                 />
                 <DescItem
                   label={t('total rewards')}
+                  style={{ display: 'none' }}
                   value={
                     <NumberFormat
                       value={data.block.TotalRewardsConversion}
@@ -291,18 +317,43 @@ const Block = ({ match }) => {
                     />
                   }
                 />
-                <DescItem label={t('version')} value={data.block.Version} />
-                <DescItem label={t('total receipts')} value={data.block.TotalReceipts} />
-                <DescItem label={t('receipt value')} value={data.block.ReceiptValue} />
+                <DescItem
+                  label={t('version')}
+                  style={{ display: 'none' }}
+                  value={data.block.Version}
+                />
+                <DescItem
+                  label={t('total receipts')}
+                  style={{ display: 'none' }}
+                  value={data.block.TotalReceipts}
+                />
+                <DescItem
+                  label={t('receipt value')}
+                  style={{ display: 'none' }}
+                  value={data.block.ReceiptValue}
+                />
                 <DescItem
                   label={t('blocksmith id')}
+                  style={{ display: 'none' }}
                   value={
                     <Link to={`/nodes/${data.block.BlocksmithID}`}>{data.block.BlocksmithID}</Link>
                   }
                 />
-                <DescItem label={t('pop change')} value={data.block.PopChange} />
-                <DescItem label={t('payload length')} value={data.block.PayloadLength} />
-                <DescItem label={t('payload hash')} value={data.block.PayloadHash} />
+                <DescItem
+                  label={t('pop change')}
+                  style={{ display: 'none' }}
+                  value={data.block.PopChange}
+                />
+                <DescItem
+                  label={t('payload length')}
+                  style={{ display: 'none' }}
+                  value={data.block.PayloadLength}
+                />
+                <DescItem
+                  label={t('payload hash')}
+                  style={{ display: 'none' }}
+                  value={data.block.PayloadHash}
+                />
               </Card>
               <Collapse className="block-collapse" bordered={false}>
                 <Panel

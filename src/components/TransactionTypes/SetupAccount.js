@@ -7,11 +7,11 @@ const SetupAccount = ({ data }) => {
   return (
     <Card className="transaction-card">
       <h4 className="transaction-card-title page-title">Setup Account</h4>
-      <DescItem label="Setter Address" value={data.NodeAddress} />
-      <DescItem label="Recipient Address" value={data.AccountAddress} />
-      <DescItem label="Property" value={data.Property} />
-      <DescItem label="Value" value={data.Value} />
-      <DescItem label="Much Time" value={data.MuchTime} />
+      <DescItem label="Setter Address" style={{ display: 'none' }} value={data.NodeAddress} />
+      <DescItem label="Recipient Address" style={{ display: 'none' }} value={data.AccountAddress} />
+      <DescItem label="Property" style={{ display: 'none' }} value={data.Property} />
+      <DescItem label="Value" style={{ display: 'none' }} value={data.Value} />
+      <DescItem label="Much Time" style={{ display: 'none' }} value={data.MuchTime} />
     </Card>
   )
 }
