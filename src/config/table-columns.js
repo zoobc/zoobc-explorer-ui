@@ -505,18 +505,7 @@ export const skippedBlocksmithColumns = [
 
 export const latestBlockColumns = [
   {
-    title: (
-      <div>
-        <Title text="height" />{' '}
-        <Tooltip
-          placement="bottom"
-          title="The position of the block in the ZooBC blockchain. For example, Height 0, would be the very first block, which is also called the Genesis Block"
-          style={{ display: 'inline-block' }}
-        >
-          <InfoCircleOutlined />
-        </Tooltip>
-      </div>
-    ),
+    title: <Title text="height" />,
     dataIndex: 'Height',
     key: 'Height',
     render(text, record) {
@@ -536,7 +525,7 @@ export const latestBlockColumns = [
     },
   },
   {
-    title: <Title text="trans" />,
+    title: <Title text="Trx" />,
     dataIndex: 'TotalTransaction',
     key: 'TotalTransaction',
     render(text) {
@@ -603,17 +592,7 @@ export const latestTransactionColumns = [
     },
   },
   {
-    title: (
-      <div>
-        <Title text="transaction id" />{' '}
-        <Tooltip
-          placement="bottom"
-          title="An identifier which facilitates easy identification of transactions on the ZooBC blockchain"
-        >
-          <InfoCircleOutlined />
-        </Tooltip>
-      </div>
-    ),
+    title: <Title text="transaction id" />,
     dataIndex: 'TransactionID',
     key: 'TransactionID',
     render(text) {
