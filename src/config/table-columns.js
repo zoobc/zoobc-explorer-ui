@@ -616,3 +616,46 @@ export const latestTransactionColumns = [
     },
   },
 ]
+
+export const accountRewardColumns = [
+  {
+    title: <Title text="address" />,
+    dataIndex: 'AccountAddress',
+    key: 'AccountAddress',
+
+    render(text) {
+      return <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
+    },
+  },
+  {
+    title: <Title text="balance" />,
+    dataIndex: 'BalanceConversion',
+    key: 'BalanceConversion',
+    render: renderCurrenncy,
+  },
+  {
+    title: <Title text="last active" />,
+    dataIndex: 'LastActive',
+    key: 'LastActive',
+    render(text) {
+      return <DateFormat date={text} />
+    },
+  },
+  {
+    title: <Title text="fees" />,
+    dataIndex: 'TotalFeesPaidConversion',
+    key: 'TotalFeesPaidConversion',
+    render(text) {
+      return (
+        <NumberFormat
+          value={text || 0}
+          displayType={'text'}
+          decimalScale={2}
+          thousandSeparator={true}
+          suffix={' ZBC'}
+          className="page-title"
+        />
+      )
+    },
+  },
+]

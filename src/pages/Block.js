@@ -4,7 +4,7 @@ import moment from 'moment'
 import NumberFormat from 'react-number-format'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { useQuery, gql } from '@apollo/client'
+import { useQuery, gql, useLazyQuery } from '@apollo/client'
 import { Row, Col, Card, Table, Pagination, Collapse, Badge } from 'antd'
 
 import Container from '../components/Container'
@@ -16,6 +16,7 @@ import {
   transactionColumns,
   publishedReceiptColumns,
   skippedBlocksmithColumns,
+  accountRewardColumns,
 } from '../config/table-columns'
 
 const GET_BLOCK_DATA = gql`
@@ -113,6 +114,25 @@ const GET_TRX_BY_BLOCK = gql`
   }
 `
 
+const GET_ACCOUNT_REWARDS_DATA = gql`
+  query getAccounts($page: Int, $BlockHeight: Int) {
+    accounts(page: $page, limit: 5, BlockHeight: $BlockHeight) {
+      Accounts {
+        AccountAddress
+        BalanceConversion
+        FirstActive
+        LastActive
+        TotalFeesPaidConversion
+      }
+      Paginate {
+        Page
+        Count
+        Total
+      }
+    }
+  }
+`
+
 // const GET_RECEIPT_BY_BLOCK = gql`
 //   query getReceiptByBlock($page: Int, $BlockHeight: Int) {
 //     publishedReceipts(page: $page, limit: 5, order: "-BlockHeight", BlockHeight: $BlockHeight) {
@@ -150,6 +170,10 @@ const Block = ({ match }) => {
   const [transactions, setTransactions] = useState([])
   const [trxPaginate, setTrxPaginate] = useState({})
 
+  const [rewardCurrentPage, setRewardCurrentPage] = useState(1)
+  const [rewards, setReward] = useState([])
+  const [rewardPaginate, setRewardPaginate] = useState({})
+
   const [receiptCurrntPage, setReceiptCurrentPage] = useState(1)
   // const [receiptCurrentPage, setReceiptCurrentPage] = useState(1)
   const [receipts, setReceipts] = useState([])
@@ -169,6 +193,8 @@ const Block = ({ match }) => {
       page: trxCurrentPage,
     },
   })
+
+  const [fetchaAcountRewards, accountRewards] = useLazyQuery(GET_ACCOUNT_REWARDS_DATA)
 
   // const receiptByBlock = useQuery(GET_RECEIPT_BY_BLOCK, {
   //   variables: {
@@ -201,6 +227,20 @@ const Block = ({ match }) => {
       setTrxPaginate(trxByBlock.data.transactions.Paginate)
     }
   }, [trxByBlock.data])
+
+  useEffect(() => {
+    if (!!accountRewards.data) {
+      const rewardData = accountRewards.data.accounts.Accounts.map((reward, key) => {
+        return {
+          key,
+          ...reward,
+        }
+      })
+
+      setReward(rewardData)
+      setRewardPaginate(accountRewards.data.accounts.Paginate)
+    }
+  }, [accountRewards.data])
 
   // useEffect(() => {
   //   if (!!receiptByBlock.data) {
@@ -373,21 +413,41 @@ const Block = ({ match }) => {
                   </Card>
                 </Panel>
               </Collapse>
-              <Collapse className="block-collapse" bordered={false}>
-                <Panel className="block-card-title block-collapse" header={t('rewards')} key="2">
+              <Collapse
+                className="block-collapse"
+                bordered={false}
+                onChange={() =>
+                  fetchaAcountRewards({ variables: { BlockHeight: data.block.Height } })
+                }
+              >
+                <Panel
+                  className="block-card-title block-collapse"
+                  header={t('Account Rewards')}
+                  key="2"
+                >
                   <Card className="block-card" bordered={false}>
                     <h4 className="block-card-title page-title">
-                      {t('coinbase')}
+                      {t('Account Rewards')}
                       <Badge className="badge-black" count={0} overflowCount={1000} />
                     </h4>
                     <Table
                       className="transactions-table"
-                      columns={transactionColumns}
-                      dataSource={[]}
+                      columns={accountRewardColumns}
+                      dataSource={rewards}
                       pagination={false}
                       size="small"
+                      loading={accountRewards.loading}
+                      rowKey="AccountAddress"
                     />
-                    <Pagination className="pagination-center" current={5} total={100} />
+                    {!!rewards && rewards.length > 0 && (
+                      <Pagination
+                        className="pagination-center"
+                        current={rewardPaginate.Page}
+                        total={rewardPaginate.Total}
+                        pageSize={5}
+                        onChange={page => setRewardCurrentPage(page)}
+                      />
+                    )}
                   </Card>
                 </Panel>
               </Collapse>
