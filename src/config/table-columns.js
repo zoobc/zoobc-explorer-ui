@@ -482,6 +482,9 @@ export const skippedBlocksmithColumns = [
     title: <Title text="public key" />,
     dataIndex: 'BlocksmithPublicKey',
     key: 'BlocksmithPublicKey',
+    render(text) {
+      return <Link to={`/nodes/${text}`}>{text}</Link>
+    },
   },
   {
     title: <Title text="pop change" />,
