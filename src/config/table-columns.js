@@ -417,45 +417,63 @@ export const nodeColumns = [
 
 export const publishedReceiptColumns = [
   {
-    title: <Title text="sender" />,
+    title: () => (
+      <div>
+        <Title text="sender" />{' '}
+        <Tooltip placement="bottom" title="Sender Node Public Key">
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'BatchReceipt.SenderPublicKey',
     key: 'BatchReceipt.SenderPublicKey',
     render(text) {
-      return !!text && <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
+      return !!text && <Link to={`/nodes/${text}`}>{shortenHash(text, 20)}</Link>
     },
   },
   {
-    title: <Title text="receiver" />,
-    dataIndex: 'BatchReceipt.ReceiverPublicKey',
-    key: 'BatchReceipt.ReceiverPublicKey',
+    title: () => (
+      <div>
+        <Title text="receiver" />{' '}
+        <Tooltip placement="bottom" title="Receiver Node Public Key">
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
+    dataIndex: 'BatchReceipt.RecipientPublicKey',
+    key: 'BatchReceipt.RecipientPublicKey',
     render(text) {
-      return !!text && <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
+      return !!text && <Link to={`/nodes/${text}`}>{shortenHash(text, 20)}</Link>
     },
   },
   {
-    title: <Title text="block" />,
-    dataIndex: 'BatchReceipt.Height',
-    key: 'BatchReceipt.Height',
+    title: <Title text="height" />,
+    dataIndex: 'BlockHeight',
+    key: 'BlockHeight',
+    render(text) {
+      return !!text && <Link to={`/blocks/${text}`}>{text}</Link>
+    },
   },
   {
     title: <Title text="data type" />,
-    dataIndex: 'BatchReceipt.DataType',
-    key: 'BatchReceipt.DataType',
+    dataIndex: 'BatchReceipt.DatumType',
+    key: 'BatchReceipt.DatumType',
   },
   {
     title: <Title text="data hash" />,
-    dataIndex: 'BatchReceipt.DataHash',
-    key: 'BatchReceipt.DataHash',
-  },
-  {
-    title: <Title text="merkle root" />,
-    dataIndex: 'BatchReceipt.ReceiptMerkleRoot',
-    key: 'BatchReceipt.ReceiptMerkleRoot',
+    dataIndex: 'BatchReceipt.DatumHash',
+    key: 'BatchReceipt.DatumHash',
+    render(text) {
+      return !!text && shortenHash(text, 20)
+    },
   },
   {
     title: <Title text="receiver signature" />,
-    dataIndex: 'BatchReceipt.ReceiverSignature',
-    key: 'BatchReceipt.ReceiverSignature',
+    dataIndex: 'BatchReceipt.RecipientSignature',
+    key: 'BatchReceipt.RecipientSignature',
+    render(text) {
+      return !!text && shortenHash(text, 20)
+    },
   },
 ]
 

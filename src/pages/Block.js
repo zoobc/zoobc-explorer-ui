@@ -34,6 +34,7 @@ const GET_BLOCK_DATA = gql`
       TotalAmountConversion
       TotalFeeConversion
       TotalRewardsConversion
+      TotalCoinBaseConversion
       Version
       TotalReceipts
       ReceiptValue
@@ -46,6 +47,16 @@ const GET_BLOCK_DATA = gql`
         POPChange
         BlockHeight
         BlocksmithIndex
+      }
+      PublishedReceipts {
+        BatchReceipt {
+          SenderPublicKey
+          RecipientPublicKey
+          DatumType
+          DatumHash
+          RecipientSignature
+        }
+        BlockHeight
       }
     }
   }
@@ -133,34 +144,6 @@ const GET_ACCOUNT_REWARDS_DATA = gql`
   }
 `
 
-// const GET_RECEIPT_BY_BLOCK = gql`
-//   query getReceiptByBlock($page: Int, $BlockHeight: Int) {
-//     publishedReceipts(page: $page, limit: 5, order: "-BlockHeight", BlockHeight: $BlockHeight) {
-//       PublishedReceipts {
-//         BatchReceipt {
-//           Height
-//           SenderPublicKey
-//           ReceiverPublicKey
-//           DataType
-//           DataHash
-//           ReceiptMerkleRoot
-//           ReceiverSignature
-//           ReferenceBlockHash
-//         }
-//         IntermediateHashes
-//         BlockHeight
-//         ReceiptIndex
-//         PublishedIndex
-//       }
-//       Paginate {
-//         Page
-//         Count
-//         Total
-//       }
-//     }
-//   }
-// `
-
 const { Panel } = Collapse
 
 const Block = ({ match }) => {
@@ -173,11 +156,6 @@ const Block = ({ match }) => {
   const [rewardCurrentPage, setRewardCurrentPage] = useState(1)
   const [rewards, setReward] = useState([])
   const [rewardPaginate, setRewardPaginate] = useState({})
-
-  const [receiptCurrntPage, setReceiptCurrentPage] = useState(1)
-  // const [receiptCurrentPage, setReceiptCurrentPage] = useState(1)
-  const [receipts, setReceipts] = useState([])
-  const [receiptPaginate, setReceiptPaginate] = useState({})
 
   const [blockHeight, setBlockHeight] = useState(null)
 
@@ -195,13 +173,6 @@ const Block = ({ match }) => {
   })
 
   const [fetchaAcountRewards, accountRewards] = useLazyQuery(GET_ACCOUNT_REWARDS_DATA)
-
-  // const receiptByBlock = useQuery(GET_RECEIPT_BY_BLOCK, {
-  //   variables: {
-  //     BlockHeight: blockHeight,
-  //     page: receiptCurrentPage,
-  //   },
-  // })
 
   useEffect(() => {
     if (!!trxByBlock.data) {
@@ -241,22 +212,6 @@ const Block = ({ match }) => {
       setRewardPaginate(accountRewards.data.accounts.Paginate)
     }
   }, [accountRewards.data])
-
-  // useEffect(() => {
-  //   if (!!receiptByBlock.data) {
-  //     const receiptData = receiptByBlock.data.publishedReceipts.PublishedReceipts.map(
-  //       (receipt, key) => {
-  //         return {
-  //           key,
-  //           ...receipt,
-  //         }
-  //       }
-  //     )
-
-  //     setReceipts(receiptData)
-  //     setReceiptPaginate(receiptByBlock.data.publishedReceipts.Paginate)
-  //   }
-  // }, [receiptByBlock.data])
 
   useEffect(() => {
     if (!!data) {
@@ -346,8 +301,20 @@ const Block = ({ match }) => {
                   }
                 />
                 <DescItem
-                  label={t('total rewards')}
+                  label={t('Total Coinbase')}
                   style={{ display: 'none' }}
+                  value={
+                    <NumberFormat
+                      value={data.block.TotalCoinBaseConversion}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      suffix={' ZBC'}
+                    />
+                  }
+                />
+                <DescItem
+                  label={t('total rewards')}
+                  text="Total Coinbase + Total Fee"
                   value={
                     <NumberFormat
                       value={data.block.TotalRewardsConversion}
@@ -452,32 +419,27 @@ const Block = ({ match }) => {
                 </Panel>
               </Collapse>
               <Collapse className="block-collapse" bordered={false}>
-                <Panel className="block-card-title block-collapse" header={t('receipts')} key="3">
+                <Panel
+                  className="block-card-title block-collapse"
+                  header={t('Published Receipts')}
+                  key="3"
+                >
                   <Card className="block-card" bordered={false}>
                     <h4 className="block-card-title page-title">
-                      {t('receipts')}
+                      {t('Published Receipts')}
                       <Badge
                         className="badge-black"
-                        count={receiptPaginate.Total}
+                        count={data.block.TotalReceipts}
                         overflowCount={1000}
                       />
                     </h4>
                     <Table
                       columns={publishedReceiptColumns}
-                      dataSource={receipts}
+                      dataSource={data.block.PublishedReceipts}
                       pagination={false}
                       size="small"
                       loading={loading}
                     />
-                    {!!data && (
-                      <Pagination
-                        className="pagination-center"
-                        current={receiptPaginate.Page}
-                        total={receiptPaginate.Total}
-                        pageSize={5}
-                        onChange={page => setReceiptCurrentPage(page)}
-                      />
-                    )}
                   </Card>
                 </Panel>
               </Collapse>
