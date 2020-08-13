@@ -13,21 +13,38 @@ const MultiSignature = ({ data, disableTrxHashLink }) => {
       <h4 className="transaction-card-title page-title">{t('multisignature info')}</h4>
       {MultiSignatureInfo && (
         <>
-          <DescItem label="Minimum Signature" value={MultiSignatureInfo.MinimumSignatures} />
-          <DescItem label="Nonce" value={MultiSignatureInfo.Nonce} />
-          <DescItem label="Block Height" value={MultiSignatureInfo.BlockHeight} />
-          <DescItem label="Multisig Address" value={MultiSignatureInfo.MultisigAddress} />
+          <DescItem
+            label="Minimum Signature"
+            style={{ display: 'none' }}
+            value={MultiSignatureInfo.MinimumSignatures}
+          />
+          <DescItem label="Nonce" style={{ display: 'none' }} value={MultiSignatureInfo.Nonce} />
+          <DescItem
+            label="Block Height"
+            text="The position of the block in the ZooBC blockchain. For example, Height 0, would be the very first block, which is also called the Genesis Block"
+            value={MultiSignatureInfo.BlockHeight}
+          />
+          <DescItem
+            label="Multisig Address"
+            style={{ display: 'none' }}
+            value={MultiSignatureInfo.MultisigAddress}
+          />
         </>
       )}
       {UnsignedTransactionBytes && (
         <>
-          <DescItem label="Unsigned Transaction Bytes" value={UnsignedTransactionBytes} />
+          <DescItem
+            label="Unsigned Transaction Bytes"
+            style={{ display: 'none' }}
+            value={UnsignedTransactionBytes}
+          />
         </>
       )}
       {SignatureInfo && (
         <>
           <DescItem
             label={t('transaction hash')}
+            style={{ display: 'none' }}
             value={
               !!disableTrxHashLink ? (
                 SignatureInfo.TransactionHash
@@ -45,6 +62,7 @@ const MultiSignature = ({ data, disableTrxHashLink }) => {
               <DescItem
                 key={key}
                 label={`Participant ${key + 1}`}
+                style={{ display: 'none' }}
                 value={<Link to={`/accounts/${data.Address}`}>{data.Address}</Link>}
               />
             ))}

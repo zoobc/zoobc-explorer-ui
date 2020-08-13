@@ -16,6 +16,7 @@
     "lint": "prettier --config ./.prettierrc --write \"./src/**/*.js\""
   },
   "dependencies": {
+    "@ant-design/icons": "^4.2.2",
     "@apollo/client": "^3.0.2",
     "antd": "^3.23.5",
     "bootstrap": "^4.3.1",
