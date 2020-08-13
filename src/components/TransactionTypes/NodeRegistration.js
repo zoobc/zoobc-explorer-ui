@@ -13,7 +13,7 @@ const NodeRegistration = ({ data }) => {
       <DescItem
         label={t('node address')}
         style={{ display: 'none' }}
-        value={data.NodeAddress.Address}
+        value={data?.NodeAddress?.Address}
       />
       <DescItem
         label={t('account address')}
