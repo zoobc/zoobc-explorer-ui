@@ -9,9 +9,8 @@ const timeago = date => {
 }
 
 const fromNow = date => {
-  const timeFormat = 'YYYY-MM-DD H:mm:ss'
-  const startDate = moment(moment(date).format(timeFormat))
-  const endDate = moment(moment(new Date()).format(timeFormat))
+  const startDate = moment(date)
+  const endDate = moment(new Date())
   const diffInSecond = endDate.diff(startDate, 'seconds')
   const diffInMinute = endDate.diff(startDate, 'minutes')
   const diffInHour = endDate.diff(startDate, 'hours')

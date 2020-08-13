@@ -446,10 +446,10 @@ export const latestBlockColumns = [
   },
   {
     title: <Title text="trans" />,
-    // dataIndex: 'TotalFeeConversion',
-    // key: 'TotalFeeConversion',
-    render() {
-      return <small>26</small>
+    dataIndex: 'TotalTransaction',
+    key: 'TotalTransaction',
+    render(text) {
+      return <small>{text}</small>
     },
   },
   {

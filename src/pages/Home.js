@@ -25,6 +25,7 @@ const GET_HOME_DATA = gql`
         Timestamp
         BlocksmithAddress
         TotalFeeConversion
+        TotalTransaction
       }
     }
     transactions(page: 1, limit: 5, order: "-Height") {
@@ -72,6 +73,7 @@ const GET_SUBSCRIPTION_BLOCKS = gql`
       Timestamp
       BlocksmithAddress
       TotalFeeConversion
+      TotalTransaction
     }
   }
 `
