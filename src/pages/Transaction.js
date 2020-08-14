@@ -37,6 +37,7 @@ const GET_TRX_DATA = gql`
       Sender
       Recipient
       FeeConversion
+      Status
       SendMoney {
         Amount
         AmountConversion
@@ -282,6 +283,11 @@ const Transaction = ({ match }) => {
                       suffix={' ZBC'}
                     />
                   }
+                />
+                <DescItem
+                  label={t('status')}
+                  style={{ display: 'none' }}
+                  value={data.transaction.Status}
                 />
                 {data.transaction.MultisigChild && (
                   <DescItem
