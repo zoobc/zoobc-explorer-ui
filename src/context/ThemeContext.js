@@ -74,6 +74,7 @@ const darkTheme = [
   '--color-text-card-title: #FFFFFF',
   '--color-banner: #01263F',
   '--color-primary-dark-txt: #FFFFFF',
+  '--color-escrow-multisignature-expand: #01263F',
 ]
 
 export default ThemeContext

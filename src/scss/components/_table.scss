@@ -52,3 +52,19 @@
 .page-title {
   color: var(--color-text-card) !important;
 }
+
+.ant-table-row-collapsed {
+  background: var(--color-escrow-multisignature-expand) !important;
+}
+
+.ant-table-row-collapsed::after {
+  background: var(--color-escrow-multisignature-expand) !important;
+}
+
+.ant-table-row-expanded {
+  background: var(--color-escrow-multisignature-expand) !important;
+}
+
+.ant-table-row-expanded::after {
+  background: var(--color-escrow-multisignature-expand) !important;
+}
