@@ -159,12 +159,14 @@ const Account = ({ match }) => {
                 <h4 className="account-card-title page-title">{t('summary')}</h4>
                 <DescItem
                   label={t('account address')}
+                  style={{ display: 'none' }}
                   value={
                     <CopyToClipboard text={data.account.AccountAddress} keyID="accountAddress" />
                   }
                 />
                 <DescItem
                   label={t('balance')}
+                  style={{ display: 'none' }}
                   value={
                     <NumberFormat
                       value={data.account.BalanceConversion || 0}
@@ -187,14 +189,17 @@ const Account = ({ match }) => {
                 /> */}
                 <DescItem
                   label={t('first active')}
+                  style={{ display: 'none' }}
                   value={moment(data.account.FirstActive).format('lll')}
                 />
                 <DescItem
                   label={t('last active')}
+                  style={{ display: 'none' }}
                   value={moment(data.account.LastActive).format('lll')}
                 />
                 <DescItem
                   label={t('total rewards')}
+                  style={{ display: 'none' }}
                   value={
                     <NumberFormat
                       value={data.account.TotalRewardsConversion || 0}
@@ -206,6 +211,7 @@ const Account = ({ match }) => {
                 />
                 <DescItem
                   label={t('total fees paid')}
+                  style={{ display: 'none' }}
                   value={
                     <NumberFormat
                       value={data.account.TotalFeesPaidConversion || 0}

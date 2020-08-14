@@ -82,26 +82,27 @@ const testnetProd = [
     color: '#dc3545',
     value: 'testnet2',
   },
-  {
-    name: 'Demo 9168',
-    color: '#ffbf00',
-    value: 'testnet3',
-  },
-  {
-    name: 'Experimental 9181',
-    color: '#00a2ae',
-    value: 'testnet4',
-  },
+  // {
+  //   name: 'Demo 9168',
+  //   color: '#ffbf00',
+  //   value: 'testnet3',
+  // },
+  // {
+  //   name: 'Experimental 9181',
+  //   color: '#00a2ae',
+  //   value: 'testnet4',
+  // },
 ]
 
 const testnetClientProd = [
-  process.env.REACT_APP_GRAPHQL_ENDPOINT || 'https://alpha.zoobc.net/zoobc/api/v1/graphql',
+  // process.env.REACT_APP_GRAPHQL_ENDPOINT || 'https://alpha.zoobc.net/zoobc/api/v1/graphql',
+  process.env.REACT_APP_GRAPHQL_ENDPOINT || 'https://exp9181.zoobc.net/zoobc/api/v1/graphql',
   // 'https://test1680.zoobc.net/zoobc/api/v1/graphql',
   // 'https://test1010.zoobc.net/zoobc/api/v1/graphql',
   // 'https://test5858.zoobc.net/zoobc/api/v1/graphql',
   'https://test9090.zoobc.net/zoobc/api/v1/graphql',
-  'https://demo9168.zoobc.net/zoobc/api/v1/graphql',
-  'https://exp9181.zoobc.net/zoobc/api/v1/graphql',
+  // 'https://demo9168.zoobc.net/zoobc/api/v1/graphql',
+  // 'https://exp9181.zoobc.net/zoobc/api/v1/graphql',
 ]
 
 const testnetClientLocal = [

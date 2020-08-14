@@ -4,7 +4,7 @@ import moment from 'moment'
 import NumberFormat from 'react-number-format'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { useQuery, gql } from '@apollo/client'
+import { useQuery, gql, useLazyQuery } from '@apollo/client'
 import { Row, Col, Card, Table, Pagination, Collapse, Badge } from 'antd'
 
 import Container from '../components/Container'
@@ -16,6 +16,7 @@ import {
   transactionColumns,
   publishedReceiptColumns,
   skippedBlocksmithColumns,
+  accountRewardColumns,
 } from '../config/table-columns'
 
 const GET_BLOCK_DATA = gql`
@@ -33,6 +34,7 @@ const GET_BLOCK_DATA = gql`
       TotalAmountConversion
       TotalFeeConversion
       TotalRewardsConversion
+      TotalCoinBaseConversion
       Version
       TotalReceipts
       ReceiptValue
@@ -45,6 +47,16 @@ const GET_BLOCK_DATA = gql`
         POPChange
         BlockHeight
         BlocksmithIndex
+      }
+      PublishedReceipts {
+        BatchReceipt {
+          SenderPublicKey
+          RecipientPublicKey
+          DatumType
+          DatumHash
+          RecipientSignature
+        }
+        BlockHeight
       }
     }
   }
@@ -113,33 +125,24 @@ const GET_TRX_BY_BLOCK = gql`
   }
 `
 
-// const GET_RECEIPT_BY_BLOCK = gql`
-//   query getReceiptByBlock($page: Int, $BlockHeight: Int) {
-//     publishedReceipts(page: $page, limit: 5, order: "-BlockHeight", BlockHeight: $BlockHeight) {
-//       PublishedReceipts {
-//         BatchReceipt {
-//           Height
-//           SenderPublicKey
-//           ReceiverPublicKey
-//           DataType
-//           DataHash
-//           ReceiptMerkleRoot
-//           ReceiverSignature
-//           ReferenceBlockHash
-//         }
-//         IntermediateHashes
-//         BlockHeight
-//         ReceiptIndex
-//         PublishedIndex
-//       }
-//       Paginate {
-//         Page
-//         Count
-//         Total
-//       }
-//     }
-//   }
-// `
+const GET_ACCOUNT_REWARDS_DATA = gql`
+  query getAccounts($page: Int, $BlockHeight: Int) {
+    accounts(page: $page, limit: 5, BlockHeight: $BlockHeight) {
+      Accounts {
+        AccountAddress
+        BalanceConversion
+        FirstActive
+        LastActive
+        TotalFeesPaidConversion
+      }
+      Paginate {
+        Page
+        Count
+        Total
+      }
+    }
+  }
+`
 
 const { Panel } = Collapse
 
@@ -150,10 +153,9 @@ const Block = ({ match }) => {
   const [transactions, setTransactions] = useState([])
   const [trxPaginate, setTrxPaginate] = useState({})
 
-  const [receiptCurrntPage, setReceiptCurrentPage] = useState(1)
-  // const [receiptCurrentPage, setReceiptCurrentPage] = useState(1)
-  const [receipts, setReceipts] = useState([])
-  const [receiptPaginate, setReceiptPaginate] = useState({})
+  const [rewardCurrentPage, setRewardCurrentPage] = useState(1)
+  const [rewards, setReward] = useState([])
+  const [rewardPaginate, setRewardPaginate] = useState({})
 
   const [blockHeight, setBlockHeight] = useState(null)
 
@@ -170,12 +172,7 @@ const Block = ({ match }) => {
     },
   })
 
-  // const receiptByBlock = useQuery(GET_RECEIPT_BY_BLOCK, {
-  //   variables: {
-  //     BlockHeight: blockHeight,
-  //     page: receiptCurrentPage,
-  //   },
-  // })
+  const [fetchaAcountRewards, accountRewards] = useLazyQuery(GET_ACCOUNT_REWARDS_DATA)
 
   useEffect(() => {
     if (!!trxByBlock.data) {
@@ -202,21 +199,19 @@ const Block = ({ match }) => {
     }
   }, [trxByBlock.data])
 
-  // useEffect(() => {
-  //   if (!!receiptByBlock.data) {
-  //     const receiptData = receiptByBlock.data.publishedReceipts.PublishedReceipts.map(
-  //       (receipt, key) => {
-  //         return {
-  //           key,
-  //           ...receipt,
-  //         }
-  //       }
-  //     )
+  useEffect(() => {
+    if (!!accountRewards.data) {
+      const rewardData = accountRewards.data.accounts.Accounts.map((reward, key) => {
+        return {
+          key,
+          ...reward,
+        }
+      })
 
-  //     setReceipts(receiptData)
-  //     setReceiptPaginate(receiptByBlock.data.publishedReceipts.Paginate)
-  //   }
-  // }, [receiptByBlock.data])
+      setReward(rewardData)
+      setRewardPaginate(accountRewards.data.accounts.Paginate)
+    }
+  }, [accountRewards.data])
 
   useEffect(() => {
     if (!!data) {
@@ -240,37 +235,62 @@ const Block = ({ match }) => {
                 </Col>
               </Row>
               <Card className="block-card" bordered={false}>
-                <DescItem label={t('height')} value={data.block.Height} />
+                <DescItem
+                  label={t('height')}
+                  text="The position of the block in the ZooBC blockchain. For example, Height 0, would be the very first block, which is also called the Genesis Block"
+                  value={data.block.Height}
+                />
               </Card>
               <Card className="block-card" bordered={false}>
                 <h4 className="block-card-title page-title">{t('summary')}</h4>
                 <DescItem
                   label={t('block id')}
+                  text="An identifier which facilitates easy identification of blocks on the ZooBC blockchain"
                   value={<CopyToClipboard text={data.block.BlockID} keyID="blockID" />}
                 />
                 <DescItem
                   label={t('timestamp')}
+                  style={{ display: 'none' }}
                   value={moment(data.block.Timestamp).format('lll')}
                 />
-                <DescItem label={t('previous block id')} value={data.block.PreviousBlockID} />
-                <DescItem label={t('block seed')} value={data.block.BlockSeed} />
-                <DescItem label={t('block signature')} value={data.block.BlockSignature} />
+                <DescItem
+                  label={t('previous block id')}
+                  style={{ display: 'none' }}
+                  value={data.block.PreviousBlockID}
+                />
+                <DescItem
+                  label={t('block seed')}
+                  text="A seed for random number uniquely generated for the block"
+                  value={data.block.BlockSeed}
+                />
+                <DescItem
+                  label={t('block signature')}
+                  style={{ display: 'none' }}
+                  value={data.block.BlockSignature}
+                />
                 <DescItem
                   label={t('cumulative difficulty')}
+                  text="Difficulty of the blockchain up to this current block"
                   value={data.block.CumulativeDifficulty}
                 />
                 {/* <DescItem label={t('smith scale')} value={data.block.SmithScale} /> */}
                 <DescItem
                   label={t('blocksmith address')}
+                  text="Account that generated the block"
                   value={
                     <Link to={`/accounts/${data.block.BlocksmithAddress}`}>
                       {data.block.BlocksmithAddress}
                     </Link>
                   }
                 />
-                <DescItem label={t('total amount')} value={data.block.TotalAmountConversion} />
+                <DescItem
+                  label={t('total amount')}
+                  style={{ display: 'none' }}
+                  value={data.block.TotalAmountConversion}
+                />
                 <DescItem
                   label={t('total fee')}
+                  style={{ display: 'none' }}
                   value={
                     <NumberFormat
                       value={data.block.TotalFeeConversion}
@@ -281,7 +301,20 @@ const Block = ({ match }) => {
                   }
                 />
                 <DescItem
+                  label={t('Total Coinbase')}
+                  style={{ display: 'none' }}
+                  value={
+                    <NumberFormat
+                      value={data.block.TotalCoinBaseConversion}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      suffix={' ZBC'}
+                    />
+                  }
+                />
+                <DescItem
                   label={t('total rewards')}
+                  text="Total Coinbase + Total Fee"
                   value={
                     <NumberFormat
                       value={data.block.TotalRewardsConversion}
@@ -291,18 +324,43 @@ const Block = ({ match }) => {
                     />
                   }
                 />
-                <DescItem label={t('version')} value={data.block.Version} />
-                <DescItem label={t('total receipts')} value={data.block.TotalReceipts} />
-                <DescItem label={t('receipt value')} value={data.block.ReceiptValue} />
+                <DescItem
+                  label={t('version')}
+                  style={{ display: 'none' }}
+                  value={data.block.Version}
+                />
+                <DescItem
+                  label={t('total receipts')}
+                  style={{ display: 'none' }}
+                  value={data.block.TotalReceipts}
+                />
+                <DescItem
+                  label={t('receipt value')}
+                  style={{ display: 'none' }}
+                  value={data.block.ReceiptValue}
+                />
                 <DescItem
                   label={t('blocksmith id')}
+                  style={{ display: 'none' }}
                   value={
                     <Link to={`/nodes/${data.block.BlocksmithID}`}>{data.block.BlocksmithID}</Link>
                   }
                 />
-                <DescItem label={t('pop change')} value={data.block.PopChange} />
-                <DescItem label={t('payload length')} value={data.block.PayloadLength} />
-                <DescItem label={t('payload hash')} value={data.block.PayloadHash} />
+                <DescItem
+                  label={t('pop change')}
+                  style={{ display: 'none' }}
+                  value={data.block.PopChange}
+                />
+                <DescItem
+                  label={t('payload length')}
+                  style={{ display: 'none' }}
+                  value={data.block.PayloadLength}
+                />
+                <DescItem
+                  label={t('payload hash')}
+                  style={{ display: 'none' }}
+                  value={data.block.PayloadHash}
+                />
               </Card>
               <Collapse className="block-collapse" bordered={false}>
                 <Panel
@@ -322,51 +380,66 @@ const Block = ({ match }) => {
                   </Card>
                 </Panel>
               </Collapse>
-              <Collapse className="block-collapse" bordered={false}>
-                <Panel className="block-card-title block-collapse" header={t('rewards')} key="2">
+              <Collapse
+                className="block-collapse"
+                bordered={false}
+                onChange={() =>
+                  fetchaAcountRewards({ variables: { BlockHeight: data.block.Height } })
+                }
+              >
+                <Panel
+                  className="block-card-title block-collapse"
+                  header={t('Account Rewards')}
+                  key="2"
+                >
                   <Card className="block-card" bordered={false}>
                     <h4 className="block-card-title page-title">
-                      {t('coinbase')}
+                      {t('Account Rewards')}
                       <Badge className="badge-black" count={0} overflowCount={1000} />
                     </h4>
                     <Table
                       className="transactions-table"
-                      columns={transactionColumns}
-                      dataSource={[]}
+                      columns={accountRewardColumns}
+                      dataSource={rewards}
                       pagination={false}
                       size="small"
+                      loading={accountRewards.loading}
+                      rowKey="AccountAddress"
                     />
-                    <Pagination className="pagination-center" current={5} total={100} />
+                    {!!rewards && rewards.length > 0 && (
+                      <Pagination
+                        className="pagination-center"
+                        current={rewardPaginate.Page}
+                        total={rewardPaginate.Total}
+                        pageSize={5}
+                        onChange={page => setRewardCurrentPage(page)}
+                      />
+                    )}
                   </Card>
                 </Panel>
               </Collapse>
               <Collapse className="block-collapse" bordered={false}>
-                <Panel className="block-card-title block-collapse" header={t('receipts')} key="3">
+                <Panel
+                  className="block-card-title block-collapse"
+                  header={t('Published Receipts')}
+                  key="3"
+                >
                   <Card className="block-card" bordered={false}>
                     <h4 className="block-card-title page-title">
-                      {t('receipts')}
+                      {t('Published Receipts')}
                       <Badge
                         className="badge-black"
-                        count={receiptPaginate.Total}
+                        count={data.block.TotalReceipts}
                         overflowCount={1000}
                       />
                     </h4>
                     <Table
                       columns={publishedReceiptColumns}
-                      dataSource={receipts}
+                      dataSource={data.block.PublishedReceipts}
                       pagination={false}
                       size="small"
                       loading={loading}
                     />
-                    {!!data && (
-                      <Pagination
-                        className="pagination-center"
-                        current={receiptPaginate.Page}
-                        total={receiptPaginate.Total}
-                        pageSize={5}
-                        onChange={page => setReceiptCurrentPage(page)}
-                      />
-                    )}
                   </Card>
                 </Panel>
               </Collapse>

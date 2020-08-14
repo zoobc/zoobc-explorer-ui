@@ -3,43 +3,73 @@
   margin-bottom: 20px;
 }
 
-.table-anim .ant-table-thead>tr>th {
+.table-anim .ant-table-thead > tr > th {
   // background: #e5e5e5;
   // padding: 10px 8px;
   display: inline-block;
 }
 
-.table-anim .ant-table-tbody>tr {
+.table-anim .ant-table-tbody > tr {
   background: var(--color-primary-card) !important;
 }
 
-.table-anim .ant-table-tbody>tr>td {
+.table-anim .ant-table-tbody > tr > td {
   // padding: 10px 8px;
   display: inline-block;
   vertical-align: bottom;
 }
 
-.table-anim .ant-table-thead>tr,
-.table-anim .ant-table-tbody>tr {
+.table-anim .ant-table-thead > tr,
+.table-anim .ant-table-tbody > tr {
   display: block;
 }
 
-.table-anim .ant-table-thead>tr,
-.table-anim .ant-table-tbody>tr {
+.table-anim .ant-table-thead > tr,
+.table-anim .ant-table-tbody > tr {
   transition: none;
 }
 
-.table-anim .ant-table-thead>tr>th:nth-child(1),
-.table-anim .ant-table-tbody>tr>td:nth-child(1) {
+.table-anim-trx .ant-table-thead > tr > th:nth-child(1),
+.table-anim-trx .ant-table-tbody > tr > td:nth-child(1) {
   width: 15%;
 }
 
-.table-anim .ant-table-thead>tr>th:nth-child(2),
-.table-anim .ant-table-tbody>tr>td:nth-child(2) {
-  width: 35%;
+.table-anim-trx .ant-table-thead > tr > th:nth-child(2),
+.table-anim-trx .ant-table-tbody > tr > td:nth-child(2) {
+  width: 38%;
 }
 
-.table-anim .ant-table-thead>tr>th:nth-child(3),
-.table-anim .ant-table-tbody>tr>td:nth-child(3) {
-  width: 50%;
+.table-anim-trx .ant-table-thead > tr > th:nth-child(3),
+.table-anim-trx .ant-table-tbody > tr > td:nth-child(3) {
+  width: 32%;
+}
+
+.table-anim-trx .ant-table-thead > tr > th:nth-child(4),
+.table-anim-trx .ant-table-tbody > tr > td:nth-child(4) {
+  width: 15%;
+}
+
+.table-anim-block .ant-table-thead > tr > th:nth-child(1),
+.table-anim-block .ant-table-tbody > tr > td:nth-child(1) {
+  width: 14%;
+}
+
+.table-anim-block .ant-table-thead > tr > th:nth-child(2),
+.table-anim-block .ant-table-tbody > tr > td:nth-child(2) {
+  width: 14%;
+}
+
+.table-anim-block .ant-table-thead > tr > th:nth-child(3),
+.table-anim-block .ant-table-tbody > tr > td:nth-child(3) {
+  width: 9%;
+}
+
+.table-anim-block .ant-table-thead > tr > th:nth-child(4),
+.table-anim-block .ant-table-tbody > tr > td:nth-child(4) {
+  width: 38%;
+}
+
+.table-anim-block .ant-table-thead > tr > th:nth-child(5),
+.table-anim-block .ant-table-tbody > tr > td:nth-child(5) {
+  width: 25%;
 }

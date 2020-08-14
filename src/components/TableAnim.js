@@ -53,10 +53,7 @@ const pageEnterAnim = [
   },
 ]
 
-const leaveAnim = [
-  { duration: 250, opacity: 0 },
-  { height: 0, duration: 200, ease: 'easeOutQuad' },
-]
+const leaveAnim = [{ duration: 250, opacity: 0 }, { height: 0, duration: 200, ease: 'easeOutQuad' }]
 const pageLeaveAnim = [
   { duration: 150, opacity: 0 },
   { height: 0, duration: 150, ease: 'easeOutQuad' },
@@ -81,7 +78,7 @@ const AnimateBody = props => {
   )
 }
 
-export default function TableAnim({ loading, columns, data = [] }) {
+export default function TableAnim({ loading, columns, data = [], className }) {
   return (
     <TableContext.Provider value={false}>
       <Table
@@ -90,7 +87,7 @@ export default function TableAnim({ loading, columns, data = [] }) {
         dataSource={data}
         columns={columns}
         pagination={false}
-        className="table-anim"
+        className={`table-anim ${className}`}
         components={{ body: { wrapper: AnimateBody } }}
       />
     </TableContext.Provider>

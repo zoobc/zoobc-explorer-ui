@@ -7,6 +7,8 @@ import { shortenHash } from '../utils/shorten'
 import { useTranslation } from 'react-i18next'
 import { Badge, Tooltip, Tag, Icon } from 'antd'
 import { objectUtils } from '../utils'
+import Timestamp from '../components/Timestamp'
+import { InfoCircleOutlined } from '@ant-design/icons'
 
 const getBlocksmithIndicator = skipped => {
   if (skipped > 10) {
@@ -133,6 +135,7 @@ export const accountColumns = [
     title: <Title text="address" />,
     dataIndex: 'AccountAddress',
     key: 'AccountAddress',
+
     render(text) {
       return <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
     },
@@ -178,7 +181,17 @@ export const accountColumns = [
 
 export const blockColumns = [
   {
-    title: <Title text="block id" />,
+    title: (
+      <div>
+        <Title text="block id" />{' '}
+        <Tooltip
+          placement="bottom"
+          title="An identifier which facilitates easy identification of blocks of the blockchain"
+        >
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'BlockID',
     key: 'BlockID',
     render(text) {
@@ -186,7 +199,17 @@ export const blockColumns = [
     },
   },
   {
-    title: <Title text="height" />,
+    title: (
+      <div>
+        <Title text="height" />{' '}
+        <Tooltip
+          placement="bottom"
+          title="The position of the block in the ZooBC blockchain. For example, Height 0, would be the very first block, which is also called the Genesis Block"
+        >
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'Height',
     key: 'Height',
     render(text, record) {
@@ -202,7 +225,14 @@ export const blockColumns = [
     },
   },
   {
-    title: <Title text="blocksmith address" />,
+    title: (
+      <div>
+        <Title text="blocksmith address" />{' '}
+        <Tooltip placement="bottom" title="Account that generated the block">
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'BlocksmithAddress',
     key: 'BlocksmithAddress',
     render(text, record) {
@@ -239,7 +269,17 @@ export const blockColumns = [
 
 export const transactionColumns = [
   {
-    title: <Title text="transaction id" />,
+    title: (
+      <div>
+        <Title text="transaction id" />{' '}
+        <Tooltip
+          placement="bottom"
+          title="An identifier which failitates easy identification of transactions on the ZooBC blockchain"
+        >
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'TransactionID',
     key: 'TransactionID',
     render(text) {
@@ -248,7 +288,14 @@ export const transactionColumns = [
     width: 200,
   },
   {
-    title: <Title text="height" />,
+    title: (
+      <div>
+        <Title text="height" />{' '}
+        <Tooltip placement="bottom" title="The block height in which the transaction is included">
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'Height',
     key: 'Height',
     render(text, record) {
@@ -310,7 +357,17 @@ export const transactionColumns = [
 
 export const nodeColumns = [
   {
-    title: <Title text="public key" />,
+    title: (
+      <div>
+        <Title text="public key" />{' '}
+        <Tooltip
+          placement="bottom"
+          title="A string of letters and numbers that are used to receive amount of ZooBC. Works similar to a traditional bank account number and can be shared publicly with others"
+        >
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'NodePublicKey',
     key: 'NodePublicKey',
     render(text) {
@@ -331,7 +388,14 @@ export const nodeColumns = [
   //   key: 'NodeAddress',
   // },
   {
-    title: <Title text="locked funds" />,
+    title: (
+      <div>
+        <Title text="locked funds" />{' '}
+        <Tooltip placement="bottom" title="Amount of ZooBC to be locked as security money for node">
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'LockedFunds',
     key: 'LockedFunds',
     render: renderCurrenncy,
@@ -341,11 +405,7 @@ export const nodeColumns = [
     dataIndex: 'RegistrationStatus',
     key: 'RegistrationStatus',
     render(text) {
-      return (
-        !!text &&
-        !!text.toString() &&
-        (text.toString() === '0' ? 'Registered' : text.toString() === '1' ? 'In Queue' : 'Stray')
-      )
+      return text === 0 ? 'Registered' : text === 1 ? 'In Queue' : text === 2 ? 'Stray' : null
     },
   },
   {
@@ -357,45 +417,63 @@ export const nodeColumns = [
 
 export const publishedReceiptColumns = [
   {
-    title: <Title text="sender" />,
+    title: () => (
+      <div>
+        <Title text="sender" />{' '}
+        <Tooltip placement="bottom" title="Sender Node Public Key">
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'BatchReceipt.SenderPublicKey',
     key: 'BatchReceipt.SenderPublicKey',
     render(text) {
-      return !!text && <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
+      return !!text && <Link to={`/nodes/${text}`}>{shortenHash(text, 20)}</Link>
     },
   },
   {
-    title: <Title text="receiver" />,
-    dataIndex: 'BatchReceipt.ReceiverPublicKey',
-    key: 'BatchReceipt.ReceiverPublicKey',
+    title: () => (
+      <div>
+        <Title text="receiver" />{' '}
+        <Tooltip placement="bottom" title="Receiver Node Public Key">
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
+    dataIndex: 'BatchReceipt.RecipientPublicKey',
+    key: 'BatchReceipt.RecipientPublicKey',
     render(text) {
-      return !!text && <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
+      return !!text && <Link to={`/nodes/${text}`}>{shortenHash(text, 20)}</Link>
     },
   },
   {
-    title: <Title text="block" />,
-    dataIndex: 'BatchReceipt.Height',
-    key: 'BatchReceipt.Height',
+    title: <Title text="height" />,
+    dataIndex: 'BlockHeight',
+    key: 'BlockHeight',
+    render(text) {
+      return !!text && <Link to={`/blocks/${text}`}>{text}</Link>
+    },
   },
   {
     title: <Title text="data type" />,
-    dataIndex: 'BatchReceipt.DataType',
-    key: 'BatchReceipt.DataType',
+    dataIndex: 'BatchReceipt.DatumType',
+    key: 'BatchReceipt.DatumType',
   },
   {
     title: <Title text="data hash" />,
-    dataIndex: 'BatchReceipt.DataHash',
-    key: 'BatchReceipt.DataHash',
-  },
-  {
-    title: <Title text="merkle root" />,
-    dataIndex: 'BatchReceipt.ReceiptMerkleRoot',
-    key: 'BatchReceipt.ReceiptMerkleRoot',
+    dataIndex: 'BatchReceipt.DatumHash',
+    key: 'BatchReceipt.DatumHash',
+    render(text) {
+      return !!text && shortenHash(text, 20)
+    },
   },
   {
     title: <Title text="receiver signature" />,
-    dataIndex: 'BatchReceipt.ReceiverSignature',
-    key: 'BatchReceipt.ReceiverSignature',
+    dataIndex: 'BatchReceipt.RecipientSignature',
+    key: 'BatchReceipt.RecipientSignature',
+    render(text) {
+      return !!text && shortenHash(text, 20)
+    },
   },
 ]
 
@@ -404,6 +482,9 @@ export const skippedBlocksmithColumns = [
     title: <Title text="public key" />,
     dataIndex: 'BlocksmithPublicKey',
     key: 'BlocksmithPublicKey',
+    render(text) {
+      return <Link to={`/nodes/${text}`}>{text}</Link>
+    },
   },
   {
     title: <Title text="pop change" />,
@@ -436,19 +517,35 @@ export const latestBlockColumns = [
     },
   },
   {
+    title: <Title text="fees" />,
+    dataIndex: 'TotalFeeConversion',
+    key: 'TotalFeeConversion',
+    render(text) {
+      return <small>{renderCurrenncy(text)}</small>
+    },
+  },
+  {
+    title: <Title text="Trx" />,
+    dataIndex: 'TotalTransaction',
+    key: 'TotalTransaction',
+    render(text) {
+      return <small>{text}</small>
+    },
+  },
+  {
     title: <Title text="timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
     render(text) {
       return (
         <small>
-          <DateFormat date={text} />
+          <Timestamp value={text} />
         </small>
       )
     },
   },
   {
-    title: <Title text="blocksmith address" />,
+    title: <Title text="blocksmith" />,
     dataIndex: 'BlocksmithAddress',
     key: 'BlocksmithAddress',
     render(text, record) {
@@ -465,7 +562,7 @@ export const latestBlockColumns = [
             <Tooltip title={`${skipped.length} skipped blocksmith`}>
               <Badge color={getBlocksmithIndicator(skipped.length)} />
             </Tooltip>
-            <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
+            <Link to={`/accounts/${text}`}>{shortenHash(text, 15)}</Link>
           </small>
         </div>
       )
@@ -482,7 +579,6 @@ export const latestTransactionColumns = [
       return <small>{renderCurrenncy(text)}</small>
     },
   },
-
   {
     title: <Title text="timestamp" />,
     dataIndex: 'Timestamp',
@@ -490,7 +586,7 @@ export const latestTransactionColumns = [
     render(text) {
       return (
         <small>
-          <DateFormat date={text} />
+          <Timestamp value={text} />
         </small>
       )
     },
@@ -504,6 +600,61 @@ export const latestTransactionColumns = [
         <Link to={`/transactions/${text}`}>
           <small>{text}</small>
         </Link>
+      )
+    },
+  },
+  {
+    title: <Title text="height" />,
+    dataIndex: 'Height',
+    key: 'Height',
+    render(text, record) {
+      return (
+        <Link to={`/blocks/${record.BlockID}`}>
+          <small>{text}</small>
+        </Link>
+      )
+    },
+  },
+]
+
+export const accountRewardColumns = [
+  {
+    title: <Title text="address" />,
+    dataIndex: 'AccountAddress',
+    key: 'AccountAddress',
+
+    render(text) {
+      return <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
+    },
+  },
+  {
+    title: <Title text="balance" />,
+    dataIndex: 'BalanceConversion',
+    key: 'BalanceConversion',
+    render: renderCurrenncy,
+  },
+  {
+    title: <Title text="last active" />,
+    dataIndex: 'LastActive',
+    key: 'LastActive',
+    render(text) {
+      return <DateFormat date={text} />
+    },
+  },
+  {
+    title: <Title text="fees" />,
+    dataIndex: 'TotalFeesPaidConversion',
+    key: 'TotalFeesPaidConversion',
+    render(text) {
+      return (
+        <NumberFormat
+          value={text || 0}
+          displayType={'text'}
+          decimalScale={2}
+          thousandSeparator={true}
+          suffix={' ZBC'}
+          className="page-title"
+        />
       )
     },
   },
