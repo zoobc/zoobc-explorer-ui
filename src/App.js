@@ -6,6 +6,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import i18n from './i18n'
 import clients from './utils/client'
 import NotFound from './pages/Errors/NotFound'
+import NotFoundComp from './components/Errors/NotFound'
 import Fallback from './components/Fallback'
 import DefaultLayout from './components/DefaultLayout'
 import ErrorBoundary from './components/ErrorBoundary'
@@ -62,7 +63,7 @@ function App() {
                         <Route exact path="/nodes" render={props => <Nodes {...props} />} />
                         <Route exact path="/nodes/:id+" render={props => <Node {...props} />} />
                         <Route exact path="/search" render={props => <NotFound {...props} />} />
-                        <Route exact path="*" render={props => <NotFound {...props} />} />
+                        <Route exact path="*" render={props => <NotFoundComp {...props} />} />
                       </Switch>
                     </Suspense>
                   </ErrorBoundary>

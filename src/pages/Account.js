@@ -144,39 +144,40 @@ const Account = ({ match }) => {
     <>
       {!!error && <NotFound />}
       {!!loading && <LoaderPage />}
-      {!error && !loading && (
-        <Container>
-          <Row className="account-row">
-            <Col span={24}>
-              <Row>
-                <Col span={24}>
-                  <h4 className="truncate page-title">
-                    {t('account')} {data.account.AccountAddress}
-                  </h4>
-                </Col>
-              </Row>
-              <Card className="account-card" bordered={false}>
-                <h4 className="account-card-title page-title">{t('summary')}</h4>
-                <DescItem
-                  label={t('account address')}
-                  style={{ display: 'none' }}
-                  value={
-                    <CopyToClipboard text={data.account.AccountAddress} keyID="accountAddress" />
-                  }
-                />
-                <DescItem
-                  label={t('balance')}
-                  style={{ display: 'none' }}
-                  value={
-                    <NumberFormat
-                      value={data.account.BalanceConversion || 0}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      suffix={' ZBC'}
-                    />
-                  }
-                />
-                {/* <DescItem
+      {!!data &&
+        (data.account.AccountAddress ? (
+          <Container>
+            <Row className="account-row">
+              <Col span={24}>
+                <Row>
+                  <Col span={24}>
+                    <h4 className="truncate page-title">
+                      {t('account')} {data.account.AccountAddress}
+                    </h4>
+                  </Col>
+                </Row>
+                <Card className="account-card" bordered={false}>
+                  <h4 className="account-card-title page-title">{t('summary')}</h4>
+                  <DescItem
+                    label={t('account address')}
+                    style={{ display: 'none' }}
+                    value={
+                      <CopyToClipboard text={data.account.AccountAddress} keyID="accountAddress" />
+                    }
+                  />
+                  <DescItem
+                    label={t('balance')}
+                    style={{ display: 'none' }}
+                    value={
+                      <NumberFormat
+                        value={data.account.BalanceConversion || 0}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                        suffix={' ZBC'}
+                      />
+                    }
+                  />
+                  {/* <DescItem
                   label={t('spendable balance')}
                   value={
                     <NumberFormat
@@ -187,71 +188,73 @@ const Account = ({ match }) => {
                     />
                   }
                 /> */}
-                <DescItem
-                  label={t('first active')}
-                  style={{ display: 'none' }}
-                  value={moment(data.account.FirstActive).format('lll')}
-                />
-                <DescItem
-                  label={t('last active')}
-                  style={{ display: 'none' }}
-                  value={moment(data.account.LastActive).format('lll')}
-                />
-                <DescItem
-                  label={t('total rewards')}
-                  style={{ display: 'none' }}
-                  value={
-                    <NumberFormat
-                      value={data.account.TotalRewardsConversion || 0}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      suffix={' ZBC'}
-                    />
-                  }
-                />
-                <DescItem
-                  label={t('total fees paid')}
-                  style={{ display: 'none' }}
-                  value={
-                    <NumberFormat
-                      value={data.account.TotalFeesPaidConversion || 0}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      suffix={' ZBC'}
-                    />
-                  }
-                />
-                {/* <DescItem label={t('node public key')} value={data.account.NodePublicKey} /> */}
-              </Card>
-              <Card className="account-card" bordered={false}>
-                <h4 className="account-card-title page-title">
-                  {t('transactions')}
-                  <Badge className="badge-black" count={trxPaginate.Total} overflowCount={1000} />
-                </h4>
-                <Table
-                  className="transactions-table"
-                  columns={transactionColumns}
-                  dataSource={transactions}
-                  pagination={false}
-                  size="small"
-                  loading={loading}
-                  scroll={{ x: 1300 }}
-                  rowKey="TransactionID"
-                />
-                {!!transactions && (
-                  <Pagination
-                    className="pagination-center"
-                    current={trxPaginate.Page}
-                    total={trxPaginate.Total}
-                    pageSize={5}
-                    onChange={page => setTrxCurrentPage(page)}
+                  <DescItem
+                    label={t('first active')}
+                    style={{ display: 'none' }}
+                    value={moment(data.account.FirstActive).format('lll')}
                   />
-                )}
-              </Card>
-            </Col>
-          </Row>
-        </Container>
-      )}
+                  <DescItem
+                    label={t('last active')}
+                    style={{ display: 'none' }}
+                    value={moment(data.account.LastActive).format('lll')}
+                  />
+                  <DescItem
+                    label={t('total rewards')}
+                    style={{ display: 'none' }}
+                    value={
+                      <NumberFormat
+                        value={data.account.TotalRewardsConversion || 0}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                        suffix={' ZBC'}
+                      />
+                    }
+                  />
+                  <DescItem
+                    label={t('total fees paid')}
+                    style={{ display: 'none' }}
+                    value={
+                      <NumberFormat
+                        value={data.account.TotalFeesPaidConversion || 0}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                        suffix={' ZBC'}
+                      />
+                    }
+                  />
+                  {/* <DescItem label={t('node public key')} value={data.account.NodePublicKey} /> */}
+                </Card>
+                <Card className="account-card" bordered={false}>
+                  <h4 className="account-card-title page-title">
+                    {t('transactions')}
+                    <Badge className="badge-black" count={trxPaginate.Total} overflowCount={1000} />
+                  </h4>
+                  <Table
+                    className="transactions-table"
+                    columns={transactionColumns}
+                    dataSource={transactions}
+                    pagination={false}
+                    size="small"
+                    loading={loading}
+                    scroll={{ x: 1300 }}
+                    rowKey="TransactionID"
+                  />
+                  {!!transactions && (
+                    <Pagination
+                      className="pagination-center"
+                      current={trxPaginate.Page}
+                      total={trxPaginate.Total}
+                      pageSize={5}
+                      onChange={page => setTrxCurrentPage(page)}
+                    />
+                  )}
+                </Card>
+              </Col>
+            </Row>
+          </Container>
+        ) : (
+          <NotFound />
+        ))}
     </>
   )
 }
