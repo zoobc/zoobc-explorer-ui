@@ -110,7 +110,9 @@ const Node = ({ match, history }) => {
                   <h4 className="node-card-title page-title">{t('summary')}</h4>
                   <DescItem
                     label={t('node public key')}
-                    text="A string of letters and numbers that are used to receive amount of ZooBC. Works similar to a traditional bank account number and can be shared publicly with others"
+                    text={t(
+                      'a string of letters and numbers that are used to receive amount of zoobc. works similar to a traditional bank account number and can be shared publicly with others'
+                    )}
                     value={<CopyToClipboard text={data.node.NodePublicKey} keyID="nodePublicKey" />}
                   />
                   <DescItem
@@ -126,7 +128,7 @@ const Node = ({ match, history }) => {
                   {/* <DescItem label={t('node address')} value={data.node.NodeAddress} /> */}
                   <DescItem
                     label={t('locked funds')}
-                    text="Amount of ZooBC to be locked as security money for node"
+                    text={t('amount of zoobc to be locked as security money for node')}
                     value={
                       <NumberFormat
                         value={data.node.LockedFunds || 0}

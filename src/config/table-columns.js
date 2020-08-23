@@ -186,7 +186,9 @@ export const blockColumns = [
         <Title text="block id" />{' '}
         <Tooltip
           placement="bottom"
-          title="An identifier which facilitates easy identification of blocks of the blockchain"
+          title={
+            <Title text="an identifier which facilitates easy identification of blocks on the zoobc blockchain" />
+          }
         >
           <InfoCircleOutlined />
         </Tooltip>
@@ -204,7 +206,9 @@ export const blockColumns = [
         <Title text="height" />{' '}
         <Tooltip
           placement="bottom"
-          title="The position of the block in the ZooBC blockchain. For example, Height 0, would be the very first block, which is also called the Genesis Block"
+          title={
+            <Title text="the position of the block in the zoobc blockchain. for example, height 0, would be the very first block, which is also called the genesis block" />
+          }
         >
           <InfoCircleOutlined />
         </Tooltip>
@@ -228,7 +232,7 @@ export const blockColumns = [
     title: (
       <div>
         <Title text="blocksmith address" />{' '}
-        <Tooltip placement="bottom" title="Account that generated the block">
+        <Tooltip placement="bottom" title={<Title text="account that generated the block" />}>
           <InfoCircleOutlined />
         </Tooltip>
       </div>
@@ -274,7 +278,9 @@ export const transactionColumns = [
         <Title text="transaction id" />{' '}
         <Tooltip
           placement="bottom"
-          title="An identifier which failitates easy identification of transactions on the ZooBC blockchain"
+          title={
+            <Title text="an identifier which facilitates easy identification of transactions on the zoobc blockchain" />
+          }
         >
           <InfoCircleOutlined />
         </Tooltip>
@@ -291,7 +297,10 @@ export const transactionColumns = [
     title: (
       <div>
         <Title text="height" />{' '}
-        <Tooltip placement="bottom" title="The block height in which the transaction is included">
+        <Tooltip
+          placement="bottom"
+          title={<Title text="the block height in which the transaction is included" />}
+        >
           <InfoCircleOutlined />
         </Tooltip>
       </div>
@@ -362,7 +371,9 @@ export const nodeColumns = [
         <Title text="public key" />{' '}
         <Tooltip
           placement="bottom"
-          title="A string of letters and numbers that are used to receive amount of ZooBC. Works similar to a traditional bank account number and can be shared publicly with others"
+          title={
+            <Title text="a string of letters and numbers that are used to receive amount of zoobc. works similar to a traditional bank account number and can be shared publicly with others" />
+          }
         >
           <InfoCircleOutlined />
         </Tooltip>
@@ -391,7 +402,10 @@ export const nodeColumns = [
     title: (
       <div>
         <Title text="locked funds" />{' '}
-        <Tooltip placement="bottom" title="Amount of ZooBC to be locked as security money for node">
+        <Tooltip
+          placement="bottom"
+          title={<Title text="amount of zoobc to be locked as security money for node" />}
+        >
           <InfoCircleOutlined />
         </Tooltip>
       </div>
@@ -420,7 +434,7 @@ export const publishedReceiptColumns = [
     title: () => (
       <div>
         <Title text="sender" />{' '}
-        <Tooltip placement="bottom" title="Sender Node Public Key">
+        <Tooltip placement="bottom" title={<Title text="sender node public key" />}>
           <InfoCircleOutlined />
         </Tooltip>
       </div>
@@ -435,7 +449,7 @@ export const publishedReceiptColumns = [
     title: () => (
       <div>
         <Title text="receiver" />{' '}
-        <Tooltip placement="bottom" title="Receiver Node Public Key">
+        <Tooltip placement="bottom" title={<Title text="receiver node public key" />}>
           <InfoCircleOutlined />
         </Tooltip>
       </div>

@@ -238,7 +238,9 @@ const Block = ({ match }) => {
                 <Card className="block-card" bordered={false}>
                   <DescItem
                     label={t('height')}
-                    text="The position of the block in the ZooBC blockchain. For example, Height 0, would be the very first block, which is also called the Genesis Block"
+                    text={t(
+                      'the position of the block in the zoobc blockchain. for example, height 0, would be the very first block, which is also called the genesis block'
+                    )}
                     value={data.block.Height}
                   />
                 </Card>
@@ -261,7 +263,7 @@ const Block = ({ match }) => {
                   />
                   <DescItem
                     label={t('block seed')}
-                    text="A seed for random number uniquely generated for the block"
+                    text={t('a seed for random number uniquely generated for the block')}
                     value={data.block.BlockSeed}
                   />
                   <DescItem
@@ -271,13 +273,13 @@ const Block = ({ match }) => {
                   />
                   <DescItem
                     label={t('cumulative difficulty')}
-                    text="Difficulty of the blockchain up to this current block"
+                    text={t('difficulty of the blockchain up to this current block')}
                     value={data.block.CumulativeDifficulty}
                   />
                   {/* <DescItem label={t('smith scale')} value={data.block.SmithScale} /> */}
                   <DescItem
                     label={t('blocksmith address')}
-                    text="Account that generated the block"
+                    text={t('account that generated the block')}
                     value={
                       <Link to={`/accounts/${data.block.BlocksmithAddress}`}>
                         {data.block.BlocksmithAddress}
@@ -315,7 +317,7 @@ const Block = ({ match }) => {
                   />
                   <DescItem
                     label={t('total rewards')}
-                    text="Total Coinbase + Total Fee"
+                    text={t('total coinbase + total fee')}
                     value={
                       <NumberFormat
                         value={data.block.TotalRewardsConversion}

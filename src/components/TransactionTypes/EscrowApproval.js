@@ -13,7 +13,9 @@ const EscrowApproval = ({ data }) => {
         <DescItem label="Status" style={{ display: 'none' }} value={data.Approval} />
         <DescItem
           label={t('transaction id')}
-          text="An identifier which failitates easy identification of transactions on the ZooBC blockchain"
+          text={t(
+            'an identifier which facilitates easy identification of transactions on the zoobc blockchain'
+          )}
           value={<Link to={`/transactions/${data.TransactionID}`}>{data.TransactionID}</Link>}
         />
       </Card>

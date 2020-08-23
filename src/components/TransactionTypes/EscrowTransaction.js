@@ -15,7 +15,9 @@ const EscrowTransaction = ({ data, blockID, TransactionID }) => {
       {!!TransactionID && (
         <DescItem
           label={t('transaction id')}
-          text="An identifier which failitates easy identification of transactions on the ZooBC blockchain"
+          text={t(
+            'an identifier which facilitates easy identification of transactions on the zoobc blockchain'
+          )}
           value={<Link to={`/transactions/${TransactionID}`}>{TransactionID}</Link>}
         />
       )}
@@ -50,7 +52,9 @@ const EscrowTransaction = ({ data, blockID, TransactionID }) => {
       <DescItem label={t('timeout')} style={{ display: 'none' }} value={data.Timeout} />
       <DescItem
         label={t('block height')}
-        text="The position of the block in the ZooBC blockchain. For example, Height 0, would be the very first block, which is also called the Genesis Block"
+        text={t(
+          'the position of the block in the zoobc blockchain. for example, height 0, would be the very first block, which is also called the genesis block'
+        )}
         value={<Link to={`/blocks/${blockID}`}>{data.BlockHeight}</Link>}
       />
       <DescItem label={t('instruction')} style={{ display: 'none' }} value={data.Instruction} />
