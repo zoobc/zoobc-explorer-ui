@@ -94,74 +94,79 @@ const Node = ({ match, history }) => {
     <>
       {!!error && <NotFound />}
       {!!loading && <LoaderPage />}
-      {!error && !loading && (
-        <Container>
-          <Row className="node-row">
-            <Col span={24}>
-              <Row>
-                <Col span={24}>
-                  <h4 className="truncate page-title">
-                    {t('public key')} {data.node.NodePublicKey}
-                  </h4>
-                </Col>
-              </Row>
-              <Card className="node-card" bordered={false}>
-                <h4 className="node-card-title page-title">{t('summary')}</h4>
-                <DescItem
-                  label={t('node public key')}
-                  text="A string of letters and numbers that are used to receive amount of ZooBC. Works similar to a traditional bank account number and can be shared publicly with others"
-                  value={<CopyToClipboard text={data.node.NodePublicKey} keyID="nodePublicKey" />}
-                />
-                <DescItem
-                  label={t('owner address')}
-                  style={{ display: 'none' }}
-                  value={
-                    <Link to={`/accounts/${data.node.OwnerAddress}`}>{data.node.OwnerAddress}</Link>
-                  }
-                  // value={<CopyToClipboard text={data.node.OwnerAddress} keyID="nodePublicKey" />}
-                />
-                {/* <DescItem label={t('node address')} value={data.node.NodeAddress} /> */}
-                <DescItem
-                  label={t('locked funds')}
-                  text="Amount of ZooBC to be locked as security money for node"
-                  value={
-                    <NumberFormat
-                      value={data.node.LockedFunds || 0}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      suffix={' ZBC'}
-                    />
-                  }
-                />
-                <DescItem
-                  label={t('registered block height')}
-                  style={{ display: 'none' }}
-                  value={
-                    <Button
-                      type="link"
-                      size="small"
-                      onClick={doSearch}
-                      style={{ padding: '0px 0px 15px 0px' }}
-                    >
-                      {data.node.RegisteredBlockHeight}
-                    </Button>
-                  }
-                />
-                {/* <DescItem label={t('participation score')} value={data.node.ParticipationScore} /> */}
-                <DescItem
-                  label={t('registry status')}
-                  style={{ display: 'none' }}
-                  // value={data.node.RegistrationStatus === true ? 'Registered' : 'In Queue'}
-                  value={
-                    data.node.RegistrationStatus === 0
-                      ? 'Registered'
-                      : data.node.RegistrationStatus === 1
-                      ? 'In Queue'
-                      : 'Stray'
-                  }
-                />
-                {/* <DescItem label={t('blocks found')} value={data.node.BlocksFunds} /> */}
-                {/* <DescItem
+      {!!data &&
+        (data.node.NodePublicKey ? (
+          <Container>
+            <Row className="node-row">
+              <Col span={24}>
+                <Row>
+                  <Col span={24}>
+                    <h4 className="truncate page-title">
+                      {t('public key')} {data.node.NodePublicKey}
+                    </h4>
+                  </Col>
+                </Row>
+                <Card className="node-card" bordered={false}>
+                  <h4 className="node-card-title page-title">{t('summary')}</h4>
+                  <DescItem
+                    label={t('node public key')}
+                    text={t(
+                      'a string of letters and numbers that are used to receive amount of zoobc. works similar to a traditional bank account number and can be shared publicly with others'
+                    )}
+                    value={<CopyToClipboard text={data.node.NodePublicKey} keyID="nodePublicKey" />}
+                  />
+                  <DescItem
+                    label={t('owner address')}
+                    style={{ display: 'none' }}
+                    value={
+                      <Link to={`/accounts/${data.node.OwnerAddress}`}>
+                        {data.node.OwnerAddress}
+                      </Link>
+                    }
+                    // value={<CopyToClipboard text={data.node.OwnerAddress} keyID="nodePublicKey" />}
+                  />
+                  {/* <DescItem label={t('node address')} value={data.node.NodeAddress} /> */}
+                  <DescItem
+                    label={t('locked funds')}
+                    text={t('amount of zoobc to be locked as security money for node')}
+                    value={
+                      <NumberFormat
+                        value={data.node.LockedFunds || 0}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                        suffix={' ZBC'}
+                      />
+                    }
+                  />
+                  <DescItem
+                    label={t('registered block height')}
+                    style={{ display: 'none' }}
+                    value={
+                      <Button
+                        type="link"
+                        size="small"
+                        onClick={doSearch}
+                        style={{ padding: '0px 0px 15px 0px' }}
+                      >
+                        {data.node.RegisteredBlockHeight}
+                      </Button>
+                    }
+                  />
+                  {/* <DescItem label={t('participation score')} value={data.node.ParticipationScore} /> */}
+                  <DescItem
+                    label={t('registry status')}
+                    style={{ display: 'none' }}
+                    // value={data.node.RegistrationStatus === true ? 'Registered' : 'In Queue'}
+                    value={
+                      data.node.RegistrationStatus === 0
+                        ? 'Registered'
+                        : data.node.RegistrationStatus === 1
+                        ? 'In Queue'
+                        : 'Stray'
+                    }
+                  />
+                  {/* <DescItem label={t('blocks found')} value={data.node.BlocksFunds} /> */}
+                  {/* <DescItem
                   label={t('rewards paid')}
                   value={
                     <NumberFormat
@@ -172,33 +177,39 @@ const Node = ({ match, history }) => {
                     />
                   }
                 /> */}
-              </Card>
-              <Card className="node-card" bordered={false}>
-                <h4 className="node-card-title page-title">
-                  {t('blocks')}
-                  <Badge className="badge-black" count={blockPaginate.Total} overflowCount={1000} />
-                </h4>
-                <Table
-                  columns={blockColumns}
-                  dataSource={blocks}
-                  pagination={false}
-                  size="small"
-                  loading={loading}
-                />
-                {!!blocks && (
-                  <Pagination
-                    className="pagination-center"
-                    current={blockCurrentPage}
-                    total={blockPaginate.Total}
-                    pageSize={15}
-                    onChange={page => setBlockCurrentPage(page)}
+                </Card>
+                <Card className="node-card" bordered={false}>
+                  <h4 className="node-card-title page-title">
+                    {t('blocks')}
+                    <Badge
+                      className="badge-black"
+                      count={blockPaginate.Total}
+                      overflowCount={1000}
+                    />
+                  </h4>
+                  <Table
+                    columns={blockColumns}
+                    dataSource={blocks}
+                    pagination={false}
+                    size="small"
+                    loading={loading}
                   />
-                )}
-              </Card>
-            </Col>
-          </Row>
-        </Container>
-      )}
+                  {!!blocks && (
+                    <Pagination
+                      className="pagination-center"
+                      current={blockCurrentPage}
+                      total={blockPaginate.Total}
+                      pageSize={15}
+                      onChange={page => setBlockCurrentPage(page)}
+                    />
+                  )}
+                </Card>
+              </Col>
+            </Row>
+          </Container>
+        ) : (
+          <NotFound />
+        ))}
     </>
   )
 }

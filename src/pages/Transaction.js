@@ -205,103 +205,115 @@ const Transaction = ({ match }) => {
     <>
       {!!error && <NotFound />}
       {!!loading && <LoaderPage />}
-      {!error && !loading && (
-        <Container>
-          <Row className="transaction-row">
-            <Col span={24}>
-              <Row>
-                <Col span={24}>
-                  <h4 className="truncate page-title">
-                    {t('transaction')} {data.transaction.TransactionID}
-                  </h4>
-                </Col>
-              </Row>
-              <Card className="transaction-card" bordered={false}>
-                <h4 className="transaction-card-title page-title">{t('summary')}</h4>
-                <DescItem
-                  label={t('transaction id')}
-                  text="An identifier which failitates easy identification of transactions of the blockchain"
-                  value={
-                    <CopyToClipboard text={data.transaction.TransactionID} keyID="TransactionID" />
-                  }
-                />
-                <DescItem
-                  label={t('timestamp')}
-                  style={{ display: 'none' }}
-                  value={moment(data.transaction.Timestamp).format('lll')}
-                />
-                <DescItem
-                  label="Transaction Type"
-                  style={{ display: 'none' }}
-                  value={data.transaction.TransactionTypeName}
-                />
-                <DescItem
-                  label={t('block id')}
-                  text="An identifier which facilitates easy identification of blocks on the ZooBC blockchain"
-                  value={
-                    <Link to={`/blocks/${data.transaction.BlockID}`}>
-                      {data.transaction.BlockID}
-                    </Link>
-                  }
-                />
-                <DescItem
-                  label={t('height')}
-                  text="The position of the block in the ZooBC blockchain. For example, Height 0, would be the very first block, which is also called the Genesis Block"
-                  value={
-                    <Link to={`/blocks/${data.transaction.BlockID}`}>
-                      {data.transaction.Height}
-                    </Link>
-                  }
-                />
-                <DescItem
-                  label={t('sender')}
-                  style={{ display: 'none' }}
-                  value={
-                    <Link to={`/accounts/${data.transaction.Sender}`}>
-                      {data.transaction.Sender}
-                    </Link>
-                  }
-                />
-                <DescItem
-                  label={t('recipient')}
-                  style={{ display: 'none' }}
-                  value={
-                    <Link to={`/accounts/${data.transaction.Recipient}`}>
-                      {data.transaction.Recipient}
-                    </Link>
-                  }
-                />
-                {/* <DescItem label={t('confirmations')} value={data.transaction.Confirmations} /> */}
-                <DescItem
-                  label={t('fees')}
-                  style={{ display: 'none' }}
-                  value={
-                    <NumberFormat
-                      value={data.transaction.FeeConversion || 0}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      suffix={' ZBC'}
-                    />
-                  }
-                />
-                <DescItem
-                  label={t('status')}
-                  style={{ display: 'none' }}
-                  value={data.transaction.Status}
-                />
-                {data.transaction.MultisigChild && (
+      {!!data &&
+        (data.transaction.TransactionID ? (
+          <Container>
+            <Row className="transaction-row">
+              <Col span={24}>
+                <Row>
+                  <Col span={24}>
+                    <h4 className="truncate page-title">
+                      {t('transaction')} {data.transaction.TransactionID}
+                    </h4>
+                  </Col>
+                </Row>
+                <Card className="transaction-card" bordered={false}>
+                  <h4 className="transaction-card-title page-title">{t('summary')}</h4>
                   <DescItem
-                    label={t('transaction hash')}
-                    style={{ display: 'none' }}
-                    value={data.transaction.TransactionHash}
+                    label={t('transaction id')}
+                    text={t(
+                      'an identifier which facilitates easy identification of transactions of the blockchain'
+                    )}
+                    value={
+                      <CopyToClipboard
+                        text={data.transaction.TransactionID}
+                        keyID="TransactionID"
+                      />
+                    }
                   />
-                )}
-              </Card>
-              <TransactionType trx={data.transaction} />
-            </Col>
-          </Row>
-        </Container>
-      )}
+                  <DescItem
+                    label={t('timestamp')}
+                    style={{ display: 'none' }}
+                    value={moment(data.transaction.Timestamp).format('lll')}
+                  />
+                  <DescItem
+                    label="Transaction Type"
+                    style={{ display: 'none' }}
+                    value={data.transaction.TransactionTypeName}
+                  />
+                  <DescItem
+                    label={t('block id')}
+                    text={t(
+                      'an identifier which facilitates easy identification of blocks on the zoobc blockchain'
+                    )}
+                    value={
+                      <Link to={`/blocks/${data.transaction.BlockID}`}>
+                        {data.transaction.BlockID}
+                      </Link>
+                    }
+                  />
+                  <DescItem
+                    label={t('height')}
+                    text={t(
+                      'the position of the block in the zoobc blockchain. for example, height 0, would be the very first block, which is also called the genesis block'
+                    )}
+                    value={
+                      <Link to={`/blocks/${data.transaction.BlockID}`}>
+                        {data.transaction.Height}
+                      </Link>
+                    }
+                  />
+                  <DescItem
+                    label={t('sender')}
+                    style={{ display: 'none' }}
+                    value={
+                      <Link to={`/accounts/${data.transaction.Sender}`}>
+                        {data.transaction.Sender}
+                      </Link>
+                    }
+                  />
+                  <DescItem
+                    label={t('recipient')}
+                    style={{ display: 'none' }}
+                    value={
+                      <Link to={`/accounts/${data.transaction.Recipient}`}>
+                        {data.transaction.Recipient}
+                      </Link>
+                    }
+                  />
+                  {/* <DescItem label={t('confirmations')} value={data.transaction.Confirmations} /> */}
+                  <DescItem
+                    label={t('fees')}
+                    style={{ display: 'none' }}
+                    value={
+                      <NumberFormat
+                        value={data.transaction.FeeConversion || 0}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                        suffix={' ZBC'}
+                      />
+                    }
+                  />
+                  <DescItem
+                    label={t('status')}
+                    style={{ display: 'none' }}
+                    value={data.transaction.Status}
+                  />
+                  {data.transaction.MultisigChild && (
+                    <DescItem
+                      label={t('transaction hash')}
+                      style={{ display: 'none' }}
+                      value={data.transaction.TransactionHash}
+                    />
+                  )}
+                </Card>
+                <TransactionType trx={data.transaction} />
+              </Col>
+            </Row>
+          </Container>
+        ) : (
+          <NotFound />
+        ))}
     </>
   )
 }
