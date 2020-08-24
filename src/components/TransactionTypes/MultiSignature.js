@@ -21,7 +21,9 @@ const MultiSignature = ({ data, disableTrxHashLink }) => {
           <DescItem label="Nonce" style={{ display: 'none' }} value={MultiSignatureInfo.Nonce} />
           <DescItem
             label="Block Height"
-            text="The position of the block in the ZooBC blockchain. For example, Height 0, would be the very first block, which is also called the Genesis Block"
+            text={t(
+              'the position of the block in the zoobc blockchain. for example, height 0, would be the very first block, which is also called the genesis block'
+            )}
             value={MultiSignatureInfo.BlockHeight}
           />
           <DescItem

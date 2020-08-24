@@ -221,7 +221,9 @@ const Transaction = ({ match }) => {
                   <h4 className="transaction-card-title page-title">{t('summary')}</h4>
                   <DescItem
                     label={t('transaction id')}
-                    text="An identifier which failitates easy identification of transactions of the blockchain"
+                    text={t(
+                      'an identifier which facilitates easy identification of transactions of the blockchain'
+                    )}
                     value={
                       <CopyToClipboard
                         text={data.transaction.TransactionID}
@@ -241,7 +243,9 @@ const Transaction = ({ match }) => {
                   />
                   <DescItem
                     label={t('block id')}
-                    text="An identifier which facilitates easy identification of blocks on the ZooBC blockchain"
+                    text={t(
+                      'an identifier which facilitates easy identification of blocks on the zoobc blockchain'
+                    )}
                     value={
                       <Link to={`/blocks/${data.transaction.BlockID}`}>
                         {data.transaction.BlockID}
@@ -250,7 +254,9 @@ const Transaction = ({ match }) => {
                   />
                   <DescItem
                     label={t('height')}
-                    text="The position of the block in the ZooBC blockchain. For example, Height 0, would be the very first block, which is also called the Genesis Block"
+                    text={t(
+                      'the position of the block in the zoobc blockchain. for example, height 0, would be the very first block, which is also called the genesis block'
+                    )}
                     value={
                       <Link to={`/blocks/${data.transaction.BlockID}`}>
                         {data.transaction.Height}

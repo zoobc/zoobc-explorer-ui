@@ -17,12 +17,14 @@ const UpdateNodeRegistration = ({ data }) => {
       />
       <DescItem
         label={t('node public key')}
-        text="A string of letters and numbers that are used to receive amount of ZooBC. Works similar to a traditional bank account number and can be shared publicly with others"
+        text={t(
+          'a string of letters and numbers that are used to receive amount of zoobc. works similar to a traditional bank account number and can be shared publicly with others'
+        )}
         value={<Link to={`/nodes/${data.NodePublicKey}`}>{data.NodePublicKey}</Link>}
       />
       <DescItem
         label={t('locked balance')}
-        text="Amount of ZooBC to be locked as security money for node"
+        text={t('amount of zoobc to be locked as security money for node')}
         value={
           <NumberFormat
             value={data.LockedBalanceConversion || 0}
