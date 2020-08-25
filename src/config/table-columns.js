@@ -99,6 +99,7 @@ const renderAmountCurrenncy = (text, record) => {
           displayType={'text'}
           thousandSeparator={true}
           suffix={' ZBC'}
+          prefix={isSender ? '-' : '+'}
           style={{ color: isSender ? 'red' : 'green' }}
         />
       )
@@ -127,7 +128,7 @@ const Title = ({ text }) => {
 const DateFormat = ({ date }) => {
   const { t } = useTranslation()
 
-  return !!date ? moment(date).format('lll') : t('unknown')
+  return !!date ? moment(date).format('DD/MM/YY @ H:mm:ss') : t('unknown')
 }
 
 export const accountColumns = [
