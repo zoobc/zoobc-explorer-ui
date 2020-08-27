@@ -63,6 +63,8 @@ const getStatusTrx = (text, status) => {
   }
 }
 
+
+
 const renderTransactionType = (text, record) => {
   if (record.TransactionType === 1) {
     if (record.Escrow) {
@@ -84,6 +86,28 @@ const renderTransactionType = (text, record) => {
 
   return getStatusTrx(text, record.Status)
 }
+
+
+const renderSender = (text, record) => {
+  const path = window.location.pathname
+
+  if (path.search('accounts') === 1) {
+    const accountAddress = path.split('/')[2]
+
+    const isSender = record.Sender === accountAddress
+
+    const isRecipient = record.Recipient === accountAddress
+
+    return (
+      !!text && (
+        <Link style={{color: isSender || isRecipient ? 'red' : null}}>{shortenHash(text, 20)}</Link>
+      )
+    )
+
+  }
+
+}
+
 
 const renderAmountCurrenncy = (text, record) => {
   const path = window.location.pathname
@@ -333,17 +357,15 @@ export const transactionColumns = [
     dataIndex: 'Sender',
     key: 'Sender',
     width: 180,
-    render(text) {
-      return <Link to={`/accounts/${text}`}>{shortenHash(text, 20)}</Link>
-    },
+    render: renderSender,
   },
   {
     title: <Title text="recipient" />,
     dataIndex: 'Recipient',
     key: 'Recipient',
     width: 180,
-    render(text) {
-      return <Link to={`/accounts/${text}`}>{shortenHash(text, 20)}</Link>
+    render(text, isSender) {
+      return renderSender(text, isSender)
     },
   },
   {
