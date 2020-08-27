@@ -16,7 +16,6 @@ const GET_NODES_DATA = gql`
         PercentageScore
         RegisteredBlockHeight
         RegistrationTime
-
       }
       Paginate {
         Page
