@@ -287,10 +287,10 @@ export const transactionColumns = [
         </Tooltip>
       </div>
     ),
-    dataIndex: 'TransactionID',
-    key: 'TransactionID',
-    render(text) {
-      return <Link to={`/transactions/${text}`}>{text}</Link>
+    dataIndex: 'TransactionHashFormatted',
+    key: 'TransactionHashFormatted',
+    render(text, record) {
+      return <Link to={`/transactions/${record.TransactionID}`}>{shortenHash(text, 23)}</Link>
     },
     width: 200,
   },
@@ -608,12 +608,12 @@ export const latestTransactionColumns = [
   },
   {
     title: <Title text="transaction id" />,
-    dataIndex: 'TransactionID',
-    key: 'TransactionID',
-    render(text) {
+    dataIndex: 'TransactionHashFormatted',
+    key: 'TransactionHashFormatted',
+    render(text, record) {
       return (
-        <Link to={`/transactions/${text}`}>
-          <small>{text}</small>
+        <Link to={`/transactions/${record.TransactionID}`}>
+          <small>{shortenHash(text, 23)}</small>
         </Link>
       )
     },

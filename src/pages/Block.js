@@ -68,6 +68,7 @@ const GET_TRX_BY_BLOCK = gql`
     transactions(page: $page, limit: 5, order: "-Height", BlockID: $BlockID) {
       Transactions {
         TransactionID
+        TransactionHashFormatted
         Height
         Timestamp
         TransactionTypeName

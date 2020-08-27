@@ -37,6 +37,7 @@ const GET_BLOCK_BY_NODE = gql`
     blocks(page: $page, limit: 5, order: "-Height", NodePublicKey: $NodePublicKey) {
       Blocks {
         BlockID
+        BlockHash
         Height
         Timestamp
         BlocksmithID
