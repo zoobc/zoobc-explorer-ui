@@ -394,11 +394,6 @@ export const nodeColumns = [
       return <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
     },
   },
-  // {
-  //   title: <Title text="Node Address" />,
-  //   dataIndex: 'NodeAddress',
-  //   key: 'NodeAddress',
-  // },
   {
     title: (
       <div>
@@ -424,9 +419,25 @@ export const nodeColumns = [
     },
   },
   {
+    title: <Title text="Height" />,
+    dataIndex: 'RegisteredBlockHeight',
+    key: 'RegisteredBlockHeight',
+    render(text) {
+      return <Link to={`/blocks/${text}`}>{text}</Link>
+    },
+  },
+  {
+    title: <Title text="Timestamp" />,
+    dataIndex: 'RegistrationTime',
+    key: 'RegistrationTime',
+    render(text) {
+      return <DateFormat date={text} />
+    },
+  },
+  {
     title: <Title text="score" />,
-    dataIndex: 'ParticipationScore',
-    key: 'ParticipationScore',
+    dataIndex: 'PercentageScore',
+    key: 'PercentageScore',
   },
 ]
 

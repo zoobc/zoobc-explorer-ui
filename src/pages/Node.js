@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useQuery, gql } from '@apollo/client'
 import { Row, Col, Card, Badge, Table, Pagination, Button } from 'antd'
+import moment from 'moment'
 
 import Container from '../components/Container'
 import DescItem from '../components/DescItem'
@@ -28,6 +29,7 @@ const GET_NODE_DATA = gql`
       RegistrationStatus
       BlocksFunds
       RewardsPaid
+      RegistrationTime
     }
   }
 `
@@ -126,6 +128,11 @@ const Node = ({ match, history }) => {
                     // value={<CopyToClipboard text={data.node.OwnerAddress} keyID="nodePublicKey" />}
                   />
                   {/* <DescItem label={t('node address')} value={data.node.NodeAddress} /> */}
+                  <DescItem
+                    label={t('timestamp')}
+                    style={{ display: 'none' }}
+                    value={moment(data.node.RegistrationTime).format('lll')}
+                  />
                   <DescItem
                     label={t('locked funds')}
                     text={t('amount of zoobc to be locked as security money for node')}
