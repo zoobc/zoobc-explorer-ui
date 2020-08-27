@@ -24,6 +24,7 @@ const GET_BLOCK_DATA = gql`
     block(BlockID: $BlockID) {
       Height
       BlockID
+      BlockHash
       Timestamp
       PreviousBlockID
       BlockSeed
@@ -242,6 +243,11 @@ const Block = ({ match }) => {
                       'the position of the block in the zoobc blockchain. for example, height 0, would be the very first block, which is also called the genesis block'
                     )}
                     value={data.block.Height}
+                  />
+                  <DescItem
+                    label={t('Block Hash')}
+                    style={{ display: 'none' }}
+                    value={<CopyToClipboard text={data.block.BlockHash} keyID="blockID" />}
                   />
                 </Card>
                 <Card className="block-card" bordered={false}>

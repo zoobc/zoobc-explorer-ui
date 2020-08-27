@@ -195,10 +195,10 @@ export const blockColumns = [
         </Tooltip>
       </div>
     ),
-    dataIndex: 'BlockID',
-    key: 'BlockID',
-    render(text) {
-      return <Link to={`/blocks/${text}`}> {text}</Link>
+    dataIndex: 'BlockHash',
+    key: 'BlockHash',
+    render(text, record) {
+      return <Link to={`/blocks/${record.BlockID}`}> {shortenHash(text, 25)}</Link>
     },
   },
   {
@@ -253,7 +253,7 @@ export const blockColumns = [
           <Tooltip title={`${skipped.length} skipped blocksmith`}>
             <Badge color={getBlocksmithIndicator(skipped.length)} />
           </Tooltip>
-          <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
+          <Link to={`/accounts/${text}`}>{shortenHash(text, 25)}</Link>
         </div>
       )
     },
