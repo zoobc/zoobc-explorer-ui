@@ -29,6 +29,7 @@ const GET_TRX_DATA = gql`
   query getTransaction($TrxID: String!) {
     transaction(TransactionID: $TrxID) {
       TransactionID
+      TransactionHashFormatted
       Timestamp
       TransactionType
       TransactionTypeName
@@ -219,6 +220,16 @@ const Transaction = ({ match }) => {
                 </Row>
                 <Card className="transaction-card" bordered={false}>
                   <h4 className="transaction-card-title page-title">{t('summary')}</h4>
+                  <DescItem
+                    label={t('Transaction Hash')}
+                    style={{ display: 'none' }}
+                    value={
+                      <CopyToClipboard
+                        text={data.transaction.TransactionHashFormatted}
+                        keyID="TransactionHashFormatted"
+                      />
+                    }
+                  />
                   <DescItem
                     label={t('transaction id')}
                     text={t(

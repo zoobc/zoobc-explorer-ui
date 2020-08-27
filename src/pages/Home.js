@@ -31,6 +31,7 @@ const GET_HOME_DATA = gql`
     transactions(page: 1, limit: 5, order: "-Height") {
       Transactions {
         TransactionID
+        TransactionHashFormatted
         Timestamp
         FeeConversion
         Height
@@ -82,6 +83,7 @@ const GET_SUBSCRIPTION_TRANSACTIONS = gql`
   subscription transactions {
     transactions {
       TransactionID
+      TransactionHashFormatted
       Timestamp
       FeeConversion
       Height

@@ -32,6 +32,7 @@ const GET_TRX_BY_ACCOUNT = gql`
     transactions(page: $page, limit: 5, order: "-Height", AccountAddress: $AccountAddress) {
       Transactions {
         TransactionID
+        TransactionHashFormatted
         Height
         Timestamp
         TransactionTypeName

@@ -195,10 +195,10 @@ export const blockColumns = [
         </Tooltip>
       </div>
     ),
-    dataIndex: 'BlockID',
-    key: 'BlockID',
-    render(text) {
-      return <Link to={`/blocks/${text}`}> {text}</Link>
+    dataIndex: 'BlockHash',
+    key: 'BlockHash',
+    render(text, record) {
+      return <Link to={`/blocks/${record.BlockID}`}> {shortenHash(text, 25)}</Link>
     },
   },
   {
@@ -253,7 +253,7 @@ export const blockColumns = [
           <Tooltip title={`${skipped.length} skipped blocksmith`}>
             <Badge color={getBlocksmithIndicator(skipped.length)} />
           </Tooltip>
-          <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
+          <Link to={`/accounts/${text}`}>{shortenHash(text, 25)}</Link>
         </div>
       )
     },
@@ -287,10 +287,10 @@ export const transactionColumns = [
         </Tooltip>
       </div>
     ),
-    dataIndex: 'TransactionID',
-    key: 'TransactionID',
-    render(text) {
-      return <Link to={`/transactions/${text}`}>{text}</Link>
+    dataIndex: 'TransactionHashFormatted',
+    key: 'TransactionHashFormatted',
+    render(text, record) {
+      return <Link to={`/transactions/${record.TransactionID}`}>{shortenHash(text, 23)}</Link>
     },
     width: 200,
   },
@@ -619,12 +619,12 @@ export const latestTransactionColumns = [
   },
   {
     title: <Title text="transaction id" />,
-    dataIndex: 'TransactionID',
-    key: 'TransactionID',
-    render(text) {
+    dataIndex: 'TransactionHashFormatted',
+    key: 'TransactionHashFormatted',
+    render(text, record) {
       return (
-        <Link to={`/transactions/${text}`}>
-          <small>{text}</small>
+        <Link to={`/transactions/${record.TransactionID}`}>
+          <small>{shortenHash(text, 23)}</small>
         </Link>
       )
     },

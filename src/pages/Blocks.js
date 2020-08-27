@@ -13,6 +13,7 @@ const GET_BLOCKS_DATA = gql`
   query getBlocks($page: Int, $sorter: String) {
     blocks(page: $page, limit: 15, order: $sorter) {
       Blocks {
+        BlockHash
         BlockID
         Height
         Timestamp
