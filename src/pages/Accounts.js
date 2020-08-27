@@ -106,6 +106,7 @@ const Accounts = () => {
                   className="pagination-center"
                   current={paginate.Page}
                   total={paginate.Total}
+                  showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
                   pageSize={15}
                   onChange={page => setCurrentPage(page)}
                 />
