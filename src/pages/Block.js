@@ -4,7 +4,7 @@ import moment from 'moment'
 import NumberFormat from 'react-number-format'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { useQuery, gql, useLazyQuery } from '@apollo/client'
+import { useQuery, gql } from '@apollo/client'
 import { Row, Col, Card, Table, Pagination, Collapse, Badge } from 'antd'
 
 import Container from '../components/Container'
@@ -17,6 +17,7 @@ import {
   publishedReceiptColumns,
   skippedBlocksmithColumns,
   accountRewardColumns,
+  popColumns,
 } from '../config/table-columns'
 
 const GET_BLOCK_DATA = gql`
@@ -58,6 +59,22 @@ const GET_BLOCK_DATA = gql`
           RecipientSignature
         }
         BlockHeight
+      }
+      PopChanges {
+        NodeID
+        Score
+        Latest
+        Height
+        DifferenceScores
+        DifferenceScorePercentage
+        Flag
+      }
+      AccountRewards {
+        AccountAddress
+        BlockHeight
+        Timestamp
+        EventType
+        BalanceChangeConversion
       }
     }
   }
@@ -127,25 +144,6 @@ const GET_TRX_BY_BLOCK = gql`
   }
 `
 
-const GET_ACCOUNT_REWARDS_DATA = gql`
-  query getAccounts($page: Int, $BlockHeight: Int) {
-    accounts(page: $page, limit: 5, BlockHeight: $BlockHeight) {
-      Accounts {
-        AccountAddress
-        BalanceConversion
-        FirstActive
-        LastActive
-        TotalFeesPaidConversion
-      }
-      Paginate {
-        Page
-        Count
-        Total
-      }
-    }
-  }
-`
-
 const { Panel } = Collapse
 
 const Block = ({ match }) => {
@@ -154,12 +152,6 @@ const Block = ({ match }) => {
   const [trxCurrentPage, setTrxCurrentPage] = useState(1)
   const [transactions, setTransactions] = useState([])
   const [trxPaginate, setTrxPaginate] = useState({})
-
-  const [rewardCurrentPage, setRewardCurrentPage] = useState(1)
-  const [rewards, setReward] = useState([])
-  const [rewardPaginate, setRewardPaginate] = useState({})
-
-  const [blockHeight, setBlockHeight] = useState(null)
 
   const { loading, data, error } = useQuery(GET_BLOCK_DATA, {
     variables: {
@@ -173,8 +165,6 @@ const Block = ({ match }) => {
       page: trxCurrentPage,
     },
   })
-
-  const [fetchaAcountRewards, accountRewards] = useLazyQuery(GET_ACCOUNT_REWARDS_DATA)
 
   useEffect(() => {
     if (!!trxByBlock.data) {
@@ -200,26 +190,6 @@ const Block = ({ match }) => {
       setTrxPaginate(trxByBlock.data.transactions.Paginate)
     }
   }, [trxByBlock.data])
-
-  useEffect(() => {
-    if (!!accountRewards.data) {
-      const rewardData = accountRewards.data.accounts.Accounts.map((reward, key) => {
-        return {
-          key,
-          ...reward,
-        }
-      })
-
-      setReward(rewardData)
-      setRewardPaginate(accountRewards.data.accounts.Paginate)
-    }
-  }, [accountRewards.data])
-
-  useEffect(() => {
-    if (!!data) {
-      setBlockHeight(data.block.Height)
-    }
-  }, [data])
 
   return (
     <>
@@ -284,7 +254,7 @@ const Block = ({ match }) => {
                     value={data.block.CumulativeDifficulty}
                   />
                   {/* <DescItem label={t('smith scale')} value={data.block.SmithScale} /> */}
-                  <DescItem
+                  {/* <DescItem
                     label={t('blocksmith address')}
                     text={t('account that generated the block')}
                     value={
@@ -292,7 +262,7 @@ const Block = ({ match }) => {
                         {data.block.BlocksmithAddress}
                       </Link>
                     }
-                  />
+                  /> */}
                   <DescItem
                     label={t('total amount')}
                     style={{ display: 'none' }}
@@ -339,7 +309,7 @@ const Block = ({ match }) => {
                     style={{ display: 'none' }}
                     value={data.block.Version}
                   />
-                  <DescItem
+                  {/* <DescItem
                     label={t('total receipts')}
                     style={{ display: 'none' }}
                     value={data.block.TotalReceipts}
@@ -348,7 +318,7 @@ const Block = ({ match }) => {
                     label={t('receipt value')}
                     style={{ display: 'none' }}
                     value={data.block.ReceiptValue}
-                  />
+                  /> */}
                   <DescItem
                     label={t('blocksmith id')}
                     style={{ display: 'none' }}
@@ -358,11 +328,11 @@ const Block = ({ match }) => {
                       </Link>
                     }
                   />
-                  <DescItem
+                  {/* <DescItem
                     label={t('pop change')}
                     style={{ display: 'none' }}
                     value={data.block.PopChange}
-                  />
+                  /> */}
                   <DescItem
                     label={t('payload length')}
                     style={{ display: 'none' }}
@@ -384,21 +354,33 @@ const Block = ({ match }) => {
                       <h4 className="block-card-title page-title">{t('pop changes')}</h4>
                       <Table
                         className="transactions-table"
-                        columns={skippedBlocksmithColumns}
-                        dataSource={data.block.SkippedBlocksmiths}
+                        columns={popColumns}
+                        dataSource={data.block.PopChanges || []}
                         pagination={false}
                         size="small"
                       />
                     </Card>
                   </Panel>
                 </Collapse>
-                <Collapse
-                  className="block-collapse"
-                  bordered={false}
-                  onChange={() =>
-                    fetchaAcountRewards({ variables: { BlockHeight: data.block.Height } })
-                  }
-                >
+                <Collapse className="block-collapse" bordered={false}>
+                  <Panel
+                    className="block-card-title block-collapse"
+                    header={t('Skipped Blocksmith')}
+                    key="1"
+                  >
+                    <Card className="block-card" bordered={false}>
+                      <h4 className="block-card-title page-title">{t('Skipped Blocksmith')}</h4>
+                      <Table
+                        className="transactions-table"
+                        columns={skippedBlocksmithColumns}
+                        dataSource={data.block.SkippedBlocksmiths || []}
+                        pagination={false}
+                        size="small"
+                      />
+                    </Card>
+                  </Panel>
+                </Collapse>
+                <Collapse className="block-collapse" bordered={false}>
                   <Panel
                     className="block-card-title block-collapse"
                     header={t('Account Rewards')}
@@ -412,21 +394,10 @@ const Block = ({ match }) => {
                       <Table
                         className="transactions-table"
                         columns={accountRewardColumns}
-                        dataSource={rewards}
+                        dataSource={data.block.AccountRewards || []}
                         pagination={false}
                         size="small"
-                        loading={accountRewards.loading}
-                        rowKey="AccountAddress"
                       />
-                      {!!rewards && rewards.length > 0 && (
-                        <Pagination
-                          className="pagination-center"
-                          current={rewardPaginate.Page}
-                          total={rewardPaginate.Total}
-                          pageSize={5}
-                          onChange={page => setRewardCurrentPage(page)}
-                        />
-                      )}
                     </Card>
                   </Panel>
                 </Collapse>
@@ -447,7 +418,7 @@ const Block = ({ match }) => {
                       </h4>
                       <Table
                         columns={publishedReceiptColumns}
-                        dataSource={data.block.PublishedReceipts}
+                        dataSource={data.block.PublishedReceipts || []}
                         pagination={false}
                         size="small"
                         loading={loading}
