@@ -5,20 +5,36 @@ import NumberFormat from 'react-number-format'
 
 import { shortenHash } from '../utils/shorten'
 import { useTranslation } from 'react-i18next'
-import { Badge, Tooltip, Tag, Icon } from 'antd'
+import { Tooltip, Tag, Icon } from 'antd'
 import { objectUtils } from '../utils'
 import Timestamp from '../components/Timestamp'
 import { InfoCircleOutlined } from '@ant-design/icons'
 
 const getBlocksmithIndicator = skipped => {
   if (skipped > 10) {
-    return 'red'
+    return {
+      text: `${skipped} skipped blocksmith`,
+      sorttext: `${skipped} skipped`,
+      color: '#f5222d',
+    }
   } else if (skipped >= 4 && skipped <= 10) {
-    return 'orange'
+    return {
+      text: `${skipped} skipped blocksmith`,
+      sorttext: `${skipped} skipped`,
+      color: '#fa8c16',
+    }
   } else if (skipped >= 1 && skipped <= 3) {
-    return 'yellow'
+    return {
+      text: `${skipped} skipped blocksmith`,
+      sorttext: `${skipped} skipped`,
+      color: '#722ed1',
+    }
   } else {
-    return 'green'
+    return {
+      text: 'No skipped blocksmith',
+      sorttext: 'No skipped',
+      color: '#52c41a',
+    }
   }
 }
 
@@ -217,10 +233,10 @@ export const blockColumns = [
         </Tooltip>
       </div>
     ),
-    dataIndex: 'BlockID',
-    key: 'BlockID',
-    render(text) {
-      return <Link to={`/blocks/${text}`}> {text}</Link>
+    dataIndex: 'BlockHash',
+    key: 'BlockHash',
+    render(text, record) {
+      return <Link to={`/blocks/${record.BlockID}`}> {shortenHash(text, 25)}</Link>
     },
   },
   {
@@ -260,8 +276,6 @@ export const blockColumns = [
         </Tooltip>
       </div>
     ),
-    dataIndex: 'BlocksmithAddress',
-    key: 'BlocksmithAddress',
     render(text, record) {
       const skipped = []
 
@@ -271,12 +285,9 @@ export const blockColumns = [
         )
 
       return (
-        <div className="blocksmith">
-          <Tooltip title={`${skipped.length} skipped blocksmith`}>
-            <Badge color={getBlocksmithIndicator(skipped.length)} />
-          </Tooltip>
-          <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
-        </div>
+        <Tag color={getBlocksmithIndicator(skipped.length).color}>
+          {getBlocksmithIndicator(skipped.length).text}
+        </Tag>
       )
     },
   },
@@ -309,10 +320,10 @@ export const transactionColumns = [
         </Tooltip>
       </div>
     ),
-    dataIndex: 'TransactionID',
-    key: 'TransactionID',
-    render(text) {
-      return <Link to={`/transactions/${text}`}>{text}</Link>
+    dataIndex: 'TransactionHashFormatted',
+    key: 'TransactionHashFormatted',
+    render(text, record) {
+      return <Link to={`/transactions/${record.TransactionID}`}>{shortenHash(text, 23)}</Link>
     },
     width: 200,
   },
@@ -443,11 +454,6 @@ export const nodeColumns = [
       return <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
     },
   },
-  // {
-  //   title: <Title text="Node Address" />,
-  //   dataIndex: 'NodeAddress',
-  //   key: 'NodeAddress',
-  // },
   {
     title: (
       <div>
@@ -473,9 +479,25 @@ export const nodeColumns = [
     },
   },
   {
+    title: <Title text="Height" />,
+    dataIndex: 'RegisteredBlockHeight',
+    key: 'RegisteredBlockHeight',
+    render(text) {
+      return <Link to={`/blocks/${text}`}>{text}</Link>
+    },
+  },
+  {
+    title: <Title text="Timestamp" />,
+    dataIndex: 'RegistrationTime',
+    key: 'RegistrationTime',
+    render(text) {
+      return <DateFormat date={text} />
+    },
+  },
+  {
     title: <Title text="score" />,
-    dataIndex: 'ParticipationScore',
-    key: 'ParticipationScore',
+    dataIndex: 'PercentageScore',
+    key: 'PercentageScore',
   },
 ]
 
@@ -610,8 +632,6 @@ export const latestBlockColumns = [
   },
   {
     title: <Title text="blocksmith" />,
-    dataIndex: 'BlocksmithAddress',
-    key: 'BlocksmithAddress',
     render(text, record) {
       const skipped = []
 
@@ -621,14 +641,9 @@ export const latestBlockColumns = [
         )
 
       return (
-        <div className="blocksmith">
-          <small>
-            <Tooltip title={`${skipped.length} skipped blocksmith`}>
-              <Badge color={getBlocksmithIndicator(skipped.length)} />
-            </Tooltip>
-            <Link to={`/accounts/${text}`}>{shortenHash(text, 15)}</Link>
-          </small>
-        </div>
+        <Tag color={getBlocksmithIndicator(skipped.length).color}>
+          {getBlocksmithIndicator(skipped.length).sorttext}
+        </Tag>
       )
     },
   },
@@ -657,12 +672,12 @@ export const latestTransactionColumns = [
   },
   {
     title: <Title text="transaction id" />,
-    dataIndex: 'TransactionID',
-    key: 'TransactionID',
-    render(text) {
+    dataIndex: 'TransactionHashFormatted',
+    key: 'TransactionHashFormatted',
+    render(text, record) {
       return (
-        <Link to={`/transactions/${text}`}>
-          <small>{text}</small>
+        <Link to={`/transactions/${record.TransactionID}`}>
+          <small>{shortenHash(text, 23)}</small>
         </Link>
       )
     },
@@ -673,7 +688,7 @@ export const latestTransactionColumns = [
     key: 'Height',
     render(text, record) {
       return (
-        <Link to={`/blocks/${record.BlockID}`}>
+        <Link to={`/blocks/${record.Height}`}>
           <small>{text}</small>
         </Link>
       )
@@ -692,22 +707,24 @@ export const accountRewardColumns = [
     },
   },
   {
-    title: <Title text="balance" />,
-    dataIndex: 'BalanceConversion',
-    key: 'BalanceConversion',
-    render: renderCurrenncy,
+    title: <Title text="Height" />,
+    dataIndex: 'BlockHeight',
+    key: 'BlockHeight',
+    render(text) {
+      return <Link to={`/blocks/${text}`}>{text}</Link>
+    },
   },
   {
-    title: <Title text="last active" />,
-    dataIndex: 'LastActive',
-    key: 'LastActive',
+    title: <Title text="Timestamp" />,
+    dataIndex: 'Timestamp',
+    key: 'Timestamp',
     render(text) {
       return <DateFormat date={text} />
     },
   },
   {
-    title: <Title text="fees" />,
-    dataIndex: 'TotalFeesPaidConversion',
+    title: <Title text="Balance" />,
+    dataIndex: 'BalanceChangeConversion',
     key: 'TotalFeesPaidConversion',
     render(text) {
       return (
@@ -721,5 +738,31 @@ export const accountRewardColumns = [
         />
       )
     },
+  },
+]
+
+export const popColumns = [
+  {
+    title: <Title text="Node Id" />,
+    dataIndex: 'NodeID',
+    key: 'NodeID',
+  },
+  {
+    title: <Title text="Height" />,
+    dataIndex: 'Height',
+    key: 'BlockHeigHeightht',
+    render(text) {
+      return <Link to={`/blocks/${text}`}>{text}</Link>
+    },
+  },
+  {
+    title: <Title text="Score" />,
+    dataIndex: 'Score',
+    key: 'Score',
+  },
+  {
+    title: <Title text="DifferenceScores" />,
+    dataIndex: 'DifferenceScores',
+    key: 'DifferenceScores',
   },
 ]

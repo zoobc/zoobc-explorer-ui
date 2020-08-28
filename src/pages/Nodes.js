@@ -67,6 +67,7 @@ const Nodes = () => {
         size="small"
         loading={loading}
         onChange={onChangeTable.bind(this)}
+        scroll={{ x: 1300 }}
       />
       {!!data && (
         <Pagination

@@ -13,7 +13,9 @@ const GET_NODES_DATA = gql`
         }
         LockedFunds
         RegistrationStatus
-        ParticipationScore
+        PercentageScore
+        RegisteredBlockHeight
+        RegistrationTime
       }
       Paginate {
         Page
