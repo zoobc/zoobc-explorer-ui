@@ -104,25 +104,6 @@ const renderTransactionType = (text, record) => {
 }
 
 
-// const renderSenderRecipient = (text, record) => {
-//   const path = window.location.pathname
-
-//   if (path.search('accounts') === 1) {
-//     const accountAddress = path.split('/')[2]
-
-//     const isSender = record.Sender === accountAddress
-
-//     return (
-//       !!text && (
-//         <Link style={{color: isSender ? 'red' : null}}>{shortenHash(text, 20)}</Link>
-//       )
-//     )
-
-//   }
-
-// }
-
-
 const renderAmountCurrenncy = (text, record) => {
   const path = window.location.pathname
 
@@ -376,7 +357,7 @@ export const transactionColumns = [
 
           return (
             !!text && (
-              <Link to={`/accounts/${text}`} style={{color: isSender ? 'red' : null} }>{shortenHash(text, 20)}</Link>
+              <Link to={`/accounts/${text}`} style={{color: isSender ? 'orangeRed' : null} }>{shortenHash(text, 20)}</Link>
             )
           )
 
@@ -398,7 +379,7 @@ export const transactionColumns = [
 
           return (
             !!text && (
-              <Link to={`/accounts/${text}`} style={{color: isRecipient ? 'red' : null}}>{shortenHash(text, 20)}</Link>
+              <Link to={`/accounts/${text}`} style={{color: isRecipient ? 'orangeRed' : null}}>{shortenHash(text, 20)}</Link>
             )
           )
 
