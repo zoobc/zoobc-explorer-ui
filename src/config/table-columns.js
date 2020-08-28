@@ -88,25 +88,23 @@ const renderTransactionType = (text, record) => {
 }
 
 
-const renderSender = (text, record) => {
-  const path = window.location.pathname
+// const renderSenderRecipient = (text, record) => {
+//   const path = window.location.pathname
 
-  if (path.search('accounts') === 1) {
-    const accountAddress = path.split('/')[2]
+//   if (path.search('accounts') === 1) {
+//     const accountAddress = path.split('/')[2]
 
-    const isSender = record.Sender === accountAddress
+//     const isSender = record.Sender === accountAddress
 
-    const isRecipient = record.Recipient === accountAddress
+//     return (
+//       !!text && (
+//         <Link style={{color: isSender ? 'red' : null}}>{shortenHash(text, 20)}</Link>
+//       )
+//     )
 
-    return (
-      !!text && (
-        <Link style={{color: isSender || isRecipient ? 'red' : null}}>{shortenHash(text, 20)}</Link>
-      )
-    )
+//   }
 
-  }
-
-}
+// }
 
 
 const renderAmountCurrenncy = (text, record) => {
@@ -357,16 +355,45 @@ export const transactionColumns = [
     dataIndex: 'Sender',
     key: 'Sender',
     width: 180,
-    render: renderSender,
+    render(text, record) {
+      const path = window.location.pathname
+
+          if (path.search('accounts') === 1) {
+          const accountAddress = path.split('/')[2]
+
+          const isSender = record.Sender === accountAddress
+
+          return (
+            !!text && (
+              <Link to={`/accounts/${text}`} style={{color: isSender ? 'red' : null} }>{shortenHash(text, 20)}</Link>
+            )
+          )
+
+        }
+
+    },
   },
   {
     title: <Title text="recipient" />,
     dataIndex: 'Recipient',
     key: 'Recipient',
     width: 180,
-    render(text, isSender) {
-      return renderSender(text, isSender)
-    },
+    render(text, record) {
+      const path = window.location.pathname
+          if (path.search('accounts') === 1) {
+          const accountAddress = path.split('/')[2]
+
+          const isRecipient = record.Recipient === accountAddress
+
+          return (
+            !!text && (
+              <Link to={`/accounts/${text}`} style={{color: isRecipient ? 'red' : null}}>{shortenHash(text, 20)}</Link>
+            )
+          )
+
+        }
+
+      }
   },
   {
     title: <Title text="amount" />,
