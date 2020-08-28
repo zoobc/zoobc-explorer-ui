@@ -742,8 +742,36 @@ export const popColumns = [
     key: 'Score',
   },
   {
-    title: <Title text="DifferenceScores" />,
+    title: <Title text="Difference Score" />,
     dataIndex: 'DifferenceScores',
     key: 'DifferenceScores',
+  },
+  {
+    title: <Title text="Difference Score (%)" />,
+    dataIndex: 'DifferenceScorePercentage',
+    key: 'DifferenceScorePercentage',
+    render(text, record) {
+      if (text) {
+        const percentage = parseFloat(text).toFixed(7)
+        return (
+          <span
+            style={{
+              color:
+                record.Flag === 'Flat'
+                  ? 'orange'
+                  : record.Flag === 'Down'
+                  ? 'red'
+                  : record.Flag === 'Up'
+                  ? 'green'
+                  : null,
+            }}
+          >
+            {record.Flag === 'Flat' && <Icon type="shrink" />}
+            {record.Flag === 'Down' && <Icon type="arrow-down" />}
+            {record.Flag === 'Up' && <Icon type="arrow-up" />} {percentage}
+          </span>
+        )
+      }
+    },
   },
 ]
