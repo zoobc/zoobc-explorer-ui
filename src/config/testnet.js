@@ -58,7 +58,7 @@ const testnetLocal = [
 
 const testnetProd = [
   {
-    name: 'Main Network',
+    name: 'Alpha Network',
     color: '#f56a00',
     value: 'testnet1',
   },
@@ -78,7 +78,7 @@ const testnetProd = [
   //   value: 'testnet4',
   // },
   {
-    name: 'Dev 9090',
+    name: 'Dev Network',
     color: '#dc3545',
     value: 'testnet3',
   },
