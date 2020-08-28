@@ -79,8 +79,6 @@ const getStatusTrx = (text, status) => {
   }
 }
 
-
-
 const renderTransactionType = (text, record) => {
   if (record.TransactionType === 1) {
     if (record.Escrow) {
@@ -102,7 +100,6 @@ const renderTransactionType = (text, record) => {
 
   return getStatusTrx(text, record.Status)
 }
-
 
 const renderAmountCurrenncy = (text, record) => {
   const path = window.location.pathname
@@ -203,7 +200,7 @@ export const blockColumns = [
   {
     title: (
       <div>
-        <Title text="block id" />{' '}
+        <Title text="Block Hash" />{' '}
         <Tooltip
           placement="bottom"
           title={
@@ -251,7 +248,7 @@ export const blockColumns = [
   {
     title: (
       <div>
-        <Title text="blocksmith address" />{' '}
+        <Title text="Skipped Blocksmith" />{' '}
         <Tooltip placement="bottom" title={<Title text="account that generated the block" />}>
           <InfoCircleOutlined />
         </Tooltip>
@@ -290,7 +287,7 @@ export const transactionColumns = [
   {
     title: (
       <div>
-        <Title text="transaction id" />{' '}
+        <Title text="Transaction Hash" />{' '}
         <Tooltip
           placement="bottom"
           title={
@@ -350,19 +347,21 @@ export const transactionColumns = [
     render(text, record) {
       const path = window.location.pathname
 
-          if (path.search('accounts') === 1) {
-          const accountAddress = path.split('/')[2]
+      if (path.search('accounts') === 1) {
+        const accountAddress = path.split('/')[2]
 
-          const isSender = record.Sender === accountAddress
+        const isSender = record.Sender === accountAddress
 
-          return (
-            !!text && (
-              <Link to={`/accounts/${text}`} style={{color: isSender ? 'orangeRed' : null} }>{shortenHash(text, 20)}</Link>
-            )
+        return (
+          !!text && (
+            <Link to={`/accounts/${text}`} style={{ color: isSender ? 'orangeRed' : null }}>
+              {shortenHash(text, 20)}
+            </Link>
           )
+        )
+      }
 
-        }
-
+      return <Link to={`/accounts/${text}`}>{shortenHash(text, 20)}</Link>
     },
   },
   {
@@ -372,20 +371,21 @@ export const transactionColumns = [
     width: 180,
     render(text, record) {
       const path = window.location.pathname
-          if (path.search('accounts') === 1) {
-          const accountAddress = path.split('/')[2]
+      if (path.search('accounts') === 1) {
+        const accountAddress = path.split('/')[2]
 
-          const isRecipient = record.Recipient === accountAddress
+        const isRecipient = record.Recipient === accountAddress
 
-          return (
-            !!text && (
-              <Link to={`/accounts/${text}`} style={{color: isRecipient ? 'orangeRed' : null}}>{shortenHash(text, 20)}</Link>
-            )
+        return (
+          !!text && (
+            <Link to={`/accounts/${text}`} style={{ color: isRecipient ? 'orangeRed' : null }}>
+              {shortenHash(text, 20)}
+            </Link>
           )
-
-        }
-
+        )
       }
+      return <Link to={`/accounts/${text}`}>{shortenHash(text, 20)}</Link>
+    },
   },
   {
     title: <Title text="amount" />,
@@ -652,7 +652,7 @@ export const latestTransactionColumns = [
     },
   },
   {
-    title: <Title text="transaction id" />,
+    title: <Title text="Transaction Hash" />,
     dataIndex: 'TransactionHashFormatted',
     key: 'TransactionHashFormatted',
     render(text, record) {
