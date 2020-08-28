@@ -652,7 +652,7 @@ export const latestTransactionColumns = [
     },
   },
   {
-    title: <Title text="transaction id" />,
+    title: <Title text="Transaction Hash" />,
     dataIndex: 'TransactionHashFormatted',
     key: 'TransactionHashFormatted',
     render(text, record) {
