@@ -234,7 +234,7 @@ const Block = ({ match }) => {
                     value={moment(data.block.Timestamp).format('lll')}
                   />
                   <DescItem
-                    label={t('previous block id')}
+                    label={t('Previous Block Hash')}
                     style={{ display: 'none' }}
                     value={data.block.PreviousBlockID}
                   />
@@ -320,7 +320,7 @@ const Block = ({ match }) => {
                     value={data.block.ReceiptValue}
                   /> */}
                   <DescItem
-                    label={t('blocksmith id')}
+                    label={t('Blocksmith Public Key')}
                     style={{ display: 'none' }}
                     value={
                       <Link to={`/nodes/${data.block.BlocksmithID}`}>

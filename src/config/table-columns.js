@@ -200,7 +200,7 @@ export const blockColumns = [
   {
     title: (
       <div>
-        <Title text="block id" />{' '}
+        <Title text="Block Hash" />{' '}
         <Tooltip
           placement="bottom"
           title={
@@ -248,7 +248,7 @@ export const blockColumns = [
   {
     title: (
       <div>
-        <Title text="blocksmith address" />{' '}
+        <Title text="Skipped Blocksmith" />{' '}
         <Tooltip placement="bottom" title={<Title text="account that generated the block" />}>
           <InfoCircleOutlined />
         </Tooltip>
@@ -287,7 +287,7 @@ export const transactionColumns = [
   {
     title: (
       <div>
-        <Title text="transaction id" />{' '}
+        <Title text="Transaction Hash" />{' '}
         <Tooltip
           placement="bottom"
           title={
