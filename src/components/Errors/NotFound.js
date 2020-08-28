@@ -9,7 +9,9 @@ const NotFound = () => {
     <Container>
       <div className="error-content">
         <img src={notFound} alt="not found" />
-        <span className="error-title page-title">Sorry the page you are looking for is not found</span>
+        <span className="error-title page-title">
+          Sorry the page you are looking for is not found
+        </span>
         <Link to="/">
           <Button type="primary">Back to Homepage</Button>
         </Link>
