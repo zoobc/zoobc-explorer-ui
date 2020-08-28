@@ -200,7 +200,7 @@ export const blockColumns = [
   {
     title: (
       <div>
-        <Title text="Block Hash" />{' '}
+        <Title text="block hash" />{' '}
         <Tooltip
           placement="bottom"
           title={
@@ -248,7 +248,7 @@ export const blockColumns = [
   {
     title: (
       <div>
-        <Title text="Skipped Blocksmith" />{' '}
+        <Title text="skipped blocksmith" />{' '}
         <Tooltip placement="bottom" title={<Title text="account that generated the block" />}>
           <InfoCircleOutlined />
         </Tooltip>
@@ -287,7 +287,7 @@ export const transactionColumns = [
   {
     title: (
       <div>
-        <Title text="Transaction Hash" />{' '}
+        <Title text="transaction hash" />{' '}
         <Tooltip
           placement="bottom"
           title={
@@ -424,16 +424,18 @@ export const nodeColumns = [
     dataIndex: 'NodePublicKey',
     key: 'NodePublicKey',
     render(text) {
-      return <Link to={`/nodes/${text}`}>{shortenHash(text, 30)}</Link>
+      return <Link to={`/nodes/${text}`}>{shortenHash(text, 22)}</Link>
     },
+    width: 200,
   },
   {
     title: <Title text="owner address" />,
     dataIndex: 'OwnerAddress',
     key: 'OwnerAddress',
     render(text) {
-      return <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
+      return <Link to={`/accounts/${text}`}>{shortenHash(text, 22)}</Link>
     },
+    width: 200,
   },
   {
     title: (
@@ -450,6 +452,7 @@ export const nodeColumns = [
     dataIndex: 'LockedFunds',
     key: 'LockedFunds',
     render: renderCurrenncy,
+    width: 170,
   },
   {
     title: <Title text="status" />,
@@ -458,17 +461,19 @@ export const nodeColumns = [
     render(text) {
       return text === 0 ? 'Registered' : text === 1 ? 'In Queue' : text === 2 ? 'Stray' : null
     },
+    width: 130,
   },
   {
-    title: <Title text="Height" />,
+    title: <Title text="height" />,
     dataIndex: 'RegisteredBlockHeight',
     key: 'RegisteredBlockHeight',
     render(text) {
       return <Link to={`/blocks/${text}`}>{text}</Link>
     },
+    width: 100,
   },
   {
-    title: <Title text="Timestamp" />,
+    title: <Title text="timestamp" />,
     dataIndex: 'RegistrationTime',
     key: 'RegistrationTime',
     render(text) {
@@ -592,7 +597,7 @@ export const latestBlockColumns = [
     },
   },
   {
-    title: <Title text="Trx" />,
+    title: <Title text="trx" />,
     dataIndex: 'TotalTransaction',
     key: 'TotalTransaction',
     render(text) {
@@ -652,13 +657,13 @@ export const latestTransactionColumns = [
     },
   },
   {
-    title: <Title text="Transaction Hash" />,
+    title: <Title text="transaction hash" />,
     dataIndex: 'TransactionHashFormatted',
     key: 'TransactionHashFormatted',
     render(text, record) {
       return (
         <Link to={`/transactions/${record.TransactionID}`}>
-          <small>{shortenHash(text, 23)}</small>
+          <small>{shortenHash(text, 22)}</small>
         </Link>
       )
     },
@@ -688,7 +693,7 @@ export const accountRewardColumns = [
     },
   },
   {
-    title: <Title text="Height" />,
+    title: <Title text="height" />,
     dataIndex: 'BlockHeight',
     key: 'BlockHeight',
     render(text) {
@@ -696,7 +701,7 @@ export const accountRewardColumns = [
     },
   },
   {
-    title: <Title text="Timestamp" />,
+    title: <Title text="timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
     render(text) {
@@ -704,7 +709,7 @@ export const accountRewardColumns = [
     },
   },
   {
-    title: <Title text="Balance" />,
+    title: <Title text="balance" />,
     dataIndex: 'BalanceChangeConversion',
     key: 'TotalFeesPaidConversion',
     render(text) {
@@ -724,12 +729,12 @@ export const accountRewardColumns = [
 
 export const popColumns = [
   {
-    title: <Title text="Node Id" />,
+    title: <Title text="node id" />,
     dataIndex: 'NodeID',
     key: 'NodeID',
   },
   {
-    title: <Title text="Height" />,
+    title: <Title text="height" />,
     dataIndex: 'Height',
     key: 'BlockHeigHeightht',
     render(text) {
@@ -737,17 +742,17 @@ export const popColumns = [
     },
   },
   {
-    title: <Title text="Score" />,
+    title: <Title text="score" />,
     dataIndex: 'Score',
     key: 'Score',
   },
   {
-    title: <Title text="Difference Score" />,
+    title: <Title text="difference score" />,
     dataIndex: 'DifferenceScores',
     key: 'DifferenceScores',
   },
   {
-    title: <Title text="Difference Score (%)" />,
+    title: <Title text="difference score (%)" />,
     dataIndex: 'DifferenceScorePercentage',
     key: 'DifferenceScorePercentage',
     render(text, record) {

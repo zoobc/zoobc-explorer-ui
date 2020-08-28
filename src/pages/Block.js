@@ -216,7 +216,7 @@ const Block = ({ match }) => {
                     value={data.block.Height}
                   />
                   <DescItem
-                    label={t('Block Hash')}
+                    label={t('block hash')}
                     style={{ display: 'none' }}
                     value={<CopyToClipboard text={data.block.BlockHash} keyID="blockID" />}
                   />
@@ -225,7 +225,7 @@ const Block = ({ match }) => {
                   <h4 className="block-card-title page-title">{t('summary')}</h4>
                   <DescItem
                     label={t('block id')}
-                    text="An identifier which facilitates easy identification of blocks on the ZooBC blockchain"
+                    text={t('an identifier which facilitates easy identification of blocks on the zoobc blockchain')}
                     value={<CopyToClipboard text={data.block.BlockID} keyID="blockID" />}
                   />
                   <DescItem
@@ -234,7 +234,7 @@ const Block = ({ match }) => {
                     value={moment(data.block.Timestamp).format('lll')}
                   />
                   <DescItem
-                    label={t('Previous Block Hash')}
+                    label={t('previous block hash')}
                     style={{ display: 'none' }}
                     value={data.block.PreviousBlockID}
                   />
@@ -281,7 +281,7 @@ const Block = ({ match }) => {
                     }
                   />
                   <DescItem
-                    label={t('Total Coinbase')}
+                    label={t('total coinbase')}
                     style={{ display: 'none' }}
                     value={
                       <NumberFormat
@@ -320,7 +320,7 @@ const Block = ({ match }) => {
                     value={data.block.ReceiptValue}
                   /> */}
                   <DescItem
-                    label={t('Blocksmith Public Key')}
+                    label={t('blocksmith public key')}
                     style={{ display: 'none' }}
                     value={
                       <Link to={`/nodes/${data.block.BlocksmithID}`}>
@@ -365,11 +365,11 @@ const Block = ({ match }) => {
                 <Collapse className="block-collapse" bordered={false}>
                   <Panel
                     className="block-card-title block-collapse"
-                    header={t('Skipped Blocksmith')}
+                    header={t('skipped blocksmith')}
                     key="1"
                   >
                     <Card className="block-card" bordered={false}>
-                      <h4 className="block-card-title page-title">{t('Skipped Blocksmith')}</h4>
+                      <h4 className="block-card-title page-title">{t('skipped blocksmith')}</h4>
                       <Table
                         className="transactions-table"
                         columns={skippedBlocksmithColumns}
@@ -383,12 +383,12 @@ const Block = ({ match }) => {
                 <Collapse className="block-collapse" bordered={false}>
                   <Panel
                     className="block-card-title block-collapse"
-                    header={t('Account Rewards')}
+                    header={t('account rewards')}
                     key="2"
                   >
                     <Card className="block-card" bordered={false}>
                       <h4 className="block-card-title page-title">
-                        {t('Account Rewards')}
+                        {t('account rewards')}
                         <Badge className="badge-black" count={0} overflowCount={1000} />
                       </h4>
                       <Table
@@ -404,12 +404,12 @@ const Block = ({ match }) => {
                 <Collapse className="block-collapse" bordered={false}>
                   <Panel
                     className="block-card-title block-collapse"
-                    header={t('Published Receipts')}
+                    header={t('published receipts')}
                     key="3"
                   >
                     <Card className="block-card" bordered={false}>
                       <h4 className="block-card-title page-title">
-                        {t('Published Receipts')}
+                        {t('published receipts')}
                         <Badge
                           className="badge-black"
                           count={data.block.TotalReceipts}
