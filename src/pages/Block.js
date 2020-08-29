@@ -112,6 +112,7 @@ const GET_TRX_BY_BLOCK = gql`
         }
         MultiSignatureTransactions {
           TransactionID
+          TransactionHashFormatted
           BlockID
           Height
           Timestamp
@@ -123,6 +124,7 @@ const GET_TRX_BY_BLOCK = gql`
         }
         EscrowTransaction {
           TransactionID
+          TransactionHashFormatted
           TransactionHash
           Timestamp
           TransactionType
@@ -225,7 +227,9 @@ const Block = ({ match }) => {
                   <h4 className="block-card-title page-title">{t('summary')}</h4>
                   <DescItem
                     label={t('block id')}
-                    text={t('an identifier which facilitates easy identification of blocks on the zoobc blockchain')}
+                    text={t(
+                      'an identifier which facilitates easy identification of blocks on the zoobc blockchain'
+                    )}
                     value={<CopyToClipboard text={data.block.BlockID} keyID="blockID" />}
                   />
                   <DescItem

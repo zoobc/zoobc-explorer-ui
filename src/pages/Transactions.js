@@ -40,6 +40,7 @@ const GET_TRXS_DATA = gql`
         }
         MultiSignatureTransactions {
           TransactionID
+          TransactionHashFormatted
           BlockID
           Height
           Timestamp
@@ -51,6 +52,7 @@ const GET_TRXS_DATA = gql`
         }
         EscrowTransaction {
           TransactionID
+          TransactionHashFormatted
           TransactionHash
           Timestamp
           TransactionType

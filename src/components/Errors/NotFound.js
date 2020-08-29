@@ -12,7 +12,7 @@ const NotFound = () => {
       <div className="error-content">
         <img src={notFound} alt="not found" />
         <span className="error-title page-title">
-        {t('sorry the page you are looking for is not found')}
+          {t('sorry the page you are looking for is not found')}
         </span>
         <Link to="/">
           <Button type="primary">{t('back to homepage')}</Button>
