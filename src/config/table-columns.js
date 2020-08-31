@@ -494,17 +494,17 @@ export const nodeColumns = [
     title: <Title text="score" />,
     dataIndex: 'PercentageScore',
     key: 'PercentageScore',
-    render(text){
+    render(text) {
       if (text) {
         const score = parseFloat(text).toFixed(7)
-        return(
+        return (
           <div className="blocksmith">
-            <Badge color={getScoreColorIndicator(score)} text={text}/>
+            <Badge color={getScoreColorIndicator(score)} text={text} />
           </div>
         )
       }
-    }
-  }
+    },
+  },
 ]
 
 export const publishedReceiptColumns = [
@@ -575,7 +575,7 @@ export const skippedBlocksmithColumns = [
     dataIndex: 'BlocksmithPublicKey',
     key: 'BlocksmithPublicKey',
     render(text) {
-      return <Link to={`/nodes/${text}`}>{text}</Link>
+      return !!text && <Link to={`/nodes/${text}`}>{shortenHash(text, 30)}</Link>
     },
   },
   {
@@ -748,10 +748,18 @@ export const accountRewardColumns = [
 ]
 
 export const popColumns = [
+  // {
+  //   title: <Title text="node id" />,
+  //   dataIndex: 'NodeID',
+  //   key: 'NodeID',
+  // },
   {
-    title: <Title text="node id" />,
-    dataIndex: 'NodeID',
-    key: 'NodeID',
+    title: <Title text="node public key" />,
+    dataIndex: 'NodePublicKey',
+    key: 'NodePublicKey',
+    render(text) {
+      return !!text && <Link to={`/nodes/${text}`}>{shortenHash(text, 30)}</Link>
+    },
   },
   {
     title: <Title text="height" />,

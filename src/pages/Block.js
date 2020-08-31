@@ -62,6 +62,7 @@ const GET_BLOCK_DATA = gql`
       }
       PopChanges {
         NodeID
+        NodePublicKey
         Score
         Latest
         Height
