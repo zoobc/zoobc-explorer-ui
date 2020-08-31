@@ -67,12 +67,14 @@ const Nodes = () => {
         size="small"
         loading={loading}
         onChange={onChangeTable.bind(this)}
+        scroll={{ x: 1300 }}
       />
       {!!data && (
         <Pagination
           className="pagination-center"
           current={paginate.Page}
           total={paginate.Total}
+          showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
           pageSize={15}
           onChange={page => setCurrentPage(page)}
         />

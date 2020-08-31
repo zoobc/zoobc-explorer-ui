@@ -29,6 +29,7 @@ const GET_TRX_DATA = gql`
   query getTransaction($TrxID: String!) {
     transaction(TransactionID: $TrxID) {
       TransactionID
+      TransactionHashFormatted
       Timestamp
       TransactionType
       TransactionTypeName
@@ -220,9 +221,19 @@ const Transaction = ({ match }) => {
                 <Card className="transaction-card" bordered={false}>
                   <h4 className="transaction-card-title page-title">{t('summary')}</h4>
                   <DescItem
+                    label={t('transaction hash')}
+                    style={{ display: 'none' }}
+                    value={
+                      <CopyToClipboard
+                        text={data.transaction.TransactionHashFormatted}
+                        keyID="TransactionHashFormatted"
+                      />
+                    }
+                  />
+                  <DescItem
                     label={t('transaction id')}
                     text={t(
-                      'an identifier which facilitates easy identification of transactions of the blockchain'
+                      'an identifier which facilitates easy identification of transactions on the zoobc blockchain'
                     )}
                     value={
                       <CopyToClipboard
@@ -237,7 +248,7 @@ const Transaction = ({ match }) => {
                     value={moment(data.transaction.Timestamp).format('lll')}
                   />
                   <DescItem
-                    label="Transaction Type"
+                    label="transaction type"
                     style={{ display: 'none' }}
                     value={data.transaction.TransactionTypeName}
                   />

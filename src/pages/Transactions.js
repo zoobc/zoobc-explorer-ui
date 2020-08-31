@@ -14,6 +14,7 @@ const GET_TRXS_DATA = gql`
     transactions(page: $page, limit: 15, order: $sorter) {
       Transactions {
         TransactionID
+        TransactionHashFormatted
         BlockID
         Height
         Timestamp
@@ -39,6 +40,7 @@ const GET_TRXS_DATA = gql`
         }
         MultiSignatureTransactions {
           TransactionID
+          TransactionHashFormatted
           BlockID
           Height
           Timestamp
@@ -50,6 +52,7 @@ const GET_TRXS_DATA = gql`
         }
         EscrowTransaction {
           TransactionID
+          TransactionHashFormatted
           TransactionHash
           Timestamp
           TransactionType
@@ -163,6 +166,7 @@ const Transactions = () => {
                   className="pagination-center"
                   current={paginate.Page}
                   total={paginate.Total}
+                  showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
                   pageSize={15}
                   onChange={page => setCurrentPage(page)}
                 />

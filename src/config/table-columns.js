@@ -12,13 +12,39 @@ import { InfoCircleOutlined } from '@ant-design/icons'
 
 const getBlocksmithIndicator = skipped => {
   if (skipped > 10) {
-    return 'red'
+    return {
+      text: `${skipped} skipped blocksmith`,
+      sorttext: `${skipped} skipped`,
+      color: '#f5222d',
+    }
   } else if (skipped >= 4 && skipped <= 10) {
-    return 'orange'
+    return {
+      text: `${skipped} skipped blocksmith`,
+      sorttext: `${skipped} skipped`,
+      color: '#fa8c16',
+    }
   } else if (skipped >= 1 && skipped <= 3) {
+    return {
+      text: `${skipped} skipped blocksmith`,
+      sorttext: `${skipped} skipped`,
+      color: '#722ed1',
+    }
+  } else {
+    return {
+      text: 'No skipped blocksmith',
+      sorttext: 'No skipped',
+      color: '#52c41a',
+    }
+  }
+}
+
+const getScoreColorIndicator = participation => {
+  if (participation > 70) {
+    return 'green'
+  } else if (participation > 30 && participation <= 70) {
     return 'yellow'
   } else {
-    return 'green'
+    return 'red'
   }
 }
 
@@ -99,6 +125,7 @@ const renderAmountCurrenncy = (text, record) => {
           displayType={'text'}
           thousandSeparator={true}
           suffix={' ZBC'}
+          prefix={isSender ? '-' : '+'}
           style={{ color: isSender ? 'red' : 'green' }}
         />
       )
@@ -127,7 +154,7 @@ const Title = ({ text }) => {
 const DateFormat = ({ date }) => {
   const { t } = useTranslation()
 
-  return !!date ? moment(date).format('lll') : t('unknown')
+  return !!date ? moment(date).format('DD/MM/YY @ H:mm:ss') : t('unknown')
 }
 
 export const accountColumns = [
@@ -183,7 +210,7 @@ export const blockColumns = [
   {
     title: (
       <div>
-        <Title text="block id" />{' '}
+        <Title text="block hash" />{' '}
         <Tooltip
           placement="bottom"
           title={
@@ -194,10 +221,10 @@ export const blockColumns = [
         </Tooltip>
       </div>
     ),
-    dataIndex: 'BlockID',
-    key: 'BlockID',
-    render(text) {
-      return <Link to={`/blocks/${text}`}> {text}</Link>
+    dataIndex: 'BlockHash',
+    key: 'BlockHash',
+    render(text, record) {
+      return <Link to={`/blocks/${record.BlockID}`}> {shortenHash(text, 25)}</Link>
     },
   },
   {
@@ -231,14 +258,12 @@ export const blockColumns = [
   {
     title: (
       <div>
-        <Title text="blocksmith address" />{' '}
+        <Title text="skipped blocksmith" />{' '}
         <Tooltip placement="bottom" title={<Title text="account that generated the block" />}>
           <InfoCircleOutlined />
         </Tooltip>
       </div>
     ),
-    dataIndex: 'BlocksmithAddress',
-    key: 'BlocksmithAddress',
     render(text, record) {
       const skipped = []
 
@@ -248,12 +273,9 @@ export const blockColumns = [
         )
 
       return (
-        <div className="blocksmith">
-          <Tooltip title={`${skipped.length} skipped blocksmith`}>
-            <Badge color={getBlocksmithIndicator(skipped.length)} />
-          </Tooltip>
-          <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
-        </div>
+        <Tag color={getBlocksmithIndicator(skipped.length).color}>
+          {getBlocksmithIndicator(skipped.length).text}
+        </Tag>
       )
     },
   },
@@ -275,7 +297,7 @@ export const transactionColumns = [
   {
     title: (
       <div>
-        <Title text="transaction id" />{' '}
+        <Title text="transaction hash" />{' '}
         <Tooltip
           placement="bottom"
           title={
@@ -286,10 +308,10 @@ export const transactionColumns = [
         </Tooltip>
       </div>
     ),
-    dataIndex: 'TransactionID',
-    key: 'TransactionID',
-    render(text) {
-      return <Link to={`/transactions/${text}`}>{text}</Link>
+    dataIndex: 'TransactionHashFormatted',
+    key: 'TransactionHashFormatted',
+    render(text, record) {
+      return <Link to={`/transactions/${record.TransactionID}`}>{shortenHash(text, 23)}</Link>
     },
     width: 200,
   },
@@ -332,7 +354,23 @@ export const transactionColumns = [
     dataIndex: 'Sender',
     key: 'Sender',
     width: 180,
-    render(text) {
+    render(text, record) {
+      const path = window.location.pathname
+
+      if (path.search('accounts') === 1) {
+        const accountAddress = path.split('/')[2]
+
+        const isSender = record.Sender === accountAddress
+
+        return (
+          !!text && (
+            <Link to={`/accounts/${text}`} style={{ color: isSender ? 'orangeRed' : null }}>
+              {shortenHash(text, 20)}
+            </Link>
+          )
+        )
+      }
+
       return <Link to={`/accounts/${text}`}>{shortenHash(text, 20)}</Link>
     },
   },
@@ -341,7 +379,21 @@ export const transactionColumns = [
     dataIndex: 'Recipient',
     key: 'Recipient',
     width: 180,
-    render(text) {
+    render(text, record) {
+      const path = window.location.pathname
+      if (path.search('accounts') === 1) {
+        const accountAddress = path.split('/')[2]
+
+        const isRecipient = record.Recipient === accountAddress
+
+        return (
+          !!text && (
+            <Link to={`/accounts/${text}`} style={{ color: isRecipient ? 'orangeRed' : null }}>
+              {shortenHash(text, 20)}
+            </Link>
+          )
+        )
+      }
       return <Link to={`/accounts/${text}`}>{shortenHash(text, 20)}</Link>
     },
   },
@@ -382,22 +434,19 @@ export const nodeColumns = [
     dataIndex: 'NodePublicKey',
     key: 'NodePublicKey',
     render(text) {
-      return <Link to={`/nodes/${text}`}>{shortenHash(text, 30)}</Link>
+      return <Link to={`/nodes/${text}`}>{shortenHash(text, 22)}</Link>
     },
+    width: 200,
   },
   {
     title: <Title text="owner address" />,
     dataIndex: 'OwnerAddress',
     key: 'OwnerAddress',
     render(text) {
-      return <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
+      return <Link to={`/accounts/${text}`}>{shortenHash(text, 22)}</Link>
     },
+    width: 200,
   },
-  // {
-  //   title: <Title text="Node Address" />,
-  //   dataIndex: 'NodeAddress',
-  //   key: 'NodeAddress',
-  // },
   {
     title: (
       <div>
@@ -413,6 +462,7 @@ export const nodeColumns = [
     dataIndex: 'LockedFunds',
     key: 'LockedFunds',
     render: renderCurrenncy,
+    width: 170,
   },
   {
     title: <Title text="status" />,
@@ -421,11 +471,39 @@ export const nodeColumns = [
     render(text) {
       return text === 0 ? 'Registered' : text === 1 ? 'In Queue' : text === 2 ? 'Stray' : null
     },
+    width: 130,
+  },
+  {
+    title: <Title text="height" />,
+    dataIndex: 'RegisteredBlockHeight',
+    key: 'RegisteredBlockHeight',
+    render(text) {
+      return <Link to={`/blocks/${text}`}>{text}</Link>
+    },
+    width: 100,
+  },
+  {
+    title: <Title text="timestamp" />,
+    dataIndex: 'RegistrationTime',
+    key: 'RegistrationTime',
+    render(text) {
+      return <DateFormat date={text} />
+    },
   },
   {
     title: <Title text="score" />,
-    dataIndex: 'ParticipationScore',
-    key: 'ParticipationScore',
+    dataIndex: 'PercentageScore',
+    key: 'PercentageScore',
+    render(text) {
+      if (text) {
+        const score = parseFloat(text).toFixed(7)
+        return (
+          <div className="blocksmith">
+            <Badge color={getScoreColorIndicator(score)} text={text} />
+          </div>
+        )
+      }
+    },
   },
 ]
 
@@ -497,7 +575,7 @@ export const skippedBlocksmithColumns = [
     dataIndex: 'BlocksmithPublicKey',
     key: 'BlocksmithPublicKey',
     render(text) {
-      return <Link to={`/nodes/${text}`}>{text}</Link>
+      return !!text && <Link to={`/nodes/${text}`}>{shortenHash(text, 30)}</Link>
     },
   },
   {
@@ -539,7 +617,7 @@ export const latestBlockColumns = [
     },
   },
   {
-    title: <Title text="Trx" />,
+    title: <Title text="trx" />,
     dataIndex: 'TotalTransaction',
     key: 'TotalTransaction',
     render(text) {
@@ -560,8 +638,6 @@ export const latestBlockColumns = [
   },
   {
     title: <Title text="blocksmith" />,
-    dataIndex: 'BlocksmithAddress',
-    key: 'BlocksmithAddress',
     render(text, record) {
       const skipped = []
 
@@ -571,14 +647,9 @@ export const latestBlockColumns = [
         )
 
       return (
-        <div className="blocksmith">
-          <small>
-            <Tooltip title={`${skipped.length} skipped blocksmith`}>
-              <Badge color={getBlocksmithIndicator(skipped.length)} />
-            </Tooltip>
-            <Link to={`/accounts/${text}`}>{shortenHash(text, 15)}</Link>
-          </small>
-        </div>
+        <Tag color={getBlocksmithIndicator(skipped.length).color}>
+          {getBlocksmithIndicator(skipped.length).sorttext}
+        </Tag>
       )
     },
   },
@@ -606,13 +677,13 @@ export const latestTransactionColumns = [
     },
   },
   {
-    title: <Title text="transaction id" />,
-    dataIndex: 'TransactionID',
-    key: 'TransactionID',
-    render(text) {
+    title: <Title text="transaction hash" />,
+    dataIndex: 'TransactionHashFormatted',
+    key: 'TransactionHashFormatted',
+    render(text, record) {
       return (
-        <Link to={`/transactions/${text}`}>
-          <small>{text}</small>
+        <Link to={`/transactions/${record.TransactionID}`}>
+          <small>{shortenHash(text, 22)}</small>
         </Link>
       )
     },
@@ -623,7 +694,7 @@ export const latestTransactionColumns = [
     key: 'Height',
     render(text, record) {
       return (
-        <Link to={`/blocks/${record.BlockID}`}>
+        <Link to={`/blocks/${record.Height}`}>
           <small>{text}</small>
         </Link>
       )
@@ -642,22 +713,24 @@ export const accountRewardColumns = [
     },
   },
   {
-    title: <Title text="balance" />,
-    dataIndex: 'BalanceConversion',
-    key: 'BalanceConversion',
-    render: renderCurrenncy,
+    title: <Title text="height" />,
+    dataIndex: 'BlockHeight',
+    key: 'BlockHeight',
+    render(text) {
+      return <Link to={`/blocks/${text}`}>{text}</Link>
+    },
   },
   {
-    title: <Title text="last active" />,
-    dataIndex: 'LastActive',
-    key: 'LastActive',
+    title: <Title text="timestamp" />,
+    dataIndex: 'Timestamp',
+    key: 'Timestamp',
     render(text) {
       return <DateFormat date={text} />
     },
   },
   {
-    title: <Title text="fees" />,
-    dataIndex: 'TotalFeesPaidConversion',
+    title: <Title text="balance" />,
+    dataIndex: 'BalanceChangeConversion',
     key: 'TotalFeesPaidConversion',
     render(text) {
       return (
@@ -670,6 +743,68 @@ export const accountRewardColumns = [
           className="page-title"
         />
       )
+    },
+  },
+]
+
+export const popColumns = [
+  // {
+  //   title: <Title text="node id" />,
+  //   dataIndex: 'NodeID',
+  //   key: 'NodeID',
+  // },
+  {
+    title: <Title text="node public key" />,
+    dataIndex: 'NodePublicKey',
+    key: 'NodePublicKey',
+    render(text) {
+      return !!text && <Link to={`/nodes/${text}`}>{shortenHash(text, 30)}</Link>
+    },
+  },
+  {
+    title: <Title text="height" />,
+    dataIndex: 'Height',
+    key: 'BlockHeigHeightht',
+    render(text) {
+      return <Link to={`/blocks/${text}`}>{text}</Link>
+    },
+  },
+  {
+    title: <Title text="score" />,
+    dataIndex: 'Score',
+    key: 'Score',
+  },
+  {
+    title: <Title text="difference score" />,
+    dataIndex: 'DifferenceScores',
+    key: 'DifferenceScores',
+  },
+  {
+    title: <Title text="difference score (%)" />,
+    dataIndex: 'DifferenceScorePercentage',
+    key: 'DifferenceScorePercentage',
+    render(text, record) {
+      if (text) {
+        const percentage = parseFloat(text).toFixed(7)
+        return (
+          <span
+            style={{
+              color:
+                record.Flag === 'Flat'
+                  ? 'orange'
+                  : record.Flag === 'Down'
+                  ? 'red'
+                  : record.Flag === 'Up'
+                  ? 'green'
+                  : null,
+            }}
+          >
+            {record.Flag === 'Flat' && <Icon type="shrink" />}
+            {record.Flag === 'Down' && <Icon type="arrow-down" />}
+            {record.Flag === 'Up' && <Icon type="arrow-up" />} {percentage}
+          </span>
+        )
+      }
     },
   },
 ]

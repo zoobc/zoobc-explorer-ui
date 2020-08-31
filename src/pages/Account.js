@@ -32,6 +32,7 @@ const GET_TRX_BY_ACCOUNT = gql`
     transactions(page: $page, limit: 5, order: "-Height", AccountAddress: $AccountAddress) {
       Transactions {
         TransactionID
+        TransactionHashFormatted
         Height
         Timestamp
         TransactionTypeName
@@ -57,6 +58,7 @@ const GET_TRX_BY_ACCOUNT = gql`
         }
         MultiSignatureTransactions {
           TransactionID
+          TransactionHashFormatted
           BlockID
           Height
           Timestamp
@@ -68,6 +70,7 @@ const GET_TRX_BY_ACCOUNT = gql`
         }
         EscrowTransaction {
           TransactionID
+          TransactionHashFormatted
           TransactionHash
           Timestamp
           TransactionType
