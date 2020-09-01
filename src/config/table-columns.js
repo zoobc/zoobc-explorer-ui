@@ -164,7 +164,7 @@ export const accountColumns = [
     key: 'AccountAddress',
 
     render(text) {
-      return <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
+      return <Link to={`/accounts/${text}`}>{shortenHash(text)}</Link>
     },
   },
   {
@@ -224,7 +224,7 @@ export const blockColumns = [
     dataIndex: 'BlockHash',
     key: 'BlockHash',
     render(text, record) {
-      return <Link to={`/blocks/${record.BlockID}`}> {shortenHash(text, 25)}</Link>
+      return <Link to={`/blocks/${record.BlockID}`}> {shortenHash(text)}</Link>
     },
   },
   {
@@ -311,7 +311,7 @@ export const transactionColumns = [
     dataIndex: 'TransactionHashFormatted',
     key: 'TransactionHashFormatted',
     render(text, record) {
-      return <Link to={`/transactions/${record.TransactionID}`}>{shortenHash(text, 23)}</Link>
+      return <Link to={`/transactions/${record.TransactionID}`}>{shortenHash(text)}</Link>
     },
     width: 200,
   },
@@ -365,13 +365,13 @@ export const transactionColumns = [
         return (
           !!text && (
             <Link to={`/accounts/${text}`} style={{ color: isSender ? 'orangeRed' : null }}>
-              {shortenHash(text, 20)}
+              {shortenHash(text)}
             </Link>
           )
         )
       }
 
-      return <Link to={`/accounts/${text}`}>{shortenHash(text, 20)}</Link>
+      return <Link to={`/accounts/${text}`}>{shortenHash(text)}</Link>
     },
   },
   {
@@ -389,12 +389,12 @@ export const transactionColumns = [
         return (
           !!text && (
             <Link to={`/accounts/${text}`} style={{ color: isRecipient ? 'orangeRed' : null }}>
-              {shortenHash(text, 20)}
+              {shortenHash(text)}
             </Link>
           )
         )
       }
-      return <Link to={`/accounts/${text}`}>{shortenHash(text, 20)}</Link>
+      return <Link to={`/accounts/${text}`}>{shortenHash(text)}</Link>
     },
   },
   {
@@ -434,7 +434,7 @@ export const nodeColumns = [
     dataIndex: 'NodePublicKey',
     key: 'NodePublicKey',
     render(text) {
-      return <Link to={`/nodes/${text}`}>{shortenHash(text, 22)}</Link>
+      return <Link to={`/nodes/${text}`}>{shortenHash(text)}</Link>
     },
     width: 200,
   },
@@ -443,7 +443,7 @@ export const nodeColumns = [
     dataIndex: 'OwnerAddress',
     key: 'OwnerAddress',
     render(text) {
-      return <Link to={`/accounts/${text}`}>{shortenHash(text, 22)}</Link>
+      return <Link to={`/accounts/${text}`}>{shortenHash(text)}</Link>
     },
     width: 200,
   },
@@ -520,7 +520,7 @@ export const publishedReceiptColumns = [
     dataIndex: 'BatchReceipt.SenderPublicKey',
     key: 'BatchReceipt.SenderPublicKey',
     render(text) {
-      return !!text && <Link to={`/nodes/${text}`}>{shortenHash(text, 20)}</Link>
+      return !!text && <Link to={`/nodes/${text}`}>{shortenHash(text)}</Link>
     },
   },
   {
@@ -535,7 +535,7 @@ export const publishedReceiptColumns = [
     dataIndex: 'BatchReceipt.RecipientPublicKey',
     key: 'BatchReceipt.RecipientPublicKey',
     render(text) {
-      return !!text && <Link to={`/nodes/${text}`}>{shortenHash(text, 20)}</Link>
+      return !!text && <Link to={`/nodes/${text}`}>{shortenHash(text)}</Link>
     },
   },
   {
@@ -556,7 +556,7 @@ export const publishedReceiptColumns = [
     dataIndex: 'BatchReceipt.DatumHash',
     key: 'BatchReceipt.DatumHash',
     render(text) {
-      return !!text && shortenHash(text, 20)
+      return !!text && shortenHash(text)
     },
   },
   {
@@ -564,7 +564,7 @@ export const publishedReceiptColumns = [
     dataIndex: 'BatchReceipt.RecipientSignature',
     key: 'BatchReceipt.RecipientSignature',
     render(text) {
-      return !!text && shortenHash(text, 20)
+      return !!text && shortenHash(text)
     },
   },
 ]
@@ -683,7 +683,7 @@ export const latestTransactionColumns = [
     render(text, record) {
       return (
         <Link to={`/transactions/${record.TransactionID}`}>
-          <small>{shortenHash(text, 22)}</small>
+          <small>{shortenHash(text)}</small>
         </Link>
       )
     },
@@ -709,7 +709,7 @@ export const accountRewardColumns = [
     key: 'AccountAddress',
 
     render(text) {
-      return <Link to={`/accounts/${text}`}>{shortenHash(text, 30)}</Link>
+      return <Link to={`/accounts/${text}`}>{shortenHash(text)}</Link>
     },
   },
   {

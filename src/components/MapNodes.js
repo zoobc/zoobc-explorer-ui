@@ -102,7 +102,7 @@ export default function MapNodes({ loading, data }) {
                           {item.NodeAddressInfo != null && (
                             <>
                               <Link to={`/nodes/${item.NodePublicKey}`}>
-                                <strong>{shortenHash(item.NodePublicKey, 30)}</strong>
+                                <strong>{shortenHash(item.NodePublicKey)}</strong>
                               </Link>
                               <br />
                             </>
