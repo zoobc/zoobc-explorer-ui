@@ -2,8 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import NumberFormat from 'react-number-format'
-
-import { shortenHash } from '../utils/shorten'
 import { useTranslation } from 'react-i18next'
 import { Badge, Tooltip, Tag, Icon } from 'antd'
 import { objectUtils } from '../utils'
@@ -448,7 +446,11 @@ export const nodeColumns = [
     dataIndex: 'NodePublicKey',
     key: 'NodePublicKey',
     render(text) {
-      return <Link to={`/nodes/${text}`}>{shortenHash(text)}</Link>
+      return (
+        !!text && (
+          <ZBCShortAddress address={text} href={`/nodes/${text}`} title="Node Public Key"/>
+        )
+      )
     },
     width: 200,
   },
@@ -457,7 +459,11 @@ export const nodeColumns = [
     dataIndex: 'OwnerAddress',
     key: 'OwnerAddress',
     render(text) {
-      return <Link to={`/accounts/${text}`}>{shortenHash(text)}</Link>
+      return (
+        !!text && (
+          <ZBCShortAddress address={text} href={`/accounts/${text}`} title="Owner Address"/>
+        )
+      )
     },
     width: 200,
   },
