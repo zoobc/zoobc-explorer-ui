@@ -30,12 +30,14 @@ const ZBCShortAddress = ({ address, href, title, style = {}, small = false }) =>
           {addressElm}
           &nbsp;
           <Icon type="search" onClick={onClick} />
+          <CopyToClipboard text={address} keyID={`address-${address}`} showText={false}/>
         </small>
       ) : (
         <>
           {addressElm}
           &nbsp;
           <Icon type="search" onClick={onClick} />
+          <CopyToClipboard text={address} keyID={`address-${address}`} showText={false}/>
         </>
       )}
     </span>
