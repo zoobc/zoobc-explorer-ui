@@ -36,6 +36,10 @@
   "message": "Pesan",
   "last refresh": "Terakhir Muat Ulang",
 
+  "=============== EXPLORER UI & WALLET MOBILE ===============": "=============== EXPLORER UI & WALLET MOBILE ===============",
+  
+  "sender address": "Alamat Pengirim",
+
   "=============== EXPLORER UI ===============": "=============== EXPLORER UI ===============",
 
   "transactions": "Transaksi",
@@ -573,7 +577,6 @@
   "queue": "Antrian",
   "sell": "Jual",
   "from account": "Dari akun",
-  "sender address": "Alamat pengirim",
   "generate passphrase": "Buat Frasa Sandi",
   "for your security, blockchain does not keep any passwords on file. the following 24 word backup phrase will give you access to your funds in case you lose your password. be sure to write it on a piece of paper and to keep it somewhere safe and secure.": "Demi keamanan Anda, Blockchain tidak menyimpan kata sandi apa pun. Frase Cadangan 24 kata berikut akan memberi Anda akses ke dana Anda jika Anda kehilangan kata sandi Anda. Pastikan untuk menuliskannya di selembar kertas dan untuk Pertahankan di suatu tempat yang aman dan terjamin.",
   "no account selected": "Tidak Ada Akun yang Dipilih",

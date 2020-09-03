@@ -36,6 +36,10 @@
   "message": "Message",
   "last refresh": "Last Refresh",
 
+  "=============== EXPLORER UI & WALLET MOBILE ===============": "=============== EXPLORER UI & WALLET MOBILE ===============",
+  
+  "sender address": "Sender Address",
+
   "=============== EXPLORER UI ===============": "=============== EXPLORER UI ===============",
 
   "transactions": "Transactions",
@@ -573,7 +577,6 @@
   "queue": "Queue",
   "sell": "Sell",
   "from account": "From account",
-  "sender address": "Sender address",
   "generate passphrase": "Generate passphrase",
   "for your security, blockchain does not keep any passwords on file. the following 24 word backup phrase will give you access to your funds in case you lose your password. be sure to write it on a piece of paper and to keep it somewhere safe and secure.": "For your security, blockchain does not keep any passwords on file. the following 24 word backup phrase will give you access to your funds in case you lose your password. be sure to write it on a piece of paper and to keep it somewhere safe and secure.",
   "no account selected": "No account selected",
