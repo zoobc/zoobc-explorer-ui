@@ -3,13 +3,16 @@ import { shortenHash } from '../utils/shorten'
 import { Icon, Modal } from 'antd'
 import { Link } from 'react-router-dom'
 import CopyToClipboard from './CopyToClipboard'
+import { useTranslation } from 'react-i18next'
 
 const ZBCShortAddress = ({ address, href, title, style = {}, small = false }) => {
+  const { t } = useTranslation()
   if (!address) return null
+
 
   const onClick = () => {
     Modal.info({
-      title: title,
+      title: t(title),
       content: <CopyToClipboard text={address} keyID={`address-${address}`} />,
       width: 600,
     })

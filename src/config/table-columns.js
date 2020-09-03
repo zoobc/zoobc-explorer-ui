@@ -163,7 +163,7 @@ export const accountColumns = [
     key: 'AccountAddress',
 
     render(text) {
-      return <ZBCShortAddress address={text} href={`/accounts/${text}`} title="Account Address" />
+      return <ZBCShortAddress address={text} href={`/accounts/${text}`} title="account address" />
     },
   },
   {
@@ -224,7 +224,7 @@ export const blockColumns = [
     key: 'BlockHash',
     render(text, record) {
       return (
-        <ZBCShortAddress address={text} href={`/blocks/${record.BlockID}`} title="Block Hash" />
+        <ZBCShortAddress address={text} href={`/blocks/${record.BlockID}`} title="block hash" />
       )
     },
   },
@@ -316,7 +316,7 @@ export const transactionColumns = [
         <ZBCShortAddress
           address={text}
           href={`/transactions/${record.TransactionID}`}
-          title="Transaction Hash"
+          title="transaction hash"
         />
       )
     },
@@ -374,13 +374,13 @@ export const transactionColumns = [
             <ZBCShortAddress
               address={text}
               href={`/accounts/${text}`}
-              title="Sender Address"
+              title="sender address"
               style={{ color: isSender ? 'orangeRed' : null }}
             />
           )
         )
       }
-      return <ZBCShortAddress address={text} href={`/accounts/${text}`} title="Sender Address" />
+      return <ZBCShortAddress address={text} href={`/accounts/${text}`} title="sender address" />
     },
   },
   {
@@ -400,13 +400,13 @@ export const transactionColumns = [
             <ZBCShortAddress
               address={text}
               href={`/accounts/${text}`}
-              title="Recipient Address"
+              title="recipient address"
               style={{ color: isRecipient ? 'orangeRed' : null }}
             />
           )
         )
       }
-      return <ZBCShortAddress address={text} href={`/accounts/${text}`} title="Recipient Address" />
+      return <ZBCShortAddress address={text} href={`/accounts/${text}`} title="recipient address" />
     },
   },
   {
@@ -448,7 +448,7 @@ export const nodeColumns = [
     render(text) {
       return (
         !!text && (
-          <ZBCShortAddress address={text} href={`/nodes/${text}`} title="Node Public Key"/>
+          <ZBCShortAddress address={text} href={`/nodes/${text}`} title="node public key"/>
         )
       )
     },
@@ -461,7 +461,7 @@ export const nodeColumns = [
     render(text) {
       return (
         !!text && (
-          <ZBCShortAddress address={text} href={`/accounts/${text}`} title="Owner Address"/>
+          <ZBCShortAddress address={text} href={`/accounts/${text}`} title="owner address"/>
         )
       )
     },
@@ -542,7 +542,7 @@ export const publishedReceiptColumns = [
     render(text) {
       return (
         !!text && (
-          <ZBCShortAddress address={text} href={`/accounts/${text}`} title="Sender Public Key" />
+          <ZBCShortAddress address={text} href={`/accounts/${text}`} title="sender public key" />
         )
       )
     },
@@ -561,7 +561,7 @@ export const publishedReceiptColumns = [
     render(text) {
       return (
         !!text && (
-          <ZBCShortAddress address={text} href={`/accounts/${text}`} title="Recipient Public Key" />
+          <ZBCShortAddress address={text} href={`/accounts/${text}`} title="recipient public key" />
         )
       )
     },
@@ -604,7 +604,7 @@ export const skippedBlocksmithColumns = [
     key: 'BlocksmithPublicKey',
     render(text) {
       return (
-        !!text && <ZBCShortAddress address={text} href={`/nodes/${text}`} title="Node Public Key" />
+        !!text && <ZBCShortAddress address={text} href={`/nodes/${text}`} title="node public key" />
       )
     },
   },
@@ -715,7 +715,7 @@ export const latestTransactionColumns = [
         <ZBCShortAddress
           address={text}
           href={`/transactions/${record.TransactionID}`}
-          title="Transaction Hash"
+          title="transaction hash"
           small
         />
         // <Link to={`/transactions/${record.TransactionID}`}>
@@ -744,7 +744,7 @@ export const accountRewardColumns = [
     dataIndex: 'AccountAddress',
     key: 'AccountAddress',
     render(text) {
-      return <ZBCShortAddress address={text} href={`/accounts/${text}`} title="Account Address" />
+      return <ZBCShortAddress address={text} href={`/accounts/${text}`} title="account address" />
     },
   },
   {
@@ -795,7 +795,7 @@ export const popColumns = [
     render(text) {
       // return !!text && <Link to={`/nodes/${text}`}>{shortenHash(text, 30)}</Link>
       return (
-        !!text && <ZBCShortAddress address={text} href={`/nodes/${text}`} title="Node Public Key" />
+        !!text && <ZBCShortAddress address={text} href={`/nodes/${text}`} title="node public key" />
       )
     },
   },
