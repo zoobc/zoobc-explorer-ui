@@ -447,9 +447,7 @@ export const nodeColumns = [
     key: 'NodePublicKey',
     render(text) {
       return (
-        !!text && (
-          <ZBCShortAddress address={text} href={`/nodes/${text}`} title="node public key"/>
-        )
+        !!text && <ZBCShortAddress address={text} href={`/nodes/${text}`} title="node public key" />
       )
     },
     width: 200,
@@ -461,7 +459,7 @@ export const nodeColumns = [
     render(text) {
       return (
         !!text && (
-          <ZBCShortAddress address={text} href={`/accounts/${text}`} title="owner address"/>
+          <ZBCShortAddress address={text} href={`/accounts/${text}`} title="owner address" />
         )
       )
     },

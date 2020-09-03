@@ -9,7 +9,6 @@ const ZBCShortAddress = ({ address, href, title, style = {}, small = false }) =>
   const { t } = useTranslation()
   if (!address) return null
 
-
   const onClick = () => {
     Modal.info({
       title: t(title),
@@ -33,14 +32,14 @@ const ZBCShortAddress = ({ address, href, title, style = {}, small = false }) =>
           {addressElm}
           &nbsp;
           <Icon type="search" onClick={onClick} />
-          <CopyToClipboard text={address} keyID={`address-${address}`} showText={false}/>
+          <CopyToClipboard text={address} keyID={`address-${address}`} showText={false} />
         </small>
       ) : (
         <>
           {addressElm}
           &nbsp;
           <Icon type="search" onClick={onClick} />
-          <CopyToClipboard text={address} keyID={`address-${address}`} showText={false}/>
+          <CopyToClipboard text={address} keyID={`address-${address}`} showText={false} />
         </>
       )}
     </span>
