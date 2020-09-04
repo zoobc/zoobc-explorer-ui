@@ -46,10 +46,11 @@ const NotFound = ({ history, location }) => {
         <Search
           prefix={<Icon type="search" style={{ fontSize: '16px', color: 'rgba(0,0,0,.45)' }} />}
           placeholder={t('search by account address / transaction id / block id / node public key')}
-          enterButton={loading ? <Spin indicator={Spinner} /> : t('search')}
+          // enterButton={loading ? <Spin indicator={Spinner} /> : t('search')}
           onSearch={onSearch}
           className="error-search"
         />
+        {loading ? <Spin indicator={Spinner} /> : null}
       </div>
     </Container>
   ) : (
