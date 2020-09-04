@@ -36,6 +36,10 @@
   "message": "رسالة",
   "last refresh": "التحديث الأخير",
 
+  "=============== EXPLORER UI & WALLET MOBILE ===============": "=============== EXPLORER UI & WALLET MOBILE ===============",
+  
+  "sender address": "عنوان المرسل",
+
   "=============== EXPLORER UI ===============": "=============== EXPLORER UI ===============",
 
   "transactions": "معاملات",
@@ -573,7 +577,6 @@
   "queue": "طابور",
   "sell": "يبيع",
   "from account": "من حساب",
-  "sender address": "عنوان المرسل",
   "generate passphrase": "توليد عبارة المرور",
   "for your security, blockchain does not keep any passwords on file. the following 24 word backup phrase will give you access to your funds in case you lose your password. be sure to write it on a piece of paper and to keep it somewhere safe and secure.": "من أجل أمانك ، لا تحتفظ blockchain بأي كلمات مرور في الملف. ستتيح لك العبارة الاحتياطية المكونة من 24 كلمة التالية الوصول إلى أموالك في حالة فقد كلمة المرور الخاصة بك. تأكد من كتابتها على قطعة من الورق والاحتفاظ بها في مكان آمن وآمن.",
   "no account selected": "لم يتم اختيار أي حساب",

@@ -19,7 +19,7 @@ class ErrorBoundary extends React.Component {
         <Container>
           <div className="error-content">
             <Maintenance width={200} height={200} />
-            <span className="error-title">Oops something went wrong !!!</span>
+            <span className="error-title page-title">Oops something went wrong !!!</span>
             <Button type="primary" onClick={() => window.location.reload()}>
               Refresh Page
             </Button>

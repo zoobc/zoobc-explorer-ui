@@ -68,3 +68,8 @@
 .ant-table-row-expanded::after {
   background: var(--color-escrow-multisignature-expand) !important;
 }
+
+
+.ant-badge-status-text {
+  color: var(--color-text-card-title) !important;
+}
