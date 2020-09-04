@@ -43,7 +43,9 @@ const Accounts = () => {
   const columns = accountColumns.map(item => {
     item.sortDirections = ['ascend', 'descend']
     item.sorter = (a, b) =>
-      a[item.dataIndex] ? a[item.dataIndex].length - b[item.dataIndex].length : null
+      a[item.dataIndex] && b[item.dataIndex]
+        ? a[item.dataIndex].length - b[item.dataIndex].length
+        : null
     item.sortOrder = sorted.columnKey === item.dataIndex && sorted.order
     return item
   })
