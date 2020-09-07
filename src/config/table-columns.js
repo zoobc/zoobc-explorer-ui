@@ -376,7 +376,8 @@ export const transactionColumns = [
               address={text}
               href={`/accounts/${text}`}
               title="sender address"
-              style={{ color: isSender ? 'orangeRed' : null }}
+              style={{fontWeight: isSender ? 'bold' : null,
+                    color: isSender ?  'green' : null }}
             />
           )
         )
@@ -402,7 +403,8 @@ export const transactionColumns = [
               address={text}
               href={`/accounts/${text}`}
               title="recipient address"
-              style={{ color: isRecipient ? 'orangeRed' : null }}
+              style={{ fontWeight: isRecipient ? 'bold' : null,
+                      color: isRecipient ? 'green' : null }}
             />
           )
         )

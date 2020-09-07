@@ -13,7 +13,8 @@ const ZBCShortAddress = ({ address, href, title, style = {}, small = false }) =>
     Modal.info({
       title: t(title),
       content: <CopyToClipboard text={address} keyID={`address-${address}`} />,
-      width: 600,
+      width: 800,
+      centered: true,
     })
   }
 
