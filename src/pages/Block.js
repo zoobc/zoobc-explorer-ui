@@ -222,6 +222,7 @@ const Block = ({ match }) => {
                     label={t('block hash')}
                     style={{ display: 'none' }}
                     value={<CopyToClipboard text={data.block.BlockHash} keyID="blockID" />}
+                    textClassName="monospace-text"
                   />
                 </Card>
                 <Card className="block-card" bordered={false}>
@@ -242,16 +243,19 @@ const Block = ({ match }) => {
                     label={t('previous block hash')}
                     style={{ display: 'none' }}
                     value={data.block.PreviousBlockID}
+                    textClassName="monospace-text"
                   />
                   <DescItem
                     label={t('block seed')}
                     text={t('a seed for random number uniquely generated for the block')}
                     value={data.block.BlockSeed}
+                    textClassName="monospace-text"
                   />
                   <DescItem
                     label={t('block signature')}
                     style={{ display: 'none' }}
                     value={data.block.BlockSignature}
+                    textClassName="monospace-text"
                   />
                   <DescItem
                     label={t('cumulative difficulty')}
@@ -332,6 +336,7 @@ const Block = ({ match }) => {
                         {data.block.BlocksmithID}
                       </Link>
                     }
+                    textClassName="monospace-text"
                   />
                   {/* <DescItem
                     label={t('pop change')}
@@ -347,6 +352,7 @@ const Block = ({ match }) => {
                     label={t('payload hash')}
                     style={{ display: 'none' }}
                     value={data.block.PayloadHash}
+                    textClassName="monospace-text"
                   />
                 </Card>
                 <Collapse className="block-collapse" bordered={false}>

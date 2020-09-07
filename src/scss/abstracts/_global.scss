@@ -7,7 +7,7 @@ body {
 }
 
 code {
-  font-family: var(--font-secondary);
+  font-family: var(--font-monospace);
 }
 
 .breaker {
@@ -65,4 +65,8 @@ a:hover {
   font-size: 10px;
   font-style: italic;
   margin-left: 15px;
+}
+
+.monospace-text {
+  font-family: var(--font-monospace);
 }

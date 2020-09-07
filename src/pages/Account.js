@@ -167,6 +167,7 @@ const Account = ({ match }) => {
                     value={
                       <CopyToClipboard text={data.account.AccountAddress} keyID="accountAddress" />
                     }
+                    textClassName="monospace-text"
                   />
                   <DescItem
                     label={t('balance')}
@@ -177,6 +178,7 @@ const Account = ({ match }) => {
                         displayType={'text'}
                         thousandSeparator={true}
                         suffix={' ZBC'}
+                        className="monospace-text"
                       />
                     }
                   />
@@ -210,6 +212,7 @@ const Account = ({ match }) => {
                         displayType={'text'}
                         thousandSeparator={true}
                         suffix={' ZBC'}
+                        className="monospace-text"
                       />
                     }
                   />

@@ -30,6 +30,7 @@ const MultiSignature = ({ data, disableTrxHashLink }) => {
             label="Multisig Address"
             style={{ display: 'none' }}
             value={MultiSignatureInfo.MultisigAddress}
+            textClassName="monospace-text"
           />
         </>
       )}
@@ -56,6 +57,7 @@ const MultiSignature = ({ data, disableTrxHashLink }) => {
                 </Link>
               )
             }
+            textClassName="monospace-text"
           />
           <br />
           <h5>{t('participants')}</h5>

@@ -5,7 +5,7 @@ import { Col, Row, Tooltip } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { InfoCircleOutlined } from '@ant-design/icons'
 
-const DescItem = ({ label, text, style, value }) => {
+const DescItem = ({ label, text, style, value, textClassName }) => {
   const { t } = useTranslation()
   return (
     <Row>
@@ -18,7 +18,7 @@ const DescItem = ({ label, text, style, value }) => {
         </label>
       </Col>
       <Col md={{ span: 19 }} sm={{ span: 24 }}>
-        <div className="truncate">{(!!value || value === 0) && value}</div>
+        <div className={`truncate ${textClassName}`}>{(!!value || value === 0) && value}</div>
       </Col>
     </Row>
   )

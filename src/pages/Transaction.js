@@ -229,6 +229,7 @@ const Transaction = ({ match }) => {
                         keyID="TransactionHashFormatted"
                       />
                     }
+                    textClassName="monospace-text"
                   />
                   <DescItem
                     label={t('transaction id')}
@@ -282,6 +283,7 @@ const Transaction = ({ match }) => {
                         {data.transaction.Sender}
                       </Link>
                     }
+                    textClassName="monospace-text"
                   />
                   <DescItem
                     label={t('recipient')}
@@ -291,6 +293,7 @@ const Transaction = ({ match }) => {
                         {data.transaction.Recipient}
                       </Link>
                     }
+                    textClassName="monospace-text"
                   />
                   {/* <DescItem label={t('confirmations')} value={data.transaction.Confirmations} /> */}
                   <DescItem
@@ -302,6 +305,7 @@ const Transaction = ({ match }) => {
                         displayType={'text'}
                         thousandSeparator={true}
                         suffix={' ZBC'}
+                        className="monospace-text"
                       />
                     }
                   />

@@ -26,7 +26,7 @@ const ZBCShortAddress = ({ address, href, title, style = {}, small = false }) =>
   )
 
   return (
-    <span>
+    <span className="monospace-text">
       {small ? (
         <small>
           {addressElm}

@@ -117,6 +117,7 @@ const Node = ({ match, history }) => {
                       'a string of letters and numbers that are used to receive amount of zoobc. works similar to a traditional bank account number and can be shared publicly with others'
                     )}
                     value={<CopyToClipboard text={data.node.NodePublicKey} keyID="nodePublicKey" />}
+                    textClassName="monospace-text"
                   />
                   <DescItem
                     label={t('owner address')}
@@ -126,6 +127,7 @@ const Node = ({ match, history }) => {
                         {data.node.OwnerAddress}
                       </Link>
                     }
+                    textClassName="monospace-text"
                     // value={<CopyToClipboard text={data.node.OwnerAddress} keyID="nodePublicKey" />}
                   />
                   {/* <DescItem label={t('node address')} value={data.node.NodeAddress} /> */}
@@ -133,6 +135,7 @@ const Node = ({ match, history }) => {
                     label={t('timestamp')}
                     style={{ display: 'none' }}
                     value={moment(data.node.RegistrationTime).format('lll')}
+                    textClassName="monospace-text"
                   />
                   <DescItem
                     label={t('locked funds')}
@@ -143,6 +146,7 @@ const Node = ({ match, history }) => {
                         displayType={'text'}
                         thousandSeparator={true}
                         suffix={' ZBC'}
+                        className="monospace-text"
                       />
                     }
                   />

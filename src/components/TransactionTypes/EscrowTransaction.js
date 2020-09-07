@@ -26,16 +26,19 @@ const EscrowTransaction = ({ data, blockID, TransactionID }) => {
         label={t('sender')}
         style={{ display: 'none' }}
         value={<Link to={`/accounts/${data.SenderAddress}`}>{data.SenderAddress}</Link>}
+        textClassName="monospace-text"
       />
       <DescItem
         label={t('recipient')}
         style={{ display: 'none' }}
         value={<Link to={`/accounts/${data.RecipientAddress}`}>{data.RecipientAddress}</Link>}
+        textClassName="monospace-text"
       />
       <DescItem
         label={t('approver')}
         style={{ display: 'none' }}
         value={<Link to={`/accounts/${data.ApproverAddress}`}>{data.ApproverAddress}</Link>}
+        textClassName="monospace-text"
       />
       <DescItem
         label={t('commission Fee')}
@@ -46,6 +49,7 @@ const EscrowTransaction = ({ data, blockID, TransactionID }) => {
             displayType={'text'}
             thousandSeparator={true}
             suffix={' ZBC'}
+            className="monospace-text"
           />
         }
       />

@@ -54,7 +54,7 @@ const renderCurrenncy = text => {
       displayType={'text'}
       thousandSeparator={true}
       suffix={' ZBC'}
-      className="page-title"
+      className="page-title monospace-text"
     />
   )
 }
@@ -126,6 +126,7 @@ const renderAmountCurrenncy = (text, record) => {
           suffix={' ZBC'}
           prefix={isSender ? '-' : '+'}
           style={{ color: isSender ? 'red' : 'green' }}
+          className="monospace-text"
         />
       )
     )
@@ -138,7 +139,7 @@ const renderAmountCurrenncy = (text, record) => {
         displayType={'text'}
         thousandSeparator={true}
         suffix={' ZBC'}
-        className="page-title"
+        className="page-title monospace-text"
       />
     )
   )
@@ -773,7 +774,7 @@ export const accountRewardColumns = [
           decimalScale={2}
           thousandSeparator={true}
           suffix={' ZBC'}
-          className="page-title"
+          className="page-title monospace-text"
         />
       )
     },
