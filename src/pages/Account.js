@@ -186,14 +186,13 @@ const Account = ({ match }) => {
       const nodeData = nodeByAccount.data.nodes.Nodes.map((node, key) => {
         return {
           key,
-          ...node
+          ...node,
         }
       })
 
       setNodes(nodeData)
       setNodePaginate(nodeByAccount.data.nodes.Paginate)
     }
-
   }, [trxByAccount.data, nodeByAccount.data])
 
   return (
