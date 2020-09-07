@@ -193,7 +193,7 @@ export const accountColumns = [
           decimalScale={2}
           thousandSeparator={true}
           suffix={' ZBC'}
-          className="page-title"
+          className="page-title monospace-text"
         />
       )
     },

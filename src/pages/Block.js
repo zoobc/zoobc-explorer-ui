@@ -286,6 +286,7 @@ const Block = ({ match }) => {
                         displayType={'text'}
                         thousandSeparator={true}
                         suffix={' ZBC'}
+                        className="monospace-text"
                       />
                     }
                   />
@@ -298,6 +299,7 @@ const Block = ({ match }) => {
                         displayType={'text'}
                         thousandSeparator={true}
                         suffix={' ZBC'}
+                        className="monospace-text"
                       />
                     }
                   />
@@ -310,6 +312,7 @@ const Block = ({ match }) => {
                         displayType={'text'}
                         thousandSeparator={true}
                         suffix={' ZBC'}
+                        className="monospace-text"
                       />
                     }
                   />
