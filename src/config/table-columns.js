@@ -224,9 +224,7 @@ export const blockColumns = [
     dataIndex: 'BlockHash',
     key: 'BlockHash',
     render(text) {
-      return (
-        <ZBCShortAddress address={text} href={`/blocks/${text}`} title="block hash" />
-      )
+      return <ZBCShortAddress address={text} href={`/blocks/${text}`} title="block hash" />
     },
   },
   {
@@ -376,8 +374,7 @@ export const transactionColumns = [
               address={text}
               href={`/accounts/${text}`}
               title="sender address"
-              style={{fontWeight: isSender ? 'bold' : null,
-                    color: isSender ?  'green' : null }}
+              style={{ fontWeight: isSender ? 'bold' : null, color: isSender ? 'green' : null }}
             />
           )
         )
@@ -403,8 +400,10 @@ export const transactionColumns = [
               address={text}
               href={`/accounts/${text}`}
               title="recipient address"
-              style={{ fontWeight: isRecipient ? 'bold' : null,
-                      color: isRecipient ? 'green' : null }}
+              style={{
+                fontWeight: isRecipient ? 'bold' : null,
+                color: isRecipient ? 'green' : null,
+              }}
             />
           )
         )
