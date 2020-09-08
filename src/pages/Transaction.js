@@ -270,7 +270,7 @@ const Transaction = ({ match }) => {
                       'the position of the block in the zoobc blockchain. for example, height 0, would be the very first block, which is also called the genesis block'
                     )}
                     value={
-                      <Link to={`/blocks/${data.transaction.BlockID}`}>
+                      <Link to={`/blocks/${data.transaction.Height}`}>
                         {data.transaction.Height}
                       </Link>
                     }

@@ -3,7 +3,7 @@ import NumberFormat from 'react-number-format'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useQuery, gql } from '@apollo/client'
-import { Row, Col, Card, Badge, Table, Pagination, Button } from 'antd'
+import { Row, Col, Card, Badge, Table, Pagination } from 'antd'
 import moment from 'moment'
 
 import Container from '../components/Container'
@@ -12,7 +12,6 @@ import NotFound from '../components/Errors/NotFound'
 import LoaderPage from '../components/LoaderPage'
 import CopyToClipboard from '../components/CopyToClipboard'
 import { blockColumns } from '../config/table-columns'
-import useSearch from '../hooks/useSearch'
 
 const GET_NODE_DATA = gql`
   query getNode($NodePublicKey: String!) {
@@ -56,14 +55,12 @@ const GET_BLOCK_BY_NODE = gql`
   }
 `
 
-const Node = ({ match, history }) => {
+const Node = ({ match }) => {
   const { params } = match
   const { t } = useTranslation()
   const [blockCurrentPage, setBlockCurrentPage] = useState(1)
   const [blocks, setBlocks] = useState([])
   const [blockPaginate, setBlockPaginate] = useState({})
-  const [keyword, setKeyword] = useState('0')
-  const { doSearch } = useSearch(keyword, history)
 
   const { loading, data, error } = useQuery(GET_NODE_DATA, {
     variables: {
@@ -88,7 +85,6 @@ const Node = ({ match, history }) => {
       })
       setBlocks(blockData)
       setBlockPaginate(blockNode.data.blocks.Paginate)
-      setKeyword(`${data.node.RegisteredBlockHeight}`)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockNode.data])
@@ -154,14 +150,9 @@ const Node = ({ match, history }) => {
                     label={t('registered block height')}
                     style={{ display: 'none' }}
                     value={
-                      <Button
-                        type="link"
-                        size="small"
-                        onClick={doSearch}
-                        style={{ padding: '0px 0px 15px 0px' }}
-                      >
+                      <Link to={`/blocks/${data.node.RegisteredBlockHeight}`}>
                         {data.node.RegisteredBlockHeight}
-                      </Button>
+                      </Link>
                     }
                   />
                   {/* <DescItem label={t('participation score')} value={data.node.ParticipationScore} /> */}

@@ -223,9 +223,9 @@ export const blockColumns = [
     ),
     dataIndex: 'BlockHash',
     key: 'BlockHash',
-    render(text, record) {
+    render(text) {
       return (
-        <ZBCShortAddress address={text} href={`/blocks/${record.BlockID}`} title="block hash" />
+        <ZBCShortAddress address={text} href={`/blocks/${text}`} title="block hash" />
       )
     },
   },
@@ -245,8 +245,8 @@ export const blockColumns = [
     ),
     dataIndex: 'Height',
     key: 'Height',
-    render(text, record) {
-      return <Link to={`/blocks/${record.BlockID}`}>{text}</Link>
+    render(text) {
+      return <Link to={`/blocks/${text}`}>{text}</Link>
     },
   },
   {
@@ -338,7 +338,7 @@ export const transactionColumns = [
     dataIndex: 'Height',
     key: 'Height',
     render(text, record) {
-      return <Link to={`/blocks/${record.BlockID}`}>{text}</Link>
+      return <Link to={`/blocks/${text}`}>{text}</Link>
     },
   },
   {
