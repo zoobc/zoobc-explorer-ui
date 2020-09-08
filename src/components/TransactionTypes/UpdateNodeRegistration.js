@@ -14,6 +14,7 @@ const UpdateNodeRegistration = ({ data }) => {
         label={t('account address')}
         style={{ display: 'none' }}
         value={<Link to={`/accounts/${data.AccountAddress}`}>{data.AccountAddress}</Link>}
+        textClassName="monospace-text"
       />
       <DescItem
         label={t('node public key')}
@@ -21,6 +22,7 @@ const UpdateNodeRegistration = ({ data }) => {
           'a string of letters and numbers that are used to receive amount of zoobc. works similar to a traditional bank account number and can be shared publicly with others'
         )}
         value={<Link to={`/nodes/${data.NodePublicKey}`}>{data.NodePublicKey}</Link>}
+        textClassName="monospace-text"
       />
       <DescItem
         label={t('locked balance')}
@@ -31,6 +33,7 @@ const UpdateNodeRegistration = ({ data }) => {
             displayType={'text'}
             thousandSeparator={true}
             suffix={' ZBC'}
+            className="monospace-text"
           />
         }
       />
@@ -38,11 +41,13 @@ const UpdateNodeRegistration = ({ data }) => {
         label={t('poow message bytes')}
         style={{ display: 'none' }}
         value={data.ProofOfOwnership && data.ProofOfOwnership.MessageBytes}
+        textClassName="monospace-text"
       />
       <DescItem
         label={t('poow signature')}
         style={{ display: 'none' }}
         value={data.ProofOfOwnership && data.ProofOfOwnership.Signature}
+        textClassName="monospace-text"
       />
     </Card>
   )

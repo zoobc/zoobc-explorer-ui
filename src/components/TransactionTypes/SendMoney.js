@@ -19,6 +19,7 @@ const SendMoney = ({ data }) => {
             displayType={'text'}
             thousandSeparator={true}
             suffix={' ZBC'}
+            className="monospace-text"
           />
         }
       />

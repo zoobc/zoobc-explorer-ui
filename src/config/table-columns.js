@@ -54,7 +54,7 @@ const renderCurrenncy = text => {
       displayType={'text'}
       thousandSeparator={true}
       suffix={' ZBC'}
-      className="page-title"
+      className="page-title monospace-text"
     />
   )
 }
@@ -126,6 +126,7 @@ const renderAmountCurrenncy = (text, record) => {
           suffix={' ZBC'}
           prefix={isSender ? '-' : '+'}
           style={{ color: isSender ? 'red' : 'green' }}
+          className="monospace-text"
         />
       )
     )
@@ -138,7 +139,7 @@ const renderAmountCurrenncy = (text, record) => {
         displayType={'text'}
         thousandSeparator={true}
         suffix={' ZBC'}
-        className="page-title"
+        className="page-title monospace-text"
       />
     )
   )
@@ -192,7 +193,7 @@ export const accountColumns = [
           decimalScale={2}
           thousandSeparator={true}
           suffix={' ZBC'}
-          className="page-title"
+          className="page-title monospace-text"
         />
       )
     },
@@ -222,10 +223,8 @@ export const blockColumns = [
     ),
     dataIndex: 'BlockHash',
     key: 'BlockHash',
-    render(text, record) {
-      return (
-        <ZBCShortAddress address={text} href={`/blocks/${record.BlockID}`} title="block hash" />
-      )
+    render(text) {
+      return <ZBCShortAddress address={text} href={`/blocks/${text}`} title="block hash" />
     },
   },
   {
@@ -244,8 +243,8 @@ export const blockColumns = [
     ),
     dataIndex: 'Height',
     key: 'Height',
-    render(text, record) {
-      return <Link to={`/blocks/${record.BlockID}`}>{text}</Link>
+    render(text) {
+      return <Link to={`/blocks/${text}`}>{text}</Link>
     },
   },
   {
@@ -337,7 +336,7 @@ export const transactionColumns = [
     dataIndex: 'Height',
     key: 'Height',
     render(text, record) {
-      return <Link to={`/blocks/${record.BlockID}`}>{text}</Link>
+      return <Link to={`/blocks/${text}`}>{text}</Link>
     },
   },
   {
@@ -375,8 +374,7 @@ export const transactionColumns = [
               address={text}
               href={`/accounts/${text}`}
               title="sender address"
-              style={{fontWeight: isSender ? 'bold' : null,
-                    color: isSender ?  'green' : null }}
+              style={{ fontWeight: isSender ? 'bold' : null, color: isSender ? 'green' : null }}
             />
           )
         )
@@ -402,8 +400,10 @@ export const transactionColumns = [
               address={text}
               href={`/accounts/${text}`}
               title="recipient address"
-              style={{ fontWeight: isRecipient ? 'bold' : null,
-                      color: isRecipient ? 'green' : null }}
+              style={{
+                fontWeight: isRecipient ? 'bold' : null,
+                color: isRecipient ? 'green' : null,
+              }}
             />
           )
         )
@@ -775,7 +775,7 @@ export const accountRewardColumns = [
           decimalScale={2}
           thousandSeparator={true}
           suffix={' ZBC'}
-          className="page-title"
+          className="page-title monospace-text"
         />
       )
     },

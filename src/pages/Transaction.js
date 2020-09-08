@@ -229,6 +229,7 @@ const Transaction = ({ match }) => {
                         keyID="TransactionHashFormatted"
                       />
                     }
+                    textClassName="monospace-text"
                   />
                   <DescItem
                     label={t('transaction id')}
@@ -269,7 +270,7 @@ const Transaction = ({ match }) => {
                       'the position of the block in the zoobc blockchain. for example, height 0, would be the very first block, which is also called the genesis block'
                     )}
                     value={
-                      <Link to={`/blocks/${data.transaction.BlockID}`}>
+                      <Link to={`/blocks/${data.transaction.Height}`}>
                         {data.transaction.Height}
                       </Link>
                     }
@@ -282,6 +283,7 @@ const Transaction = ({ match }) => {
                         {data.transaction.Sender}
                       </Link>
                     }
+                    textClassName="monospace-text"
                   />
                   <DescItem
                     label={t('recipient')}
@@ -291,6 +293,7 @@ const Transaction = ({ match }) => {
                         {data.transaction.Recipient}
                       </Link>
                     }
+                    textClassName="monospace-text"
                   />
                   {/* <DescItem label={t('confirmations')} value={data.transaction.Confirmations} /> */}
                   <DescItem
@@ -302,6 +305,7 @@ const Transaction = ({ match }) => {
                         displayType={'text'}
                         thousandSeparator={true}
                         suffix={' ZBC'}
+                        className="monospace-text"
                       />
                     }
                   />
