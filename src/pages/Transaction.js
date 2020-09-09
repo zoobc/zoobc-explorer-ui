@@ -130,6 +130,7 @@ const GET_TRX_DATA = gql`
       }
       MultiSignatureTransactions {
         TransactionID
+        TransactionHashFormatted
         BlockID
         Height
         Timestamp

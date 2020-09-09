@@ -319,7 +319,7 @@ export const transactionColumns = [
         />
       )
     },
-    width: 200,
+    width: 220,
   },
   {
     title: (
