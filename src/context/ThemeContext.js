@@ -36,7 +36,7 @@ export const ThemeState = ({ children }) => {
 
   const onChangeSelectedTheme = data => {
     store.set('theme', data)
-    if (data === 'dark') {
+    if (data === '☾') {
       applyTheme(darkTheme)
     } else {
       applyTheme(lightTheme)
