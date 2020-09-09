@@ -4,7 +4,7 @@ import moment from 'moment'
 import NumberFormat from 'react-number-format'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { useQuery, gql } from '@apollo/client'
+import { useQuery, gql, useLazyQuery } from '@apollo/client'
 import { Row, Col, Card, Table, Pagination, Collapse, Badge } from 'antd'
 
 import Container from '../components/Container'
@@ -160,9 +160,18 @@ const Block = ({ match }) => {
     variables: {
       BlockID: params.id,
     },
+    onCompleted(data) {
+      if (!!data) {
+        fetcTrxByBlock({
+          variables: {
+            BlockID: data.block.BlockID
+          }
+        })
+      }
+    }
   })
 
-  const trxByBlock = useQuery(GET_TRX_BY_BLOCK, {
+  const [fetcTrxByBlock, trxByBlock] = useLazyQuery(GET_TRX_BY_BLOCK, {
     variables: {
       BlockID: params.id,
       page: trxCurrentPage,
