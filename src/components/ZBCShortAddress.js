@@ -24,7 +24,16 @@ const ZBCShortAddress = ({ address, href, title, style = {}, small = false }) =>
           {addressElm}
           &nbsp;
           <Popover
-            content={<small className="monospace-text">{address}</small>}
+            content={
+              <>
+                <small className="monospace-text">{address}</small>
+                <CopyToClipboard
+                  text={address}
+                  keyID={`tooltip-address-${address}`}
+                  showText={false}
+                />
+              </>
+            }
             title={t(title)}
             trigger="click"
           >
@@ -37,7 +46,16 @@ const ZBCShortAddress = ({ address, href, title, style = {}, small = false }) =>
           {addressElm}
           &nbsp;
           <Popover
-            content={<small className="monospace-text">{address}</small>}
+            content={
+              <>
+                <small className="monospace-text">{address}</small>
+                <CopyToClipboard
+                  text={address}
+                  keyID={`tooltip-address-${address}`}
+                  showText={false}
+                />
+              </>
+            }
             title={t(title)}
             trigger="click"
           >
