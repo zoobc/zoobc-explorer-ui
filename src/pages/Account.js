@@ -99,6 +99,7 @@ const GET_NODE_BY_ACCOUNT = gql`
     nodes(page: $page, limit: 5, order: "-RegistrationTime", AccountAddress: $AccountAddress) {
       Nodes {
         NodePublicKey
+        NodePublicKeyFormatted
         OwnerAddress
         NodeAddressInfo {
           Address
@@ -281,7 +282,7 @@ const Account = ({ match }) => {
                       />
                     }
                   />
-                  {/* <DescItem label={t('node public key')} value={data.account.NodePublicKey} /> */}
+                  {/* <DescItem label={t('node public key')} value={data.account.NodePublicKeyFormatted} /> */}
                 </Card>
 
                 <Collapse className="account-collapse" bordered={false}>
@@ -307,7 +308,7 @@ const Account = ({ match }) => {
                         size="small"
                         loading={loading}
                         scroll={{ x: 1300 }}
-                        rowKey="NodePublicKey"
+                        rowKey="NodePublicKeyFormatted"
                       />
                       {!!nodes && (
                         <Pagination

@@ -13,7 +13,7 @@ const RemoveNodeRegistration = ({ data }) => {
         text={t(
           'a string of letters and numbers that are used to receive amount of zoobc. works similar to a traditional bank account number and can be shared publicly with others'
         )}
-        value={data.NodePublicKey}
+        value={data.NodePublicKeyFormatted}
         textClassName="monospace-text"
       />
     </Card>

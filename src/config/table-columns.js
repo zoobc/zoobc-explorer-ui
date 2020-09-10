@@ -445,8 +445,8 @@ export const nodeColumns = [
         </Tooltip>
       </div>
     ),
-    dataIndex: 'NodePublicKey',
-    key: 'NodePublicKey',
+    dataIndex: 'NodePublicKeyFormatted',
+    key: 'NodePublicKeyFormatted',
     render(text) {
       return (
         !!text && <ZBCShortAddress address={text} href={`/nodes/${text}`} title="node public key" />
@@ -790,8 +790,8 @@ export const popColumns = [
   // },
   {
     title: <Title text="node public key" />,
-    dataIndex: 'NodePublicKey',
-    key: 'NodePublicKey',
+    dataIndex: 'NodePublicKeyFormatted',
+    key: 'NodePublicKeyFormatted',
     render(text) {
       // return !!text && <Link to={`/nodes/${text}`}>{shortenHash(text, 30)}</Link>
       return (

@@ -32,6 +32,9 @@ const useSearch = (keyword, history) => {
         case 'Account':
           history.push(`/accounts/${ID}`)
           break
+        case 'Node':
+          history.push(`/nodes/${ID}`)
+          break
         default:
           history.push({
             pathname: '/search',

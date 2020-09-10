@@ -17,6 +17,7 @@ const GET_NODE_DATA = gql`
   query getNode($NodePublicKey: String!) {
     node(NodePublicKey: $NodePublicKey) {
       NodePublicKey
+      NodePublicKeyFormatted
       OwnerAddress
       NodeAddressInfo {
         Address
@@ -94,14 +95,14 @@ const Node = ({ match }) => {
       {!!error && <NotFound />}
       {!!loading && <LoaderPage />}
       {!!data &&
-        (data.node.NodePublicKey ? (
+        (data.node.NodePublicKeyFormatted ? (
           <Container>
             <Row className="node-row">
               <Col span={24}>
                 <Row>
                   <Col span={24}>
                     <h4 className="truncate page-title">
-                      {t('public key')} {data.node.NodePublicKey}
+                      {t('public key')} {data.node.NodePublicKeyFormatted}
                     </h4>
                   </Col>
                 </Row>
@@ -112,7 +113,12 @@ const Node = ({ match }) => {
                     text={t(
                       'a string of letters and numbers that are used to receive amount of zoobc. works similar to a traditional bank account number and can be shared publicly with others'
                     )}
-                    value={<CopyToClipboard text={data.node.NodePublicKey} keyID="nodePublicKey" />}
+                    value={
+                      <CopyToClipboard
+                        text={data.node.NodePublicKeyFormatted}
+                        keyID="NodePublicKeyFormatted"
+                      />
+                    }
                     textClassName="monospace-text"
                   />
                   <DescItem
