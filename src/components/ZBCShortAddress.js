@@ -1,6 +1,6 @@
 import React from 'react'
 import { shortenHash } from '../utils/shorten'
-import { Icon, Modal } from 'antd'
+import { Icon, Popover } from 'antd'
 import { Link } from 'react-router-dom'
 import CopyToClipboard from './CopyToClipboard'
 import { useTranslation } from 'react-i18next'
@@ -8,15 +8,6 @@ import { useTranslation } from 'react-i18next'
 const ZBCShortAddress = ({ address, href, title, style = {}, small = false }) => {
   const { t } = useTranslation()
   if (!address) return null
-
-  const onClick = () => {
-    Modal.info({
-      title: t(title),
-      content: <CopyToClipboard text={address} keyID={`address-${address}`} />,
-      width: 800,
-      centered: true,
-    })
-  }
 
   const addressElm = href ? (
     <Link to={href} style={style}>
@@ -32,14 +23,44 @@ const ZBCShortAddress = ({ address, href, title, style = {}, small = false }) =>
         <small>
           {addressElm}
           &nbsp;
-          <Icon type="search" onClick={onClick} />
+          <Popover
+            content={
+              <>
+                <small className="monospace-text">{address}</small>
+                <CopyToClipboard
+                  text={address}
+                  keyID={`tooltip-address-${address}`}
+                  showText={false}
+                />
+              </>
+            }
+            title={t(title)}
+            trigger="click"
+          >
+            <Icon type="zoom-in" />
+          </Popover>
           <CopyToClipboard text={address} keyID={`address-${address}`} showText={false} />
         </small>
       ) : (
         <>
           {addressElm}
           &nbsp;
-          <Icon type="search" onClick={onClick} />
+          <Popover
+            content={
+              <>
+                <small className="monospace-text">{address}</small>
+                <CopyToClipboard
+                  text={address}
+                  keyID={`tooltip-address-${address}`}
+                  showText={false}
+                />
+              </>
+            }
+            title={t(title)}
+            trigger="click"
+          >
+            <Icon type="zoom-in" />
+          </Popover>
           <CopyToClipboard text={address} keyID={`address-${address}`} showText={false} />
         </>
       )}
