@@ -164,11 +164,11 @@ const Block = ({ match }) => {
       if (!!data) {
         fetcTrxByBlock({
           variables: {
-            BlockID: data.block.BlockID
-          }
+            BlockID: data.block.BlockID,
+          },
         })
       }
-    }
+    },
   })
 
   const [fetcTrxByBlock, trxByBlock] = useLazyQuery(GET_TRX_BY_BLOCK, {
