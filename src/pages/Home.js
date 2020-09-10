@@ -48,6 +48,7 @@ const GET_HOME_DATA = gql`
     maps {
       NodeID
       NodePublicKey
+      NodePublicKeyFormatted
       OwnerAddress
       RegistrationStatus
       CountryCode

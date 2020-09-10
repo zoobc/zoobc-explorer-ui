@@ -45,6 +45,7 @@ const GET_TRX_DATA = gql`
       }
       NodeRegistration {
         NodePublicKey
+        NodePublicKeyFormatted
         AccountAddress
         NodeAddress {
           Address
@@ -59,6 +60,7 @@ const GET_TRX_DATA = gql`
       }
       UpdateNodeRegistration {
         NodePublicKey
+        NodePublicKeyFormatted
         NodeAddress {
           Address
           Port
@@ -72,9 +74,11 @@ const GET_TRX_DATA = gql`
       }
       RemoveNodeRegistration {
         NodePublicKey
+        NodePublicKeyFormatted
       }
       ClaimNodeRegistration {
         NodePublicKey
+        NodePublicKeyFormatted
         ProofOfOwnership {
           MessageBytes
           Signature

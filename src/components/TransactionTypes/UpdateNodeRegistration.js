@@ -21,7 +21,9 @@ const UpdateNodeRegistration = ({ data }) => {
         text={t(
           'a string of letters and numbers that are used to receive amount of zoobc. works similar to a traditional bank account number and can be shared publicly with others'
         )}
-        value={<Link to={`/nodes/${data.NodePublicKey}`}>{data.NodePublicKey}</Link>}
+        value={
+          <Link to={`/nodes/${data.NodePublicKeyFormatted}`}>{data.NodePublicKeyFormatted}</Link>
+        }
         textClassName="monospace-text"
       />
       <DescItem
