@@ -381,7 +381,7 @@ const Block = ({ match }) => {
                         columns={popColumns}
                         dataSource={data.block.PopChanges || []}
                         pagination={{
-                          pageSize: 5
+                          pageSize: 5,
                         }}
                         size="small"
                       />
@@ -401,7 +401,7 @@ const Block = ({ match }) => {
                         columns={skippedBlocksmithColumns}
                         dataSource={data.block.SkippedBlocksmiths || []}
                         pagination={{
-                          pageSize: 5
+                          pageSize: 5,
                         }}
                         size="small"
                       />
@@ -424,7 +424,7 @@ const Block = ({ match }) => {
                         columns={accountRewardColumns}
                         dataSource={data.block.AccountRewards || []}
                         pagination={{
-                          pageSize: 5
+                          pageSize: 5,
                         }}
                         size="small"
                       />
@@ -450,7 +450,7 @@ const Block = ({ match }) => {
                         columns={publishedReceiptColumns}
                         dataSource={data.block.PublishedReceipts || []}
                         pagination={{
-                          pageSize: 5
+                          pageSize: 5,
                         }}
                         size="small"
                         loading={loading}
