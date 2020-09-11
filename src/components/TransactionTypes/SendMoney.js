@@ -9,9 +9,9 @@ const SendMoney = ({ data }) => {
   const { t } = useTranslation()
   return (
     <Card className="transaction-card">
-      <h4 className="transaction-card-title page-title">{t('send Money')}</h4>
+      <h4 className="transaction-card-title page-title">{t('send money')}</h4>
       <DescItem
-        label="Amount"
+        label="amount"
         style={{ display: 'none' }}
         value={
           <NumberFormat
