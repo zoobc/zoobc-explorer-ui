@@ -380,7 +380,9 @@ const Block = ({ match }) => {
                         className="transactions-table"
                         columns={popColumns}
                         dataSource={data.block.PopChanges || []}
-                        pagination={false}
+                        pagination={{
+                          pageSize: 5,
+                        }}
                         size="small"
                       />
                     </Card>
@@ -398,7 +400,9 @@ const Block = ({ match }) => {
                         className="transactions-table"
                         columns={skippedBlocksmithColumns}
                         dataSource={data.block.SkippedBlocksmiths || []}
-                        pagination={false}
+                        pagination={{
+                          pageSize: 5,
+                        }}
                         size="small"
                       />
                     </Card>
@@ -419,7 +423,9 @@ const Block = ({ match }) => {
                         className="transactions-table"
                         columns={accountRewardColumns}
                         dataSource={data.block.AccountRewards || []}
-                        pagination={false}
+                        pagination={{
+                          pageSize: 5,
+                        }}
                         size="small"
                       />
                     </Card>
@@ -443,7 +449,9 @@ const Block = ({ match }) => {
                       <Table
                         columns={publishedReceiptColumns}
                         dataSource={data.block.PublishedReceipts || []}
-                        pagination={false}
+                        pagination={{
+                          pageSize: 5,
+                        }}
                         size="small"
                         loading={loading}
                       />
