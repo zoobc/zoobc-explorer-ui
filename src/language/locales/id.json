@@ -37,7 +37,7 @@
   "last refresh": "Terakhir Muat Ulang",
 
   "=============== EXPLORER UI & WALLET MOBILE ===============": "=============== EXPLORER UI & WALLET MOBILE ===============",
-  
+
   "sender address": "Alamat Pengirim",
 
   "=============== EXPLORER UI ===============": "=============== EXPLORER UI ===============",
@@ -144,7 +144,7 @@
   "copied to clipboard": "Disalin ke papan klip",
   "page not found": "Halaman tidak ditemukan",
   "search results for": "Hasil pencarian",
-  "sorry, we couldn't find any results for this search": "Maaf, kami tidak dapat menemukan hasil apa pun untuk pencarian ini",
+  "sorry, we couldn't find any results for": "maaf, kami tidak dapat menemukan hasil apa pun untuk",
   "refresh page": "Muat Ulang Halaman",
   "sentiment": "Sentimen",
   "positive": "positif",
@@ -183,6 +183,9 @@
   "block hash": "Hash Blok",
   "block": "Blok",
   "blocksmith public key": "Kunci Publik Blocksmith",
+  "sorry the page you are looking for is not found": "maaf halaman yang anda cari tidak ditemukan",
+  "back to homepage": "kembali ke beranda",
+  "no result found": "tidak ada hasil yang ditemukan",
 
   "=============== WALLET WEB ===============": "=============== WALLET WEB ===============",
 

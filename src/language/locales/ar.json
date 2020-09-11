@@ -37,7 +37,7 @@
   "last refresh": "التحديث الأخير",
 
   "=============== EXPLORER UI & WALLET MOBILE ===============": "=============== EXPLORER UI & WALLET MOBILE ===============",
-  
+
   "sender address": "عنوان المرسل",
 
   "=============== EXPLORER UI ===============": "=============== EXPLORER UI ===============",
@@ -144,7 +144,7 @@
   "copied to clipboard": "نسخ إلى الحافظة",
   "page not found": "الصفحة غير موجودة",
   "search results for": "نتائج البحث عن",
-  "sorry, we couldn't find any results for this search": "نأسف ، تعذر علينا العثور على أي نتائج لهذا البحث",
+  "sorry, we couldn't find any results for": "آسف ، لم نتمكن من العثور على أي نتائج عن",
   "refresh page": "إعادة تحميل الصفحة",
   "sentiment": "عاطفة",
   "positive": "إيجابي",
@@ -183,6 +183,9 @@
   "block hash": "بلوك هاش",
   "block": "كتلة",
   "blocksmith public key": " المفتاح العمومي صانع الكتلة",
+  "sorry the page you are looking for is not found": "آسف الصفحة التي تبحث عنها غير موجودة",
+  "back to homepage": "العودة إلى الصفحة الرئيسية",
+  "no result found": "لم يتم العثور على نتائج",
 
   "=============== WALLET WEB ===============": "=============== WALLET WEB ===============",
 

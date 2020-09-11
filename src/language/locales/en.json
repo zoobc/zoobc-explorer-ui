@@ -37,7 +37,7 @@
   "last refresh": "Last Refresh",
 
   "=============== EXPLORER UI & WALLET MOBILE ===============": "=============== EXPLORER UI & WALLET MOBILE ===============",
-  
+
   "sender address": "Sender Address",
 
   "=============== EXPLORER UI ===============": "=============== EXPLORER UI ===============",
@@ -144,7 +144,7 @@
   "copied to clipboard": "Copied to clipboard",
   "page not found": "Page Not Found",
   "search results for": "Search results for",
-  "sorry, we couldn't find any results for this search": "Sorry, we couldn't find any results for this search",
+  "sorry, we couldn't find any results for": "sorry, we couldn't find any results for",
   "refresh page": "Refresh page",
   "sentiment": "Sentiment",
   "positive": "positive",
@@ -183,6 +183,9 @@
   "block hash": "Block Hash",
   "block": "Block",
   "blocksmith public key": "Blocksmith Public Key",
+  "sorry the page you are looking for is not found": "sorry the page you are looking for is not found",
+  "back to homepage": "back to homepage",
+  "no result found": "no result found",
 
   "=============== WALLET WEB ===============": "=============== WALLET WEB ===============",
 

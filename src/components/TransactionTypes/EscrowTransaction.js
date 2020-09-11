@@ -41,7 +41,7 @@ const EscrowTransaction = ({ data, blockID, TransactionID }) => {
         textClassName="monospace-text"
       />
       <DescItem
-        label={t('commission Fee')}
+        label={t('commission fee')}
         style={{ display: 'none' }}
         value={
           <NumberFormat
