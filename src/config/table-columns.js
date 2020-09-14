@@ -344,7 +344,7 @@ export const transactionColumns = [
     title: <Title text="timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
-    width: 200,
+    width: 150,
     render(text) {
       return <DateFormat date={text} />
     },
@@ -427,6 +427,7 @@ export const transactionColumns = [
     title: <Title text="fees" />,
     dataIndex: 'FeeConversion',
     key: 'FeeConversion',
+    width: 150,
     render: renderCurrenncy,
   },
 ]
