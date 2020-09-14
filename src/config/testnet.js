@@ -2,12 +2,12 @@ const testnetProd = [
   {
     name: 'Beta Network',
     color: '#7265e6',
-    value: 'testnet2',
+    value: 'testnet1',
   },
   {
     name: 'Alpha Network',
     color: '#f56a00',
-    value: 'testnet1',
+    value: 'testnet2',
   },
   {
     name: 'Dev Network',
