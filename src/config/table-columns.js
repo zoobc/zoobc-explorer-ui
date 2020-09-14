@@ -54,7 +54,7 @@ const renderCurrenncy = text => {
       displayType={'text'}
       thousandSeparator={true}
       suffix={' ZBC'}
-      className="page-title"
+      className="page-title monospace-text"
     />
   )
 }
@@ -126,6 +126,7 @@ const renderAmountCurrenncy = (text, record) => {
           suffix={' ZBC'}
           prefix={isSender ? '-' : '+'}
           style={{ color: isSender ? 'red' : 'green' }}
+          className="monospace-text"
         />
       )
     )
@@ -138,7 +139,7 @@ const renderAmountCurrenncy = (text, record) => {
         displayType={'text'}
         thousandSeparator={true}
         suffix={' ZBC'}
-        className="page-title"
+        className="page-title monospace-text"
       />
     )
   )
@@ -192,7 +193,7 @@ export const accountColumns = [
           decimalScale={2}
           thousandSeparator={true}
           suffix={' ZBC'}
-          className="page-title"
+          className="page-title monospace-text"
         />
       )
     },
@@ -222,10 +223,8 @@ export const blockColumns = [
     ),
     dataIndex: 'BlockHash',
     key: 'BlockHash',
-    render(text, record) {
-      return (
-        <ZBCShortAddress address={text} href={`/blocks/${record.BlockID}`} title="block hash" />
-      )
+    render(text) {
+      return <ZBCShortAddress address={text} href={`/blocks/${text}`} title="block hash" />
     },
   },
   {
@@ -244,8 +243,8 @@ export const blockColumns = [
     ),
     dataIndex: 'Height',
     key: 'Height',
-    render(text, record) {
-      return <Link to={`/blocks/${record.BlockID}`}>{text}</Link>
+    render(text) {
+      return <Link to={`/blocks/${text}`}>{text}</Link>
     },
   },
   {
@@ -298,7 +297,7 @@ export const transactionColumns = [
   {
     title: (
       <div>
-        <Title text="transaction hash" />{' '}
+        <Title text="transaction hash"/>{' '}
         <Tooltip
           placement="bottom"
           title={
@@ -320,15 +319,15 @@ export const transactionColumns = [
         />
       )
     },
-    width: 200,
+    width: 220,
   },
   {
     title: (
       <div>
-        <Title text="height" />{' '}
+        <Title text="height"/>{' '}
         <Tooltip
           placement="bottom"
-          title={<Title text="the block height in which the transaction is included" />}
+          title={<Title text="the block height in which the transaction is included"/>}
         >
           <InfoCircleOutlined />
         </Tooltip>
@@ -337,8 +336,9 @@ export const transactionColumns = [
     dataIndex: 'Height',
     key: 'Height',
     render(text, record) {
-      return <Link to={`/blocks/${record.BlockID}`}>{text}</Link>
+      return <Link to={`/blocks/${text}`}>{text}</Link>
     },
+    width: 100,
   },
   {
     title: <Title text="timestamp" />,
@@ -375,7 +375,7 @@ export const transactionColumns = [
               address={text}
               href={`/accounts/${text}`}
               title="sender address"
-              style={{ color: isSender ? 'orangeRed' : null }}
+              style={{ fontWeight: isSender ? 'bold' : null, color: isSender ? 'green' : null }}
             />
           )
         )
@@ -401,7 +401,10 @@ export const transactionColumns = [
               address={text}
               href={`/accounts/${text}`}
               title="recipient address"
-              style={{ color: isRecipient ? 'orangeRed' : null }}
+              style={{
+                fontWeight: isRecipient ? 'bold' : null,
+                color: isRecipient ? 'green' : null,
+              }}
             />
           )
         )
@@ -443,8 +446,8 @@ export const nodeColumns = [
         </Tooltip>
       </div>
     ),
-    dataIndex: 'NodePublicKey',
-    key: 'NodePublicKey',
+    dataIndex: 'NodePublicKeyFormatted',
+    key: 'NodePublicKeyFormatted',
     render(text) {
       return (
         !!text && <ZBCShortAddress address={text} href={`/nodes/${text}`} title="node public key" />
@@ -773,7 +776,7 @@ export const accountRewardColumns = [
           decimalScale={2}
           thousandSeparator={true}
           suffix={' ZBC'}
-          className="page-title"
+          className="page-title monospace-text"
         />
       )
     },
@@ -788,8 +791,8 @@ export const popColumns = [
   // },
   {
     title: <Title text="node public key" />,
-    dataIndex: 'NodePublicKey',
-    key: 'NodePublicKey',
+    dataIndex: 'NodePublicKeyFormatted',
+    key: 'NodePublicKeyFormatted',
     render(text) {
       // return !!text && <Link to={`/nodes/${text}`}>{shortenHash(text, 30)}</Link>
       return (

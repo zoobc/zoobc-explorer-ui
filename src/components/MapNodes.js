@@ -101,8 +101,8 @@ export default function MapNodes({ loading, data }) {
                         <small>
                           {item.NodeAddressInfo != null && (
                             <>
-                              <Link to={`/nodes/${item.NodePublicKey}`}>
-                                <strong>{shortenHash(item.NodePublicKey)}</strong>
+                              <Link to={`/nodes/${item.NodePublicKeyFormatted}`}>
+                                <strong>{shortenHash(item.NodePublicKeyFormatted)}</strong>
                               </Link>
                               <br />
                             </>

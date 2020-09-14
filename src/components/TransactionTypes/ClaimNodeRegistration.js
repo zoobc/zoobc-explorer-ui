@@ -13,13 +13,17 @@ const ClaimNodeRegistration = ({ data }) => {
         label={t('account address')}
         style={{ display: 'none' }}
         value={<Link to={`/accounts/${data.AccountAddress}`}>{data.AccountAddress}</Link>}
+        textClassName="monospace-text"
       />
       <DescItem
         label={t('node public key')}
         text={t(
           'a string of letters and numbers that are used to receive amount of zoobc. works similar to a traditional bank account number and can be shared publicly with others'
         )}
-        value={<Link to={`/nodes/${data.NodePublicKey}`}>{data.NodePublicKey}</Link>}
+        value={
+          <Link to={`/nodes/${data.NodePublicKeyFormatted}`}>{data.NodePublicKeyFormatted}</Link>
+        }
+        textClassName="monospace-text"
       />
       <DescItem
         label={t('poow message bytes')}
@@ -30,6 +34,7 @@ const ClaimNodeRegistration = ({ data }) => {
         label={t('poow signature')}
         style={{ display: 'none' }}
         value={data.ProofOfOwnership && data.ProofOfOwnership.Signature}
+        textClassName="monospace-text"
       />
     </Card>
   )

@@ -6,6 +6,7 @@ const GET_NODES_DATA = gql`
     nodes(page: $page, limit: 15, order: $sorter, RegistrationStatus: $tabValue) {
       Nodes {
         NodePublicKey
+        NodePublicKeyFormatted
         OwnerAddress
         NodeAddressInfo {
           Address

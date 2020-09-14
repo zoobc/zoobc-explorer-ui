@@ -54,7 +54,7 @@ const Footer = () => {
   const { theme, onChangeSelectedTheme } = useContext(ThemeContext)
 
   const onChangeTheme = data => {
-    onChangeSelectedTheme(data === true ? 'dark' : 'light')
+    onChangeSelectedTheme(data === true ? '☾' : '☀')
   }
 
   const FooterMobile = () => (
@@ -401,17 +401,12 @@ const Footer = () => {
           </li>
         </ul>
         <Switch
-          checkedChildren="dark"
-          checked={theme === 'dark' ? true : false}
-          unCheckedChildren="light"
+          checkedChildren="☀"
+          checked={theme === '☾' ? true : false}
+          unCheckedChildren="☾"
           onClick={e => onChangeTheme(e)}
           style={{ marginRight: 5 }}
         />
-        {theme === 'dark' ? (
-          <a style={{ color: 'white', marginRight: 5 }}>Enable Light theme</a>
-        ) : (
-          <a style={{ color: 'white', marginRight: 5 }}>Enable Dark theme</a>
-        )}
 
         <Dropdown overlay={languageOptions}>
           <p className="footer-language ">
@@ -786,17 +781,12 @@ const Footer = () => {
             </ul>
 
             <Switch
-              checkedChildren="dark"
-              checked={theme === 'dark' ? true : false}
-              unCheckedChildren="light"
+              checkedChildren="☀"
+              checked={theme === '☾' ? true : false}
+              unCheckedChildren="☾"
               onClick={e => onChangeTheme(e)}
               style={{ marginRight: 5 }}
             />
-            {theme === 'dark' ? (
-              <a style={{ color: 'white', marginRight: 5 }}>Enable Light theme</a>
-            ) : (
-              <a style={{ color: 'white', marginRight: 5 }}>Enable Dark theme</a>
-            )}
 
             <Dropdown overlay={languageOptions}>
               <p className="footer-language">

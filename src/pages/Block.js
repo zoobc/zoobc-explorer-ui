@@ -4,7 +4,7 @@ import moment from 'moment'
 import NumberFormat from 'react-number-format'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { useQuery, gql } from '@apollo/client'
+import { useQuery, gql, useLazyQuery } from '@apollo/client'
 import { Row, Col, Card, Table, Pagination, Collapse, Badge } from 'antd'
 
 import Container from '../components/Container'
@@ -63,6 +63,7 @@ const GET_BLOCK_DATA = gql`
       PopChanges {
         NodeID
         NodePublicKey
+        NodePublicKeyFormatted
         Score
         Latest
         Height
@@ -160,9 +161,18 @@ const Block = ({ match }) => {
     variables: {
       BlockID: params.id,
     },
+    onCompleted(data) {
+      if (!!data) {
+        fetcTrxByBlock({
+          variables: {
+            BlockID: data.block.BlockID,
+          },
+        })
+      }
+    },
   })
 
-  const trxByBlock = useQuery(GET_TRX_BY_BLOCK, {
+  const [fetcTrxByBlock, trxByBlock] = useLazyQuery(GET_TRX_BY_BLOCK, {
     variables: {
       BlockID: params.id,
       page: trxCurrentPage,
@@ -222,6 +232,7 @@ const Block = ({ match }) => {
                     label={t('block hash')}
                     style={{ display: 'none' }}
                     value={<CopyToClipboard text={data.block.BlockHash} keyID="blockID" />}
+                    textClassName="monospace-text"
                   />
                 </Card>
                 <Card className="block-card" bordered={false}>
@@ -242,16 +253,19 @@ const Block = ({ match }) => {
                     label={t('previous block hash')}
                     style={{ display: 'none' }}
                     value={data.block.PreviousBlockID}
+                    textClassName="monospace-text"
                   />
                   <DescItem
                     label={t('block seed')}
                     text={t('a seed for random number uniquely generated for the block')}
                     value={data.block.BlockSeed}
+                    textClassName="monospace-text"
                   />
                   <DescItem
                     label={t('block signature')}
                     style={{ display: 'none' }}
                     value={data.block.BlockSignature}
+                    textClassName="monospace-text"
                   />
                   <DescItem
                     label={t('cumulative difficulty')}
@@ -282,6 +296,7 @@ const Block = ({ match }) => {
                         displayType={'text'}
                         thousandSeparator={true}
                         suffix={' ZBC'}
+                        className="monospace-text"
                       />
                     }
                   />
@@ -294,6 +309,7 @@ const Block = ({ match }) => {
                         displayType={'text'}
                         thousandSeparator={true}
                         suffix={' ZBC'}
+                        className="monospace-text"
                       />
                     }
                   />
@@ -306,6 +322,7 @@ const Block = ({ match }) => {
                         displayType={'text'}
                         thousandSeparator={true}
                         suffix={' ZBC'}
+                        className="monospace-text"
                       />
                     }
                   />
@@ -332,6 +349,7 @@ const Block = ({ match }) => {
                         {data.block.BlocksmithID}
                       </Link>
                     }
+                    textClassName="monospace-text"
                   />
                   {/* <DescItem
                     label={t('pop change')}
@@ -347,6 +365,7 @@ const Block = ({ match }) => {
                     label={t('payload hash')}
                     style={{ display: 'none' }}
                     value={data.block.PayloadHash}
+                    textClassName="monospace-text"
                   />
                 </Card>
                 <Collapse className="block-collapse" bordered={false}>
@@ -361,7 +380,9 @@ const Block = ({ match }) => {
                         className="transactions-table"
                         columns={popColumns}
                         dataSource={data.block.PopChanges || []}
-                        pagination={false}
+                        pagination={{
+                          pageSize: 5,
+                        }}
                         size="small"
                       />
                     </Card>
@@ -379,7 +400,9 @@ const Block = ({ match }) => {
                         className="transactions-table"
                         columns={skippedBlocksmithColumns}
                         dataSource={data.block.SkippedBlocksmiths || []}
-                        pagination={false}
+                        pagination={{
+                          pageSize: 5,
+                        }}
                         size="small"
                       />
                     </Card>
@@ -400,7 +423,9 @@ const Block = ({ match }) => {
                         className="transactions-table"
                         columns={accountRewardColumns}
                         dataSource={data.block.AccountRewards || []}
-                        pagination={false}
+                        pagination={{
+                          pageSize: 5,
+                        }}
                         size="small"
                       />
                     </Card>
@@ -424,7 +449,9 @@ const Block = ({ match }) => {
                       <Table
                         columns={publishedReceiptColumns}
                         dataSource={data.block.PublishedReceipts || []}
-                        pagination={false}
+                        pagination={{
+                          pageSize: 5,
+                        }}
                         size="small"
                         loading={loading}
                       />

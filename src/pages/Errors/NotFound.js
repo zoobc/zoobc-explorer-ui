@@ -39,7 +39,7 @@ const NotFound = ({ history, location }) => {
     <Container>
       <div className="error-content error-content-page">
         <img src={searchResult} alt="not found" />
-        <span className="error-title page-title">No result found</span>
+        <span className="error-title page-title">{t('no result found')}</span>
         <span className="h6 text-center page-title">
           {t("sorry, we couldn't find any results for")} {state.search}
         </span>
