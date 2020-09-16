@@ -14,7 +14,7 @@ const MultisigTransaction = ({ data }) => {
         dataSource={data}
         pagination={false}
         size="small"
-        scroll={{ x: 1300 }}
+        scroll={{ x: 1350 }}
         rowKey="TransactionID"
       />
     </Card>

@@ -480,7 +480,7 @@ const Block = ({ match }) => {
                         pagination={false}
                         size="small"
                         loading={loading}
-                        scroll={{ x: 1300 }}
+                        scroll={{ x: 1350 }}
                         rowKey="TransactionID"
                       />
                       {!!data && (
