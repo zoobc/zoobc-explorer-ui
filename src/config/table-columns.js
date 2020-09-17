@@ -14,7 +14,7 @@ const getBlocksmithIndicator = skipped => {
     return {
       text: `${skipped} skipped blocksmith`,
       sorttext: `${skipped} skipped`,
-      color: '#f5222d',
+      color: '#D50000',
     }
   } else if (skipped >= 4 && skipped <= 10) {
     return {
@@ -32,7 +32,7 @@ const getBlocksmithIndicator = skipped => {
     return {
       text: 'No skipped blocksmith',
       sorttext: 'No skipped',
-      color: '#52c41a',
+      color: '#008A00',
     }
   }
 }
@@ -63,13 +63,13 @@ const getStatusTrx = (text, status) => {
   switch (status) {
     case 'Rejected':
       return (
-        <span style={{ color: 'red' }}>
+        <span style={{ color: '#D50000' }}>
           <Icon type="close-circle" /> {text}
         </span>
       )
     case 'Expired':
       return (
-        <span style={{ color: 'red' }}>
+        <span style={{ color: '#D50000' }}>
           <Icon type="close-circle" /> {text}
         </span>
       )
@@ -81,7 +81,7 @@ const getStatusTrx = (text, status) => {
       )
     default:
       return (
-        <span style={{ color: 'green' }}>
+        <span style={{ color: '#006800' }}>
           <Icon type="check-circle" /> {text}
         </span>
       )
