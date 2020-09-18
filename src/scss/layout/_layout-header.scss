@@ -164,6 +164,7 @@
 .menu-with-icon {
   color: var(--color-secondary-light);
   font-size: 14px;
+  background-color: var(--color-primary-bg) !important;
 
   a {
     color: var(--color-secondary-solitude-txt) !important;
