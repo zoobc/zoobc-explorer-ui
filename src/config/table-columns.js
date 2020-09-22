@@ -297,7 +297,7 @@ export const transactionColumns = [
   {
     title: (
       <div>
-        <Title text="transaction hash"/>{' '}
+        <Title text="transaction hash" />{' '}
         <Tooltip
           placement="bottom"
           title={
@@ -324,10 +324,10 @@ export const transactionColumns = [
   {
     title: (
       <div>
-        <Title text="height"/>{' '}
+        <Title text="height" />{' '}
         <Tooltip
           placement="bottom"
-          title={<Title text="the block height in which the transaction is included"/>}
+          title={<Title text="the block height in which the transaction is included" />}
         >
           <InfoCircleOutlined />
         </Tooltip>
