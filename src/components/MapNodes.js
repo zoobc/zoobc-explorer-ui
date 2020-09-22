@@ -108,7 +108,7 @@ export default function MapNodes({ loading, data }) {
                             </>
                           )}
                           Country: {item.CountryName}&nbsp;&nbsp;
-                          <img src={item.CountryFlagUrl} alt="flag" style={{ height: '12px' }} />
+                          <img src={item.CountryFlagUrl && item.CountryFlagUrl.replace('http', 'https')} alt="flag" style={{ height: '12px' }} />
                           <br />
                           City: {item.City}
                           <br />
