@@ -53,10 +53,7 @@ const pageEnterAnim = [
   },
 ]
 
-const leaveAnim = [
-  { duration: 250, opacity: 0 },
-  { height: 0, duration: 200, ease: 'easeOutQuad' },
-]
+const leaveAnim = [{ duration: 250, opacity: 0 }, { height: 0, duration: 200, ease: 'easeOutQuad' }]
 const pageLeaveAnim = [
   { duration: 150, opacity: 0 },
   { height: 0, duration: 150, ease: 'easeOutQuad' },
