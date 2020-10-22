@@ -100,7 +100,7 @@ const Nodes = () => {
                   <Button
                     shape="circle"
                     icon="reload"
-                    onClick={() => refetch()}
+                    onClick={() => refetch({ refresh: true })}
                     loading={loading}
                   />
                 </Col>

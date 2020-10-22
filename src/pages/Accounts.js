@@ -10,8 +10,8 @@ import LastRefresh from '../components/LastRefresh'
 
 const defaultSort = { columnKey: 'AccountAddress', order: 'ascend' }
 const GET_ACCOUNTS_DATA = gql`
-  query getAccounts($page: Int, $sorter: String) {
-    accounts(page: $page, limit: 15, order: $sorter) {
+  query getAccounts($page: Int, $sorter: String, $refresh: Boolean) {
+    accounts(page: $page, limit: 15, order: $sorter, refresh: $refresh) {
       Accounts {
         AccountAddress
         BalanceConversion
@@ -54,6 +54,7 @@ const Accounts = () => {
     variables: {
       page: currentPage,
       sorter: getSortString(sorted),
+      refresh: false,
     },
     notifyOnNetworkStatusChange: true,
   })
@@ -90,7 +91,7 @@ const Accounts = () => {
                   <Button
                     shape="circle"
                     icon="reload"
-                    onClick={() => refetch()}
+                    onClick={() => refetch({ refresh: true })}
                     loading={loading || networkStatus === 4}
                   />
                 </Col>

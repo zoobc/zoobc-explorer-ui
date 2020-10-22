@@ -2,8 +2,14 @@ import { getSortString } from '../utils'
 import { useLazyQuery, gql } from '@apollo/client'
 
 const GET_NODES_DATA = gql`
-  query getNodes($page: Int, $sorter: String, $tabValue: Int) {
-    nodes(page: $page, limit: 15, order: $sorter, RegistrationStatus: $tabValue) {
+  query getNodes($page: Int, $sorter: String, $tabValue: Int, $refresh: Boolean) {
+    nodes(
+      page: $page
+      limit: 15
+      order: $sorter
+      RegistrationStatus: $tabValue
+      refresh: $refresh
+    ) {
       Nodes {
         NodePublicKey
         NodePublicKeyFormatted
@@ -36,6 +42,7 @@ const useFetchNode = (page, sorted, tabValue) => {
         page: page,
         sorter: getSortString(sorted),
         tabValue: parseInt(tabValue),
+        refresh: false,
       },
       notifyOnNetworkStatusChange: true,
     }
