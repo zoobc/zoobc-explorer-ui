@@ -52,10 +52,10 @@ export default function MapNodes({ loading, data }) {
                 <div className="green" /> {t('registered')}
               </li>
               <li>
-                <div className="yellow" /> {t('pending')}
+                <div className="yellow" /> {t('in queue')}
               </li>
               <li>
-                <div className="red" /> {t('deleted')}
+                <div className="red" /> {t('stray')}
               </li>
             </ul>
           </div>
@@ -108,7 +108,7 @@ export default function MapNodes({ loading, data }) {
                             </>
                           )}
                           Country: {item.CountryName}&nbsp;&nbsp;
-                          <img src={item.CountryFlagUrl} alt="flag" style={{ height: '12px' }} />
+                          <img src={item.CountryFlagUrl && item.CountryFlagUrl.replace('http', 'https')} alt="flag" style={{ height: '12px' }} />
                           <br />
                           City: {item.City}
                           <br />

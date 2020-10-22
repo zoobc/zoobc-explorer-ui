@@ -10,7 +10,7 @@ import LastRefresh from '../components/LastRefresh'
 
 const { TabPane } = Tabs
 
-const defaultSort = { columnKey: 'NodePublicKeyFormatted', order: 'ascend' }
+const defaultSort = { columnKey: 'RegisteredBlockHeight', order: 'descend' }
 
 const Nodes = () => {
   const { t } = useTranslation()
