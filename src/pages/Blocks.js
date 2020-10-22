@@ -10,8 +10,8 @@ import LastRefresh from '../components/LastRefresh'
 
 const defaultSort = { columnKey: 'Height', order: 'descend' }
 const GET_BLOCKS_DATA = gql`
-  query getBlocks($page: Int, $sorter: String) {
-    blocks(page: $page, limit: 15, order: $sorter) {
+  query getBlocks($page: Int, $sorter: String, $refresh: Boolean) {
+    blocks(page: $page, limit: 15, order: $sorter, refresh: $refresh) {
       Blocks {
         BlockHash
         BlockID
@@ -58,6 +58,7 @@ const Blocks = () => {
     variables: {
       page: currentPage,
       sorter: getSortString(sorted),
+      refresh: false,
     },
     notifyOnNetworkStatusChange: true,
   })
@@ -94,7 +95,7 @@ const Blocks = () => {
                   <Button
                     shape="circle"
                     icon="reload"
-                    onClick={() => refetch()}
+                    onClick={() => refetch({ refresh: true })}
                     loading={loading || networkStatus === 4}
                   />
                 </Col>
