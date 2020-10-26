@@ -85,9 +85,9 @@ const Header = ({ history, location, fluid }) => {
               <Link className="logo-text-name" to="/">
                 ZooBC Explorer
               </Link>
-              {/* <div className="logo-text-version">Alpha - Version 0.1</div> */}
+              <span className="logo-text-version">Beta - Version 0.2</span>
               <Dropdown overlay={TesnetMenuDropdown}>
-                <span className="logo-text-version">
+                <span className="logo-text-network">
                   {selectedTestnet.name} <Icon type="down" />
                 </span>
               </Dropdown>
