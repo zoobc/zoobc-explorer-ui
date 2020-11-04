@@ -159,7 +159,7 @@ const Transactions = () => {
                 size="small"
                 loading={loading}
                 onChange={onChangeTable.bind(this)}
-                scroll={{ x: 1350 }}
+                scroll={{ x: 1500 }}
                 rowKey="TransactionID"
               />
               {!!data && (
