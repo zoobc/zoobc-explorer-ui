@@ -1,50 +1,30 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useContext, useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import {
-  Switch,
-  Menu,
-  Dropdown,
-  Avatar,
-  Layout,
-  Row,
-  Col,
-  List,
-  Button,
-  Drawer,
-  Collapse,
-} from 'antd'
-import { Link } from 'react-router-dom'
+import { Switch, Menu, Dropdown, Avatar, Layout, Row, Col, Collapse } from 'antd'
 import Container from './Container'
 import languages from '../languages'
 
 import iconGitHub from '../assets/images/github.svg'
-import iconMedium from '../assets/images/medium.svg'
 import iconYoutube from '../assets/images/youtube.svg'
 import iconTelegram from '../assets/images/telegram.svg'
-import iconForum from '../assets/images/forum.svg'
-import iconBlog from '../assets/images/blog.svg'
-import zoobcLogo from '../assets/images/logo-zoobc.svg'
-import TestnetContext from '../context/TestnetContext'
-import testnet from '../config/testnet'
+import iconFacebook from '../assets/images/facebook.svg'
+import iconInstagram from '../assets/images/instagram.svg'
+import iconLinkedin from '../assets/images/linkedin.svg'
+import iconTwitter from '../assets/images/twitter.svg'
+import zoobcLogoFooter from '../assets/images/logo-zoobc-footer.svg'
+import bczLogoFooter from '../assets/images/logo-bcz-footer.svg'
 import FormFeedback from './FormFeedback'
 import ComingSoon from './ComingSoon'
 import { store } from '../utils'
+import ThemeContext from '../context/ThemeContext'
 
 const Footer = () => {
   const { t, i18n } = useTranslation()
-  const { selectedTestnet, onChangeSelectedTestnet } = useContext(TestnetContext)
-  const [isOpen, setIsOpen] = useState(false)
   const [isOpenFeedback, setIsOpenFeedback] = useState(false)
   const [isOpenComingSoon, setIsOpenCommingSoon] = useState(false)
-  const [dialogTitle, setDialogTitle] = useState()
-
-  const onSelectNetwork = data => {
-    onChangeSelectedTestnet(data)
-    setIsOpen(false)
-    window.location.reload()
-  }
+  const [dialogTitle] = useState()
 
   const selectedLang = () => {
     const getLang = languages.filter(lang => lang.value === i18n.language)[0]
@@ -62,7 +42,7 @@ const Footer = () => {
         {languages.map((lang, key) => (
           <Menu.Item key={key} onClick={() => onSelectLanguage(lang)}>
             <p className="my-0">
-              <Avatar shape="square" size={18} src={lang.flag} className="mr-1" />
+              <Avatar shape="square" size={18} src={lang.flag} alt={lang.alt} className="mr-1" />
               {lang.label}
             </p>
           </Menu.Item>
@@ -71,169 +51,375 @@ const Footer = () => {
     )
   }
 
-  const onComingSoon = e => {
-    e.preventDefault()
-    setDialogTitle()
-    setIsOpenCommingSoon(true)
-  }
+  const { theme, onChangeSelectedTheme } = useContext(ThemeContext)
 
-  const onFeedback = e => {
-    e.preventDefault()
-    setIsOpenFeedback(true)
+  const onChangeTheme = data => {
+    onChangeSelectedTheme(data === true ? '☾' : '☀')
   }
 
   const FooterMobile = () => (
     <div className="footer-mobile d-block d-md-none">
       <Collapse expandIconPosition="right">
-        <Collapse.Panel header="Product" key="1">
-          <ul className="footer-list-group mb-0">
-            <a className="footer-list-group-item d-none" onClick={onComingSoon}>
-              {t('ZooBC Core')}
-            </a>
-            <a
-              className="footer-list-group-item"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="http://zoobc.one"
-            >
-              {t('ZooBC Wallet')}
-            </a>
-            <a className="footer-list-group-item" rel="noopener noreferrer" href="http://zoobc.net">
-              {t('ZooBC Explorer')}
-            </a>
-            <a
-              className="footer-list-group-item"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://zoobc.com/ZooBC%20Whitepaper%20Draft%20-%20V0.2.pdf"
-            >
-              {t('Whitepaper')}
-            </a>
+        <Collapse.Panel header="ABOUT ZOOBC" key="1">
+          <ul className="footer-list-group mb-0 list-unstyled">
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.blockchainzoo.com/"
+              >
+                {t('company')}
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://zoobc.com/team/"
+              >
+                {t('team')}
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://blogchainzoo.com/"
+              >
+                {t('blog')}
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://zoobc.com/learn-more/"
+              >
+                {t('about us')}
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://blockchainzoo.com/press-media/"
+              >
+                {t('press & media')}
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://zoobc.com/contact-us/"
+              >
+                {t('contact us')}
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://zoobc.com/WP-latest.pdf"
+              >
+                {t('zoobc white paper')}
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://docs.google.com/document/d/1RHbDHHH0JlAfU8bdgfawbnvlm-Ng_Tq-VA7P-n1p_80/edit#"
+              >
+                {t('zoobc white paper live')}
+              </a>
+            </li>
           </ul>
         </Collapse.Panel>
-        <Collapse.Panel header="Community" key="2">
-          <ul className="footer-list-group mb-0">
-            <a className="footer-list-group-item" onClick={onComingSoon}>
-              {t('Getting Started')}
-            </a>
-            <a className="footer-list-group-item" onClick={onComingSoon}>
-              {t('Developer APIs')}
-            </a>
-            <a className="footer-list-group-item" onClick={onComingSoon}>
-              {t('Research')}
-            </a>
-            <a
-              className="footer-list-group-item"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://zoobc.com/#current_roadmap__item"
-            >
-              {t('Roadmap')}
-            </a>
+        <Collapse.Panel header="GET STARTED" key="2">
+          <ul className="footer-list-group mb-0 list-unstyled">
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://zoobc.com/"
+              >
+                ZooBC
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://zoobc.com/zoobc-alpha/"
+              >
+                ZooBC Alpha
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-list-group-item"
+                rel="noopener noreferrer"
+                href="https://zoobc.app/"
+              >
+                ZooBC Wallet Mobile
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://zoobc.one/login"
+              >
+                ZooBC Wallet Web
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://zoobc.net"
+              >
+                ZooBC Explorer
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://zoobc.io/"
+              >
+                ZooBC Genesis Block
+              </a>
+            </li>
           </ul>
         </Collapse.Panel>
-        <Collapse.Panel header="Company" key="3">
-          <ul className="footer-list-group mb-0">
-            <a className="footer-list-group-item" onClick={onComingSoon}>
-              {t('About Us')}
-            </a>
-            <a className="footer-list-group-item" onClick={onComingSoon}>
-              {t('Contact Us')}
-            </a>
-            <a className="footer-list-group-item" onClick={onComingSoon}>
-              {t('Terms of Service')}
-            </a>
-            <a className="footer-list-group-item" onClick={onComingSoon}>
-              {t('Privacy Policy')}
-            </a>
-            <a className="footer-list-group-item" onClick={() => setIsOpenFeedback(true)}>
-              {t('Feedback')}
-            </a>
+        <Collapse.Panel header="COMMUNITY" key="3">
+          <ul className="footer-list-group mb-0 list-unstyled">
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://zoobc.org/"
+              >
+                {t('forum')}
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://zoobc.how/"
+              >
+                {t('q & a')}
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://zoobc.com/support-us/"
+              >
+                {t('support us')}
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://blockchainzoo.com/blockchain-events/"
+              >
+                {t('events')}
+              </a>
+            </li>
+            <li>
+              <a
+                className="footer-list-group-item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://blogchainzoo.com/join-community/"
+              >
+                {t('join us')}
+              </a>
+            </li>
           </ul>
         </Collapse.Panel>
       </Collapse>
-      <div className="footer-mobile-copyright">
-        <div className="footer-logo">
-          <Link className="footer-link-logo" to="/">
-            <img src={zoobcLogo} alt="zoobc-logo" />
-            <div className="footer-logo-name">
-              <div className="logo-text-name">ZooBC Explorer</div>
-              <div className="logo-text-version">Alpha - Version 0.1</div>
-            </div>
-          </Link>
-        </div>
-        <ul className="footer-company-info">
-          <p className="footer-company-text">&#169; 2019 ZooBC Explorer All rights reserved.</p>
+      <div className="footer-image-logo">
+        <img src={zoobcLogoFooter} alt="zoobc-logo" />
+      </div>
+      <div className="footer-social-icons">
+        <ul className="list-unstyled">
+          <li>
+            <a
+              className="footer-social-icon"
+              href="https://github.com/zoobc"
+              target="_blank"
+              rel="noopener norefferer"
+              title="GitHub"
+            >
+              <img src={iconGitHub} alt="github-icon" />
+            </a>
+            <a
+              className="footer-social-icon"
+              href="https://www.facebook.com/TheZooBC"
+              target="_blank"
+              rel="noopener norefferer"
+              title="Facebook"
+            >
+              <img src={iconFacebook} alt="facebook-icon" />
+            </a>
+            <a
+              className="footer-social-icon"
+              href="https://twitter.com/TheZooBC"
+              target="_blank"
+              rel="noopener norefferer"
+              title="Twitter"
+            >
+              <img src={iconTwitter} alt="twitter-icon" />
+            </a>
+            <a
+              className="footer-social-icon"
+              href="https://www.linkedin.com/showcase/zoobc/"
+              target="_blank"
+              rel="noopener norefferer"
+              title="Linkedin"
+            >
+              <img src={iconLinkedin} alt="linkedin-icon" />
+            </a>
+            <a
+              className="footer-social-icon"
+              href="https://www.instagram.com/TheZooBC/"
+              target="_blank"
+              rel="noopener norefferer"
+              title="Instagram"
+            >
+              <img src={iconInstagram} alt="instagram-icon" />
+            </a>
+            <a
+              className="footer-social-icon"
+              href="https://t.me/ZooBlockchain"
+              target="_blank"
+              rel="noopener norefferer"
+              title="Telegram"
+            >
+              <img src={iconTelegram} alt="telegram-icon" />
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div className="footer-image-logo">
+        <img src={bczLogoFooter} alt="zoobc-logo" />
+      </div>
+      <div className="footer-social-icons">
+        <ul className="list-unstyled">
+          <li>
+            <a
+              className="footer-social-icon"
+              href="https://www.facebook.com/TheZooBC"
+              target="_blank"
+              rel="noopener norefferer"
+              title="Facebook"
+            >
+              <img src={iconFacebook} alt="facebook-icon" />
+            </a>
+            <a
+              className="footer-social-icon"
+              href="https://twitter.com/blockchainzoo"
+              target="_blank"
+              rel="noopener norefferer"
+              title="Twitter"
+            >
+              <img src={iconTwitter} alt="twitter-icon" />
+            </a>
+            <a
+              className="footer-social-icon"
+              href="https://www.linkedin.com/company/blockchainzoo/"
+              target="_blank"
+              rel="noopener norefferer"
+              title="Linkedin"
+            >
+              <img src={iconLinkedin} alt="linkedin-icon" />
+            </a>
+            <a
+              className="footer-social-icon"
+              href="https://www.instagram.com/blockchainzoo/"
+              target="_blank"
+              rel="noopener norefferer"
+              title="Instagram"
+            >
+              <img src={iconInstagram} alt="instagram-icon" />
+            </a>
+            <a
+              className="footer-social-icon"
+              href="https://t.me/bczoo"
+              target="_blank"
+              rel="noopener norefferer"
+              title="Telegram"
+            >
+              <img src={iconTelegram} alt="telegram-icon" />
+            </a>
+            <a
+              className="footer-social-icon"
+              href="https://www.youtube.com/c/BlockchainZoo"
+              target="_blank"
+              rel="noopener norefferer"
+              title="Youtube"
+            >
+              <img src={iconYoutube} alt="youtube-icon" />
+            </a>
+          </li>
         </ul>
       </div>
       <hr className="footer-horizontal-rule-dark" />
-      <div className="footer-social-icons">
-        <a
-          className="footer-social-icon"
-          href="https://github.com/zoobc"
-          target="_blank"
-          rel="noopener norefferer"
-          title="GitHub"
-        >
-          <img src={iconGitHub} alt="social-icon" />
-        </a>
-        <a
-          className="footer-social-icon"
-          href="https://medium.com/@BlockchainZoo"
-          target="_blank"
-          rel="noopener norefferer"
-          title="Medium"
-        >
-          <img src={iconMedium} alt="social-icon" />
-        </a>
-        <a
-          className="footer-social-icon"
-          href="https://youtube.com/c/BlockchainZoo"
-          target="_blank"
-          rel="noopener norefferer"
-          title="Youtube"
-        >
-          <img src={iconYoutube} alt="social-icon" />
-        </a>
-        <a
-          className="footer-social-icon"
-          href="https://t.me/ZooBlockchain"
-          target="_blank"
-          rel="noopener norefferer"
-          title="Telegram"
-        >
-          <img src={iconTelegram} alt="social-icon" />
-        </a>
-        <a
-          className="footer-social-icon"
-          href="https://zoobc.org"
-          target="_blank"
-          rel="noopener norefferer"
-          title="Forum"
-        >
-          <img src={iconForum} alt="social-icon" />
-        </a>
-        <a
-          className="footer-social-icon"
-          href="https://blogchainzoo.com"
-          target="_blank"
-          rel="noopener norefferer"
-          title="Blog"
-        >
-          <img src={iconBlog} alt="social-icon" />
-        </a>
-      </div>
       <div className="py-2 text-center">
-        <Switch checkedChildren="☀" unCheckedChildren="☾" defaultChecked className="d-none" />
+        <ul className="footer-mobile-copyright list-unstyled">
+          <li>
+            <p className="footer-company-text">
+              &#169;2020 All rights reserved | ZooBC Explorer |&nbsp;
+              <a target="_blank" rel="noopener noreferrer" href="https://zoobc.com/privacy-policy/">
+                {t('privacy policy')}
+              </a>
+            </p>
+          </li>
+        </ul>
+        <Switch
+          checkedChildren="☀"
+          checked={theme === '☾' ? true : false}
+          unCheckedChildren="☾"
+          onClick={e => onChangeTheme(e)}
+          style={{ marginRight: 5 }}
+        />
+
         <Dropdown overlay={languageOptions}>
           <p className="footer-language ">
-            <Avatar className="mr-1" shape="square" size={18} src={selectedLang().flag} />
+            <Avatar
+              className="mr-1"
+              shape="square"
+              size={18}
+              src={selectedLang().flag}
+              alt="selected-lang"
+            />
             {selectedLang().label}
           </p>
         </Dropdown>
-        <Button className="ml-3" type="primary" size="small" onClick={() => setIsOpen(true)}>
-          {t('Network')}: {selectedTestnet.name}
-        </Button>
       </div>
     </div>
   )
@@ -244,167 +430,376 @@ const Footer = () => {
         <Container>
           <FooterMobile />
           <Row className="footer-row d-none d-md-block">
-            <Col className="footer-company">
-              <div className="footer-logo">
-                <Link className="footer-link-logo" to="/">
-                  <img src={zoobcLogo} alt="zoobc-logo" />
-                  <div className="footer-logo-name">
-                    <div className="logo-text-name">ZooBC Explorer</div>
-                    <div className="logo-text-version">Alpha - Version 0.1</div>
-                  </div>
-                </Link>
+            <Col className="footer-col-info">
+              <div className="footer-subtitle heading-border">{t('about zoobc')}</div>
+              <ul className="footer-list-group mb-0 list-unstyled">
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.blockchainzoo.com/"
+                  >
+                    {t('company')}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://zoobc.com/team/"
+                  >
+                    {t('team')}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://blogchainzoo.com/"
+                  >
+                    {t('blog')}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://zoobc.com/learn-more/"
+                  >
+                    {t('about us')}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://blockchainzoo.com/press-media/"
+                  >
+                    {t('press & media')}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://zoobc.com/contact-us/"
+                  >
+                    {t('contact us')}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://zoobc.com/WP-latest.pdf"
+                  >
+                    {t('zoobc white paper')}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://docs.google.com/document/d/1RHbDHHH0JlAfU8bdgfawbnvlm-Ng_Tq-VA7P-n1p_80/edit#"
+                  >
+                    {t('zoobc white paper live')}
+                  </a>
+                </li>
+              </ul>
+            </Col>
+            <Col className="footer-col-info">
+              <div className="footer-subtitle heading-border">{t('get started')}</div>
+              <ul className="footer-list-group mb-0 list-unstyled">
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://zoobc.com/"
+                  >
+                    ZooBC
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://zoobc.com/zoobc-alpha/"
+                  >
+                    ZooBC Alpha
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    rel="noopener noreferrer"
+                    href="https://zoobc.app/"
+                  >
+                    ZooBC Wallet Mobile
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://zoobc.one/login"
+                  >
+                    ZooBC Wallet Web
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://zoobc.net"
+                  >
+                    ZooBC Explorer
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://zoobc.io/"
+                  >
+                    ZooBC Genesis Block
+                  </a>
+                </li>
+              </ul>
+            </Col>
+            <Col className="footer-col-info">
+              <div className="footer-subtitle heading-border">{t('community')}</div>
+              <ul className="footer-list-group mb-0 list-unstyled">
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://zoobc.org/"
+                  >
+                    {t('forum')}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://zoobc.how/"
+                  >
+                    {t('q & a')}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://zoobc.com/support-us/"
+                  >
+                    {t('support us')}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://blockchainzoo.com/blockchain-events/"
+                  >
+                    {t('events')}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="footer-list-group-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://blogchainzoo.com/join-community/"
+                  >
+                    {t('join us')}
+                  </a>
+                </li>
+              </ul>
+            </Col>
+            <Col className="footer-col-info">
+              <div className="footer-image-logo">
+                <img src={zoobcLogoFooter} alt="zoobc-logo" />
               </div>
-              <ul className="footer-company-info">
-                <p className="footer-company-text">
-                  &#169; 2019 ZooBC Explorer. All rights reserved.
-                </p>
-              </ul>
-            </Col>
-            <Col className="footer-col-info">
-              <h3 className="footer-subtitle heading-border">{t('Product')}</h3>
-              <hr className="footer-horizontal-rule-light" />
-              <ul className="footer-list-group mb-0">
-                <a className="footer-list-group-item d-none" href="#" onClick={onComingSoon}>
-                  {t('ZooBC Core')}
-                </a>
-                <a
-                  className="footer-list-group-item"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="http://zoobc.one"
-                >
-                  {t('ZooBC Wallet')}
-                </a>
-                <a
-                  className="footer-list-group-item"
-                  rel="noopener noreferrer"
-                  href="http://zoobc.net"
-                >
-                  {t('ZooBC Explorer')}
-                </a>
-                <a
-                  className="footer-list-group-item"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://zoobc.com/ZooBC%20Whitepaper%20Draft%20-%20V0.2.pdf"
-                >
-                  {t('Whitepaper')}
-                </a>
-              </ul>
-            </Col>
-            <Col className="footer-col-info">
-              <h3 className="footer-subtitle heading-border">{t('Community')}</h3>
-              <hr className="footer-horizontal-rule-light" />
-              <ul className="footer-list-group mb-0">
-                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
-                  {t('Getting Started')}
-                </a>
-                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
-                  {t('Developer APIs')}
-                </a>
-                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
-                  {t('Research')}
-                </a>
-                <a
-                  className="footer-list-group-item"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://zoobc.com/#current_roadmap__item"
-                >
-                  {t('Roadmap')}
-                </a>
-              </ul>
-            </Col>
-            <Col className="footer-col-info">
-              <h3 className="footer-subtitle heading-border">{t('Company')}</h3>
-              <hr className="footer-horizontal-rule-light" />
-              <ul className="footer-list-group mb-0">
-                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
-                  {t('About Us')}
-                </a>
-                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
-                  {t('Contact Us')}
-                </a>
-                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
-                  {t('Terms of Service')}
-                </a>
-                <a className="footer-list-group-item" href="#" onClick={onComingSoon}>
-                  {t('Privacy Policy')}
-                </a>
-                <a className="footer-list-group-item" href="#" onClick={onFeedback}>
-                  {t('Feedback')}
-                </a>
-              </ul>
+              <div className="footer-social-icons">
+                <ul className="list-unstyled">
+                  <li>
+                    <a
+                      className="footer-social-icon"
+                      href="https://github.com/zoobc"
+                      target="_blank"
+                      rel="noopener norefferer"
+                      title="GitHub"
+                    >
+                      <img src={iconGitHub} alt="github-icon" />
+                    </a>
+                    <a
+                      className="footer-social-icon"
+                      href="https://www.facebook.com/TheZooBC"
+                      target="_blank"
+                      rel="noopener norefferer"
+                      title="Facebook"
+                    >
+                      <img src={iconFacebook} alt="facebook-icon" />
+                    </a>
+                    <a
+                      className="footer-social-icon"
+                      href="https://twitter.com/TheZooBC"
+                      target="_blank"
+                      rel="noopener norefferer"
+                      title="Twitter"
+                    >
+                      <img src={iconTwitter} alt="twitter-icon" />
+                    </a>
+                    <a
+                      className="footer-social-icon"
+                      href="https://www.linkedin.com/showcase/zoobc/"
+                      target="_blank"
+                      rel="noopener norefferer"
+                      title="Linkedin"
+                    >
+                      <img src={iconLinkedin} alt="linkedin-icon" />
+                    </a>
+                    <a
+                      className="footer-social-icon"
+                      href="https://www.instagram.com/TheZooBC/"
+                      target="_blank"
+                      rel="noopener norefferer"
+                      title="Instagram"
+                    >
+                      <img src={iconInstagram} alt="instagram-icon" />
+                    </a>
+                    <a
+                      className="footer-social-icon"
+                      href="https://t.me/ZooBlockchain"
+                      target="_blank"
+                      rel="noopener norefferer"
+                      title="Telegram"
+                    >
+                      <img src={iconTelegram} alt="telegram-icon" />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div className="footer-image-logo">
+                <img src={bczLogoFooter} alt="zoobc-logo" />
+              </div>
+              <div className="footer-social-icons">
+                <ul className="list-unstyled">
+                  <li>
+                    <a
+                      className="footer-social-icon"
+                      href="https://www.facebook.com/TheZooBC"
+                      target="_blank"
+                      rel="noopener norefferer"
+                      title="Facebook"
+                    >
+                      <img src={iconFacebook} alt="facebook-icon" />
+                    </a>
+                    <a
+                      className="footer-social-icon"
+                      href="https://twitter.com/blockchainzoo"
+                      target="_blank"
+                      rel="noopener norefferer"
+                      title="Twitter"
+                    >
+                      <img src={iconTwitter} alt="twitter-icon" />
+                    </a>
+                    <a
+                      className="footer-social-icon"
+                      href="https://www.linkedin.com/company/blockchainzoo/"
+                      target="_blank"
+                      rel="noopener norefferer"
+                      title="Linkedin"
+                    >
+                      <img src={iconLinkedin} alt="linkedin-icon" />
+                    </a>
+                    <a
+                      className="footer-social-icon"
+                      href="https://www.instagram.com/blockchainzoo/"
+                      target="_blank"
+                      rel="noopener norefferer"
+                      title="Instagram"
+                    >
+                      <img src={iconInstagram} alt="instagram-icon" />
+                    </a>
+                    <a
+                      className="footer-social-icon"
+                      href="https://t.me/bczoo"
+                      target="_blank"
+                      rel="noopener norefferer"
+                      title="Telegram"
+                    >
+                      <img src={iconTelegram} alt="telegram-icon" />
+                    </a>
+                    <a
+                      className="footer-social-icon"
+                      href="https://www.youtube.com/c/BlockchainZoo"
+                      target="_blank"
+                      rel="noopener norefferer"
+                      title="Youtube"
+                    >
+                      <img src={iconYoutube} alt="youtube-icon" />
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </Col>
           </Row>
           <hr className="footer-horizontal-rule-dark d-none d-md-block" />
           <Row className="footer-ext d-none d-md-block">
-            <Switch checkedChildren="☀" unCheckedChildren="☾" defaultChecked className="d-none" />
+            <ul className="footer-copyright list-unstyled">
+              <li>
+                <p className="footer-company-text">
+                  &#169;2020 All rights reserved | ZooBC Explorer |&nbsp;
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://zoobc.com/privacy-policy/"
+                  >
+                    {t('privacy policy')}
+                  </a>
+                </p>
+              </li>
+            </ul>
+
+            <Switch
+              checkedChildren="☀"
+              checked={theme === '☾' ? true : false}
+              unCheckedChildren="☾"
+              onClick={e => onChangeTheme(e)}
+              style={{ marginRight: 5 }}
+            />
+
             <Dropdown overlay={languageOptions}>
-              <p className="footer-language ">
-                <Avatar className="mr-1" shape="square" size={18} src={selectedLang().flag} />
+              <p className="footer-language">
+                <Avatar
+                  className="mr-1"
+                  shape="square"
+                  size={18}
+                  src={selectedLang().flag}
+                  alt="selected-lang"
+                />
                 {selectedLang().label}
               </p>
             </Dropdown>
-            <Button className="ml-3" type="primary" size="small" onClick={() => setIsOpen(true)}>
-              {t('Network')}: {selectedTestnet.name}
-            </Button>
-            <div className="footer-social-icons">
-              <a
-                className="footer-social-icon"
-                href="https://github.com/zoobc"
-                target="_blank"
-                rel="noopener norefferer"
-                title="GitHub"
-              >
-                <img src={iconGitHub} alt="social-icon" />
-              </a>
-              <a
-                className="footer-social-icon"
-                href="https://medium.com/@BlockchainZoo"
-                target="_blank"
-                rel="noopener norefferer"
-                title="Medium"
-              >
-                <img src={iconMedium} alt="social-icon" />
-              </a>
-              <a
-                className="footer-social-icon"
-                href="https://youtube.com/c/BlockchainZoo"
-                target="_blank"
-                rel="noopener norefferer"
-                title="Youtube"
-              >
-                <img src={iconYoutube} alt="social-icon" />
-              </a>
-              <a
-                className="footer-social-icon"
-                href="https://t.me/ZooBlockchain"
-                target="_blank"
-                rel="noopener norefferer"
-                title="Telegram"
-              >
-                <img src={iconTelegram} alt="social-icon" />
-              </a>
-              <a
-                className="footer-social-icon"
-                href="https://zoobc.org"
-                target="_blank"
-                rel="noopener norefferer"
-                title="Forum"
-              >
-                <img src={iconForum} alt="social-icon" />
-              </a>
-              <a
-                className="footer-social-icon"
-                href="https://blogchainzoo.com"
-                target="_blank"
-                rel="noopener norefferer"
-                title="Blog"
-              >
-                <img src={iconBlog} alt="social-icon" />
-              </a>
-            </div>
           </Row>
         </Container>
       </Layout.Footer>
@@ -413,34 +808,6 @@ const Footer = () => {
         title={dialogTitle}
         onClose={() => setIsOpenCommingSoon(false)}
       />
-      <Drawer
-        title={t('Select Network')}
-        placement="right"
-        onClose={() => setIsOpen(false)}
-        visible={isOpen}
-        destroyOnClose={true}
-      >
-        <List
-          itemLayout="horizontal"
-          dataSource={testnet}
-          renderItem={item => (
-            <List.Item>
-              <Button
-                type="link"
-                size="large"
-                className="d-flex align-items-center p-0"
-                block
-                onClick={() => onSelectNetwork(item)}
-              >
-                <Avatar size="large" className="mr-2" style={{ backgroundColor: item.color }}>
-                  {item.name}
-                </Avatar>
-                <p className="mb-0">{item.name}</p>
-              </Button>
-            </List.Item>
-          )}
-        />
-      </Drawer>
       <FormFeedback
         visible={isOpenFeedback}
         title="Feedback"

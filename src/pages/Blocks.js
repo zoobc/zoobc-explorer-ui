@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Card, Table, Pagination } from 'antd'
-import gql from 'graphql-tag'
-import { useQuery } from '@apollo/react-hooks'
 import { useTranslation } from 'react-i18next'
+import { useQuery, gql } from '@apollo/client'
+import { Row, Col, Card, Table, Pagination, Button } from 'antd'
 
 import { getSortString, isEmptyObject } from '../utils'
 import Container from '../components/Container'
 import { blockColumns } from '../config/table-columns'
+import LastRefresh from '../components/LastRefresh'
 
 const defaultSort = { columnKey: 'Height', order: 'descend' }
 const GET_BLOCKS_DATA = gql`
-  query getBlocks($page: Int, $sorter: String) {
-    blocks(page: $page, limit: 15, order: $sorter) {
+  query getBlocks($page: Int, $sorter: String, $refresh: Boolean) {
+    blocks(page: $page, limit: 15, order: $sorter, refresh: $refresh) {
       Blocks {
+        BlockHash
         BlockID
         Height
         Timestamp
@@ -20,12 +21,16 @@ const GET_BLOCKS_DATA = gql`
         BlocksmithAddress
         TotalFeeConversion
         TotalRewardsConversion
+        SkippedBlocksmiths {
+          BlocksmithPublicKey
+        }
       }
       Paginate {
         Page
         Count
         Total
       }
+      LastRefresh @client
     }
   }
 `
@@ -49,11 +54,13 @@ const Blocks = () => {
     return item
   })
 
-  const { loading, data } = useQuery(GET_BLOCKS_DATA, {
+  const { loading, data, refetch, networkStatus } = useQuery(GET_BLOCKS_DATA, {
     variables: {
       page: currentPage,
       sorter: getSortString(sorted),
+      refresh: false,
     },
+    notifyOnNetworkStatusChange: true,
   })
 
   useEffect(() => {
@@ -77,11 +84,20 @@ const Blocks = () => {
           <Col span={24}>
             <Card className="blocks-card" bordered={false}>
               <Row>
-                <Col span={24}>
-                  <h5>
+                <Col span={23}>
+                  <h5 className="page-title">
                     <i className="bcz-calendar" />
-                    <strong>{t('Recent Blocks')}</strong>
+                    <strong>{t('recent blocks')}</strong>
                   </h5>
+                  {!!data && <LastRefresh value={data.blocks.LastRefresh} />}
+                </Col>
+                <Col>
+                  <Button
+                    shape="circle"
+                    icon="reload"
+                    onClick={() => refetch({ refresh: true })}
+                    loading={loading || networkStatus === 4}
+                  />
                 </Col>
               </Row>
               <Table
@@ -89,7 +105,7 @@ const Blocks = () => {
                 dataSource={blocks}
                 pagination={false}
                 size="small"
-                loading={loading}
+                loading={loading || networkStatus === 4}
                 onChange={onChangeTable.bind(this)}
               />
               {!!data && (
@@ -97,6 +113,7 @@ const Blocks = () => {
                   className="pagination-center"
                   current={paginate.Page}
                   total={paginate.Total}
+                  showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
                   pageSize={15}
                   onChange={page => setCurrentPage(page)}
                 />

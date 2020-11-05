@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Card, Table, Pagination } from 'antd'
-import gql from 'graphql-tag'
-import { useQuery } from '@apollo/react-hooks'
 import { useTranslation } from 'react-i18next'
+import { useQuery, gql } from '@apollo/client'
+import { Row, Col, Card, Table, Pagination, Button } from 'antd'
 
 import { getSortString, isEmptyObject } from '../utils'
 import Container from '../components/Container'
 import { transactionColumns } from '../config/table-columns'
+import LastRefresh from '../components/LastRefresh'
 
 const defaultSort = { columnKey: 'Timestamp', order: 'descend' }
 const GET_TRXS_DATA = gql`
-  query getTransactions($page: Int, $sorter: String) {
-    transactions(page: $page, limit: 15, order: $sorter) {
+  query getTransactions($page: Int, $sorter: String, $refresh: Boolean) {
+    transactions(page: $page, limit: 15, order: $sorter, refresh: $refresh) {
       Transactions {
         TransactionID
+        TransactionHashFormatted
         BlockID
         Height
         Timestamp
         TransactionTypeName
+        TransactionType
         Sender
         Recipient
-        Confirmations
+        Status
         FeeConversion
+        TransactionHash
+        MultisigChild
         SendMoney {
           AmountConversion
         }
@@ -31,12 +35,42 @@ const GET_TRXS_DATA = gql`
         UpdateNodeRegistration {
           LockedBalanceConversion
         }
+        Escrow {
+          SenderAddress
+        }
+        MultiSignatureTransactions {
+          TransactionID
+          TransactionHashFormatted
+          BlockID
+          Height
+          Timestamp
+          TransactionTypeName
+          Sender
+          Recipient
+          FeeConversion
+          Status
+        }
+        EscrowTransaction {
+          TransactionID
+          TransactionHashFormatted
+          TransactionHash
+          Timestamp
+          TransactionType
+          TransactionTypeName
+          BlockID
+          Height
+          Sender
+          Recipient
+          FeeConversion
+          Status
+        }
       }
       Paginate {
         Page
         Count
         Total
       }
+      LastRefresh @client
     }
   }
 `
@@ -60,11 +94,13 @@ const Transactions = () => {
     return item
   })
 
-  const { loading, data } = useQuery(GET_TRXS_DATA, {
+  const { loading, data, networkStatus, refetch } = useQuery(GET_TRXS_DATA, {
     variables: {
       page: currentPage,
       sorter: getSortString(sorted),
+      refresh: false,
     },
+    notifyOnNetworkStatusChange: true,
   })
 
   useEffect(() => {
@@ -81,6 +117,9 @@ const Transactions = () => {
             : UpdateNodeRegistration
             ? UpdateNodeRegistration.LockedBalanceConversion
             : '0',
+          children:
+            (trx.MultisigChild ? [...trx.MultiSignatureTransactions] : null) ||
+            (trx.EscrowTransaction ? [trx.EscrowTransaction] : null),
         }
       })
 
@@ -96,11 +135,20 @@ const Transactions = () => {
           <Col span={24}>
             <Card className="transactions-card" bordered={false}>
               <Row>
-                <Col span={24}>
-                  <h5>
+                <Col span={23}>
+                  <h5 className="page-title">
                     <i className="bcz-calendar" />
-                    <strong>{t('Recent Transactions')}</strong>
+                    <strong>{t('recent transactions')}</strong>
                   </h5>
+                  {!!data && <LastRefresh value={data.transactions.LastRefresh} />}
+                </Col>
+                <Col>
+                  <Button
+                    shape="circle"
+                    icon="reload"
+                    onClick={() => refetch({ refresh: true })}
+                    loading={loading || networkStatus === 4}
+                  />
                 </Col>
               </Row>
               <Table
@@ -111,12 +159,15 @@ const Transactions = () => {
                 size="small"
                 loading={loading}
                 onChange={onChangeTable.bind(this)}
+                scroll={{ x: 1500 }}
+                rowKey="TransactionID"
               />
               {!!data && (
                 <Pagination
                   className="pagination-center"
                   current={paginate.Page}
                   total={paginate.Total}
+                  showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
                   pageSize={15}
                   onChange={page => setCurrentPage(page)}
                 />

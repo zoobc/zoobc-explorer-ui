@@ -1,6 +1,7 @@
 import React from 'react'
 import Container from './Container'
 import { Button } from 'antd'
+import { ReactComponent as Maintenance } from '../assets/images/maintenance.svg'
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -16,13 +17,12 @@ class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
       return (
         <Container>
-          <div className="error-content error-content-page flex-1">
-            <div className="error-boundary">
-              <p className="h2 mb-3">Oops something went wrong !!!</p>
-              <Button type="primary" onClick={() => window.location.reload()}>
-                Refresh Page
-              </Button>
-            </div>
+          <div className="error-content">
+            <Maintenance width={200} height={200} />
+            <span className="error-title page-title">Oops something went wrong !!!</span>
+            <Button type="primary" onClick={() => window.location.reload()}>
+              Refresh Page
+            </Button>
           </div>
         </Container>
       )

@@ -1,6 +1,8 @@
 .ant-card {
-  color: rgba(0, 0, 0, 0.85) !important
+  background: var(--color-primary-card) !important;
+  color: var(--color-text-card-title) !important;
 }
+
 .card-summary {
   margin-bottom: 20px !important;
 }
@@ -8,9 +10,11 @@
 .badge-black {
   padding-left: 24px !important;
   z-index: 0;
+
   .ant-badge-count {
     font-weight: 700;
     background: var(--color-primary-light);
+
     p {
       margin-bottom: 0 !important
     }

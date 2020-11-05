@@ -1,7 +1,10 @@
 import { apiGet, apiPost, apiPut } from './api'
 import { getUnique } from './validate'
 import store from './store'
+import objectUtils from './object'
 import { getSortString, getSortObject, getSortOrder, isEmptyObject, isObject } from './util'
+import encryption from './encryption'
+import date from './date'
 
 export {
   apiGet,
@@ -14,4 +17,7 @@ export {
   isEmptyObject,
   isObject,
   store,
+  objectUtils,
+  encryption,
+  date,
 }

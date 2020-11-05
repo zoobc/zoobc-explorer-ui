@@ -1,6 +1,5 @@
-import gql from 'graphql-tag'
-import { useLazyQuery } from '@apollo/react-hooks'
 import { useEffect } from 'react'
+import { useLazyQuery, gql } from '@apollo/client'
 
 const GET_SEARCH_DATA = gql`
   query getSearchData($Id: String!) {
@@ -32,6 +31,9 @@ const useSearch = (keyword, history) => {
           break
         case 'Account':
           history.push(`/accounts/${ID}`)
+          break
+        case 'Node':
+          history.push(`/nodes/${ID}`)
           break
         default:
           history.push({

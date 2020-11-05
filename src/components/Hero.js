@@ -37,25 +37,29 @@ const Hero = ({ history }) => {
 
   return (
     <Card className="hero-content" bordered={false}>
-      <h3>
+      <div className="hero-title">
         <strong>ZooBC Explorer</strong>
-      </h3>
+      </div>
       <Row>
         <Col span={24}>
-          <Search
-            size="large"
-            prefix={<Icon type="search" style={{ fontSize: '18px', color: 'rgba(0,0,0,.45)' }} />}
-            placeholder={t('Search by Account Address / Transaction ID / Block ID')}
-            enterButton={loading ? <Spin indicator={Spinner} /> : t('Search')}
-            onSearch={onSearch}
-          />
+          <label className="label-search">
+            <Search
+              size="large"
+              prefix={<Icon type="search" style={{ fontSize: '18px', color: 'rgba(0,0,0,.45)' }} />}
+              placeholder={t(
+                'search by account address / transaction id / block id / node public key'
+              )}
+              enterButton={loading ? <Spin indicator={Spinner} /> : t('search')}
+              onSearch={onSearch}
+            />
+          </label>
         </Col>
       </Row>
-      <h6 className="hero-subtitle">
+      <div className="hero-subtitle">
         {t(
-          'A webview for searching and displaying data published, so that a user can easily find any info about blockchain'
+          'a webview for searching and displaying data published, so that a user can easily find any info about blockchain'
         )}
-      </h6>
+      </div>
     </Card>
   )
 }

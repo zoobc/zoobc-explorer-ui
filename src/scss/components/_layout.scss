@@ -4,23 +4,30 @@
   background: var(--color-secondary-solitude) !important;
 }
 
-.home-content {
-  display: block !important;
-  width: 100%;
-  margin-top: 32px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-top: 64px;
-  padding-right: auto;
-  padding-left: auto;
-}
+.home {
 
-.home-latest {
-  margin: 32px 0 32px 0 !important;
-}
+  &-banner {
+    background-color: var(--color-banner) !important;
+    padding-top: 30px !important;
+  }
 
-.home-card {
-  border-radius: 4px !important;
+  &-card {
+    margin-top: 32px;
+
+    &-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &-node {
+    margin: 32px 0 32px !important;
+
+    &-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+  }
 }
 
 .home-col-left {
@@ -63,13 +70,14 @@
 
 .home-row-list {
   width: 100%;
+
   @include mq-lg {
     font-size: 13px !important;
   }
+
   @include mq-xl {
     font-size: 14px !important;
   }
-
 }
 
 .graph {

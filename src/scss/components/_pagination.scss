@@ -1,4 +1,19 @@
 .pagination-center {
   text-align: center;
-  padding: 20px !important
+  padding: 20px !important;
 }
+
+.ant-pagination-item {
+  background-color: var(--color-primary-card) !important;
+  color: var(--color-text-card-title) !important;
+}
+
+.ant-pagination-item-link {
+  background-color: var(--color-primary-card) !important;
+  color: var(--color-text-card-title) !important;
+}
+
+.ant-pagination-total-text {
+  color: var(--color-text-card-title) !important;
+}
+

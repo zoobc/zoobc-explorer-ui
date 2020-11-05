@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Card, Table, Pagination } from 'antd'
-import { useQuery } from '@apollo/react-hooks'
 import { useTranslation } from 'react-i18next'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
+import { Row, Col, Card, Table, Pagination, Button } from 'antd'
 
-import { getSortString, isEmptyObject } from '../utils'
 import Container from '../components/Container'
+import { getSortString, isEmptyObject } from '../utils'
 import { accountColumns } from '../config/table-columns'
+import LastRefresh from '../components/LastRefresh'
 
 const defaultSort = { columnKey: 'AccountAddress', order: 'ascend' }
 const GET_ACCOUNTS_DATA = gql`
-  query getAccounts($page: Int, $sorter: String) {
-    accounts(page: $page, limit: 15, order: $sorter) {
+  query getAccounts($page: Int, $sorter: String, $refresh: Boolean) {
+    accounts(page: $page, limit: 15, order: $sorter, refresh: $refresh) {
       Accounts {
         AccountAddress
         BalanceConversion
@@ -25,6 +25,7 @@ const GET_ACCOUNTS_DATA = gql`
         Count
         Total
       }
+      LastRefresh @client
     }
   }
 `
@@ -42,16 +43,20 @@ const Accounts = () => {
   const columns = accountColumns.map(item => {
     item.sortDirections = ['ascend', 'descend']
     item.sorter = (a, b) =>
-      a[item.dataIndex] ? a[item.dataIndex].length - b[item.dataIndex].length : null
+      a[item.dataIndex] && b[item.dataIndex]
+        ? a[item.dataIndex].length - b[item.dataIndex].length
+        : null
     item.sortOrder = sorted.columnKey === item.dataIndex && sorted.order
     return item
   })
 
-  const { loading, data } = useQuery(GET_ACCOUNTS_DATA, {
+  const { loading, data, networkStatus, refetch } = useQuery(GET_ACCOUNTS_DATA, {
     variables: {
       page: currentPage,
       sorter: getSortString(sorted),
+      refresh: false,
     },
+    notifyOnNetworkStatusChange: true,
   })
 
   useEffect(() => {
@@ -75,11 +80,20 @@ const Accounts = () => {
           <Col span={24}>
             <Card className="accounts-card" bordered={false}>
               <Row>
-                <Col span={24}>
-                  <h5>
+                <Col span={23}>
+                  <h5 className="page-title">
                     <i className="bcz-user" />
-                    <strong>{t('Accounts')}</strong>
+                    <strong>{t('accounts')}</strong>
                   </h5>
+                  {!!data && <LastRefresh value={data.accounts.LastRefresh} />}
+                </Col>
+                <Col>
+                  <Button
+                    shape="circle"
+                    icon="reload"
+                    onClick={() => refetch({ refresh: true })}
+                    loading={loading || networkStatus === 4}
+                  />
                 </Col>
               </Row>
               <Table
@@ -95,6 +109,7 @@ const Accounts = () => {
                   className="pagination-center"
                   current={paginate.Page}
                   total={paginate.Total}
+                  showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
                   pageSize={15}
                   onChange={page => setCurrentPage(page)}
                 />

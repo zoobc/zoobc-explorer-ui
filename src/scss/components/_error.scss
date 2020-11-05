@@ -1,23 +1,40 @@
 .error-content {
-  width: 600px;
-  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0;
+
   img {
-    width: 100%
+    width: 40%;
   }
+
+  .error-title {
+    margin: 20px 0;
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .error-search {
+    width: 50%;
+
+    @include mq-sm {
+      width: 100%;
+    }
+  }
+
   @include mq-sm {
     width: 100%;
     padding: 10px 0;
   }
   &-page {
-    width: 900px;
-    margin-top: 30px;
     img {
-      width: 45%
+      width: 25%;
     }
     @include mq-sm {
       width: 100%;
       img {
-        width: 100%
+        width: 50%;
       }
     }
   }
@@ -27,4 +44,8 @@
   color: var(--gray) !important;
   text-align: center;
   padding-top: 30px;
+}
+
+.page-title {
+  color: var(--color-text-card) !important;
 }

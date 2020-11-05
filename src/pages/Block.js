@@ -1,11 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Card, Table, Pagination, Collapse, Badge } from 'antd'
-import gql from 'graphql-tag'
-import { useQuery } from '@apollo/react-hooks'
 import moment from 'moment'
 import NumberFormat from 'react-number-format'
-import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { useQuery, gql, useLazyQuery } from '@apollo/client'
+import { Row, Col, Card, Table, Pagination, Collapse, Badge } from 'antd'
 
 import Container from '../components/Container'
 import DescItem from '../components/DescItem'
@@ -16,6 +16,8 @@ import {
   transactionColumns,
   publishedReceiptColumns,
   skippedBlocksmithColumns,
+  accountRewardColumns,
+  popColumns,
 } from '../config/table-columns'
 
 const GET_BLOCK_DATA = gql`
@@ -23,6 +25,7 @@ const GET_BLOCK_DATA = gql`
     block(BlockID: $BlockID) {
       Height
       BlockID
+      BlockHash
       Timestamp
       PreviousBlockID
       BlockSeed
@@ -33,6 +36,7 @@ const GET_BLOCK_DATA = gql`
       TotalAmountConversion
       TotalFeeConversion
       TotalRewardsConversion
+      TotalCoinBaseConversion
       Version
       TotalReceipts
       ReceiptValue
@@ -46,6 +50,34 @@ const GET_BLOCK_DATA = gql`
         BlockHeight
         BlocksmithIndex
       }
+      PublishedReceipts {
+        BatchReceipt {
+          SenderPublicKey
+          RecipientPublicKey
+          DatumType
+          DatumHash
+          RecipientSignature
+        }
+        BlockHeight
+      }
+      PopChanges {
+        NodeID
+        NodePublicKey
+        NodePublicKeyFormatted
+        Score
+        Latest
+        Height
+        DifferenceScores
+        DifferenceScorePercentage
+        Flag
+      }
+      AccountRewards {
+        AccountAddress
+        BlockHeight
+        Timestamp
+        EventType
+        BalanceChangeConversion
+      }
     }
   }
 `
@@ -55,42 +87,57 @@ const GET_TRX_BY_BLOCK = gql`
     transactions(page: $page, limit: 5, order: "-Height", BlockID: $BlockID) {
       Transactions {
         TransactionID
+        TransactionHashFormatted
         Height
         Timestamp
         TransactionTypeName
+        TransactionType
         Sender
         Recipient
-        Confirmations
         Fee
         BlockID
-      }
-      Paginate {
-        Page
-        Count
-        Total
-      }
-    }
-  }
-`
-
-const GET_RECEIPT_BY_BLOCK = gql`
-  query getReceiptByBlock($page: Int, $BlockHeight: Int) {
-    publishedReceipts(page: $page, limit: 5, order: "-BlockHeight", BlockHeight: $BlockHeight) {
-      PublishedReceipts {
-        BatchReceipt {
-          Height
-          SenderPublicKey
-          ReceiverPublicKey
-          DataType
-          DataHash
-          ReceiptMerkleRoot
-          ReceiverSignature
-          ReferenceBlockHash
+        FeeConversion
+        TransactionHash
+        MultisigChild
+        Status
+        SendMoney {
+          AmountConversion
         }
-        IntermediateHashes
-        BlockHeight
-        ReceiptIndex
-        PublishedIndex
+        NodeRegistration {
+          LockedBalanceConversion
+        }
+        UpdateNodeRegistration {
+          LockedBalanceConversion
+        }
+        Escrow {
+          SenderAddress
+        }
+        MultiSignatureTransactions {
+          TransactionID
+          TransactionHashFormatted
+          BlockID
+          Height
+          Timestamp
+          TransactionTypeName
+          Sender
+          Recipient
+          FeeConversion
+          Status
+        }
+        EscrowTransaction {
+          TransactionID
+          TransactionHashFormatted
+          TransactionHash
+          Timestamp
+          TransactionType
+          TransactionTypeName
+          BlockID
+          Height
+          Sender
+          Recipient
+          FeeConversion
+          Status
+        }
       }
       Paginate {
         Page
@@ -110,38 +157,45 @@ const Block = ({ match }) => {
   const [transactions, setTransactions] = useState([])
   const [trxPaginate, setTrxPaginate] = useState({})
 
-  const [receiptCurrentPage, setReceiptCurrentPage] = useState(1)
-  const [receipts, setReceipts] = useState([])
-  const [receiptPaginate, setReceiptPaginate] = useState({})
-
-  const [blockHeight, setBlockHeight] = useState(null)
-
   const { loading, data, error } = useQuery(GET_BLOCK_DATA, {
     variables: {
       BlockID: params.id,
     },
+    onCompleted(data) {
+      if (!!data) {
+        fetcTrxByBlock({
+          variables: {
+            BlockID: data.block.BlockID,
+          },
+        })
+      }
+    },
   })
 
-  const trxByBlock = useQuery(GET_TRX_BY_BLOCK, {
+  const [fetcTrxByBlock, trxByBlock] = useLazyQuery(GET_TRX_BY_BLOCK, {
     variables: {
       BlockID: params.id,
       page: trxCurrentPage,
     },
   })
 
-  const receiptByBlock = useQuery(GET_RECEIPT_BY_BLOCK, {
-    variables: {
-      BlockHeight: blockHeight,
-      page: receiptCurrentPage,
-    },
-  })
-
   useEffect(() => {
     if (!!trxByBlock.data) {
       const trxData = trxByBlock.data.transactions.Transactions.map((trx, key) => {
+        const { SendMoney, NodeRegistration, UpdateNodeRegistration } = trx
         return {
           key,
           ...trx,
+          Amount: SendMoney
+            ? SendMoney.AmountConversion
+            : NodeRegistration
+            ? NodeRegistration.LockedBalanceConversion
+            : UpdateNodeRegistration
+            ? UpdateNodeRegistration.LockedBalanceConversion
+            : '0',
+          children:
+            (trx.MultisigChild ? [...trx.MultiSignatureTransactions] : null) ||
+            (trx.EscrowTransaction ? [trx.EscrowTransaction] : null),
         }
       })
 
@@ -150,211 +204,303 @@ const Block = ({ match }) => {
     }
   }, [trxByBlock.data])
 
-  useEffect(() => {
-    if (!!receiptByBlock.data) {
-      const receiptData = receiptByBlock.data.publishedReceipts.PublishedReceipts.map(
-        (receipt, key) => {
-          return {
-            key,
-            ...receipt,
-          }
-        }
-      )
-
-      setReceipts(receiptData)
-      setReceiptPaginate(receiptByBlock.data.publishedReceipts.Paginate)
-    }
-  }, [receiptByBlock.data])
-
-  useEffect(() => {
-    if (!!data) {
-      setBlockHeight(data.block.Height)
-    }
-  }, [data])
-
-  console.log('data : ', data)
-
   return (
     <>
       {!!error && <NotFound />}
       {!!loading && <LoaderPage />}
-      {!error && !loading && (
-        <Container>
-          <Row className="block-row">
-            <Col span={24}>
-              <Row>
-                <Col span={24}>
-                  <h4 className="truncate">
-                    {t('Block')} {data.block.Height}
-                  </h4>
-                </Col>
-              </Row>
-              <Card className="block-card" bordered={false}>
-                <DescItem label={t('Height')} value={data.block.Height} />
-              </Card>
-              <Card className="block-card" bordered={false}>
-                <h4 className="block-card-title">{t('Summary')}</h4>
-                <DescItem
-                  label={t('Block ID')}
-                  value={<CopyToClipboard text={data.block.BlockID} keyID="blockID" />}
-                />
-                <DescItem
-                  label={t('Timestamp')}
-                  value={moment(data.block.Timestamp).format('lll')}
-                />
-                <DescItem label={t('Previous Block ID')} value={data.block.PreviousBlockID} />
-                <DescItem label={t('Block Seed')} value={data.block.BlockSeed} />
-                <DescItem label={t('Block Signature')} value={data.block.BlockSignature} />
-                <DescItem
-                  label={t('Cumulative Difficulty')}
-                  value={data.block.CumulativeDifficulty}
-                />
-                <DescItem label={t('Smith Scale')} value={data.block.SmithScale} />
-                <DescItem
-                  label={t('Blocksmith Address')}
-                  value={
-                    <Link to={`/accounts/${data.block.BlocksmithAddress}`}>
-                      {data.block.BlocksmithAddress}
-                    </Link>
-                  }
-                />
-                <DescItem label={t('Total Amount')} value={data.block.TotalAmountConversion} />
-                <DescItem
-                  label={t('Total Fee')}
-                  value={
-                    <NumberFormat
-                      value={data.block.TotalFeeConversion}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      suffix={' ZBC'}
-                    />
-                  }
-                />
-                <DescItem
-                  label={t('Total Rewards')}
-                  value={
-                    <NumberFormat
-                      value={data.block.TotalRewardsConversion}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      suffix={' ZBC'}
-                    />
-                  }
-                />
-                <DescItem label={t('Version')} value={data.block.Version} />
-                <DescItem label={t('Total Receipts')} value={data.block.TotalReceipts} />
-                <DescItem label={t('Receipt Value')} value={data.block.ReceiptValue} />
-                <DescItem
-                  label={t('Blocksmith ID')}
-                  value={
-                    <Link to={`/nodes/${data.block.BlocksmithID}`}>{data.block.BlocksmithID}</Link>
-                  }
-                />
-                <DescItem label={t('PoP Change')} value={data.block.PopChange} />
-                <DescItem label={t('Payload Length')} value={data.block.PayloadLength} />
-                <DescItem label={t('Payload Hash')} value={data.block.PayloadHash} />
-              </Card>
-              <Collapse className="block-collapse" bordered={false}>
-                <Panel className="block-card-title block-collapse" header="PoP Changes" key="1">
-                  <Card className="block-card" bordered={false}>
-                    <h4 className="block-card-title">{t('PoP Changes')}</h4>
-                    <Table
-                      className="transactions-table"
-                      columns={skippedBlocksmithColumns}
-                      dataSource={data.block.SkippedBlocksmiths}
-                      pagination={false}
-                      size="small"
-                    />
-                  </Card>
-                </Panel>
-              </Collapse>
-              <Collapse className="block-collapse" bordered={false}>
-                <Panel className="block-card-title block-collapse" header={t('Rewards')} key="2">
-                  <Card className="block-card" bordered={false}>
-                    <h4 className="block-card-title">
-                      {t('Coinbase')}
-                      <Badge className="badge-black" count={425} overflowCount={1000} />
+      {!!data &&
+        (data.block.Height ? (
+          <Container>
+            <Row className="block-row">
+              <Col span={24}>
+                <Row>
+                  <Col span={24}>
+                    <h4 className="truncate page-title">
+                      {t('block')} {data.block.Height}
                     </h4>
-                    <Table
-                      className="transactions-table"
-                      columns={transactionColumns}
-                      dataSource={[]}
-                      pagination={false}
-                      size="small"
-                    />
-                    <Pagination className="pagination-center" current={5} total={100} />
-                  </Card>
-                </Panel>
-              </Collapse>
-              <Collapse className="block-collapse" bordered={false}>
-                <Panel className="block-card-title block-collapse" header={t('Receipts')} key="3">
-                  <Card className="block-card" bordered={false}>
-                    <h4 className="block-card-title">
-                      {t('Receipts')}
-                      <Badge
-                        className="badge-black"
-                        count={receiptPaginate.Total}
-                        overflowCount={1000}
-                      />
-                    </h4>
-                    <Table
-                      columns={publishedReceiptColumns}
-                      dataSource={receipts}
-                      pagination={false}
-                      size="small"
-                      loading={loading}
-                    />
-                    {!!data && (
-                      <Pagination
-                        className="pagination-center"
-                        current={receiptPaginate.Page}
-                        total={receiptPaginate.Total}
-                        pageSize={5}
-                        onChange={page => setReceiptCurrentPage(page)}
-                      />
+                  </Col>
+                </Row>
+                <Card className="block-card" bordered={false}>
+                  <DescItem
+                    label={t('height')}
+                    text={t(
+                      'the position of the block in the zoobc blockchain. for example, height 0, would be the very first block, which is also called the genesis block'
                     )}
-                  </Card>
-                </Panel>
-              </Collapse>
-              <Collapse className="block-collapse" defaultActiveKey={['4']} bordered={false}>
-                <Panel
-                  className="block-card-title block-collapse"
-                  header={t('Transactions')}
-                  key="4"
-                >
-                  <Card className="block-card" bordered={false}>
-                    <h4 className="block-card-title">
-                      {t('Transactions')}
-                      <Badge
-                        className="badge-black"
-                        count={trxPaginate.Total}
-                        overflowCount={1000}
-                      />
-                    </h4>
-                    <Table
-                      className="transactions-table"
-                      columns={transactionColumns}
-                      dataSource={transactions}
-                      pagination={false}
-                      size="small"
-                      loading={loading}
-                    />
-                    {!!data && (
-                      <Pagination
-                        className="pagination-center"
-                        current={trxPaginate.Page}
-                        total={trxPaginate.Total}
-                        pageSize={5}
-                        onChange={page => setTrxCurrentPage(page)}
-                      />
+                    value={data.block.Height}
+                  />
+                  <DescItem
+                    label={t('block hash')}
+                    style={{ display: 'none' }}
+                    value={<CopyToClipboard text={data.block.BlockHash} keyID="blockID" />}
+                    textClassName="monospace-text"
+                  />
+                </Card>
+                <Card className="block-card" bordered={false}>
+                  <h4 className="block-card-title page-title">{t('summary')}</h4>
+                  <DescItem
+                    label={t('block id')}
+                    text={t(
+                      'an identifier which facilitates easy identification of blocks on the zoobc blockchain'
                     )}
-                  </Card>
-                </Panel>
-              </Collapse>
-            </Col>
-          </Row>
-        </Container>
-      )}
+                    value={<CopyToClipboard text={data.block.BlockID} keyID="blockID" />}
+                  />
+                  <DescItem
+                    label={t('timestamp')}
+                    style={{ display: 'none' }}
+                    value={moment(data.block.Timestamp).format('lll')}
+                  />
+                  <DescItem
+                    label={t('previous block hash')}
+                    style={{ display: 'none' }}
+                    value={data.block.PreviousBlockID}
+                    textClassName="monospace-text"
+                  />
+                  <DescItem
+                    label={t('block seed')}
+                    text={t('a seed for random number uniquely generated for the block')}
+                    value={data.block.BlockSeed}
+                    textClassName="monospace-text"
+                  />
+                  <DescItem
+                    label={t('block signature')}
+                    style={{ display: 'none' }}
+                    value={data.block.BlockSignature}
+                    textClassName="monospace-text"
+                  />
+                  <DescItem
+                    label={t('cumulative difficulty')}
+                    text={t('difficulty of the blockchain up to this current block')}
+                    value={data.block.CumulativeDifficulty}
+                  />
+                  {/* <DescItem label={t('smith scale')} value={data.block.SmithScale} /> */}
+                  {/* <DescItem
+                    label={t('blocksmith address')}
+                    text={t('account that generated the block')}
+                    value={
+                      <Link to={`/accounts/${data.block.BlocksmithAddress}`}>
+                        {data.block.BlocksmithAddress}
+                      </Link>
+                    }
+                  /> */}
+                  <DescItem
+                    label={t('total amount')}
+                    style={{ display: 'none' }}
+                    value={data.block.TotalAmountConversion}
+                  />
+                  <DescItem
+                    label={t('total fee')}
+                    style={{ display: 'none' }}
+                    value={
+                      <NumberFormat
+                        value={data.block.TotalFeeConversion}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                        suffix={' ZBC'}
+                        className="monospace-text"
+                      />
+                    }
+                  />
+                  <DescItem
+                    label={t('total coinbase')}
+                    style={{ display: 'none' }}
+                    value={
+                      <NumberFormat
+                        value={data.block.TotalCoinBaseConversion}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                        suffix={' ZBC'}
+                        className="monospace-text"
+                      />
+                    }
+                  />
+                  <DescItem
+                    label={t('total rewards')}
+                    text={t('total coinbase + total fee')}
+                    value={
+                      <NumberFormat
+                        value={data.block.TotalRewardsConversion}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                        suffix={' ZBC'}
+                        className="monospace-text"
+                      />
+                    }
+                  />
+                  <DescItem
+                    label={t('version')}
+                    style={{ display: 'none' }}
+                    value={data.block.Version}
+                  />
+                  {/* <DescItem
+                    label={t('total receipts')}
+                    style={{ display: 'none' }}
+                    value={data.block.TotalReceipts}
+                  />
+                  <DescItem
+                    label={t('receipt value')}
+                    style={{ display: 'none' }}
+                    value={data.block.ReceiptValue}
+                  /> */}
+                  <DescItem
+                    label={t('blocksmith public key')}
+                    style={{ display: 'none' }}
+                    value={
+                      <Link to={`/nodes/${data.block.BlocksmithID}`}>
+                        {data.block.BlocksmithID}
+                      </Link>
+                    }
+                    textClassName="monospace-text"
+                  />
+                  {/* <DescItem
+                    label={t('pop change')}
+                    style={{ display: 'none' }}
+                    value={data.block.PopChange}
+                  /> */}
+                  <DescItem
+                    label={t('payload length')}
+                    style={{ display: 'none' }}
+                    value={data.block.PayloadLength}
+                  />
+                  <DescItem
+                    label={t('payload hash')}
+                    style={{ display: 'none' }}
+                    value={data.block.PayloadHash}
+                    textClassName="monospace-text"
+                  />
+                </Card>
+                <Collapse className="block-collapse" bordered={false}>
+                  <Panel
+                    className="block-card-title block-collapse"
+                    header={t('pop changes')}
+                    key="1"
+                  >
+                    <Card className="block-card" bordered={false}>
+                      <h4 className="block-card-title page-title">{t('pop changes')}</h4>
+                      <Table
+                        className="transactions-table"
+                        columns={popColumns}
+                        dataSource={data.block.PopChanges || []}
+                        pagination={{
+                          pageSize: 5,
+                        }}
+                        size="small"
+                      />
+                    </Card>
+                  </Panel>
+                </Collapse>
+                <Collapse className="block-collapse" bordered={false}>
+                  <Panel
+                    className="block-card-title block-collapse"
+                    header={t('skipped blocksmith')}
+                    key="1"
+                  >
+                    <Card className="block-card" bordered={false}>
+                      <h4 className="block-card-title page-title">{t('skipped blocksmith')}</h4>
+                      <Table
+                        className="transactions-table"
+                        columns={skippedBlocksmithColumns}
+                        dataSource={data.block.SkippedBlocksmiths || []}
+                        pagination={{
+                          pageSize: 5,
+                        }}
+                        size="small"
+                      />
+                    </Card>
+                  </Panel>
+                </Collapse>
+                <Collapse className="block-collapse" bordered={false}>
+                  <Panel
+                    className="block-card-title block-collapse"
+                    header={t('account rewards')}
+                    key="2"
+                  >
+                    <Card className="block-card" bordered={false}>
+                      <h4 className="block-card-title page-title">
+                        {t('account rewards')}
+                        <Badge className="badge-black" count={0} overflowCount={1000} />
+                      </h4>
+                      <Table
+                        className="transactions-table"
+                        columns={accountRewardColumns}
+                        dataSource={data.block.AccountRewards || []}
+                        pagination={{
+                          pageSize: 5,
+                        }}
+                        size="small"
+                      />
+                    </Card>
+                  </Panel>
+                </Collapse>
+                <Collapse className="block-collapse" bordered={false}>
+                  <Panel
+                    className="block-card-title block-collapse"
+                    header={t('published receipts')}
+                    key="3"
+                  >
+                    <Card className="block-card" bordered={false}>
+                      <h4 className="block-card-title page-title">
+                        {t('published receipts')}
+                        <Badge
+                          className="badge-black"
+                          count={data.block.TotalReceipts}
+                          overflowCount={1000}
+                        />
+                      </h4>
+                      <Table
+                        columns={publishedReceiptColumns}
+                        dataSource={data.block.PublishedReceipts || []}
+                        pagination={{
+                          pageSize: 5,
+                        }}
+                        size="small"
+                        loading={loading}
+                      />
+                    </Card>
+                  </Panel>
+                </Collapse>
+                <Collapse className="block-collapse" defaultActiveKey={['4']} bordered={false}>
+                  <Panel
+                    className="block-card-title block-collapse"
+                    header={t('transactions')}
+                    key="4"
+                  >
+                    <Card className="block-card" bordered={false}>
+                      <h4 className="block-card-title page-title">
+                        {t('transactions')}
+                        <Badge
+                          className="badge-black"
+                          count={trxPaginate.Total}
+                          overflowCount={1000}
+                        />
+                      </h4>
+                      <Table
+                        className="transactions-table"
+                        columns={transactionColumns}
+                        dataSource={transactions}
+                        pagination={false}
+                        size="small"
+                        loading={loading}
+                        scroll={{ x: 1500 }}
+                        rowKey="TransactionID"
+                      />
+                      {!!data && (
+                        <Pagination
+                          className="pagination-center"
+                          current={trxPaginate.Page}
+                          total={trxPaginate.Total}
+                          pageSize={5}
+                          onChange={page => setTrxCurrentPage(page)}
+                        />
+                      )}
+                    </Card>
+                  </Panel>
+                </Collapse>
+              </Col>
+            </Row>
+          </Container>
+        ) : (
+          <NotFound />
+        ))}
     </>
   )
 }

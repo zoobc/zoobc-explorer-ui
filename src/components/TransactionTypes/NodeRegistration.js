@@ -9,34 +9,52 @@ const NodeRegistration = ({ data }) => {
   const { t } = useTranslation()
   return (
     <Card className="transaction-card">
-      <h4 className="transaction-card-title">{t('Node Registration')}</h4>
-      <DescItem label={t('Node Address')} value={data.NodeAddress} />
+      <h4 className="transaction-card-title page-title">{t('node registration')}</h4>
+      {/* <DescItem
+        label={t('node address')}
+        style={{ display: 'none' }}
+        value={data?.NodeAddress?.Address}
+      /> */}
       <DescItem
-        label={t('Account Address')}
-        value={<Link to={`/nodes/${data.AccountAddress}`}>{data.AccountAddress}</Link>}
+        label={t('account address')}
+        style={{ display: 'none' }}
+        value={<Link to={`/accounts/${data.AccountAddress}`}>{data.AccountAddress}</Link>}
+        textClassName="monospace-text"
       />
       <DescItem
-        label={t('Node Public Key')}
-        value={<Link to={`/nodes/${data.NodePublicKey}`}>{data.NodePublicKey}</Link>}
+        label={t('node public key')}
+        text={t(
+          'a string of letters and numbers that are used to receive amount of zoobc. works similar to a traditional bank account number and can be shared publicly with others'
+        )}
+        value={
+          <Link to={`/nodes/${data.NodePublicKeyFormatted}`}>{data.NodePublicKeyFormatted}</Link>
+        }
+        textClassName="monospace-text"
       />
       <DescItem
-        label={t('Locked Balance')}
+        label={t('locked balance')}
+        text={t('amount of zoobc to be locked as security money for node')}
         value={
           <NumberFormat
             value={data.LockedBalanceConversion || 0}
             displayType={'text'}
             thousandSeparator={true}
             suffix={' ZBC'}
+            className="monospace-text"
           />
         }
       />
       <DescItem
-        label="POOW Message Bytes"
+        label={t('poow message bytes')}
+        style={{ display: 'none' }}
         value={data.ProofOfOwnership && data.ProofOfOwnership.MessageBytes}
+        textClassName="monospace-text"
       />
       <DescItem
-        label="POOW Signature"
+        label={t('poow signature')}
+        style={{ display: 'none' }}
         value={data.ProofOfOwnership && data.ProofOfOwnership.Signature}
+        textClassName="monospace-text"
       />
     </Card>
   )

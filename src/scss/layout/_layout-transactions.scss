@@ -8,6 +8,38 @@
 
 .transactions-table {
   .ant-table {
-    font-size: 12px !important;
+
+    .ant-table-body {
+      overflow-x: scroll !important;
+
+      &::-webkit-scrollbar {
+        height: 12px;
+      }
+
+      &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
+        border-radius: 8px;
+        -webkit-border-radius: 8px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        background: rgba(193, 193, 193, 1);
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: rgba(168, 168, 168, 1);
+      }
+    }
   }
+
+  &-hide-expand .ant-table-row-expand-icon-cell .ant-table-row-expand-icon {
+    display: none;
+  }
+}
+
+.page-title {
+  color: var(--color-text-card) !important;
 }

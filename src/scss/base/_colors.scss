@@ -1,12 +1,12 @@
 :root {
   /* Basic colors */
-  --black:                        #000000;
-  --white:                        #FFFFFF;
-  --dark-blue-primary:            #013558;
-  --dark-blue-secondary:          #0B3D65;
-  --light-blue:                   #3498DB;
-  --dark-grey:                    #92ADBF;
-  --light-grey:                   #E7EAF3;
+  --black: #000000;
+  --white: #ffffff;
+  --dark-blue-primary: #0031da;
+  --dark-blue-secondary: #0b3d65;
+  --light-blue: #00ADFF;
+  --dark-grey: #92adbf;
+  --light-grey: #e7eaf3;
 
   /* Main colors */
   --color-black: var(--black);
@@ -22,6 +22,8 @@
   --color-primary-bg: var(--color-secondary-dark);
   --color-secondary-bg: var(--color-secondary-solitude);
   --color-collapse-bg: var(--color-secondary-light);
+  --color-search-bg: var(--color-white);
+
 
   /* Button colors */
   --color-primary-btn: var(--color-secondary-dark);
@@ -34,7 +36,7 @@
   --color-primary-dark-txt: var(--color-black);
   --color-primary-light-txt: var(--color-white);
   --color-secondary-grey-txt: var(--color-secondary-light);
-  --color-primary-link-txt: var(--color-primary-light);
+  --color-primary-link-txt: var(--dark-blue-primary);
   --color-secondary-link-txt: var(--color-secondary-light);
   --color-passive-txt: var(--color-secondary-light);
   --color-active-txt: var(--color-primary-light);
@@ -44,9 +46,11 @@
   --color-search-ic: var(--color-secondary-light);
   --color-clipboard-ic: var(--color-secondary-light);
   --color-clipboard-hover-ic: var(--color-primary-light);
+  --color-escrow-multisignature-expand: var(--color-white);
 
   /* Card colors */
   --color-primary-card: var(--color-white);
+  --color-banner: var(--color-white);
 
   /* Line colors */
   --color-dark-line: var(--color-primary-dark);
