@@ -15,7 +15,7 @@ import {
 
 import { Container, Hero, Banner, MapNodes, TableAnim } from '../components'
 import { latestBlockColumns, latestTransactionColumns } from '../config/table-columns'
-// import RaceGame from '../components/RaceGame'
+import RaceGame from '../components/RaceGame'
 
 const GET_HOME_DATA = gql`
   query {
@@ -257,7 +257,7 @@ const Home = ({ history }) => {
           <MapNodes loading={loading} data={data && data.maps} />
         )}
 
-        {/* <RaceGame /> */}
+        <RaceGame />
       </Container>
     </>
   )
