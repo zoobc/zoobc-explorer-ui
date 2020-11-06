@@ -10,8 +10,8 @@ import LastRefresh from '../components/LastRefresh'
 
 const defaultSort = { columnKey: 'Timestamp', order: 'descend' }
 const GET_TRXS_DATA = gql`
-  query getTransactions($page: Int, $sorter: String) {
-    transactions(page: $page, limit: 15, order: $sorter) {
+  query getTransactions($page: Int, $sorter: String, $refresh: Boolean) {
+    transactions(page: $page, limit: 15, order: $sorter, refresh: $refresh) {
       Transactions {
         TransactionID
         TransactionHashFormatted
@@ -98,6 +98,7 @@ const Transactions = () => {
     variables: {
       page: currentPage,
       sorter: getSortString(sorted),
+      refresh: false,
     },
     notifyOnNetworkStatusChange: true,
   })
@@ -145,7 +146,7 @@ const Transactions = () => {
                   <Button
                     shape="circle"
                     icon="reload"
-                    onClick={() => refetch()}
+                    onClick={() => refetch({ refresh: true })}
                     loading={loading || networkStatus === 4}
                   />
                 </Col>
@@ -158,7 +159,7 @@ const Transactions = () => {
                 size="small"
                 loading={loading}
                 onChange={onChangeTable.bind(this)}
-                scroll={{ x: 1350 }}
+                scroll={{ x: 1500 }}
                 rowKey="TransactionID"
               />
               {!!data && (

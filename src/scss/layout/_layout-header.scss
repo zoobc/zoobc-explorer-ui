@@ -117,13 +117,15 @@
 
 .logo-text-version {
   line-height: normal;
-  font-size: 11px;
+  font-size: 10px;
   font-style: italic;
   cursor: pointer;
+  margin-bottom: 3px;
+}
 
-  .anticon {
-    vertical-align: 0.3px;
-  }
+.logo-text-network {
+  line-height: normal;
+  font-size: 11px;
 }
 
 .header-content {
@@ -139,8 +141,7 @@
     align-items: center;
 
     img {
-      width: 32px;
-      height: 36px;
+      width: 38px;
     }
   }
 

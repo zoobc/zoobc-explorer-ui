@@ -2,8 +2,8 @@
 name: Feature request
 about: Suggest an idea for this project
 title: "[REQ]"
-labels: 'feature, status: discussing'
-assignees: gedenata
+labels: 'explorer-ui, feature, status: discussing'
+assignees: ''
 
 ---
 

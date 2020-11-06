@@ -15,6 +15,7 @@ import {
 
 import { Container, Hero, Banner, MapNodes, TableAnim } from '../components'
 import { latestBlockColumns, latestTransactionColumns } from '../config/table-columns'
+// import RaceGame from '../components/RaceGame'
 
 const GET_HOME_DATA = gql`
   query {
@@ -91,7 +92,6 @@ const GET_SUBSCRIPTION_TRANSACTIONS = gql`
     }
   }
 `
-
 const checkLatLong = data => {
   const containLatLong = data.filter(item => !!item.Latitude || !!item.Longitude)
 
@@ -256,6 +256,8 @@ const Home = ({ history }) => {
         {data && data.maps && data.maps.length > 0 && checkLatLong(data.maps) && (
           <MapNodes loading={loading} data={data && data.maps} />
         )}
+
+        {/* <RaceGame /> */}
       </Container>
     </>
   )

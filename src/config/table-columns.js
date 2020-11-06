@@ -319,7 +319,7 @@ export const transactionColumns = [
         />
       )
     },
-    width: 220,
+    // width: 220,
   },
   {
     title: (
@@ -338,13 +338,13 @@ export const transactionColumns = [
     render(text, record) {
       return <Link to={`/blocks/${text}`}>{text}</Link>
     },
-    width: 100,
+    // width: 100,
   },
   {
     title: <Title text="timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
-    width: 150,
+    // width: 150,
     render(text) {
       return <DateFormat date={text} />
     },
@@ -353,14 +353,14 @@ export const transactionColumns = [
     title: <Title text="type" />,
     dataIndex: 'TransactionTypeName',
     key: 'TransactionTypeName',
-    width: 250,
+    // width: 250,
     render: renderTransactionType,
   },
   {
     title: <Title text="sender" />,
     dataIndex: 'Sender',
     key: 'Sender',
-    width: 180,
+    // width: 180,
     render(text, record) {
       const path = window.location.pathname
 
@@ -387,7 +387,7 @@ export const transactionColumns = [
     title: <Title text="recipient" />,
     dataIndex: 'Recipient',
     key: 'Recipient',
-    width: 180,
+    // width: 180,
     render(text, record) {
       const path = window.location.pathname
       if (path.search('accounts') === 1) {
@@ -427,7 +427,7 @@ export const transactionColumns = [
     title: <Title text="fees" />,
     dataIndex: 'FeeConversion',
     key: 'FeeConversion',
-    width: 150,
+    // width: 150,
     render: renderCurrenncy,
   },
 ]

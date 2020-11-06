@@ -20,6 +20,7 @@
     "@apollo/client": "^3.0.2",
     "antd": "^3.23.5",
     "bootstrap": "^4.3.1",
+    "chart.js": "^2.9.3",
     "classnames": "^2.2.6",
     "crypto-js": "^4.0.0",
     "graphql": "^15.3.0",
