@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import * as Chart from 'chart.js'
 import { Card } from 'antd'
 import useInterval from '../hooks/useInterval'
+import { useTranslation } from 'react-i18next'
 
 let game
 
@@ -30,6 +31,7 @@ function randomCarPosition() {
 
 const RaceGame = () => {
   const gameRef = useRef(null)
+  const { t } = useTranslation()
 
   useEffect(() => {
     createChart()
@@ -111,7 +113,7 @@ const RaceGame = () => {
   useInterval(async () => {
     game.data.datasets[0].data = await randomCarPosition()
     game.update()
-  }, 30000)
+  }, 1000)
 
   // const onUpdateRace = values => {
   //   const labels = values.label.map(label => shortenHash(label, 15))
@@ -128,6 +130,10 @@ const RaceGame = () => {
         marginBottom: 20,
       }}
     >
+      <div className="home-card-title">
+        <i className="bcz-calendar" />
+        <strong>{t('Race Game')}</strong>
+      </div>
       <canvas id="game" height="150" ref={gameRef} />
     </Card>
   )
