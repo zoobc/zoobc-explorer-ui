@@ -319,7 +319,7 @@ export const transactionColumns = [
         />
       )
     },
-    // width: 220,
+    width: 220,
   },
   {
     title: (
@@ -338,13 +338,13 @@ export const transactionColumns = [
     render(text, record) {
       return <Link to={`/blocks/${text}`}>{text}</Link>
     },
-    // width: 100,
+    width: 120,
   },
   {
     title: <Title text="timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
-    // width: 150,
+    width: 170,
     render(text) {
       return <DateFormat date={text} />
     },
@@ -353,7 +353,7 @@ export const transactionColumns = [
     title: <Title text="type" />,
     dataIndex: 'TransactionTypeName',
     key: 'TransactionTypeName',
-    // width: 250,
+    width: 250,
     render: renderTransactionType,
   },
   {
@@ -416,6 +416,7 @@ export const transactionColumns = [
     title: <Title text="amount" />,
     dataIndex: 'Amount',
     key: 'Amount',
+    width: 150,
     render: renderAmountCurrenncy,
   },
   // {
@@ -427,7 +428,7 @@ export const transactionColumns = [
     title: <Title text="fees" />,
     dataIndex: 'FeeConversion',
     key: 'FeeConversion',
-    // width: 150,
+    width: 150,
     render: renderCurrenncy,
   },
 ]
