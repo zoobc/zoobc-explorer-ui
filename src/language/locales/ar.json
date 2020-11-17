@@ -636,10 +636,10 @@
   "restore wallet": "استعادة المحفظة",
   "reset": "إعادة تعيين",
   "copy your 24 words seed phrase and paste here, it will fill in all input field": "انسخ عبارة أولية مكونة من ٢٤ كلمة والصقه هنا ، سوف تملأ جميع حقول الإدخال",
-  "remove": "Remove",
-  "view account": "View Account",
-  "delete account": "Delete Account",
-  "copy the text below to export or paste below to import contacts": "Copy the text below to export or paste below to import contacts",
-  "export/import": "Export/Import",
-  "please enter addresses in json format": "Please enter addresses in json format"
+  "remove": "إزالة",
+  "view account": "عرض الحساب",
+  "delete account": "حذف الحساب",
+  "copy the text below to export or paste below to import contacts": "انسخ النص أدناه للتصدير أو اللصق أدناه لاستيراد جهات الاتصال",
+  "export/import": "الاستيراد والتصدير",
+  "please enter addresses in json format": "الرجاء إدخال العناوين بتنسيق json"
 }
