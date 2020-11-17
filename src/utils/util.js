@@ -39,3 +39,7 @@ export function isObjectString(val) {
 export function isObject(val) {
   return val && typeof val === 'object'
 }
+
+export function getRandomIndex(array) {
+  return Math.floor(array.length * Math.random())
+}

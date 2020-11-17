@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Card, Button, Row, Col } from 'antd'
 import { useQuery, useSubscription, gql } from '@apollo/client'
@@ -13,9 +13,10 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 
-import { Container, Hero, Banner, MapNodes, TableAnim } from '../components'
+import { Container, Hero, Banner, MapNodes, TableAnim, RaceCar } from '../components'
 import { latestBlockColumns, latestTransactionColumns } from '../config/table-columns'
-import RaceGame from '../components/RaceGame'
+import useInterval from '../hooks/useInterval'
+import { getRandomIndex } from '../utils'
 
 const GET_HOME_DATA = gql`
   query {
@@ -105,6 +106,49 @@ const Home = ({ history }) => {
   const { loading, data } = useQuery(GET_HOME_DATA)
   const subscriptBlocks = useSubscription(GET_SUBSCRIPTION_BLOCKS)
   const subscriptTransactions = useSubscription(GET_SUBSCRIPTION_TRANSACTIONS)
+  const [iteration, setIteration] = useState(0)
+  const [dataRace, setDataRace] = useState([
+    {
+      name: 'ZBC_3WWDF4S2_IZVG2HHD_VOPSCNGN_COLYZ2OZ_M4QJZ4OL_44YHTKVC_2TPZBZAU',
+      value: 10,
+      color: '#f4efd3',
+    },
+    {
+      name: 'ZBC_5OBRYSC3_W5JDB34V_X7J2GEZZ_GUQXRM6E_IGH45J7W_OD2OPMKU_PARNJPHQ',
+      value: 15,
+      color: '#cccccc',
+    },
+    {
+      name: 'ZBC_DO34XNYK_F5FQA5V7_37M5H56D_MSQKDYGS_55O7C52V_73MDNKHO_G6BI6FWN',
+      value: 20,
+      color: '#c2b0c9',
+    },
+    {
+      name: 'ZBC_F5YUYDXD_WFDJSAV5_K3Y72RCM_GLQP32XI_QDVXOGGD_J7CGSSSK_5VKR7YML',
+      value: 25,
+      color: '#9656a1',
+    },
+    {
+      name: 'ZBC_EVPOXJZV_E74GT6HI_EZVWDCFM_IM24M7BC_VJHZGGGA_YASWWADH_VCDBIV6P',
+      value: 30,
+      color: '#fa697c',
+    },
+    {
+      name: 'ZBC_F6CRZPOG_C42A7M37_WRL2EVBV_KA5PKBGI_SBGVZHMH_VIFZ7CMQ_VMOFWD3P',
+      value: 35,
+      color: '#fcc169',
+    },
+    {
+      name: 'ZBC_ALI45_PARTO_NOTO_BOTO_LIMO_TIBO_SIJI',
+      value: 10,
+      color: '#fae37c',
+    },
+    {
+      name: 'ZBC_MICHAEL_SUJONO_RADEN_TUMENGGUNG',
+      value: 5,
+      color: '#fcff69',
+    },
+  ])
 
   let blockData = []
   let trxData = []
@@ -135,6 +179,21 @@ const Home = ({ history }) => {
       blockData = [...newTrxData, ...oldTrxData.slice(0, trxData.length - newTrxData.length)]
     }
   }
+
+  useInterval(() => {
+    const randomIndex = getRandomIndex(dataRace)
+    setDataRace(
+      dataRace.map((entry, index) =>
+        index === randomIndex
+          ? {
+              ...entry,
+              value: entry.value + 5,
+            }
+          : entry
+      )
+    )
+    setIteration(iteration + 1)
+  }, 1000)
 
   return (
     <>
@@ -253,11 +312,11 @@ const Home = ({ history }) => {
           </Col>
         </Row>
 
+        <RaceCar loading={loading} data={dataRace} />
+
         {data && data.maps && data.maps.length > 0 && checkLatLong(data.maps) && (
           <MapNodes loading={loading} data={data && data.maps} />
         )}
-
-        <RaceGame />
       </Container>
     </>
   )
