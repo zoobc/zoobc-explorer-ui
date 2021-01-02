@@ -18,6 +18,7 @@ const GET_ACCOUNT_DATA = gql`
   query getAccount($AccountAddress: String!) {
     account(AccountAddress: $AccountAddress) {
       AccountAddress
+      AccountAddressFormatted
       BalanceConversion
       SpendableBalanceConversion
       FirstActive
@@ -40,7 +41,9 @@ const GET_TRX_BY_ACCOUNT = gql`
         TransactionTypeName
         TransactionType
         Sender
+        SenderFormatted
         Recipient
+        RecipientFormatted
         Status
         FeeConversion
         BlockID
@@ -101,6 +104,7 @@ const GET_NODE_BY_ACCOUNT = gql`
         NodePublicKey
         NodePublicKeyFormatted
         OwnerAddress
+        OwnerAddressFormatted
         NodeAddressInfo {
           Address
           Port
@@ -201,14 +205,14 @@ const Account = ({ match }) => {
       {!!error && <NotFound />}
       {!!loading && <LoaderPage />}
       {!!data &&
-        (data.account.AccountAddress ? (
+        (data.account.AccountAddressFormatted ? (
           <Container>
             <Row className="account-row">
               <Col span={24}>
                 <Row>
                   <Col span={24}>
                     <h4 className="truncate page-title">
-                      {t('account')} {data.account.AccountAddress}
+                      {t('account')} {data.account.AccountAddressFormatted}
                     </h4>
                   </Col>
                 </Row>
@@ -218,7 +222,10 @@ const Account = ({ match }) => {
                     label={t('account address')}
                     style={{ display: 'none' }}
                     value={
-                      <CopyToClipboard text={data.account.AccountAddress} keyID="accountAddress" />
+                      <CopyToClipboard
+                        text={data.account.AccountAddressFormatted}
+                        keyID="accountAddress"
+                      />
                     }
                     textClassName="monospace-text"
                   />

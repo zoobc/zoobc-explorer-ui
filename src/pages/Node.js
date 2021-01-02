@@ -19,6 +19,7 @@ const GET_NODE_DATA = gql`
       NodePublicKey
       NodePublicKeyFormatted
       OwnerAddress
+      OwnerAddressFormatted
       NodeAddressInfo {
         Address
         Port
@@ -125,8 +126,8 @@ const Node = ({ match }) => {
                     label={t('owner address')}
                     style={{ display: 'none' }}
                     value={
-                      <Link to={`/accounts/${data.node.OwnerAddress}`}>
-                        {data.node.OwnerAddress}
+                      <Link to={`/accounts/${data.node.OwnerAddressFormatted}`}>
+                        {data.node.OwnerAddressFormatted}
                       </Link>
                     }
                     textClassName="monospace-text"

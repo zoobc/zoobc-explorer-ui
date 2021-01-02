@@ -14,6 +14,7 @@ const GET_ACCOUNTS_DATA = gql`
     accounts(page: $page, limit: 15, order: $sorter, refresh: $refresh) {
       Accounts {
         AccountAddress
+        AccountAddressFormatted
         BalanceConversion
         FirstActive
         LastActive

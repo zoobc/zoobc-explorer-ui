@@ -25,19 +25,29 @@ const EscrowTransaction = ({ data, blockID, TransactionID }) => {
       <DescItem
         label={t('sender')}
         style={{ display: 'none' }}
-        value={<Link to={`/accounts/${data.SenderAddress}`}>{data.SenderAddress}</Link>}
+        value={
+          <Link to={`/accounts/${data.SenderAddressFormatted}`}>{data.SenderAddressFormatted}</Link>
+        }
         textClassName="monospace-text"
       />
       <DescItem
         label={t('recipient')}
         style={{ display: 'none' }}
-        value={<Link to={`/accounts/${data.RecipientAddress}`}>{data.RecipientAddress}</Link>}
+        value={
+          <Link to={`/accounts/${data.RecipientAddressFormatted}`}>
+            {data.RecipientAddressFormatted}
+          </Link>
+        }
         textClassName="monospace-text"
       />
       <DescItem
         label={t('approver')}
         style={{ display: 'none' }}
-        value={<Link to={`/accounts/${data.ApproverAddress}`}>{data.ApproverAddress}</Link>}
+        value={
+          <Link to={`/accounts/${data.ApproverAddressFormatted}`}>
+            {data.ApproverAddressFormatted}
+          </Link>
+        }
         textClassName="monospace-text"
       />
       <DescItem

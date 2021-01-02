@@ -21,7 +21,9 @@ const GET_TRXS_DATA = gql`
         TransactionTypeName
         TransactionType
         Sender
+        SenderFormatted
         Recipient
+        RecipientFormatted
         Status
         FeeConversion
         TransactionHash
@@ -37,6 +39,7 @@ const GET_TRXS_DATA = gql`
         }
         Escrow {
           SenderAddress
+          SenderAddressFormatted
         }
         MultiSignatureTransactions {
           TransactionID
@@ -46,7 +49,9 @@ const GET_TRXS_DATA = gql`
           Timestamp
           TransactionTypeName
           Sender
+          SenderFormatted
           Recipient
+          RecipientFormatted
           FeeConversion
           Status
         }
@@ -60,7 +65,9 @@ const GET_TRXS_DATA = gql`
           BlockID
           Height
           Sender
+          SenderFormatted
           Recipient
+          RecipientFormatted
           FeeConversion
           Status
         }
