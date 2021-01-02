@@ -29,7 +29,7 @@ const MultiSignature = ({ data, disableTrxHashLink }) => {
           <DescItem
             label="Multisig Address"
             style={{ display: 'none' }}
-            value={MultiSignatureInfo.MultisigAddress}
+            value={MultiSignatureInfo.MultisigAddressFormatted}
             textClassName="monospace-text"
           />
         </>
@@ -52,8 +52,8 @@ const MultiSignature = ({ data, disableTrxHashLink }) => {
               !!disableTrxHashLink ? (
                 SignatureInfo.TransactionHash
               ) : (
-                <Link to={`/transactions/${SignatureInfo.TransactionHash}`}>
-                  {SignatureInfo.TransactionHash}
+                <Link to={`/transactions/${SignatureInfo.TransactionHashFormatted}`}>
+                  {SignatureInfo.TransactionHashFormatted}
                 </Link>
               )
             }
@@ -62,14 +62,18 @@ const MultiSignature = ({ data, disableTrxHashLink }) => {
           <br />
           <h5>{t('participants')}</h5>
           {SignatureInfo.Signatures &&
-            SignatureInfo.Signatures.map((data, key) => (
-              <DescItem
-                key={key}
-                label={`Participant ${key + 1}`}
-                style={{ display: 'none' }}
-                value={<Link to={`/accounts/${data.Address}`}>{data.Address}</Link>}
-              />
-            ))}
+            SignatureInfo.Signatures.map((data, key) => {
+              const AddressFormatted = data.Address
+
+              return (
+                <DescItem
+                  key={key}
+                  label={`Participant ${key + 1}`}
+                  style={{ display: 'none' }}
+                  value={<Link to={`/accounts/${AddressFormatted}`}>{AddressFormatted}</Link>}
+                />
+              )
+            })}
         </>
       )}
     </Card>

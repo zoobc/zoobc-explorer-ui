@@ -1,7 +1,7 @@
 #!/bin/bash
 
 git pull origin develop
-rm -rf node_modules yarn.lock package-lock.json
+rm -rf node_modules
 
 if [ -d "./build" ]; then
   rm -rf build

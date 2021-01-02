@@ -160,9 +160,8 @@ const DateFormat = ({ date }) => {
 export const accountColumns = [
   {
     title: <Title text="address" />,
-    dataIndex: 'AccountAddress',
-    key: 'AccountAddress',
-
+    dataIndex: 'AccountAddressFormatted',
+    key: 'AccountAddressFormatted',
     render(text) {
       return <ZBCShortAddress address={text} href={`/accounts/${text}`} title="account address" />
     },
@@ -221,8 +220,8 @@ export const blockColumns = [
         </Tooltip>
       </div>
     ),
-    dataIndex: 'BlockHash',
-    key: 'BlockHash',
+    dataIndex: 'BlockHashFormatted',
+    key: 'BlockHashFormatted',
     render(text) {
       return <ZBCShortAddress address={text} href={`/blocks/${text}`} title="block hash" />
     },
@@ -319,7 +318,7 @@ export const transactionColumns = [
         />
       )
     },
-    // width: 220,
+    width: 240,
   },
   {
     title: (
@@ -338,13 +337,13 @@ export const transactionColumns = [
     render(text, record) {
       return <Link to={`/blocks/${text}`}>{text}</Link>
     },
-    // width: 100,
+    width: 120,
   },
   {
     title: <Title text="timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
-    // width: 150,
+    width: 170,
     render(text) {
       return <DateFormat date={text} />
     },
@@ -353,13 +352,13 @@ export const transactionColumns = [
     title: <Title text="type" />,
     dataIndex: 'TransactionTypeName',
     key: 'TransactionTypeName',
-    // width: 250,
+    width: 250,
     render: renderTransactionType,
   },
   {
     title: <Title text="sender" />,
-    dataIndex: 'Sender',
-    key: 'Sender',
+    dataIndex: 'SenderFormatted',
+    key: 'SenderFormatted',
     // width: 180,
     render(text, record) {
       const path = window.location.pathname
@@ -367,7 +366,7 @@ export const transactionColumns = [
       if (path.search('accounts') === 1) {
         const accountAddress = path.split('/')[2]
 
-        const isSender = record.Sender === accountAddress
+        const isSender = record.SenderFormatted === accountAddress
 
         return (
           !!text && (
@@ -385,15 +384,15 @@ export const transactionColumns = [
   },
   {
     title: <Title text="recipient" />,
-    dataIndex: 'Recipient',
-    key: 'Recipient',
+    dataIndex: 'RecipientFormatted',
+    key: 'RecipientFormatted',
     // width: 180,
     render(text, record) {
       const path = window.location.pathname
       if (path.search('accounts') === 1) {
         const accountAddress = path.split('/')[2]
 
-        const isRecipient = record.Recipient === accountAddress
+        const isRecipient = record.RecipientFormatted === accountAddress
 
         return (
           !!text && (
@@ -416,6 +415,7 @@ export const transactionColumns = [
     title: <Title text="amount" />,
     dataIndex: 'Amount',
     key: 'Amount',
+    width: 150,
     render: renderAmountCurrenncy,
   },
   // {
@@ -427,7 +427,7 @@ export const transactionColumns = [
     title: <Title text="fees" />,
     dataIndex: 'FeeConversion',
     key: 'FeeConversion',
-    // width: 150,
+    width: 150,
     render: renderCurrenncy,
   },
 ]
@@ -458,8 +458,8 @@ export const nodeColumns = [
   },
   {
     title: <Title text="owner address" />,
-    dataIndex: 'OwnerAddress',
-    key: 'OwnerAddress',
+    dataIndex: 'OwnerAddressFormatted',
+    key: 'OwnerAddressFormatted',
     render(text) {
       return (
         !!text && (
@@ -602,8 +602,8 @@ export const publishedReceiptColumns = [
 export const skippedBlocksmithColumns = [
   {
     title: <Title text="public key" />,
-    dataIndex: 'BlocksmithPublicKey',
-    key: 'BlocksmithPublicKey',
+    dataIndex: 'BlocksmithPublicKeyFormatted',
+    key: 'BlocksmithPublicKeyFormatted',
     render(text) {
       return (
         !!text && <ZBCShortAddress address={text} href={`/nodes/${text}`} title="node public key" />
