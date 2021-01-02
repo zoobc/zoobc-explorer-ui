@@ -26,13 +26,16 @@ const GET_BLOCK_DATA = gql`
       Height
       BlockID
       BlockHash
+      BlockHashFormatted
       Timestamp
       PreviousBlockID
+      PreviousBlockIDFormatted
       BlockSeed
       BlockSignature
       CumulativeDifficulty
       SmithScale
       BlocksmithAddress
+      BlocksmithAddressFormatted
       TotalAmountConversion
       TotalFeeConversion
       TotalRewardsConversion
@@ -41,19 +44,23 @@ const GET_BLOCK_DATA = gql`
       TotalReceipts
       ReceiptValue
       BlocksmithID
+      BlocksmithIDFormatted
       PopChange
       PayloadLength
       PayloadHash
       SkippedBlocksmiths {
         BlocksmithPublicKey
+        BlocksmithPublicKeyFormatted
         POPChange
         BlockHeight
         BlocksmithIndex
       }
       PublishedReceipts {
-        BatchReceipt {
+        Receipt {
           SenderPublicKey
+          SenderPublicKeyFormatted
           RecipientPublicKey
+          RecipientPublicKeyFormatted
           DatumType
           DatumHash
           RecipientSignature
@@ -231,7 +238,7 @@ const Block = ({ match }) => {
                   <DescItem
                     label={t('block hash')}
                     style={{ display: 'none' }}
-                    value={<CopyToClipboard text={data.block.BlockHash} keyID="blockID" />}
+                    value={<CopyToClipboard text={data.block.BlockHashFormatted} keyID="blockID" />}
                     textClassName="monospace-text"
                   />
                 </Card>
@@ -252,7 +259,7 @@ const Block = ({ match }) => {
                   <DescItem
                     label={t('previous block hash')}
                     style={{ display: 'none' }}
-                    value={data.block.PreviousBlockID}
+                    value={data.block.PreviousBlockIDFormatted}
                     textClassName="monospace-text"
                   />
                   <DescItem
@@ -345,8 +352,8 @@ const Block = ({ match }) => {
                     label={t('blocksmith public key')}
                     style={{ display: 'none' }}
                     value={
-                      <Link to={`/nodes/${data.block.BlocksmithID}`}>
-                        {data.block.BlocksmithID}
+                      <Link to={`/nodes/${data.block.BlocksmithIDFormatted}`}>
+                        {data.block.BlocksmithIDFormatted}
                       </Link>
                     }
                     textClassName="monospace-text"

@@ -14,6 +14,7 @@ const GET_NODES_DATA = gql`
         NodePublicKey
         NodePublicKeyFormatted
         OwnerAddress
+        OwnerAddressFormatted
         NodeAddressInfo {
           Address
           Port

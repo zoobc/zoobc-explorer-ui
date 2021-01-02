@@ -36,7 +36,9 @@ const GET_TRX_DATA = gql`
       BlockID
       Height
       Sender
+      SenderFormatted
       Recipient
+      RecipientFormatted
       FeeConversion
       Status
       SendMoney {
@@ -47,6 +49,7 @@ const GET_TRX_DATA = gql`
         NodePublicKey
         NodePublicKeyFormatted
         AccountAddress
+        AccountAddressFormatted
         NodeAddress {
           Address
           Port
@@ -101,13 +104,16 @@ const GET_TRX_DATA = gql`
           MinimumSignatures
           Nonce
           Addresses
+          AddressesFormatted
           MultisigAddress
+          MultisigAddressFormatted
           BlockHeight
           Latest
         }
         UnsignedTransactionBytes
         SignatureInfo {
           TransactionHash
+          TransactionHashFormatted
           Signatures {
             Address
             Signature
@@ -122,8 +128,11 @@ const GET_TRX_DATA = gql`
       }
       Escrow {
         SenderAddress
+        SenderAddressFormatted
         RecipientAddress
+        RecipientAddressFormatted
         ApproverAddress
+        ApproverAddressFormatted
         AmountConversion
         CommissionConversion
         Timeout
@@ -284,8 +293,8 @@ const Transaction = ({ match }) => {
                     label={t('sender')}
                     style={{ display: 'none' }}
                     value={
-                      <Link to={`/accounts/${data.transaction.Sender}`}>
-                        {data.transaction.Sender}
+                      <Link to={`/accounts/${data.transaction.SenderFormatted}`}>
+                        {data.transaction.SenderFormatted}
                       </Link>
                     }
                     textClassName="monospace-text"
@@ -294,8 +303,8 @@ const Transaction = ({ match }) => {
                     label={t('recipient')}
                     style={{ display: 'none' }}
                     value={
-                      <Link to={`/accounts/${data.transaction.Recipient}`}>
-                        {data.transaction.Recipient}
+                      <Link to={`/accounts/${data.transaction.RecipientFormatted}`}>
+                        {data.transaction.RecipientFormatted}
                       </Link>
                     }
                     textClassName="monospace-text"

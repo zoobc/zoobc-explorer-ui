@@ -13,7 +13,7 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 
-import { Container, Hero, Banner, MapNodes, TableAnim, RaceCar } from '../components'
+import { Container, Hero, Banner, MapNodes, TableAnim } from '../components'
 import { latestBlockColumns, latestTransactionColumns } from '../config/table-columns'
 import useInterval from '../hooks/useInterval'
 import { getRandomIndex } from '../utils'
@@ -312,7 +312,7 @@ const Home = ({ history }) => {
           </Col>
         </Row>
 
-        <RaceCar loading={loading} data={dataRace} />
+        {/* <RaceCar loading={loading} data={dataRace} /> */}
 
         {data && data.maps && data.maps.length > 0 && checkLatLong(data.maps) && (
           <MapNodes loading={loading} data={data && data.maps} />
