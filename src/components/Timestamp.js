@@ -12,7 +12,7 @@ const Timestamp = ({ value }) => {
     setDateFormat(date.fromNow(value))
   }, 10000)
 
-  return !!value ? `${t(dateFormat)} : ${moment(value).format('DD/MM/YY @ H:mm:ss')}` : t('unknown')
+  return !!value ? `${dateFormat} : ${moment(value).format('DD/MM/YY @ H:mm:ss')}` : t('unknown')
 }
 
 export default Timestamp

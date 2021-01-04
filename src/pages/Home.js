@@ -218,6 +218,7 @@ const Home = ({ history }) => {
               </Button>
             </Card>
           </Col>
+
           <Col className="home-col-right" md={{ span: 12 }} sm={{ span: 24 }}>
             <Card bordered={false}>
               <div className="home-card-title">
