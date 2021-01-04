@@ -19,8 +19,18 @@ const testnetReducers = (state, action) => {
 }
 
 export const TestnetState = ({ children }) => {
+  const host = window.location.host.replace(':3000', '')
+  const subdomain = host.split('.')
+
+  const defaultNetwork =
+    subdomain &&
+    subdomain.length > 0 &&
+    (subdomain[0] === 'staging' || subdomain[0] === 'localhost')
+      ? testnet[2]
+      : testnet[0]
+
   const testnetDefaultValue = {
-    selectedTestnet: store.use('testnet', testnet[0]),
+    selectedTestnet: store.use('testnet', defaultNetwork),
   }
 
   const [state, dispatch] = useReducer(testnetReducers, testnetDefaultValue)
