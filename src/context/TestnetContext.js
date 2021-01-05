@@ -26,7 +26,7 @@ export const TestnetState = ({ children }) => {
     subdomain && subdomain.length > 0 && subdomain[0] === 'localhost' ? testnet[2] : testnet[0]
 
   const testnetDefaultValue = {
-    selectedTestnet: store.set('testnet', defaultNetwork),
+    selectedTestnet: store.use('testnet', defaultNetwork),
   }
 
   const [state, dispatch] = useReducer(testnetReducers, testnetDefaultValue)
