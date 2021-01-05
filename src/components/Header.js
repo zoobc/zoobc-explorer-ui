@@ -75,6 +75,9 @@ const Header = ({ history, location, fluid }) => {
 
   return (
     <>
+    <div className="announcement">
+      <b>THIS IS THE ZOOBC TESTNET. ZooBC MainNet will launch on March 22, 2021</b>
+    </div>
       <Layout.Header className="header">
         <Container className="header-content" fluid={fluid}>
           <div className="logo">
