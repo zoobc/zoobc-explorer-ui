@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useContext } from 'react'
-import { withRouter } from 'react-router-dom'
-import { Layout, Menu, Input, Icon, Tooltip, Spin, Button, Drawer, Dropdown } from 'antd'
 import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { Layout, Menu, Input, Icon, Tooltip, Spin, Button, Drawer, Dropdown } from 'antd'
 
 import useSearch from '../hooks/useSearch'
 import Container from './Container'
@@ -13,6 +13,7 @@ import AnimationContext from '../context/AnimationContext'
 import FormFeedback from './FormFeedback'
 import testnet from '../config/testnet'
 import TestnetContext from '../context/TestnetContext'
+import BlinkText from './BlinkText'
 
 const { Search } = Input
 
@@ -75,9 +76,12 @@ const Header = ({ history, location, fluid }) => {
 
   return (
     <>
-    <div className="announcement">
-      <b>THIS IS THE ZOOBC TESTNET. ZooBC MainNet will launch on March 22, 2021</b>
-    </div>
+      <div className="announcement">
+        <BlinkText
+          color="white"
+          text="THIS IS THE ZOOBC TESTNET. ZooBC MainNet will launch on March 22, 2021"
+        />
+      </div>
       <Layout.Header className="header">
         <Container className="header-content" fluid={fluid}>
           <div className="logo">

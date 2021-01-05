@@ -1,0 +1,62 @@
+:root {
+  --blink-time: 6s;
+}
+.blink {
+  animation: var(--blink-time) blinker linear infinite;
+  -webkit-animation: var(--blink-time) blinker linear infinite;
+  -moz-animation: var(--blink-time) blinker linear infinite;
+}
+
+@-moz-keyframes blinker {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes blinker {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes blinker {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
