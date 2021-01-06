@@ -40,6 +40,9 @@ export default function AlertPage() {
     }
   }
 
+  if (!!data && !!data.blocks && !!data.blocks.Blocks && !!data.blocks.Blocks.length < 1)
+    visible = true
+
   if (
     firstCheck &&
     !!data &&
