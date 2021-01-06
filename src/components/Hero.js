@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { Input, Row, Col, Card, Icon, Spin } from 'antd'
 import { useTranslation } from 'react-i18next'
 
+import Alert from './Alert'
 import useSearch from '../hooks/useSearch'
 import AnimationContext from '../context/AnimationContext'
 
@@ -37,6 +38,7 @@ const Hero = ({ history }) => {
 
   return (
     <Card className="hero-content" bordered={false}>
+      <Alert />
       <div className="hero-title">
         <strong>ZooBC Explorer</strong>
       </div>

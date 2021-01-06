@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useQuery, gql } from '@apollo/client'
 import { Row, Col, Card, Table, Pagination, Button } from 'antd'
 
+import Alert from '../components/Alert'
 import { getSortString, isEmptyObject } from '../utils'
 import Container from '../components/Container'
 import { blockColumns } from '../config/table-columns'
@@ -84,6 +85,7 @@ const Blocks = () => {
         <Row className="blocks-row">
           <Col span={24}>
             <Card className="blocks-card" bordered={false}>
+              <Alert />
               <Row>
                 <Col span={23}>
                   <h5 className="page-title">
