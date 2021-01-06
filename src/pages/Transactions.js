@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useQuery, gql } from '@apollo/client'
 import { Row, Col, Card, Table, Pagination, Button } from 'antd'
 
+import Alert from '../components/Alert'
 import { getSortString, isEmptyObject } from '../utils'
 import Container from '../components/Container'
 import { transactionColumns } from '../config/table-columns'
@@ -141,6 +142,7 @@ const Transactions = () => {
         <Row className="transactions-row">
           <Col span={24}>
             <Card className="transactions-card" bordered={false}>
+              <Alert />
               <Row>
                 <Col span={23}>
                   <h5 className="page-title">
