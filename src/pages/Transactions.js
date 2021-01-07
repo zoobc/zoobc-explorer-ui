@@ -126,8 +126,9 @@ const Transactions = () => {
             ? UpdateNodeRegistration.LockedBalanceConversion
             : '0',
           children:
-            (trx.MultisigChild ? [...trx.MultiSignatureTransactions] : null) ||
-            (trx.EscrowTransaction ? [trx.EscrowTransaction] : null),
+            (trx.MultisigChild && trx.MultiSignatureTransactions
+              ? [...trx.MultiSignatureTransactions]
+              : null) || (trx.EscrowTransaction ? [trx.EscrowTransaction] : null),
         }
       })
 
