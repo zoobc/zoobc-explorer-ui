@@ -173,7 +173,7 @@ const TransactionType = ({ trx }) => {
               TransactionID={!!trx.EscrowTransaction && trx.EscrowTransaction.TransactionID}
             />
           )}
-          {trx.MultisigChild && (
+          {trx.MultisigChild && trx.MultiSignature && (
             <>
               <MultiSignature data={trx.MultiSignature} disableTrxHashLink={true} />
               <MultisigTransaction data={trx.MultiSignatureTransactions} />
