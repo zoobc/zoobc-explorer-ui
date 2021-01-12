@@ -19,6 +19,21 @@ import {
   accountRewardColumns,
   popColumns,
 } from '../config/table-columns'
+import ReactTextCollapse from 'react-text-collapse'
+
+const TEXT_COLLAPSE_OPTIONS = {
+  collapse: false,
+  collapseText: 'View details',
+  expandText: 'Hide details',
+  minHeight: 0,
+  maxHeight: 330,
+  textStyle: {
+    color: '#0031DA',
+    fontSize: '14px',
+    cursor: 'pointer',
+    fontWeight: 'bolder',
+  }
+}
 
 const GET_BLOCK_DATA = gql`
   query getBlock($BlockID: String!) {
@@ -228,6 +243,7 @@ const Block = ({ match }) => {
                   </Col>
                 </Row>
                 <Card className="block-card" bordered={false}>
+                  <h4 className="block-card-title page-title">{t('summary')}</h4>
                   <DescItem
                     label={t('height')}
                     text={t(
@@ -241,21 +257,22 @@ const Block = ({ match }) => {
                     value={<CopyToClipboard text={data.block.BlockHashFormatted} keyID="blockID" />}
                     textClassName="monospace-text"
                   />
-                </Card>
-                <Card className="block-card" bordered={false}>
-                  <h4 className="block-card-title page-title">{t('summary')}</h4>
-                  <DescItem
-                    label={t('block id')}
-                    text={t(
-                      'an identifier which facilitates easy identification of blocks on the zoobc blockchain'
-                    )}
-                    value={<CopyToClipboard text={data.block.BlockID} keyID="blockID" />}
-                  />
                   <DescItem
                     label={t('timestamp')}
                     style={{ display: 'none' }}
                     value={moment(data.block.Timestamp).format('lll')}
                   />
+                  <DescItem
+                    label={t('total rewards')}
+                    text={t('total coinbase + total fee')}
+                    value={data.block.Height}
+                  />
+                  <DescItem
+                    label={t('Number of Transaction')}
+                    style={{ display: 'none' }}
+                    value={trxPaginate.Total}
+                  />
+                  <ReactTextCollapse options={TEXT_COLLAPSE_OPTIONS}>
                   <DescItem
                     label={t('previous block hash')}
                     style={{ display: 'none' }}
@@ -321,19 +338,6 @@ const Block = ({ match }) => {
                     }
                   />
                   <DescItem
-                    label={t('total rewards')}
-                    text={t('total coinbase + total fee')}
-                    value={
-                      <NumberFormat
-                        value={data.block.TotalRewardsConversion}
-                        displayType={'text'}
-                        thousandSeparator={true}
-                        suffix={' ZBC'}
-                        className="monospace-text"
-                      />
-                    }
-                  />
-                  <DescItem
                     label={t('version')}
                     style={{ display: 'none' }}
                     value={data.block.Version}
@@ -374,6 +378,7 @@ const Block = ({ match }) => {
                     value={data.block.PayloadHash}
                     textClassName="monospace-text"
                   />
+                  </ReactTextCollapse>
                 </Card>
                 <Collapse className="block-collapse" bordered={false}>
                   <Panel
