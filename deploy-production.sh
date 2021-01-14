@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git pull origin develop
+git pull origin master
 rm -rf node_modules
 
 if [ -d "./build" ]; then
