@@ -137,6 +137,7 @@ const GET_BLOCK_DATA = gql`
       }
       AccountRewards {
         AccountAddress
+        AccountAddressFormatted
         BlockHeight
         Timestamp
         EventType
