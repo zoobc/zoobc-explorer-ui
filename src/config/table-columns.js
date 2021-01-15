@@ -785,8 +785,8 @@ export const latestTransactionColumns = [
 export const accountRewardColumns = [
   {
     title: <Title text="address" />,
-    dataIndex: 'AccountAddress',
-    key: 'AccountAddress',
+    dataIndex: 'AccountAddressFormatted',
+    key: 'AccountAddressFormatted',
     render(text) {
       return <ZBCShortAddress address={text} href={`/accounts/${text}`} title="account address" />
     },
