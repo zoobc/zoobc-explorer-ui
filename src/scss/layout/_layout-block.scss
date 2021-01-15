@@ -13,6 +13,17 @@
   font-weight: 700;
 }
 
+.text-collapse{
+  color: rgb(0, 49, 218);
+  .ant-collapse-header {
+    padding-left: 0 !important;
+    font-weight: 700;
+  }
+  .ant-collapse-content-box{
+    padding-left: 0 !important;
+  }
+}
+
 .block-collapse {
   margin-top: 32px !important;
   border-radius: 4px !important;

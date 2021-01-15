@@ -1,3 +1,45 @@
+/**
+ * ZooBC Copyright (C) 2020 Quasisoft Limited - Hong Kong
+ * This file is part of ZooBC <https://github.com/zoobc/zoobc-explorer-ui>
+
+ * ZooBC is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * ZooBC is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with ZooBC.  If not, see <http://www.gnu.org/licenses/>.
+
+ * Additional Permission Under GNU GPL Version 3 section 7.
+ * As the special exception permitted under Section 7b, c and e,
+ * in respect with the Author’s copyright, please refer to this section:
+
+ * 1. You are free to convey this Program according to GNU GPL Version 3,
+ *     as long as you respect and comply with the Author’s copyright by
+ *     showing in its user interface an Appropriate Notice that the derivate
+ *     program and its source code are “powered by ZooBC”.
+ *     This is an acknowledgement for the copyright holder, ZooBC,
+ *     as the implementation of appreciation of the exclusive right of the
+ *     creator and to avoid any circumvention on the rights under trademark
+ *     law for use of some trade names, trademarks, or service marks.
+
+ * 2. Complying to the GNU GPL Version 3, you may distribute
+ *     the program without any permission from the Author.
+ *     However a prior notification to the authors will be appreciated.
+
+ * ZooBC is architected by Roberto Capodieci & Barton Johnston
+ * contact us at roberto.capodieci[at]blockchainzoo.com
+ * and barton.johnston[at]blockchainzoo.com
+
+ * IMPORTANT: The above copyright notice and this permission notice
+ * shall be included in all copies or substantial portions of the Software.
+**/
+
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
@@ -19,21 +61,6 @@ import {
   accountRewardColumns,
   popColumns,
 } from '../config/table-columns'
-import ReactTextCollapse from 'react-text-collapse'
-
-const TEXT_COLLAPSE_OPTIONS = {
-  collapse: false,
-  collapseText: 'View details',
-  expandText: 'Hide details',
-  minHeight: 0,
-  maxHeight: 330,
-  textStyle: {
-    color: '#0031DA',
-    fontSize: '14px',
-    cursor: 'pointer',
-    fontWeight: 'bolder',
-  },
-}
 
 const GET_BLOCK_DATA = gql`
   query getBlock($BlockID: String!) {
@@ -95,6 +122,7 @@ const GET_BLOCK_DATA = gql`
       }
       AccountRewards {
         AccountAddress
+        AccountAddressFormatted
         BlockHeight
         Timestamp
         EventType
@@ -178,6 +206,7 @@ const Block = ({ match }) => {
   const [trxCurrentPage, setTrxCurrentPage] = useState(1)
   const [transactions, setTransactions] = useState([])
   const [trxPaginate, setTrxPaginate] = useState({})
+  const [label, setLabel] = useState("show more")
 
   const { loading, data, error } = useQuery(GET_BLOCK_DATA, {
     variables: {
@@ -226,6 +255,11 @@ const Block = ({ match }) => {
     }
   }, [trxByBlock.data])
 
+  const onChange = val => {
+    if (val && val.length > 0) setLabel("hide detail")
+    else setLabel("show detail")
+  }
+
   return (
     <>
       {!!error && <NotFound />}
@@ -272,32 +306,33 @@ const Block = ({ match }) => {
                     style={{ display: 'none' }}
                     value={trxPaginate.Total}
                   />
-                  <ReactTextCollapse options={TEXT_COLLAPSE_OPTIONS}>
-                    <DescItem
-                      label={t('previous block hash')}
-                      style={{ display: 'none' }}
-                      value={data.block.PreviousBlockIDFormatted}
-                      textClassName="monospace-text"
-                    />
-                    <DescItem
-                      label={t('block seed')}
-                      text={t('a seed for random number uniquely generated for the block')}
-                      value={data.block.BlockSeed}
-                      textClassName="monospace-text"
-                    />
-                    <DescItem
-                      label={t('block signature')}
-                      style={{ display: 'none' }}
-                      value={data.block.BlockSignature}
-                      textClassName="monospace-text"
-                    />
-                    <DescItem
-                      label={t('cumulative difficulty')}
-                      text={t('difficulty of the blockchain up to this current block')}
-                      value={data.block.CumulativeDifficulty}
-                    />
-                    {/* <DescItem label={t('smith scale')} value={data.block.SmithScale} /> */}
-                    {/* <DescItem
+                  <Collapse bordered={false} className="site-collapse-custom-collapse" onChange={onChange}>
+                  <Panel showArrow={false} header={label} key="1" className="text-collapse">
+                  <DescItem
+                    label={t('previous block hash')}
+                    style={{ display: 'none' }}
+                    value={data.block.PreviousBlockIDFormatted}
+                    textClassName="monospace-text"
+                  />
+                  <DescItem
+                    label={t('block seed')}
+                    text={t('a seed for random number uniquely generated for the block')}
+                    value={data.block.BlockSeed}
+                    textClassName="monospace-text"
+                  />
+                  <DescItem
+                    label={t('block signature')}
+                    style={{ display: 'none' }}
+                    value={data.block.BlockSignature}
+                    textClassName="monospace-text"
+                  />
+                  <DescItem
+                    label={t('cumulative difficulty')}
+                    text={t('difficulty of the blockchain up to this current block')}
+                    value={data.block.CumulativeDifficulty}
+                  />
+                  {/* <DescItem label={t('smith scale')} value={data.block.SmithScale} /> */}
+                  {/* <DescItem
                     label={t('blocksmith address')}
                     text={t('account that generated the block')}
                     value={
@@ -367,18 +402,19 @@ const Block = ({ match }) => {
                     style={{ display: 'none' }}
                     value={data.block.PopChange}
                   /> */}
-                    <DescItem
-                      label={t('payload length')}
-                      style={{ display: 'none' }}
-                      value={data.block.PayloadLength}
-                    />
-                    <DescItem
-                      label={t('payload hash')}
-                      style={{ display: 'none' }}
-                      value={data.block.PayloadHash}
-                      textClassName="monospace-text"
-                    />
-                  </ReactTextCollapse>
+                  <DescItem
+                    label={t('payload length')}
+                    style={{ display: 'none' }}
+                    value={data.block.PayloadLength}
+                  />
+                  <DescItem
+                    label={t('payload hash')}
+                    style={{ display: 'none' }}
+                    value={data.block.PayloadHash}
+                    textClassName="monospace-text"
+                  />
+                  </Panel>
+                  </Collapse>
                 </Card>
                 <Collapse className="block-collapse" bordered={false}>
                   <Panel
