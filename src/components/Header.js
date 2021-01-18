@@ -47,6 +47,7 @@ import { withRouter } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Layout, Menu, Input, Icon, Tooltip, Spin, Button, Drawer, Dropdown } from 'antd'
 
+import config from '../config'
 import useSearch from '../hooks/useSearch'
 import Container from './Container'
 import zoobcLogo from '../assets/images/logo-zoobc.svg'
@@ -129,7 +130,7 @@ const Header = ({ history, location, fluid }) => {
               <Link className="logo-text-name" to="/">
                 ZooBC Explorer
               </Link>
-              <span className="logo-text-version">Beta - Version 0.3.1</span>
+              <span className="logo-text-version">{config.app.version}</span>
               <Dropdown overlay={TesnetMenuDropdown}>
                 <span className="logo-text-network">
                   {selectedTestnet.name} <Icon type="down" />
@@ -200,7 +201,9 @@ const Header = ({ history, location, fluid }) => {
         title={dialogTitle}
         onClose={() => setIsOpenDialog(false)}
       />
+
       <FormFeedback visible={isOpenFeedBack} onClose={() => setIsOpenFeedBack(false)} />
+
       <Drawer
         placement="top"
         onClose={() => setIsOpenDraw(false)}
@@ -214,10 +217,14 @@ const Header = ({ history, location, fluid }) => {
             <img src={zoobcLogo} alt="zoobc-logo" />
             <div className="header-logo-name">
               <div className="logo-text-name">ZooBC Explorer</div>
-              <div className="logo-text-version">Alpha - Version 0.1</div>
+              <div className="logo-text-version">{config.app.version}</div>
             </div>
           </Link>
-          <Menu className="header-menu" selectedKeys={[location.pathname]}>
+          <Menu
+            className="header-menu"
+            selectedKeys={[location.pathname]}
+            onClick={() => setIsOpenDraw(false)}
+          >
             <Menu.Item key="/blocks" className="menu-with-icon">
               <Link to="/blocks">{t('blocks')}</Link>
             </Menu.Item>
