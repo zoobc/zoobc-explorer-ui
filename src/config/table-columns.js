@@ -306,13 +306,13 @@ export const blockColumns = [
         </Tooltip>
       </div>
     ),
-    render(record) {
+    key: 'SkippedBlocksmiths',
+    dataIndex: 'SkippedBlocksmiths',
+    render(SkippedBlocksmiths) {
       const skipped = []
 
-      if (Array.isArray(record.SkippedBlocksmiths))
-        record.SkippedBlocksmiths.map(
-          data => !objectUtils.isContainsNullValue(data) && skipped.push(data)
-        )
+      if (Array.isArray(SkippedBlocksmiths))
+        SkippedBlocksmiths.map(data => !objectUtils.isContainsNullValue(data) && skipped.push(data))
 
       return (
         <Tag
