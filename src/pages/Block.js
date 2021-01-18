@@ -257,7 +257,7 @@ const Block = ({ match }) => {
 
   const onChange = val => {
     if (val && val.length > 0) setLabel('hide detail')
-    else setLabel("show detail")
+    else setLabel('show detail')
   }
 
   return (
