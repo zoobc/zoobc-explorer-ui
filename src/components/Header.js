@@ -55,7 +55,7 @@ import AnimationContext from '../context/AnimationContext'
 import FormFeedback from './FormFeedback'
 import testnet from '../config/testnet'
 import TestnetContext from '../context/TestnetContext'
-import BlinkText from './BlinkText'
+import Announcement from './Announcement'
 
 const { Search } = Input
 
@@ -118,12 +118,7 @@ const Header = ({ history, location, fluid }) => {
 
   return (
     <>
-      <div className="announcement">
-        <BlinkText
-          color="white"
-          text="THIS IS THE ZOOBC TESTNET. ZooBC MainNet will launch on March 22, 2021"
-        />
-      </div>
+      <Announcement />
       <Layout.Header className="header">
         <Container className="header-content" fluid={fluid}>
           <div className="logo">
