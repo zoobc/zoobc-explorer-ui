@@ -299,8 +299,8 @@ export const blockColumns = [
   },
   {
     title: (
-      <div style={{display:'flex'}}>{' '}
-        <img src={skipRope} alt='' style={{width: '24px'}}/>
+      <div style={{ display: 'flex' }}>
+        <img src={skipRope} alt="icon" style={{ width: '24px' }} />
         <Tooltip placement="bottom" title={<Title text="account that generated the block" />}>
           <InfoCircleOutlined />
         </Tooltip>
@@ -315,7 +315,10 @@ export const blockColumns = [
         )
 
       return (
-        <Tag style={{ minWidth:'28px', textAlign: 'center'}} color={getBlocksmithIndicator(skipped.length).color}>
+        <Tag
+          style={{ minWidth: '28px', textAlign: 'center' }}
+          color={getBlocksmithIndicator(skipped.length).color}
+        >
           {getBlocksmithIndicator(skipped.length).text}
         </Tag>
       )
