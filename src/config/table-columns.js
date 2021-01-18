@@ -1,4 +1,4 @@
-/** 
+/**
  * ZooBC Copyright (C) 2020 Quasisoft Limited - Hong Kong
  * This file is part of ZooBC <https://github.com/zoobc/zoobc-explorer-ui>
 
@@ -9,27 +9,27 @@
 
  * ZooBC is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
 
  * You should have received a copy of the GNU General Public License
  * along with ZooBC.  If not, see <http://www.gnu.org/licenses/>.
 
  * Additional Permission Under GNU GPL Version 3 section 7.
- * As the special exception permitted under Section 7b, c and e, 
+ * As the special exception permitted under Section 7b, c and e,
  * in respect with the Author’s copyright, please refer to this section:
 
  * 1. You are free to convey this Program according to GNU GPL Version 3,
- *     as long as you respect and comply with the Author’s copyright by 
- *     showing in its user interface an Appropriate Notice that the derivate 
- *     program and its source code are “powered by ZooBC”. 
- *     This is an acknowledgement for the copyright holder, ZooBC, 
+ *     as long as you respect and comply with the Author’s copyright by
+ *     showing in its user interface an Appropriate Notice that the derivate
+ *     program and its source code are “powered by ZooBC”.
+ *     This is an acknowledgement for the copyright holder, ZooBC,
  *     as the implementation of appreciation of the exclusive right of the
  *     creator and to avoid any circumvention on the rights under trademark
  *     law for use of some trade names, trademarks, or service marks.
 
- * 2. Complying to the GNU GPL Version 3, you may distribute 
- *     the program without any permission from the Author. 
+ * 2. Complying to the GNU GPL Version 3, you may distribute
+ *     the program without any permission from the Author.
  *     However a prior notification to the authors will be appreciated.
 
  * ZooBC is architected by Roberto Capodieci & Barton Johnston
@@ -50,29 +50,30 @@ import { objectUtils } from '../utils'
 import Timestamp from '../components/Timestamp'
 import { InfoCircleOutlined } from '@ant-design/icons'
 import ZBCShortAddress from '../components/ZBCShortAddress'
+import skipRope from '../assets/images/skip-rope.svg'
 
 const getBlocksmithIndicator = skipped => {
   if (skipped > 10) {
     return {
-      text: `${skipped} skipped blocksmith`,
+      text: `${skipped}`,
       sorttext: `${skipped} skipped`,
       color: '#D50000',
     }
   } else if (skipped >= 4 && skipped <= 10) {
     return {
-      text: `${skipped} skipped blocksmith`,
+      text: `${skipped}`,
       sorttext: `${skipped} skipped`,
-      color: '#fa8c16',
+      color: '#ff3d00',
     }
   } else if (skipped >= 1 && skipped <= 3) {
     return {
-      text: `${skipped} skipped blocksmith`,
+      text: `${skipped}`,
       sorttext: `${skipped} skipped`,
-      color: '#722ed1',
+      color: '#ffa904',
     }
   } else {
     return {
-      text: 'No skipped blocksmith',
+      text: '0',
       sorttext: 'No skipped',
       color: '#008A00',
     }
@@ -298,14 +299,14 @@ export const blockColumns = [
   },
   {
     title: (
-      <div>
-        <Title text="skipped blocksmith" />{' '}
+      <div style={{display:'flex'}}>{' '}
+        <img src={skipRope} alt='' style={{width: '24px'}}/>
         <Tooltip placement="bottom" title={<Title text="account that generated the block" />}>
           <InfoCircleOutlined />
         </Tooltip>
       </div>
     ),
-    render(text, record) {
+    render(record) {
       const skipped = []
 
       if (Array.isArray(record.SkippedBlocksmiths))
@@ -314,7 +315,7 @@ export const blockColumns = [
         )
 
       return (
-        <Tag color={getBlocksmithIndicator(skipped.length).color}>
+        <Tag style={{ minWidth:'28px', textAlign: 'center'}} color={getBlocksmithIndicator(skipped.length).color}>
           {getBlocksmithIndicator(skipped.length).text}
         </Tag>
       )
