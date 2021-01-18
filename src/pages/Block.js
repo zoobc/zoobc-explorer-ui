@@ -206,7 +206,7 @@ const Block = ({ match }) => {
   const [trxCurrentPage, setTrxCurrentPage] = useState(1)
   const [transactions, setTransactions] = useState([])
   const [trxPaginate, setTrxPaginate] = useState({})
-  const [label, setLabel] = useState("show more")
+  const [label, setLabel] = useState('show more')
 
   const { loading, data, error } = useQuery(GET_BLOCK_DATA, {
     variables: {
@@ -256,8 +256,8 @@ const Block = ({ match }) => {
   }, [trxByBlock.data])
 
   const onChange = val => {
-    if (val && val.length > 0) setLabel("hide detail")
-    else setLabel("show detail")
+    if (val && val.length > 0) setLabel('hide detail')
+    else setLabel('show detail')
   }
 
   return (
@@ -306,33 +306,37 @@ const Block = ({ match }) => {
                     style={{ display: 'none' }}
                     value={trxPaginate.Total}
                   />
-                  <Collapse bordered={false} className="site-collapse-custom-collapse" onChange={onChange}>
-                  <Panel showArrow={false} header={label} key="1" className="text-collapse">
-                  <DescItem
-                    label={t('previous block hash')}
-                    style={{ display: 'none' }}
-                    value={data.block.PreviousBlockIDFormatted}
-                    textClassName="monospace-text"
-                  />
-                  <DescItem
-                    label={t('block seed')}
-                    text={t('a seed for random number uniquely generated for the block')}
-                    value={data.block.BlockSeed}
-                    textClassName="monospace-text"
-                  />
-                  <DescItem
-                    label={t('block signature')}
-                    style={{ display: 'none' }}
-                    value={data.block.BlockSignature}
-                    textClassName="monospace-text"
-                  />
-                  <DescItem
-                    label={t('cumulative difficulty')}
-                    text={t('difficulty of the blockchain up to this current block')}
-                    value={data.block.CumulativeDifficulty}
-                  />
-                  {/* <DescItem label={t('smith scale')} value={data.block.SmithScale} /> */}
-                  {/* <DescItem
+                  <Collapse
+                    bordered={false}
+                    className="site-collapse-custom-collapse"
+                    onChange={onChange}
+                  >
+                    <Panel showArrow={false} header={label} key="1" className="text-collapse">
+                      <DescItem
+                        label={t('previous block hash')}
+                        style={{ display: 'none' }}
+                        value={data.block.PreviousBlockIDFormatted}
+                        textClassName="monospace-text"
+                      />
+                      <DescItem
+                        label={t('block seed')}
+                        text={t('a seed for random number uniquely generated for the block')}
+                        value={data.block.BlockSeed}
+                        textClassName="monospace-text"
+                      />
+                      <DescItem
+                        label={t('block signature')}
+                        style={{ display: 'none' }}
+                        value={data.block.BlockSignature}
+                        textClassName="monospace-text"
+                      />
+                      <DescItem
+                        label={t('cumulative difficulty')}
+                        text={t('difficulty of the blockchain up to this current block')}
+                        value={data.block.CumulativeDifficulty}
+                      />
+                      {/* <DescItem label={t('smith scale')} value={data.block.SmithScale} /> */}
+                      {/* <DescItem
                     label={t('blocksmith address')}
                     text={t('account that generated the block')}
                     value={
@@ -341,43 +345,43 @@ const Block = ({ match }) => {
                       </Link>
                     }
                   /> */}
-                    <DescItem
-                      label={t('total amount')}
-                      style={{ display: 'none' }}
-                      value={data.block.TotalAmountConversion}
-                    />
-                    <DescItem
-                      label={t('total fee')}
-                      style={{ display: 'none' }}
-                      value={
-                        <NumberFormat
-                          value={data.block.TotalFeeConversion}
-                          displayType={'text'}
-                          thousandSeparator={true}
-                          suffix={' ZBC'}
-                          className="monospace-text"
-                        />
-                      }
-                    />
-                    <DescItem
-                      label={t('total coinbase')}
-                      style={{ display: 'none' }}
-                      value={
-                        <NumberFormat
-                          value={data.block.TotalCoinBaseConversion}
-                          displayType={'text'}
-                          thousandSeparator={true}
-                          suffix={' ZBC'}
-                          className="monospace-text"
-                        />
-                      }
-                    />
-                    <DescItem
-                      label={t('version')}
-                      style={{ display: 'none' }}
-                      value={data.block.Version}
-                    />
-                    {/* <DescItem
+                      <DescItem
+                        label={t('total amount')}
+                        style={{ display: 'none' }}
+                        value={data.block.TotalAmountConversion}
+                      />
+                      <DescItem
+                        label={t('total fee')}
+                        style={{ display: 'none' }}
+                        value={
+                          <NumberFormat
+                            value={data.block.TotalFeeConversion}
+                            displayType={'text'}
+                            thousandSeparator={true}
+                            suffix={' ZBC'}
+                            className="monospace-text"
+                          />
+                        }
+                      />
+                      <DescItem
+                        label={t('total coinbase')}
+                        style={{ display: 'none' }}
+                        value={
+                          <NumberFormat
+                            value={data.block.TotalCoinBaseConversion}
+                            displayType={'text'}
+                            thousandSeparator={true}
+                            suffix={' ZBC'}
+                            className="monospace-text"
+                          />
+                        }
+                      />
+                      <DescItem
+                        label={t('version')}
+                        style={{ display: 'none' }}
+                        value={data.block.Version}
+                      />
+                      {/* <DescItem
                     label={t('total receipts')}
                     style={{ display: 'none' }}
                     value={data.block.TotalReceipts}
@@ -387,33 +391,33 @@ const Block = ({ match }) => {
                     style={{ display: 'none' }}
                     value={data.block.ReceiptValue}
                   /> */}
-                    <DescItem
-                      label={t('blocksmith public key')}
-                      style={{ display: 'none' }}
-                      value={
-                        <Link to={`/nodes/${data.block.BlocksmithIDFormatted}`}>
-                          {data.block.BlocksmithIDFormatted}
-                        </Link>
-                      }
-                      textClassName="monospace-text"
-                    />
-                    {/* <DescItem
+                      <DescItem
+                        label={t('blocksmith public key')}
+                        style={{ display: 'none' }}
+                        value={
+                          <Link to={`/nodes/${data.block.BlocksmithIDFormatted}`}>
+                            {data.block.BlocksmithIDFormatted}
+                          </Link>
+                        }
+                        textClassName="monospace-text"
+                      />
+                      {/* <DescItem
                     label={t('pop change')}
                     style={{ display: 'none' }}
                     value={data.block.PopChange}
                   /> */}
-                  <DescItem
-                    label={t('payload length')}
-                    style={{ display: 'none' }}
-                    value={data.block.PayloadLength}
-                  />
-                  <DescItem
-                    label={t('payload hash')}
-                    style={{ display: 'none' }}
-                    value={data.block.PayloadHash}
-                    textClassName="monospace-text"
-                  />
-                  </Panel>
+                      <DescItem
+                        label={t('payload length')}
+                        style={{ display: 'none' }}
+                        value={data.block.PayloadLength}
+                      />
+                      <DescItem
+                        label={t('payload hash')}
+                        style={{ display: 'none' }}
+                        value={data.block.PayloadHash}
+                        textClassName="monospace-text"
+                      />
+                    </Panel>
                   </Collapse>
                 </Card>
                 <Collapse className="block-collapse" bordered={false}>

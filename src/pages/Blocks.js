@@ -46,7 +46,7 @@ import { useQuery, gql } from '@apollo/client'
 import { Row, Col, Card, Table, Pagination, Button } from 'antd'
 
 import Alert from '../components/Alert'
-import { getSortString, isEmptyObject } from '../utils'
+import { getSortString } from '../utils'
 import Container from '../components/Container'
 import { blockColumns } from '../config/table-columns'
 import LastRefresh from '../components/LastRefresh'
@@ -87,7 +87,7 @@ const Blocks = () => {
   const [sorted, setSorted] = useState(defaultSort)
 
   const onChangeTable = (pagination, filters, sorter) => {
-    setSorted(isEmptyObject(sorter) ? defaultSort : sorter)
+    setSorted(sorter && sorter.order ? sorter : defaultSort)
   }
 
   const columns = blockColumns.map(item => {

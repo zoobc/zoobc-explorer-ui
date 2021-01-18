@@ -299,23 +299,26 @@ export const blockColumns = [
   },
   {
     title: (
-      <div style={{display:'flex'}}>{' '}
-        <img src={skipRope} alt='' style={{width: '24px'}}/>
+      <div style={{ display: 'flex' }}>
+        <img src={skipRope} alt="icon" style={{ width: '24px' }} />
         <Tooltip placement="bottom" title={<Title text="account that generated the block" />}>
           <InfoCircleOutlined />
         </Tooltip>
       </div>
     ),
-    render(record) {
+    key: 'SkippedBlocksmiths',
+    dataIndex: 'SkippedBlocksmiths',
+    render(SkippedBlocksmiths) {
       const skipped = []
 
-      if (Array.isArray(record.SkippedBlocksmiths))
-        record.SkippedBlocksmiths.map(
-          data => !objectUtils.isContainsNullValue(data) && skipped.push(data)
-        )
+      if (Array.isArray(SkippedBlocksmiths))
+        SkippedBlocksmiths.map(data => !objectUtils.isContainsNullValue(data) && skipped.push(data))
 
       return (
-        <Tag style={{ minWidth:'28px', textAlign: 'center'}} color={getBlocksmithIndicator(skipped.length).color}>
+        <Tag
+          style={{ minWidth: '28px', textAlign: 'center' }}
+          color={getBlocksmithIndicator(skipped.length).color}
+        >
           {getBlocksmithIndicator(skipped.length).text}
         </Tag>
       )

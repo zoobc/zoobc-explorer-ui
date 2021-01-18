@@ -1,6 +1,6 @@
 .announcement {
   width: 100%;
-  height: 32px;
+  height: 42px;
   top: 0;
   z-index: 99;
   position: fixed;
@@ -11,6 +11,10 @@
   color: white;
   padding: 0 16px;
   text-align: center;
+}
+
+.ant-menu-item-selected {
+  color: var(--color-white) !important;
 }
 
 .header {
@@ -36,16 +40,18 @@
   }
 
   .ant-menu-item-selected {
+    color: var(--color-white) !important;
+
     a {
-      color: var(--color-primary-light) !important;
+      color: var(--color-white) !important;
 
       &:hover {
-        color: var(--color-primary-light) !important;
+        color: var(--color-white) !important;
       }
     }
   }
 
-  .ant-menu-dark.ant-menu-horizontal>.ant-menu-item {
+  .ant-menu-dark.ant-menu-horizontal > .ant-menu-item {
     top: 0 !important;
     font-weight: 600;
     font-style: normal;
@@ -59,7 +65,7 @@
     // font-size: 45px;
   }
 
-  .ant-btn>span {
+  .ant-btn > span {
     text-transform: uppercase;
   }
 
@@ -180,7 +186,7 @@
 .menu-with-icon {
   color: var(--color-secondary-light);
   font-size: 14px;
-  background-color: var(--color-primary-bg) !important;
+  background-color: var(--color-drawer-bg) !important;
 
   a {
     color: var(--color-secondary-solitude-txt) !important;
@@ -194,7 +200,7 @@
 .drawer-mobile {
   .ant-drawer {
     &-content {
-      background-color: var(--color-primary-bg) !important;
+      background-color: var(--color-drawer-bg) !important;
       color: var(--white);
     }
 
