@@ -55,7 +55,7 @@ const LastRefresh = ({ value }) => {
 
   return (
     <span className="refresh-status">
-      {t('last refresh')}: {t(dateFormat)}
+      {t('last refresh')}: {dateFormat}
     </span>
   )
 }

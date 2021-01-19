@@ -57,8 +57,8 @@ import { transactionColumns, nodeColumns } from '../config/table-columns'
 const { Panel } = Collapse
 
 const GET_ACCOUNT_DATA = gql`
-  query getAccount($AccountAddress: String!) {
-    account(AccountAddress: $AccountAddress) {
+  query getAccount($AccountAddressFormatted: String!) {
+    account(AccountAddressFormatted: $AccountAddressFormatted) {
       AccountAddress
       AccountAddressFormatted
       BalanceConversion
@@ -73,8 +73,13 @@ const GET_ACCOUNT_DATA = gql`
 `
 
 const GET_TRX_BY_ACCOUNT = gql`
-  query getTrxByAccount($page: Int, $AccountAddress: String!) {
-    transactions(page: $page, limit: 5, order: "-Height", AccountAddress: $AccountAddress) {
+  query getTrxByAccount($page: Int, $AccountAddressFormatted: String!) {
+    transactions(
+      page: $page
+      limit: 5
+      order: "-Height"
+      AccountAddressFormatted: $AccountAddressFormatted
+    ) {
       Transactions {
         TransactionID
         TransactionHashFormatted
@@ -140,8 +145,13 @@ const GET_TRX_BY_ACCOUNT = gql`
 `
 
 const GET_NODE_BY_ACCOUNT = gql`
-  query getNodeByAccount($page: Int, $AccountAddress: String!) {
-    nodes(page: $page, limit: 5, order: "-RegistrationTime", AccountAddress: $AccountAddress) {
+  query getNodeByAccount($page: Int, $AccountAddressFormatted: String!) {
+    nodes(
+      page: $page
+      limit: 5
+      order: "-RegistrationTime"
+      AccountAddressFormatted: $AccountAddressFormatted
+    ) {
       Nodes {
         NodePublicKey
         NodePublicKeyFormatted
@@ -187,20 +197,20 @@ const Account = ({ match }) => {
 
   const { loading, data, error } = useQuery(GET_ACCOUNT_DATA, {
     variables: {
-      AccountAddress: accountAddress,
+      AccountAddressFormatted: accountAddress,
     },
   })
 
   const trxByAccount = useQuery(GET_TRX_BY_ACCOUNT, {
     variables: {
-      AccountAddress: params.id,
+      AccountAddressFormatted: params.id,
       page: trxCurrentPage,
     },
   })
 
   const nodeByAccount = useQuery(GET_NODE_BY_ACCOUNT, {
     variables: {
-      AccountAddress: params.id,
+      AccountAddressFormatted: params.id,
       page: nodeCurrentPage,
     },
   })

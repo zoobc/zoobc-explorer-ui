@@ -4,9 +4,11 @@
   --white: #ffffff;
   --dark-blue-primary: #0031da;
   --dark-blue-secondary: #0b3d65;
-  --light-blue: #00ADFF;
+  --light-blue: #00adff;
   --dark-grey: #92adbf;
   --light-grey: #e7eaf3;
+  --grey-blue: #6b7a85;
+  --yellow-gold: #a8b854;
 
   /* Main colors */
   --color-black: var(--black);
@@ -17,13 +19,15 @@
   --color-secondary-dark: var(--dark-blue-secondary);
   --color-secondary-light: var(--dark-grey);
   --color-secondary-solitude: var(--light-grey);
+  --color-grey-blue: var(--grey-blue);
+  --color-yellow-gold: var(--yellow-gold);
 
   /* Background colors */
   --color-primary-bg: var(--color-secondary-dark);
   --color-secondary-bg: var(--color-secondary-solitude);
   --color-collapse-bg: var(--color-secondary-light);
   --color-search-bg: var(--color-white);
-
+  --color-drawer-bg: var(--color-secondary-dark);
 
   /* Button colors */
   --color-primary-btn: var(--color-secondary-dark);

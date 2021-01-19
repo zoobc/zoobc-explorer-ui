@@ -43,6 +43,10 @@
 import store from '../utils/store'
 
 const config = {
+  app: {
+    version: 'Beta Version 0.3.2',
+    defaultLang: store.use('language', 'en'),
+  },
   endpoint: {
     api:
       process.env.REACT_APP_API === 'localhost'
@@ -52,9 +56,6 @@ const config = {
       process.env.REACT_APP_API === 'localhost'
         ? 'http://localhost:6969/zoobc/api/v1/graphql'
         : 'https://alpha.zoobc.net/zoobc/api/v1/graphql',
-  },
-  app: {
-    defaultLang: store.use('language', 'en'),
   },
   doolbell: {
     api_key: process.env.REACT_APP_DOORBELL_KEY,
