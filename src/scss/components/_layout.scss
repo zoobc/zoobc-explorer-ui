@@ -5,7 +5,6 @@
 }
 
 .home {
-
   &-banner {
     background-color: var(--color-banner) !important;
     padding-top: 30px !important;
@@ -39,7 +38,7 @@
     padding-bottom: 16px !important;
   }
 
-  @include mq-sm {
+  @include mq-xs {
     padding-right: 0px !important;
     padding-bottom: 16px !important;
   }
@@ -58,7 +57,7 @@
     padding-left: 0px !important;
   }
 
-  @include mq-sm {
+  @include mq-xs {
     padding-left: 0px !important;
   }
 
@@ -101,7 +100,7 @@
     width: 450px;
   }
 
-  @include mq-sm {
+  @include mq-xs {
     width: 300px;
   }
 }

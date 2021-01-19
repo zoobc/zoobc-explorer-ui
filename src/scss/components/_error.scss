@@ -18,12 +18,12 @@
   .error-search {
     width: 50%;
 
-    @include mq-sm {
+    @include mq-xs {
       width: 100%;
     }
   }
 
-  @include mq-sm {
+  @include mq-xs {
     width: 100%;
     padding: 10px 0;
   }
@@ -31,7 +31,7 @@
     img {
       width: 25%;
     }
-    @include mq-sm {
+    @include mq-xs {
       width: 100%;
       img {
         width: 50%;
