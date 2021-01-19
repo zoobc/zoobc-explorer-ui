@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
 
-  @include mq-sm {
+  @include mq-xs {
     width: 100%;
   }
 }
