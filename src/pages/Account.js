@@ -57,8 +57,8 @@ import { transactionColumns, nodeColumns } from '../config/table-columns'
 const { Panel } = Collapse
 
 const GET_ACCOUNT_DATA = gql`
-  query getAccount($AccountAddress: String!) {
-    account(AccountAddress: $AccountAddress) {
+  query getAccount($AccountAddressFormatted: String!) {
+    account(AccountAddressFormatted: $AccountAddressFormatted) {
       AccountAddress
       AccountAddressFormatted
       BalanceConversion
@@ -197,20 +197,20 @@ const Account = ({ match }) => {
 
   const { loading, data, error } = useQuery(GET_ACCOUNT_DATA, {
     variables: {
-      AccountAddress: accountAddress,
+      AccountAddressFormatted: accountAddress,
     },
   })
 
   const trxByAccount = useQuery(GET_TRX_BY_ACCOUNT, {
     variables: {
-      AccountAddress: params.id,
+      AccountAddressFormatted: params.id,
       page: trxCurrentPage,
     },
   })
 
   const nodeByAccount = useQuery(GET_NODE_BY_ACCOUNT, {
     variables: {
-      AccountAddress: params.id,
+      AccountAddressFormatted: params.id,
       page: nodeCurrentPage,
     },
   })
