@@ -1,4 +1,4 @@
-/** 
+/**
  * ZooBC Copyright (C) 2020 Quasisoft Limited - Hong Kong
  * This file is part of ZooBC <https://github.com/zoobc/zoobc-explorer-ui>
 
@@ -9,27 +9,27 @@
 
  * ZooBC is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
 
  * You should have received a copy of the GNU General Public License
  * along with ZooBC.  If not, see <http://www.gnu.org/licenses/>.
 
  * Additional Permission Under GNU GPL Version 3 section 7.
- * As the special exception permitted under Section 7b, c and e, 
+ * As the special exception permitted under Section 7b, c and e,
  * in respect with the Author’s copyright, please refer to this section:
 
  * 1. You are free to convey this Program according to GNU GPL Version 3,
- *     as long as you respect and comply with the Author’s copyright by 
- *     showing in its user interface an Appropriate Notice that the derivate 
- *     program and its source code are “powered by ZooBC”. 
- *     This is an acknowledgement for the copyright holder, ZooBC, 
+ *     as long as you respect and comply with the Author’s copyright by
+ *     showing in its user interface an Appropriate Notice that the derivate
+ *     program and its source code are “powered by ZooBC”.
+ *     This is an acknowledgement for the copyright holder, ZooBC,
  *     as the implementation of appreciation of the exclusive right of the
  *     creator and to avoid any circumvention on the rights under trademark
  *     law for use of some trade names, trademarks, or service marks.
 
- * 2. Complying to the GNU GPL Version 3, you may distribute 
- *     the program without any permission from the Author. 
+ * 2. Complying to the GNU GPL Version 3, you may distribute
+ *     the program without any permission from the Author.
  *     However a prior notification to the authors will be appreciated.
 
  * ZooBC is architected by Roberto Capodieci & Barton Johnston
@@ -40,10 +40,10 @@
  * shall be included in all copies or substantial portions of the Software.
 **/
 
-import React from 'react'
+import React, { useState } from 'react'
 import moment from 'moment'
 import NumberFormat from 'react-number-format'
-import { Row, Col, Card } from 'antd'
+import { Row, Col, Card, Collapse } from 'antd'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useQuery, gql } from '@apollo/client'
@@ -249,14 +249,23 @@ const TransactionType = ({ trx }) => {
   }
 }
 
+const { Panel } = Collapse
+
 const Transaction = ({ match }) => {
   const { t } = useTranslation()
   const { params } = match
+  const [label, setLabel] = useState('show more')
+
   const { loading, data, error } = useQuery(GET_TRX_DATA, {
     variables: {
       TrxID: params.id,
     },
   })
+
+  const onChange = val => {
+    if (val && val.length > 0) setLabel('hide detail')
+    else setLabel('show detail')
+  }
 
   return (
     <>
@@ -277,29 +286,6 @@ const Transaction = ({ match }) => {
                 <Card className="transaction-card" bordered={false}>
                   <h4 className="transaction-card-title page-title">{t('summary')}</h4>
                   <DescItem
-                    label={t('transaction hash')}
-                    style={{ display: 'none' }}
-                    value={
-                      <CopyToClipboard
-                        text={data.transaction.TransactionHashFormatted}
-                        keyID="TransactionHashFormatted"
-                      />
-                    }
-                    textClassName="monospace-text"
-                  />
-                  <DescItem
-                    label={t('transaction id')}
-                    text={t(
-                      'an identifier which facilitates easy identification of transactions on the zoobc blockchain'
-                    )}
-                    value={
-                      <CopyToClipboard
-                        text={data.transaction.TransactionID}
-                        keyID="TransactionID"
-                      />
-                    }
-                  />
-                  <DescItem
                     label={t('timestamp')}
                     style={{ display: 'none' }}
                     value={moment(data.transaction.Timestamp).format('lll')}
@@ -308,28 +294,6 @@ const Transaction = ({ match }) => {
                     label="transaction type"
                     style={{ display: 'none' }}
                     value={data.transaction.TransactionTypeName}
-                  />
-                  <DescItem
-                    label={t('block id')}
-                    text={t(
-                      'an identifier which facilitates easy identification of blocks on the zoobc blockchain'
-                    )}
-                    value={
-                      <Link to={`/blocks/${data.transaction.BlockID}`}>
-                        {data.transaction.BlockID}
-                      </Link>
-                    }
-                  />
-                  <DescItem
-                    label={t('height')}
-                    text={t(
-                      'the position of the block in the zoobc blockchain. for example, height 0, would be the very first block, which is also called the genesis block'
-                    )}
-                    value={
-                      <Link to={`/blocks/${data.transaction.Height}`}>
-                        {data.transaction.Height}
-                      </Link>
-                    }
                   />
                   <DescItem
                     label={t('sender')}
@@ -351,32 +315,85 @@ const Transaction = ({ match }) => {
                     }
                     textClassName="monospace-text"
                   />
-                  {/* <DescItem label={t('confirmations')} value={data.transaction.Confirmations} /> */}
-                  <DescItem
-                    label={t('fees')}
-                    style={{ display: 'none' }}
-                    value={
-                      <NumberFormat
-                        value={data.transaction.FeeConversion || 0}
-                        displayType={'text'}
-                        thousandSeparator={true}
-                        suffix={' ZBC'}
-                        className="monospace-text"
+                  <Collapse
+                    bordered={false}
+                    className="site-collapse-custom-collapse"
+                    onChange={onChange}
+                  >
+                    <Panel showArrow={false} header={label} key="1" className="text-collapse">
+                      <DescItem
+                        label={t('transaction hash')}
+                        style={{ display: 'none' }}
+                        value={
+                          <CopyToClipboard
+                            text={data.transaction.TransactionHashFormatted}
+                            keyID="TransactionHashFormatted"
+                          />
+                        }
+                        textClassName="monospace-text"
                       />
-                    }
-                  />
-                  <DescItem
-                    label={t('status')}
-                    style={{ display: 'none' }}
-                    value={data.transaction.Status}
-                  />
-                  {data.transaction.MultisigChild && (
-                    <DescItem
-                      label={t('transaction hash')}
-                      style={{ display: 'none' }}
-                      value={data.transaction.TransactionHash}
-                    />
-                  )}
+                      <DescItem
+                        label={t('transaction id')}
+                        text={t(
+                          'an identifier which facilitates easy identification of transactions on the zoobc blockchain'
+                        )}
+                        value={
+                          <CopyToClipboard
+                            text={data.transaction.TransactionID}
+                            keyID="TransactionID"
+                          />
+                        }
+                      />
+                      <DescItem
+                        label={t('block id')}
+                        text={t(
+                          'an identifier which facilitates easy identification of blocks on the zoobc blockchain'
+                        )}
+                        value={
+                          <Link to={`/blocks/${data.transaction.BlockID}`}>
+                            {data.transaction.BlockID}
+                          </Link>
+                        }
+                      />
+                      <DescItem
+                        label={t('height')}
+                        text={t(
+                          'the position of the block in the zoobc blockchain. for example, height 0, would be the very first block, which is also called the genesis block'
+                        )}
+                        value={
+                          <Link to={`/blocks/${data.transaction.Height}`}>
+                            {data.transaction.Height}
+                          </Link>
+                        }
+                      />
+                      {/* <DescItem label={t('confirmations')} value={data.transaction.Confirmations} /> */}
+                      <DescItem
+                        label={t('fees')}
+                        style={{ display: 'none' }}
+                        value={
+                          <NumberFormat
+                            value={data.transaction.FeeConversion || 0}
+                            displayType={'text'}
+                            thousandSeparator={true}
+                            suffix={' ZBC'}
+                            className="monospace-text"
+                          />
+                        }
+                      />
+                      <DescItem
+                        label={t('status')}
+                        style={{ display: 'none' }}
+                        value={data.transaction.Status}
+                      />
+                      {data.transaction.MultisigChild && (
+                        <DescItem
+                          label={t('transaction hash')}
+                          style={{ display: 'none' }}
+                          value={data.transaction.TransactionHash}
+                        />
+                      )}
+                    </Panel>
+                  </Collapse>
                 </Card>
                 <TransactionType trx={data.transaction} />
               </Col>
