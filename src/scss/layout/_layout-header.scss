@@ -1,18 +1,3 @@
-.announcement {
-  width: 100%;
-  height: 42px;
-  top: 0;
-  z-index: 99;
-  position: fixed;
-  background-color: #b50020;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  padding: 0 16px;
-  text-align: center;
-}
-
 .ant-menu-item-selected {
   color: var(--color-white) !important;
 }
@@ -20,7 +5,7 @@
 .header {
   z-index: 11;
   width: 100%;
-  top: 32px;
+  top: 40px;
   left: 0;
   padding: 0 !important;
   position: fixed !important;
