@@ -299,7 +299,15 @@ const Block = ({ match }) => {
                   <DescItem
                     label={t('total rewards')}
                     text={t('total coinbase + total fee')}
-                    value={data.block.Height}
+                    value={
+                      <NumberFormat
+                        value={data.block.TotalRewardsConversion}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                        suffix={' ZBC'}
+                        className="monospace-text"
+                      />
+                    }
                   />
                   <DescItem
                     label={t('Number of Transaction')}

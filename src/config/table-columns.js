@@ -252,26 +252,6 @@ export const blockColumns = [
   {
     title: (
       <div>
-        <Title text="block hash" />{' '}
-        <Tooltip
-          placement="bottom"
-          title={
-            <Title text="an identifier which facilitates easy identification of blocks on the zoobc blockchain" />
-          }
-        >
-          <InfoCircleOutlined />
-        </Tooltip>
-      </div>
-    ),
-    dataIndex: 'BlockHashFormatted',
-    key: 'BlockHashFormatted',
-    render(text) {
-      return <ZBCShortAddress address={text} href={`/blocks/${text}`} title="block hash" />
-    },
-  },
-  {
-    title: (
-      <div>
         <Title text="height" />{' '}
         <Tooltip
           placement="bottom"
@@ -287,6 +267,26 @@ export const blockColumns = [
     key: 'Height',
     render(text) {
       return <Link to={`/blocks/${text}`}>{text}</Link>
+    },
+  },
+  {
+    title: (
+      <div>
+        <Title text="block hash" />{' '}
+        <Tooltip
+          placement="bottom"
+          title={
+            <Title text="an identifier which facilitates easy identification of blocks on the zoobc blockchain" />
+          }
+        >
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
+    dataIndex: 'BlockHashFormatted',
+    key: 'BlockHashFormatted',
+    render(text) {
+      return <ZBCShortAddress address={text} href={`/blocks/${text}`} title="block hash" />
     },
   },
   {
