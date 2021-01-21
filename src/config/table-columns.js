@@ -730,8 +730,15 @@ export const latestBlockColumns = [
     },
   },
   {
-    title: <Title text="blocksmith" />,
-    render(text, record) {
+    title: (
+      <div style={{ display: 'flex' }}>
+        <img src={skipRope} alt="icon" style={{ width: '24px' }} />
+        <Tooltip placement="bottom" title={<Title text="account that generated the block" />}>
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
+    render(record) {
       const skipped = []
 
       if (Array.isArray(record.SkippedBlocksmiths))
@@ -740,8 +747,11 @@ export const latestBlockColumns = [
         )
 
       return (
-        <Tag color={getBlocksmithIndicator(skipped.length).color}>
-          {getBlocksmithIndicator(skipped.length).sorttext}
+        <Tag
+          style={{ minWidth: '28px', textAlign: 'center' }}
+          color={getBlocksmithIndicator(skipped.length).color}
+        >
+          {getBlocksmithIndicator(skipped.length).text}
         </Tag>
       )
     },
