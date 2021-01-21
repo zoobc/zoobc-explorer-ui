@@ -1,6 +1,9 @@
 .ant-card {
   background: var(--color-primary-card) !important;
   color: var(--color-text-card-title) !important;
+  .ant-collapse-content {
+    color: var(--color-text-card-title);
+  }
 }
 
 .card-summary {
