@@ -319,7 +319,7 @@ const Transaction = ({ match }) => {
                     bordered={false}
                     className="site-collapse-custom-collapse"
                     onChange={onChange}
-                    style={{background:'transparent'}}
+                    style={{ background: 'transparent' }}
                   >
                     <Panel showArrow={false} header={label} key="1" className="text-collapse">
                       <DescItem
