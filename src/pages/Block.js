@@ -47,7 +47,7 @@ import NumberFormat from 'react-number-format'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useQuery, gql, useLazyQuery } from '@apollo/client'
-import { Row, Col, Card, Table, Pagination, Collapse, Badge } from 'antd'
+import { Row, Col, Card, Table, Pagination, Collapse, Badge, Button, Avatar } from 'antd'
 
 import Container from '../components/Container'
 import DescItem from '../components/DescItem'
@@ -65,68 +65,82 @@ import {
 const GET_BLOCK_DATA = gql`
   query getBlock($BlockID: String!) {
     block(BlockID: $BlockID) {
-      Height
-      BlockID
-      BlockHash
-      BlockHashFormatted
-      Timestamp
-      PreviousBlockID
-      PreviousBlockIDFormatted
-      BlockSeed
-      BlockSignature
-      CumulativeDifficulty
-      SmithScale
-      BlocksmithAddress
-      BlocksmithAddressFormatted
-      TotalAmountConversion
-      TotalFeeConversion
-      TotalRewardsConversion
-      TotalCoinBaseConversion
-      Version
-      TotalReceipts
-      ReceiptValue
-      BlocksmithID
-      BlocksmithIDFormatted
-      PopChange
-      PayloadLength
-      PayloadHash
-      SkippedBlocksmiths {
-        BlocksmithPublicKey
-        BlocksmithPublicKeyFormatted
-        POPChange
-        BlockHeight
-        BlocksmithIndex
-      }
-      PublishedReceipts {
-        Receipt {
-          SenderPublicKey
-          SenderPublicKeyFormatted
-          RecipientPublicKey
-          RecipientPublicKeyFormatted
-          DatumType
-          DatumHash
-          RecipientSignature
-        }
-        BlockHeight
-      }
-      PopChanges {
-        NodeID
-        NodePublicKey
-        NodePublicKeyFormatted
-        Score
-        Latest
+      Block {
         Height
-        DifferenceScores
-        DifferenceScorePercentage
-        Flag
-      }
-      AccountRewards {
-        AccountAddress
-        AccountAddressFormatted
-        BlockHeight
+        BlockID
+        BlockHash
+        BlockHashFormatted
         Timestamp
-        EventType
-        BalanceChangeConversion
+        PreviousBlockID
+        PreviousBlockIDFormatted
+        BlockSeed
+        BlockSignature
+        CumulativeDifficulty
+        SmithScale
+        BlocksmithAddress
+        BlocksmithAddressFormatted
+        TotalAmountConversion
+        TotalFeeConversion
+        TotalRewardsConversion
+        TotalCoinBaseConversion
+        Version
+        TotalReceipts
+        ReceiptValue
+        BlocksmithID
+        BlocksmithIDFormatted
+        PopChange
+        PayloadLength
+        PayloadHash
+        SkippedBlocksmiths {
+          BlocksmithPublicKey
+          BlocksmithPublicKeyFormatted
+          POPChange
+          BlockHeight
+          BlocksmithIndex
+        }
+        PublishedReceipts {
+          Receipt {
+            SenderPublicKey
+            SenderPublicKeyFormatted
+            RecipientPublicKey
+            RecipientPublicKeyFormatted
+            DatumType
+            DatumHash
+            RecipientSignature
+          }
+          BlockHeight
+        }
+        PopChanges {
+          NodeID
+          NodePublicKey
+          NodePublicKeyFormatted
+          Score
+          Latest
+          Height
+          DifferenceScores
+          DifferenceScorePercentage
+          Flag
+        }
+        AccountRewards {
+          AccountAddress
+          AccountAddressFormatted
+          BlockHeight
+          Timestamp
+          EventType
+          BalanceChangeConversion
+        }
+      }
+      NextPrevious {
+        Previous {
+          Enabled
+          Height
+          BlockHashFormatted
+        }
+        Next {
+          Enabled
+          Height
+          BlockHashFormatted
+        }
       }
     }
   }
@@ -143,7 +157,9 @@ const GET_TRX_BY_BLOCK = gql`
         TransactionTypeName
         TransactionType
         Sender
+        SenderFormatted
         Recipient
+        RecipientFormatted
         Fee
         BlockID
         FeeConversion
@@ -201,8 +217,8 @@ const GET_TRX_BY_BLOCK = gql`
 const { Panel } = Collapse
 
 const Block = ({ match }) => {
-  const { params } = match
   const { t } = useTranslation()
+  const { params } = match
   const [trxCurrentPage, setTrxCurrentPage] = useState(1)
   const [transactions, setTransactions] = useState([])
   const [trxPaginate, setTrxPaginate] = useState({})
@@ -216,7 +232,7 @@ const Block = ({ match }) => {
       if (!!data) {
         fetcTrxByBlock({
           variables: {
-            BlockID: data.block.BlockID,
+            BlockID: data.block.Block.BlockID,
           },
         })
       }
@@ -229,6 +245,15 @@ const Block = ({ match }) => {
       page: trxCurrentPage,
     },
   })
+
+  const onChange = val => {
+    if (val && val.length > 0) setLabel('hide detail')
+    else setLabel('show detail')
+  }
+
+  const onChangeHeight = height => {
+    window.location.href = height
+  }
 
   useEffect(() => {
     if (!!trxByBlock.data) {
@@ -255,25 +280,87 @@ const Block = ({ match }) => {
     }
   }, [trxByBlock.data])
 
-  const onChange = val => {
-    if (val && val.length > 0) setLabel('hide detail')
-    else setLabel('show detail')
-  }
-
   return (
     <>
       {!!error && <NotFound />}
       {!!loading && <LoaderPage />}
       {!!data &&
-        (data.block.Height ? (
+        data.block &&
+        (data.block.Block.Height ? (
           <Container>
             <Row className="block-row">
               <Col span={24}>
                 <Row>
-                  <Col span={24}>
+                  <Col span={18}>
                     <h4 className="truncate page-title">
-                      {t('block')} {data.block.Height}
+                      {t('block')} {data.block.Block.Height}
                     </h4>
+                  </Col>
+                  <Col span={6}>
+                    <div className="truncate page-title-nav">
+                      <Row type="flex" justify="end" align="middle">
+                        <Col span={4}>
+                          <div style={{ textAlign: 'center' }}>
+                            <Button
+                              type="link"
+                              style={{ padding: 0 }}
+                              disabled={!data.block.NextPrevious.Previous.Enabled}
+                              onClick={() =>
+                                onChangeHeight(data.block.NextPrevious.Previous.Height)
+                              }
+                            >
+                              <Avatar
+                                size="small"
+                                shape="square"
+                                src={require('../assets/images/block-grey.svg')}
+                              />
+                            </Button>
+                            <p>
+                              <small>{data.block.NextPrevious.Previous.Height}</small>
+                            </p>
+                          </div>
+                        </Col>
+                        <Col span={4}>
+                          <div style={{ textAlign: 'center' }}>--</div>
+                        </Col>
+                        <Col span={4}>
+                          <div style={{ textAlign: 'center' }}>
+                            <Avatar
+                              size="large"
+                              shape="square"
+                              src={require('../assets/images/block-color.svg')}
+                            />
+                            <p>
+                              <small>{data.block.Block.Height}</small>
+                            </p>
+                          </div>
+                        </Col>
+                        <Col span={4}>
+                          <div style={{ textAlign: 'center' }}>--</div>
+                        </Col>
+                        <Col span={4}>
+                          <div style={{ textAlign: 'center' }}>
+                            <Button
+                              type="link"
+                              style={{ padding: 0 }}
+                              disabled={!data.block.NextPrevious.Next.Enabled}
+                              onClick={() => onChangeHeight(data.block.NextPrevious.Next.Height)}
+                            >
+                              <Avatar
+                                size="small"
+                                shape="square"
+                                src={require(data.block.NextPrevious.Next.Enabled
+                                  ? '../assets/images/block-grey.svg'
+                                  : '../assets/images/mining.svg')}
+                              />
+                            </Button>
+                            <p>
+                              <small>{data.block.NextPrevious.Next.Height}</small>
+                            </p>
+                          </div>
+                        </Col>
+                      </Row>
+                    </div>
                   </Col>
                 </Row>
                 <Card className="block-card" bordered={false}>
@@ -283,25 +370,27 @@ const Block = ({ match }) => {
                     text={t(
                       'the position of the block in the zoobc blockchain. for example, height 0, would be the very first block, which is also called the genesis block'
                     )}
-                    value={data.block.Height}
+                    value={data.block.Block.Height}
                   />
                   <DescItem
                     label={t('block hash')}
                     style={{ display: 'none' }}
-                    value={<CopyToClipboard text={data.block.BlockHashFormatted} keyID="blockID" />}
+                    value={
+                      <CopyToClipboard text={data.block.Block.BlockHashFormatted} keyID="blockID" />
+                    }
                     textClassName="monospace-text"
                   />
                   <DescItem
                     label={t('timestamp')}
                     style={{ display: 'none' }}
-                    value={moment(data.block.Timestamp).format('lll')}
+                    value={moment(data.block.Block.Timestamp).format('lll')}
                   />
                   <DescItem
                     label={t('total rewards')}
                     text={t('total coinbase + total fee')}
                     value={
                       <NumberFormat
-                        value={data.block.TotalRewardsConversion}
+                        value={data.block.Block.TotalRewardsConversion}
                         displayType={'text'}
                         thousandSeparator={true}
                         suffix={' ZBC'}
@@ -316,6 +405,7 @@ const Block = ({ match }) => {
                   />
                   <Collapse
                     bordered={false}
+                    style={{ background: 'transparent', borderBottom: 0 }}
                     className="site-collapse-custom-collapse"
                     onChange={onChange}
                   >
@@ -323,47 +413,47 @@ const Block = ({ match }) => {
                       <DescItem
                         label={t('previous block hash')}
                         style={{ display: 'none' }}
-                        value={data.block.PreviousBlockIDFormatted}
+                        value={data.block.Block.PreviousBlockIDFormatted}
                         textClassName="monospace-text"
                       />
                       <DescItem
                         label={t('block seed')}
                         text={t('a seed for random number uniquely generated for the block')}
-                        value={data.block.BlockSeed}
+                        value={data.block.Block.BlockSeed}
                         textClassName="monospace-text"
                       />
                       <DescItem
                         label={t('block signature')}
                         style={{ display: 'none' }}
-                        value={data.block.BlockSignature}
+                        value={data.block.Block.BlockSignature}
                         textClassName="monospace-text"
                       />
                       <DescItem
                         label={t('cumulative difficulty')}
                         text={t('difficulty of the blockchain up to this current block')}
-                        value={data.block.CumulativeDifficulty}
+                        value={data.block.Block.CumulativeDifficulty}
                       />
-                      {/* <DescItem label={t('smith scale')} value={data.block.SmithScale} /> */}
+                      {/* <DescItem label={t('smith scale')} value={data.block.Block.SmithScale} /> */}
                       {/* <DescItem
                     label={t('blocksmith address')}
                     text={t('account that generated the block')}
                     value={
-                      <Link to={`/accounts/${data.block.BlocksmithAddress}`}>
-                        {data.block.BlocksmithAddress}
+                      <Link to={`/accounts/${data.block.Block.BlocksmithAddress}`}>
+                        {data.block.Block.BlocksmithAddress}
                       </Link>
                     }
                   /> */}
                       <DescItem
                         label={t('total amount')}
                         style={{ display: 'none' }}
-                        value={data.block.TotalAmountConversion}
+                        value={data.block.Block.TotalAmountConversion}
                       />
                       <DescItem
                         label={t('total fee')}
                         style={{ display: 'none' }}
                         value={
                           <NumberFormat
-                            value={data.block.TotalFeeConversion}
+                            value={data.block.Block.TotalFeeConversion}
                             displayType={'text'}
                             thousandSeparator={true}
                             suffix={' ZBC'}
@@ -376,7 +466,7 @@ const Block = ({ match }) => {
                         style={{ display: 'none' }}
                         value={
                           <NumberFormat
-                            value={data.block.TotalCoinBaseConversion}
+                            value={data.block.Block.TotalCoinBaseConversion}
                             displayType={'text'}
                             thousandSeparator={true}
                             suffix={' ZBC'}
@@ -387,24 +477,24 @@ const Block = ({ match }) => {
                       <DescItem
                         label={t('version')}
                         style={{ display: 'none' }}
-                        value={data.block.Version}
+                        value={data.block.Block.Version}
                       />
                       {/* <DescItem
                     label={t('total receipts')}
                     style={{ display: 'none' }}
-                    value={data.block.TotalReceipts}
+                    value={data.block.Block.TotalReceipts}
                   />
                   <DescItem
                     label={t('receipt value')}
                     style={{ display: 'none' }}
-                    value={data.block.ReceiptValue}
+                    value={data.block.Block.ReceiptValue}
                   /> */}
                       <DescItem
                         label={t('blocksmith public key')}
                         style={{ display: 'none' }}
                         value={
-                          <Link to={`/nodes/${data.block.BlocksmithIDFormatted}`}>
-                            {data.block.BlocksmithIDFormatted}
+                          <Link to={`/nodes/${data.block.Block.BlocksmithIDFormatted}`}>
+                            {data.block.Block.BlocksmithIDFormatted}
                           </Link>
                         }
                         textClassName="monospace-text"
@@ -412,17 +502,17 @@ const Block = ({ match }) => {
                       {/* <DescItem
                     label={t('pop change')}
                     style={{ display: 'none' }}
-                    value={data.block.PopChange}
+                    value={data.block.Block.PopChange}
                   /> */}
                       <DescItem
                         label={t('payload length')}
                         style={{ display: 'none' }}
-                        value={data.block.PayloadLength}
+                        value={data.block.Block.PayloadLength}
                       />
                       <DescItem
                         label={t('payload hash')}
                         style={{ display: 'none' }}
-                        value={data.block.PayloadHash}
+                        value={data.block.Block.PayloadHash}
                         textClassName="monospace-text"
                       />
                     </Panel>
@@ -439,7 +529,7 @@ const Block = ({ match }) => {
                       <Table
                         className="transactions-table"
                         columns={popColumns}
-                        dataSource={data.block.PopChanges || []}
+                        dataSource={data.block.Block.PopChanges || []}
                         pagination={{
                           pageSize: 5,
                         }}
@@ -459,7 +549,7 @@ const Block = ({ match }) => {
                       <Table
                         className="transactions-table"
                         columns={skippedBlocksmithColumns}
-                        dataSource={data.block.SkippedBlocksmiths || []}
+                        dataSource={data.block.Block.SkippedBlocksmiths || []}
                         pagination={{
                           pageSize: 5,
                         }}
@@ -482,7 +572,7 @@ const Block = ({ match }) => {
                       <Table
                         className="transactions-table"
                         columns={accountRewardColumns}
-                        dataSource={data.block.AccountRewards || []}
+                        dataSource={data.block.Block.AccountRewards || []}
                         pagination={{
                           pageSize: 5,
                         }}
@@ -502,13 +592,13 @@ const Block = ({ match }) => {
                         {t('published receipts')}
                         <Badge
                           className="badge-black"
-                          count={data.block.TotalReceipts}
+                          count={data.block.Block.TotalReceipts}
                           overflowCount={1000}
                         />
                       </h4>
                       <Table
                         columns={publishedReceiptColumns}
-                        dataSource={data.block.PublishedReceipts || []}
+                        dataSource={data.block.Block.PublishedReceipts || []}
                         pagination={{
                           pageSize: 5,
                         }}
