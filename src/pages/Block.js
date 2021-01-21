@@ -635,6 +635,7 @@ const Block = ({ match }) => {
                       />
                       {!!data && (
                         <Pagination
+                          showQuickJumper
                           className="pagination-center"
                           current={trxPaginate.Page}
                           total={trxPaginate.Total}

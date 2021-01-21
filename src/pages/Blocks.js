@@ -156,6 +156,7 @@ const Blocks = () => {
               />
               {!!data && (
                 <Pagination
+                  showQuickJumper
                   className="pagination-center"
                   current={paginate.Page}
                   total={paginate.Total}
