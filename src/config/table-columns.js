@@ -252,26 +252,6 @@ export const blockColumns = [
   {
     title: (
       <div>
-        <Title text="block hash" />{' '}
-        <Tooltip
-          placement="bottom"
-          title={
-            <Title text="an identifier which facilitates easy identification of blocks on the zoobc blockchain" />
-          }
-        >
-          <InfoCircleOutlined />
-        </Tooltip>
-      </div>
-    ),
-    dataIndex: 'BlockHashFormatted',
-    key: 'BlockHashFormatted',
-    render(text) {
-      return <ZBCShortAddress address={text} href={`/blocks/${text}`} title="block hash" />
-    },
-  },
-  {
-    title: (
-      <div>
         <Title text="height" />{' '}
         <Tooltip
           placement="bottom"
@@ -285,14 +265,46 @@ export const blockColumns = [
     ),
     dataIndex: 'Height',
     key: 'Height',
+    sorting: true,
     render(text) {
       return <Link to={`/blocks/${text}`}>{text}</Link>
+    },
+  },
+  {
+    title: <Title text="Transactions" />,
+    dataIndex: 'TotalTransaction',
+    key: 'TotalTransaction',
+    sorting: false,
+    render(text) {
+      return <small>{text}</small>
+    },
+  },
+  {
+    title: (
+      <div>
+        <Title text="block hash" />{' '}
+        <Tooltip
+          placement="bottom"
+          title={
+            <Title text="an identifier which facilitates easy identification of blocks on the zoobc blockchain" />
+          }
+        >
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
+    dataIndex: 'BlockHashFormatted',
+    key: 'BlockHashFormatted',
+    sorting: true,
+    render(text) {
+      return <ZBCShortAddress address={text} href={`/blocks/${text}`} title="block hash" />
     },
   },
   {
     title: <Title text="timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
+    sorting: true,
     render(text) {
       return <DateFormat date={text} style={{ color: 'white' }} />
     },
@@ -308,6 +320,7 @@ export const blockColumns = [
     ),
     key: 'SkippedBlocksmiths',
     dataIndex: 'SkippedBlocksmiths',
+    sorting: true,
     render(SkippedBlocksmiths) {
       const skipped = []
 
@@ -328,12 +341,14 @@ export const blockColumns = [
     title: <Title text="fees" />,
     dataIndex: 'TotalFeeConversion',
     key: 'TotalFeeConversion',
+    sorting: true,
     render: renderCurrenncy,
   },
   {
     title: <Title text="rewards" />,
     dataIndex: 'TotalRewardsConversion',
     key: 'TotalRewardsConversion',
+    sorting: true,
     render: renderCurrenncy,
   },
 ]
@@ -715,8 +730,15 @@ export const latestBlockColumns = [
     },
   },
   {
-    title: <Title text="blocksmith" />,
-    render(text, record) {
+    title: (
+      <div style={{ display: 'flex' }}>
+        <img src={skipRope} alt="icon" style={{ width: '24px' }} />
+        <Tooltip placement="bottom" title={<Title text="account that generated the block" />}>
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
+    render(record) {
       const skipped = []
 
       if (Array.isArray(record.SkippedBlocksmiths))
@@ -725,8 +747,11 @@ export const latestBlockColumns = [
         )
 
       return (
-        <Tag color={getBlocksmithIndicator(skipped.length).color}>
-          {getBlocksmithIndicator(skipped.length).sorttext}
+        <Tag
+          style={{ minWidth: '28px', textAlign: 'center' }}
+          color={getBlocksmithIndicator(skipped.length).color}
+        >
+          {getBlocksmithIndicator(skipped.length).text}
         </Tag>
       )
     },
