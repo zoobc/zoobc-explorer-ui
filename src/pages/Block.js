@@ -291,12 +291,12 @@ const Block = ({ match }) => {
             <Row className="block-row">
               <Col span={24}>
                 <Row>
-                  <Col span={12}>
+                  <Col xs={12} md={18}>
                     <h4 className="truncate page-title">
                       {t('block')} {data.block.Block.Height}
                     </h4>
                   </Col>
-                  <Col span={12}>
+                  <Col xs={12} md={6}>
                     <div className="truncate page-title-nav">
                       <Row type="flex" justify="end" align="middle">
                         <Col span={4}>
