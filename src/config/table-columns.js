@@ -265,8 +265,18 @@ export const blockColumns = [
     ),
     dataIndex: 'Height',
     key: 'Height',
+    sorting: true,
     render(text) {
       return <Link to={`/blocks/${text}`}>{text}</Link>
+    },
+  },
+  {
+    title: <Title text="Transactions" />,
+    dataIndex: 'TotalTransaction',
+    key: 'TotalTransaction',
+    sorting: false,
+    render(text) {
+      return <small>{text}</small>
     },
   },
   {
@@ -285,6 +295,7 @@ export const blockColumns = [
     ),
     dataIndex: 'BlockHashFormatted',
     key: 'BlockHashFormatted',
+    sorting: true,
     render(text) {
       return <ZBCShortAddress address={text} href={`/blocks/${text}`} title="block hash" />
     },
@@ -293,6 +304,7 @@ export const blockColumns = [
     title: <Title text="timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
+    sorting: true,
     render(text) {
       return <DateFormat date={text} style={{ color: 'white' }} />
     },
@@ -308,6 +320,7 @@ export const blockColumns = [
     ),
     key: 'SkippedBlocksmiths',
     dataIndex: 'SkippedBlocksmiths',
+    sorting: true,
     render(SkippedBlocksmiths) {
       const skipped = []
 
@@ -328,12 +341,14 @@ export const blockColumns = [
     title: <Title text="fees" />,
     dataIndex: 'TotalFeeConversion',
     key: 'TotalFeeConversion',
+    sorting: true,
     render: renderCurrenncy,
   },
   {
     title: <Title text="rewards" />,
     dataIndex: 'TotalRewardsConversion',
     key: 'TotalRewardsConversion',
+    sorting: true,
     render: renderCurrenncy,
   },
 ]
