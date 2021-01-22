@@ -94,7 +94,7 @@ const Banner = () => {
           </div>
           <div className="banner-sub-text">
             <ul>
-              <li>Send ZooBC coins to your friends</li>
+              <li>Send ZooBC to your friends</li>
               <li>See your balance and transaction history</li>
               <li>Support Multi Signature Transaction</li>
               <li>Support Escrow Transaction</li>
