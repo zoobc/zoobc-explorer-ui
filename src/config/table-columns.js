@@ -271,7 +271,7 @@ export const blockColumns = [
     },
   },
   {
-    title: <Title text="Transactions" />,
+    title: <Title text="Trx" />,
     dataIndex: 'TotalTransaction',
     key: 'TotalTransaction',
     sorting: false,
