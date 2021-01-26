@@ -4,15 +4,29 @@
   align-items: center;
   padding: 40px 0;
 
+  .ant-btn {
+    margin: 0 10px;
+    text-transform: uppercase;
+  }
+
   img {
-    width: 40%;
+    width: 20%;
   }
 
   .error-title {
-    margin: 20px 0;
-    font-size: 30px;
-    font-weight: 500;
+    font-size: 34px;
+    font-weight: 800;
     text-align: center;
+    line-height: 1.2;
+    margin-top: 20px;
+  }
+
+  .error-sub-title {
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 1.2;
+    margin: 8px 0 20px;
   }
 
   .error-search {
