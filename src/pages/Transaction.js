@@ -191,7 +191,9 @@ const GET_TRX_DATA = gql`
         Timestamp
         TransactionTypeName
         Sender
+        SenderFormatted
         Recipient
+        RecipientFormatted
         FeeConversion
       }
       EscrowTransaction {
