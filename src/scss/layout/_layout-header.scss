@@ -135,7 +135,6 @@
 }
 
 .header-content {
-  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -145,6 +144,7 @@
   .logo {
     display: flex;
     align-items: center;
+    margin-right: auto;
 
     img {
       width: 38px;
