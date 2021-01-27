@@ -91,7 +91,21 @@
     height: 430px;
     .wallet-mobile {
       img {
-        width: 30%;
+        width: 27%;
+      }
+    }
+    &-button {
+      margin-top: 80px;
+    }
+  }
+}
+
+@include mq-xxl {
+  .banner {
+    height: 430px;
+    .wallet-mobile {
+      img {
+        width: 24%;
       }
     }
     &-button {

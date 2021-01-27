@@ -80,27 +80,6 @@
 }
 
 .graph {
-  width: 450px;
+  width: 100%;
   height: 300px;
-
-  &-container {
-    width: 100%;
-    height: 100%;
-  }
-
-  @include mq-md {
-    width: 280px;
-  }
-
-  @include mq-lg {
-    width: 385px;
-  }
-
-  @include mq-xl {
-    width: 450px;
-  }
-
-  @include mq-xs {
-    width: 300px;
-  }
 }
