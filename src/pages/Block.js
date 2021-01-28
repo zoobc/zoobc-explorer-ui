@@ -61,6 +61,7 @@ import {
   accountRewardColumns,
   popColumns,
 } from '../config/table-columns'
+import { NextPreviousBlock } from '../components/'
 
 const GET_BLOCK_DATA = gql`
   query getBlock($BlockID: String!) {
@@ -290,79 +291,39 @@ const Block = ({ match }) => {
           <Container>
             <Row className="block-row">
               <Col span={24}>
-                <Row>
-                  <Col xs={12} md={18}>
-                    <h4 className="truncate page-title">
-                      {t('block')} {data.block.Block.Height}
-                    </h4>
-                  </Col>
-                  <Col xs={12} md={6}>
-                    <div className="truncate page-title-nav">
-                      <Row type="flex" justify="end" align="middle">
-                        <Col span={4}>
-                          <div style={{ textAlign: 'center' }}>
-                            <Button
-                              type="link"
-                              style={{ padding: 0 }}
-                              disabled={!data.block.NextPrevious.Previous.Enabled}
-                              onClick={() =>
-                                onChangeHeight(data.block.NextPrevious.Previous.Height)
-                              }
-                            >
-                              <Avatar
-                                size="small"
-                                shape="square"
-                                src={require('../assets/images/block-grey.svg')}
-                              />
-                            </Button>
-                            <p>
-                              <small>{data.block.NextPrevious.Previous.Height}</small>
-                            </p>
-                          </div>
-                        </Col>
-                        <Col span={4}>
-                          <div style={{ textAlign: 'center' }}>--</div>
-                        </Col>
-                        <Col span={4}>
-                          <div style={{ textAlign: 'center' }}>
-                            <Avatar
-                              size="large"
-                              shape="square"
-                              src={require('../assets/images/block-color.svg')}
-                            />
-                            <p>
-                              <small>{data.block.Block.Height}</small>
-                            </p>
-                          </div>
-                        </Col>
-                        <Col span={4}>
-                          <div style={{ textAlign: 'center' }}>--</div>
-                        </Col>
-                        <Col span={4}>
-                          <div style={{ textAlign: 'center' }}>
-                            <Button
-                              type="link"
-                              style={{ padding: 0 }}
-                              disabled={!data.block.NextPrevious.Next.Enabled}
-                              onClick={() => onChangeHeight(data.block.NextPrevious.Next.Height)}
-                            >
-                              <Avatar
-                                size="small"
-                                shape="square"
-                                src={require(data.block.NextPrevious.Next.Enabled
-                                  ? '../assets/images/block-grey.svg'
-                                  : '../assets/images/mining.svg')}
-                              />
-                            </Button>
-                            <p>
-                              <small>{data.block.NextPrevious.Next.Height}</small>
-                            </p>
-                          </div>
-                        </Col>
-                      </Row>
+                <div className="wrap-title-and-blocks">
+                  <div className="block-title">
+                    {t('block')} {data.block.Block.Height}
+                  </div>
+                  <div className="next-previous-block">
+                    <div style={{ textAlign: 'center' }}>
+                      {data &&
+                        data.block &&
+                        data.block.NextPrevious &&
+                        data.block.NextPrevious.Previous && (
+                          <NextPreviousBlock blocks={data.block.NextPrevious.Previous} />
+                        )}
                     </div>
-                  </Col>
-                </Row>
+                    <div style={{ textAlign: 'center', margin: '0 10px' }}>
+                      <Avatar
+                        size="large"
+                        shape="square"
+                        src={require('../assets/images/block-color.svg')}
+                      />
+                      <p>
+                        <small>{data.block.Block.Height}</small>
+                      </p>
+                    </div>
+                    <div style={{ textAlign: 'center' }}>
+                      {data &&
+                        data.block &&
+                        data.block.NextPrevious &&
+                        data.block.NextPrevious.Next && (
+                          <NextPreviousBlock blocks={data.block.NextPrevious.Next} />
+                        )}
+                    </div>
+                  </div>
+                </div>
                 <Card className="block-card" bordered={false}>
                   <h4 className="block-card-title page-title">{t('summary')}</h4>
                   <DescItem
