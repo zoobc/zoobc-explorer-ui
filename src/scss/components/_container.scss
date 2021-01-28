@@ -4,3 +4,15 @@
   margin-right: auto;
   margin-left: auto;
 }
+
+@include mq-xl {
+  .container {
+    max-width: 1330px !important;
+  }
+}
+
+@include mq-xxl {
+  .container {
+    max-width: 1500px !important;
+  }
+}

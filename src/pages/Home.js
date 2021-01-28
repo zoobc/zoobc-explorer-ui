@@ -288,32 +288,30 @@ const Home = ({ history }) => {
                 <strong>{t('latest block count in 30 days')}</strong>
               </div>
               <div className="graph">
-                <div className="graph-container">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart
-                      data={blockGraphData}
-                      margin={{
-                        top: 20,
-                        right: 0,
-                        left: 0,
-                        bottom: 0,
-                      }}
-                    >
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="name" />
-                      <YAxis />
-                      <Tooltip />
-                      <Legend />
-                      <Line
-                        type="monotone"
-                        dataKey="amt"
-                        stroke="#8884d8"
-                        activeDot={{ r: 8 }}
-                        name={t('block count')}
-                      />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </div>
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart
+                    data={blockGraphData}
+                    margin={{
+                      top: 20,
+                      right: 0,
+                      left: 0,
+                      bottom: 0,
+                    }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line
+                      type="monotone"
+                      dataKey="amt"
+                      stroke="#8884d8"
+                      activeDot={{ r: 8 }}
+                      name={t('block count')}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
               </div>
             </Card>
           </Col>
@@ -324,32 +322,30 @@ const Home = ({ history }) => {
                 <strong>{t('latest transaction amount in 30 days')}</strong>
               </div>
               <div className="graph">
-                <div className="graph-container">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart
-                      data={trxGraphData}
-                      margin={{
-                        top: 20,
-                        right: 0,
-                        left: 0,
-                        bottom: 0,
-                      }}
-                    >
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="name" />
-                      <YAxis />
-                      <Tooltip />
-                      <Legend />
-                      <Line
-                        type="monotone"
-                        dataKey="amt"
-                        stroke="#8884d8"
-                        activeDot={{ r: 8 }}
-                        name={t('transaction amount')}
-                      />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </div>
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart
+                    data={trxGraphData}
+                    margin={{
+                      top: 20,
+                      right: 0,
+                      left: 0,
+                      bottom: 0,
+                    }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line
+                      type="monotone"
+                      dataKey="amt"
+                      stroke="#8884d8"
+                      activeDot={{ r: 8 }}
+                      name={t('transaction amount')}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
               </div>
             </Card>
           </Col>

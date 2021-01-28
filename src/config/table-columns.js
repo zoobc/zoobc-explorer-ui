@@ -379,7 +379,7 @@ export const transactionColumns = [
         />
       )
     },
-    width: 240,
+    width: 230,
   },
   {
     title: (
@@ -398,13 +398,13 @@ export const transactionColumns = [
     render(text, record) {
       return <Link to={`/blocks/${text}`}>{text}</Link>
     },
-    width: 120,
+    width: 104,
   },
   {
     title: <Title text="timestamp" />,
     dataIndex: 'Timestamp',
     key: 'Timestamp',
-    width: 170,
+    width: 145,
     render(text) {
       return <DateFormat date={text} />
     },
@@ -413,14 +413,14 @@ export const transactionColumns = [
     title: <Title text="type" />,
     dataIndex: 'TransactionTypeName',
     key: 'TransactionTypeName',
-    width: 250,
+    width: 240,
     render: renderTransactionType,
   },
   {
     title: <Title text="sender" />,
     dataIndex: 'SenderFormatted',
     key: 'SenderFormatted',
-    // width: 180,
+    width: 185,
     render(text, record) {
       const path = window.location.pathname
 
@@ -447,7 +447,7 @@ export const transactionColumns = [
     title: <Title text="recipient" />,
     dataIndex: 'RecipientFormatted',
     key: 'RecipientFormatted',
-    // width: 180,
+    width: 170,
     render(text, record) {
       const path = window.location.pathname
       if (path.search('accounts') === 1) {
@@ -515,7 +515,7 @@ export const nodeColumns = [
         !!text && <ZBCShortAddress address={text} href={`/nodes/${text}`} title="node public key" />
       )
     },
-    width: 200,
+    width: 170,
   },
   {
     title: <Title text="owner address" />,
@@ -528,7 +528,7 @@ export const nodeColumns = [
         )
       )
     },
-    width: 200,
+    width: 170,
   },
   {
     title: (
@@ -545,7 +545,7 @@ export const nodeColumns = [
     dataIndex: 'LockedFunds',
     key: 'LockedFunds',
     render: renderCurrenncy,
-    width: 170,
+    width: 150,
   },
   {
     title: <Title text="status" />,
@@ -554,7 +554,7 @@ export const nodeColumns = [
     render(text) {
       return text === 0 ? 'Registered' : text === 1 ? 'In Queue' : text === 2 ? 'Stray' : null
     },
-    width: 130,
+    width: 100,
   },
   {
     title: <Title text="height" />,
@@ -563,7 +563,7 @@ export const nodeColumns = [
     render(text) {
       return <Link to={`/blocks/${text}`}>{text}</Link>
     },
-    width: 100,
+    width: 120,
   },
   {
     title: <Title text="timestamp" />,
@@ -572,22 +572,23 @@ export const nodeColumns = [
     render(text) {
       return <DateFormat date={text} />
     },
+    width: 180,
   },
-  {
-    title: <Title text="score" />,
-    dataIndex: 'PercentageScore',
-    key: 'PercentageScore',
-    render(text) {
-      if (text) {
-        const score = parseFloat(text).toFixed(7)
-        return (
-          <div className="blocksmith">
-            <Badge color={getScoreColorIndicator(score)} text={text} />
-          </div>
-        )
-      }
-    },
-  },
+  // {
+  //   title: <Title text="score" />,
+  //   dataIndex: 'PercentageScore',
+  //   key: 'PercentageScore',
+  //   render(text) {
+  //     if (text) {
+  //       const score = parseFloat(text).toFixed(7)
+  //       return (
+  //         <div className="blocksmith">
+  //           <Badge color={getScoreColorIndicator(score)} text={text} />
+  //         </div>
+  //       )
+  //     }
+  //   },
+  // },
 ]
 
 export const publishedReceiptColumns = [

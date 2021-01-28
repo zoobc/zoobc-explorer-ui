@@ -49,76 +49,166 @@ import { Link } from 'react-router-dom'
 
 const MultiSignature = ({ data, disableTrxHashLink }) => {
   const { t } = useTranslation()
-  const { MultiSignatureInfo, SignatureInfo, UnsignedTransactionBytes } = data
-  return (
-    <Card className="transaction-card">
-      <h4 className="transaction-card-title page-title">{t('multisignature info')}</h4>
-      {MultiSignatureInfo && (
-        <>
-          <DescItem
-            label="Minimum Signature"
-            style={{ display: 'none' }}
-            value={MultiSignatureInfo.MinimumSignatures}
-          />
-          <DescItem label="Nonce" style={{ display: 'none' }} value={MultiSignatureInfo.Nonce} />
-          <DescItem
-            label="Block Height"
-            text={t(
-              'the position of the block in the zoobc blockchain. for example, height 0, would be the very first block, which is also called the genesis block'
-            )}
-            value={MultiSignatureInfo.BlockHeight}
-          />
-          <DescItem
-            label="Multisig Address"
-            style={{ display: 'none' }}
-            value={MultiSignatureInfo.MultisigAddressFormatted}
-            textClassName="monospace-text"
-          />
-        </>
-      )}
-      {UnsignedTransactionBytes && (
-        <>
-          <DescItem
-            label="Unsigned Transaction Bytes"
-            style={{ display: 'none' }}
-            value={UnsignedTransactionBytes}
-          />
-        </>
-      )}
-      {SignatureInfo && (
-        <>
-          <DescItem
-            label={t('transaction hash')}
-            style={{ display: 'none' }}
-            value={
-              !!disableTrxHashLink ? (
-                SignatureInfo.TransactionHash
-              ) : (
-                <Link to={`/transactions/${SignatureInfo.TransactionHashFormatted}`}>
-                  {SignatureInfo.TransactionHashFormatted}
-                </Link>
-              )
-            }
-            textClassName="monospace-text"
-          />
-          <br />
-          <h5>{t('participants')}</h5>
-          {SignatureInfo.Signatures &&
-            SignatureInfo.Signatures.map((data, key) => {
-              const AddressFormatted = data.Address
+  const { MultiSignatureInfo, SignatureInfo } = data
 
-              return (
+  return (
+    <>
+      {MultiSignatureInfo && MultiSignatureInfo.MinimumSignatures && (
+        <Card className="transaction-card">
+          <h4 className="transaction-card-title page-title">{t('multisignature info')}</h4>
+          {MultiSignatureInfo.MinimumSignatures && (
+            <DescItem
+              label={t('minimum signature')}
+              style={{ display: 'none' }}
+              value={MultiSignatureInfo.MinimumSignatures}
+            />
+          )}
+          {MultiSignatureInfo.Nonce && (
+            <DescItem
+              label={t('nonce')}
+              style={{ display: 'none' }}
+              value={MultiSignatureInfo.Nonce}
+            />
+          )}
+          {/* {MultiSignatureInfo.BlockHeight && (
+            <DescItem
+              label="Block Height"
+              style={{ display: 'none' }}
+              text={t(
+                'the position of the block in the zoobc blockchain. for example, height 0, would be the very first block, which is also called the genesis block'
+              )}
+              value={MultiSignatureInfo.BlockHeight}
+            />
+          )} */}
+          {MultiSignatureInfo.MultisigAddressFormatted && (
+            <DescItem
+              label={t('multisig address')}
+              style={{ display: 'none' }}
+              textClassName="monospace-text"
+              value={MultiSignatureInfo.MultisigAddressFormatted}
+            />
+          )}
+          {MultiSignatureInfo.AddressesFormatted &&
+            MultiSignatureInfo.AddressesFormatted.length > 0 && (
+              <>
+                <br />
+                <h5>{t('participants')}</h5>
+                {MultiSignatureInfo.AddressesFormatted.map((data, key) => {
+                  const AddressFormatted = data
+                  return (
+                    <DescItem
+                      key={key}
+                      label={t('participant') + ` ${key + 1}`}
+                      value={<Link to={`/accounts/${AddressFormatted}`}>{AddressFormatted}</Link>}
+                    />
+                  )
+                })}
+              </>
+            )}
+          {/* {MultiSignatureInfo.AddressesFormatted &&
+              MultiSignatureInfo.AddressesFormatted.length > 0 && (
+                <>
+                  <h5>{t('participants')}</h5>
+                  {MultiSignatureInfo.AddressesFormatted.map((data, key) => {
+                    const AddressFormatted = data
+                    return (
+                      <DescItem
+                        key={key}
+                        label={`Participant ${key + 1}`}
+                        value={<Link to={`/accounts/${AddressFormatted}`}>{AddressFormatted}</Link>}
+                      />
+                    )
+                  })}
+                </>
+              )}
+            )} */}
+          {/* {UnsignedTransactionBytes && (
+              <>
                 <DescItem
-                  key={key}
-                  label={`Participant ${key + 1}`}
+                  label="Unsigned Transaction Bytes"
                   style={{ display: 'none' }}
-                  value={<Link to={`/accounts/${AddressFormatted}`}>{AddressFormatted}</Link>}
+                  value={UnsignedTransactionBytes}
                 />
-              )
-            })}
-        </>
+              </>
+            )} */}
+          {/* {SignatureInfo && (
+              <>
+                {SignatureInfo.TransactionHashFormatted && (
+                  <DescItem
+                    label={t('transaction hash')}
+                    style={{ display: 'none' }}
+                    textClassName="monospace-text"
+                    value={
+                      !!disableTrxHashLink ? (
+                        SignatureInfo.TransactionHashFormatted
+                      ) : (
+                        <Link to={`/transactions/${SignatureInfo.TransactionHashFormatted}`}>
+                          {SignatureInfo.TransactionHashFormatted}
+                        </Link>
+                      )
+                    }
+                  />
+                )}
+
+                {SignatureInfo.Signatures && SignatureInfo.Signatures.length > 0 && (
+                  <h5>{t('participants')}</h5>
+                )}
+                {SignatureInfo.Signatures &&
+                  SignatureInfo.Signatures.map((data, key) => {
+                    const AddressFormatted = data.AddressFormatted
+
+                    return (
+                      <DescItem
+                        key={key}
+                        label={`Participant ${key + 1}`}
+                        style={{ display: 'none' }}
+                        value={<Link to={`/accounts/${AddressFormatted}`}>{AddressFormatted}</Link>}
+                      />
+                    )
+                  })}
+              </>
+            )} */}
+        </Card>
       )}
-    </Card>
+
+      {SignatureInfo && SignatureInfo.TransactionHashFormatted && (
+        <Card className="transaction-card">
+          <h4 className="transaction-card-title page-title">{t('signature info')}</h4>
+          {SignatureInfo.TransactionHashFormatted && (
+            <DescItem
+              label={t('transaction')}
+              style={{ display: 'none' }}
+              textClassName="monospace-text"
+              value={
+                !!disableTrxHashLink ? (
+                  SignatureInfo.TransactionHashFormatted
+                ) : (
+                  <Link to={`/transactions/${SignatureInfo.TransactionHashFormatted}`}>
+                    {SignatureInfo.TransactionHashFormatted}
+                  </Link>
+                )
+              }
+            />
+          )}
+
+          {/* {SignatureInfo.Signatures && SignatureInfo.Signatures.length > 0 && (
+            <>
+              <h5>{t('signatures')}</h5>
+              {SignatureInfo.Signatures.map((data, key) => {
+                const AddressFormatted = data
+                return (
+                  <DescItem
+                    key={key}
+                    label={`Signature ${key + 1}`}
+                    value={<Link to={`/accounts/${AddressFormatted}`}>{AddressFormatted}</Link>}
+                  />
+                )
+              })}
+            </>
+          )} */}
+        </Card>
+      )}
+    </>
   )
 }
 
