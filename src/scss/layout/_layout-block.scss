@@ -34,3 +34,23 @@
 .ant-collapse-content-box {
   padding-top: 0px !important;
 }
+
+.wrap-title-and-blocks {
+  display: flex;
+}
+
+.block-title {
+  display: flex;
+  justify-content: space-around;
+  margin-right: auto;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.next-previous-block {
+  display: flex;
+  justify-content: space-around;
+  margin-left: auto;
+}
