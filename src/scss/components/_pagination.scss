@@ -1,6 +1,8 @@
 .pagination-center {
   text-align: center;
   padding: 20px !important;
+  display: flex;
+  justify-content: center;
 }
 
 .ant-pagination-item {
