@@ -45,7 +45,7 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 import NumberFormat from 'react-number-format'
 import { useTranslation } from 'react-i18next'
-import { Badge, Tooltip, Tag, Icon } from 'antd'
+import { Tooltip, Tag, Icon } from 'antd'
 import { objectUtils } from '../utils'
 import Timestamp from '../components/Timestamp'
 import { InfoCircleOutlined } from '@ant-design/icons'
@@ -80,15 +80,15 @@ const getBlocksmithIndicator = skipped => {
   }
 }
 
-const getScoreColorIndicator = participation => {
-  if (participation > 70) {
-    return 'green'
-  } else if (participation > 30 && participation <= 70) {
-    return 'yellow'
-  } else {
-    return 'red'
-  }
-}
+// const getScoreColorIndicator = participation => {
+//   if (participation > 70) {
+//     return 'green'
+//   } else if (participation > 30 && participation <= 70) {
+//     return 'yellow'
+//   } else {
+//     return 'red'
+//   }
+// }
 
 const renderCurrenncy = text => {
   return (
