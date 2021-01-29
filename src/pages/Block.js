@@ -394,16 +394,6 @@ const Block = ({ match }) => {
                         text={t('difficulty of the blockchain up to this current block')}
                         value={data.block.Block.CumulativeDifficulty}
                       />
-                      {/* <DescItem label={t('smith scale')} value={data.block.Block.SmithScale} /> */}
-                      {/* <DescItem
-                    label={t('blocksmith address')}
-                    text={t('account that generated the block')}
-                    value={
-                      <Link to={`/accounts/${data.block.Block.BlocksmithAddress}`}>
-                        {data.block.Block.BlocksmithAddress}
-                      </Link>
-                    }
-                  /> */}
                       <DescItem
                         label={t('total amount')}
                         style={{ display: 'none' }}
@@ -440,16 +430,6 @@ const Block = ({ match }) => {
                         style={{ display: 'none' }}
                         value={data.block.Block.Version}
                       />
-                      {/* <DescItem
-                    label={t('total receipts')}
-                    style={{ display: 'none' }}
-                    value={data.block.Block.TotalReceipts}
-                  />
-                  <DescItem
-                    label={t('receipt value')}
-                    style={{ display: 'none' }}
-                    value={data.block.Block.ReceiptValue}
-                  /> */}
                       <DescItem
                         label={t('blocksmith public key')}
                         style={{ display: 'none' }}
@@ -460,11 +440,6 @@ const Block = ({ match }) => {
                         }
                         textClassName="monospace-text"
                       />
-                      {/* <DescItem
-                    label={t('pop change')}
-                    style={{ display: 'none' }}
-                    value={data.block.Block.PopChange}
-                  /> */}
                       <DescItem
                         label={t('payload length')}
                         style={{ display: 'none' }}
