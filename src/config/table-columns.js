@@ -313,7 +313,7 @@ export const blockColumns = [
     title: (
       <div style={{ display: 'flex' }}>
         <img src={skipRope} alt="icon" style={{ width: '24px' }} />
-        <Tooltip placement="bottom" title={<Title text="account that generated the block" />}>
+        <Tooltip placement="bottom" title={<Title text="Number of nodes which skipped their turn to create a block before this block was found" />}>
           <InfoCircleOutlined />
         </Tooltip>
       </div>
@@ -734,7 +734,7 @@ export const latestBlockColumns = [
     title: (
       <div style={{ display: 'flex' }}>
         <img src={skipRope} alt="icon" style={{ width: '24px' }} />
-        <Tooltip placement="bottom" title={<Title text="account that generated the block" />}>
+        <Tooltip placement="bottom" title={<Title text="Number of nodes which skipped their turn to create a block before this block was found" />}>
           <InfoCircleOutlined />
         </Tooltip>
       </div>
