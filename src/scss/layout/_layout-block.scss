@@ -37,6 +37,7 @@
 
 .wrap-title-and-blocks {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .block-title {
@@ -53,4 +54,33 @@
   display: flex;
   justify-content: space-around;
   margin-left: auto;
+  flex-wrap: wrap;
+  p {
+    text-align: center;
+  }
+}
+
+.current-block {
+  text-align: center;
+  display: block !important;
+}
+
+@media (min-width: 287px) and (max-width: 767px) {
+  .block-title {
+    display: flex;
+    flex: 100%;
+    justify-content: flex-start;
+  }
+  .next-previous-block {
+    margin: auto;
+  }
+
+  .previous-block,
+  .current-block,
+  .next-block {
+    display: flex;
+    flex: 100%;
+    align-items: center;
+    justify-content: center;
+  }
 }
