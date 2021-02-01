@@ -1,16 +1,18 @@
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
+.next-previous-block {
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
 
-li {
-  float: left;
-  margin: 0 8px;
-}
+  li {
+    float: left;
+    margin: 0 8px;
+  }
 
-li a {
-  text-align: center;
-  text-decoration: none;
+  li a {
+    text-align: center;
+    text-decoration: none;
+  }
 }

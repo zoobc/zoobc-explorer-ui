@@ -296,7 +296,7 @@ const Block = ({ match }) => {
                     {t('block')} {data.block.Block.Height}
                   </div>
                   <div className="next-previous-block">
-                    <div style={{ textAlign: 'center' }}>
+                    <div className="previous-block">
                       {data &&
                         data.block &&
                         data.block.NextPrevious &&
@@ -304,7 +304,7 @@ const Block = ({ match }) => {
                           <NextPreviousBlock blocks={data.block.NextPrevious.Previous} />
                         )}
                     </div>
-                    <div style={{ textAlign: 'center', margin: '0 10px' }}>
+                    <div className="current-block">
                       <Avatar
                         size="large"
                         shape="square"
@@ -314,7 +314,7 @@ const Block = ({ match }) => {
                         <small>{data.block.Block.Height}</small>
                       </p>
                     </div>
-                    <div style={{ textAlign: 'center' }}>
+                    <div className="next-block">
                       {data &&
                         data.block &&
                         data.block.NextPrevious &&
