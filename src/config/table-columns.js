@@ -80,16 +80,6 @@ const getBlocksmithIndicator = skipped => {
   }
 }
 
-// const getScoreColorIndicator = participation => {
-//   if (participation > 70) {
-//     return 'green'
-//   } else if (participation > 30 && participation <= 70) {
-//     return 'yellow'
-//   } else {
-//     return 'red'
-//   }
-// }
-
 const renderCurrenncy = text => {
   return (
     <NumberFormat
@@ -579,21 +569,6 @@ export const nodeColumns = [
     },
     width: 180,
   },
-  // {
-  //   title: <Title text="score" />,
-  //   dataIndex: 'PercentageScore',
-  //   key: 'PercentageScore',
-  //   render(text) {
-  //     if (text) {
-  //       const score = parseFloat(text).toFixed(7)
-  //       return (
-  //         <div className="blocksmith">
-  //           <Badge color={getScoreColorIndicator(score)} text={text} />
-  //         </div>
-  //       )
-  //     }
-  //   },
-  // },
 ]
 
 export const publishedReceiptColumns = [
