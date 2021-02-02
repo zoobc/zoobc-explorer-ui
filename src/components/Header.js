@@ -71,7 +71,6 @@ const Header = ({ history, location, fluid }) => {
   const [isOpenDrawer, setIsOpenDraw] = useState(false)
   const [isOpenFeedBack, setIsOpenFeedBack] = useState(false)
   const [dialogTitle] = useState('Login')
-  // const [dialogTitle, setDialogTitle] = useState('Login')
   const { doSearch, loading } = useSearch(keyword, history)
 
   const onSearch = value => {
@@ -91,11 +90,6 @@ const Header = ({ history, location, fluid }) => {
       doSearch()
     }
   }
-
-  // const onLogin = () => {
-  //   setDialogTitle(t('Login'))
-  //   setIsOpenDialog(true)
-  // }
 
   const onFeedback = e => {
     e.preventDefault()
@@ -181,9 +175,6 @@ const Header = ({ history, location, fluid }) => {
                 />
               </label>
             </Tooltip>
-            {/* <Button type="primary" className="mr-1 d-none d-lg-block" onClick={onLogin}>
-              {t('login')}
-            </Button> */}
             <Button type="danger" className="d-block d-lg-none" onClick={onFeedback}>
               {t('feedback')}
             </Button>
@@ -237,11 +228,6 @@ const Header = ({ history, location, fluid }) => {
             <Menu.Item key="/nodes" className="menu-with-icon">
               <Link to="/nodes">{t('nodes')}</Link>
             </Menu.Item>
-            {/* <Menu.Item key="/login" className="menu-with-icon">
-              <a href="#" onClick={onLogin}>
-                {t('login')}
-              </a>
-            </Menu.Item> */}
           </Menu>
           <Search
             className="header-search-input"
