@@ -53,10 +53,10 @@ const NotFound = () => {
     <Container>
       <div className="error-content">
         <img src={notFound} alt="not found" />
-        <div className="error-title page-title">{t('Hey, you got lost!')}</div>
+        <div className="error-title page-title">{t('hey, you got lost!')}</div>
         <div className="error-sub-title page-title">
           {t(
-            'Maybe you got the wrong street or address. Try returning home or refreshing the page'
+            'maybe you got the wrong street or address. try returning home or refreshing the page'
           )}
         </div>
         <div>
@@ -64,7 +64,7 @@ const NotFound = () => {
             <Button type="primary">{t('homepage')}</Button>
           </Link>
           <Button type="primary" onClick={() => window.location.reload()}>
-            {t('refresh Page')}
+            {t('refresh page')}
           </Button>
         </div>
       </div>
