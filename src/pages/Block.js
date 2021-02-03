@@ -252,10 +252,6 @@ const Block = ({ match }) => {
     else setLabel('show detail')
   }
 
-  const onChangeHeight = height => {
-    window.location.href = height
-  }
-
   useEffect(() => {
     if (!!trxByBlock.data) {
       const trxData = trxByBlock.data.transactions.Transactions.map((trx, key) => {
