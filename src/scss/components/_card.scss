@@ -46,6 +46,17 @@
   .ant-collapse-content {
     color: var(--color-text-card-title);
   }
+  &-body {
+    padding: 16px !important;
+    label {
+      margin: 0.75rem 0 0 0;
+    }
+    @media (max-width: 767px) {
+      label {
+        margin: 1rem 0 0 0;
+      }
+    }
+  }
 }
 
 .card-summary {

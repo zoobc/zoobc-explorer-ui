@@ -261,7 +261,7 @@ export const blockColumns = [
     },
   },
   {
-    title: <Title text="Trx" />,
+    title: <Title text="trx" />,
     dataIndex: 'TotalTransaction',
     key: 'TotalTransaction',
     sorting: false,
@@ -301,12 +301,12 @@ export const blockColumns = [
   },
   {
     title: (
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', height: '24px' }}>
         <img src={skipRope} alt="icon" style={{ width: '24px' }} />
         <Tooltip
           placement="bottom"
           title={
-            <Title text="Number of nodes which skipped their turn to create a block before this block was found" />
+            <Title text="number of nodes which skipped their turn to create a block before this block was found" />
           }
         >
           <InfoCircleOutlined />
@@ -324,7 +324,7 @@ export const blockColumns = [
 
       return (
         <Tag
-          style={{ minWidth: '28px', textAlign: 'center' }}
+          style={{ minWidth: '28px', textAlign: 'center', margin: '0' }}
           color={getBlocksmithIndicator(skipped.length).color}
         >
           {getBlocksmithIndicator(skipped.length).text}
@@ -531,7 +531,7 @@ export const nodeColumns = [
         <Title text="locked funds" />{' '}
         <Tooltip
           placement="bottom"
-          title={<Title text="amount of zoobc to be locked as security money for node" />}
+          title={<Title text="amount of zoobc to be locked as security zoobc for node" />}
         >
           <InfoCircleOutlined />
         </Tooltip>
@@ -552,7 +552,17 @@ export const nodeColumns = [
     width: 100,
   },
   {
-    title: <Title text="height" />,
+    title: (
+      <div>
+        <Title text="height" />{' '}
+        <Tooltip
+          placement="bottom"
+          title={<Title text="the block height in which the transaction is included" />}
+        >
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'RegisteredBlockHeight',
     key: 'RegisteredBlockHeight',
     render(text) {
@@ -611,7 +621,17 @@ export const publishedReceiptColumns = [
     },
   },
   {
-    title: <Title text="height" />,
+    title: (
+      <div>
+        <Title text="height" />{' '}
+        <Tooltip
+          placement="bottom"
+          title={<Title text="the block height in which the transaction is included" />}
+        >
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'BlockHeight',
     key: 'BlockHeight',
     render(text) {
@@ -658,7 +678,17 @@ export const skippedBlocksmithColumns = [
     key: 'POPChange',
   },
   {
-    title: <Title text="height" />,
+    title: (
+      <div>
+        <Title text="height" />{' '}
+        <Tooltip
+          placement="bottom"
+          title={<Title text="the block height in which the transaction is included" />}
+        >
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'BlockHeight',
     key: 'BlockHeight',
   },
@@ -712,12 +742,12 @@ export const latestBlockColumns = [
   },
   {
     title: (
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', height: '24px' }}>
         <img src={skipRope} alt="icon" style={{ width: '24px' }} />
         <Tooltip
           placement="bottom"
           title={
-            <Title text="Number of nodes which skipped their turn to create a block before this block was found" />
+            <Title text="number of nodes which skipped their turn to create a block before this block was found" />
           }
         >
           <InfoCircleOutlined />
@@ -734,7 +764,7 @@ export const latestBlockColumns = [
 
       return (
         <Tag
-          style={{ minWidth: '28px', textAlign: 'center' }}
+          style={{ textAlign: 'center', margin: '0' }}
           color={getBlocksmithIndicator(skipped.length).color}
         >
           {getBlocksmithIndicator(skipped.length).text}
@@ -766,7 +796,7 @@ export const latestTransactionColumns = [
     },
   },
   {
-    title: <Title text="transaction hash" />,
+    title: <Title text="trx hash" />,
     dataIndex: 'TransactionHashFormatted',
     key: 'TransactionHashFormatted',
     render(text, record) {
@@ -807,7 +837,17 @@ export const accountRewardColumns = [
     },
   },
   {
-    title: <Title text="height" />,
+    title: (
+      <div>
+        <Title text="height" />{' '}
+        <Tooltip
+          placement="bottom"
+          title={<Title text="the block height in which the transaction is included" />}
+        >
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'BlockHeight',
     key: 'BlockHeight',
     render(text) {
@@ -842,11 +882,6 @@ export const accountRewardColumns = [
 ]
 
 export const popColumns = [
-  // {
-  //   title: <Title text="node id" />,
-  //   dataIndex: 'NodeID',
-  //   key: 'NodeID',
-  // },
   {
     title: <Title text="node public key" />,
     dataIndex: 'NodePublicKeyFormatted',
@@ -859,7 +894,17 @@ export const popColumns = [
     },
   },
   {
-    title: <Title text="height" />,
+    title: (
+      <div>
+        <Title text="height" />{' '}
+        <Tooltip
+          placement="bottom"
+          title={<Title text="the block height in which the transaction is included" />}
+        >
+          <InfoCircleOutlined />
+        </Tooltip>
+      </div>
+    ),
     dataIndex: 'Height',
     key: 'BlockHeigHeightht',
     render(text) {

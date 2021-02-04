@@ -127,6 +127,7 @@
   flex-direction: column;
   margin-left: 8px;
   color: var(--color-white);
+  align-self: center;
 
   @include mq-lg {
     .logo-text-name {
@@ -243,6 +244,7 @@
 
   .logo {
     display: flex;
+    height: 60px;
 
     img {
       width: 10%;
@@ -255,6 +257,7 @@
 
       .header-logo-name {
         justify-content: center;
+        align-self: center;
 
         .logo-text-name {
           font-size: 18px;

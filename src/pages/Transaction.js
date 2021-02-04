@@ -256,7 +256,7 @@ const { Panel } = Collapse
 const Transaction = ({ match }) => {
   const { t } = useTranslation()
   const { params } = match
-  const [label, setLabel] = useState('show more')
+  const [label, setLabel] = useState(t('show detail'))
 
   const { loading, data, error } = useQuery(GET_TRX_DATA, {
     variables: {
@@ -265,8 +265,8 @@ const Transaction = ({ match }) => {
   })
 
   const onChange = val => {
-    if (val && val.length > 0) setLabel('hide detail')
-    else setLabel('show detail')
+    if (val && val.length > 0) setLabel(t('hide detail'))
+    else setLabel(t('show detail'))
   }
 
   return (
@@ -280,9 +280,8 @@ const Transaction = ({ match }) => {
               <Col span={24}>
                 <Row>
                   <Col span={24}>
-                    <h4 className="truncate page-title">
-                      {t('transaction')} {data.transaction.TransactionID}
-                    </h4>
+                    <h4 className="page-title">{t('transaction')}</h4>
+                    <div className="current-page">{data.transaction.TransactionID}</div>
                   </Col>
                 </Row>
                 <Card className="transaction-card" bordered={false}>
@@ -293,7 +292,7 @@ const Transaction = ({ match }) => {
                     value={moment(data.transaction.Timestamp).format('lll')}
                   />
                   <DescItem
-                    label="transaction type"
+                    label={t('transaction type')}
                     style={{ display: 'none' }}
                     value={data.transaction.TransactionTypeName}
                   />

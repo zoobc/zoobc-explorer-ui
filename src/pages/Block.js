@@ -223,7 +223,7 @@ const Block = ({ match }) => {
   const [trxCurrentPage, setTrxCurrentPage] = useState(1)
   const [transactions, setTransactions] = useState([])
   const [trxPaginate, setTrxPaginate] = useState({})
-  const [label, setLabel] = useState('show more')
+  const [label, setLabel] = useState(t('show detail'))
 
   const { loading, data, error } = useQuery(GET_BLOCK_DATA, {
     variables: {
@@ -248,12 +248,8 @@ const Block = ({ match }) => {
   })
 
   const onChange = val => {
-    if (val && val.length > 0) setLabel('hide detail')
-    else setLabel('show detail')
-  }
-
-  const onChangeHeight = height => {
-    window.location.href = height
+    if (val && val.length > 0) setLabel(t('hide detail'))
+    else setLabel(t('show detail'))
   }
 
   useEffect(() => {
@@ -360,7 +356,7 @@ const Block = ({ match }) => {
                     }
                   />
                   <DescItem
-                    label={t('Number of Transaction')}
+                    label={t('number of transaction')}
                     style={{ display: 'none' }}
                     value={trxPaginate.Total}
                   />

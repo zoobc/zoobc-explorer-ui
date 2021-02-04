@@ -87,11 +87,21 @@ a:hover {
 }
 
 .truncate {
-  white-space: nowrap;
-  overflow: hidden;
+  overflow: visible;
+  white-space: pre-wrap;
+  word-break: break-all;
   text-overflow: ellipsis;
+  margin: 0.75rem 0 0 0;
+  padding-left: 10px;
   a {
     color: var(--color-primary-link-txt);
+  }
+}
+
+@media (max-width: 767px) {
+  .truncate {
+    margin: 0;
+    padding-left: 0;
   }
 }
 
@@ -101,6 +111,11 @@ a:hover {
 
 .page-title {
   display: inline-block;
+}
+
+.current-page {
+  white-space: pre-wrap;
+  word-break: break-all;
 }
 
 .refresh-status {
