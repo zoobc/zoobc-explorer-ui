@@ -184,7 +184,7 @@ const Node = ({ match }) => {
                   />
                   <DescItem
                     label={t('locked funds')}
-                    text={t('amount of zoobc to be locked as security money for node')}
+                    text={t('amount of zoobc to be locked as security zoobc for node')}
                     value={
                       <NumberFormat
                         value={data.node.LockedFunds || 0}
