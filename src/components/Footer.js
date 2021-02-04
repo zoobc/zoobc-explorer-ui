@@ -169,7 +169,7 @@ const Footer = () => {
                 className="footer-list-group-item"
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://zoobc.com/WP-latest.pdf"
+                href="https://drive.google.com/file/d/18TdPfxFzLUHdjCaGuG0k5RMSSs34HSzw/view?usp=drive_web"
               >
                 {t('zoobc white paper')}
               </a>
@@ -201,18 +201,8 @@ const Footer = () => {
             <li>
               <a
                 className="footer-list-group-item"
-                target="_blank"
                 rel="noopener noreferrer"
-                href="https://zoobc.com/zoobc-alpha/"
-              >
-                ZooBC Alpha
-              </a>
-            </li>
-            <li>
-              <a
-                className="footer-list-group-item"
-                rel="noopener noreferrer"
-                href="https://zoobc.app/"
+                href="https://play.google.com/store/apps/details?id=com.zoobc.walletmobile"
               >
                 ZooBC Wallet Mobile
               </a>
@@ -244,7 +234,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 href="https://zoobc.io/"
               >
-                ZooBC Genesis Block
+                ZooBC IO
               </a>
             </li>
           </ul>
@@ -540,7 +530,7 @@ const Footer = () => {
                     className="footer-list-group-item"
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://zoobc.com/WP-latest.pdf"
+                    href="https://drive.google.com/file/d/18TdPfxFzLUHdjCaGuG0k5RMSSs34HSzw/view?usp=drive_web"
                   >
                     {t('zoobc white paper')}
                   </a>
@@ -573,18 +563,8 @@ const Footer = () => {
                 <li>
                   <a
                     className="footer-list-group-item"
-                    target="_blank"
                     rel="noopener noreferrer"
-                    href="https://zoobc.com/zoobc-alpha/"
-                  >
-                    ZooBC Alpha
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="footer-list-group-item"
-                    rel="noopener noreferrer"
-                    href="https://zoobc.app/"
+                    href="https://play.google.com/store/apps/details?id=com.zoobc.walletmobile"
                   >
                     ZooBC Wallet Mobile
                   </a>
@@ -616,7 +596,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     href="https://zoobc.io/"
                   >
-                    ZooBC Genesis Block
+                    ZooBC IO
                   </a>
                 </li>
               </ul>

@@ -123,14 +123,14 @@ const Accounts = () => {
           <Col span={24}>
             <Card className="accounts-card" bordered={false}>
               <Row>
-                <Col span={23}>
+                <Col span={22}>
                   <h5 className="page-title">
                     <i className="bcz-user" />
                     <strong>{t('accounts')}</strong>
                   </h5>
                   {!!data && <LastRefresh value={data.accounts.LastRefresh} />}
                 </Col>
-                <Col>
+                <Col span={2}>
                   <Button
                     shape="circle"
                     icon="reload"

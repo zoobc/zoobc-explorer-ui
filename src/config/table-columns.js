@@ -301,7 +301,7 @@ export const blockColumns = [
   },
   {
     title: (
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', height: '24px' }}>
         <img src={skipRope} alt="icon" style={{ width: '24px' }} />
         <Tooltip
           placement="bottom"
@@ -324,7 +324,7 @@ export const blockColumns = [
 
       return (
         <Tag
-          style={{ minWidth: '28px', textAlign: 'center' }}
+          style={{ minWidth: '28px', textAlign: 'center', margin: '0' }}
           color={getBlocksmithIndicator(skipped.length).color}
         >
           {getBlocksmithIndicator(skipped.length).text}
@@ -742,7 +742,7 @@ export const latestBlockColumns = [
   },
   {
     title: (
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', height: '24px' }}>
         <img src={skipRope} alt="icon" style={{ width: '24px' }} />
         <Tooltip
           placement="bottom"
@@ -764,7 +764,7 @@ export const latestBlockColumns = [
 
       return (
         <Tag
-          style={{ minWidth: '28px', textAlign: 'center' }}
+          style={{ textAlign: 'center', margin: '0' }}
           color={getBlocksmithIndicator(skipped.length).color}
         >
           {getBlocksmithIndicator(skipped.length).text}
@@ -796,7 +796,7 @@ export const latestTransactionColumns = [
     },
   },
   {
-    title: <Title text="transaction hash" />,
+    title: <Title text="trx hash" />,
     dataIndex: 'TransactionHashFormatted',
     key: 'TransactionHashFormatted',
     render(text, record) {

@@ -132,14 +132,14 @@ const Nodes = () => {
           <Col span={24}>
             <Card className="nodes-card" bordered={false}>
               <Row>
-                <Col span={23}>
+                <Col span={22}>
                   <h5 className="page-title">
                     <i className="bcz-node" />
                     <strong>{t('nodes')}</strong>
                   </h5>
                   {!!data && <LastRefresh value={data.nodes.LastRefresh} />}
                 </Col>
-                <Col>
+                <Col span={2}>
                   <Button
                     shape="circle"
                     icon="reload"
