@@ -144,9 +144,8 @@ const Node = ({ match }) => {
               <Col span={24}>
                 <Row>
                   <Col span={24}>
-                    <h4 className="truncate page-title">
-                      {t('public key')} {data.node.NodePublicKeyFormatted}
-                    </h4>
+                    <h4 className="page-title">{t('public key')}</h4>
+                    <div className="current-page">{data.node.NodePublicKeyFormatted}</div>
                   </Col>
                 </Row>
                 <Card className="node-card" bordered={false}>

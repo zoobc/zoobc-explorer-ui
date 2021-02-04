@@ -187,14 +187,14 @@ const Transactions = () => {
             <Card className="transactions-card" bordered={false}>
               <Alert />
               <Row>
-                <Col span={23}>
+                <Col span={22}>
                   <h5 className="page-title">
                     <i className="bcz-calendar" />
                     <strong>{t('recent transactions')}</strong>
                   </h5>
                   {!!data && <LastRefresh value={data.transactions.LastRefresh} />}
                 </Col>
-                <Col>
+                <Col span={2}>
                   <Button
                     shape="circle"
                     icon="reload"

@@ -47,6 +47,7 @@
 
 .table-anim .ant-table-thead > tr > th {
   display: inline-block;
+  padding: 2px !important;
 }
 
 .table-anim .ant-table-tbody > tr {
@@ -90,17 +91,17 @@
 
 .table-anim-block .ant-table-thead > tr > th:nth-child(1),
 .table-anim-block .ant-table-tbody > tr > td:nth-child(1) {
-  width: 18%;
+  width: 20%;
 }
 
 .table-anim-block .ant-table-thead > tr > th:nth-child(2),
 .table-anim-block .ant-table-tbody > tr > td:nth-child(2) {
-  width: 18%;
+  width: 15%;
 }
 
 .table-anim-block .ant-table-thead > tr > th:nth-child(3),
 .table-anim-block .ant-table-tbody > tr > td:nth-child(3) {
-  width: 16%;
+  width: 14%;
 }
 
 .table-anim-block .ant-table-thead > tr > th:nth-child(4),

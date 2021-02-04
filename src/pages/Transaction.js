@@ -280,9 +280,8 @@ const Transaction = ({ match }) => {
               <Col span={24}>
                 <Row>
                   <Col span={24}>
-                    <h4 className="truncate page-title">
-                      {t('transaction')} {data.transaction.TransactionID}
-                    </h4>
+                    <h4 className="page-title">{t('transaction')}</h4>
+                    <div className="current-page">{data.transaction.TransactionID}</div>
                   </Col>
                 </Row>
                 <Card className="transaction-card" bordered={false}>
