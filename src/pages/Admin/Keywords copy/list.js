@@ -40,74 +40,23 @@
  * shall be included in all copies or substantial portions of the Software.
 **/
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import moment from 'moment'
-import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { useQuery, useMutation, gql } from '@apollo/client'
-import { PageHeader, Button, Table, Pagination, Popconfirm, Divider, message } from 'antd'
+import { Button, Table, Pagination, Popconfirm, Divider } from 'antd'
 
-import { getSortString } from '../../../utils'
-import Container from '../../../components/Container'
-
-const defaultSort = { columnKey: 'Keyword', order: 'ascend' }
-const QUERY_KEYWORDS = gql`
-  query keywords($page: Int, $sorter: String) {
-    keywords(page: $page, limit: 15, order: $sorter) {
-      Success
-      Message
-      Data {
-        Keyword
-        Content
-        ExpiredAt
-        Seen
-        CreatedAt
-        CreatedBy {
-          Identifier
-        }
-      }
-      Paginate {
-        Page
-        Count
-        Total
-      }
-    }
-  }
-`
-
-const MUTATION_DESTROY = gql`
-  mutation destroy($Keyword: String!) {
-    destroy(Keyword: $Keyword) {
-      Success
-      Message
-    }
-  }
-`
-
-export default () => {
+export default ({
+  datas,
+  sorted,
+  loading,
+  paginate,
+  networkStatus,
+  onEdit,
+  onDelete,
+  onChangePage,
+  onChangeTable,
+}) => {
   const { t } = useTranslation()
-  const [datas, setDatas] = useState([])
-  const [currentPage, setCurrentPage] = useState(1)
-  const [sorted, setSorted] = useState(defaultSort)
-  const [processing, setProcessing] = useState(false)
-  const [paginate, setPaginate] = useState({ Page: 0, Count: 0, Total: 0 })
-
-  const { loading, data, error, refetch, networkStatus } = useQuery(QUERY_KEYWORDS, {
-    variables: {
-      page: parseInt(currentPage),
-      sorter: getSortString(sorted),
-    },
-    notifyOnNetworkStatusChange: true,
-  })
-
-  const [destroy] = useMutation(MUTATION_DESTROY, {
-    onCompleted: data => {
-      const { Success, Message } = data.destroy
-      Success ? message.success(Message, 10) : message.error(Message, 10)
-      refetch()
-      setProcessing(false)
-    },
-  })
 
   const Title = ({ text }) => {
     return t(text)
@@ -151,11 +100,9 @@ export default () => {
       render: data => {
         return (
           <span>
-            <Link to={`/panel/keywords/${data.Keyword}`}>
-              <Button type="link" size="small">
-                <Title text="edit" />
-              </Button>
-            </Link>
+            <Button type="link" size="small" onClick={() => onEdit(data.Keyword)}>
+              <Title text="edit" />
+            </Button>
             <Divider type="vertical" />
             <Popconfirm
               okText={t('yes')}
@@ -173,10 +120,6 @@ export default () => {
     },
   ]
 
-  const onChangeTable = (pagination, filters, sorter) => {
-    setSorted(sorter && sorter.order ? sorter : defaultSort)
-  }
-
   const columns = keywordColumns.map(item => {
     item.sortDirections = ['descend', 'ascend']
     item.sorter = item.sorting
@@ -186,71 +129,30 @@ export default () => {
     return item
   })
 
-  const onDelete = Keyword => {
-    setProcessing(true)
-    destroy({ variables: { Keyword } })
-  }
-
-  useEffect(() => {
-    function init() {
-      if (!loading && !error && data) {
-        const { Success, Data, Paginate } = data.keywords
-        if (Success) {
-          const datas = Data.map((item, key) => {
-            return {
-              key,
-              ...item,
-            }
-          })
-          setDatas(datas)
-          setPaginate(Paginate)
-        }
-      }
-    }
-
-    init()
-  }, [loading, error, data]) // eslint-disable-line
-
   return (
-    <Container>
-      <PageHeader
-        ghost={false}
-        className="block-card"
-        title={<h4 className="block-card-title page-title">{t('keywords')}</h4>}
-        extra={[
-          <Button key="refresh" onClick={() => refetch()}>
-            {t('refresh')}
-          </Button>,
-          <Link key="insert" to="/panel/keywords/new">
-            <Button key="insert" type="primary">
-              {t('insert new')}
-            </Button>
-          </Link>,
-        ]}
-      >
-        <Table
-          size="small"
-          columns={columns}
-          dataSource={datas}
-          pagination={false}
-          onChange={onChangeTable}
-          loading={loading || processing || networkStatus === 4}
-        />
+    <>
+      <Table
+        size="small"
+        columns={columns}
+        dataSource={datas}
+        pagination={false}
+        onChange={onChangeTable}
+        loading={loading || networkStatus === 4}
+      />
 
-        {!!data && (
-          <Pagination
-            showQuickJumper
-            pageSize={15}
-            total={paginate.Total}
-            current={paginate.Page}
-            className="pagination-center"
-            onChange={page => setCurrentPage(page)}
-            showTotal={(total, range) =>
-              total > 0 ? `${range[0]}-${range[1]} of ${total} items` : null
-            }
-          />
-        )}
-      </PageHeader>
-    </Container>
+      {datas && datas.length > 0 && (
+        <Pagination
+          showQuickJumper
+          pageSize={15}
+          total={paginate.Total}
+          current={paginate.Page}
+          className="pagination-center"
+          onChange={page => onChangePage(page)}
+          showTotal={(total, range) =>
+            total > 0 ? `${range[0]}-${range[1]} of ${total} items` : null
+          }
+        />
+      )}
+    </>
   )
 }

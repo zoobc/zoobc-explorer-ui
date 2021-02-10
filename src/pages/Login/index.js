@@ -141,7 +141,7 @@ const Login = props => {
                   initialValue: encryption.decrypt(store.get('usrpswd')) || null,
                   rules: [{ required: true, message: 'Please input Your password!' }],
                 })(
-                  <Input
+                  <Input.Password
                     prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                     type="password"
                     placeholder="Password"

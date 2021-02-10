@@ -42,12 +42,13 @@
 
 import './form.scss'
 import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import draftToHtml from 'draftjs-to-html'
-import { EditorState, convertToRaw } from 'draft-js'
+import htmlToDraft from 'html-to-draftjs'
+import { EditorState, convertToRaw, ContentState } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg'
 import { useTranslation } from 'react-i18next'
-import { useMutation, gql } from '@apollo/client'
+import { useQuery, useMutation, gql } from '@apollo/client'
 import { PageHeader, Row, Col, Form, Input, Button, DatePicker, message } from 'antd'
 
 import Container from '../../../components/Container'
@@ -55,28 +56,47 @@ import Container from '../../../components/Container'
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
-    sm: { span: 4 },
+    sm: { span: 6 },
   },
   wrapperCol: {
     xs: { span: 24 },
-    sm: { span: 20 },
+    sm: { span: 18 },
   },
 }
 
 const formFullLayout = {
   labelCol: {
     xs: { span: 24 },
-    sm: { span: 2 },
+    sm: { span: 3 },
   },
   wrapperCol: {
     xs: { span: 24 },
-    sm: { span: 22 },
+    sm: { span: 21 },
   },
 }
 
-const MUTATION_CREATE = gql`
-  mutation create($Keyword: String!, $Content: String!, $ExpiredAt: Date) {
-    create(Keyword: $Keyword, Content: $Content, ExpiredAt: $ExpiredAt) {
+const QUERY_KEYWORD = gql`
+  query keyword($Keyword: String!) {
+    keyword(Keyword: $Keyword) {
+      Success
+      Message
+      Data {
+        Keyword
+        Content
+        ExpiredAt
+        Seen
+        CreatedAt
+        CreatedBy {
+          Identifier
+        }
+      }
+    }
+  }
+`
+
+const MUTATION_UPDATE = gql`
+  mutation update($Keyword: String!, $Content: String!, $ExpiredAt: Date) {
+    update(Keyword: $Keyword, Content: $Content, ExpiredAt: $ExpiredAt) {
       Success
       Message
       Data {
@@ -88,18 +108,27 @@ const MUTATION_CREATE = gql`
   }
 `
 
-// const html = '<p>Hey this <strong>editor</strong> rocks 😀</p>'
-
 const FormKeyword = props => {
-  const { history } = props
   const { t } = useTranslation()
-  // const [data, setData] = useState(null)
+  const { history, match } = props
+  const [value, setValue] = useState(null)
   const { getFieldDecorator } = props.form
-  const [loading, setLoading] = useState(false)
-  const [content, setContent] = useState(EditorState.createEmpty())
-  const [create, result] = useMutation(MUTATION_CREATE, {
-    onCompleted: () => {
-      setLoading(false)
+  const [content, setContent] = useState(null)
+  const [processing, setProcessing] = useState(false)
+
+  const { loading, data, error } = useQuery(QUERY_KEYWORD, {
+    variables: { Keyword: match.params.key },
+  })
+
+  const [update] = useMutation(MUTATION_UPDATE, {
+    onCompleted: data => {
+      const { Success, Message } = data.update
+      Success ? message.success(Message, 10) : message.error(Message, 10)
+      setProcessing(false)
+
+      setTimeout(() => {
+        window.location.href = '/panel/keywords'
+      }, 500)
     },
   })
 
@@ -107,8 +136,8 @@ const FormKeyword = props => {
     e.preventDefault()
     props.form.validateFields((err, val) => {
       if (!err) {
-        setLoading(true)
-        create({
+        setProcessing(true)
+        update({
           variables: {
             Keyword: val.Keyword,
             ExpiredAt: val.ExpiredAt ? val.ExpiredAt : null,
@@ -120,16 +149,23 @@ const FormKeyword = props => {
   }
 
   useEffect(() => {
-    if (result && result.data) {
-      const { Success, Message } = result.data.create
-      if (Success) {
-        message.success(Message, 10)
-        history.push('/panel/keywords')
-      } else {
-        message.error(Message, 10)
+    function init() {
+      if (!loading && !error && data) {
+        const { Success, Data } = data.keyword
+        if (Success) {
+          setValue(Data)
+
+          const contentBlock = htmlToDraft(Data.Content)
+          if (contentBlock) {
+            const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks)
+            setContent(EditorState.createWithContent(contentState))
+          }
+        }
       }
     }
-  }, [result.data]) // eslint-disable-line
+
+    init()
+  }, [loading, error, data]) // eslint-disable-line
 
   return (
     <Container>
@@ -137,7 +173,7 @@ const FormKeyword = props => {
         ghost={false}
         className="block-card"
         title={<h4 className="block-card-title page-title">{t('keywords')}</h4>}
-        subTitle={t('insert new')}
+        subTitle={t('edit data')}
         extra={[
           <Button key="back" onClick={() => history.push('/panel/keywords')}>
             {t('back')}
@@ -149,7 +185,7 @@ const FormKeyword = props => {
             <Col span={12}>
               <Form.Item label={t('keyword')}>
                 {getFieldDecorator('Keyword', {
-                  initialValue: null,
+                  initialValue: value && value.Keyword,
                   rules: [{ required: true, message: 'Please input keyword!' }],
                 })(<Input placeholder="Keyword" />)}
               </Form.Item>
@@ -158,7 +194,7 @@ const FormKeyword = props => {
             <Col span={12}>
               <Form.Item label={t('expired at')}>
                 {getFieldDecorator('ExpiredAt', {
-                  initialValue: null,
+                  initialValue: value && value.ExpiredAt,
                   rules: [{ required: false, message: 'Please input expired at!' }],
                 })(<DatePicker placeholder="Expired At" style={{ width: '100%' }} />)}
               </Form.Item>
@@ -167,7 +203,7 @@ const FormKeyword = props => {
             <Col span={24}>
               <Form.Item label={t('content')} {...formFullLayout}>
                 {getFieldDecorator('Content', {
-                  initialValue: null,
+                  initialValue: value && value.Content,
                   rules: [{ required: true, message: 'Please input content!' }],
                 })(
                   <Editor
@@ -185,11 +221,11 @@ const FormKeyword = props => {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={loading}
-                  disabled={loading}
+                  loading={processing}
+                  disabled={processing}
                   className="login-form-button"
                 >
-                  {t('save')}
+                  {t('update')}
                 </Button>
               </Form.Item>
             </Col>
