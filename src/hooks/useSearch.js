@@ -50,6 +50,10 @@ const GET_SEARCH_DATA = gql`
       Height
       Timestamp
       FoundIn
+      Promotion {
+        Keyword
+        Content
+      }
     }
   }
 `
@@ -61,9 +65,11 @@ const useSearch = (keyword, history) => {
     },
     fetchPolicy: 'network-only',
   })
+
   useEffect(() => {
     if (!!data && !error && !loading) {
-      const { ID, FoundIn } = data.search
+      const { ID, FoundIn, Promotion } = data.search
+
       switch (FoundIn) {
         case 'Block':
           history.push(`/blocks/${ID}`)
@@ -81,7 +87,7 @@ const useSearch = (keyword, history) => {
           history.push({
             pathname: '/search',
             search: `?search=${keyword}`,
-            state: { search: keyword },
+            state: { search: keyword, promotion: Promotion },
           })
           break
       }

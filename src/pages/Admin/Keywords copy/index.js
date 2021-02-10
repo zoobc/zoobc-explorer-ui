@@ -45,8 +45,10 @@ import moment from 'moment'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useQuery, useMutation, gql } from '@apollo/client'
-import { PageHeader, Button, Table, Pagination, Popconfirm, Divider, message } from 'antd'
+import { PageHeader, Button, Table, Pagination, Popconfirm, Divider, Modal, message } from 'antd'
 
+import FormKeyword from './form'
+import ListKeyword from './list'
 import { getSortString } from '../../../utils'
 import Container from '../../../components/Container'
 
@@ -75,6 +77,39 @@ const QUERY_KEYWORDS = gql`
   }
 `
 
+const QUERY_KEYWORD = gql`
+  query keyword($Keyword: String!) {
+    keyword(Keyword: $Keyword) {
+      Success
+      Message
+      Data {
+        Keyword
+        Content
+        ExpiredAt
+        Seen
+        CreatedAt
+        CreatedBy {
+          Identifier
+        }
+      }
+    }
+  }
+`
+
+const MUTATION_CREATE = gql`
+  mutation create($Keyword: String!, $Content: String!, $ExpiredAt: Date) {
+    create(Keyword: $Keyword, Content: $Content, ExpiredAt: $ExpiredAt) {
+      Success
+      Message
+      Data {
+        Keyword
+        Content
+        ExpiredAt
+      }
+    }
+  }
+`
+
 const MUTATION_DESTROY = gql`
   mutation destroy($Keyword: String!) {
     destroy(Keyword: $Keyword) {
@@ -85,12 +120,18 @@ const MUTATION_DESTROY = gql`
 `
 
 export default () => {
+  // const { history } = props
+  let key
   const { t } = useTranslation()
+  // const [key, setKey] = useState(null)
   const [datas, setDatas] = useState([])
+  const [visible, setVisible] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [sorted, setSorted] = useState(defaultSort)
   const [processing, setProcessing] = useState(false)
   const [paginate, setPaginate] = useState({ Page: 0, Count: 0, Total: 0 })
+
+  console.log('==111KEEEY', key)
 
   const { loading, data, error, refetch, networkStatus } = useQuery(QUERY_KEYWORDS, {
     variables: {
@@ -98,6 +139,16 @@ export default () => {
       sorter: getSortString(sorted),
     },
     notifyOnNetworkStatusChange: true,
+  })
+
+  const [create] = useMutation(MUTATION_CREATE, {
+    onCompleted: data => {
+      const { Success, Message } = data.create
+      Success ? message.success(Message, 10) : message.error(Message, 10)
+      onUnvisible()
+      refetch()
+      setProcessing(false)
+    },
   })
 
   const [destroy] = useMutation(MUTATION_DESTROY, {
@@ -109,82 +160,116 @@ export default () => {
     },
   })
 
-  const Title = ({ text }) => {
-    return t(text)
+  // const Title = ({ text }) => {
+  //   return t(text)
+  // }
+
+  // const DateFormat = ({ date }) => {
+  //   return date ? moment(date).format('DD/MM/YY @ H:mm:ss') : null
+  // }
+
+  // const keywordColumns = [
+  //   {
+  //     title: <Title text="keyword" />,
+  //     dataIndex: 'Keyword',
+  //     key: 'Keyword',
+  //   },
+  //   {
+  //     title: <Title text="expired at" />,
+  //     dataIndex: 'ExpiredAt',
+  //     key: 'ExpiredAt',
+  //     render: val => <DateFormat date={val} />,
+  //   },
+  //   {
+  //     title: <Title text="seen" />,
+  //     dataIndex: 'Seen',
+  //     key: 'Seen',
+  //   },
+  //   // {
+  //   //   title: <Title text="created by" />,
+  //   //   dataIndex: 'Identifier',
+  //   //   key: 'Identifier',
+  //   // },
+  //   {
+  //     title: <Title text="created at" />,
+  //     dataIndex: 'CreatedAt',
+  //     key: 'CreatedAt',
+  //     render: val => <DateFormat date={val} />,
+  //   },
+  //   {
+  //     align: 'right',
+  //     key: 'action',
+  //     render: data => {
+  //       return (
+  //         <span>
+  //           <Link to={`/panel/keywords/${data.Keyword}`}>
+  //             <Button type="link" size="small">
+  //               <Title text="edit" />
+  //             </Button>
+  //           </Link>
+  //           <Divider type="vertical" />
+  //           <Popconfirm
+  //             okText={t('yes')}
+  //             cancelText={t('cancel')}
+  //             onConfirm={() => onDelete(data.Keyword)}
+  //             title={t('are you sure you want to delete this data?')}
+  //           >
+  //             <Button type="link" style={{ color: 'red' }} size="small">
+  //               <Title text="delete" />
+  //             </Button>
+  //           </Popconfirm>
+  //         </span>
+  //       )
+  //     },
+  //   },
+  // ]
+
+  // const getKeyword = Keyword => {
+  //   const { loading, data, error } = useQuery(QUERY_KEYWORD, {
+  //     variables: { Keyword },
+  //   })
+
+  //   if (!loading && !error && data) return data
+  // }
+
+  const onPageNew = () => {
+    // setKey(null)
+    key = null
+    setVisible(true)
   }
 
-  const DateFormat = ({ date }) => {
-    return date ? moment(date).format('DD/MM/YY @ H:mm:ss') : null
+  const onPageEdit = key => {
+    // console.log('==val', key)
+    // setKey(key)
+    key = key
+    setTimeout(() => {
+      setVisible(true)
+    }, 500)
   }
 
-  const keywordColumns = [
-    {
-      title: <Title text="keyword" />,
-      dataIndex: 'Keyword',
-      key: 'Keyword',
-    },
-    {
-      title: <Title text="expired at" />,
-      dataIndex: 'ExpiredAt',
-      key: 'ExpiredAt',
-      render: val => <DateFormat date={val} />,
-    },
-    {
-      title: <Title text="seen" />,
-      dataIndex: 'Seen',
-      key: 'Seen',
-    },
-    // {
-    //   title: <Title text="created by" />,
-    //   dataIndex: 'Identifier',
-    //   key: 'Identifier',
-    // },
-    {
-      title: <Title text="created at" />,
-      dataIndex: 'CreatedAt',
-      key: 'CreatedAt',
-      render: val => <DateFormat date={val} />,
-    },
-    {
-      align: 'right',
-      key: 'action',
-      render: data => {
-        return (
-          <span>
-            <Link to={`/panel/keywords/${data.Keyword}`}>
-              <Button type="link" size="small">
-                <Title text="edit" />
-              </Button>
-            </Link>
-            <Divider type="vertical" />
-            <Popconfirm
-              okText={t('yes')}
-              cancelText={t('cancel')}
-              onConfirm={() => onDelete(data.Keyword)}
-              title={t('are you sure you want to delete this data?')}
-            >
-              <Button type="link" style={{ color: 'red' }} size="small">
-                <Title text="delete" />
-              </Button>
-            </Popconfirm>
-          </span>
-        )
-      },
-    },
-  ]
+  const onUnvisible = () => {
+    setVisible(false)
+  }
 
   const onChangeTable = (pagination, filters, sorter) => {
     setSorted(sorter && sorter.order ? sorter : defaultSort)
   }
 
-  const columns = keywordColumns.map(item => {
-    item.sortDirections = ['descend', 'ascend']
-    item.sorter = item.sorting
-      ? (a, b) => (a[item.dataIndex] ? a[item.dataIndex].length - b[item.dataIndex].length : null)
-      : false
-    item.sortOrder = sorted.columnKey === item.dataIndex && sorted.order
-    return item
-  })
+  // const columns = keywordColumns.map(item => {
+  //   item.sortDirections = ['descend', 'ascend']
+  //   item.sorter = item.sorting
+  //     ? (a, b) => (a[item.dataIndex] ? a[item.dataIndex].length - b[item.dataIndex].length : null)
+  //     : false
+  //   item.sortOrder = sorted.columnKey === item.dataIndex && sorted.order
+  //   return item
+  // })
+
+  const onSubmit = val => {
+    if (val) {
+      setProcessing(true)
+      create({ variables: { ...val } })
+    }
+  }
 
   const onDelete = Keyword => {
     setProcessing(true)
@@ -218,17 +303,27 @@ export default () => {
         className="block-card"
         title={<h4 className="block-card-title page-title">{t('keywords')}</h4>}
         extra={[
-          <Button key="refresh" onClick={() => refetch()}>
+          <Button key="refresh" onClick={refetch}>
             {t('refresh')}
           </Button>,
-          <Link key="insert" to="/panel/keywords/new">
-            <Button key="insert" type="primary">
-              {t('insert new')}
-            </Button>
-          </Link>,
+          <Button key="insert" type="primary" onClick={onPageNew}>
+            {/* <Button key="insert" type="primary" onClick={() => history.push('/panel/keywords/new')}> */}
+            {t('insert new')}
+          </Button>,
         ]}
       >
-        <Table
+        <ListKeyword
+          datas={datas}
+          sorted={sorted}
+          loading={loading}
+          paginate={paginate}
+          networkStatus={networkStatus}
+          onEdit={onPageEdit}
+          onDelete={onDelete}
+          onChangeTable={onChangeTable}
+          onChangePage={page => setCurrentPage(page)}
+        />
+        {/* <Table
           size="small"
           columns={columns}
           dataSource={datas}
@@ -249,8 +344,17 @@ export default () => {
               total > 0 ? `${range[0]}-${range[1]} of ${total} items` : null
             }
           />
-        )}
+        )} */}
       </PageHeader>
+
+      <Modal width={950} visible={visible} footer={null} onCancel={onUnvisible}>
+        <FormKeyword
+          idKeyword={key}
+          loading={processing}
+          onBack={onUnvisible}
+          onSubmitData={onSubmit}
+        />
+      </Modal>
     </Container>
   )
 }

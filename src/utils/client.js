@@ -42,6 +42,7 @@
 
 import moment from 'moment'
 import encryption from './encryption'
+import { message } from 'antd'
 import { store } from '../utils'
 import { WebSocketLink } from '@apollo/client/link/ws'
 import { onError } from '@apollo/client/link/error'
@@ -100,7 +101,25 @@ const onErrorHandler = onError(({ graphQLErrors, networkError }) => {
     graphQLErrors.forEach(({ message, locations, path }) =>
       console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`)
     )
-  if (networkError) console.log(`[Network error]: ${JSON.stringify(networkError)}`)
+  if (networkError) {
+    console.log(`[Network error]: ${JSON.stringify(networkError)}`)
+
+    const unAuth =
+      networkError.result &&
+      networkError.result.errors &&
+      networkError.result.errors[0].extensions &&
+      networkError.result.errors[0].extensions.code === 'UNAUTHENTICATED'
+
+    if (unAuth) {
+      store.remove('usrtoken')
+      store.remove('usraccess')
+      message.error(networkError.result.errors[0].message, 10)
+
+      setTimeout(() => {
+        window.location.href = '/panel'
+      }, 1000)
+    }
+  }
 })
 
 const setupApolloCLient = uri => {
