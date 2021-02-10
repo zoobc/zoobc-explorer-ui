@@ -40,88 +40,22 @@
  * shall be included in all copies or substantial portions of the Software.
 **/
 
-.default-layout {
-  min-height: calc(100vh - 360px) !important;
-  padding-top: 84px;
-  background: var(--color-secondary-solitude) !important;
-}
+import React from 'react'
+import { Card } from 'antd'
+import { useTranslation } from 'react-i18next'
 
-.home {
-  &-banner {
-    background-color: var(--color-banner) !important;
-    padding-top: 30px !important;
-  }
+import Container from '../../../components/Container'
 
-  &-card {
-    margin-top: 32px;
+export default () => {
+  const { t } = useTranslation()
 
-    &-title {
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
-    }
-  }
-
-  &-node {
-    margin: 32px 0 32px !important;
-
-    &-title {
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
-    }
-  }
-}
-
-.home-col-left {
-  padding-right: 8px !important;
-  padding-left: 0px !important;
-
-  @media (min-width: 576px) {
-    padding-right: 0px !important;
-    padding-bottom: 16px !important;
-  }
-
-  @include mq-xs {
-    padding-right: 0px !important;
-    padding-bottom: 16px !important;
-  }
-
-  @include mq-md {
-    padding-right: 16px !important;
-    padding-left: 0px !important;
-  }
-}
-
-.home-col-right {
-  padding-right: 0px !important;
-  padding-left: 8px !important;
-
-  @media (min-width: 576px) {
-    padding-left: 0px !important;
-  }
-
-  @include mq-xs {
-    padding-left: 0px !important;
-  }
-
-  @include mq-md {
-    padding-right: 0px !important;
-    padding-left: 16px !important;
-  }
-}
-
-.home-row-list {
-  width: 100%;
-
-  @include mq-lg {
-    font-size: 13px !important;
-  }
-
-  @include mq-xl {
-    font-size: 14px !important;
-  }
-}
-
-.graph {
-  width: 100%;
-  height: 300px;
+  return (
+    <>
+      <Container>
+        <Card className="block-card" bordered={false}>
+          <h4 className="block-card-title page-title">{t('dashboard')}</h4>
+        </Card>
+      </Container>
+    </>
+  )
 }

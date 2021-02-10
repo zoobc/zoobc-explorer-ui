@@ -57,6 +57,7 @@ import FormFeedback from './FormFeedback'
 import testnet from '../config/testnet'
 import TestnetContext from '../context/TestnetContext'
 import Announcement from './Announcement'
+import { store } from '../utils'
 
 const { Search } = Input
 
@@ -72,6 +73,8 @@ const Header = ({ history, location, fluid }) => {
   const [isOpenFeedBack, setIsOpenFeedBack] = useState(false)
   const [dialogTitle] = useState('Login')
   const { doSearch, loading } = useSearch(keyword, history)
+
+  const hasAccess = store.get('usrtoken') !== null && store.get('usraccess') !== null
 
   const onSearch = value => {
     const searchKeyword = value.trim()
@@ -110,6 +113,15 @@ const Header = ({ history, location, fluid }) => {
       ))}
     </Menu>
   )
+
+  const onLogout = () => {
+    store.remove('usrtoken')
+    store.remove('usraccess')
+
+    setTimeout(() => {
+      window.location.href = '/'
+    }, 1000)
+  }
 
   return (
     <>
@@ -151,6 +163,22 @@ const Header = ({ history, location, fluid }) => {
               <Menu.Item key="/nodes" className="menu-with-icon">
                 <Link to="/nodes">{t('nodes')}</Link>
               </Menu.Item>
+
+              {hasAccess && (
+                <Menu.SubMenu className="menu-with-icon" title={t('panel')}>
+                  <Menu.Item key="dashboard">
+                    <Link to="/panel">{t('dashboard')}</Link>
+                  </Menu.Item>
+                  <Menu.Item key="keywords">
+                    <Link to="/panel/keywords">{t('keywords')}</Link>
+                  </Menu.Item>
+                  <Menu.Divider />
+                  <Menu.Item key="logout" onClick={onLogout}>
+                    {t('Log out')}
+                  </Menu.Item>
+                </Menu.SubMenu>
+              )}
+
               <Menu.Item key="/feedback" className="menu-with-icon">
                 <Button type="danger" onClick={onFeedback}>
                   {t('feedback')}
@@ -228,6 +256,21 @@ const Header = ({ history, location, fluid }) => {
             <Menu.Item key="/nodes" className="menu-with-icon">
               <Link to="/nodes">{t('nodes')}</Link>
             </Menu.Item>
+
+            {hasAccess && (
+              <Menu.SubMenu className="menu-with-icon" title={t('panel')}>
+                <Menu.Item key="dashboard">
+                  <Link to="/panel">{t('dashboard')}</Link>
+                </Menu.Item>
+                <Menu.Item key="keywords">
+                  <Link to="/panel/keywords">{t('keywords')}</Link>
+                </Menu.Item>
+                <Menu.Divider />
+                <Menu.Item key="logout" onClick={onLogout}>
+                  {t('Log out')}
+                </Menu.Item>
+              </Menu.SubMenu>
+            )}
           </Menu>
           <Search
             className="header-search-input"
