@@ -950,3 +950,33 @@ export const popColumns = [
     },
   },
 ]
+
+export const keywordColumns = [
+  {
+    title: <Title text="keyword" />,
+    dataIndex: 'Keyword',
+    key: 'Keyword',
+  },
+  {
+    title: <Title text="expired at" />,
+    dataIndex: 'ExpiredAt',
+    key: 'ExpiredAt',
+    render: val => (val ? moment(val).format('MMM DD, YYYY HH:mm') : null),
+  },
+  {
+    title: <Title text="seen" />,
+    dataIndex: 'Seen',
+    key: 'Seen',
+  },
+  // {
+  //   title: <Title text="created by" />,
+  //   dataIndex: 'Identifier',
+  //   key: 'Identifier',
+  // },
+  {
+    title: <Title text="created at" />,
+    dataIndex: 'CreatedAt',
+    key: 'CreatedAt',
+    render: val => (val ? moment(val).format('MMM DD, YYYY HH:mm') : null),
+  },
+]

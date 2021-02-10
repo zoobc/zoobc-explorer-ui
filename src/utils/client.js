@@ -40,12 +40,13 @@
  * shall be included in all copies or substantial portions of the Software.
 **/
 
+import moment from 'moment'
+import encryption from './encryption'
+import { store } from '../utils'
 import { WebSocketLink } from '@apollo/client/link/ws'
 import { onError } from '@apollo/client/link/error'
 import { getMainDefinition } from '@apollo/client/utilities'
 import { ApolloClient, ApolloLink, split, HttpLink, InMemoryCache } from '@apollo/client'
-import moment from 'moment'
-import encryption from './encryption'
 
 import { testnetClient } from '../config/testnet'
 
@@ -70,6 +71,10 @@ const createLink = uri => {
     'x-cons-id': consumerId,
     'x-signature': signature,
   }
+
+  const token = store.get('usrtoken')
+  if (token) headers.Authorization = `Bearer ${token}`
+
   const httpLink = new HttpLink({ uri, headers })
 
   const wsLink = new WebSocketLink({
