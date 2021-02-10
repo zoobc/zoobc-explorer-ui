@@ -40,63 +40,29 @@
  * shall be included in all copies or substantial portions of the Software.
 **/
 
-import React, { useState, useContext, useEffect } from 'react'
-import { Input, Icon, Spin } from 'antd'
-import Radium, { StyleRoot } from 'radium'
-import { rubberBand, bounceInDown, fadeInUp } from 'react-animations'
+import React, { useState, useEffect } from 'react'
+import { Input, Icon, Spin, Card } from 'antd'
 
-import imageOmg from '../../assets/images/omg.svg'
-import searchResult from '../../assets/images/search-result.svg'
+import useSearch from '../../hooks/useSearch'
 import Container from '../../components/Container'
 import NotFoundComp from '../../components/Errors/NotFound'
-import useSearch from '../../hooks/useSearch'
+import searchResult from '../../assets/images/search-result.svg'
 import { useTranslation } from 'react-i18next'
-import AnimationContext from '../../context/AnimationContext'
-import keywords from '../../keywords.json'
 
 const { Search } = Input
 const Spinner = <Icon type="loading" style={{ fontSize: 24, color: 'white' }} spin />
 
 const NotFound = ({ history, location }) => {
+  const { state } = location
   const { t } = useTranslation()
-  const { onChangeAnimation } = useContext(AnimationContext)
   const [keyword, setKeyword] = useState('')
   const { doSearch, loading } = useSearch(keyword, history)
-  const { state } = location
-  const [promotion, setPromotion] = useState({ key: null, redirect: null })
-
-  const styles = {
-    rubberBand: {
-      animation: 'x 6s',
-      animationName: Radium.keyframes(rubberBand, 'rubberBand'),
-    },
-    bounceInDown: {
-      animation: 'x 2s',
-      animationName: Radium.keyframes(bounceInDown, 'bounceInDown'),
-    },
-    fadeInUp: {
-      animation: 'x 4s',
-      animationName: Radium.keyframes(fadeInUp, 'fadeInUp'),
-    },
-  }
 
   const onSearch = value => {
     const searchKeyword = value.trim()
 
     if (!!searchKeyword) {
-      setPromotion({ key: null, redirect: null })
-      const getPromotion = keywords.find(f => f.key.toLowerCase() === searchKeyword.toLowerCase())
-
       if (searchKeyword.toLowerCase() === 'craig wright is satoshi nakamoto') {
-        history.push({
-          pathname: '/search',
-          search: `?search=${searchKeyword}`,
-          state: { search: searchKeyword },
-        })
-        onChangeAnimation()
-        return
-      } else if (getPromotion) {
-        setPromotion(getPromotion)
         history.push({
           pathname: '/search',
           search: `?search=${searchKeyword}`,
@@ -119,41 +85,28 @@ const NotFound = ({ history, location }) => {
 
   return !!state && !!state.search ? (
     <Container>
-      <StyleRoot>
-        <div className="error-content error-content-page">
-          {promotion && promotion.key && promotion.redirect ? (
-            <>
-              <img src={imageOmg} alt="omg" style={styles.rubberBand} />
-              <span className="error-title page-title" style={styles.bounceInDown}>
-                {t('omg, you found me here...')}
-              </span>
-              <span className="h6 text-center page-title" style={styles.fadeInUp}>
-                {t('ow… come on, i can’t be so serious if you not click ')}
-                <a href={promotion.redirect} target="_blank" rel="noopener noreferrer">
-                  {t('here')}
-                </a>
-              </span>
-            </>
-          ) : (
-            <>
-              <img src={searchResult} alt="not found" />
-              <span className="error-title page-title">{t('no result found')}</span>
-              <span className="h6 text-center page-title">
-                {t("sorry, we couldn't find any results for")} {state.search}
-              </span>
-              <Search
-                placeholder={t(
-                  'search by account address / transaction id / block id / node public key'
-                )}
-                onSearch={onSearch}
-                className="error-search"
-              />
-            </>
-          )}
-
-          {loading ? <Spin indicator={Spinner} /> : null}
-        </div>
-      </StyleRoot>
+      <Spin indicator={Spinner} spinning={loading}>
+        {state && state.promotion ? (
+          <Card className="block-card" bordered={false}>
+            <section dangerouslySetInnerHTML={{ __html: state.promotion.Content }} />
+          </Card>
+        ) : (
+          <div className="error-content error-content-page">
+            <img src={searchResult} alt="not found" />
+            <span className="error-title page-title">{t('no result found')}</span>
+            <span className="h6 text-center page-title">
+              {t("sorry, we couldn't find any results for")} {state.search}
+            </span>
+            <Search
+              placeholder={t(
+                'search by account address / transaction id / block id / node public key'
+              )}
+              onSearch={onSearch}
+              className="error-search"
+            />
+          </div>
+        )}
+      </Spin>
     </Container>
   ) : (
     <NotFoundComp />
