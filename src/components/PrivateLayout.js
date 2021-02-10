@@ -40,88 +40,46 @@
  * shall be included in all copies or substantial portions of the Software.
 **/
 
-.default-layout {
-  min-height: calc(100vh - 360px) !important;
-  padding-top: 84px;
-  background: var(--color-secondary-solitude) !important;
-}
+import React, { useEffect, useState } from 'react'
+import { message } from 'antd'
+import { useQuery, gql } from '@apollo/client'
 
-.home {
-  &-banner {
-    background-color: var(--color-banner) !important;
-    padding-top: 30px !important;
-  }
+import PageLoading from './PageLoading'
+import { store } from '../utils'
+import { Login, AdminDashboard } from '../pages'
 
-  &-card {
-    margin-top: 32px;
-
-    &-title {
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
+const QUERY_PROFILE = gql`
+  query profile {
+    profile {
+      Success
+      Message
+      Data {
+        Identifier
+        Role
+        Active
+      }
     }
   }
+`
 
-  &-node {
-    margin: 32px 0 32px !important;
+export default () => {
+  const [profile, setProfile] = useState(null)
+  const { loading, error, data } = useQuery(QUERY_PROFILE)
 
-    &-title {
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
+  useEffect(() => {
+    if (!loading && !error && data) {
+      const { Success, Message, Data } = data.profile
+
+      if (Success) {
+        setProfile(Data)
+      } else {
+        setProfile(null)
+        message.error(Message, 10)
+        store.remove('usrtoken')
+        store.remove('usraccess')
+      }
     }
-  }
-}
+  }, [data]) // eslint-disable-line
 
-.home-col-left {
-  padding-right: 8px !important;
-  padding-left: 0px !important;
-
-  @media (min-width: 576px) {
-    padding-right: 0px !important;
-    padding-bottom: 16px !important;
-  }
-
-  @include mq-xs {
-    padding-right: 0px !important;
-    padding-bottom: 16px !important;
-  }
-
-  @include mq-md {
-    padding-right: 16px !important;
-    padding-left: 0px !important;
-  }
-}
-
-.home-col-right {
-  padding-right: 0px !important;
-  padding-left: 8px !important;
-
-  @media (min-width: 576px) {
-    padding-left: 0px !important;
-  }
-
-  @include mq-xs {
-    padding-left: 0px !important;
-  }
-
-  @include mq-md {
-    padding-right: 0px !important;
-    padding-left: 16px !important;
-  }
-}
-
-.home-row-list {
-  width: 100%;
-
-  @include mq-lg {
-    font-size: 13px !important;
-  }
-
-  @include mq-xl {
-    font-size: 14px !important;
-  }
-}
-
-.graph {
-  width: 100%;
-  height: 300px;
+  return loading ? <PageLoading /> : profile ? <AdminDashboard /> : <Login />
 }

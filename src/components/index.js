@@ -47,5 +47,6 @@ import Container from './Container'
 import TableAnim from './TableAnim'
 import RaceCar from './RaceCar'
 import NextPreviousBlock from './NextPreviousBlock'
+import PageLoading from './PageLoading'
 
-export { Container, Hero, Banner, MapNodes, TableAnim, RaceCar, NextPreviousBlock }
+export { Container, Hero, Banner, MapNodes, TableAnim, RaceCar, NextPreviousBlock, PageLoading }
