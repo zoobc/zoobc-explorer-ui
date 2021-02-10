@@ -47,15 +47,16 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import i18n from './i18n'
 import clients from './utils/client'
-import NotFound from './pages/Errors/NotFound'
-import NotFoundComp from './components/Errors/NotFound'
 import Fallback from './components/Fallback'
+import NotFound from './pages/Errors/NotFound'
 import DefaultLayout from './components/DefaultLayout'
 import PrivateLayout from './components/PrivateLayout'
 import ErrorBoundary from './components/ErrorBoundary'
+import NotFoundComp from './components/Errors/NotFound'
+import { store } from './utils'
+import { ThemeState } from './context/ThemeContext'
 import { AnimationState } from './context/AnimationContext'
 import TestnetContext, { TestnetState } from './context/TestnetContext'
-import { ThemeState } from './context/ThemeContext'
 
 const Home = React.lazy(() => import('./pages/Home'))
 const Blocks = React.lazy(() => import('./pages/Blocks'))
@@ -67,7 +68,8 @@ const Account = React.lazy(() => import('./pages/Account'))
 const Nodes = React.lazy(() => import('./pages/Nodes'))
 const Node = React.lazy(() => import('./pages/Node'))
 const AdminKeywords = React.lazy(() => import('./pages/Admin/Keywords'))
-const AdminKeywordsForm = React.lazy(() => import('./pages/Admin/Keywords/form'))
+const AdminKeywordsFormNew = React.lazy(() => import('./pages/Admin/Keywords/formNew'))
+const AdminKeywordsFormEdit = React.lazy(() => import('./pages/Admin/Keywords/formEdit'))
 
 function ApolloMultiProvider({ children }) {
   const { selectedTestnet } = useContext(TestnetContext)
@@ -75,6 +77,8 @@ function ApolloMultiProvider({ children }) {
 }
 
 function App() {
+  const hasLogin = store.get('usrtoken') !== null && store.get('usraccess') !== null
+
   return (
     <ThemeState>
       <TestnetState>
@@ -109,16 +113,29 @@ function App() {
                         <Route exact path="/nodes/:id+" render={props => <Node {...props} />} />
                         <Route exact path="/search" render={props => <NotFound {...props} />} />
                         <Route exact path="/panel" render={props => <PrivateLayout {...props} />} />
-                        <Route
-                          exact
-                          path="/panel/keywords"
-                          render={props => <AdminKeywords {...props} />}
-                        />
-                        <Route
-                          exact
-                          path="/panel/keywords/new"
-                          render={props => <AdminKeywordsForm {...props} />}
-                        />
+
+                        {hasLogin && (
+                          <Route
+                            exact
+                            path="/panel/keywords"
+                            render={props => <AdminKeywords {...props} />}
+                          />
+                        )}
+                        {hasLogin && (
+                          <Route
+                            exact
+                            path="/panel/keywords/new"
+                            render={props => <AdminKeywordsFormNew {...props} />}
+                          />
+                        )}
+                        {hasLogin && (
+                          <Route
+                            exact
+                            path="/panel/keywords/:key"
+                            render={props => <AdminKeywordsFormEdit {...props} />}
+                          />
+                        )}
+
                         <Route exact path="*" render={props => <NotFoundComp {...props} />} />
                       </Switch>
                     </Suspense>
