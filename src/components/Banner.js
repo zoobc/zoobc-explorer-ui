@@ -89,7 +89,7 @@ const Banner = () => {
             Download the wallet to get started.
           </div>
           <div className="banner-text">
-            ZooBC wallet is a mobile apps, which can connect with the ZooBC blockchain network, and
+            ZooBC wallet is a mobile app, which can connect with the ZooBC blockchain network, and
             allows you to do the following:
           </div>
           <div className="banner-sub-text">
