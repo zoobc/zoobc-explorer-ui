@@ -70,6 +70,7 @@ const Node = React.lazy(() => import('./pages/Node'))
 const AdminKeywords = React.lazy(() => import('./pages/Admin/Keywords'))
 const AdminKeywordsFormNew = React.lazy(() => import('./pages/Admin/Keywords/formNew'))
 const AdminKeywordsFormEdit = React.lazy(() => import('./pages/Admin/Keywords/formEdit'))
+const AdminChangePassword = React.lazy(() => import('./pages/Admin/ChangePassword'))
 
 function ApolloMultiProvider({ children }) {
   const { selectedTestnet } = useContext(TestnetContext)
@@ -133,6 +134,13 @@ function App() {
                             exact
                             path="/panel/keywords/:key"
                             render={props => <AdminKeywordsFormEdit {...props} />}
+                          />
+                        )}
+                        {hasLogin && (
+                          <Route
+                            exact
+                            path="/panel/change-password"
+                            render={props => <AdminChangePassword {...props} />}
                           />
                         )}
 
