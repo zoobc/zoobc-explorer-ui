@@ -173,6 +173,9 @@ const Header = ({ history, location, fluid }) => {
                     <Link to="/panel/keywords">{t('keywords')}</Link>
                   </Menu.Item>
                   <Menu.Divider />
+                  <Menu.Item key="password">
+                    <Link to="/panel/change-password">{t('change password')}</Link>
+                  </Menu.Item>
                   <Menu.Item key="logout" onClick={onLogout}>
                     {t('Log out')}
                   </Menu.Item>
@@ -266,6 +269,9 @@ const Header = ({ history, location, fluid }) => {
                   <Link to="/panel/keywords">{t('keywords')}</Link>
                 </Menu.Item>
                 <Menu.Divider />
+                <Menu.Item key="password">
+                  <Link to="/panel/change-password">{t('change password')}</Link>
+                </Menu.Item>
                 <Menu.Item key="logout" onClick={onLogout}>
                   {t('Log out')}
                 </Menu.Item>

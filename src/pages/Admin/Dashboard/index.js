@@ -147,7 +147,9 @@ export default () => {
               key,
               ...item,
             }
-          })
+          }).slice(0, 5)
+
+          console.log('==dataAdminLogs', dataAdminLogs.length)
 
           setKeywords(dataKeywords)
           setAdminLogs(dataAdminLogs)
