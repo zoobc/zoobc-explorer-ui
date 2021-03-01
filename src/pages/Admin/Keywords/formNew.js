@@ -50,6 +50,7 @@ import { useTranslation } from 'react-i18next'
 import { useMutation, gql } from '@apollo/client'
 import { PageHeader, Row, Col, Form, Input, Button, DatePicker, message } from 'antd'
 
+import config from '../../../config'
 import Container from '../../../components/Container'
 
 const formItemLayout = {
@@ -102,7 +103,7 @@ const FormKeyword = props => {
       setLoading(false)
 
       setTimeout(() => {
-        window.location.href = '/panel/keywords'
+        window.location.href = `/${config.app.endPointPanel}/keywords`
       }, 500)
     },
   })
@@ -131,7 +132,7 @@ const FormKeyword = props => {
         title={<h4 className="block-card-title page-title">{t('keywords')}</h4>}
         subTitle={t('insert new')}
         extra={[
-          <Button key="back" onClick={() => history.push('/panel/keywords')}>
+          <Button key="back" onClick={() => history.push(`/${config.app.endPointPanel}/keywords`)}>
             {t('back')}
           </Button>,
         ]}

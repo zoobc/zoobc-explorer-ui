@@ -167,14 +167,16 @@ const Header = ({ history, location, fluid }) => {
               {hasAccess && (
                 <Menu.SubMenu className="menu-with-icon" title={t('panel')}>
                   <Menu.Item key="dashboard">
-                    <Link to="/panel">{t('dashboard')}</Link>
+                    <Link to={`/${config.app.endPointPanel}`}>{t('dashboard')}</Link>
                   </Menu.Item>
                   <Menu.Item key="keywords">
-                    <Link to="/panel/keywords">{t('keywords')}</Link>
+                    <Link to={`/${config.app.endPointPanel}/keywords`}>{t('keywords')}</Link>
                   </Menu.Item>
                   <Menu.Divider />
                   <Menu.Item key="password">
-                    <Link to="/panel/change-password">{t('change password')}</Link>
+                    <Link to={`/${config.app.endPointPanel}/change-password`}>
+                      {t('change password')}
+                    </Link>
                   </Menu.Item>
                   <Menu.Item key="logout" onClick={onLogout}>
                     {t('Log out')}
@@ -263,14 +265,16 @@ const Header = ({ history, location, fluid }) => {
             {hasAccess && (
               <Menu.SubMenu className="menu-with-icon" title={t('panel')}>
                 <Menu.Item key="dashboard">
-                  <Link to="/panel">{t('dashboard')}</Link>
+                  <Link to={`/${config.app.endPointPanel}`}>{t('dashboard')}</Link>
                 </Menu.Item>
                 <Menu.Item key="keywords">
-                  <Link to="/panel/keywords">{t('keywords')}</Link>
+                  <Link to={`/${config.app.endPointPanel}/keywords`}>{t('keywords')}</Link>
                 </Menu.Item>
                 <Menu.Divider />
                 <Menu.Item key="password">
-                  <Link to="/panel/change-password">{t('change password')}</Link>
+                  <Link to={`/${config.app.endPointPanel}/change-password`}>
+                    {t('change password')}
+                  </Link>
                 </Menu.Item>
                 <Menu.Item key="logout" onClick={onLogout}>
                   {t('Log out')}
