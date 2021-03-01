@@ -49,6 +49,7 @@ import { onError } from '@apollo/client/link/error'
 import { getMainDefinition } from '@apollo/client/utilities'
 import { ApolloClient, ApolloLink, split, HttpLink, InMemoryCache } from '@apollo/client'
 
+import config from '../config'
 import { testnetClient } from '../config/testnet'
 
 const lastRefreshField = () => ({
@@ -116,7 +117,7 @@ const onErrorHandler = onError(({ graphQLErrors, networkError }) => {
       message.error(networkError.result.errors[0].message, 10)
 
       setTimeout(() => {
-        window.location.href = '/panel'
+        window.location.href = `/${config.app.endPointPanel}`
       }, 1000)
     }
   }

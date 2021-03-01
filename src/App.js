@@ -46,6 +46,7 @@ import { I18nextProvider } from 'react-i18next'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import i18n from './i18n'
+import config from './config'
 import clients from './utils/client'
 import Fallback from './components/Fallback'
 import NotFound from './pages/Errors/NotFound'
@@ -113,33 +114,37 @@ function App() {
                         <Route exact path="/nodes" render={props => <Nodes {...props} />} />
                         <Route exact path="/nodes/:id+" render={props => <Node {...props} />} />
                         <Route exact path="/search" render={props => <NotFound {...props} />} />
-                        <Route exact path="/panel" render={props => <PrivateLayout {...props} />} />
+                        <Route
+                          exact
+                          path={`/${config.app.endPointPanel}`}
+                          render={props => <PrivateLayout {...props} />}
+                        />
 
                         {hasLogin && (
                           <Route
                             exact
-                            path="/panel/keywords"
+                            path={`/${config.app.endPointPanel}/keywords`}
                             render={props => <AdminKeywords {...props} />}
                           />
                         )}
                         {hasLogin && (
                           <Route
                             exact
-                            path="/panel/keywords/new"
+                            path={`/${config.app.endPointPanel}/keywords/new`}
                             render={props => <AdminKeywordsFormNew {...props} />}
                           />
                         )}
                         {hasLogin && (
                           <Route
                             exact
-                            path="/panel/keywords/:key"
+                            path={`/${config.app.endPointPanel}/keywords/:key`}
                             render={props => <AdminKeywordsFormEdit {...props} />}
                           />
                         )}
                         {hasLogin && (
                           <Route
                             exact
-                            path="/panel/change-password"
+                            path={`/${config.app.endPointPanel}/change-password`}
                             render={props => <AdminChangePassword {...props} />}
                           />
                         )}

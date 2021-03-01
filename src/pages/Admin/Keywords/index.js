@@ -47,6 +47,7 @@ import { useTranslation } from 'react-i18next'
 import { useQuery, useMutation, gql } from '@apollo/client'
 import { PageHeader, Button, Table, Pagination, Popconfirm, Divider, message } from 'antd'
 
+import config from '../../../config'
 import { getSortString } from '../../../utils'
 import Container from '../../../components/Container'
 
@@ -151,7 +152,7 @@ export default () => {
       render: data => {
         return (
           <span>
-            <Link to={`/panel/keywords/${data.Keyword}`}>
+            <Link to={`/${config.app.endPointPanel}/keywords/${data.Keyword}`}>
               <Button type="link" size="small">
                 <Title text="edit" />
               </Button>
@@ -221,7 +222,7 @@ export default () => {
           <Button key="refresh" onClick={() => refetch()}>
             {t('refresh')}
           </Button>,
-          <Link key="insert" to="/panel/keywords/new">
+          <Link key="insert" to={`/${config.app.endPointPanel}/keywords/new`}>
             <Button key="insert" type="primary">
               {t('insert new')}
             </Button>
