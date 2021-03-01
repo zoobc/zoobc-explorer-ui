@@ -46,6 +46,7 @@ import { useTranslation } from 'react-i18next'
 import { useMutation, gql } from '@apollo/client'
 import { Row, Col, Card, Form, Input, Button, Checkbox, Icon, Typography, Alert } from 'antd'
 
+import config from '../../config'
 import { store, encryption } from '../../utils'
 
 const MUTATION_LOGIN = gql`
@@ -104,7 +105,7 @@ const Login = props => {
         store.set('usraccess', encryption.encrypt(Data))
 
         setTimeout(() => {
-          window.location.href = '/panel'
+          window.location.href = `/${config.app.endPointPanel}`
         }, 1000)
       } else {
         setError(Message)

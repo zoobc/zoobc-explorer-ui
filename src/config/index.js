@@ -46,6 +46,7 @@ const config = {
   app: {
     version: 'Beta Version 0.3.2',
     defaultLang: store.use('language', 'en'),
+    endPointPanel: 'yx2ieyxq124pqm1k417e',
   },
   endpoint: {
     api:

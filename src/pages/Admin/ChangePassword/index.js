@@ -100,7 +100,7 @@ const FormChangePassword = props => {
       setProcessing(false)
 
       // setTimeout(() => {
-      //   window.location.href = '/panel'
+      //   window.location.href = `/${config.app.endPointPanel}`
       // }, 500)
     },
   })
