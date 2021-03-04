@@ -83,6 +83,7 @@ const GET_TRX_DATA = gql`
       RecipientFormatted
       FeeConversion
       Status
+      MessageFormatted
       SendMoney {
         Amount
         AmountConversion
@@ -199,6 +200,11 @@ const GET_TRX_DATA = gql`
       EscrowTransaction {
         TransactionID
         BlockID
+      }
+      LiquidPayment {
+        Amount
+        AmountConversion
+        CompleteMinutes
       }
     }
   }
@@ -382,11 +388,13 @@ const Transaction = ({ match }) => {
                           />
                         }
                       />
-                      <DescItem
-                        label={t('status')}
-                        style={{ display: 'none' }}
-                        value={data.transaction.Status}
-                      />
+                      {data && data.transaction.Escrow && (
+                        <DescItem
+                          label={t('status')}
+                          style={{ display: 'none' }}
+                          value={data.transaction.Escrow.Status}
+                        />
+                      )}
                       {data.transaction.MultisigChild && (
                         <DescItem
                           label={t('transaction hash')}
@@ -394,10 +402,44 @@ const Transaction = ({ match }) => {
                           value={data.transaction.TransactionHash}
                         />
                       )}
+                      {data.transaction.LiquidPayment && (
+                        <>
+                          <DescItem
+                            label={t('amount')}
+                            style={{ display: 'none' }}
+                            value={
+                              <NumberFormat
+                                value={data.transaction.LiquidPayment.AmountConversion || 0}
+                                displayType={'text'}
+                                thousandSeparator={true}
+                                suffix={' ZBC'}
+                                className="monospace-text"
+                              />
+                            }
+                          />
+                          <DescItem
+                            label={t('complete minutes')}
+                            style={{ display: 'none' }}
+                            value={data.transaction.LiquidPayment.CompleteMinutes}
+                          />
+                        </>
+                      )}
                     </Panel>
                   </Collapse>
                 </Card>
+
                 <TransactionType trx={data.transaction} />
+
+                {data && data.transaction && data.transaction.MessageFormatted && (
+                  <Card className="transaction-card">
+                    <h4 className="transaction-card-title page-title">{t('message')}</h4>
+                    <DescItem
+                      label={t('add message')}
+                      style={{ display: 'none' }}
+                      value={data.transaction.MessageFormatted}
+                    />
+                  </Card>
+                )}
               </Col>
             </Row>
           </Container>
