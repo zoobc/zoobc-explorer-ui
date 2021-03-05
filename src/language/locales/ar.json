@@ -561,6 +561,12 @@
   "extension closed": "تمديد مغلق",
   "extension cancel the operation": "تمديد إلغاء العملية",
   "extension not found": "التمديد غير موجود",
+  "add message": "اضافة رسالة",
+  "complete minutes": "دقائق كاملة",
+  "complete minutes is required": "مطلوب دقائق كاملة",
+  "minimum complete minutes is 0": "الحد الأدنى للدقائق الكاملة هو 0",
+  "complete": "كامل",
+  "normal account": "حساب عادي",
 
   "=============== WALLET MOBILE ===============": "=============== WALLET MOBILE ===============",
 
@@ -693,5 +699,6 @@
   "delete account": "حذف الحساب",
   "copy the text below to export or paste below to import contacts": "انسخ النص أدناه للتصدير أو اللصق أدناه لاستيراد جهات الاتصال",
   "export/import": "الاستيراد والتصدير",
-  "please enter addresses in json format": "الرجاء إدخال العناوين بتنسيق json"
+  "please enter addresses in json format": "الرجاء إدخال العناوين بتنسيق json",
+  "transaction  fee  changed, more than minimum fee": "تم تغيير رسوم المعاملة ، وزادت قيمة ZBC {{value}} عن الحد الأدنى للرسوم"
 }
