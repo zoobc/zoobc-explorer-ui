@@ -561,6 +561,12 @@
   "extension closed": "Extension Closed",
   "extension cancel the operation": "Extension Cancel the Operation",
   "extension not found": "Extension Not Found",
+  "add message": "Add message",
+  "complete minutes": "Complete minutes",
+  "complete minutes is required": "Complete minutes is required",
+  "minimum complete minutes is 0": "Minimum complete minutes is 0",
+  "complete": "Complete",
+  "normal account": "Normal Account",
 
   "=============== WALLET MOBILE ===============": "=============== WALLET MOBILE ===============",
 
@@ -693,5 +699,6 @@
   "delete account": "Delete Account",
   "copy the text below to export or paste below to import contacts": "Copy the text below to export or paste below to import contacts",
   "export/import": "Export/Import",
-  "please enter addresses in json format": "Please enter addresses in json format"
+  "please enter addresses in json format": "Please enter addresses in json format",
+  "transaction  fee  changed, more than minimum fee": "Transaction  fee  changed, and ZBC {{value}} more than minimum fee"
 }
