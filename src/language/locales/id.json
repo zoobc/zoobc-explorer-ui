@@ -561,6 +561,12 @@
   "extension closed": "Ekstensi Ditutup",
   "extension cancel the operation": "Ekstensi Membatalkan Operasi",
   "extension not found": "Ekstensi Tidak Ditemukan",
+  "add message": "Tambah pesam",
+  "complete minutes": "Lengkapi menit",
+  "complete minutes is required": "Lengkapi menit diperlukan",
+  "minimum complete minutes is 0": "Lengkapi menit minimal adalah 0",
+  "complete": "Lengkap",
+  "normal account": "Akun Normal",
 
   "=============== WALLET MOBILE ===============": "=============== WALLET MOBILE ===============",
 
@@ -693,5 +699,6 @@
   "delete account": "Hapus Akun",
   "copy the text below to export or paste below to import contacts": "Salin teks di bawah ini atau tempel untuk mengimpor kontak",
   "export/import": "Expor/Impor",
-  "please enter addresses in json format": "Masukan kontak dengan format json"
+  "please enter addresses in json format": "Masukan kontak dengan format json",
+  "transaction  fee  changed, more than minimum fee": "Biaya transaksi berubah, dan ZBC {{value}} lebih dari biaya minimum"
 }
