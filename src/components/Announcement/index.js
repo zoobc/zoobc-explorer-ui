@@ -48,7 +48,7 @@ export default () => {
     <div className="announcement">
       <BlinkText
         color="white"
-        text="THIS IS THE ZOOBC TESTNET. ZooBC MainNet will launch on March 22, 2021"
+        text="THIS IS THE ZOOBC TESTNET. ZooBC MainNet will launch on March 30, 2021 03:30 GMT +8"
       />
     </div>
   )
