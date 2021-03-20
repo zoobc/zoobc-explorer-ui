@@ -115,7 +115,7 @@ const Banner = () => {
             )}
           </a>
           <a
-            href="https://testflight.apple.com/join/O1QFINJP"
+            href="https://apps.apple.com/us/app/zoobc-wallet/id1548067497"
             target="_blank"
             rel="noopener norefferer"
             title="AppStore"
