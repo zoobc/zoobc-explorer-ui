@@ -52,11 +52,11 @@ const config = {
     api:
       process.env.REACT_APP_API === 'localhost'
         ? 'http://localhost:6969/zoobc/api/v1'
-        : 'https://alpha.zoobc.net/zoobc/api/v1',
+        : 'https://mainnet.zoobc.net/zoobc/api/v1',
     graphql:
       process.env.REACT_APP_API === 'localhost'
         ? 'http://localhost:6969/zoobc/api/v1/graphql'
-        : 'https://alpha.zoobc.net/zoobc/api/v1/graphql',
+        : 'https://mainnet.zoobc.net/zoobc/api/v1/graphql',
   },
   doolbell: {
     api_key: process.env.REACT_APP_DOORBELL_KEY,
