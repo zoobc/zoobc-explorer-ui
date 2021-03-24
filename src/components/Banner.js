@@ -43,12 +43,15 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-no-target-blank */
-import React from 'react'
+import React, { useState } from 'react'
 import Radium, { StyleRoot } from 'radium'
 import { slideInDown, fadeIn, flipInY } from 'react-animations'
 import { isWebpSupported } from 'react-image-webp/dist/utils'
+import ComingSoon from './ComingSoon'
 
 const Banner = () => {
+  const [isOpenComingSoon, setIsOpenCommingSoon] = useState(false)
+  const [dialogTitle, setDialogTitle] = useState()
   const styles = {
     slideInDown: {
       animation: 'x 3s',
@@ -64,71 +67,95 @@ const Banner = () => {
     },
   }
 
+  const onComingSoon = () => {
+    setDialogTitle()
+    setIsOpenCommingSoon(true)
+  }
+
   return (
-    <StyleRoot>
-      <div className="banner">
-        <div className="wallet-mobile">
-          {isWebpSupported() ? (
-            <img
-              src={require('../assets/images/wallet-mobile.webp')}
-              alt="wallet"
-              style={styles.flipInY}
-            />
-          ) : (
-            <img
-              src={require('../assets/images/wallet-mobile.png')}
-              alt="wallet"
-              style={styles.flipInY}
-            />
-          )}
-        </div>
-        <div style={styles.slideInDown}>
-          <div className="banner-title">
-            New to ZooBC?
-            <br />
-            Download the wallet to get started.
-          </div>
-          <div className="banner-text">
-            ZooBC wallet is a mobile app, which can connect with the ZooBC blockchain network, and
-            allows you to do the following:
-          </div>
-          <div className="banner-sub-text">
-            <ul>
-              <li>Send ZooBC to your friends</li>
-              <li>See your balance and transaction history</li>
-              <li>Support Multi Signature Transaction</li>
-              <li>Support Escrow Transaction</li>
-            </ul>
-          </div>
-        </div>
-        <div className="banner-button" style={styles.fadeIn}>
-          <a
-            href="https://play.google.com/store/apps/details?id=com.zoobc.walletmobile"
-            target="_blank"
-            rel="noopener norefferer"
-            title="PlayStore"
-          >
+    <>
+      <StyleRoot>
+        <div className="banner">
+          <div className="wallet-mobile">
             {isWebpSupported() ? (
-              <img src={require('../assets/images/googleplay.webp')} alt="googleplaystore" />
+              <img
+                src={require('../assets/images/wallet-mobile.webp')}
+                alt="wallet"
+                style={styles.flipInY}
+              />
             ) : (
-              <img src={require('../assets/images/googleplay.png')} alt="googleplaystore" />
+              <img
+                src={require('../assets/images/wallet-mobile.png')}
+                alt="wallet"
+                style={styles.flipInY}
+              />
             )}
-          </a>
-          <a
-            href="https://apps.apple.com/us/app/zoobc-wallet/id1548067497"
-            target="_blank"
-            rel="noopener norefferer"
-            title="AppStore"
-          >
-            {isWebpSupported() ? (
-              <img src={require('../assets/images/appstore.webp')} alt="appstore" />
-            ) : (
-              <img src={require('../assets/images/appstore.png')} alt="appstore" />
-            )}
-          </a>
+          </div>
+          <div style={styles.slideInDown}>
+            <div className="banner-title">
+              New to ZooBC?
+              <br />
+              Download the wallet to get started.
+            </div>
+            <div className="banner-text">
+              ZooBC wallet is a mobile app, which can connect with the ZooBC blockchain network, and
+              allows you to do the following:
+            </div>
+            <div className="banner-sub-text">
+              <ul>
+                <li>Send ZooBC to your friends</li>
+                <li>See your balance and transaction history</li>
+                <li>Support Multi Signature Transaction</li>
+                <li>Support Escrow Transaction</li>
+              </ul>
+            </div>
+          </div>
+          <div className="banner-button" style={styles.fadeIn}>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.zoobc.walletmobile"
+              target="_blank"
+              rel="noopener norefferer"
+              title="PlayStore"
+            >
+              {isWebpSupported() ? (
+                <img src={require('../assets/images/googleplay.webp')} alt="googleplaystore" />
+              ) : (
+                <img src={require('../assets/images/googleplay.png')} alt="googleplaystore" />
+              )}
+            </a>
+            <a
+              href="https://apps.apple.com/us/app/zoobc-wallet/id1548067497"
+              target="_blank"
+              rel="noopener norefferer"
+              title="AppStore"
+            >
+              {isWebpSupported() ? (
+                <img src={require('../assets/images/appstore.webp')} alt="appstore" />
+              ) : (
+                <img src={require('../assets/images/appstore.png')} alt="appstore" />
+              )}
+            </a>
+            <a
+              onClick={onComingSoon}
+              target="_blank"
+              rel="noopener norefferer"
+              title="ChromeWebStore"
+            >
+              {isWebpSupported() ? (
+                <img src={require('../assets/images/chromewebstore.webp')} alt="chromewebstore" />
+              ) : (
+                <img src={require('../assets/images/chromewebstore.png')} alt="chromewebstore" />
+              )}
+            </a>
+          </div>
         </div>
-      </div>
-    </StyleRoot>
+      </StyleRoot>
+      <ComingSoon
+        visible={isOpenComingSoon}
+        title={dialogTitle}
+        onClose={() => setIsOpenCommingSoon(false)}
+      />
+    </>
   )
 }
 
