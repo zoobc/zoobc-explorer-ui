@@ -65,7 +65,7 @@ export const TestnetState = ({ children }) => {
   const subdomain = host.split('.')
 
   const defaultNetwork =
-    subdomain && subdomain.length > 0 && subdomain[0] === 'localhost' ? testnet[2] : testnet[0]
+    subdomain && subdomain.length > 0 && subdomain[0] === 'localhost' ? testnet[0] : testnet[1]
 
   const testnetDefaultValue = {
     selectedTestnet: store.use('testnet', defaultNetwork),
