@@ -51,17 +51,11 @@ const testnetProd = [
     color: '#f56a00',
     value: 'testnet2',
   },
-  {
-    name: 'Dev Network',
-    color: '#dc3545',
-    value: 'testnet3',
-  },
 ]
 
 const testnetClientProd = [
   process.env.REACT_APP_GRAPHQL_ENDPOINT || 'https://mainnet.zoobc.net/zoobc/api/v1/graphql',
   'https://beta.zoobc.net/zoobc/api/v1/graphql',
-  'https://demo.zoobc.net/zoobc/api/v1/graphql',
 ]
 
 export const testnetClient = testnetClientProd

@@ -56,7 +56,6 @@ import AnimationContext from '../context/AnimationContext'
 import FormFeedback from './FormFeedback'
 import testnet from '../config/testnet'
 import TestnetContext from '../context/TestnetContext'
-import Announcement from './Announcement'
 import { store } from '../utils'
 
 const { Search } = Input
@@ -125,7 +124,6 @@ const Header = ({ history, location, fluid }) => {
 
   return (
     <>
-      <Announcement />
       <Layout.Header className="header">
         <Container className="header-content" fluid={fluid}>
           <div className="logo">
