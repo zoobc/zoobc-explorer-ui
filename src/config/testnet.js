@@ -47,26 +47,20 @@ const testnetProd = [
     value: 'testnet1',
   },
   {
-    name: 'Beta Network',
-    color: '#7265e6',
-    value: 'testnet2',
-  },
-  {
-    name: 'Alpha Network',
+    name: 'ExperiNet',
     color: '#f56a00',
-    value: 'testnet3',
+    value: 'testnet2',
   },
   {
     name: 'Dev Network',
     color: '#dc3545',
-    value: 'testnet4',
+    value: 'testnet3',
   },
 ]
 
 const testnetClientProd = [
   process.env.REACT_APP_GRAPHQL_ENDPOINT || 'https://mainnet.zoobc.net/zoobc/api/v1/graphql',
   'https://beta.zoobc.net/zoobc/api/v1/graphql',
-  'https://alpha.zoobc.net/zoobc/api/v1/graphql',
   'https://demo.zoobc.net/zoobc/api/v1/graphql',
 ]
 
