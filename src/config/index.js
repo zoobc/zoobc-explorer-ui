@@ -44,7 +44,7 @@ import store from '../utils/store'
 
 const config = {
   app: {
-    version: 'Beta Version 0.3.2',
+    version: 'Beta Version 0.3.3',
     defaultLang: store.use('language', 'en'),
     endPointPanel: 'yx2ieyxq124pqm1k417e',
   },

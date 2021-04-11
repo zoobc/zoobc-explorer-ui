@@ -81,11 +81,15 @@ const getBlocksmithIndicator = skipped => {
 }
 
 const renderCurrenncy = text => {
+  const amnt = parseFloat(text) / 1e8 || 0
+  const amnts = amnt.toString().split('.')
+  const value = amnts[0].concat(amnts[1] ? `.${amnts[1].slice(0, 4)}` : '')
+
   return (
     <NumberFormat
-      value={text || 0}
+      value={value}
       displayType={'text'}
-      thousandSeparator={true}
+      thousandSeparator={false}
       suffix={' ZBC'}
       className="page-title monospace-text"
     />
@@ -201,7 +205,8 @@ export const accountColumns = [
   },
   {
     title: <Title text="balance" />,
-    dataIndex: 'BalanceConversion',
+    // dataIndex: 'BalanceConversion',
+    dataIndex: 'Balance',
     key: 'BalanceConversion',
     render: renderCurrenncy,
   },

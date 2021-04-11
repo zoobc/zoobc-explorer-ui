@@ -57,6 +57,7 @@ const GET_ACCOUNTS_DATA = gql`
       Accounts {
         AccountAddress
         AccountAddressFormatted
+        Balance
         BalanceConversion
         FirstActive
         LastActive
