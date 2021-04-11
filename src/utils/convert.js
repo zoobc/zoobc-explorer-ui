@@ -40,36 +40,10 @@
  * shall be included in all copies or substantial portions of the Software.
 **/
 
-import { apiGet, apiPost, apiPut } from './api'
-import { getUnique } from './validate'
-import store from './store'
-import objectUtils from './object'
-import {
-  getSortString,
-  getSortObject,
-  getSortOrder,
-  isEmptyObject,
-  isObject,
-  getRandomIndex,
-} from './util'
-import encryption from './encryption'
-import date from './date'
-import convert from './convert'
-
-export {
-  apiGet,
-  apiPost,
-  apiPut,
-  getUnique,
-  getSortString,
-  getSortObject,
-  getSortOrder,
-  isEmptyObject,
-  isObject,
-  store,
-  objectUtils,
-  encryption,
-  date,
-  getRandomIndex,
-  convert,
+const currency = val => {
+  const amnt = parseFloat(val) / 1e8 || 0
+  const amnts = amnt.toString().split('.')
+  return amnts[0].concat(amnts[1] ? `.${amnts[1].slice(0, 4)}` : '')
 }
+
+export default { currency }
