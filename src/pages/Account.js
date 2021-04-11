@@ -53,6 +53,7 @@ import NotFound from '../components/Errors/NotFound'
 import LoaderPage from '../components/LoaderPage'
 import CopyToClipboard from '../components/CopyToClipboard'
 import { transactionColumns, nodeColumns } from '../config/table-columns'
+import { convert } from '../utils'
 
 const { Panel } = Collapse
 
@@ -61,6 +62,7 @@ const GET_ACCOUNT_DATA = gql`
     account(AccountAddressFormatted: $AccountAddressFormatted) {
       AccountAddress
       AccountAddressFormatted
+      Balance
       BalanceConversion
       SpendableBalanceConversion
       FirstActive
@@ -285,9 +287,9 @@ const Account = ({ match }) => {
                     style={{ display: 'none' }}
                     value={
                       <NumberFormat
-                        value={data.account.BalanceConversion || 0}
+                        value={convert.currency(data.account.Balance)}
                         displayType={'text'}
-                        thousandSeparator={true}
+                        thousandSeparator={false}
                         suffix={' ZBC'}
                         className="monospace-text"
                       />
