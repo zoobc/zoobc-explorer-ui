@@ -61,7 +61,9 @@ const GET_ACCOUNTS_DATA = gql`
         BalanceConversion
         FirstActive
         LastActive
+        TotalRewards
         TotalRewardsConversion
+        TotalFeesPaid
         TotalFeesPaidConversion
       }
       Paginate {

@@ -205,7 +205,6 @@ export const accountColumns = [
   },
   {
     title: <Title text="balance" />,
-    // dataIndex: 'BalanceConversion',
     dataIndex: 'Balance',
     key: 'BalanceConversion',
     render: renderCurrenncy,
@@ -220,24 +219,13 @@ export const accountColumns = [
   },
   {
     title: <Title text="fees" />,
-    dataIndex: 'TotalFeesPaidConversion',
+    dataIndex: 'TotalFeesPaid',
     key: 'TotalFeesPaidConversion',
-    render(text) {
-      return (
-        <NumberFormat
-          value={text || 0}
-          displayType={'text'}
-          decimalScale={2}
-          thousandSeparator={true}
-          suffix={' ZBC'}
-          className="page-title monospace-text"
-        />
-      )
-    },
+    render: renderCurrenncy,
   },
   {
     title: <Title text="rewards" />,
-    dataIndex: 'TotalRewardsConversion',
+    dataIndex: 'TotalRewards',
     key: 'TotalRewardsConversion',
     render: renderCurrenncy,
   },
