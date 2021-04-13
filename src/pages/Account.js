@@ -67,7 +67,9 @@ const GET_ACCOUNT_DATA = gql`
       SpendableBalanceConversion
       FirstActive
       LastActive
+      TotalRewards
       TotalRewardsConversion
+      TotalFeesPaid
       TotalFeesPaidConversion
       # NodePublicKey
     }
@@ -321,7 +323,7 @@ const Account = ({ match }) => {
                     style={{ display: 'none' }}
                     value={
                       <NumberFormat
-                        value={data.account.TotalRewardsConversion || 0}
+                        value={convert.currency(data.account.TotalRewards)}
                         displayType={'text'}
                         thousandSeparator={true}
                         suffix={' ZBC'}
@@ -334,7 +336,7 @@ const Account = ({ match }) => {
                     style={{ display: 'none' }}
                     value={
                       <NumberFormat
-                        value={data.account.TotalFeesPaidConversion || 0}
+                        value={convert.currency(data.account.TotalFeesPaid)}
                         displayType={'text'}
                         thousandSeparator={true}
                         suffix={' ZBC'}
