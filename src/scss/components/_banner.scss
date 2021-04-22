@@ -60,9 +60,11 @@
   }
   &-text {
     display: none;
+    color: var(--color-text);
   }
   &-sub-text {
     display: none;
+    color: var(--color-text);
     // margin-top: 10px;
   }
   .wallet-mobile {

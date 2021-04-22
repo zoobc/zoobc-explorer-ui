@@ -287,7 +287,9 @@ const Transaction = ({ match }) => {
                 <Row>
                   <Col span={24}>
                     <h4 className="page-title">{t('transaction')}</h4>
-                    <div className="current-page">{data.transaction.TransactionID}</div>
+                    <div className="current-page">
+                      <label className="page-title">{data.transaction.TransactionID}</label>
+                    </div>
                   </Col>
                 </Row>
                 <Card className="transaction-card" bordered={false}>

@@ -268,7 +268,9 @@ const Account = ({ match }) => {
                 <Row>
                   <Col span={24}>
                     <h4 className="page-title">{t('account')}</h4>
-                    <div className="current-page">{data.account.AccountAddressFormatted}</div>
+                    <div className="current-page">
+                      <label className="page-title">{data.account.AccountAddressFormatted}</label>
+                    </div>
                   </Col>
                 </Row>
                 <Card className="account-card" bordered={false}>
