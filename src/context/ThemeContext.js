@@ -107,7 +107,7 @@ const darkTheme = [
   '--color-primary-bg: #012137',
   '--color-secondary-solitude: #01263F',
   '--color-primary-card: #012137',
-  '--color-hero:  #01263F',
+  '--color-hero: #01263F',
   '--color-text-card: #FFFFFF',
   '--color-table-text: #FFFFFF',
   '--color-primary-link-txt: #3498DB',
@@ -117,6 +117,7 @@ const darkTheme = [
   '--color-banner: #01263F',
   '--color-primary-dark-txt: #FFFFFF',
   '--color-escrow-multisignature-expand: #01263F',
+  '--color-text: #FFFFFF',
 ]
 
 export default ThemeContext
